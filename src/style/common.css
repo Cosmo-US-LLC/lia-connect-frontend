@@ -1,0 +1,11 @@
+:root {
+    --theme-default: #273773;
+    ;
+}
+
+.btn-primary,
+.bg-primary{  
+  background-color: var(--theme-default);
+  color: #DBFFF2;
+}
+
