@@ -1,57 +1,13 @@
-//Smart Hire Work
-export const Loading = "Loading...";
-export const DashboardNav = "Dashboard";
-export const ClientNav = "Clients";
-export const UserRegistered = "User registered successfully.";
-export const UserLoggedIn = "User logged in successfully.";
-export const ForgetPasswordRequestSent =
-  "Password reset request send successfully";
-export const PasswordReset = "Password reset successfully.";
-
-// Usama Work
-export const APIUrl = localStorage.getItem("APIUrl");
-export const SuperAdminAPIUrl = APIUrl + "/super-admin";
-
-export const RecordAdded = "Record has been successfully added.";
-export const RecordUpdated = "Record has been successfully updated.";
-export const RecordDeleted = "Record has been successfully deleted.";
-export const RequestError = "Something went wrong.";
-
-export const PositiveNumberRegex = /^[1-9]\d*$/;
-
-// nav menu
-export const NavMenu = "Menu";
-export const LeadNav = "Leads";
-export const TaskNav = "Tasks";
-export const StaffNav = "Staff";
-export const MonthArray = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-export const ProjectBreakdown = "Project Breakdown";
-export const StaffBreakdown = "Staff Breakdown";
-export const RatingBreakdown = "Rating Breakdown";
-export const ClientTypeBreakdown = "Client Type Breakdown";
-
 export const Dashboard = "Dashboard";
 export const Widgets = "Widgets";
 export const Summary = "Summary";
 export const NewsUpdate = "News & Update";
 export const Appointment = "Appointment";
-export const Notification = "notification";
+export const Notification = "Notification";
 export const MarketValue = "Market Value";
 export const Chat = "Chat";
+export const GeoJsonMaps = "GeoJsonMaps";
+export const DraggableMarkers = "DraggableMarkers";
 
 export const NewProduct = "New Product";
 export const Location = "Location";
@@ -149,6 +105,9 @@ export const Details = "Details";
 export const Quantity = "Quantity";
 export const Status = "Status";
 export const Price = "Price";
+export const STEP = 10;
+export const MIN = 100;
+export const MAX = 950;
 
 export const Employee_Status = "Employee Status";
 export const Name = "Name";
@@ -184,6 +143,107 @@ export const MonthlySales = "Monthly Sales";
 export const Uses = "Uses";
 export const BrowserUses = "Browser Uses";
 export const Finance = "Finance";
+export const PaperNoteTitle = "PaperNote";
+export const ViewProject = "View project";
+export const BlogMessage = "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.";
+
+// Default Dashboard //
+export const WelcomeToCuba = "Welcome to cuba";
+export const WelcomeMessage = "Here whats happing in your account today";
+export const WhatsNew = "Whats New !";
+export const OverallBalanceTitle = "Overall Balance";
+export const Earning = "Earning";
+export const Expense = "Expense";
+export const RecentOrdersTitle = "Recent Orders";
+export const Cancelled = "Cancelled";
+export const Delivered = "Delivered";
+export const LastMonth = "Last 6 Month";
+export const profit = 2_302;
+export const profit2 = 9_302;
+export const Activity = "Activity";
+export const RecentSalesTitle = "Recent Sales";
+export const PurchaseNow = "Purchase Now";
+export const TotalUsers = "Total Users";
+export const FollowersGrowth = "Followers Growth";
+export const Inprogress = "Inprogress";
+export const DailyDropdown = ["Today", "Tomorrow", "Yesterday"];
+export const WeeklyMonDropdown = ["Weekly", "Monthly", "Yearly"];
+export const CryptoDropdown = ["BTC", "ETH", "USD", "LTC"];
+
+// Ecommerce Dashboard //
+export const TotalBalanceTitle = "Total Balance";
+export const ThisMonth = "this month";
+export const TapUpBalance = "Tap Up Balance";
+export const ValuableCustomerTitle = "Valuable Customer";
+export const OrderThisMonthTitle = "Order This Month";
+export const ToGoal = " To Goal";
+export const MonthlyProfitsTitle = "Monthly Profits";
+export const MonthlyProfitsGrowth = "Total profit growth of 30%";
+export const OrderOverviewTitle = "Order Overview";
+export const Refunds = "Refunds";
+export const DiscoverPro = "Discover Pro";
+export const DiscoverPera = "Amet minim mollit non deserunt ullamco est sit aliqua dolor ";
+export const UpdateNow = "Update Now";
+export const Visitors = " Visitors";
+export const LearningOverviewTitle = "Learning Overview";
+export const LearningOverviewGrowth = "75% activity growth";
+export const UpcomingEventsTitle = "Upcoming Events";
+
+// Online Course //
+export const HelloJashmin = " Hello Jashmin";
+export const welcomeMessage = "Learn something new every day with world's best courses.Free online courses available.";
+export const TopCategoriesTitle = "Top Categories";
+export const TodayProgressTitle = "Today Progress";
+export const TodayProgressMessage = "Your Daily Goal Almost Done!";
+export const DoYouWantToGet = "Do You Want to Get";
+export const BetterResults = "Better Results?";
+export const MoreDetails = "More details";
+export const ActivityHoursTitle = "Activity Hours";
+export const MyCourseTitle = "My Course";
+export const UpcomingScheduleTitle = "Upcoming Schedule";
+export const Create = "Create";
+export const ActiveLessonsTitle = "Active Lessons";
+
+// Crypto Dashboard //
+export const GreetingMessage4 = "Cryptocurrency just got even better.";
+export const GreetingMessage4SubMessage = "Lorem Ipsum is simply dummy text";
+export const DepositNow = "Deposit Now";
+export const TransactionsTitle = "Transactions";
+export const YourBalance = "Your Balance";
+export const YourTotalBalance = "768,987.90";
+export const MyPortfolioTitle = "My Portfolio";
+export const ActivitiesTitle = "Activities";
+export const MarketGraphTitle = "Market Graph";
+export const SeeAllBalance = "See All Balance";
+export const MyCurrenciesTitle = "My Currencies";
+export const Trade = "Trade";
+export const BuyCoins = "Buy Coins";
+export const SellCoins = "Sell Coins";
+export const EnterYourMoney = "Enter your Money";
+export const EnterCoinsConverTedTo = " Enter Coins Converted to";
+export const EnterCryptoCoins = "Enter Crypto Coins";
+export const EnterMoneyConvertedTo = "Enter Money Converted to";
+
+export const USD = "USD";
+export const BTC = "BTC";
+export const LTC = "LTC";
+export const ETH = "ETH";
+
+// Social Dashboard //
+export const BrooklynSimmons = "Brooklyn Simmons";
+export const BrooklynSimmonsEmail = "@brookly.simmons";
+export const HaveYouTriedOur = "Have You Tried Our";
+export const MobileApplication = "Mobile Application?";
+export const TryNow = "Try Now";
+export const InstagramSubscribers = "Instagram Subscribers";
+export const InstaGrowth = "75% activity growth";
+export const FollowerGenderTitle = "Follower Gender";
+export const FacebookCampaignTitle = "Facebook Campaign";
+export const FollowersToday = "Followers today";
+export const FollowersTodayTotal = "1,897";
+export const FollowersGoals = "Followers Goals";
+export const FollowersGoalsTotal = "50,000";
+export const AllCampaignsTitle = "All Campaigns";
 
 // Project
 
@@ -210,35 +270,27 @@ export const Resolved = "Resolved";
 export const Comment = "Comment";
 
 // ecommerce
-
 export const Filters = "Filters";
 export const ShowingProducts = "Showing Products 1 - 24 Of 200 Results";
 export const Featured = "Featured";
 export const LowestPrices = "Lowest Prices";
 export const HighestPrices = "Highest Prices";
-export const NotFoundData =
-  "Sorry, We didn't find any results matching this search";
+export const NotFoundData = "Sorry, We didn't find any results matching this search";
 export const ProductDetails = "Product Details";
 export const AddToCart = "Add to Cart";
 export const BuyNow = "Buy Now";
 export const ContinueShopping = "continue shopping";
 export const ViewDetails = "View Details";
 export const OutOfStock = "Out Of Stock";
-
 export const ProductSizeArray = ["M", "L", "Xl"];
-
 export const Fusion = "Fusion white & blue printed regular fit asymmetric";
 export const ProductReview = "(250 review)";
-export const ProductPageDetails =
-  "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters";
+export const ProductPageDetails = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters";
 export const Febric = "Febric";
 export const Brand = "Brand";
 export const Availability = "Availability";
-
 export const ProductListTitle = "Individual column searching (text inputs)";
-export const ProductListDesc =
-  "The searching functionality provided by DataTables is useful for quickly search through the information in the table - however the search is global, and you may wish to present controls that search on specific columns.";
-
+export const ProductListDesc = "The searching functionality provided by DataTables is useful for quickly search through the information in the table - however the search is global, and you may wish to present controls that search on specific columns.";
 export const CreditCard = "Credit card";
 export const DebitCard = "Debit card";
 export const ExpirationDate = "Expiration Date";
@@ -246,69 +298,39 @@ export const COD = "COD";
 export const EMI = "EMI";
 export const NetBanking = "Net Banking";
 export const Submit = "Submit";
-
 export const SelectMonth = ["Select Month", "Jan", "Fab", "March", "April"];
-export const SelectYear = [
-  "Select Year",
-  "2015",
-  "2016",
-  "2017",
-  "2018",
-  "2021",
-];
+export const SelectYear = ["Select Year", "2015", "2016", "2017", "2018", "2021"];
 export const BankName = ["Bank Name", "SBI", "ICICI", "KOTAK", "BOB"];
 export const SelectCard = ["Select Card", "2", "3", "4", "5"];
-export const SelectDuration = [
-  "Select Duration",
-  "2015-2016",
-  "2016-2017",
-  "2017-2018",
-  "2018-2021",
-];
-
+export const SelectDuration = ["Select Duration", "2015-2016", "2016-2017", "2017-2018", "2018-2021"];
 export const ShippedOrders = "Shipped Orders";
 export const CancelledOrders = "Cancelled Orders";
-
 export const SimplePricingCard = "Simple Pricing Card";
-export const BecomeMember = "Become member";
+export const BecomeMember = "Become Member";
+export const Pricing = "Pricing";
 export const PricingTableWithBorder = "Pricing Table With Border";
 export const ColorHighlight = "Color Highlight";
 export const PricingTableWithRibbons = "Pricing Table With Ribbons";
 export const Standard = "Standard";
 export const Business = "Business";
 export const Premium = "Premium";
+export const AutherPack = "Auther Pack";
 export const Extra = "Extra";
 export const Pricings = "Pricing";
 export const Popular = "Popular";
 export const Subscribe = "Subscribe";
 export const LorumIpsum = "Lorum Ipsum";
 export const Purchase = "Purchase";
-
 export const CartTitle = "Cart";
-export const CartTableHeader = [
-  "Prdouct",
-  "Prdouct Name",
-  "Price",
-  "Quantity",
-  "Action",
-  "Total",
-];
-
+export const CartTableHeader = ["Prdouct", "Prdouct Name", "Price", "Quantity", "Action", "Total"];
 export const NewOrders = "New Orders";
 export const TotalPrice = "Total Price";
 export const CheckOut = "check out";
 export const CartEmpty = "Your Cart is Empty";
 export const ExploreShortlistItems = "Explore more shortlist some items.";
-
 export const WishlistTitle = "Wishlist";
 export const MoveToCarts = "Move to Cart";
-export const WishlistTableHeader = [
-  "Prdouct",
-  "Prdouct Name",
-  "Price",
-  "Availability",
-  "Action",
-];
+export const WishlistTableHeader = ["Prdouct", "Prdouct Name", "Price", "Availability", "Action"];
 
 // check out
 export const BillingDetails = "Billing Details";
@@ -318,12 +340,7 @@ export const Phone = "Phone";
 export const EmailAddress = "Email Address";
 export const Country = "Country";
 
-export const CountryMenu = [
-  "India",
-  "South Africa",
-  "United State",
-  "Australia",
-];
+export const CountryMenu = ["India", "South Africa", "United State", "Australia"];
 
 export const Address = "Address";
 export const TownCity = "Town/City";
@@ -355,18 +372,16 @@ export const Cuba = "Cuba";
 export const HelloCuba = "hello@Cuba.in";
 
 export const InvoiceHash = "Invoice #";
-export const IssuedMay = "Issued: May";
-export const PaymentDue = "Payment Due: June";
+export const IssuedJan = "Issued: Jan";
+export const PaymentDue = "Payment Due: Feb";
 export const JohanDeo = "Johan Deo";
 export const JohanDeoMailId = "JohanDeo@gmail.com";
 export const ProjectDescription = "Project Description";
-export const ProjectDescriptionDetails =
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.";
+export const ProjectDescriptionDetails = "You're Only As Good As Your Last Collection, Which Is An Enormous Pressure. Jeans Represent Democracy In Fashion.Fashion Is About Dressing According To What's Fashionable.";
 export const ProductName = "Product Name";
 export const Sub_total = "Sub-total";
 export const ThankBusiness = "Thank you for your business!";
-export const ThankBusinessDesc =
-  "Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.";
+export const ThankBusinessDesc = "Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.";
 export const Print = "Print";
 
 // Users
@@ -378,8 +393,9 @@ export const Designer = "designer";
 export const ContactUsNumber = "India +91 123-456-7890";
 export const LocationDetails = "B69 Near Schoool Demo Home";
 export const JOHANDIO = "JOHAN DIO";
-export const UserProfileDesc1 =
-  "you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.";
+export const UserProfileDesc1 = "you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.";
+export const UserProfileDesc4 =
+  "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source .Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source";
 export const UserProfileDesc2 =
   "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source .Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source";
 export const UserProfileDesc3 =
@@ -395,13 +411,7 @@ export const Save = "Save";
 export const EditProfile = "Edit Profile";
 export const Company = "Company";
 export const Username = "Username";
-export const UsersCountryMenu = [
-  "--Select--",
-  "Germany",
-  "Canada",
-  "Usa",
-  "Aus",
-];
+export const UsersCountryMenu = ["--Select--", "Germany", "Canada", "Usa", "Aus"];
 export const AboutMe = "About Me";
 export const UpdateProfile = "Update Profile";
 export const UsersTableTitle = "Add projects And Upload";
@@ -462,7 +472,7 @@ export const API = "API";
 export const All = "All";
 export const Recent = "Recent";
 export const Recovery = "Recovery";
-export const Deleteds = "Deleteds";
+export const Deleteds = "Delete";
 export const Storage = "Storage";
 export const PricingPlan = "Pricing plan";
 export const TrialVersion = "Trial Version";
@@ -493,7 +503,7 @@ export const Collection = "Collection";
 export const General = "General";
 export const MyBookmarks = "My Bookmarks";
 export const Views = "Views";
-export const CreatedByMe = "Created by me";
+export const CreatedByMe = "Created By Me";
 export const Favourites = "Favourites";
 export const SharedWithMe = "Shared with me";
 export const Tags = "Tags";
@@ -518,7 +528,6 @@ export const NoTaskDueToday = "No task due today.";
 export const NoTasksFound = "No tasks found.";
 
 // social app
-
 export const Timline = "Timline";
 export const About = "About";
 export const GeneralManager = "general manager";
@@ -557,6 +566,7 @@ export const MutualFriends = "Mutual Friends";
 export const ActivityFeed = "Activity Feed";
 export const ActivityLog = "Activity Log";
 export const PortfolioTitle = "Portfolio Title";
+export const ViewTitle = "Views";
 
 // contact
 export const ContactHistory = "Contact History";
@@ -618,7 +628,7 @@ export const UnorderList = "Unorder list";
 export const OrderList = "Order list";
 export const FontawesomeList = "Fontawesome list";
 export const ICOIconList = "ICO Icon list";
-export const ThemfyList = "Themfy list";
+export const ThemfyList = "Themify list";
 export const Blockquotes = "Blockquotes";
 export const SourceTitle = "Source Title";
 
@@ -659,6 +669,7 @@ export const GridOptions = "Grid Options";
 export const ExtraSmall = "Extra small";
 export const Large = "Large";
 export const ExtraLarge = "Extra large";
+export const ExtraextraLarge = "Extra large";
 export const GridBehavior = "Grid behavior";
 export const GutterWidth = "Gutter width";
 export const Nestable = "Nestable";
@@ -838,8 +849,7 @@ export const PillRating = "Pill Rating";
 
 export const SingleFileUpload = "Single File Upload";
 export const MultiImageUpload = "Multi only Image Upload";
-export const MultipleImageVideoAudioUpload =
-  "Multiple Image Video Audio Upload";
+export const MultipleImageVideoAudioUpload = "Multiple Image Video Audio Upload";
 export const LimitationFileUpload = "Limitation File Upload";
 export const CustomFileUpload = "Custom File Upload";
 
@@ -1075,8 +1085,7 @@ export const LineChartWithArea = "Line chart with area";
 export const BipolarBarChart = "Bi-polar bar chart";
 export const StackedBarChart = "Stacked bar chart";
 export const HorizontalBarChart = "Horizontal bar chart";
-export const ExtremeResponsiveConfiguration =
-  "Extreme responsive configuration";
+export const ExtremeResponsiveConfiguration = "Extreme responsive configuration";
 export const SimpleLineChart = "Simple line chart";
 export const HolesInData = "Holes in data";
 export const FilledHolesInData = "Filled holes in data";
@@ -1132,6 +1141,7 @@ export const Option = "Option";
 export const Checked = "Checked";
 export const RadioStates = "Radio states";
 export const InlineCheckbox = "Inline checkbox";
+export const InlineRadio = "Inline radio";
 export const CustomCheckbox = "Custom checkbox";
 export const CheckboxStates = "Checkbox states";
 export const SuccessState = "Success state";
@@ -1214,8 +1224,7 @@ export const YY = "YY";
 //  tables
 export const BasicTable = "Basic Table";
 export const InverseTable = "Inverse Table";
-export const InverseTablePrimaryBackground =
-  "Inverse Table with Primary background";
+export const InverseTablePrimaryBackground = "Inverse Table with Primary background";
 export const HoverableRows = "Hoverable rows";
 export const TextBackgroundUtilities = "Text or background utilities";
 export const TableHeadOptions = "Table head options";
@@ -1232,7 +1241,7 @@ export const SmallTable = "Small table";
 export const ExtraSmallTable = "Extra Small table";
 export const HorizontalBorders = "Horizontal Borders";
 export const VerticalBorders = "Vertical Borders";
-export const BothBordeds = "Both Bordeds";
+export const BothBordeds = "Both Borders";
 export const BorderlessTable = "Borderless Table";
 export const DefaultTableBorder = "Default Table Border";
 export const SolidBorder = "Solid Border";
@@ -1242,11 +1251,72 @@ export const DashedBorder = "Dashed Border";
 export const BorderBottomColor = "Border Bottom Color";
 export const DefultStyling = "Defult Styling";
 export const TableFooterStyling = "Table Footer Styling";
-export const TableHeadOptionsPrimaryBackground =
-  "Table head options With Primary Background";
+export const TableHeadOptionsPrimaryBackground = "Table head options With Primary Background";
 export const CustomTableColor = "Custom Table Color";
-export const CustomTableColorHoverStripped =
-  "Custom Table Color with Hover and Stripped";
+export const CustomTableColorHoverStripped = "Custom Table Color with Hover and Stripped";
+export const Useclass = "Use a class";
+export const insidetable = " inside table element.";
+export const tableinverse = "table-inverse";
+export const Office = "Office";
+export const Salary = "Salary";
+export const JoinDate = "Join Date";
+export const Id = "Id";
+export const SignalName = "SignalName";
+export const Security = "Security";
+export const Stage = "Stage";
+export const Schedule = "Schedule";
+export const TeamLead = "TeamLead";
+export const inverstablecode = ".bg-info, .bg-success, .bg-warning and .bg-danger classes.";
+export const inverstabletext = " with light text on dark backgrounds inside table element.";
+export const inverstabletext2 = "To set the light background color use .bg-[color] class where [color] is the value of your selected color from stack color palette. So for teal color background class will be .bg-teal";
+export const CreditVolume = "Credit Volume";
+export const Role = "Role";
+export const ColorType = "Color Type";
+export const TableHeadspan = "Similar to tables and dark tables, use the modifier classes";
+export const theadlight = ".thead-light";
+export const tomake = "to make";
+export const thead = "thead ";
+export const theadtext = "appear light or dark gray.";
+export const Use = "Use";
+export const tablestriped = ".table-striped";
+export const tablestripedspan = "to add zebra-striping to any table row within the";
+export const tablestripedspan1 = "This styling doesn't work in IE8 and below as :nth-child CSS selector isn't supported.";
+export const Game = "Game";
+export const Point = "Point";
+export const Dessert = "Dessert";
+export const DessertType = "Dessert Type";
+export const Calories = "Calories";
+export const Weigth = "Weigth";
+export const Fat = "Fat";
+export const EmployeeName = "Employee Name";
+export const Sex = "Sex";
+export const ContactNo = "Contact No";
+export const Task = "Task";
+export const Assign = "Assign";
+export const OrderId = "Order Id";
+export const FilmTitle = "Film Title";
+export const Released = "Released";
+export const Studio = "Studio";
+export const Budget = "Budget";
+export const DomesticGross = "Domestic Gross";
+export const classname = "class Name";
+export const Hours = "Hours";
+export const Trainer = "Trainer";
+export const Spots = "Spots";
+export const ListGrouphead = "List group item heading";
+export const Daysago = "3 days ago";
+export const CustomcontentText = "Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.";
+export const CustomcontentText2 = "Donec id elit non mi porta.";
+export const clickAndDrag = "Click And Drag";
+export const smallSizescroll = "Small Size Scroll";
+export const bothSidescroll = "Both Side Scroll";
+export const horizontalscroll = "Horizontal Scroll";
+export const Modalcontent = "Warmth comfort hangs loosely from the body large pocket at the front full button detail cotton blend cute functional. Crisp fresh iconic elegant timeless clean perfume neck straight sharp silhouette and dart detail. Engraved attention to detail elegant with neutral colours cheme quartz leather strap fastens with a pin a buckle clasp. Button concelead zip front fastening strech micro modal straight-leg drawstring waste.";
+export const Pilltabcontent = " Warmth comfort hangs loosely from the body large pocket at the front full button detail cotton blend cute functional. Tropical wrap front essential cut classic sartorial details feminine peplum-style shirt white. Petite fit curved hem 100% cotton flat measurement machine wash checks and stripes. Fluffy soft kind to sensitive skin warm and cosy contrast cuffs ankles and neckline motif all-over floral design.";
+export const scrollpara = "Warmth comfort hangs loosely from the body large pocket at the front full button detail cotton blend cute functional. Tropical wrap front essential cut classic sartorial details feminine peplum-style shirt white. Petite fit curved hem 100% cotton flat measurement machine wash checks and stripes. Fluffy soft kind to sensitive skin warm and cosy contrast cuffs ankles and neckline motif all-over floral design.";
+export const scrollpara1 = "It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
+export const scrollpara2 = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words";
+export const scrollpara3 = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.";
 
 // pages
 export const RememberPassword = "Remember password";
@@ -1256,8 +1326,6 @@ export const SignUp = "Sign Up";
 export const CreateAccount = "Create Account";
 export const FIREBASE = "FIREBASE";
 export const AUTH0 = "AUTH0";
-export const JWT = "JWT";
-export const LoginWithJWT = "Sign in";
 
 export const EnterPassword = "Enter your Password";
 export const Unlock = "Unlock";
@@ -1426,16 +1494,30 @@ export const SeeAll = "See All";
 export const BrowseArticles = "Browse Articles";
 
 // layout
+export const Loading = "Loading...";
+export const BonusUi = "Bonus Ui";
 export const MegaMenu = "Mega menu";
+export const ErrorPage = "Error Page";
+export const Authentication = "Authentication";
+export const UsefullPages = "Usefull Pages";
+export const ComingSoon = "Coming Soon";
+export const TotalSale = "Total Sale";
+export const CompareToLastMonth = "Compare to last month";
 
+export const English = "English";
+export const Deutsch = "Deutsch";
+export const Español = "Español";
+export const Français = "Français";
+export const Português = "Português";
+export const 简体中文 = "简体中文";
 export const DeliveryProcessing = "Delivery processing";
 export const OrderComplete = "Order Complete";
 export const TicketsGenerated = "Tickets Generated";
 export const DeliveryComplete = "Delivery Complete";
-export const CheckAllNotification = "Check all notification";
-export const ShopingBag = "Shoping Bag";
+export const CHECKALL = "CHECK ALL";
+export const Cart = "Cart";
 export const OrderTotal = "Order Total";
-export const GoToShopingBag = "Go to shoping bag";
+export const GOTOYOURCART = "GO TO YOUR CART";
 
 export const ViewCart = "View Cart";
 export const MessageBox = "Message Box";
@@ -1464,6 +1546,7 @@ export const SidebarType = "Sidebar Type";
 export const SidebarSettings = "Sidebar settings";
 export const Border = "Border";
 export const IconColor = "icon Color";
+export const TotalProject = "Total Project";
 
 export const RouterAnimation = "Router Animation";
 export const ZoomFade = "Zoom Fade";
@@ -1475,6 +1558,8 @@ export const None = "None";
 export const LightLayout = "Light layout";
 export const DarkLayout = "Dark Layout";
 export const MixLayout = "Mix Layout";
+export const CryptocurrencyPricesTitle = "Cryptocurrency Prices";
+export const CryptoAnnotationsTitle = "Crypto Annotations";
 
 export const LevelMenu = "Level Menu";
 export const FileManager = "File manager";
@@ -1486,3 +1571,4 @@ export const SocialApp = "Social App";
 export const Bookmark = "Bookmark";
 export const AddNewBookmark = "Add New Bookmark";
 export const Back = "Back";
+export const DatatableOrderhistory = "Datatable Order history";

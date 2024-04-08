@@ -1,25 +1,53 @@
-import React, { Fragment, useState } from "react";
-import Loader from "../layout/loader";
-import TapTop from "../layout/tap-top";
-import Header from "../layout/header";
-import Sidebar from "../layout/sidebar";
-import Footer from "../layout/footer";
+import React, { Fragment } from "react";
+import { ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-const Layout = ({ children }) => {
-  const [sideBar, setSideBar] = useState("dashboard");
+import Taptop from "./TapTop";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import ThemeCustomize from "../Layout/ThemeCustomizer";
+import Footer from "./Footer";
+import CustomizerContext from "../_helper/Customizer";
+import AnimationThemeContext from "../_helper/AnimationTheme";
+import ConfigDB from "../Config/ThemeConfig";
+import Loader from "./Loader";
+const AppLayout = ({ children, classNames, ...rest }) => {
+  const { layout } = useContext(CustomizerContext);
+  const { sidebarIconType } = useContext(CustomizerContext);
+
+  const layout1 = localStorage.getItem("sidebar_layout") || layout;
+  const sideBarIcon = localStorage.getItem("sidebar_icon_type") || sidebarIconType;
+  const location = useLocation();
+  const { animation } = useContext(AnimationThemeContext);
+  const animationTheme = localStorage.getItem("animation") || animation || ConfigDB.data.router_animation;
+
   return (
     <Fragment>
       <Loader />
-      <TapTop />
-      <div className="page-wrapper compact-wrapper" id="pageWrapper">
-        <Header handleSideBar={(value) => setSideBar(value)} />
-        <div className="page-body-wrapper sidebar-icon">
-          <Sidebar menuType={sideBar} />
-          <div className="page-body">{children}</div>
+      <Taptop />
+      <div className={`page-wrapper ${layout1}`} sidebar-layout={sideBarIcon} id="pageWrapper">
+        <Header />
+        <div className="page-body-wrapper">
+          <Sidebar />
+          <TransitionGroup {...rest}>
+            <CSSTransition key={location.key} timeout={100} classNames={animationTheme} unmountOnExit>
+              <div className="page-body">
+                <div>
+                  <div>
+                    <Outlet />
+                  </div>
+                </div>
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
           <Footer />
         </div>
       </div>
+      <ThemeCustomize />
+      <ToastContainer />
     </Fragment>
   );
 };
-export default Layout;
+export default AppLayout;
