@@ -78,13 +78,23 @@ const SidebarMenuItems = ({
                     activeClass(menuItem.active);
                   }}
                 >
-                  <Image
-                    attrImage={{
-                      src: menuItem.icon,
-                      className: `sidebar-icon-margin`,
-                      alt: "",
-                    }}
-                  />
+                  {menuItem.active ? (
+                    <Image
+                      attrImage={{
+                        src: menuItem.activeIcon,
+                        className: `sidebar-icon-margin`,
+                        alt: "",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      attrImage={{
+                        src: menuItem.icon,
+                        className: `sidebar-icon-margin`,
+                        alt: "",
+                      }}
+                    />
+                  )}
 
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
@@ -116,13 +126,23 @@ const SidebarMenuItems = ({
                   }`}
                   onClick={() => toggletNavActive(menuItem)}
                 >
-                  <Image
-                    attrImage={{
-                      src: menuItem.icon,
-                      className: `sidebar-icon-margin`,
-                      alt: "",
-                    }}
-                  />
+                  {menuItem.active ? (
+                    <Image
+                      attrImage={{
+                        src: menuItem.activeIcon,
+                        className: `sidebar-icon-margin`,
+                        alt: "",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      attrImage={{
+                        src: menuItem.icon,
+                        className: `sidebar-icon-margin`,
+                        alt: "",
+                      }}
+                    />
+                  )}
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>

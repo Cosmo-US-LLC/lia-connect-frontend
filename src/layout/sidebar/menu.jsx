@@ -5,6 +5,7 @@ import MessageIcon from "../../assets/used-files/icons/message.svg";
 import SettingsIcon from "../../assets/used-files/icons/settings.svg";
 import FeedBackIcon from "../../assets/used-files/icons/Feedback.svg";
 import LogoutIcon from "../../assets/used-files/icons/logout.svg";
+import ActiveCandidateIcon from "../../assets/used-files/icons/candidateActive.svg";
 
 export const MENUITEMS = [
   {
@@ -37,6 +38,7 @@ export const MENUITEMS = [
       {
         path: `${process.env.PUBLIC_URL}/candidates`,
         icon: CandidateIcon,
+        activeIcon: ActiveCandidateIcon,
         title: "Candidates",
         type: "link",
       },

@@ -112,7 +112,6 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                         <span style={{ fontSize: "12px" }}>
                           {authenticated ? auth0_profile.name : name}
                         </span>
-
                         <p style={{ fontSize: "9px" }}>
                           {authenticated ? auth0_profile.email : email}
                         </p>
@@ -136,11 +135,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                     ""
                   )}
                   <div className="according-menu">
-                    {menuItem.active ? (
-                      <i className="fa fa-angle-down"></i>
-                    ) : (
-                      <i className="fa fa-angle-right"></i>
-                    )}
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                   </div>
                 </a>
               ) : (

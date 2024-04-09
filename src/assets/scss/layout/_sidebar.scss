@@ -1499,8 +1499,9 @@
 
               > li {
                 display: block;
-                width: 100%;
+                width: 90%;
                 position: relative;
+                margin: auto;
 
                 &.sidebar-main-title {
                   padding: 25px 0 6px 20px;
@@ -1835,10 +1836,13 @@
                     transition: all 0.5s ease;
                     position: relative;
                     margin-bottom: 10px;
-                    background-color: lighten($primary-color, 27%);
+                    background-color: $primary-color;
+                    text-decoration: none;
+                    border-radius: 8px;
                     &::after {
                       opacity: 1;
                       visibility: visible;
+
                     }
                     ~ .sidebar-submenu {
                       &::before {
@@ -1848,12 +1852,18 @@
                     }
                     .according-menu {
                       i {
-                        color: var(--theme-default);
+                        color: white;
+
                       }
                     }
 
                     span {
-                      color: var(--theme-default);
+                      color: white;
+                      transition: all 0.3s ease;
+                    }
+
+                    p {
+                      color: white;
                       transition: all 0.3s ease;
                     }
                   }
