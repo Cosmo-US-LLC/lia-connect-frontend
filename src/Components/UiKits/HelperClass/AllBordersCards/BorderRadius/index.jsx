@@ -1,6 +1,6 @@
-import React from 'react';
-import { BorderRadius } from '../../../../../Constant';
-import CommonHeaderClass from '../../Common/CommonHeaderClass2';
+import React from "react";
+import { BorderRadius } from "../../../../../Constant";
+import CommonHeaderClass from "../../Common/CommonHeaderClass2";
 
 const BorderRadiusCard = () => {
   return (
@@ -37,8 +37,10 @@ const BorderRadiusCard = () => {
         .b-r-10 {
         border-radius: 10px !important;
         }
+        .b-r-40 {
+          border-radius: 40px !important;
+        }
 `}</CommonHeaderClass>
-
   );
 };
 

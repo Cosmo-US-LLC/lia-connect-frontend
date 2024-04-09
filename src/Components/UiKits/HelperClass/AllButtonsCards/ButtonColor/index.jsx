@@ -1,16 +1,17 @@
-import React from 'react';
-import { ButtonColor } from '../../../../../Constant';
-import CommonHeaderClass from '../../Common/CommonHeaderClass';
+import React from "react";
+import { ButtonColor } from "../../../../../Constant";
+import CommonHeaderClass from "../../Common/CommonHeaderClass";
 
 const ButtonColorCard = () => {
   return (
-    <CommonHeaderClass title={ButtonColor}>{`.btn-primary {
+    <CommonHeaderClass title={ButtonColor}>
+      {`.btn-primary {
         background-color: #7366ff;
         border-color: #7366ff;
         }
         .btn-secondary {
-        background-color: #f73164;
-        border-color: #f73164;
+        background-color: #1D1D1D
+        border-color: #1D1D1D
         }
         .btn-success {
         background-color: #51bb25 !important;
@@ -38,7 +39,6 @@ const ButtonColorCard = () => {
         }
       `}
     </CommonHeaderClass>
-
   );
 };
 

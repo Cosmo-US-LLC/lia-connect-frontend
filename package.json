@@ -1,8 +1,8 @@
 {
-  "name": "cuba-react",
-  "version": "0.1.0",
+  "name": "lia-connect",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://react.pixelstrap.com/cuba-context/",
+  "homepage": "http://localhost:3000/",
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
     "@fullcalendar/core": "^6.1.4",

@@ -1,12 +1,13 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import SvgIcon from "../../Components/Common/Component/SvgIcon";
 import CustomizerContext from "../../_helper/Customizer";
-import { MENUITEMS } from "./Menu";
-import { Image } from "../../AbstractElements";
+import { MENUITEMSBOTTOM } from "./Menu";
+import { Image, P } from "../../AbstractElements";
+import defaultAvatar from "../../assets/used-files/profile/default.png";
 
-const SidebarMenuItems = ({
+const SidebarBottomMENUITEMSBOTTOM = ({
   setMainMenu,
   sidebartoogle,
   setNavActive,
@@ -18,6 +19,12 @@ const SidebarMenuItems = ({
   const id = window.location.pathname.split("/").pop();
   const layoutId = id;
   const CurrentPath = window.location.pathname;
+
+  const authenticated = JSON.parse(localStorage.getItem("authenticated"));
+  const auth0_profile = JSON.parse(localStorage.getItem("auth0_profile"));
+  const [profile, setProfile] = useState(defaultAvatar);
+  const [name, setName] = useState("John Doe");
+  const [email, setEmail] = useState("example@alfren.com");
 
   const { t } = useTranslation();
   const toggletNavActive = (item) => {
@@ -34,7 +41,7 @@ const SidebarMenuItems = ({
       }
     }
     if (!item.active) {
-      MENUITEMS.map((a) => {
+      MENUITEMSBOTTOM.map((a) => {
         a.Items.filter((Items) => {
           if (a.Items.includes(item)) Items.active = false;
           if (!Items.children) return false;
@@ -55,15 +62,27 @@ const SidebarMenuItems = ({
       });
     }
     item.active = !item.active;
-    setMainMenu({ mainmenu: MENUITEMS });
+    setMainMenu({ mainmenu: MENUITEMSBOTTOM });
   };
 
   return (
     <>
-      {MENUITEMS.map((Item, i) => (
+      {MENUITEMSBOTTOM.map((Item, i) => (
         <Fragment key={i}>
           {Item.Items.map((menuItem, i) => (
-            <li className="sidebar-list" key={i}>
+            <li
+              className="sidebar-list"
+              key={i}
+              style={
+                menuItem.profile
+                  ? {
+                      borderTop: "1px solid #F5F5F5",
+                      borderBottom: "1px solid #EBF1FC ",
+                      paddingTop: "10%",
+                    }
+                  : {}
+              }
+            >
               {menuItem.type === "sub" ? (
                 <a
                   href="javascript"
@@ -78,15 +97,37 @@ const SidebarMenuItems = ({
                     activeClass(menuItem.active);
                   }}
                 >
-                  <Image
-                    attrImage={{
-                      src: menuItem.icon,
-                      className: `sidebar-icon-margin`,
-                      alt: "",
-                    }}
-                  />
+                  {menuItem.profile ? (
+                    <div className="media profile-media">
+                      <Image
+                        attrImage={{
+                          className: "b-r-40 m-0",
+                          src: `${
+                            authenticated ? auth0_profile.picture : profile
+                          }`,
+                          alt: "",
+                        }}
+                      />
+                      <div className="media-body m-l-10">
+                        <span style={{ fontSize: "12px" }}>
+                          {authenticated ? auth0_profile.name : name}
+                        </span>
 
-                  <span>{t(menuItem.title)}</span>
+                        <p style={{ fontSize: "9px" }}>
+                          {authenticated ? auth0_profile.email : email}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <Image
+                      attrImage={{
+                        src: menuItem.icon,
+                        className: `sidebar-icon-margin`,
+                        alt: "",
+                      }}
+                    />
+                  )}
+
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
                       {menuItem.badgetxt}
@@ -108,7 +149,7 @@ const SidebarMenuItems = ({
 
               {menuItem.type === "link" ? (
                 <Link
-                  to={menuItem.path}
+                  to={menuItem.path + "/" + layoutId}
                   className={`sidebar-link sidebar-title link-nav  ${
                     CurrentPath.includes(menuItem.title.toLowerCase())
                       ? "active"
@@ -123,7 +164,9 @@ const SidebarMenuItems = ({
                       alt: "",
                     }}
                   />
-                  <span>{t(menuItem.title)}</span>
+                  <span style={{ color: menuItem.color }}>
+                    {t(menuItem.title)}
+                  </span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
                       {menuItem.badgetxt}
@@ -187,7 +230,7 @@ const SidebarMenuItems = ({
 
                         {childrenItem.type === "link" ? (
                           <Link
-                            to={childrenItem.path}
+                            to={childrenItem.path + "/" + layoutId}
                             className={`${
                               CurrentPath.includes(
                                 childrenItem?.title?.toLowerCase()
@@ -220,7 +263,7 @@ const SidebarMenuItems = ({
                                 <li key={key}>
                                   {childrenSubItem.type === "link" ? (
                                     <Link
-                                      to={childrenSubItem.path}
+                                      to={childrenSubItem.path + "/" + layoutId}
                                       className={`${
                                         CurrentPath.includes(
                                           childrenSubItem?.title?.toLowerCase()
@@ -260,4 +303,4 @@ const SidebarMenuItems = ({
   );
 };
 
-export default SidebarMenuItems;
+export default SidebarBottomMENUITEMSBOTTOM;

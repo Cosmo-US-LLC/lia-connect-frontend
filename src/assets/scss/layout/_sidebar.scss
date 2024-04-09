@@ -1455,7 +1455,11 @@
                   span {
                     letter-spacing: 0.7px;
                     text-transform: capitalize;
-                    color: rgba($theme-body-sub-title-color, 0.8);
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 22.4px;
+                    text-align: left;
+                    color: $theme-body-sub-title-color;
                   }
 
                   &.link-nav {
@@ -1468,6 +1472,7 @@
                 &:last-child {
                   border-bottom: none;
                 }
+              
               }
 
               &.opennav {
@@ -3403,7 +3408,39 @@
     }
   }
 }
+.sidebar-icon-margin{
+  margin-right: 10px;
+}
+.upgradeAlert{
+  background-color: #FFF4D2;
+  box-shadow: 0px 10px 36px 0px #00000012;
+  padding: 30px 20px 20px 20px;
+  gap: 14px;
+  border-radius: 8px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: -10%;
+  margin-bottom: -10%;
+  .button{
+    color: "white";
+    background-color: "#1D1D1D !important";
+  }
+}
 
+.userProfileDropdown{
+  width: 160px;
+  top: 57px;
+  left: -12px;
+  padding: 0 10px;
+  z-index: 8;
+  background-color: #fff;
+  transition: all linear 0.3s;
+}
+.userProfileDropdownLi{
+  padding: 10px !important;
+  color: "#595959";
+}
 /**=====================
     78. Sidebar CSS Ends
 ==========================**/
+

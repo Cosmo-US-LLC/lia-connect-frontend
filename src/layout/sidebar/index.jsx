@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import CustomContext from "../../_helper/Customizer";
-import { MENUITEMS } from "./Menu";
+import { MENUITEMS, MENUITEMSBOTTOM } from "./Menu";
 import SidebarIcon from "./SidebarIcon";
 import SidebarLogo from "./SidebarLogo";
 import SidebarMenu from "./SidebarMenu";
@@ -14,6 +14,7 @@ const Sidebar = (props) => {
   const layout = id ? id : defaultLayout;
   // eslint-disable-next-line
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
+  const [bottomMenu, setBottomMenu] = useState(MENUITEMSBOTTOM);
 
   const [width, setWidth] = useState(0);
 
@@ -25,9 +26,11 @@ const Sidebar = (props) => {
       //   customizer.settings.sidebar.type.split(' ').pop() ===
       //   'advance-layout'
       // )
-      document.querySelector(".sidebar-main").className = "sidebar-main hovered";
+      document.querySelector(".sidebar-main").className =
+        "sidebar-main hovered";
     } else {
-      if (document.getElementById("sidebar-main")) document.querySelector(".sidebar-main").className = "sidebar-main";
+      if (document.getElementById("sidebar-main"))
+        document.querySelector(".sidebar-main").className = "sidebar-main";
     }
   };
 
@@ -115,12 +118,23 @@ const Sidebar = (props) => {
         className="bg-overlay1"
         onClick={() => {
           closeOverlay();
-        }}></div>
-      <div className={`sidebar-wrapper ${toggleIcon ? "close_icon" : ""}`} sidebar-layout="stroke-svg">
+        }}
+      ></div>
+      <div
+        className={`sidebar-wrapper ${toggleIcon ? "close_icon" : ""}`}
+        sidebar-layout="stroke-svg"
+      >
         <SidebarIcon />
         <SidebarLogo />
         {/* sidebartoogle={sidebartoogle} */}
-        <SidebarMenu setMainMenu={setMainMenu} props={props} setNavActive={setNavActive} activeClass={activeClass} width={width} />
+        <SidebarMenu
+          setMainMenu={setMainMenu}
+          setBottomMenu={setBottomMenu}
+          props={props}
+          setNavActive={setNavActive}
+          activeClass={activeClass}
+          width={width}
+        />
       </div>
     </Fragment>
   );

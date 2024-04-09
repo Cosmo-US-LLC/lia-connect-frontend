@@ -161,7 +161,7 @@ $i: 0;
 /*====== Border-radius css starts ======*/
 $i: 0;
 
-@while $i<=10 {
+@while $i<=40 {
   .b-r-#{$i} {
     border-radius: #{$i}px !important;
   }
