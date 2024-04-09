@@ -1,28 +1,37 @@
 import React, { Fragment } from "react";
-import { Container, Row } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import { Breadcrumbs } from "../../../AbstractElements";
-import UserProfile from "../../Bonus-Ui/Tour/UserProfile";
-import UserDetails from "../../Application/Users/UsersProfile/UserDetail";
-import UserDetails2 from "../../Application/Users/UsersProfile/UserDetail2";
-import UserDetails3 from "../../Application/Users/UsersProfile/UserDetails3";
-import UserDetails4 from "../../Application/Users/UsersProfile/UserDetail4";
-
+import ProfileCard from "./ProfileCard";
+import ActivityCard from "./ActivityCard";
+import Notes from "./Notes";
+import DetailsCard from "./DetailsCard";
 const CandidatesList = () => {
   return (
     <Fragment>
-      <Breadcrumbs
-        mainTitle="User Profile"
-        parent="Users"
-        title="User Profile"
-      />
+      <Breadcrumbs title="Candidates" />
       <Container fluid={true}>
         <div className="user-profile">
           <Row>
-            <UserProfile />
-            <UserDetails />
-            <UserDetails2 />
-            <UserDetails3 />
-            <UserDetails4 />
+            <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
+              <Row>
+                <Col xl="12" md="6">
+                  <ProfileCard />
+                </Col>
+                <Col xl="12" md="6">
+                  <DetailsCard />
+                </Col>
+              </Row>
+            </Col>
+            <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
+              <Row>
+                <Col xl="12" md="6">
+                  <ActivityCard />
+                </Col>
+                <Col xl="12" md="6">
+                  <Notes />
+                </Col>
+              </Row>
+            </Col>
           </Row>
         </div>
       </Container>

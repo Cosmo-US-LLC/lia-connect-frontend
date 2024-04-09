@@ -66,7 +66,11 @@ const SidebarMenu = ({
     history(redirect);
   };
   return (
-    <nav className="sidebar-main" id="sidebar-main">
+    <nav
+      className="sidebar-main"
+      id="sidebar-main"
+      style={{ backgroundColor: "#F5F5F5" }}
+    >
       <div className="left-arrow" onClick={scrollToLeft}>
         <ArrowLeft />
       </div>

@@ -16,7 +16,7 @@ const SidebarLogo = () => {
   const layout1 = localStorage.getItem("sidebar_layout") || layout;
 
   return (
-    <div className="logo-wrapper">
+    <div className="logo-wrapper" style={{ backgroundColor: "#F9F9F9" }}>
       {layout1 !== "compact-wrapper dark-sidebar" &&
       layout1 !== "compact-wrapper color-sidebar" &&
       mixLayout ? (

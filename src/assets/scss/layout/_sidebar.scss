@@ -101,8 +101,7 @@
     top: $main-header-top;
     z-index: $main-header-z-index;
     transition: $sidebar-transition;
-    background-color: $white;
-    box-shadow: $main-header-shadow-1;
+    background-color:  $main-body-color;
     .header-wrapper {
       width: 100%;
       align-items: center;
@@ -690,7 +689,7 @@
     .page-title {
       padding: $page-title-padding;
       margin: 0 -27px 30px;
-      background-color: $white;
+      background-color: $main-body-color;
       > .row {
         margin: 0;
         .col-6 {
@@ -721,7 +720,6 @@
         padding: 0;
         margin-bottom: 0;
         align-items: center;
-        justify-content: flex-end;
 
         li {
           font-size: 13px;
@@ -1254,7 +1252,7 @@
           z-index: 9;
           height: auto;
           line-height: inherit;
-          background: $white;
+          background: "#F5F5F5";
           width: $sidebar-compact-width;
           text-align: left;
           transition: 0.3s;
