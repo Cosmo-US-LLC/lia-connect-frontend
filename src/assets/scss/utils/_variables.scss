@@ -1,14 +1,15 @@
 // General variables
 $theme-font-color: #242934;
 $theme-body-font-color: #2f2f3b;
-$theme-body-sub-title-color: #52526c;
+$theme-body-sub-title-color: #595959;
 $body-color: #f8f8f8;
-$main-body-color: #f7f8f9;
+$main-body-color: #f5f9ff;
 
 // Theme colors variables
-$primary-color: #7366ff;
-$secondary-color: #ff3364;
-$success-color: #54ba4a;
+$primary-color: #1264fd;
+$secondary-color: #1d1d1d;
+$success-color: #ecffe9;
+$success-text-color: #299a16;
 $info-color: #16c7f9;
 $warning-color: #ffaa05;
 $danger-color: #fc4438;
@@ -43,8 +44,16 @@ $theme-medium-color: #eae8ff;
 $dropdown-border-color: #918e99;
 
 // gradient colors
-$gradient-primary: linear-gradient(26deg, var(--theme-default) 0%, #a26cf8 100%);
-$gradient-bg-primary: linear-gradient(103.75deg, #33b1ee -13.9%, var(--theme-default) 79.68%);
+$gradient-primary: linear-gradient(
+  26deg,
+  var(--theme-default) 0%,
+  #a26cf8 100%
+);
+$gradient-bg-primary: linear-gradient(
+  103.75deg,
+  #33b1ee -13.9%,
+  var(--theme-default) 79.68%
+);
 
 //social colors
 $fb: #50598e;
@@ -259,7 +268,7 @@ $sidebar-arrow-color: $theme-body-font-color;
 $sidebar-open-icon: "\f107";
 $sidebar-close-icon: "\f105";
 $sidebar-icon-font-family: $font-awesome;
-$sidebar-height: calc(100vh - 115px);
+$sidebar-height: calc(100vh - 65px);
 $sidebar-compact-width: 265px;
 
 //Header settings

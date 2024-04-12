@@ -5,6 +5,8 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @import "~react-clock/dist/Clock.css";
 @import "~react-datepicker/dist/react-datepicker.css";
 @import "~react-image-crop/dist/ReactCrop.css";
@@ -11145,8 +11147,8 @@ fieldset:disabled .btn {
 
  */
 :root {
-  --theme-default: #7366ff;
-  --theme-secondary: #f73164;
+  --theme-default:#1264FD;
+  --theme-secondary: #1D1D1D;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
@@ -11723,6 +11725,9 @@ svg.f-light {
 
 .b-r-10 {
   border-radius: 10px !important;
+}
+.b-r-40 {
+  border-radius: 40px !important;
 }
 
 /*====== Border-radius css ends ======*/
@@ -52362,12 +52367,12 @@ button[data-toggle="dropdown"]:hover ~ .dropdown-menu {
 .ct-series-b .ct-line,
 .ct-series-b .ct-bar,
 .ct-series-b .ct-slice-donut {
-  stroke: #f73164;
+  stroke: #1D1D1D
 }
 .ct-series-b .ct-slice-pie,
 .ct-series-b .ct-slice-donut-solid,
 .ct-series-b .ct-area {
-  fill: #f73164;
+  fill: #1D1D1D
 }
 
 .ct-series-c .ct-point,

@@ -1,14 +1,15 @@
-import React from 'react';
-import { BadgeColor } from '../../../../Constant';
-import CommonHeaderClass from '../Common/CommonHeaderClass';
+import React from "react";
+import { BadgeColor } from "../../../../Constant";
+import CommonHeaderClass from "../Common/CommonHeaderClass";
 
 const BadgeColorCard = () => {
   return (
-    <CommonHeaderClass title={BadgeColor}>{`.badge-primary {
+    <CommonHeaderClass title={BadgeColor}>
+      {`.badge-primary {
         background-color: #7366ff;
         }
         .badge-secondary {
-        background-color: #f73164;
+        background-color: #1D1D1D
         }
         .badge-success {
         background-color: #51bb25;
@@ -30,7 +31,6 @@ const BadgeColorCard = () => {
         }
       `}
     </CommonHeaderClass>
-
   );
 };
 

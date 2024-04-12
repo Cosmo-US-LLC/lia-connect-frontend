@@ -12,8 +12,8 @@
 
  */
 :root {
-  --theme-default: #7366ff;
-  --theme-secondary: #f73164;
+  --theme-default:#1264FD;
+  --theme-secondary: #1D1D1D;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
@@ -591,7 +591,9 @@ svg.f-light {
 .b-r-10 {
   border-radius: 10px !important;
 }
-
+.b-r-40 {
+  border-radius: 40px !important;
+}
 /*====== Border-radius css ends ======*/
 /*====== Font-size css starts ======*/
 .f-12 {
@@ -40729,3 +40731,6 @@ button[data-toggle="dropdown"]:hover ~ .dropdown-menu {
   min-width: 300px;
   top: 35px;
 } /*# sourceMappingURL=style.css.map */
+
+
+

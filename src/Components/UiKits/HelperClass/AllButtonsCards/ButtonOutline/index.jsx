@@ -1,6 +1,6 @@
-import React from 'react';
-import { ButtonOutline } from '../../../../../Constant';
-import CommonHeaderClass from '../../Common/CommonHeaderClass2';
+import React from "react";
+import { ButtonOutline } from "../../../../../Constant";
+import CommonHeaderClass from "../../Common/CommonHeaderClass2";
 
 const ButtonOutlineCard = () => {
   return (
@@ -10,8 +10,8 @@ const ButtonOutlineCard = () => {
         background-color: transparent;
         }
         .btn-outline-secondary {
-        border-color: #f73164;
-        color: #f73164;
+        border-color: #1D1D1D
+        color: #1D1D1D
         background-color: transparent;
         }
         .btn-outline-success {
@@ -45,7 +45,6 @@ const ButtonOutlineCard = () => {
         background-color: transparent;
         }
     `}</CommonHeaderClass>
-
   );
 };
 
