@@ -101,7 +101,7 @@
     top: $main-header-top;
     z-index: $main-header-z-index;
     transition: $sidebar-transition;
-    background-color:  $main-body-color;
+    background-color: $main-body-color;
     .header-wrapper {
       width: 100%;
       align-items: center;
@@ -743,8 +743,8 @@
             }
           }
           &.active {
-            color: var(--theme-default);
-            font-weight: 500;
+            color: "#A8A7A7";
+            font-weight: 300;
           }
         }
       }
@@ -1470,7 +1470,6 @@
                 &:last-child {
                   border-bottom: none;
                 }
-              
               }
 
               &.opennav {
@@ -1840,7 +1839,6 @@
                     &::after {
                       opacity: 1;
                       visibility: visible;
-
                     }
                     ~ .sidebar-submenu {
                       &::before {
@@ -1851,7 +1849,6 @@
                     .according-menu {
                       i {
                         color: white;
-
                       }
                     }
 
@@ -1916,7 +1913,7 @@
 
       .page-body {
         min-height: calc(100vh - 80px);
-        margin-top: 80px;
+        margin-top: 70px;
         margin-left: $sidebar-compact-width;
         // animation: pagebody 1000ms ease-in-out;
       }
@@ -2286,7 +2283,8 @@
                       left: 20px;
                       top: 48%;
                       width: 8px;
-                      border-top: 2px solid rgba($theme-body-sub-title-color, 0.4);
+                      border-top: 2px solid
+                        rgba($theme-body-sub-title-color, 0.4);
                     }
                   }
                 }
@@ -3416,11 +3414,11 @@
     }
   }
 }
-.sidebar-icon-margin{
+.sidebar-icon-margin {
   margin-right: 10px;
 }
-.upgradeAlert{
-  background-color: #FFF4D2;
+.upgradeAlert {
+  background-color: #fff4d2;
   box-shadow: 0px 10px 36px 0px #00000012;
   padding: 30px 20px 20px 20px;
   gap: 14px;
@@ -3429,13 +3427,13 @@
   margin-right: 10%;
   margin-top: -10%;
   margin-bottom: -10%;
-  .button{
+  .button {
     color: "white";
     background-color: "#1D1D1D !important";
   }
 }
 
-.userProfileDropdown{
+.userProfileDropdown {
   width: 160px;
   top: 57px;
   left: -12px;
@@ -3444,11 +3442,10 @@
   background-color: #fff;
   transition: all linear 0.3s;
 }
-.userProfileDropdownLi{
+.userProfileDropdownLi {
   padding: 10px !important;
   color: "#595959";
 }
 /**=====================
     78. Sidebar CSS Ends
 ==========================**/
-

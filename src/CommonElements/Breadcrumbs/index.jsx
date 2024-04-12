@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import H3 from "../Headings/H3Element";
 import CustomizerContext from "../../_helper/Customizer";
 import SvgIcon from "../../Components/Common/Component/SvgIcon";
+import { Image } from "../../AbstractElements";
 
 const Breadcrumbs = (props) => {
   const { layoutURL } = useContext(CustomizerContext);
@@ -14,13 +15,13 @@ const Breadcrumbs = (props) => {
           <Row>
             <Col xs="6">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link
-                    to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}
-                  >
-                    <SvgIcon iconId="stroke-home" />
-                  </Link>
-                </li>
+                <Image
+                  attrImage={{
+                    src: props.icon,
+                    className: `sidebar-icon-margin`,
+                    alt: "",
+                  }}
+                />
                 {props.parent ? (
                   <li className="breadcrumb-item">{props.parent}</li>
                 ) : (

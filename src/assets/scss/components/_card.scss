@@ -290,7 +290,7 @@
 .social {
   &-profile {
     text-align: center;
-    background-image: url(../../images/dashboard-5/profile-bg.png);
+    // background-image: url(../../images/dashboard-5/profile-bg.png);
     background-repeat: no-repeat;
     background-size: cover;
     .card-body {
@@ -344,7 +344,7 @@
     }
   }
   &-img-wrap {
-    background: linear-gradient(253deg, var(--theme-default) 11.51%, rgba(115, 102, 255, 0) 82.07%);
+    // background: linear-gradient(253deg, var(--theme-default) 11.51%, rgba(115, 102, 255, 0) 82.07%);
     display: inline-block;
     border-radius: 100%;
     padding: 2px;

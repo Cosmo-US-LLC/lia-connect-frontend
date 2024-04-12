@@ -5,12 +5,19 @@ import ProfileCard from "./ProfileCard";
 import ActivityCard from "./ActivityCard";
 import Notes from "./Notes";
 import DetailsCard from "./DetailsCard";
+import CandidateIcon from "../../../assets/used-files/icons/candidate.svg";
 const CandidatesList = () => {
   return (
     <Fragment>
-      <Breadcrumbs title="Candidates" />
+      <div style={{ marginBottom: "70px" }}>
+        <Breadcrumbs
+          parent="Candidates"
+          title="All Candidates"
+          icon={CandidateIcon}
+        />
+      </div>
       <Container fluid={true}>
-        <div className="user-profile">
+        <div className="user-profile mt-5">
           <Row>
             <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
               <Row>
