@@ -5,6 +5,9 @@ import { MENUITEMS } from "../../Sidebar/Menu";
 import { AddNewBookmark, Back, Bookmark } from "../../../Constant";
 import SvgIcon from "../../../Components/Common/Component/SvgIcon";
 import { Btn } from "../../../AbstractElements";
+import plusIcon from "../../../assets/used-files/icons/plus.svg";
+import { Image } from "../../../AbstractElements";
+import jobIcon from "../../../assets/used-files/icons/job.svg";
 
 const BookmarkHeader = () => {
   // eslint-disable-next-line
@@ -23,7 +26,9 @@ const BookmarkHeader = () => {
       setSearchResult([]);
       SetBookmarkSearch(false);
       document.querySelector(".filled-bookmark").classList.remove("is-open");
-      document.querySelector(".page-wrapper").classList.remove("offcanvas-bookmark");
+      document
+        .querySelector(".page-wrapper")
+        .classList.remove("offcanvas-bookmark");
     }
   }, []);
 
@@ -49,12 +54,18 @@ const BookmarkHeader = () => {
     setSearchValue(keyword);
     mainmenu.map((menuItems) => {
       menuItems.Items.filter((Items) => {
-        if (Items.title.toLowerCase().includes(keyword) && Items.type === "link") {
+        if (
+          Items.title.toLowerCase().includes(keyword) &&
+          Items.type === "link"
+        ) {
           items.push(Items);
         }
         if (!Items.children) return false;
         Items.children.filter((subItems) => {
-          if (subItems.title.toLowerCase().includes(keyword) && subItems.type === "link") {
+          if (
+            subItems.title.toLowerCase().includes(keyword) &&
+            subItems.type === "link"
+          ) {
             subItems.icon = Items.icon;
             items.push(subItems);
           }
@@ -113,7 +124,9 @@ const BookmarkHeader = () => {
       setSearchValue("");
       setSearchResult([]);
       document.querySelector(".filled-bookmark").classList.remove("is-open");
-      document.querySelector(".page-wrapper").classList.remove("offcanvas-bookmark");
+      document
+        .querySelector(".page-wrapper")
+        .classList.remove("offcanvas-bookmark");
     }
     SetBookmarkSearch(!bookmarkSearch);
   };
@@ -128,86 +141,71 @@ const BookmarkHeader = () => {
   return (
     <Fragment>
       <li className="onhover-dropdown">
-        <div className="notification-box" onClick={() => setBookmarkDropDown(!bookmarkDropDown)}>
-          <SvgIcon iconId="star" />
+        <div
+          className="notification-box"
+          onClick={() => setBookmarkDropDown(!bookmarkDropDown)}
+          style={{ background: "black", borderRadius: "30px" }}
+        >
+          <Image
+            attrImage={{
+              src: plusIcon,
+              className: `header-icon-margin`,
+              alt: "",
+            }}
+          />
         </div>
-        <div className={`onhover-show-div bookmark-flip ${bookmarkDropDown ? "active" : ""}`}>
+        {/* <div
+          className={`onhover-show-div bookmark-flip ${
+            bookmarkDropDown ? "active" : ""
+          }`}
+        >
           <div className="flip-card">
             <div className="flip-card-inner">
               <div className="front">
-                <h6 onClick={removeOffcanvas} className="f-18 mb-0 dropdown-title">
+                <h6
+                  onClick={removeOffcanvas}
+                  className="f-18 mb-0 dropdown-title"
+                >
                   {Bookmark}
                 </h6>
                 <ul className="droplet-dropdown bookmark-dropdown">
                   <li className="custom-scrollbar">
                     <Row>
-                      {bookmarkItems.map((items, index) => {
-                        return (
-                          <Col xs="4" className="text-center" key={index}>
-                            <div className="bookmark-content">
-                              <div className="bookmark-icon">
-                                <Link to={items.path + "/" + layout}>
-                                  <SvgIcon iconId={`stroke-${items.icon}`} />
-                                </Link>
-                              </div>
-                              <span>{items.title}</span>
-                            </div>
-                          </Col>
-                        );
-                      })}
+                      <Col xs="4" className="text-center">
+                        <div className="bookmark-content">
+                          <div className="bookmark-icon">
+                            <Link to="/">
+                              <Image
+                                attrImage={{
+                                  src: jobIcon,
+                                  className: `header-icon-margin`,
+                                  alt: "",
+                                }}
+                              />
+                            </Link>
+                          </div>
+                          <span>Add new Job</span>
+                        </div>
+                      </Col>
                     </Row>
                   </li>
                   <li className="text-center">
-                    <Btn attrBtn={{ color: "transparent", className: "text-uppercase text-decoration-underline flip-btn f-w-700", onClick: addnewbookmark }}>{AddNewBookmark}</Btn>
-                  </li>
-                </ul>
-              </div>
-              <div className="back">
-                <ul>
-                  <li>
-                    <div className="droplet-dropdown bookmark-dropdown flip-back-content">
-                      <Input type="text" placeholder="search..." value={searchValue} onChange={(e) => handleSearchKeyword(e.target.value)} />
-
-                      <div className="Typeahead-menu filled-bookmark custom-scrollbar" id="search-outer">
-                        {searchValue
-                          ? searchResult.map((data, index) => {
-                              return (
-                                <div className="ProfileCard u-cf" key={index}>
-                                  <div className="ProfileCard-avatar">
-                                    <SvgIcon iconId={`stroke-${data.icon}`} />
-                                  </div>
-                                  <div className="ProfileCard-details">
-                                    <div className="ProfileCard-realName">
-                                      <Link to={data.path + "/" + layout} className="realname" onClick={removeFix}>
-                                        {data.title}
-                                      </Link>
-                                      <span className="pull-right">
-                                        <a href="#javascript">
-                                          <i className="fa fa-star-o mt-1 icon-star" onClick={(e) => addToBookmark(e, data)}></i>
-                                        </a>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            })
-                          : ""}
-                      </div>
-                      <div className="Typeahead-menu empty-bookmark">
-                        <div className="tt-dataset tt-dataset-0">
-                          <div className="EmptyMessage">{"Opps!! There are no result found."}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <Btn attrBtn={{ color: "transparent", className: "text-uppercase text-decoration-underline flip-btn f-w-700", onClick: backtobookmark }}>{Back}</Btn>
+                    <Btn
+                      attrBtn={{
+                        color: "transparent",
+                        className:
+                          "text-uppercase text-decoration-underline flip-btn f-w-700",
+                        onClick: addnewbookmark,
+                      }}
+                    >
+                      Add new Job
+                    </Btn>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </li>
     </Fragment>
   );
