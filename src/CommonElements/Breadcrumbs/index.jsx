@@ -13,7 +13,7 @@ const Breadcrumbs = (props) => {
       <Container fluid={true}>
         <div className="page-title">
           <Row>
-            <Col xs="6">
+            <Col xs="12">
               <ol className="breadcrumb">
                 <Image
                   attrImage={{

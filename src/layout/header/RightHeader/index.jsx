@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 import Language from "./Language";
-import Searchbar from "./Searchbar";
 import Notificationbar from "./Notificationbar";
 import MoonLight from "./MoonLight";
 import CartHeader from "./CartHeader";
@@ -9,6 +8,7 @@ import BookmarkHeader from "./BookmarkHeader";
 import UserHeader from "./UserHeader";
 import { UL } from "../../../AbstractElements";
 import { Col } from "reactstrap";
+import Searchbar from "./Searchbar";
 
 const RightHeader = () => {
   return (
@@ -20,6 +20,7 @@ const RightHeader = () => {
         className="nav-right pull-right right-header col-8 p-0 ms-auto"
       >
         <UL attrUL={{ className: "simple-list nav-menus flex-row" }}>
+          <Searchbar />
           <BookmarkHeader />
           <Notificationbar />
         </UL>
