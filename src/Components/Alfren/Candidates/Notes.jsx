@@ -3,8 +3,8 @@ import { toast } from "react-toastify";
 import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 
 import TodoContext from "../../../_helper/Todo";
-import { H4, H5, LI, UL } from "../../../AbstractElements";
-
+import { H4, H5, Image, LI, UL } from "../../../AbstractElements";
+import PlusIcon from "../../../assets/used-files/icons/plus.svg";
 const Notes = () => {
   const { allTodos, removeItems, selectedItem } = useContext(TodoContext);
 
@@ -31,12 +31,24 @@ const Notes = () => {
       <Card>
         <CardHeader className="d-flex align-items-center justify-content-between">
           <H5>Notes</H5>
+          <button className="btn btn-primary me-2 py-1 px-2">
+            <Image
+              attrImage={{
+                src: PlusIcon,
+                alt: "",
+              }}
+            />{" "}
+            Add Note
+          </button>
         </CardHeader>
         <CardBody>
           <div className="todo">
             <div className="todo-list-wrapper">
               <div className="todo-list-container todo-list-footer">
-                <div className="todo-list-body">
+                <div
+                  className="todo-list-body custom-scrollbar"
+                  style={{ maxHeight: "350px", overflowY: "auto" }}
+                >
                   <UL attrUL={{ className: "simple-list", id: "todo-list" }}>
                     {allTodos.length > 0
                       ? allTodos.map((todo, index) => (

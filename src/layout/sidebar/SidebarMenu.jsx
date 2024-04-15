@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ArrowRight, ArrowLeft } from "react-feather";
 import CustomizerContext from "../../_helper/Customizer";
 import SidebarMenuItems from "./SidebarMenuItems";
@@ -20,6 +20,7 @@ const SidebarMenu = ({
   setNavActive,
   activeClass,
   width,
+  toggleIcon,
 }) => {
   const { customizer } = useContext(CustomizerContext);
   const history = useNavigate();
@@ -36,7 +37,11 @@ const SidebarMenu = ({
   const [profile, setProfile] = useState(man);
   const [name, setName] = useState("Amanda White");
   const CurrentPath = window.location.pathname;
-
+  useEffect(() => {
+    if (toggleIcon) {
+      document.querySelector(".trailDiv").classList.add("d-none");
+    }
+  }, [toggleIcon]);
   const scrollToRight = () => {
     if (margin <= -2598 || margin <= -2034) {
       if (width === 492) {
@@ -96,7 +101,7 @@ const SidebarMenu = ({
             setNavActive={setNavActive}
             activeClass={activeClass}
           />
-          <li className="sidebar-list mt-5 text-center">
+          <li className="sidebar-list mt-5 text-center trailDiv">
             <Image
               attrImage={{
                 src: upgradeAlert,
@@ -130,6 +135,7 @@ const SidebarMenu = ({
               sidebartoogle={sidebartoogle}
               setNavActive={setNavActive}
               activeClass={activeClass}
+              toggleIcon={toggleIcon}
             />
           </li>
         </ul>

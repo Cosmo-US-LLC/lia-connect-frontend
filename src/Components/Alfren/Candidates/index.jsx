@@ -77,7 +77,7 @@ const CandidatesList = () => {
             </div>
           </ToolTip>
         </div>
-        <div className="user-profile mt-5">
+        <div className="user-profile mt-3">
           <Row>
             <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
               <Row>
