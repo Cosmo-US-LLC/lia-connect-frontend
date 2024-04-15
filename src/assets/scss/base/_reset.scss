@@ -343,8 +343,8 @@ $badge-color-text: $success-text-color;
       color: $success-text-color;
     }
 
-    @if ($badge-name== "light") {
-      color: $theme-body-font-color !important;
+    @if ($var== "light") {
+      color: #464646 !important;
     }
   }
 }

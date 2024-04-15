@@ -1,43 +1,110 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Row, Col } from "reactstrap";
 import { Image, H5, LI, UL } from "../../../AbstractElements";
 import { BrooklynSimmons, BrooklynSimmonsEmail } from "../../../Constant";
 import { SocialProfileStatus } from "../../../Data/Social";
 
 import profileImage from "../../../assets/images/dashboard-5/profile.png";
 import SvgIcon from "../../Common/Component/SvgIcon";
+import lineBreaker from "../../../assets/used-files/icons/lineBreaker.svg";
 
 const DetailsCard = () => {
   return (
-    <Card className="social-profile">
-      <CardBody>
-        <div className="social-img-wrap">
-          <div className="social-img">
-            <Image attrImage={{ src: profileImage, alt: "profile" }} />
+    <Fragment>
+      <Card className="hovercard ">
+        <div className="info">
+          <Row className="text-left">
+            <Col sm="12" lg="12" className="order-sm-0 order-xl-1">
+              <div className="user-designation">
+                <div className="title">
+                  <p>
+                    <strong>Company: </strong> The Walt Disney Company
+                  </p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <div className="text-center mt-3 mb-3"></div>
+
+          <Row>
+            <Col col="12" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <div>
+                  <strong>City</strong>
+                  <br></br>
+                  <p>Austin</p>
+                </div>
+              </div>
+            </Col>
+            <Col col="12" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <div>
+                  <strong>Country</strong>
+                  <br></br>
+                  <p>United States</p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <div className="text-center mt-3 mb-3">
+            {" "}
+            <Image
+              attrImage={{
+                alt: "",
+                src: lineBreaker,
+              }}
+            />
           </div>
-          <div className="edit-icon">
-            <SvgIcon iconId="profile-check" />
-          </div>
+          <Row>
+            <Col xl="12" xs="6" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <div>
+                  <strong>
+                    Skills <span style={{ color: "red" }}>*</span>
+                  </strong>
+                  <br></br>
+                  <span className="badge badge-light m-1">UX/UI Designer</span>
+                  <span className="badge badge-light  m-1">UX Research</span>
+                  <span className="badge badge-light  m-1">
+                    Adobe Photoshop
+                  </span>
+                  <span className="badge badge-light  m-1">
+                    Adobe Illustrator
+                  </span>
+                  <span className="badge badge-light  m-1">Adobe XD</span>
+                  <span className="badge badge-light m-1">
+                    Information Architecture
+                  </span>
+                  <span className="badge badge-light  m-1">Figma</span>
+                </div>
+              </div>
+            </Col>
+            <Col xl="12" xs="6" className="text-left mt-3">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <div>
+                  <strong>Jobs</strong>
+                  <div>
+                    <p className=" text-primary">
+                      Mid-Level UI Designer{" "}
+                      <span
+                        className="ms-2 badge badge-success"
+                        style={{
+                          borderLeft: "2px solid #299A16 ",
+                          borderRadius: " 0px",
+                        }}
+                      >
+                        70% Skills Matched{" "}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
         </div>
-        <div className="social-details">
-          <H5 attrH5={{ className: "mb-1" }}>
-            <Link to={`${process.env.PUBLIC_URL}/app/social-app`}>
-              {BrooklynSimmons}
-            </Link>
-          </H5>
-          <span className="f-light">{BrooklynSimmonsEmail}</span>
-          <UL attrUL={{ className: "social-follow" }}>
-            {SocialProfileStatus.map((item, i) => (
-              <LI key={i}>
-                <H5 attrH5={{ className: "mb-0" }}>{item.active}</H5>
-                <span className="f-light">{item.title}</span>
-              </LI>
-            ))}
-          </UL>
-        </div>
-      </CardBody>
-    </Card>
+      </Card>
+    </Fragment>
   );
 };
 

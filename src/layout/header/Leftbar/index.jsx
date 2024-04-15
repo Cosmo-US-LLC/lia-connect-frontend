@@ -88,6 +88,11 @@ const Leftbar = () => {
       </Col>
       <Col xxl="5" xl="6" lg="5" md="4" sm="3" className="left-header p-0">
         {/* <NotificationSlider /> */}
+        <Breadcrumbs
+          parent="Candidates"
+          title="All Candidates"
+          icon={CandidateIcon}
+        />
       </Col>
     </Fragment>
   );
