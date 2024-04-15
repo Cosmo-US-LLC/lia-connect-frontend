@@ -2,9 +2,9 @@ import React, { useState, Fragment, useContext } from "react";
 import { toast } from "react-toastify";
 import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 
-import TodoContext from "../../../_helper/Todo";
-import { H4, H5, Image, LI, UL } from "../../../AbstractElements";
-import PlusIcon from "../../../assets/used-files/icons/plus.svg";
+import TodoContext from "../../../../_helper/Todo";
+import { H4, H5, Image, LI, UL } from "../../../../AbstractElements";
+import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
 const Notes = () => {
   const { allTodos, removeItems, selectedItem } = useContext(TodoContext);
 

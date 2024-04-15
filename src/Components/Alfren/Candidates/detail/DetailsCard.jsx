@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Row, Col } from "reactstrap";
-import { Image, H5, LI, UL } from "../../../AbstractElements";
-import { BrooklynSimmons, BrooklynSimmonsEmail } from "../../../Constant";
-import { SocialProfileStatus } from "../../../Data/Social";
+import { Image, H5, LI, UL } from "../../../../AbstractElements";
+import { BrooklynSimmons, BrooklynSimmonsEmail } from "../../../../Constant";
+import { SocialProfileStatus } from "../../../../Data/Social";
 
-import profileImage from "../../../assets/images/dashboard-5/profile.png";
-import SvgIcon from "../../Common/Component/SvgIcon";
-import lineBreaker from "../../../assets/used-files/icons/lineBreaker.svg";
+import profileImage from "../../../../assets/images/dashboard-5/profile.png";
+import SvgIcon from "../../../Common/Component/SvgIcon";
+import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
 
 const DetailsCard = () => {
   return (
