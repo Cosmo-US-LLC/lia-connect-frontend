@@ -1,14 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader, Row, Col } from "reactstrap";
-import { Image, H5, LI, UL, H6 } from "../../../AbstractElements";
-import linkedinIcon from "../../../assets/used-files/icons/linkedin.svg";
+import { Image, H5, LI, UL, H6 } from "../../../../AbstractElements";
+import linkedinIcon from "../../../../assets/used-files/icons/linkedin.svg";
 import {
   BrooklynSimmons,
   BrooklynSimmonsEmail,
   classname,
-} from "../../../Constant";
-import { SocialProfileStatus } from "../../../Data/Social";
+} from "../../../../Constant";
+import { SocialProfileStatus } from "../../../../Data/Social";
 import CountUp from "react-countup";
 import {
   BOD,
@@ -23,16 +23,16 @@ import {
   MarekjecnoMailId,
   MarkJecno,
   Location,
-} from "../../../Constant";
+} from "../../../../Constant";
 
-import profileImage from "../../../assets/images/dashboard-5/profile.png";
-import SvgIcon from "../../Common/Component/SvgIcon";
-import DefaultUserImage from "../../../assets/used-files/profile/default2.png";
-import profileScore from "../../../assets/used-files/icons/profileScore.svg";
-import lineBreaker from "../../../assets/used-files/icons/lineBreaker.svg";
-import phoneIcon from "../../../assets/used-files/icons/phone.svg";
-import envelopIcon from "../../../assets/used-files/icons/envelope.svg";
-import websiteIcon from "../../../assets/used-files/icons/website.svg";
+import profileImage from "../../../../assets/images/dashboard-5/profile.png";
+import SvgIcon from "../../../Common/Component/SvgIcon";
+import DefaultUserImage from "../../../../assets/used-files/profile/default2.png";
+import profileScore from "../../../../assets/used-files/icons/profileScore.svg";
+import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
+import phoneIcon from "../../../../assets/used-files/icons/phone.svg";
+import envelopIcon from "../../../../assets/used-files/icons/envelope.svg";
+import websiteIcon from "../../../../assets/used-files/icons/website.svg";
 
 const ProfileCard = () => {
   const [url, setUrl] = useState("");

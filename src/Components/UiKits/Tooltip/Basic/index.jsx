@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Card, CardBody, CardHeader, Col } from 'reactstrap';
-import { Btn, H5, ToolTip } from '../../../../AbstractElements';
-import { BasicTooltip, HoverMe, PopoverTitle } from '../../../../Constant';
+import React, { useState } from "react";
+import { Card, CardBody, CardHeader, Col } from "reactstrap";
+import { Btn, H5, ToolTip } from "../../../../AbstractElements";
+import { BasicTooltip, HoverMe, PopoverTitle } from "../../../../Constant";
 
 const Basic = () => {
   const [basictooltip, setbasictooltip] = useState(false);
@@ -14,14 +14,17 @@ const Basic = () => {
         </CardHeader>
         <CardBody>
           <div className="btn-showcase">
-            <Btn attrBtn={{ color: 'primary', id: 'TooltipExample' }}>{HoverMe}</Btn>
+            <Btn attrBtn={{ color: "primary", id: "TooltipExample" }}>
+              {HoverMe}
+            </Btn>
             <ToolTip
               attrToolTip={{
-                placement: 'top',
+                placement: "top",
                 isOpen: basictooltip,
-                target: 'TooltipExample',
-                toggle: toggle
-              }} >
+                target: "TooltipExample",
+                toggle: toggle,
+              }}
+            >
               {PopoverTitle}
             </ToolTip>
           </div>

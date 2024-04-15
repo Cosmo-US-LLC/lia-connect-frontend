@@ -1,5 +1,6 @@
 //Alfren HR Components---------------------
-import Candidates from "../Components/Alfren/Candidates/index";
+import CandidateDetail from "../Components/Alfren/Candidates/detail/index";
+import CandidateLists from "../Components/Alfren/Candidates/list/index";
 
 //Alfren HR Components---------------------
 
@@ -188,9 +189,12 @@ import FAQContent from "../Components/FAQ";
 export const routes = [
   {
     path: `${process.env.PUBLIC_URL}/candidates`,
-    Component: <Candidates />,
+    Component: <CandidateLists />,
   },
-
+  {
+    path: `${process.env.PUBLIC_URL}/candidates/:id`,
+    Component: <CandidateDetail />,
+  },
   {
     path: `${process.env.PUBLIC_URL}/dashboard/default/:layout`,
     Component: <Default />,

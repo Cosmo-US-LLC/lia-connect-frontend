@@ -11,9 +11,9 @@ const Breadcrumbs = (props) => {
   return (
     <Fragment>
       <Container fluid={true}>
-        <div className="page-title">
+        <div className="page-title mt-3">
           <Row>
-            <Col xs="6">
+            <Col xs="12">
               <ol className="breadcrumb">
                 <Image
                   attrImage={{

@@ -133,6 +133,7 @@ const Sidebar = (props) => {
           props={props}
           setNavActive={setNavActive}
           activeClass={activeClass}
+          toggleIcon={toggleIcon}
           width={width}
         />
       </div>

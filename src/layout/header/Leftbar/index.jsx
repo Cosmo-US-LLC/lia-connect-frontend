@@ -2,9 +2,10 @@ import React, { Fragment, useState, useLayoutEffect, useContext } from "react";
 import { Col } from "reactstrap";
 import { AlignCenter } from "react-feather";
 import { Link } from "react-router-dom";
-import { Image } from "../../../AbstractElements";
+import { Breadcrumbs, Image } from "../../../AbstractElements";
 import CustomizerContext from "../../../_helper/Customizer";
 import NotificationSlider from "./NotificationSlider";
+import CandidateIcon from "../../../assets/used-files/icons/candidate.svg";
 
 const Leftbar = () => {
   const { layoutURL, setToggleIcon, toggleSidebar } =
@@ -86,7 +87,12 @@ const Leftbar = () => {
         </div>
       </Col>
       <Col xxl="5" xl="6" lg="5" md="4" sm="3" className="left-header p-0">
-        <NotificationSlider />
+        {/* <NotificationSlider /> */}
+        <Breadcrumbs
+          parent="Candidates"
+          title="All Candidates"
+          icon={CandidateIcon}
+        />
       </Col>
     </Fragment>
   );

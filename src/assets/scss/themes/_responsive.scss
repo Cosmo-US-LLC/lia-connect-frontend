@@ -2105,7 +2105,7 @@
     .page-header {
       .header-wrapper {
         margin: 0;
-        padding: 12px 30px;
+        padding: 0px 30px;
 
         .nav-right {
           .notification {
@@ -5437,7 +5437,8 @@
 
   /* alert responsive css start here */
   $alert-name: primary, secondary, success, danger, warning, info, light, dark;
-  $alert-color: var(--theme-default), $secondary-color, $success-color, $danger-color, $warning-color, $info-color, $light-color, $dark-color;
+  $alert-color: var(--theme-default), $secondary-color, $success-color,
+    $danger-color, $warning-color, $info-color, $light-color, $dark-color;
 
   @each $var in $alert-name {
     $i: index($alert-name, $var);
@@ -6027,7 +6028,9 @@
         }
       }
     }
-    .react-datepicker__navigation--next--with-time:not(.react-datepicker__navigation--next--with-today-button) {
+    .react-datepicker__navigation--next--with-time:not(
+        .react-datepicker__navigation--next--with-today-button
+      ) {
       right: 1px;
     }
   }

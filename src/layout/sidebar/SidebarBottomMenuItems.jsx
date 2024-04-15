@@ -12,6 +12,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
   sidebartoogle,
   setNavActive,
   activeClass,
+  toggleIcon,
 }) => {
   const { layout } = useContext(CustomizerContext);
   const layout1 = localStorage.getItem("sidebar_layout") || layout;
@@ -112,9 +113,9 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                         <span style={{ fontSize: "12px" }}>
                           {authenticated ? auth0_profile.name : name}
                         </span>
-                        <p style={{ fontSize: "9px" }}>
+                        <span style={{ fontSize: "9px" }}>
                           {authenticated ? auth0_profile.email : email}
-                        </p>
+                        </span>
                       </div>
                     </div>
                   ) : (
