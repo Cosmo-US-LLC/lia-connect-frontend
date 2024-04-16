@@ -196,7 +196,7 @@ export const routes = [
     Component: <CandidateDetail />,
   },
   {
-    path: `${process.env.PUBLIC_URL}/dashboard/default/:layout`,
+    path: `${process.env.PUBLIC_URL}/dashboard`,
     Component: <Default />,
   },
   {

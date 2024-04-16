@@ -11,7 +11,19 @@ const DataTableComponent = () => {
   const handleRowSelected = useCallback((state) => {
     setSelectedRows(state.selectedRows);
   }, []);
-
+  const customStyles = {
+    rows: {
+      style: {},
+    },
+    headCells: {
+      style: {
+        borderBottom: "2px solid #585DDB",
+      },
+    },
+    cells: {
+      style: {},
+    },
+  };
   const handleDelete = () => {
     if (
       window.confirm(
@@ -55,6 +67,7 @@ const DataTableComponent = () => {
         selectableRows
         onSelectedRowsChange={handleRowSelected}
         clearSelectedRows={toggleDelet}
+        customStyles={customStyles}
       />
     </Fragment>
   );
