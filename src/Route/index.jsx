@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Loader from "../Layout/Loader";
 import { authRoutes } from "./AuthRoutes";
 import LayoutRoutes from "../Route/LayoutRoutes";
-import Signin from "../Auth/Signin";
 import PrivateRoute from "./PrivateRoute";
 import { classes } from "../Data/Layouts";
+import Login from "../Components/Alfren/Auth/login/index";
 
 // setup fake backend
 
@@ -60,7 +60,7 @@ const Routers = () => {
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/login`}
-            element={<Signin />}
+            element={<Login />}
           />
           {authRoutes.map(({ path, Component }, i) => (
             <Route path={path} element={Component} key={i} />

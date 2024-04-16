@@ -1,30 +1,30 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { toast } from "react-toastify";
-import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardHeader } from "reactstrap";
 
 import TodoContext from "../../../../_helper/Todo";
 import { H4, H5, Image, LI, UL } from "../../../../AbstractElements";
 import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
 const Notes = () => {
-  const { allTodos, removeItems, selectedItem } = useContext(TodoContext);
+  const { allTodos, removeItems } = useContext(TodoContext);
 
-  const [status, setStatus] = useState("pending");
+  // const [status, setStatus] = useState("pending");
 
   const handleRemoveTodo = (todoId) => {
     removeItems(todoId);
     toast.success("Deleted Task !");
   };
-  const handleMarkedTodo = (itemId, itemStatus) => {
-    if (itemStatus === "completed") {
-      setStatus("pending");
-      selectedItem(itemId, status);
-      toast.success("Task Completed !");
-    } else if (itemStatus === "pending") {
-      setStatus("completed");
-      selectedItem(itemId, status);
-      toast.error(" Task In-completed !");
-    }
-  };
+  // const handleMarkedTodo = (itemId, itemStatus) => {
+  //   if (itemStatus === "completed") {
+  //     setStatus("pending");
+  //     selectedItem(itemId, status);
+  //     toast.success("Task Completed !");
+  //   } else if (itemStatus === "pending") {
+  //     setStatus("completed");
+  //     selectedItem(itemId, status);
+  //     toast.error(" Task In-completed !");
+  //   }
+  // };
 
   return (
     <Fragment>

@@ -1,19 +1,10 @@
-import React, { Fragment, useState } from "react";
-import { Container, Row, Col, Card, CardBody, CardHeader } from "reactstrap";
-import { Breadcrumbs, H6, Image } from "../../../../AbstractElements";
-import HeaderCard from "../../../Common/Component/HeaderCard";
+import React, { Fragment } from "react";
+import { Container, Row, Col, Card, CardHeader } from "reactstrap";
+import { H6, Image } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
-import { dummytabledata } from "./Defaultdata";
 import barIcon from "../../../../assets/used-files/icons/bar.svg";
 import Select from "react-select";
-import {
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  InputGroup,
-  InputGroupText,
-} from "reactstrap";
+import { Form, InputGroup, InputGroupText } from "reactstrap";
 const DataTables = () => {
   const options = [
     { value: "AL", label: "Campaign A" },
@@ -61,7 +52,7 @@ const DataTables = () => {
       <Container fluid={true}>
         <Row>
           <Col sm="12">
-            <Card>
+            <Card style={{ boxShadow: "none" }}>
               <CardHeader>
                 <Row>
                   <Col xl="2">

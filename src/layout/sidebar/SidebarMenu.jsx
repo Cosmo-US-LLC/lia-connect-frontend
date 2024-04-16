@@ -3,14 +3,9 @@ import { ArrowRight, ArrowLeft } from "react-feather";
 import CustomizerContext from "../../_helper/Customizer";
 import SidebarMenuItems from "./SidebarMenuItems";
 import upgradeAlert from "../../assets/used-files/sidebar/upgradeMessage.png";
-import { Image, P, H4, Btn, UL, LI } from "../../AbstractElements";
+import { Image } from "../../AbstractElements";
 import { Button } from "reactstrap";
-import { Link, useNavigate } from "react-router-dom";
-import LogoutIcon from "../../assets/used-files/icons/logout.svg";
-import FeedbackIcon from "../../assets/used-files/icons/Feedback.svg";
-import man from "../../assets/used-files/profile/default.png";
-import { FileText, LogIn, Mail, User } from "react-feather";
-import { Account, Admin, Inbox, LogOut, Taskboard } from "../../Constant";
+import { useNavigate } from "react-router-dom";
 import SidebarBottomMenuItems from "./SidebarBottomMenuItems";
 const SidebarMenu = ({
   setMainMenu,
@@ -26,17 +21,7 @@ const SidebarMenu = ({
   const history = useNavigate();
   const wrapper = customizer.settings.sidebar.type;
   const [margin, setMargin] = useState(0);
-  const authenticated = JSON.parse(localStorage.getItem("authenticated"));
-  const auth0_profile = JSON.parse(localStorage.getItem("auth0_profile"));
-  const { layoutURL } = useContext(CustomizerContext);
-  const { layout } = useContext(CustomizerContext);
-  const layout1 = localStorage.getItem("sidebar_layout") || layout;
 
-  const id = window.location.pathname.split("/").pop();
-  const layoutId = id;
-  const [profile, setProfile] = useState(man);
-  const [name, setName] = useState("Amanda White");
-  const CurrentPath = window.location.pathname;
   useEffect(() => {
     if (toggleIcon) {
       document.querySelector(".trailDiv").classList.add("d-none");
@@ -67,9 +52,9 @@ const SidebarMenu = ({
       document.querySelector(".right-arrow").classList.remove("d-none");
     }
   };
-  const UserMenuRedirect = (redirect) => {
-    history(redirect);
-  };
+  // const UserMenuRedirect = (redirect) => {
+  //   history(redirect);
+  // };
   return (
     <nav
       className="sidebar-main"

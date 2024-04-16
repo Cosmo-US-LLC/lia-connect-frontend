@@ -6,13 +6,21 @@
 }
 
 .purchase-btn {
-  background: linear-gradient(90deg, var(--theme-default) -18.33%, #563ee0 62.78%);
+  background: linear-gradient(
+    90deg,
+    var(--theme-default) -18.33%,
+    #563ee0 62.78%
+  );
   padding: 12px 20px;
   min-width: 200px;
   border: none;
   transition: 0.5s;
   &:hover {
-    background: linear-gradient(90deg, #563ee0 -18.33%, var(--theme-default) 62.78%);
+    background: linear-gradient(
+      90deg,
+      #563ee0 -18.33%,
+      var(--theme-default) 62.78%
+    );
     transition: 0.5s;
   }
   @media (max-width: 991px) {
@@ -31,26 +39,59 @@
   }
 }
 
-@mixin btn-gradien($deg, $leftcolor, $leftcolor-per, $rightcolor, $rightcolor-per, $font-color) {
-  background-image: linear-gradient(to right, $leftcolor 0%, $rightcolor 51%, $leftcolor 100%);
+@mixin btn-gradien(
+  $deg,
+  $leftcolor,
+  $leftcolor-per,
+  $rightcolor,
+  $rightcolor-per,
+  $font-color
+) {
+  background-image: linear-gradient(
+    to right,
+    $leftcolor 0%,
+    $rightcolor 51%,
+    $leftcolor 100%
+  );
   border: none;
   color: $font-color;
   background-size: auto 200%;
   transition: all 0.3s ease;
 }
 .btn-primary-gradien {
-  @include btn-gradien(60, lighten($primary-color, 8%), 0%, darken($primary-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($primary-color, 8%),
+    0%,
+    darken($primary-color, 8%),
+    100%,
+    $white
+  );
   color: $white;
   &:focus,
   &:active,
   &.active {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($primary-color, 8%), 0%, darken($primary-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($primary-color, 8%),
+      0%,
+      darken($primary-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-secondary-gradien {
-  @include btn-gradien(60, lighten($secondary-color, 8%), 0%, darken($secondary-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($secondary-color, 8%),
+    0%,
+    darken($secondary-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -58,11 +99,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($secondary-color, 8%), 0%, darken($secondary-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($secondary-color, 8%),
+      0%,
+      darken($secondary-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-success-gradien {
-  @include btn-gradien(60, lighten($success-color, 8%), 0%, darken($success-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($success-color, 8%),
+    0%,
+    darken($success-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -70,11 +125,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($success-color, 8%), 0%, darken($success-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($success-color, 8%),
+      0%,
+      darken($success-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-danger-gradien {
-  @include btn-gradien(60, lighten($danger-color, 8%), 0%, darken($danger-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($danger-color, 8%),
+    0%,
+    darken($danger-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -82,11 +151,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($danger-color, 8%), 0%, darken($danger-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($danger-color, 8%),
+      0%,
+      darken($danger-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-warning-gradien {
-  @include btn-gradien(60, lighten($warning-color, 8%), 0%, darken($warning-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($warning-color, 8%),
+    0%,
+    darken($warning-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -94,11 +177,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($warning-color, 8%), 0%, darken($warning-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($warning-color, 8%),
+      0%,
+      darken($warning-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-info-gradien {
-  @include btn-gradien(60, lighten($info-color, 8%), 0%, darken($info-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($info-color, 8%),
+    0%,
+    darken($info-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -106,11 +203,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($info-color, 8%), 0%, darken($info-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($info-color, 8%),
+      0%,
+      darken($info-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-light-gradien {
-  @include btn-gradien(60, lighten($light-color, 8%), 0%, darken($light-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($light-color, 8%),
+    0%,
+    darken($light-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -118,11 +229,25 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($light-color, 8%), 0%, darken($light-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($light-color, 8%),
+      0%,
+      darken($light-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 .btn-dark-gradien {
-  @include btn-gradien(60, lighten($dark-color, 8%), 0%, darken($dark-color, 8%), 100%, $white);
+  @include btn-gradien(
+    60,
+    lighten($dark-color, 8%),
+    0%,
+    darken($dark-color, 8%),
+    100%,
+    $white
+  );
   &:hover,
   &:focus,
   &:active,
@@ -130,7 +255,14 @@
   &.hover {
     transition: 1.5s;
     background-position: right center;
-    background-image: linear-gradient(to right, lighten($dark-color, 8%), 0%, darken($dark-color, 8%), 100%, $white) !important;
+    background-image: linear-gradient(
+      to right,
+      lighten($dark-color, 8%),
+      0%,
+      darken($dark-color, 8%),
+      100%,
+      $white
+    ) !important;
   }
 }
 
@@ -177,7 +309,11 @@
   }
 }
 // outline buttons//
-@each $btn-name, $btn-color in (primary, $primary-color), (secondary, $secondary-color), (success, $success-color), (danger, $danger-color), (info, $info-color), (light, $light-color), (dark, $dark-color), (warning, $warning-color) {
+@each $btn-name, $btn-color in (primary, $primary-color),
+  (secondary, $secondary-color), (success, $success-color),
+  (danger, $danger-color), (info, $info-color), (light, $light-color),
+  (dark, $dark-color), (warning, $warning-color)
+{
   .btn-air-#{$btn-name} {
     box-shadow: 0 5px 10px 2px rgba(88, 103, 221, 0.19) !important;
     &:hover,
@@ -331,3 +467,17 @@
 /**=====================
      06. Button CSS end
 ==========================**/
+
+.custom-pagination {
+  background-color: #f5f9ff;
+}
+
+.custom-pagination-item {
+  background-color: #f5f9ff;
+}
+
+.custom-pagination-link {
+  background-color: #f5f9ff !important;
+  border: none;
+  color: #819acb !important;
+}

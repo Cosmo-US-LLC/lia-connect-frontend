@@ -1,32 +1,8 @@
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-import { Card, CardBody, CardHeader, Row, Col } from "reactstrap";
-import { Image, H5, LI, UL, H6 } from "../../../../AbstractElements";
+import React, { Fragment } from "react";
+import { Card, Row, Col } from "reactstrap";
+import { Image } from "../../../../AbstractElements";
 import linkedinIcon from "../../../../assets/used-files/icons/linkedin.svg";
-import {
-  BrooklynSimmons,
-  BrooklynSimmonsEmail,
-  classname,
-} from "../../../../Constant";
-import { SocialProfileStatus } from "../../../../Data/Social";
-import CountUp from "react-countup";
-import {
-  BOD,
-  ContactUs,
-  ContactUsNumber,
-  DDMMYY,
-  Designer,
-  Email,
-  Follower,
-  Following,
-  LocationDetails,
-  MarekjecnoMailId,
-  MarkJecno,
-  Location,
-} from "../../../../Constant";
 
-import profileImage from "../../../../assets/images/dashboard-5/profile.png";
-import SvgIcon from "../../../Common/Component/SvgIcon";
 import DefaultUserImage from "../../../../assets/used-files/profile/default2.png";
 import profileScore from "../../../../assets/used-files/icons/profileScore.svg";
 import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
@@ -35,21 +11,6 @@ import envelopIcon from "../../../../assets/used-files/icons/envelope.svg";
 import websiteIcon from "../../../../assets/used-files/icons/website.svg";
 
 const ProfileCard = () => {
-  const [url, setUrl] = useState("");
-  const readUrl = (event) => {
-    if (event.target.files.length === 0) return;
-    var mimeType = event.target.files[0].type;
-
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      setUrl(reader.result);
-    };
-  };
-
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -59,7 +20,7 @@ const ProfileCard = () => {
               attrImage={{
                 className: "step1",
                 alt: "",
-                src: `${url ? url : DefaultUserImage}`,
+                src: `${DefaultUserImage}`,
               }}
             />
           </div>
@@ -84,7 +45,7 @@ const ProfileCard = () => {
             <Col sm="12" lg="12" className="order-sm-0 order-xl-1">
               <div className="user-designation">
                 <div className="title">
-                  <a target="_blank">
+                  <a href="#" target="_blank">
                     <strong>Bianca Gottesman</strong>
                   </a>
                 </div>

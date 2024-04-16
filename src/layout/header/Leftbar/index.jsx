@@ -10,7 +10,6 @@ import { AlignCenter } from "react-feather";
 import { Link, useLocation } from "react-router-dom";
 import { Breadcrumbs, Image } from "../../../AbstractElements";
 import CustomizerContext from "../../../_helper/Customizer";
-import NotificationSlider from "./NotificationSlider";
 import CandidateIcon from "../../../assets/used-files/icons/candidate.svg";
 import { breadcrumbData } from "./breadcrumbConfig";
 const Leftbar = () => {
@@ -20,7 +19,7 @@ const Leftbar = () => {
 
   const { layoutURL, setToggleIcon, toggleSidebar } =
     useContext(CustomizerContext);
-  const [sidebartoggle, setSidebartoggle] = useState(true);
+  const sidebartoggle = true;
   const width = useWindowSize();
 
   function useWindowSize() {

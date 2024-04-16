@@ -1,29 +1,17 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
-import { Col, Input, Row } from "reactstrap";
-import { Link } from "react-router-dom";
 import { MENUITEMS } from "../../Sidebar/Menu";
-import { AddNewBookmark, Back, Bookmark } from "../../../Constant";
-import SvgIcon from "../../../Components/Common/Component/SvgIcon";
-import { Btn } from "../../../AbstractElements";
 import plusIcon from "../../../assets/used-files/icons/plus.svg";
 import { Image } from "../../../AbstractElements";
-import jobIcon from "../../../assets/used-files/icons/job.svg";
 
 const BookmarkHeader = () => {
   // eslint-disable-next-line
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
-  const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState(false);
   const [bookmarkSearch, SetBookmarkSearch] = useState(false);
   const [bookmarkItems, setBookmarkItems] = useState([]);
   const [bookmarkDropDown, setBookmarkDropDown] = useState(false);
 
-  const id = window.location.pathname.split("/").pop();
-  const layout = id;
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
-      setSearchValue("");
-      setSearchResult([]);
       SetBookmarkSearch(false);
       document.querySelector(".filled-bookmark").classList.remove("is-open");
       document
@@ -51,7 +39,6 @@ const BookmarkHeader = () => {
   const handleSearchKeyword = (keyword) => {
     keyword ? addFix() : removeFix();
     const items = [];
-    setSearchValue(keyword);
     mainmenu.map((menuItems) => {
       menuItems.Items.filter((Items) => {
         if (
@@ -80,7 +67,6 @@ const BookmarkHeader = () => {
           return subItems;
         });
         checkSearchResultEmpty(items);
-        setSearchResult(items);
         return Items;
       });
       return menuItems;
@@ -100,8 +86,6 @@ const BookmarkHeader = () => {
   };
 
   const removeFix = () => {
-    setSearchValue("");
-    setSearchResult([]);
     document.querySelector(".filled-bookmark").classList.remove("is-open");
   };
 
@@ -121,8 +105,6 @@ const BookmarkHeader = () => {
 
   const removeOffcanvas = () => {
     if (bookmarkSearch) {
-      setSearchValue("");
-      setSearchResult([]);
       document.querySelector(".filled-bookmark").classList.remove("is-open");
       document
         .querySelector(".page-wrapper")

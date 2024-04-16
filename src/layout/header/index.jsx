@@ -5,19 +5,13 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-import { Form, Row } from "reactstrap";
-import { X } from "react-feather";
-import { Link } from "react-router-dom";
+import { Row } from "reactstrap";
 import CustomContext from "../../_helper/Customizer";
 import Leftbar from "./Leftbar/index";
 import RightHeader from "./RightHeader/index";
 import { MENUITEMS } from "../Sidebar/Menu";
-import { Loading } from "../../Constant";
-import SvgIcon from "../../Components/Common/Component/SvgIcon";
 
 const Header = () => {
-  const id = window.location.pathname.split("/").pop();
-  const layout = id;
   const { toggleIcon } = useContext(CustomContext);
   // eslint-disable-next-line
   const [mainmenu, setMainMenu] = useState(MENUITEMS);

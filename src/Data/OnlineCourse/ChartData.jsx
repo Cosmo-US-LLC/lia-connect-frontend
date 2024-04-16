@@ -220,7 +220,19 @@ export const LearningOverviewChartData = {
         },
       },
     },
-    colors: ["var(--theme-default)", "#F47DEA", "#FFA941", "#FFC200", "#54BA4A", "#3DA831", "#57B9F6", "#FF3377", "#773ACE", "#945CFF", "#7366ff"],
+    colors: [
+      "var(--theme-default)",
+      "#F47DEA",
+      "#FFA941",
+      "#FFC200",
+      "#54BA4A",
+      "#3DA831",
+      "#57B9F6",
+      "#FF3377",
+      "#773ACE",
+      "#945CFF",
+      "#7366ff",
+    ],
     stroke: {
       width: 1.5,
       curve: "smooth",
@@ -256,7 +268,16 @@ export const LearningOverviewChartData = {
     },
     xaxis: {
       type: "category",
-      categories: ["Sep 5", "Sep 8", "Sep 12", "Sep 16", "Sep 18", "Sep 17", "Sep 23", "Sep 26"],
+      categories: [
+        "Sep 5",
+        "Sep 8",
+        "Sep 12",
+        "Sep 16",
+        "Sep 18",
+        "Sep 17",
+        "Sep 23",
+        "Sep 26",
+      ],
       tickAmount: 12,
       labels: {
         style: {
@@ -277,7 +298,19 @@ export const LearningOverviewChartData = {
       },
     },
     fill: {
-      type: ["solid", "solid", "solid", "solid", "solid", "solid", "solid", "solid", "solid", "solid", "gradient"],
+      type: [
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "solid",
+        "gradient",
+      ],
       gradient: {
         shade: "light",
         type: "vertical",
@@ -377,7 +410,7 @@ export const ActivityHoursChartData = {
       },
       labels: {
         formatter: function (val) {
-          return val + " " + "Hr";
+          return val + " Hr";
         },
         style: {
           fontSize: "12px",
@@ -421,25 +454,37 @@ export const UpcomingOptionsChartData = {
       data: [
         {
           x: "Team Meetup",
-          y: [new Date("2022-01-20").getTime(), new Date("2022-03-8").getTime()],
+          y: [
+            new Date("2022-01-20").getTime(),
+            new Date("2022-03-8").getTime(),
+          ],
           strokeColor: "var(--theme-default)",
           fillColor: "var(--white)",
         },
         {
           x: "Theme Development",
-          y: [new Date("2022-01-8").getTime(), new Date("2022-02-30").getTime()],
+          y: [
+            new Date("2022-01-8").getTime(),
+            new Date("2022-02-30").getTime(),
+          ],
           strokeColor: "#54BA4A",
           fillColor: "var(--white)",
         },
         {
           x: "UI/UX Design",
-          y: [new Date("2022-02-01").getTime(), new Date("2022-03-10").getTime()],
+          y: [
+            new Date("2022-02-01").getTime(),
+            new Date("2022-03-10").getTime(),
+          ],
           strokeColor: "#FFAA05",
           fillColor: "var(--white)",
         },
         {
           x: "Logo Creater",
-          y: [new Date("2022-02-10").getTime(), new Date("2022-03-15").getTime()],
+          y: [
+            new Date("2022-02-10").getTime(),
+            new Date("2022-03-15").getTime(),
+          ],
           strokeColor: "#FF3364",
           fillColor: "var(--white)",
         },

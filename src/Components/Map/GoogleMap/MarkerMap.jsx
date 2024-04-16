@@ -2,7 +2,12 @@ import React, { Fragment, useState } from "react";
 import HeaderCard from "../../Common/Component/HeaderCard";
 import { CurrentLocation, MarkerMap } from "../../../Constant";
 import { Card, CardBody, Col } from "reactstrap";
-import { GoogleMap, LoadScript, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  InfoWindow,
+  Marker,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   height: "500px",
@@ -28,7 +33,8 @@ const MarkerMapComp = (props) => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q&v=3.exp&libraries=geometry,drawing,places",
+    googleMapsApiKey:
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q&v=3.exp&libraries=geometry,drawing,places",
   });
 
   const showinfowindow = () => {
@@ -44,13 +50,33 @@ const MarkerMapComp = (props) => {
             <div className="map-js-height">
               <div id="gmap-simple" className="map-block">
                 {isLoaded ? (
-                  <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
-                    <Marker google={props?.google} name={"Dolores park"} draggable={true} onClick={showinfowindow} position={{ lat: location?.markerPosition.lat, lng: location?.markerPosition.lng }} />
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={10}
+                  >
+                    <Marker
+                      google={props?.google}
+                      name={"Dolores park"}
+                      draggable={true}
+                      onClick={showinfowindow}
+                      position={{
+                        lat: location?.markerPosition.lat,
+                        lng: location?.markerPosition.lng,
+                      }}
+                    />
                     <Marker />
                     {location?.address ? (
-                      <InfoWindow position={{ lat: location.markerPosition?.lat + 0.0018, lng: location?.markerPosition?.lng }}>
+                      <InfoWindow
+                        position={{
+                          lat: location.markerPosition?.lat + 0.0018,
+                          lng: location?.markerPosition?.lng,
+                        }}
+                      >
                         <div>
-                          <span style={{ padding: 0, margin: 0 }}>{CurrentLocation}</span>
+                          <span style={{ padding: 0, margin: 0 }}>
+                            {CurrentLocation}
+                          </span>
                         </div>
                       </InfoWindow>
                     ) : (

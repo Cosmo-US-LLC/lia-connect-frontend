@@ -1,8 +1,6 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import SvgIcon from "../../Components/Common/Component/SvgIcon";
-import CustomizerContext from "../../_helper/Customizer";
 import { MENUITEMS } from "./Menu";
 import { Image } from "../../AbstractElements";
 
@@ -12,11 +10,6 @@ const SidebarMenuItems = ({
   setNavActive,
   activeClass,
 }) => {
-  const { layout } = useContext(CustomizerContext);
-  const layout1 = localStorage.getItem("sidebar_layout") || layout;
-
-  const id = window.location.pathname.split("/").pop();
-  const layoutId = id;
   const CurrentPath = window.location.pathname;
 
   const { t } = useTranslation();
@@ -160,13 +153,11 @@ const SidebarMenuItems = ({
                 <ul
                   className="sidebar-submenu"
                   style={
-                    layout1 !== "compact-sidebar compact-small"
-                      ? menuItem?.active ||
-                        CurrentPath.includes(menuItem?.title?.toLowerCase())
-                        ? sidebartoogle
-                          ? { opacity: 1, transition: "opacity 500ms ease-in" }
-                          : { display: "block" }
-                        : { display: "none" }
+                    menuItem?.active ||
+                    CurrentPath.includes(menuItem?.title?.toLowerCase())
+                      ? sidebartoogle
+                        ? { opacity: 1, transition: "opacity 500ms ease-in" }
+                        : { display: "block" }
                       : { display: "none" }
                   }
                 >
