@@ -9,12 +9,23 @@ import {
   Label,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Facebook, Filter, Linkedin, Mail, Twitter } from "react-feather";
+import {
+  Check,
+  CheckCircle,
+  Circle,
+  Eye,
+  Facebook,
+  Filter,
+  Key,
+  Linkedin,
+  Mail,
+  Twitter,
+} from "react-feather";
 
 import logoWhite from "../../../../assets/images/logo/logo.png";
 import logoDark from "../../../../assets/images/logo/logo_dark.png";
 
-const ForgotPwdForm = ({ logoClassMain }) => {
+const ResetPwdForm = ({ logoClassMain }) => {
   const [togglePassword, setTogglePassword] = useState(false);
   return (
     <Fragment>
@@ -47,7 +58,7 @@ const ForgotPwdForm = ({ logoClassMain }) => {
                 attrH4={{
                   style: {
                     color: "#1D1D1D",
-                    fontSize: "26.16px",
+                    fontSize: "30.16px",
                     fontWeight: 600,
                     lineHeight: "30.16px",
                     letterSpacing: "-0.01em",
@@ -56,7 +67,7 @@ const ForgotPwdForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Forget Your Password ?
+                Reset Password
               </H4>
               <P
                 attrPara={{
@@ -75,15 +86,61 @@ const ForgotPwdForm = ({ logoClassMain }) => {
               </P>
               <FormGroup>
                 <Label className="col-form-label m-0">
-                  Email<span className="text-danger ms-1">*</span>
+                  New Password<span className="text-danger ms-1">*</span>
                 </Label>
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Key strokeWidth={1} size={16} />
                   </InputGroupText>
-                  <Input type="email" required value="Example@email.com" />
+                  <Input type="password" required placeholder="aaaaaaaa" />
+                  <InputGroupText>
+                    <Eye strokeWidth={1} size={16} />
+                  </InputGroupText>
                 </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <Label className="col-form-label m-0">
+                  Confirm New Password
+                  <span className="text-danger ms-1">*</span>
+                </Label>
+
+                <InputGroup>
+                  <InputGroupText>
+                    <Key strokeWidth={1} size={16} />
+                  </InputGroupText>
+                  <Input type="password" required placeholder="aaaaaaaa" />
+                  <InputGroupText>
+                    <Eye strokeWidth={1} size={16} />
+                  </InputGroupText>
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup>
+                <div style={{ color: "#299A16" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 letter should be uppercase.
+                  </span>
+                </div>
+                <div style={{ color: "#299A16" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 special character include.
+                  </span>
+                </div>
+                <div style={{ color: "#AA1313" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 number include.
+                  </span>
+                </div>
+                <div style={{ color: "#595959" }}>
+                  <Circle strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Password should be 12 letter long.
+                  </span>
+                </div>
               </FormGroup>
 
               <FormGroup>
@@ -94,7 +151,7 @@ const ForgotPwdForm = ({ logoClassMain }) => {
                     type: "submit",
                   }}
                 >
-                  Send Request
+                  Confirm
                 </Btn>
               </FormGroup>
             </Form>
@@ -105,4 +162,4 @@ const ForgotPwdForm = ({ logoClassMain }) => {
   );
 };
 
-export default ForgotPwdForm;
+export default ResetPwdForm;
