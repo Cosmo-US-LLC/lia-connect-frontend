@@ -120,18 +120,18 @@ const LoginForm = ({ logoClassMain }) => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup>
+              <FormGroup className="position-relative">
                 <Link
                   style={{
                     styleName: "Tiny Body",
                     fontSize: "12px",
                     fontWeight: "400",
                     lineHeight: "19.2px",
-                    textAlign: "center",
                     color: "#1264FD",
                   }}
+                  to={`${process.env.PUBLIC_URL}/auth/forgot-password`}
                 >
-                  Forgot Password ?
+                  Forgot password?
                 </Link>
               </FormGroup>
 
