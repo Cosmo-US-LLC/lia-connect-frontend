@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Btn, H4, P, H6, Image } from "../../../../AbstractElements";
+import { Btn, H4, P } from "../../../../AbstractElements";
 import {
   Form,
   FormGroup,
@@ -13,9 +13,8 @@ import { Facebook, Filter, Linkedin, Mail, Twitter } from "react-feather";
 
 import logoWhite from "../../../../assets/images/logo/logo.png";
 import logoDark from "../../../../assets/images/logo/logo_dark.png";
-import { MarginBottom } from "../../../../Constant";
 
-const LoginForm = ({ logoClassMain }) => {
+const ForgotPwdForm = ({ logoClassMain }) => {
   const [togglePassword, setTogglePassword] = useState(false);
   return (
     <Fragment>
@@ -106,4 +105,4 @@ const LoginForm = ({ logoClassMain }) => {
   );
 };
 
-export default LoginForm;
+export default ForgotPwdForm;

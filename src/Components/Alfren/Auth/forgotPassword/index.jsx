@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
-import LoginForm from "./LoginForm";
+import ForgotPwdForm from "./ForgotPwdForm";
 
 const Login = () => {
   return (
@@ -32,7 +32,7 @@ const Login = () => {
               xl="5 p-0"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <LoginForm logoClassMain="text-center" />
+              <ForgotPwdForm logoClassMain="text-center" />
               <P
                 attrPara={{
                   className: "text-center mb-3",
