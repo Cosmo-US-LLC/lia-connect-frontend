@@ -125,13 +125,16 @@
       .form-group {
         margin-bottom: 10px;
         position: relative;
+        link: {
+          text-align: right;
+        }
       }
 
-      .link {
-        position: absolute;
-        top: 10px;
-        right: 0;
-      }
+      // .link {
+      //   position: absolute;
+      //   top: 10px;
+      //   right: 0;
+      // }
     }
     &.login-tab {
       position: relative;
