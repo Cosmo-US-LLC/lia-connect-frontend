@@ -3,12 +3,11 @@
 ==========================**/
 
 .login-card {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background: url("../../images/login/login_bg.jpg");
   background-position: center;
   padding: 30px 12px;
 
@@ -36,12 +35,12 @@
   }
 
   .login-main {
-    width: 450px;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
-    margin: 0 auto;
-    background-color: $white;
+    // width: 450px;
+    padding: 22px;
+    // border-radius: 10px;
+    // box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+    // margin: 0 auto;
+    // background-color: $white;
 
     .theme-form {
       h4 {
@@ -49,8 +48,11 @@
       }
 
       label {
-        font-size: 15px;
-        letter-spacing: 0.4px;
+        font-size: 11.73px;
+        font-weight: 600;
+        line-height: 18.76px;
+        text-align: left;
+        color: #1d1d1d;
       }
 
       .checkbox label::before {
@@ -73,9 +75,11 @@
         }
       }
 
-      input {
-        background-color: #f3f3ff;
+      .input-group {
+        background-color: #ffffff;
         transition: all 0.3s ease;
+        border: 0.84px solid #e8e9ee;
+        border-radius: 3.6px;
 
         &::-webkit-input-placeholder {
           color: $light-text;
@@ -87,12 +91,35 @@
           box-shadow: none !important;
           transition: all 0.3s ease;
         }
+        .form-control {
+          background-color: #ffffff;
+          border: none;
+          font-size: 11.73px;
+          font-weight: 400;
+          line-height: 18.76px;
+          text-align: left;
+          color: #a8a7a7;
+        }
+
+        .input-group-text {
+          background-color: #ffffff;
+          color: #8fa8d7;
+          border: none;
+        }
       }
 
       p {
         margin-bottom: 25px;
         font-size: 14px;
         color: $dark-gray;
+      }
+
+      button {
+        border-radius: 3.6px;
+        font-size: 11.73px;
+        font-weight: 400;
+        line-height: 18.76px;
+        text-align: center;
       }
 
       .form-group {
@@ -213,6 +240,47 @@
         }
       }
     }
+  }
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: url("../../used-files/images/auth/auth_bg.png");
+  background-position: center;
+  // padding: 30px 12px;
+
+  .logo {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .btn-showcase {
+    .btn {
+      line-height: 1;
+      padding: 10px 15px;
+      margin: 0;
+
+      & + .btn {
+        margin-left: 5px;
+      }
+
+      svg {
+        height: 16px;
+        vertical-align: bottom;
+      }
+    }
+  }
+
+  .login-main-wrapper {
+    width: 950px;
+    margin: 0 auto;
+    background-color: $white;
+    border-radius: 20px;
   }
 }
 

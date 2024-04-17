@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Image } from "../../../../AbstractElements";
+import { Image, P } from "../../../../AbstractElements";
 import LoginForm from "./LoginForm";
 
 const Login = () => {
@@ -33,6 +33,19 @@ const Login = () => {
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
               <LoginForm logoClassMain="text-center" />
+              <P
+                attrPara={{
+                  className: "text-center mb-3",
+                  style: {
+                    color: "#8FA8D7",
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    lineHeight: "19.2px",
+                  },
+                }}
+              >
+                © 2024 Lia Connect. ALL RIGHTS RESERVED
+              </P>
             </Col>
           </Row>
         </Container>
