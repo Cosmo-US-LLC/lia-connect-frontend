@@ -13,33 +13,18 @@ const SidebarLogo = () => {
     toggleSidebar(!toggleIcon);
   };
 
-  const layout1 = localStorage.getItem("sidebar_layout") || layout;
-
   return (
     <div className="logo-wrapper" style={{ backgroundColor: "#F9F9F9" }}>
-      {layout1 !== "compact-wrapper dark-sidebar" &&
-      layout1 !== "compact-wrapper color-sidebar" &&
-      mixLayout ? (
-        <Link to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}>
-          <Image
-            attrImage={{
-              className: "img-fluid d-inline",
-              src: `${CubaIcon}`,
-              alt: "",
-            }}
-          />
-        </Link>
-      ) : (
-        <Link to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}>
-          <Image
-            attrImage={{
-              className: "img-fluid d-inline",
-              src: `${require("../../assets/images/logo/logo_dark.png")}`,
-              alt: "",
-            }}
-          />
-        </Link>
-      )}
+      <Link to={`${process.env.PUBLIC_URL}/dashboard`}>
+        <Image
+          attrImage={{
+            className: "img-fluid d-inline",
+            src: `${require("../../assets/images/logo/logo.png")}`,
+            alt: "",
+          }}
+        />
+      </Link>
+
       <div className="back-btn" onClick={() => openCloseSidebar()}>
         <i className="fa fa-angle-left"></i>
       </div>

@@ -2,23 +2,27 @@ import React from "react";
 import { Input, Label, Media } from "reactstrap";
 import { Image } from "../../../../AbstractElements";
 import user1 from "../../../../assets/images/user/1.jpg";
+import { Check, Mail } from "react-feather";
+import { Link } from "react-router-dom";
 
 export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
         </Media>
-      </Media>
+      </Link>
     ),
     jobTitle: "System Architect",
     linkedin: "https://www.linkedin.com/in/mueedsajjad/",
@@ -30,9 +34,13 @@ export const dummytabledata = [
     ),
     lastAction: (
       <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -41,7 +49,59 @@ export const dummytabledata = [
     ),
     blacklist: (
       <Media key="1">
-        <Media body className="text-end switch-md icon-state">
+        <Media body className="text-end switch-sm ">
+          <Label className="switch">
+            <Input type="checkbox" checked />
+            <span className="switch-state"></span>
+          </Label>
+        </Media>
+      </Media>
+    ),
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
+        </Media>
+      </Link>
+    ),
+    jobTitle: "System Architect",
+    linkedin: "https://www.linkedin.com/in/mueedsajjad/",
+    profileScore: (
+      <div>
+        <div className="font-secondary">52/100</div>
+        <div className="badge badge-light-warning">Average</div>
+      </div>
+    ),
+    lastAction: (
+      <div>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
+        </span>
+        <div className="mt-1" style={{ color: "#C6C9F0" }}>
+          May 29, 2017
+        </div>
+      </div>
+    ),
+    blacklist: (
+      <Media key="1">
+        <Media body className="text-end switch-sm ">
           <Label className="switch">
             <Input type="checkbox" />
             <span className="switch-state"></span>
@@ -53,18 +113,20 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
         </Media>
-      </Media>
+      </Link>
     ),
     jobTitle: "System Architect",
     linkedin: "https://www.linkedin.com/in/mueedsajjad/",
@@ -76,9 +138,13 @@ export const dummytabledata = [
     ),
     lastAction: (
       <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -87,7 +153,7 @@ export const dummytabledata = [
     ),
     blacklist: (
       <Media key="1">
-        <Media body className="text-end switch-md icon-state">
+        <Media body className="text-end switch-sm ">
           <Label className="switch">
             <Input type="checkbox" />
             <span className="switch-state"></span>
@@ -99,18 +165,20 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
         </Media>
-      </Media>
+      </Link>
     ),
     jobTitle: "System Architect",
     linkedin: "https://www.linkedin.com/in/mueedsajjad/",
@@ -122,9 +190,13 @@ export const dummytabledata = [
     ),
     lastAction: (
       <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -133,7 +205,7 @@ export const dummytabledata = [
     ),
     blacklist: (
       <Media key="1">
-        <Media body className="text-end switch-md icon-state">
+        <Media body className="text-end switch-sm ">
           <Label className="switch">
             <Input type="checkbox" />
             <span className="switch-state"></span>
@@ -145,18 +217,20 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
         </Media>
-      </Media>
+      </Link>
     ),
     jobTitle: "System Architect",
     linkedin: "https://www.linkedin.com/in/mueedsajjad/",
@@ -168,9 +242,13 @@ export const dummytabledata = [
     ),
     lastAction: (
       <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -179,7 +257,59 @@ export const dummytabledata = [
     ),
     blacklist: (
       <Media key="1">
-        <Media body className="text-end switch-md icon-state">
+        <Media body className="text-end switch-sm ">
+          <Label className="switch">
+            <Input type="checkbox" checked />
+            <span className="switch-state"></span>
+          </Label>
+        </Media>
+      </Media>
+    ),
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
+        </Media>
+      </Link>
+    ),
+    jobTitle: "System Architect",
+    linkedin: "https://www.linkedin.com/in/mueedsajjad/",
+    profileScore: (
+      <div>
+        <div className="font-secondary">52/100</div>
+        <div className="badge badge-light-warning">Average</div>
+      </div>
+    ),
+    lastAction: (
+      <div>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
+        </span>
+        <div className="mt-1" style={{ color: "#C6C9F0" }}>
+          May 29, 2017
+        </div>
+      </div>
+    ),
+    blacklist: (
+      <Media key="1">
+        <Media body className="text-end switch-sm ">
           <Label className="switch">
             <Input type="checkbox" />
             <span className="switch-state"></span>
@@ -191,18 +321,20 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
+      <Link to="1">
+        <Media className="d-flex">
+          <Image
+            attrImage={{
+              className: "rounded-circle img-30 me-3",
+              src: `${user1}`,
+              alt: "Generic placeholder image",
+            }}
+          />
+          <Media body className="align-self-center">
+            <div>Airi Satou</div>
+          </Media>
         </Media>
-      </Media>
+      </Link>
     ),
     jobTitle: "System Architect",
     linkedin: "https://www.linkedin.com/in/mueedsajjad/",
@@ -214,9 +346,13 @@ export const dummytabledata = [
     ),
     lastAction: (
       <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
+        <span
+          className="f-w-700 "
+          style={{ color: "#299A16", display: "inline-flex" }}
+        >
+          <Mail strokeWidth={1} size={15} />{" "}
+          <span className="pe-1 ps-2">Send a message</span>
+          <Check strokeWidth={1} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -225,145 +361,7 @@ export const dummytabledata = [
     ),
     blacklist: (
       <Media key="1">
-        <Media body className="text-end switch-md icon-state">
-          <Label className="switch">
-            <Input type="checkbox" />
-            <span className="switch-state"></span>
-          </Label>
-        </Media>
-      </Media>
-    ),
-  },
-  {
-    id: 1,
-    name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
-        </Media>
-      </Media>
-    ),
-    jobTitle: "System Architect",
-    linkedin: "https://www.linkedin.com/in/mueedsajjad/",
-    profileScore: (
-      <div>
-        <div className="font-secondary">52/100</div>
-        <div className="badge badge-light-warning">Average</div>
-      </div>
-    ),
-    lastAction: (
-      <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
-        </span>
-        <div className="mt-1" style={{ color: "#C6C9F0" }}>
-          May 29, 2017
-        </div>
-      </div>
-    ),
-    blacklist: (
-      <Media key="1">
-        <Media body className="text-end switch-md icon-state">
-          <Label className="switch">
-            <Input type="checkbox" />
-            <span className="switch-state"></span>
-          </Label>
-        </Media>
-      </Media>
-    ),
-  },
-  {
-    id: 1,
-    name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
-        </Media>
-      </Media>
-    ),
-    jobTitle: "System Architect",
-    linkedin: "https://www.linkedin.com/in/mueedsajjad/",
-    profileScore: (
-      <div>
-        <div className="font-secondary">52/100</div>
-        <div className="badge badge-light-warning">Average</div>
-      </div>
-    ),
-    lastAction: (
-      <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
-        </span>
-        <div className="mt-1" style={{ color: "#C6C9F0" }}>
-          May 29, 2017
-        </div>
-      </div>
-    ),
-    blacklist: (
-      <Media key="1">
-        <Media body className="text-end switch-md icon-state">
-          <Label className="switch">
-            <Input type="checkbox" />
-            <span className="switch-state"></span>
-          </Label>
-        </Media>
-      </Media>
-    ),
-  },
-  {
-    id: 1,
-    name: (
-      <Media className="d-flex">
-        <Image
-          attrImage={{
-            className: "rounded-circle img-30 me-3",
-            src: `${user1}`,
-            alt: "Generic placeholder image",
-          }}
-        />
-        <Media body className="align-self-center">
-          <div>Airi Satou</div>
-        </Media>
-      </Media>
-    ),
-    jobTitle: "System Architect",
-    linkedin: "https://www.linkedin.com/in/mueedsajjad/",
-    profileScore: (
-      <div>
-        <div className="font-secondary">52/100</div>
-        <div className="badge badge-light-warning">Average</div>
-      </div>
-    ),
-    lastAction: (
-      <div>
-        <span className="f-w-700 " style={{ color: "#299A16" }}>
-          <i class="icofont icofont-ui-message"></i> Send a message
-          <i class="icofont icofont-tick-mark"></i>
-        </span>
-        <div className="mt-1" style={{ color: "#C6C9F0" }}>
-          May 29, 2017
-        </div>
-      </div>
-    ),
-    blacklist: (
-      <Media key="1">
-        <Media body className="text-end switch-md icon-state">
+        <Media body className="text-end switch-sm ">
           <Label className="switch">
             <Input type="checkbox" />
             <span className="switch-state"></span>

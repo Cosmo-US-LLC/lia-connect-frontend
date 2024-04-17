@@ -11,6 +11,7 @@ import {
   InputGroupText,
 } from "reactstrap";
 import Select from "react-select";
+import { ChevronLeft, ChevronRight } from "react-feather";
 
 const DataTableComponent = () => {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -75,7 +76,7 @@ const DataTableComponent = () => {
       padding: "0 10px",
       color: "black", // Text color for both regular and selected states
     }),
-    option: (provided, state) => ({
+    option: (provided) => ({
       ...provided,
       backgroundColor: "white", // Adjust for selection state
       color: "black",
@@ -113,16 +114,21 @@ const DataTableComponent = () => {
       />
       <nav
         aria-label="Page navigation example"
-        style={{ backgroundColor: "#f5f9ff" }}
+        className="py-3"
+        style={{
+          backgroundColor: "#f5f9ff",
+          display: "inline-flex",
+          justifyContent: "space-between",
+        }}
       >
         <div className="justify-content-start">
           <Form className="me-2">
-            <InputGroup>
+            <InputGroup style={{ width: "120%", border: "none" }}>
               <InputGroupText
                 style={{
                   border: "none",
                   backgroundColor: "#f5f9ff",
-                  color: "black",
+                  color: "#5C5E64",
                   fontSize: "12px",
                   fontWeight: "400",
                 }}
@@ -133,16 +139,17 @@ const DataTableComponent = () => {
                 options={options}
                 styles={customSelectStyles}
                 placeholder="50"
-                className="js-example-basic-single col-sm-3"
+                className="js-example-basic-single col-sm-6"
               />
             </InputGroup>
           </Form>
         </div>
         <Pagination className="pagination justify-content-end ">
-          <ul className="pagination pagination-primary">
+          <ul className="pagination pagination-alfren">
             <PaginationItem disabled className="custom-pagination-item">
               <PaginationLink className="custom-pagination-link">
-                <i data-feather="chevron-left"></i>Prev
+                <ChevronLeft strokeWidth={1} />
+                Prev
               </PaginationLink>
             </PaginationItem>
             <PaginationItem active className="custom-pagination-item">
@@ -183,7 +190,8 @@ const DataTableComponent = () => {
                 href="#javascript"
                 className="custom-pagination-link"
               >
-                Next<i class="icofont icofont-thin-right"></i>
+                Next
+                <ChevronRight strokeWidth={1} />
               </PaginationLink>
             </PaginationItem>
           </ul>

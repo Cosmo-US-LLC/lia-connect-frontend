@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { MENUITEMS } from "./Menu";
 import { Image } from "../../AbstractElements";
+import { ChevronDown, ChevronRight } from "react-feather";
 
 const SidebarMenuItems = ({
   setMainMenu,
@@ -71,24 +72,7 @@ const SidebarMenuItems = ({
                     activeClass(menuItem.active);
                   }}
                 >
-                  {menuItem.active ? (
-                    <Image
-                      attrImage={{
-                        src: menuItem.activeIcon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  ) : (
-                    <Image
-                      attrImage={{
-                        src: menuItem.icon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  )}
-
+                  {menuItem.icon}
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
@@ -119,23 +103,8 @@ const SidebarMenuItems = ({
                   }`}
                   onClick={() => toggletNavActive(menuItem)}
                 >
-                  {menuItem.active ? (
-                    <Image
-                      attrImage={{
-                        src: menuItem.activeIcon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  ) : (
-                    <Image
-                      attrImage={{
-                        src: menuItem.icon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  )}
+                  {menuItem.icon}
+
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
@@ -182,13 +151,13 @@ const SidebarMenuItems = ({
                           >
                             {t(childrenItem.title)}
                             <span className="sub-arrow">
-                              <i className="fa fa-chevron-right"></i>
+                              <ChevronRight strokeWidth={1} />
                             </span>
                             <div className="according-menu">
                               {childrenItem.active ? (
-                                <i className="fa fa-angle-down"></i>
+                                <ChevronDown strokeWidth={1} />
                               ) : (
-                                <i className="fa fa-angle-right"></i>
+                                <ChevronRight strokeWidth={1} />
                               )}
                             </div>
                           </a>

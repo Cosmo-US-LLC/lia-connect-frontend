@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col, Card, CardHeader } from "reactstrap";
-import { H6, Image } from "../../../../AbstractElements";
+import { H6 } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
-import barIcon from "../../../../assets/used-files/icons/bar.svg";
 import Select from "react-select";
 import { Form, InputGroup, InputGroupText } from "reactstrap";
+import { FileText, Filter } from "react-feather";
 const DataTables = () => {
   const options = [
     { value: "AL", label: "Campaign A" },
@@ -57,12 +57,7 @@ const DataTables = () => {
                 <Row>
                   <Col xl="2">
                     <H6>
-                      <Image
-                        attrImage={{
-                          src: barIcon,
-                          alt: "",
-                        }}
-                      />{" "}
+                      <Filter strokeWidth={1} />
                       <strong className="ms-1">45263 Candidates</strong>
                     </H6>
                   </Col>
@@ -77,7 +72,7 @@ const DataTables = () => {
                             borderRadius: "30px 0px 0px 30px",
                           }}
                         >
-                          <i class="icofont icofont-filter"></i>
+                          <Filter strokeWidth={1} />
                         </InputGroupText>
                         <Select
                           options={options}
@@ -90,9 +85,12 @@ const DataTables = () => {
                     </Form>
                   </Col>
                   <Col xl="3" style={{ textAlign: "end" }}>
-                    <button className="btn btn-primary">
-                      Export
-                      <i class="icofont icofont-file-excel px-2"></i>
+                    <button
+                      className="btn btn-primary"
+                      style={{ display: "inline-flex" }}
+                    >
+                      <span>Export</span>
+                      <FileText strokeWidth={1} size={20} />
                     </button>
                   </Col>
                 </Row>

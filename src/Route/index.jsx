@@ -12,7 +12,7 @@ import Login from "../Components/Alfren/Auth/login/index";
 
 const Routers = () => {
   const login = useState(JSON.parse(localStorage.getItem("login")))[0];
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   const defaultLayoutObj = classes.find(
     (item) => Object.values(item).pop(1) === "compact-wrapper"
   );
@@ -21,7 +21,7 @@ const Routers = () => {
 
   useEffect(() => {
     let abortController = new AbortController();
-    setAuthenticated(JSON.parse(localStorage.getItem("authenticated")));
+    // setAuthenticated(JSON.parse(localStorage.getItem("authenticated")));
     console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
     console.disableYellowBox = true;
     return () => {

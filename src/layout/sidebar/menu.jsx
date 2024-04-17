@@ -1,35 +1,36 @@
-import HomeIcon from "../../assets/used-files/icons/house.svg";
-import JobIcon from "../../assets/used-files/icons/job.svg";
-import CandidateIcon from "../../assets/used-files/icons/candidate.svg";
-import MessageIcon from "../../assets/used-files/icons/message.svg";
-import SettingsIcon from "../../assets/used-files/icons/settings.svg";
-import FeedBackIcon from "../../assets/used-files/icons/Feedback.svg";
-import LogoutIcon from "../../assets/used-files/icons/logout.svg";
 import ActiveCandidateIcon from "../../assets/used-files/icons/candidateActive.svg";
+import {
+  AlertOctagon,
+  Home,
+  MessageCircle,
+  Search,
+  Settings,
+  User,
+} from "react-feather";
 
 export const MENUITEMS = [
   {
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/dashboard/default`,
-        icon: HomeIcon,
+        path: `${process.env.PUBLIC_URL}/dashboard`,
+        icon: <Home strokeWidth={1} />,
         title: "Home",
         type: "link",
       },
       {
         title: "Jobs ",
-        icon: JobIcon,
+        icon: <Search strokeWidth={1} />,
         type: "sub",
         badge: "badge badge-light-primary",
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/dashboard/default`,
+            path: `${process.env.PUBLIC_URL}/dashboard`,
             title: "All Jobs",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/dashboard/e-commerce`,
+            path: `${process.env.PUBLIC_URL}/dashboard`,
             title: "Create New Job",
             type: "link",
           },
@@ -37,20 +38,20 @@ export const MENUITEMS = [
       },
       {
         path: `${process.env.PUBLIC_URL}/candidates`,
-        icon: CandidateIcon,
+        icon: <User strokeWidth={1} />,
         activeIcon: ActiveCandidateIcon,
         title: "Candidates",
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/app/file-manager`,
-        icon: MessageIcon,
+        path: `${process.env.PUBLIC_URL}/dashboard`,
+        icon: <MessageCircle strokeWidth={1} />,
         title: "Messages",
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/app/file-manager`,
-        icon: SettingsIcon,
+        path: `${process.env.PUBLIC_URL}/dashboard`,
+        icon: <Settings strokeWidth={1} />,
         title: "Settings",
         type: "link",
       },
@@ -64,34 +65,27 @@ export const MENUITEMSBOTTOM = [
       {
         title: "Profile Menu",
         profile: true,
-        icon: JobIcon,
+        icon: "",
         type: "sub",
         badge: "badge badge-light-primary",
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/dashboard/default`,
+            path: `${process.env.PUBLIC_URL}/dashboard`,
             title: "Profile",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/dashboard/e-commerce`,
+            path: `${process.env.PUBLIC_URL}/dashboard`,
             title: "Messages",
             type: "link",
           },
         ],
       },
       {
-        path: `${process.env.PUBLIC_URL}/app/file-manager`,
-        icon: FeedBackIcon,
+        path: `${process.env.PUBLIC_URL}/dashboard`,
+        icon: <AlertOctagon strokeWidth={1} />,
         title: "FeedBack",
-        type: "link",
-      },
-      {
-        path: `${process.env.PUBLIC_URL}/app/file-manager`,
-        icon: LogoutIcon,
-        color: "#AA1313",
-        title: "Logout",
         type: "link",
       },
     ],

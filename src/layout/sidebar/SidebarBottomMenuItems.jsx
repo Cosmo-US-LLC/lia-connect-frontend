@@ -1,11 +1,14 @@
 import React, { Fragment, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import SvgIcon from "../../Components/Common/Component/SvgIcon";
 import CustomizerContext from "../../_helper/Customizer";
 import { MENUITEMSBOTTOM } from "./Menu";
 import { Image, P } from "../../AbstractElements";
 import defaultAvatar from "../../assets/used-files/profile/default.png";
+import { MoreVertical, LogOut } from "react-feather";
 
 const SidebarBottomMENUITEMSBOTTOM = ({
   setMainMenu,
@@ -20,6 +23,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
   const id = window.location.pathname.split("/").pop();
   const layoutId = id;
   const CurrentPath = window.location.pathname;
+  const history = useNavigate();
 
   const authenticated = JSON.parse(localStorage.getItem("authenticated"));
   const auth0_profile = JSON.parse(localStorage.getItem("auth0_profile"));
@@ -65,11 +69,19 @@ const SidebarBottomMENUITEMSBOTTOM = ({
     item.active = !item.active;
     setMainMenu({ mainmenu: MENUITEMSBOTTOM });
   };
+  const Logout = () => {
+    localStorage.removeItem("profileURL");
+    localStorage.removeItem("token");
+    localStorage.removeItem("auth0_profile");
+    localStorage.removeItem("Name");
+    localStorage.setItem("authenticated", false);
+    history(`${process.env.PUBLIC_URL}/login`);
+  };
 
   return (
     <>
       {MENUITEMSBOTTOM.map((Item, i) => (
-        <Fragment key={i}>
+        <Fragment key={i + 10}>
           {Item.Items.map((menuItem, i) => (
             <li
               className="sidebar-list"
@@ -136,7 +148,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                     ""
                   )}
                   <div className="according-menu">
-                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    <MoreVertical strokeWidth={1} />
                   </div>
                 </a>
               ) : (
@@ -153,13 +165,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                   }`}
                   onClick={() => toggletNavActive(menuItem)}
                 >
-                  <Image
-                    attrImage={{
-                      src: menuItem.icon,
-                      className: `sidebar-icon-margin`,
-                      alt: "",
-                    }}
-                  />
+                  {menuItem.icon}
                   <span style={{ color: menuItem.color }}>
                     {t(menuItem.title)}
                   </span>
@@ -295,6 +301,18 @@ const SidebarBottomMENUITEMSBOTTOM = ({
           ))}
         </Fragment>
       ))}
+      <Fragment key={"logout"}>
+        <li className="sidebar-list" key={"logoutLI"} onClick={() => Logout()}>
+          <Link
+            className={`sidebar-link sidebar-title link-nav  ${
+              CurrentPath.includes("logout") ? "active" : ""
+            }`}
+          >
+            <LogOut strokeWidth={1} color={"rgb(170, 19, 19)"} />
+            <span style={{ color: "#AA1313" }}>Logout</span>
+          </Link>
+        </li>
+      </Fragment>
     </>
   );
 };
