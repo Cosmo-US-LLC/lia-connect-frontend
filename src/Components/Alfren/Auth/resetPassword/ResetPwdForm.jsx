@@ -93,9 +93,17 @@ const ResetPwdForm = ({ logoClassMain }) => {
                   <InputGroupText>
                     <Key strokeWidth={1} size={16} />
                   </InputGroupText>
-                  <Input type="password" required placeholder="aaaaaaaa" />
+                  <Input
+                    type={togglePassword ? "text" : "password"}
+                    required
+                    placeholder="Password"
+                  />
                   <InputGroupText>
-                    <Eye strokeWidth={1} size={16} />
+                    <Eye
+                      strokeWidth={1}
+                      size={16}
+                      onClick={() => setTogglePassword(!togglePassword)}
+                    />
                   </InputGroupText>
                 </InputGroup>
               </FormGroup>
@@ -109,9 +117,17 @@ const ResetPwdForm = ({ logoClassMain }) => {
                   <InputGroupText>
                     <Key strokeWidth={1} size={16} />
                   </InputGroupText>
-                  <Input type="password" required placeholder="aaaaaaaa" />
+                  <Input
+                    type={togglePassword ? "text" : "password"}
+                    required
+                    placeholder="Confirm Password"
+                  />
                   <InputGroupText>
-                    <Eye strokeWidth={1} size={16} />
+                    <Eye
+                      strokeWidth={1}
+                      size={16}
+                      onClick={() => setTogglePassword(!togglePassword)}
+                    />
                   </InputGroupText>
                 </InputGroup>
               </FormGroup>

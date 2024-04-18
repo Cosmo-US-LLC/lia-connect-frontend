@@ -12,7 +12,7 @@ import Login from "../Components/Alfren/Auth/login/index";
 
 const Routers = () => {
   const login = useState(JSON.parse(localStorage.getItem("login")))[0];
-  const [authenticated, setAuthenticated] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
   const defaultLayoutObj = classes.find(
     (item) => Object.values(item).pop(1) === "compact-wrapper"
   );

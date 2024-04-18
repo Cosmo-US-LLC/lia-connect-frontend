@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+
 import { Btn, H4, H6, Image, P } from "../../../../AbstractElements";
 import {
   Form,
@@ -8,7 +9,7 @@ import {
   InputGroupText,
   Label,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Check,
   CheckCircle,
@@ -27,9 +28,36 @@ import logoDark from "../../../../assets/images/logo/logo_dark.png";
 import OrIcon from "../../../../assets/used-files/images/auth/Or.svg";
 import GoogleIcon from "../../../../assets/used-files/icons/Google.svg";
 import LinkedInIcon from "../../../../assets/used-files/icons/LinkedInSquare.svg";
+import { useForm } from "react-hook-form";
+import man from "../../../../assets/images/dashboard/profile.png";
+import { ToastContainer, toast } from "react-toastify";
 
 const LoginForm = ({ logoClassMain }) => {
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("test123");
   const [togglePassword, setTogglePassword] = useState(false);
+  const history = useNavigate();
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const [value, setValue] = useState(localStorage.getItem("profileURL" || man));
+  const [name, setName] = useState(localStorage.getItem("Name"));
+
+  const onSubmit1 = (e) => {
+    // e.preventDefault();
+    setValue(man);
+    setName("Emay Walter");
+    if (email === "test@gmail.com" && password === "test123") {
+      localStorage.setItem("login", JSON.stringify(true));
+      history(`${process.env.PUBLIC_URL}/dashboard/`);
+      toast.success("Successfully logged in!..");
+    } else {
+      toast.error("You enter wrong password or username!..");
+    }
+  };
+
   return (
     <Fragment>
       <div className="login-card">
@@ -56,7 +84,10 @@ const LoginForm = ({ logoClassMain }) => {
             </Link>
           </div> */}
           <div className="login-main">
-            <Form className="theme-form login-form">
+            <Form
+              className="theme-form login-form"
+              onSubmit={handleSubmit(onSubmit1)}
+            >
               <H4
                 attrH4={{
                   style: {
@@ -96,11 +127,7 @@ const LoginForm = ({ logoClassMain }) => {
                   <InputGroupText>
                     <Mail strokeWidth={1} size={16} />
                   </InputGroupText>
-                  <Input
-                    type="email"
-                    required
-                    placeholder="example@email.com"
-                  />
+                  <Input type="email" placeholder="example@email.com" />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -113,9 +140,16 @@ const LoginForm = ({ logoClassMain }) => {
                   <InputGroupText>
                     <Key strokeWidth={1} size={16} />
                   </InputGroupText>
-                  <Input type="password" required placeholder="aaaaaaaa" />
+                  <Input
+                    type={togglePassword ? "text" : "password"}
+                    placeholder="aaaaaaaa"
+                  />
                   <InputGroupText>
-                    <Eye strokeWidth={1} size={16} />
+                    <Eye
+                      strokeWidth={1}
+                      size={16}
+                      onClick={() => setTogglePassword(!togglePassword)}
+                    />
                   </InputGroupText>
                 </InputGroup>
               </FormGroup>
