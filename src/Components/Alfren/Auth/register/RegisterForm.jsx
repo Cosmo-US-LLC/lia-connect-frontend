@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-import { Btn, H4, H6, Image, P } from "../../../../AbstractElements";
+import { Btn, H4, H6, Image, P, ToolTip } from "../../../../AbstractElements";
 import {
   Form,
   FormGroup,
@@ -22,6 +22,7 @@ import {
   Linkedin,
   Mail,
   Twitter,
+  X,
 } from "react-feather";
 
 import logoWhite from "../../../../assets/images/logo/logo.png";
@@ -38,6 +39,14 @@ const RegisterForm = ({ logoClassMain }) => {
   const [password, setPassword] = useState("test123");
   const [togglePassword, setTogglePassword] = useState(false);
   const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("ddddd");
+  const [basictooltip, setbasictooltip] = useState(false);
+  const toggle = () => setbasictooltip(!basictooltip);
+  const tooltips = (
+    <>
+      {"Tooltip"} <b>with</b> <code>HTML</code>
+    </>
+  );
 
   const history = useNavigate();
   const {
@@ -88,8 +97,8 @@ const RegisterForm = ({ logoClassMain }) => {
           </div> */}
           <div className="login-main">
             <Form
-              className="theme-form login-form"
-              onSubmit={handleSubmit(onSubmit1)}
+              className="theme-form login-form needs-validation"
+              // onSubmit={handleSubmit(onSubmit1)}
             >
               <H4
                 attrH4={{
@@ -135,6 +144,18 @@ const RegisterForm = ({ logoClassMain }) => {
               </FormGroup>
               <FormGroup>
                 <Label className="col-form-label m-0">
+                  Email<span className="text-danger ms-1">*</span>
+                </Label>
+
+                <InputGroup>
+                  <InputGroupText>
+                    <Mail strokeWidth={1} size={16} />
+                  </InputGroupText>
+                  <Input type="email" placeholder="example@email.com" />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup id="PasswordValidationInput">
+                <Label className="col-form-label m-0">
                   Password
                   <span className="text-danger ms-1">*</span>
                 </Label>
@@ -147,6 +168,7 @@ const RegisterForm = ({ logoClassMain }) => {
                     type={togglePassword ? "text" : "password"}
                     placeholder="*********"
                   />
+
                   <InputGroupText>
                     <Eye
                       strokeWidth={1}
@@ -155,6 +177,53 @@ const RegisterForm = ({ logoClassMain }) => {
                     />
                   </InputGroupText>
                 </InputGroup>
+
+                <ToolTip
+                  attrToolTip={{
+                    placement: "left",
+                    isOpen: basictooltip,
+                    target: "PasswordValidationInput",
+                    toggle: toggle,
+                    style: {
+                      backgroundColor: "white",
+                      boxShadow: "0px 5px 10px -3.89px #00000040",
+                    },
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      left: "300px",
+                      textAlign: "left",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <div style={{ color: "#299A16" }}>
+                      <Check strokeWidth={1} size={7} />
+                      <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                        Atleast 1 letter should be uppercase.
+                      </span>
+                    </div>
+                    <div style={{ color: "#299A16" }}>
+                      <Check strokeWidth={1} size={7} />
+                      <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                        Atleast 1 special character include.
+                      </span>
+                    </div>
+                    <div style={{ color: "#AA1313" }}>
+                      <X strokeWidth={1} size={7} />
+                      <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                        Atleast 1 number include.
+                      </span>
+                    </div>
+                    <div style={{ color: "#595959" }}>
+                      <Circle strokeWidth={1} size={7} />
+                      <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                        Password should be 12 letter long.
+                      </span>
+                    </div>
+                  </div>
+                </ToolTip>
               </FormGroup>
 
               <FormGroup>
@@ -184,7 +253,7 @@ const RegisterForm = ({ logoClassMain }) => {
               </FormGroup>
 
               <FormGroup>
-                <div style={{ color: "#299A16" }}>
+                {/* <div style={{ color: "#299A16" }}>
                   <Check strokeWidth={1} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 letter should be uppercase.
@@ -207,7 +276,7 @@ const RegisterForm = ({ logoClassMain }) => {
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Password should be 12 letter long.
                   </span>
-                </div>
+                </div> */}
                 <div style={{ color: "#AA1313" }}>
                   <AlertTriangle strokeWidth={1} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
