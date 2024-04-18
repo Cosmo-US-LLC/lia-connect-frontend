@@ -148,7 +148,7 @@ const DataTableComponent = () => {
           <ul className="pagination pagination-alfren">
             <PaginationItem disabled className="custom-pagination-item">
               <PaginationLink className="custom-pagination-link">
-                <ChevronLeft strokeWidth={1} />
+                <ChevronLeft strokeWidth={0.5} />
                 Prev
               </PaginationLink>
             </PaginationItem>
@@ -191,7 +191,7 @@ const DataTableComponent = () => {
                 className="custom-pagination-link"
               >
                 Next
-                <ChevronRight strokeWidth={1} />
+                <ChevronRight strokeWidth={0.5} />
               </PaginationLink>
             </PaginationItem>
           </ul>

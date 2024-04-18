@@ -38,9 +38,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -90,9 +90,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -142,9 +142,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -194,9 +194,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -246,9 +246,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -298,9 +298,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017
@@ -350,9 +350,9 @@ export const dummytabledata = [
           className="f-w-700 "
           style={{ color: "#299A16", display: "inline-flex" }}
         >
-          <Mail strokeWidth={1} size={15} />{" "}
+          <Mail strokeWidth={0.5} size={15} />{" "}
           <span className="pe-1 ps-2">Send a message</span>
-          <Check strokeWidth={1} size={15} />
+          <Check strokeWidth={0.5} size={15} />
         </span>
         <div className="mt-1" style={{ color: "#C6C9F0" }}>
           May 29, 2017

@@ -8,6 +8,8 @@ import {
   InputGroup,
   InputGroupText,
   Label,
+  Row,
+  Col,
 } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -22,6 +24,7 @@ import {
   Linkedin,
   Mail,
   Twitter,
+  User,
   X,
 } from "react-feather";
 
@@ -39,7 +42,6 @@ const RegisterForm = ({ logoClassMain }) => {
   const [password, setPassword] = useState("test123");
   const [togglePassword, setTogglePassword] = useState(false);
   const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("ddddd");
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
   const tooltips = (
@@ -130,6 +132,37 @@ const RegisterForm = ({ logoClassMain }) => {
                 Today is a new day. It's your day. You shape it. Sign up to
                 start managing your projects.
               </P>
+              <Row>
+                <Col xl="6">
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      First Name<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText>
+                        <User strokeWidth={0.5} size={16} />
+                      </InputGroupText>
+                      <Input type="email" placeholder="John" />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+                <Col xl="6">
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      Last Name<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText>
+                        <User strokeWidth={0.5} size={16} />
+                      </InputGroupText>
+                      <Input type="email" placeholder="Doe" />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+              </Row>
+
               <FormGroup>
                 <Label className="col-form-label m-0">
                   Email<span className="text-danger ms-1">*</span>
@@ -137,19 +170,7 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
-                  </InputGroupText>
-                  <Input type="email" placeholder="example@email.com" />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup>
-                <Label className="col-form-label m-0">
-                  Email<span className="text-danger ms-1">*</span>
-                </Label>
-
-                <InputGroup>
-                  <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input type="email" placeholder="example@email.com" />
                 </InputGroup>
@@ -162,7 +183,7 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
@@ -171,7 +192,7 @@ const RegisterForm = ({ logoClassMain }) => {
 
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />
@@ -199,25 +220,25 @@ const RegisterForm = ({ logoClassMain }) => {
                     }}
                   >
                     <div style={{ color: "#299A16" }}>
-                      <Check strokeWidth={1} size={7} />
+                      <Check strokeWidth={0.5} size={7} />
                       <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                         Atleast 1 letter should be uppercase.
                       </span>
                     </div>
                     <div style={{ color: "#299A16" }}>
-                      <Check strokeWidth={1} size={7} />
+                      <Check strokeWidth={0.5} size={7} />
                       <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                         Atleast 1 special character include.
                       </span>
                     </div>
                     <div style={{ color: "#AA1313" }}>
-                      <X strokeWidth={1} size={7} />
+                      <X strokeWidth={0.5} size={7} />
                       <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                         Atleast 1 number include.
                       </span>
                     </div>
                     <div style={{ color: "#595959" }}>
-                      <Circle strokeWidth={1} size={7} />
+                      <Circle strokeWidth={0.5} size={7} />
                       <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                         Password should be 12 letter long.
                       </span>
@@ -234,7 +255,7 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={toggleConfirmPassword ? "text" : "password"}
@@ -242,7 +263,7 @@ const RegisterForm = ({ logoClassMain }) => {
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() =>
                         setToggleConfirmPassword(!toggleConfirmPassword)
@@ -254,31 +275,31 @@ const RegisterForm = ({ logoClassMain }) => {
 
               <FormGroup>
                 {/* <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 letter should be uppercase.
                   </span>
                 </div>
                 <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 special character include.
                   </span>
                 </div>
                 <div style={{ color: "#AA1313" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 number include.
                   </span>
                 </div>
                 <div style={{ color: "#595959" }}>
-                  <Circle strokeWidth={1} size={7} />
+                  <Circle strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Password should be 12 letter long.
                   </span>
                 </div> */}
                 <div style={{ color: "#AA1313" }}>
-                  <AlertTriangle strokeWidth={1} size={7} />
+                  <AlertTriangle strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Confirm Password Not matched
                   </span>

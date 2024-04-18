@@ -13,13 +13,13 @@ export const MENUITEMS = [
     Items: [
       {
         path: `${process.env.PUBLIC_URL}/dashboard`,
-        icon: <Home strokeWidth={1} />,
+        icon: <Home strokeWidth={0.5} />,
         title: "Home",
         type: "link",
       },
       {
         title: "Jobs ",
-        icon: <Search strokeWidth={1} />,
+        icon: <Search strokeWidth={0.5} />,
         type: "sub",
         badge: "badge badge-light-primary",
         active: false,
@@ -38,20 +38,20 @@ export const MENUITEMS = [
       },
       {
         path: `${process.env.PUBLIC_URL}/candidates`,
-        icon: <User strokeWidth={1} />,
+        icon: <User strokeWidth={0.5} />,
         activeIcon: ActiveCandidateIcon,
         title: "Candidates",
         type: "link",
       },
       {
         path: `${process.env.PUBLIC_URL}/dashboard`,
-        icon: <MessageCircle strokeWidth={1} />,
+        icon: <MessageCircle strokeWidth={0.5} />,
         title: "Messages",
         type: "link",
       },
       {
         path: `${process.env.PUBLIC_URL}/dashboard`,
-        icon: <Settings strokeWidth={1} />,
+        icon: <Settings strokeWidth={0.5} />,
         title: "Settings",
         type: "link",
       },
@@ -84,7 +84,7 @@ export const MENUITEMSBOTTOM = [
       },
       {
         path: `${process.env.PUBLIC_URL}/dashboard`,
-        icon: <AlertOctagon strokeWidth={1} />,
+        icon: <AlertOctagon strokeWidth={0.5} />,
         title: "FeedBack",
         type: "link",
       },

@@ -91,7 +91,7 @@ const ResetPwdForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
@@ -100,7 +100,7 @@ const ResetPwdForm = ({ logoClassMain }) => {
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />
@@ -115,7 +115,7 @@ const ResetPwdForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
@@ -124,7 +124,7 @@ const ResetPwdForm = ({ logoClassMain }) => {
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />
@@ -134,25 +134,25 @@ const ResetPwdForm = ({ logoClassMain }) => {
 
               <FormGroup>
                 <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 letter should be uppercase.
                   </span>
                 </div>
                 <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 special character include.
                   </span>
                 </div>
                 <div style={{ color: "#AA1313" }}>
-                  <Check strokeWidth={1} size={7} />
+                  <Check strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Atleast 1 number include.
                   </span>
                 </div>
                 <div style={{ color: "#595959" }}>
-                  <Circle strokeWidth={1} size={7} />
+                  <Circle strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Password should be 12 letter long.
                   </span>

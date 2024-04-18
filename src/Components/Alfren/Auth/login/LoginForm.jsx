@@ -125,7 +125,7 @@ const LoginForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input type="email" placeholder="example@email.com" />
                 </InputGroup>
@@ -138,7 +138,7 @@ const LoginForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
@@ -146,7 +146,7 @@ const LoginForm = ({ logoClassMain }) => {
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />

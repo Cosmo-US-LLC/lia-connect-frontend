@@ -80,7 +80,7 @@ const ForgotPwdForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input type="email" required value="Example@email.com" />
                 </InputGroup>

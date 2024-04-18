@@ -57,7 +57,7 @@ const DataTables = () => {
                 <Row>
                   <Col xl="2">
                     <H6>
-                      <Filter strokeWidth={1} />
+                      <Filter strokeWidth={0.5} />
                       <strong className="ms-1">45263 Candidates</strong>
                     </H6>
                   </Col>
@@ -72,7 +72,7 @@ const DataTables = () => {
                             borderRadius: "30px 0px 0px 30px",
                           }}
                         >
-                          <Filter strokeWidth={1} />
+                          <Filter strokeWidth={0.5} />
                         </InputGroupText>
                         <Select
                           options={options}
@@ -90,7 +90,7 @@ const DataTables = () => {
                       style={{ display: "inline-flex" }}
                     >
                       <span>Export</span>
-                      <FileText strokeWidth={1} size={20} />
+                      <FileText strokeWidth={0.5} size={20} />
                     </button>
                   </Col>
                 </Row>

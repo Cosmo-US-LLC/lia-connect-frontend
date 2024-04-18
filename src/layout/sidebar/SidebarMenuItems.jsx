@@ -151,13 +151,13 @@ const SidebarMenuItems = ({
                           >
                             {t(childrenItem.title)}
                             <span className="sub-arrow">
-                              <ChevronRight strokeWidth={1} />
+                              <ChevronRight strokeWidth={0.5} />
                             </span>
                             <div className="according-menu">
                               {childrenItem.active ? (
-                                <ChevronDown strokeWidth={1} />
+                                <ChevronDown strokeWidth={0.5} />
                               ) : (
-                                <ChevronRight strokeWidth={1} />
+                                <ChevronRight strokeWidth={0.5} />
                               )}
                             </div>
                           </a>

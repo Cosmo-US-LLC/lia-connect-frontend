@@ -148,7 +148,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                     ""
                   )}
                   <div className="according-menu">
-                    <MoreVertical strokeWidth={1} />
+                    <MoreVertical strokeWidth={0.5} />
                   </div>
                 </a>
               ) : (
@@ -308,7 +308,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
               CurrentPath.includes("logout") ? "active" : ""
             }`}
           >
-            <LogOut strokeWidth={1} color={"rgb(170, 19, 19)"} />
+            <LogOut strokeWidth={0.5} color={"rgb(170, 19, 19)"} />
             <span style={{ color: "#AA1313" }}>Logout</span>
           </Link>
         </li>
