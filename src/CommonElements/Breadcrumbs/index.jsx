@@ -1,13 +1,8 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
-import H3 from "../Headings/H3Element";
-import CustomizerContext from "../../_helper/Customizer";
-import SvgIcon from "../../Components/Common/Component/SvgIcon";
 import { Image } from "../../AbstractElements";
 
 const Breadcrumbs = (props) => {
-  const { layoutURL } = useContext(CustomizerContext);
   return (
     <Fragment>
       <Container fluid={true}>

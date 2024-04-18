@@ -2,8 +2,12 @@
      32. pagination CSS Start
 ==========================**/
 /*test Nav bar color */
-$page-name: theme, primary, secondary, success, danger, info, dark, warning;
-$page-color: var(--theme-default), var(--theme-default), $secondary-color, $success-color, $danger-color, $info-color, $dark-color, $warning-color;
+$page-name: theme, primary, secondary, success, danger, info, dark, warning,
+  alfren;
+$page-color: var(--theme-default), var(--theme-default), $secondary-color,
+  $success-color, $danger-color, $info-color, $dark-color, $warning-color,
+  $alfren-color;
+$primaryColor: var(--theme-default);
 @each $var in $page-name {
   $i: index($page-name, $var);
   .pagination-#{$var} {
@@ -17,8 +21,9 @@ $page-color: var(--theme-default), var(--theme-default), $secondary-color, $succ
       &.active {
         .page-link {
           color: $white !important;
-          background-color: nth($page-color, $i) !important;
+          background-color: $primaryColor !important;
           border-color: nth($page-color, $i);
+          border-radius: 2px;
         }
       }
     }

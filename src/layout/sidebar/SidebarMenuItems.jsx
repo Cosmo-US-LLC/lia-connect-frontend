@@ -1,10 +1,9 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import SvgIcon from "../../Components/Common/Component/SvgIcon";
-import CustomizerContext from "../../_helper/Customizer";
 import { MENUITEMS } from "./Menu";
 import { Image } from "../../AbstractElements";
+import { ChevronDown, ChevronRight } from "react-feather";
 
 const SidebarMenuItems = ({
   setMainMenu,
@@ -12,11 +11,6 @@ const SidebarMenuItems = ({
   setNavActive,
   activeClass,
 }) => {
-  const { layout } = useContext(CustomizerContext);
-  const layout1 = localStorage.getItem("sidebar_layout") || layout;
-
-  const id = window.location.pathname.split("/").pop();
-  const layoutId = id;
   const CurrentPath = window.location.pathname;
 
   const { t } = useTranslation();
@@ -78,24 +72,7 @@ const SidebarMenuItems = ({
                     activeClass(menuItem.active);
                   }}
                 >
-                  {menuItem.active ? (
-                    <Image
-                      attrImage={{
-                        src: menuItem.activeIcon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  ) : (
-                    <Image
-                      attrImage={{
-                        src: menuItem.icon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  )}
-
+                  {menuItem.icon}
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
@@ -126,23 +103,8 @@ const SidebarMenuItems = ({
                   }`}
                   onClick={() => toggletNavActive(menuItem)}
                 >
-                  {menuItem.active ? (
-                    <Image
-                      attrImage={{
-                        src: menuItem.activeIcon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  ) : (
-                    <Image
-                      attrImage={{
-                        src: menuItem.icon,
-                        className: `sidebar-icon-margin`,
-                        alt: "",
-                      }}
-                    />
-                  )}
+                  {menuItem.icon}
+
                   <span>{t(menuItem.title)}</span>
                   {menuItem.badge ? (
                     <label className={menuItem.badge}>
@@ -160,13 +122,11 @@ const SidebarMenuItems = ({
                 <ul
                   className="sidebar-submenu"
                   style={
-                    layout1 !== "compact-sidebar compact-small"
-                      ? menuItem?.active ||
-                        CurrentPath.includes(menuItem?.title?.toLowerCase())
-                        ? sidebartoogle
-                          ? { opacity: 1, transition: "opacity 500ms ease-in" }
-                          : { display: "block" }
-                        : { display: "none" }
+                    menuItem?.active ||
+                    CurrentPath.includes(menuItem?.title?.toLowerCase())
+                      ? sidebartoogle
+                        ? { opacity: 1, transition: "opacity 500ms ease-in" }
+                        : { display: "block" }
                       : { display: "none" }
                   }
                 >
@@ -191,13 +151,13 @@ const SidebarMenuItems = ({
                           >
                             {t(childrenItem.title)}
                             <span className="sub-arrow">
-                              <i className="fa fa-chevron-right"></i>
+                              <ChevronRight strokeWidth={1} />
                             </span>
                             <div className="according-menu">
                               {childrenItem.active ? (
-                                <i className="fa fa-angle-down"></i>
+                                <ChevronDown strokeWidth={1} />
                               ) : (
-                                <i className="fa fa-angle-right"></i>
+                                <ChevronRight strokeWidth={1} />
                               )}
                             </div>
                           </a>

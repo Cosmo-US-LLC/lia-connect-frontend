@@ -46,7 +46,7 @@ const AppLayout = ({ children, classNames, ...rest }) => {
               classNames={animationTheme}
               unmountOnExit
             >
-              <div className="page-body">
+              <div className="page-body ">
                 <div>
                   <div>
                     <Outlet />
@@ -58,7 +58,7 @@ const AppLayout = ({ children, classNames, ...rest }) => {
           <Footer />
         </div>
       </div>
-      <ThemeCustomize />
+      {/* <ThemeCustomize /> */}
       <ToastContainer />
     </Fragment>
   );

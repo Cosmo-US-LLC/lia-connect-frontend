@@ -1,16 +1,25 @@
-import React, { Fragment, useState, useLayoutEffect, useContext } from "react";
+import React, {
+  Fragment,
+  useState,
+  useLayoutEffect,
+  useContext,
+  useEffect,
+} from "react";
 import { Col } from "reactstrap";
 import { AlignCenter } from "react-feather";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Breadcrumbs, Image } from "../../../AbstractElements";
 import CustomizerContext from "../../../_helper/Customizer";
-import NotificationSlider from "./NotificationSlider";
 import CandidateIcon from "../../../assets/used-files/icons/candidate.svg";
-
+import { breadcrumbData } from "./breadcrumbConfig";
 const Leftbar = () => {
+  const location = useLocation();
+  const currentRoute = location.pathname;
+  console.log("current path", currentRoute);
+
   const { layoutURL, setToggleIcon, toggleSidebar } =
     useContext(CustomizerContext);
-  const [sidebartoggle, setSidebartoggle] = useState(true);
+  const sidebartoggle = true;
   const width = useWindowSize();
 
   function useWindowSize() {
@@ -50,6 +59,25 @@ const Leftbar = () => {
     }
   };
 
+  function getActiveBreadcrumbs(currentRoute) {
+    let activeBreadcrumbs = [];
+
+    for (const item of breadcrumbData) {
+      const fullPath = item.path;
+      if (fullPath === currentRoute) {
+        activeBreadcrumbs.push({ ...item, isActive: true });
+      }
+    }
+
+    return activeBreadcrumbs;
+  }
+
+  const [breadcrumbActive, setBreadcrumbActive] = useState(null);
+
+  useEffect(() => {
+    setBreadcrumbActive(getActiveBreadcrumbs(currentRoute));
+  }, [currentRoute]);
+
   return (
     <Fragment>
       <Col className="header-logo-wrapper col-auto p-0" id="out_side_click">
@@ -88,11 +116,13 @@ const Leftbar = () => {
       </Col>
       <Col xxl="5" xl="6" lg="5" md="4" sm="3" className="left-header p-0">
         {/* <NotificationSlider /> */}
-        <Breadcrumbs
-          parent="Candidates"
-          title="All Candidates"
-          icon={CandidateIcon}
-        />
+        {breadcrumbActive ? (
+          <Breadcrumbs
+            parent="Candidates"
+            title="All Candidates"
+            icon={CandidateIcon}
+          />
+        ) : null}
       </Col>
     </Fragment>
   );

@@ -1577,7 +1577,7 @@
                 a {
                   padding: 12px 20px;
                   position: relative;
-                  color: #222222;
+                  color: #595959;
                   transition: all 0.3s ease;
 
                   .sub-arrow {
@@ -1833,6 +1833,7 @@
                     margin-bottom: 10px;
                     background-color: $primary-color;
                     text-decoration: none;
+                    color: white;
                     border-radius: 8px;
                     &::after {
                       opacity: 1;

@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { H5, H6, UL, LI, P, Image } from "../../../../AbstractElements";
-import { Activity, DailyDropdown } from "../../../../Constant";
-import DropdownCommon from "../../../Common/Dropdown";
+import { Activity } from "../../../../Constant";
 import LineIcon from "../../../../assets/used-files/icons/Line1.svg";
 import ViewIcon from "../../../../assets/used-files/icons/activity/view.svg";
 import ConnectionIcon from "../../../../assets/used-files/icons/activity/Connection.svg";

@@ -1,12 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import {
-  Breadcrumbs,
-  Image,
-  LI,
-  ToolTip,
-  UL,
-} from "../../../../AbstractElements";
+import { Image, LI, ToolTip, UL } from "../../../../AbstractElements";
 import ProfileCard from "./ProfileCard";
 import ActivityCard from "./ActivityCard";
 import Notes from "./Notes";
@@ -14,7 +8,6 @@ import DetailsCard from "./DetailsCard";
 import ChatIcon from "../../../../assets/used-files/icons/Chat.svg";
 import BlacklistIcon from "../../../../assets/used-files/icons/Blacklisted.svg";
 import CommentInfoIcon from "../../../../assets/used-files/icons/commentInfo.svg";
-import { Color } from "../../../../Constant";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
