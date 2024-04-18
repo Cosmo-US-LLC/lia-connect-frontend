@@ -75,7 +75,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
     localStorage.removeItem("auth0_profile");
     localStorage.removeItem("Name");
     localStorage.setItem("authenticated", false);
-    history(`${process.env.PUBLIC_URL}/login`);
+    history(`${process.env.PUBLIC_URL}/auth/login`);
   };
 
   return (

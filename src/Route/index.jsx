@@ -59,7 +59,7 @@ const Routers = () => {
 
           <Route
             exact
-            path={`${process.env.PUBLIC_URL}/login`}
+            path={`${process.env.PUBLIC_URL}/auth/login`}
             element={<Login />}
           />
           {authRoutes.map(({ path, Component }, i) => (

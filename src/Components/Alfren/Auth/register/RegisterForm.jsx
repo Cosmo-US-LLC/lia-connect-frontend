@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  AlertTriangle,
   Check,
   CheckCircle,
   Circle,
@@ -32,10 +33,12 @@ import { useForm } from "react-hook-form";
 import man from "../../../../assets/images/dashboard/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 
-const LoginForm = ({ logoClassMain }) => {
+const RegisterForm = ({ logoClassMain }) => {
   const [email, setEmail] = useState("test@gmail.com");
   const [password, setPassword] = useState("test123");
   const [togglePassword, setTogglePassword] = useState(false);
+  const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+
   const history = useNavigate();
   const {
     handleSubmit,
@@ -101,7 +104,7 @@ const LoginForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Welcome Back 👋{" "}
+                Registeration 👋
               </H4>
               <P
                 attrPara={{
@@ -115,7 +118,7 @@ const LoginForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Today is a new day. It's your day. You shape it. Sign in to
+                Today is a new day. It's your day. You shape it. Sign up to
                 start managing your projects.
               </P>
               <FormGroup>
@@ -142,7 +145,7 @@ const LoginForm = ({ logoClassMain }) => {
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
-                    placeholder="aaaaaaaa"
+                    placeholder="*********"
                   />
                   <InputGroupText>
                     <Eye
@@ -154,19 +157,63 @@ const LoginForm = ({ logoClassMain }) => {
                 </InputGroup>
               </FormGroup>
 
-              <FormGroup className="position-relative">
-                <Link
-                  style={{
-                    styleName: "Tiny Body",
-                    fontSize: "12px",
-                    fontWeight: "400",
-                    lineHeight: "19.2px",
-                    color: "#1264FD",
-                  }}
-                  to={`${process.env.PUBLIC_URL}/auth/forgot-password`}
-                >
-                  Forgot password?
-                </Link>
+              <FormGroup>
+                <Label className="col-form-label m-0">
+                  Confirm Password
+                  <span className="text-danger ms-1">*</span>
+                </Label>
+
+                <InputGroup>
+                  <InputGroupText>
+                    <Key strokeWidth={1} size={16} />
+                  </InputGroupText>
+                  <Input
+                    type={toggleConfirmPassword ? "text" : "password"}
+                    placeholder="**********"
+                  />
+                  <InputGroupText>
+                    <Eye
+                      strokeWidth={1}
+                      size={16}
+                      onClick={() =>
+                        setToggleConfirmPassword(!toggleConfirmPassword)
+                      }
+                    />
+                  </InputGroupText>
+                </InputGroup>
+              </FormGroup>
+
+              <FormGroup>
+                <div style={{ color: "#299A16" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 letter should be uppercase.
+                  </span>
+                </div>
+                <div style={{ color: "#299A16" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 special character include.
+                  </span>
+                </div>
+                <div style={{ color: "#AA1313" }}>
+                  <Check strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Atleast 1 number include.
+                  </span>
+                </div>
+                <div style={{ color: "#595959" }}>
+                  <Circle strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Password should be 12 letter long.
+                  </span>
+                </div>
+                <div style={{ color: "#AA1313" }}>
+                  <AlertTriangle strokeWidth={1} size={7} />
+                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                    Confirm Password Not matched
+                  </span>
+                </div>
               </FormGroup>
 
               <FormGroup>
@@ -177,7 +224,7 @@ const LoginForm = ({ logoClassMain }) => {
                     type: "submit",
                   }}
                 >
-                  Sign In
+                  Register
                 </Btn>
               </FormGroup>
 
@@ -265,10 +312,10 @@ const LoginForm = ({ logoClassMain }) => {
               </div>
 
               <P attrPara={{ className: "text-center mb-0 " }}>
-                Don't you have an account?{" "}
+                Already have an account?
                 <Link
                   className="ms-2"
-                  to={`${process.env.PUBLIC_URL}/auth/register`}
+                  to={`${process.env.PUBLIC_URL}/auth/login`}
                   style={{
                     color: "#1264FD",
                     fontSize: "12px",
@@ -277,7 +324,7 @@ const LoginForm = ({ logoClassMain }) => {
                     textAlign: "center",
                   }}
                 >
-                  Sign Up
+                  Sign In
                 </Link>
               </P>
             </Form>
@@ -288,4 +335,4 @@ const LoginForm = ({ logoClassMain }) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
