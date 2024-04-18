@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import RegisterForm from "./RegisterForm";
-
+import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
 const Login = () => {
   return (
     <Fragment>
@@ -22,8 +22,8 @@ const Login = () => {
             >
               <Image
                 attrImage={{
-                  className: "bg-img-cover bg-center d-none",
-                  src: `${require("../../../../assets/used-files/images/auth/logoIcon.svg")}`,
+                  className: "bg-img-cover bg-center m-3",
+                  src: LogoIcon,
                   alt: "looginpage",
                 }}
               />

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import ForgotPwdForm from "./ForgotPwdForm";
+import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
 
 const Login = () => {
   return (
@@ -20,6 +21,13 @@ const Login = () => {
                 borderRadius: "20px",
               }}
             >
+              <Image
+                attrImage={{
+                  className: "bg-img-cover bg-center m-3",
+                  src: LogoIcon,
+                  alt: "looginpage",
+                }}
+              />
               <Image
                 attrImage={{
                   className: "bg-img-cover bg-center d-none",
