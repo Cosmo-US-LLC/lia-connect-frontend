@@ -362,9 +362,10 @@ $badge-color-text: $success-text-color;
 /*======= Background-color css starts  ======= */
 
 $background-name: primary, secondary, success, danger, info, light, dark,
-  warning;
+  warning, progress1, progress2, progress3;
 $background-color: $primary-color, $secondary-color, $success-color,
-  $danger-color, $info-color, $light-color, $dark-color, $warning-color;
+  $danger-color, $info-color, $light-color, $dark-color, $warning-color,
+  $progress1-color, $progress2-color, $progress3-color;
 
 @each $var in $background-name {
   $i: index($background-name, $var);

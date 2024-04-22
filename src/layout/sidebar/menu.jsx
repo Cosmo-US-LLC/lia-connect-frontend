@@ -18,19 +18,19 @@ export const MENUITEMS = [
         type: "link",
       },
       {
-        title: "Jobs ",
+        title: "Jobs",
         icon: <Search strokeWidth={0.5} />,
         type: "sub",
         badge: "badge badge-light-primary",
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/dashboard`,
+            path: `${process.env.PUBLIC_URL}/jobs`,
             title: "All Jobs",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/dashboard`,
+            path: `${process.env.PUBLIC_URL}/jobs/create`,
             title: "Create New Job",
             type: "link",
           },
