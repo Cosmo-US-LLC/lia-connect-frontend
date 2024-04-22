@@ -117,6 +117,486 @@ export const dummytabledata = [
     ),
     remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
   },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <div>Senior Product Design Lead</div>
+        <div className="progress-showcase">
+          <Col style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "5%" }}>
+              {" "}
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress1",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#b8d1fe" }}>0</span>
+            </div>
+            <div style={{ width: "5%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress2",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#ffe699" }}>0</span>
+            </div>
+            <div style={{ width: "100%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress3",
+                  barAriaLabelledBy: "75",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#fba14d" }}>100</span>
+            </div>
+          </Col>
+        </div>{" "}
+      </Link>
+    ),
+    potentialCandidates: (
+      <div className="d-flex">
+        <Users strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>60</strong>
+        </div>
+      </div>
+    ),
+    outreach: (
+      <div className="d-flex">
+        <User strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>30</strong>
+        </div>
+      </div>
+    ),
+    responseRate: (
+      <div>
+        <div className="font-secondary">
+          <strong>52 %</strong>
+        </div>
+      </div>
+    ),
+    priority: (
+      <div className="d-flex">
+        <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
+        <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+          High
+        </span>
+        <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+      </div>
+    ),
+    dateCreated: (
+      <div>
+        <span>Aug 24, 2023</span>
+        <span style={{ color: "#299A16" }}>( 18 Days)</span>
+      </div>
+    ),
+    status: (
+      <div>
+        <span>Active</span>
+        <Media key="1">
+          <Media body className="text-start switch-sm ">
+            <Label className="switch">
+              <Input type="checkbox" checked />
+              <span className="switch-state"></span>
+            </Label>
+          </Media>
+        </Media>
+      </div>
+    ),
+    remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <div>Senior Product Design Lead</div>
+        <div className="progress-showcase">
+          <Col style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "10%" }}>
+              {" "}
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress1",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#b8d1fe" }}>10</span>
+            </div>
+            <div style={{ width: "30%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress2",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#ffe699" }}>30</span>
+            </div>
+            <div style={{ width: "56%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress3",
+                  barAriaLabelledBy: "75",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#fba14d" }}>56</span>
+            </div>
+          </Col>
+        </div>{" "}
+      </Link>
+    ),
+    potentialCandidates: (
+      <div className="d-flex">
+        <Users strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>60</strong>
+        </div>
+      </div>
+    ),
+    outreach: (
+      <div className="d-flex">
+        <User strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>30</strong>
+        </div>
+      </div>
+    ),
+    responseRate: (
+      <div>
+        <div className="font-secondary">
+          <strong>52 %</strong>
+        </div>
+      </div>
+    ),
+    priority: (
+      <div className="d-flex">
+        <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
+        <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+          High
+        </span>
+        <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+      </div>
+    ),
+    dateCreated: (
+      <div>
+        <span>Aug 24, 2023</span>
+        <span style={{ color: "#299A16" }}>( 18 Days)</span>
+      </div>
+    ),
+    status: (
+      <div>
+        <span>Active</span>
+        <Media key="1">
+          <Media body className="text-start switch-sm ">
+            <Label className="switch">
+              <Input type="checkbox" checked />
+              <span className="switch-state"></span>
+            </Label>
+          </Media>
+        </Media>
+      </div>
+    ),
+    remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <div>Senior Product Design Lead</div>
+        <div className="progress-showcase">
+          <Col style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "42%" }}>
+              {" "}
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress1",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#b8d1fe" }}>42</span>
+            </div>
+            <div style={{ width: "20%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress2",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#ffe699" }}>20</span>
+            </div>
+            <div style={{ width: "36%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress3",
+                  barAriaLabelledBy: "75",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#fba14d" }}>36</span>
+            </div>
+          </Col>
+        </div>{" "}
+      </Link>
+    ),
+    potentialCandidates: (
+      <div className="d-flex">
+        <Users strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>60</strong>
+        </div>
+      </div>
+    ),
+    outreach: (
+      <div className="d-flex">
+        <User strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>30</strong>
+        </div>
+      </div>
+    ),
+    responseRate: (
+      <div>
+        <div className="font-secondary">
+          <strong>52 %</strong>
+        </div>
+      </div>
+    ),
+    priority: (
+      <div className="d-flex">
+        <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
+        <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+          High
+        </span>
+        <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+      </div>
+    ),
+    dateCreated: (
+      <div>
+        <span>Aug 24, 2023</span>
+        <span style={{ color: "#299A16" }}>( 18 Days)</span>
+      </div>
+    ),
+    status: (
+      <div>
+        <span>Active</span>
+        <Media key="1">
+          <Media body className="text-start switch-sm ">
+            <Label className="switch">
+              <Input type="checkbox" checked />
+              <span className="switch-state"></span>
+            </Label>
+          </Media>
+        </Media>
+      </div>
+    ),
+    remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <div>Senior Product Design Lead</div>
+        <div className="progress-showcase">
+          <Col style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "42%" }}>
+              {" "}
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress1",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#b8d1fe" }}>42</span>
+            </div>
+            <div style={{ width: "20%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress2",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#ffe699" }}>20</span>
+            </div>
+            <div style={{ width: "36%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress3",
+                  barAriaLabelledBy: "75",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#fba14d" }}>36</span>
+            </div>
+          </Col>
+        </div>{" "}
+      </Link>
+    ),
+    potentialCandidates: (
+      <div className="d-flex">
+        <Users strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>60</strong>
+        </div>
+      </div>
+    ),
+    outreach: (
+      <div className="d-flex">
+        <User strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>30</strong>
+        </div>
+      </div>
+    ),
+    responseRate: (
+      <div>
+        <div className="font-secondary">
+          <strong>52 %</strong>
+        </div>
+      </div>
+    ),
+    priority: (
+      <div className="d-flex">
+        <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
+        <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+          High
+        </span>
+        <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+      </div>
+    ),
+    dateCreated: (
+      <div>
+        <span>Aug 24, 2023</span>
+        <span style={{ color: "#299A16" }}>( 18 Days)</span>
+      </div>
+    ),
+    status: (
+      <div>
+        <span>Active</span>
+        <Media key="1">
+          <Media body className="text-start switch-sm ">
+            <Label className="switch">
+              <Input type="checkbox" checked />
+              <span className="switch-state"></span>
+            </Label>
+          </Media>
+        </Media>
+      </div>
+    ),
+    remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+  },
+  {
+    id: 1,
+    name: (
+      <Link to="1">
+        <div>Senior Product Design Lead</div>
+        <div className="progress-showcase">
+          <Col style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "42%" }}>
+              {" "}
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress1",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#b8d1fe" }}>42</span>
+            </div>
+            <div style={{ width: "20%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress2",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#ffe699" }}>20</span>
+            </div>
+            <div style={{ width: "36%" }}>
+              <Progressbar
+                attrProgress={{
+                  value: "100",
+                  color: "progress3",
+                  barAriaLabelledBy: "75",
+                  className: "sm-progress-bar me-1 mb-0",
+                }}
+              />
+              <span style={{ fontSize: "8px", color: "#fba14d" }}>36</span>
+            </div>
+          </Col>
+        </div>{" "}
+      </Link>
+    ),
+    potentialCandidates: (
+      <div className="d-flex">
+        <Users strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>60</strong>
+        </div>
+      </div>
+    ),
+    outreach: (
+      <div className="d-flex">
+        <User strokeWidth={1} size={16} />
+        <div className="ms-2 font-secondary">
+          <strong>30</strong>
+        </div>
+      </div>
+    ),
+    responseRate: (
+      <div>
+        <div className="font-secondary">
+          <strong>52 %</strong>
+        </div>
+      </div>
+    ),
+    priority: (
+      <div className="d-flex">
+        <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
+        <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+          High
+        </span>
+        <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+      </div>
+    ),
+    dateCreated: (
+      <div>
+        <span>Aug 24, 2023</span>
+        <span style={{ color: "#299A16" }}>( 18 Days)</span>
+      </div>
+    ),
+    status: (
+      <div>
+        <span>Active</span>
+        <Media key="1">
+          <Media body className="text-start switch-sm ">
+            <Label className="switch">
+              <Input type="checkbox" checked />
+              <span className="switch-state"></span>
+            </Label>
+          </Media>
+        </Media>
+      </div>
+    ),
+    remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+  },
 ];
 
 export const tableColumns = [
@@ -171,12 +651,13 @@ export const tableColumns = [
     selector: (row) => row["potentialCandidates"],
     sortable: true,
     center: true,
+    width: "15%",
   },
   {
     name: (
       <>
         <button
-          id="outreachToolTip"
+          id="potentialToolTip"
           className="d-flex"
           style={{
             cursor: "pointer",
@@ -186,10 +667,10 @@ export const tableColumns = [
             color: "black",
           }}
         >
-          Outreach
+          Outreach{" "}
           <Info className="ms-1" strokeWidth={1} size={16} color="#8FA8D7" />
           <UncontrolledTooltip
-            target="outreachToolTip"
+            target="potentialToolTip"
             placement="bottom"
             style={{
               backgroundColor: "#595959",
@@ -217,6 +698,7 @@ export const tableColumns = [
     selector: (row) => row["outreach"],
     sortable: true,
     center: true,
+    width: "12%",
   },
   {
     name: (
@@ -263,6 +745,7 @@ export const tableColumns = [
     selector: (row) => row["responseRate"],
     sortable: true,
     center: true,
+    width: "12%",
   },
   {
     name: (
@@ -309,6 +792,7 @@ export const tableColumns = [
     selector: (row) => row["priority"],
     sortable: true,
     center: true,
+    width: "8%",
   },
   {
     name: <>Date Created</>,
@@ -321,10 +805,12 @@ export const tableColumns = [
     selector: (row) => row["status"],
     sortable: true,
     center: true,
+    width: "6%",
   },
   {
     name: <>Remove</>,
     selector: (row) => row["remove"],
     center: true,
+    width: "6%",
   },
 ];

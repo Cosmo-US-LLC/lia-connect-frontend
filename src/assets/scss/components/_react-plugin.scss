@@ -1068,15 +1068,15 @@ ol {
   .rdt_TableHead {
     .rdt_TableHeadRow {
       .rdt_TableCol {
-        &:nth-child(4) {
-          .rdt_TableCol_Sortable {
-            justify-content: center;
+        // &:nth-child(4) {
+        //   .rdt_TableCol_Sortable {
+        //     justify-content: center;
 
-            span {
-              display: none;
-            }
-          }
-        }
+        //     span {
+        //       display: none;
+        //     }
+        //   }
+        // }
 
         .rdt_TableCol_Sortable {
           justify-content: flex-start;
@@ -1094,9 +1094,9 @@ ol {
       .rdt_TableCell {
         padding: 12px;
 
-        &:nth-child(4) {
-          justify-content: center !important;
-        }
+        // &:nth-child(4) {
+        //   justify-content: center !important;
+        // }
 
         + .rdt_TableCell {
           justify-content: flex-start;
