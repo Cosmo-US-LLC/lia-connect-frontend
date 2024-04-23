@@ -5,23 +5,13 @@ import { H4, H6, LI, ToolTip, UL } from "../../../../../AbstractElements";
 import { InputGroup, InputGroupText } from "reactstrap";
 import { Check, Search, X } from "react-feather";
 
-const DataTables = ({ closeSearchDropdown, setSelectedJobs }) => {
-  const [jobs, setJobs] = useState([
-    { id: 1, title: "Marketing Manager", isChecked: true },
-    { id: 2, title: "Social Media Manager ", isChecked: true },
-    { id: 3, title: "Digital Strategist", isChecked: false },
-    { id: 4, title: "Jr. Seo Specialist", isChecked: false },
-    { id: 5, title: "Content Writer", isChecked: false },
-    { id: 6, title: "Sr. Graphic Designer", isChecked: false },
-    { id: 7, title: "Front-End Developers", isChecked: false },
-    { id: 8, title: "Marketing Executive", isChecked: true },
-    { id: 9, title: "Sr. Backend Engineer", isChecked: false },
-    { id: 10, title: "Web Designer", isChecked: false },
-  ]);
-  const [selectedJobsName, setSelectedJobsName] = useState(
-    "Marketing Manager,Social Media Manager,Marketing Executive"
-  );
-
+const Jobs = ({
+  closeSearchDropdown,
+  jobs,
+  setJobs,
+  setSelectedJobs,
+  setIsJobSelected,
+}) => {
   const toggleLICheck = (jobId) => {
     // Map through the jobs array
     const updatedJobs = jobs.map((job) => {
@@ -65,11 +55,17 @@ const DataTables = ({ closeSearchDropdown, setSelectedJobs }) => {
     setJobs(resetJobs);
     setSelectedJobsName(null);
   };
+  const [selectedJobsName, setSelectedJobsName] = useState("");
 
   const markDone = () => {
     const selectedJobs = jobs.filter((job) => job.isChecked);
     setSelectedJobs(selectedJobs);
     closeSearchDropdown();
+
+    const isAnyJobSelected = selectedJobs.some((job) => job.isChecked);
+
+    // Set prioritySelected based on whether any priority is selected
+    setIsJobSelected(isAnyJobSelected);
   };
   return (
     <Fragment>
@@ -169,4 +165,4 @@ const DataTables = ({ closeSearchDropdown, setSelectedJobs }) => {
   );
 };
 
-export default DataTables;
+export default Jobs;

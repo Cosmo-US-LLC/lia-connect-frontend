@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import {
   Container,
   Row,
@@ -28,53 +28,64 @@ import {
   X,
 } from "react-feather";
 import Jobs from "./modals/jobs";
+import Priority from "./modals/priority";
+
 const DataTables = () => {
   const [searchDropdown, setsSearchDropdown] = useState(false);
+
   const [selectedJobs, setSelectedJobs] = useState([]);
-  const showSearchDropdown = () => {
-    setsSearchDropdown(true);
+
+  const toggleSearchDropdown = () => {
+    setsSearchDropdown(!searchDropdown);
   };
   const closeSearchDropdown = () => {
     setsSearchDropdown(false);
   };
+  const [jobs, setJobs] = useState([
+    { id: 1, title: "Marketing Manager", isChecked: false },
+    { id: 2, title: "Social Media Manager ", isChecked: false },
+    { id: 3, title: "Digital Strategist", isChecked: false },
+    { id: 4, title: "Jr. Seo Specialist", isChecked: false },
+    { id: 5, title: "Content Writer", isChecked: false },
+    { id: 6, title: "Sr. Graphic Designer", isChecked: false },
+    { id: 7, title: "Front-End Developers", isChecked: false },
+    { id: 8, title: "Marketing Executive", isChecked: false },
+    { id: 9, title: "Sr. Backend Engineer", isChecked: false },
+    { id: 10, title: "Web Designer", isChecked: false },
+  ]);
+  const [isJobSelected, setIsJobSelected] = useState(false);
 
-  const options = [
-    { value: "AL", label: "Campaign A" },
-    { value: "AL", label: "Campaign A" },
-    { value: "WY", label: "Campaign B" },
-    { value: "WY", label: "Campaign C" },
-    { value: "WY", label: "Campaign D" },
-    { value: "WY", label: "Campaign E" },
-  ];
+  const [priorityDropdown, setPriorityDropdown] = useState(false);
+  const [isPrioritySelected, setIsPrioritySelected] = useState(false);
 
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      border: "1px solid #F0F0F0",
-      borderLeft: "none",
-      boxShadow: state.isFocused ? "0 0 0 1px #ccc" : "none",
-      minHeight: "38px",
-      padding: "0 10px",
-      color: "#595959", // Text color for both regular and selected states
-      borderRadius: "0px 4px 4px 0px",
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? "#222" : "white", // Adjust for selection state
-      color: "#595959",
-      cursor: "pointer",
-    }),
-    input: (provided) => ({
-      ...provided,
-      margin: "0",
-      padding: "0 10px",
-      color: "#8E92ED",
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: "#8E92ED",
-    }),
+  const [priorities, setPriorities] = useState([
+    {
+      id: 1,
+      title: "High",
+      isChecked: true,
+      fill: "#DE3E3E",
+      color: "#AA1313",
+    },
+    {
+      id: 2,
+      title: "Medium",
+      isChecked: true,
+      fill: "#FECF41",
+      color: "#E2B323",
+    },
+    {
+      id: 3,
+      title: "Low",
+      isChecked: false,
+      fill: "#CECECE",
+      color: "#ABABAB",
+    },
+  ]);
+
+  const togglePriorityDropdown = () => {
+    setPriorityDropdown(!priorityDropdown);
   };
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -88,14 +99,21 @@ const DataTables = () => {
                     <button
                       style={{
                         display: "inline-flex",
-                        border: "1px solid #F0F0F0",
-                        color: "#595959",
-                        backgroundColor: "white",
+                        border:
+                          searchDropdown || isJobSelected
+                            ? "1px solid #337CC7"
+                            : "1px solid #F0F0F0",
+                        color:
+                          searchDropdown || isJobSelected
+                            ? "#337CC7"
+                            : "#595959",
+                        backgroundColor:
+                          searchDropdown || isJobSelected ? "#F5F9FF" : "white",
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
                       }}
-                      onClick={showSearchDropdown}
+                      onClick={toggleSearchDropdown}
                     >
                       <Search strokeWidth={1} size={16} />
                       <span className="ms-2 me-4" style={{ fontSize: "12px" }}>
@@ -104,26 +122,46 @@ const DataTables = () => {
                     </button>
                     {searchDropdown && (
                       <Jobs
+                        jobs={jobs}
+                        setJobs={setJobs}
                         closeSearchDropdown={closeSearchDropdown}
                         setSelectedJobs={setSelectedJobs}
+                        setIsJobSelected={setIsJobSelected}
                       />
                     )}
                     <button
                       style={{
                         display: "inline-flex",
-                        border: "1px solid #F0F0F0",
-                        color: "#595959",
-                        backgroundColor: "white",
+                        border:
+                          priorityDropdown || isPrioritySelected
+                            ? "1px solid #337CC7"
+                            : "1px solid #F0F0F0",
+                        color:
+                          priorityDropdown || isPrioritySelected
+                            ? "#337CC7"
+                            : "#595959",
+                        backgroundColor:
+                          priorityDropdown || isPrioritySelected
+                            ? "#F5F9FF"
+                            : "white",
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
                       }}
+                      onClick={togglePriorityDropdown}
                     >
                       <Flag strokeWidth={1} size={16} />
                       <span className="ms-2" style={{ fontSize: "12px" }}>
                         Priority
                       </span>
                     </button>
+                    {priorityDropdown && (
+                      <Priority
+                        priorities={priorities}
+                        setPriorities={setPriorities}
+                        setIsPrioritySelected={setIsPrioritySelected}
+                      />
+                    )}
                     <button
                       style={{
                         display: "inline-flex",
@@ -183,101 +221,89 @@ const DataTables = () => {
                     </button>
                   </Col>
                   <Col xl="9">
-                    {selectedJobs.slice(0, 4).map((job, index) => (
-                      <button
-                        key={index}
-                        style={{
-                          display: "inline-flex",
-                          border: "none",
-                          color: "#595959",
-                          backgroundColor: "#F7F7F7",
-                          borderRadius: "4px",
-                          padding: "6px",
-                          marginRight: "8px",
-                        }}
-                      >
-                        <span
-                          className="ms-2 me-2"
-                          style={{ fontSize: "12px" }}
+                    <div>
+                      {selectedJobs.slice(0, 4).map((job, index) => (
+                        <button
+                          key={index}
+                          style={{
+                            display: "inline-flex",
+                            border: "none",
+                            color: "#595959",
+                            backgroundColor: "#F7F7F7",
+                            borderRadius: "4px",
+                            padding: "6px",
+                            marginRight: "8px",
+                          }}
                         >
-                          {job.title}
-                        </span>
-                        <X strokeWidth={1.5} size={16} />
-                      </button>
-                    ))}
+                          <span
+                            className="ms-2 me-2"
+                            style={{ fontSize: "12px" }}
+                          >
+                            {job.title}
+                          </span>
+                          <X strokeWidth={1.5} size={16} />
+                        </button>
+                      ))}
 
-                    {/* Rendering remaining count if more than 4 jobs are selected */}
-                    {selectedJobs.length > 4 && (
-                      <button
-                        style={{
-                          display: "inline-flex",
-                          border: "none",
-                          color: "#595959",
-                          backgroundColor: "white",
-                          borderRadius: "4px",
-                          padding: "6px",
-                          marginRight: "8px",
-                        }}
-                      >
-                        <span
-                          className="ms-1 me-2"
-                          style={{ fontSize: "12px" }}
+                      {/* Rendering remaining count if more than 4 jobs are selected */}
+                      {selectedJobs.length > 4 && (
+                        <button
+                          style={{
+                            display: "inline-flex",
+                            border: "none",
+                            color: "#595959",
+                            backgroundColor: "white",
+                            borderRadius: "4px",
+                            padding: "6px",
+                            marginRight: "8px",
+                          }}
                         >
-                          +{selectedJobs.length - 4} more
-                        </span>
-                      </button>
-                    )}
+                          <span
+                            className="ms-1 me-2"
+                            style={{ fontSize: "12px" }}
+                          >
+                            +{selectedJobs.length - 4} more
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                    <div className="mt-2">
+                      {priorities
+                        .filter((priority) => priority.isChecked)
+                        .map((priority, index) => (
+                          <button
+                            style={{
+                              display: "inline-flex",
+                              border: "none",
+                              color: "#595959",
+                              backgroundColor: "#F7F7F7",
+                              borderRadius: "4px",
+                              padding: "6px",
+                              marginRight: "8px",
+                            }}
+                          >
+                            <Flag
+                              fill={priority.fill}
+                              color={priority.color}
+                              size={14}
+                              strokeWidth={1.5}
+                            />
+                            <span
+                              className="ms-1 me-2"
+                              style={{ fontSize: "12px" }}
+                            >
+                              {priority.title}
+                            </span>
+                            <X strokeWidth={1.5} size={16} />
+                          </button>
+                        ))}
+                    </div>
                   </Col>
+
                   <Col xl="3" className="mt-2" style={{ textAlign: "end" }}>
                     <H6>
                       <strong>263 Jobs</strong>
                     </H6>
-                  </Col>
-                  <Col xl="9">
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <Flag
-                        fill="#DE3E3E"
-                        color="#AA1313"
-                        size={14}
-                        strokeWidth={1.5}
-                      />
-                      <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
-                        High
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <Flag
-                        fill="#FECF41"
-                        color="#E2B323"
-                        size={14}
-                        strokeWidth={1.5}
-                      />
-                      <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
-                        Medium
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
                   </Col>
                 </Row>
               </CardHeader>
