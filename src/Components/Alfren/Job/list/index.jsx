@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Container,
   Row,
@@ -12,11 +12,12 @@ import {
   Tooltip,
   UncontrolledTooltip,
 } from "reactstrap";
-import { H4, H6, ToolTip } from "../../../../AbstractElements";
+import { H4, H6, LI, ToolTip, UL } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
 import { Form, InputGroup, InputGroupText } from "reactstrap";
 import {
+  Check,
   Clock,
   FileText,
   Filter,
@@ -26,7 +27,16 @@ import {
   Search,
   X,
 } from "react-feather";
+import Jobs from "./modals/jobs";
 const DataTables = () => {
+  const [searchDropdown, setsSearchDropdown] = useState(false);
+  const showSearchDropdown = () => {
+    setsSearchDropdown(true);
+  };
+  const closeSearchDropdown = () => {
+    setsSearchDropdown(false);
+  };
+
   const options = [
     { value: "AL", label: "Campaign A" },
     { value: "AL", label: "Campaign A" },
@@ -84,12 +94,16 @@ const DataTables = () => {
                         padding: "8px",
                         marginRight: "8px",
                       }}
+                      onClick={showSearchDropdown}
                     >
                       <Search strokeWidth={1} size={16} />
                       <span className="ms-2 me-4" style={{ fontSize: "12px" }}>
                         Search Jobs
                       </span>
                     </button>
+                    {searchDropdown && (
+                      <Jobs closeSearchDropdown={closeSearchDropdown} />
+                    )}
                     <button
                       style={{
                         display: "inline-flex",
