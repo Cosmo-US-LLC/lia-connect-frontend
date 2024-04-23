@@ -71,11 +71,14 @@ const DateModal = ({
                   width: "80%",
                   border: "1px solid #E9E9E9 ",
                   boxShadow: "0px 2px 12px 0px #00000014",
-                  borderRadius: "8px",
+                  borderRadius: "1px",
+                  color: "#595959",
                 }}
                 className="mb-4"
               >
-                <InputGroupText style={{ backgroundColor: "white" }}>
+                <InputGroupText
+                  style={{ backgroundColor: "white", border: "none" }}
+                >
                   <Calendar strokeWidth={0.5} size={18} />
                 </InputGroupText>
                 <input
@@ -85,6 +88,7 @@ const DateModal = ({
                     month: "short",
                     day: "2-digit",
                   })}
+                  style={{ border: "none" }}
                 ></input>
               </InputGroup>
               <DatePicker
@@ -110,11 +114,14 @@ const DateModal = ({
                   width: "80%",
                   border: "1px solid #E9E9E9 ",
                   boxShadow: "0px 2px 12px 0px #00000014",
-                  borderRadius: "8px",
+                  borderRadius: "1px",
+                  color: "#595959",
                 }}
                 className="mb-4"
               >
-                <InputGroupText style={{ backgroundColor: "white" }}>
+                <InputGroupText
+                  style={{ backgroundColor: "white", border: "none" }}
+                >
                   <Calendar strokeWidth={0.5} size={18} />
                 </InputGroupText>
                 <input
@@ -124,6 +131,7 @@ const DateModal = ({
                     month: "short",
                     day: "2-digit",
                   })}
+                  style={{ border: "none" }}
                 ></input>
               </InputGroup>
               <DatePicker
