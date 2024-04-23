@@ -34,7 +34,6 @@ import { Link } from "react-router-dom";
 
 const DataTables = () => {
   const [searchDropdown, setsSearchDropdown] = useState(false);
-  const [selectedJobs, setSelectedJobs] = useState([]);
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
   };
@@ -54,6 +53,7 @@ const DataTables = () => {
     { id: 10, title: "Web Designer", isChecked: false },
   ]);
   const [isJobSelected, setIsJobSelected] = useState(false);
+  const [selectedJobs, setSelectedJobs] = useState([]);
 
   const [priorityDropdown, setPriorityDropdown] = useState(false);
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
@@ -61,14 +61,14 @@ const DataTables = () => {
     {
       id: 1,
       title: "High",
-      isChecked: true,
+      isChecked: false,
       fill: "#DE3E3E",
       color: "#AA1313",
     },
     {
       id: 2,
       title: "Medium",
-      isChecked: true,
+      isChecked: false,
       fill: "#FECF41",
       color: "#E2B323",
     },
@@ -98,6 +98,35 @@ const DataTables = () => {
     setActiveOnly(!activeOnly);
   };
 
+  const removeJob = (jobId) => {
+    const updatedJobs = selectedJobs.filter((job) => job.id !== jobId);
+    // Update the state with the updatedJobs array
+    setSelectedJobs(updatedJobs);
+    if (!updatedJobs.length) {
+      setIsJobSelected(false);
+    }
+  };
+
+  const removePriority = (priorityId) => {
+    const updatedPriorities = priorities.map((priority) => {
+      if (priority.id === priorityId) {
+        return {
+          ...priority,
+          isChecked: false,
+        };
+      }
+      return priority;
+    });
+
+    setPriorities(updatedPriorities);
+    const checkedPrioritiesCount = updatedPriorities.filter(
+      (priority) => priority.isChecked
+    ).length;
+
+    if (!checkedPrioritiesCount) {
+      setIsPrioritySelected(false);
+    }
+  };
   return (
     <Fragment>
       <Container fluid={true}>
@@ -282,7 +311,11 @@ const DataTables = () => {
                           >
                             {job.title}
                           </span>
-                          <X strokeWidth={1.5} size={16} />
+                          <X
+                            strokeWidth={1.5}
+                            size={16}
+                            onClick={() => removeJob(job.id)}
+                          />
                         </button>
                       ))}
 
@@ -335,7 +368,11 @@ const DataTables = () => {
                             >
                               {priority.title}
                             </span>
-                            <X strokeWidth={1.5} size={16} />
+                            <X
+                              strokeWidth={1.5}
+                              size={16}
+                              onClick={() => removePriority(priority.id)}
+                            />
                           </button>
                         ))}
                       {isDateSelected && (
@@ -356,7 +393,11 @@ const DataTables = () => {
                           >
                             {isDateSelected}
                           </span>
-                          <X strokeWidth={1.5} size={16} />
+                          <X
+                            strokeWidth={1.5}
+                            size={16}
+                            onClick={() => setIsDateSelected(false)}
+                          />
                         </button>
                       )}
                     </div>
