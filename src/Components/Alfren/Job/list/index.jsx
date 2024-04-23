@@ -29,12 +29,12 @@ import {
 } from "react-feather";
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
+import Date from "./modals/date";
+import { Link } from "react-router-dom";
 
 const DataTables = () => {
   const [searchDropdown, setsSearchDropdown] = useState(false);
-
   const [selectedJobs, setSelectedJobs] = useState([]);
-
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
   };
@@ -57,7 +57,6 @@ const DataTables = () => {
 
   const [priorityDropdown, setPriorityDropdown] = useState(false);
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
-
   const [priorities, setPriorities] = useState([
     {
       id: 1,
@@ -81,9 +80,22 @@ const DataTables = () => {
       color: "#ABABAB",
     },
   ]);
-
   const togglePriorityDropdown = () => {
     setPriorityDropdown(!priorityDropdown);
+  };
+
+  const [dateDropdown, setDateDropdown] = useState(false);
+  const [isDateSelected, setIsDateSelected] = useState(false);
+  const toggleDateDropdown = () => {
+    setDateDropdown(!dateDropdown);
+  };
+  const closeDateDropdown = () => {
+    setDateDropdown(false);
+  };
+
+  const [activeOnly, setActiveOnly] = useState(false);
+  const handleCheckboxChange = () => {
+    setActiveOnly(!activeOnly);
   };
 
   return (
@@ -165,19 +177,34 @@ const DataTables = () => {
                     <button
                       style={{
                         display: "inline-flex",
-                        border: "1px solid #F0F0F0",
-                        color: "#595959",
-                        backgroundColor: "white",
+                        border:
+                          dateDropdown || isDateSelected
+                            ? "1px solid #337CC7"
+                            : "1px solid #F0F0F0",
+                        color:
+                          dateDropdown || isDateSelected
+                            ? "#337CC7"
+                            : "#595959",
+                        backgroundColor:
+                          dateDropdown || isDateSelected ? "#F5F9FF" : "white",
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
                       }}
+                      onClick={toggleDateDropdown}
                     >
                       <Clock strokeWidth={1} size={16} />
                       <span className="ms-2" style={{ fontSize: "12px" }}>
                         Date Created
                       </span>
                     </button>
+                    {dateDropdown && (
+                      <Date
+                        isDateSelected={isDateSelected}
+                        setIsDateSelected={setIsDateSelected}
+                        closeDateDropdown={closeDateDropdown}
+                      />
+                    )}
                     <button
                       style={{
                         display: "inline-flex",
@@ -189,7 +216,13 @@ const DataTables = () => {
                         marginRight: "8px",
                       }}
                     >
-                      <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
+                      <span
+                        className="ms-2 me-2"
+                        style={{
+                          opacity: activeOnly ? "40%" : "100%",
+                          fontSize: "12px",
+                        }}
+                      >
                         All{" "}
                       </span>
                       <Media body className="text-end switch-sm ">
@@ -199,26 +232,34 @@ const DataTables = () => {
                             marginTop: "0px",
                           }}
                         >
-                          <Input type="checkbox" />
+                          <Input
+                            type="checkbox"
+                            onChange={handleCheckboxChange}
+                            checked={activeOnly}
+                          />
                           <span className="switch-state"></span>
                         </Label>
                       </Media>
                       <span
                         className="ms-2"
-                        style={{ opacity: "40%", fontSize: "12px" }}
+                        style={{
+                          opacity: activeOnly ? "100%" : "40%",
+                          fontSize: "12px",
+                        }}
                       >
                         Active Only
                       </span>
                     </button>
                   </Col>
                   <Col xl="3" style={{ textAlign: "end" }}>
-                    <button
+                    <Link
+                      to={"create"}
                       className="btn btn-primary pe-2 ps-2"
                       style={{ display: "inline-flex" }}
                     >
                       <span>Add New Job</span>
                       <Plus strokeWidth={2} size={20} />
-                    </button>
+                    </Link>
                   </Col>
                   <Col xl="9">
                     <div>
@@ -297,6 +338,27 @@ const DataTables = () => {
                             <X strokeWidth={1.5} size={16} />
                           </button>
                         ))}
+                      {isDateSelected && (
+                        <button
+                          style={{
+                            display: "inline-flex",
+                            border: "none",
+                            color: "#595959",
+                            backgroundColor: "#F7F7F7",
+                            borderRadius: "4px",
+                            padding: "6px",
+                            marginRight: "8px",
+                          }}
+                        >
+                          <span
+                            className="ms-1 me-2"
+                            style={{ fontSize: "12px" }}
+                          >
+                            {isDateSelected}
+                          </span>
+                          <X strokeWidth={1.5} size={16} />
+                        </button>
+                      )}
                     </div>
                   </Col>
 
