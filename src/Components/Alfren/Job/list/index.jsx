@@ -30,6 +30,7 @@ import {
 import Jobs from "./modals/jobs";
 const DataTables = () => {
   const [searchDropdown, setsSearchDropdown] = useState(false);
+  const [selectedJobs, setSelectedJobs] = useState([]);
   const showSearchDropdown = () => {
     setsSearchDropdown(true);
   };
@@ -102,7 +103,10 @@ const DataTables = () => {
                       </span>
                     </button>
                     {searchDropdown && (
-                      <Jobs closeSearchDropdown={closeSearchDropdown} />
+                      <Jobs
+                        closeSearchDropdown={closeSearchDropdown}
+                        setSelectedJobs={setSelectedJobs}
+                      />
                     )}
                     <button
                       style={{
@@ -179,86 +183,50 @@ const DataTables = () => {
                     </button>
                   </Col>
                   <Col xl="9">
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                        Senior Product Design Lead
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                        Marketing Manager
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                        Digital Strategist
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "#F7F7F7",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                        Content Writer
-                      </span>
-                      <X strokeWidth={1.5} size={16} />
-                    </button>
+                    {selectedJobs.slice(0, 4).map((job, index) => (
+                      <button
+                        key={index}
+                        style={{
+                          display: "inline-flex",
+                          border: "none",
+                          color: "#595959",
+                          backgroundColor: "#F7F7F7",
+                          borderRadius: "4px",
+                          padding: "6px",
+                          marginRight: "8px",
+                        }}
+                      >
+                        <span
+                          className="ms-2 me-2"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {job.title}
+                        </span>
+                        <X strokeWidth={1.5} size={16} />
+                      </button>
+                    ))}
 
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border: "none",
-                        color: "#595959",
-                        backgroundColor: "white",
-                        borderRadius: "4px",
-                        padding: "6px",
-                        marginRight: "8px",
-                      }}
-                    >
-                      <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
-                        +5 more
-                      </span>
-                    </button>
+                    {/* Rendering remaining count if more than 4 jobs are selected */}
+                    {selectedJobs.length > 4 && (
+                      <button
+                        style={{
+                          display: "inline-flex",
+                          border: "none",
+                          color: "#595959",
+                          backgroundColor: "white",
+                          borderRadius: "4px",
+                          padding: "6px",
+                          marginRight: "8px",
+                        }}
+                      >
+                        <span
+                          className="ms-1 me-2"
+                          style={{ fontSize: "12px" }}
+                        >
+                          +{selectedJobs.length - 4} more
+                        </span>
+                      </button>
+                    )}
                   </Col>
                   <Col xl="3" className="mt-2" style={{ textAlign: "end" }}>
                     <H6>
