@@ -13,7 +13,7 @@ const PrivateRoute = () => {
   return login || authenticated ? (
     <Outlet />
   ) : (
-    <Navigate exact to={`${process.env.PUBLIC_URL}/login`} />
+    <Navigate exact to={`${process.env.PUBLIC_URL}/auth/login`} />
   );
 };
 

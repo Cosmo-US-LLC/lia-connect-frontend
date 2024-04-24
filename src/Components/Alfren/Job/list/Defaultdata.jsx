@@ -108,7 +108,7 @@ export const dummytabledata = [
         <Media key="1">
           <Media body className="text-start switch-sm ">
             <Label className="switch">
-              <Input type="checkbox" checked />
+              <Input type="checkbox" />
               <span className="switch-state"></span>
             </Label>
           </Media>
@@ -396,7 +396,7 @@ export const dummytabledata = [
         <Media key="1">
           <Media body className="text-start switch-sm ">
             <Label className="switch">
-              <Input type="checkbox" checked />
+              <Input type="checkbox" />
               <span className="switch-state"></span>
             </Label>
           </Media>
@@ -588,7 +588,7 @@ export const dummytabledata = [
         <Media key="1">
           <Media body className="text-start switch-sm ">
             <Label className="switch">
-              <Input type="checkbox" checked />
+              <Input type="checkbox" />
               <span className="switch-state"></span>
             </Label>
           </Media>

@@ -7,6 +7,7 @@ import CandidateLists from "../Components/Alfren/Candidates/list/index";
 
 //jobs
 import JobLists from "../Components/Alfren/Job/list/index";
+import JobCreate from "../Components/Alfren/Job/create/index";
 
 export const routes = [
   {
@@ -16,6 +17,10 @@ export const routes = [
   {
     path: `${process.env.PUBLIC_URL}/jobs`,
     Component: <JobLists />,
+  },
+  {
+    path: `${process.env.PUBLIC_URL}/jobs/create`,
+    Component: <JobCreate />,
   },
   {
     path: `${process.env.PUBLIC_URL}/candidates`,
