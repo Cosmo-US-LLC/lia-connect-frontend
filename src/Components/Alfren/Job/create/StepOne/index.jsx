@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Container,
   Row,
@@ -31,6 +31,11 @@ const StepOne = ({
   skills,
   setSkills,
   removeSkill,
+  linkedInSearch,
+  linkedInProfile,
+  setLinkedInSearch,
+  setLinkedInProfile,
+  handleNext,
 }) => {
   const options = [
     {
@@ -88,6 +93,10 @@ const StepOne = ({
       setJobName(value);
     } else if (name == "skillInputValue") {
       setSkillInputValue(value);
+    } else if (name == "linkedInSearch") {
+      setLinkedInSearch(value);
+    } else if (name == "linkedInProfile") {
+      setLinkedInProfile(value);
     }
   };
   const handleSelectChange = (e) => {
@@ -107,6 +116,25 @@ const StepOne = ({
 
   const [enterSkill, setEnterSkill] = useState(false);
   const [skillInputValue, setSkillInputValue] = useState("");
+  const [linkedInSearchButton, setLinkedInSearchButton] = useState(true);
+  const [nextActive, setNextActive] = useState(false);
+
+  useEffect(() => {
+    if (jobName && jobPriority && skills.length) {
+      if (linkedInSearchButton && linkedInSearch) {
+        setNextActive(true);
+      } else {
+        if (linkedInProfile) {
+          setNextActive(true);
+        }
+      }
+    }
+  }, [skills, jobName, jobPriority, linkedInSearch, linkedInProfile]);
+
+  const handleNextStep = (e) => {
+    e.preventDefault(e);
+    handleNext(e);
+  };
 
   return (
     <Fragment>
@@ -281,36 +309,75 @@ const StepOne = ({
                           backgroundColor: "white",
                         }}
                       >
-                        <span
-                          style={{
-                            color: "white",
-                            backgroundColor: "#1264FD",
-                            boxShadow: " 0px 0px 32px 0px #3D64FF94",
-                            border: "1px solid #1264FD",
-                            fontSize: "14px",
-                            borderRadius: "30px",
-                            paddingTop: "13px",
-                            paddingBottom: "13px",
-                            paddingRight: "20px",
-                            paddingLeft: "20px",
-                            fontWeight: "400",
-                          }}
-                        >
-                          LinkedIn Search URL
-                        </span>
-                        <span
-                          style={{
-                            paddingTop: "13px",
-                            paddingBottom: "13px",
-                            paddingRight: "20px",
-                            paddingLeft: "20px",
-                            fontSize: "14px",
-                            color: "black",
-                            fontWeight: "400",
-                          }}
-                        >
-                          Linkedin Profiles URL
-                        </span>
+                        {linkedInSearchButton ? (
+                          <>
+                            <span
+                              style={{
+                                color: "white",
+                                backgroundColor: "#1264FD",
+                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                                border: "1px solid #1264FD",
+                                fontSize: "14px",
+                                borderRadius: "30px",
+                                paddingTop: "13px",
+                                paddingBottom: "13px",
+                                paddingRight: "20px",
+                                paddingLeft: "20px",
+                                fontWeight: "400",
+                              }}
+                            >
+                              LinkedIn Search URL
+                            </span>
+                            <span
+                              style={{
+                                paddingTop: "13px",
+                                paddingBottom: "13px",
+                                paddingRight: "20px",
+                                paddingLeft: "20px",
+                                fontSize: "14px",
+                                color: "black",
+                                fontWeight: "400",
+                              }}
+                              onClick={() => setLinkedInSearchButton(false)}
+                            >
+                              Linkedin Profiles URL
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <span
+                              style={{
+                                color: "black",
+                                fontSize: "14px",
+                                paddingTop: "13px",
+                                paddingBottom: "13px",
+                                paddingRight: "20px",
+                                paddingLeft: "20px",
+                                fontWeight: "400",
+                              }}
+                              onClick={() => setLinkedInSearchButton(true)}
+                            >
+                              LinkedIn Search URL
+                            </span>
+                            <span
+                              style={{
+                                paddingTop: "13px",
+                                paddingBottom: "13px",
+                                paddingRight: "20px",
+                                paddingLeft: "20px",
+                                fontSize: "14px",
+                                fontWeight: "400",
+                                backgroundColor: "#1264FD",
+                                border: "1px solid #1264FD",
+                                borderRadius: "30px",
+                                color: "white",
+                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                              }}
+                            >
+                              Linkedin Profiles URL
+                            </span>
+                          </>
+                        )}
                       </span>
                       <div className="mt-5">
                         <H6
@@ -318,14 +385,33 @@ const StepOne = ({
                             className: "d-flex justify-content-between",
                           }}
                         >
-                          <span style={{ fontWeight: "600", fontSize: "14px" }}>
-                            Filter profiles in the 
-                            <span style={{ color: "#1264FD" }}>
-                              LinkedIn search
-                            </span>
-                             and paste the URL below{" "}
-                            <span className="ms-2 text-danger">*</span>
-                          </span>
+                          {linkedInSearchButton ? (
+                            <>
+                              <span
+                                style={{ fontWeight: "600", fontSize: "14px" }}
+                              >
+                                Filter profiles in the 
+                                <span style={{ color: "#1264FD" }}>
+                                  LinkedIn search
+                                </span>
+                                 and paste the URL below{" "}
+                                <span className="ms-2 text-danger">*</span>
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <span
+                                style={{ fontWeight: "600", fontSize: "14px" }}
+                              >
+                                Copy the  
+                                <span style={{ color: "#1264FD" }}>
+                                  LinkedIn Profile URL
+                                </span>
+                                 and paste it below{" "}
+                                <span className="ms-2 text-danger">*</span>
+                              </span>
+                            </>
+                          )}
                           <div>
                             <Link
                               to={"#"}
@@ -337,20 +423,37 @@ const StepOne = ({
                             </Link>
                           </div>
                         </H6>
-                        <Input
-                          className="form-control"
-                          type="text"
-                          placeholder="https://www.linkedin.com/search..."
-                          required
-                        />
+                        {linkedInSearchButton ? (
+                          <>
+                            <Input
+                              className="form-control"
+                              name="linkedInSearch"
+                              value={linkedInSearch}
+                              type="text"
+                              placeholder="https://www.linkedin.com/search..."
+                              onChange={handleChange}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <Input
+                              className="form-control"
+                              name="linkedInProfile"
+                              value={linkedInProfile}
+                              type="text"
+                              placeholder="https://www.linkedin.com/abc..."
+                              onChange={handleChange}
+                            />
+                          </>
+                        )}
                       </div>
                     </FormGroup>
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
                     <Link
-                      to={"create"}
+                      onClick={handleNextStep}
                       className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
-                      style={{ opacity: "60%" }}
+                      style={{ opacity: nextActive ? "100%" : "60%" }}
                     >
                       <span>Next</span>
                     </Link>

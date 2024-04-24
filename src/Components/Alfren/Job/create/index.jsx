@@ -12,11 +12,13 @@ import Completed from "./Completed";
 
 const JobCreate = () => {
   const [step, setStep] = useState(1);
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setStep(step + 1);
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (e) => {
+    e.preventDefault();
     setStep(step - 1);
   };
 
@@ -34,6 +36,8 @@ const JobCreate = () => {
   const [jobName, setJobName] = useState(null);
   const [jobPriority, setJobPriority] = useState(null);
   const [skills, setSkills] = useState([]);
+  const [linkedInSearch, setLinkedInSearch] = useState(null);
+  const [linkedInProfile, setLinkedInProfile] = useState(null);
 
   //stepOne data end
 
@@ -158,6 +162,11 @@ const JobCreate = () => {
                   skills={skills}
                   setSkills={setSkills}
                   removeSkill={removeSkill}
+                  linkedInSearch={linkedInSearch}
+                  setLinkedInSearch={setLinkedInSearch}
+                  linkedInProfile={linkedInProfile}
+                  setLinkedInProfile={setLinkedInProfile}
+                  handleNext={handleNext}
                 />
               </h1>
             )}
