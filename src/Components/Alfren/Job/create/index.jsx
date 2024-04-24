@@ -25,6 +25,18 @@ const JobCreate = () => {
     // Handle form submission
   };
 
+  const removeSkill = (name) => {
+    const updatedItems = skills.filter((item) => item !== name);
+    setSkills(updatedItems);
+  };
+
+  //stepOne data
+  const [jobName, setJobName] = useState(null);
+  const [jobPriority, setJobPriority] = useState(null);
+  const [skills, setSkills] = useState([]);
+
+  //stepOne data end
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -138,7 +150,15 @@ const JobCreate = () => {
           >
             {step === 1 && (
               <h1>
-                <StepOne />
+                <StepOne
+                  setJobName={setJobName}
+                  jobName={jobName}
+                  jobPriority={jobPriority}
+                  setJobPriority={setJobPriority}
+                  skills={skills}
+                  setSkills={setSkills}
+                  removeSkill={removeSkill}
+                />
               </h1>
             )}
             {step === 2 && (

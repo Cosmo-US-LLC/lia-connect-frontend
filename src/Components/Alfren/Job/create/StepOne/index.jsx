@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Container,
   Row,
@@ -16,17 +16,25 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 
-import { H4, H5, H6, Image, P } from "../../../../../AbstractElements";
+import { Btn, H4, H5, H6, Image, P } from "../../../../../AbstractElements";
 import FooterCard from "../../../../Forms/FormControl/Common/FooterCard";
 import HeaderCard from "../../../../Common/Component/HeaderCard";
-import { Flag, Info, Video, Youtube } from "react-feather";
+import { Flag, Info, Plus, Video, X, Youtube } from "react-feather";
 import StepActiveIcon from "../../.././../../assets/used-files/icons/candidate.svg";
 import { Link } from "react-router-dom";
 
-const StepOne = () => {
+const StepOne = ({
+  setJobName,
+  jobName,
+  setJobPriority,
+  jobPriority,
+  skills,
+  setSkills,
+  removeSkill,
+}) => {
   const options = [
     {
-      value: "1",
+      value: 1,
       label: (
         <>
           <Flag fill="#DE3E3E" color="#AA1313" size={14} strokeWidth={1.5} />
@@ -37,7 +45,7 @@ const StepOne = () => {
       ),
     },
     {
-      value: "2",
+      value: 2,
       label: (
         <>
           <Flag fill="#FECF41" color="#E2B323" size={14} strokeWidth={1.5} />
@@ -48,7 +56,7 @@ const StepOne = () => {
       ),
     },
     {
-      value: "3",
+      value: 3,
       label: (
         <>
           <Flag fill="#CECECE" color="#ABABAB" size={14} strokeWidth={1.5} />
@@ -73,6 +81,33 @@ const StepOne = () => {
       padding: "10px 12px", // Adjust padding to reduce the height
     }),
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name == "jobName") {
+      setJobName(value);
+    } else if (name == "skillInputValue") {
+      setSkillInputValue(value);
+    }
+  };
+  const handleSelectChange = (e) => {
+    setJobPriority(e.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const inputValue = e.target.value;
+      if (inputValue.trim() !== "") {
+        setSkills([...skills, inputValue.trim()]);
+        setSkillInputValue("");
+      }
+    }
+  };
+
+  const [enterSkill, setEnterSkill] = useState(false);
+  const [skillInputValue, setSkillInputValue] = useState("");
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -111,8 +146,10 @@ const StepOne = () => {
                       <Input
                         className="form-control"
                         type="text"
+                        name="jobName"
+                        value={jobName}
                         placeholder="Sr. UI/UX Designers"
-                        required
+                        onChange={handleChange}
                       />
                     </FormGroup>
                   </Col>
@@ -165,8 +202,10 @@ const StepOne = () => {
                       </H6>
                       <Select
                         options={options}
-                        defaultValue={options[0]}
+                        defaultValue={options[jobPriority]}
                         styles={customStyles}
+                        name="jobPriority"
+                        onChange={handleSelectChange}
                       />
                     </FormGroup>
                   </Col>
@@ -181,12 +220,52 @@ const StepOne = () => {
                           Skills <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
-                      <Input
-                        className="form-control"
-                        type="text"
-                        placeholder="Type skill name here......"
-                        required
-                      />
+                      {enterSkill ? (
+                        <Input
+                          className="form-control"
+                          type="text"
+                          name="skillInputValue"
+                          value={skillInputValue}
+                          placeholder="Type skill name here......"
+                          onKeyDown={handleKeyPress}
+                          onChange={handleChange}
+                        />
+                      ) : (
+                        <button
+                          className="btn btn-outline-dark btn-pill pe-3 ps-3 pt-2 pb-2 d-inline-flex"
+                          onClick={() => setEnterSkill(true)}
+                        >
+                          {" "}
+                          <Plus strokeWidth={2} size={20} />
+                          <span>Add Skills</span>
+                        </button>
+                      )}
+                      {skills.map((skill, index) => (
+                        <button
+                          key={index}
+                          style={{
+                            display: "inline-flex",
+                            border: "none",
+                            color: "#595959",
+                            backgroundColor: "#F7F7F7",
+                            borderRadius: "4px",
+                            padding: "6px",
+                            marginRight: "8px",
+                          }}
+                        >
+                          <span
+                            className="ms-2 me-2"
+                            style={{ fontSize: "12px" }}
+                          >
+                            {skill}
+                          </span>
+                          <X
+                            strokeWidth={1.5}
+                            size={16}
+                            onClick={() => removeSkill(skill)}
+                          />
+                        </button>
+                      ))}
                     </FormGroup>
                   </Col>
                   <Col xl="12" className="mt-4">
@@ -272,7 +351,6 @@ const StepOne = () => {
                       to={"create"}
                       className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
                       style={{ opacity: "60%" }}
-                      
                     >
                       <span>Next</span>
                     </Link>
