@@ -14,7 +14,7 @@ const StepThree = () => {
     <Fragment>
       <Container fluid={true}>
         <Row>
-          <Col sm="12">
+          <Col sm="12" className="mt-5">
             <InputGroup style={{ width: "120%", border: "none" }}>
               <InputGroupText
                 style={{

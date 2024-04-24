@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Container, Row, Col, Progress } from "reactstrap";
+import { Container, Row, Col, Progress, Form } from "reactstrap";
 import { Image, Progressbar } from "../../../../AbstractElements";
 import { Circle } from "react-feather";
 import StepActiveIcon from "../../../../assets/used-files/icons/stepActive.svg";
@@ -131,8 +131,8 @@ const JobCreate = () => {
               </span>
             </Col>
           </div>
-          <form
-            id="msform"
+          <Form
+            className="form theme-form"
             onSubmit={handleSubmit}
             style={{ width: "80%", margin: "0 10%" }}
           >
@@ -156,7 +156,7 @@ const JobCreate = () => {
                 <Completed />
               </h1>
             )}
-          </form>
+          </Form>
         </div>
       </Container>
     </Fragment>
