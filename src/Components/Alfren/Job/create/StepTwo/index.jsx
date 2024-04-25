@@ -34,6 +34,7 @@ import { Actions } from "./actions";
 
 import { Sequence } from "./sequence";
 import { BackgroundColor } from "../../../../../Constant";
+import { NestedSequence } from "./nestedSequence";
 const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
@@ -45,9 +46,7 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
     e.preventDefault(e);
     handlePrevious(e);
   };
-  const wrapperStyle = {
-    width: "500px",
-  };
+
   const Controls = () => {
     const { zoomIn, zoomOut, resetTransform } = useControls();
     const handleZoonIn = () => {
@@ -166,7 +165,13 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                   }}
                 >
                   <Eye strokeWidth={1} color="#1D1D1D" />
-                  <Actions id={1} name={"View Profile"} color={"#A8A7A7"} />
+                  <Actions
+                    id={1}
+                    name={"View Profile"}
+                    color={"#A8A7A7"}
+                    setSequence={setSequence}
+                    sequence={sequence}
+                  />
                 </Btn>
 
                 <Btn
@@ -182,8 +187,10 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                   <GitMerge strokeWidth={1} color="#1D1D1D" />
                   <Actions
                     id={2}
-                    name={"Send Connection Request"}
+                    name={"Send Connection"}
                     color={"#A8A7A7"}
+                    setSequence={setSequence}
+                    sequence={sequence}
                   />
                 </Btn>
                 <Btn
@@ -197,9 +204,11 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                 >
                   <GitPullRequest strokeWidth={1} color="#1D1D1D" />
                   <Actions
-                    id={2}
-                    name={"Withdraw Connection Request"}
+                    id={3}
+                    name={"Withdraw Connection"}
                     color={"#A8A7A7"}
+                    setSequence={setSequence}
+                    sequence={sequence}
                   />
                 </Btn>
                 <Btn
@@ -212,7 +221,13 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                   }}
                 >
                   <MessageSquare strokeWidth={1} color="#1D1D1D" />
-                  <Actions id={2} name={"Send a Message"} color={"#A8A7A7"} />
+                  <Actions
+                    id={4}
+                    name={"Send a Message"}
+                    color={"#A8A7A7"}
+                    setSequence={setSequence}
+                    sequence={sequence}
+                  />
                 </Btn>
               </ButtonGroup>
               <Btn
@@ -260,7 +275,6 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                     }}
                   >
                     <TransformWrapper
-                      wrapperStyle={wrapperStyle}
                       centerOnInit={true}
                       onWheelStart={false}
                       wheel={{ wheelDisabled: true }}
@@ -270,13 +284,7 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                         <>
                           <Controls />
                           <TransformComponent>
-                            <Sequence name={"A"}>
-                              <Sequence name={"b"}>
-                                <Sequence name={"c"}>
-                                  <Sequence name={"c"} />
-                                </Sequence>
-                              </Sequence>
-                            </Sequence>
+                            <NestedSequence sequence={sequence} />
                           </TransformComponent>
                         </>
                       )}
@@ -286,7 +294,7 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
               ) : (
                 <>
                   {" "}
-                  <Sequence firstNode={true} />
+                  <Sequence id={1} firstNode={true} />
                 </>
               )}
             </Col>

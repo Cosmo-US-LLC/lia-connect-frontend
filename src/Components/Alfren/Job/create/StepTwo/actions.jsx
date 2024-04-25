@@ -6,14 +6,27 @@ const style = {
   cursor: "move",
   float: "center",
 };
-export const Actions = function Box({ id, name, color }) {
+export const Actions = function Box({
+  id,
+  name,
+  color,
+  sequence,
+  setSequence,
+}) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
-    item: { name },
+    item: { id, name },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
-        alert(`You dropped ${item.name} into ${dropResult.name}!`);
+        setSequence([
+          {
+            id: dropResult.id,
+            actionId: item.id,
+            actionName: item.name,
+            children: [],
+          },
+        ]);
       }
     },
     collect: (monitor) => ({

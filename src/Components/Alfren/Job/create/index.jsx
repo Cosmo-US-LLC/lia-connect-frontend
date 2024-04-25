@@ -42,7 +42,21 @@ const JobCreate = () => {
   //stepOne data end
 
   //stepTwo Data starts
-  const [sequence, setSequence] = useState([]);
+  const [sequence, setSequence] = useState([
+    {
+      actionId: 1,
+      actionName: "View Profile",
+      id: 1,
+      children: [
+        {
+          actionId: 2,
+          actionName: "Send Connection Request",
+          id: 1,
+          children: [],
+        },
+      ],
+    },
+  ]);
   //stepTwo Data ends
 
   return (
