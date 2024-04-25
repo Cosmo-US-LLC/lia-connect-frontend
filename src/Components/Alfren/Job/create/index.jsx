@@ -11,7 +11,7 @@ import StepThree from "./StepThree/index";
 import Completed from "./Completed";
 
 const JobCreate = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
   const handleNext = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -40,6 +40,10 @@ const JobCreate = () => {
   const [linkedInProfile, setLinkedInProfile] = useState(null);
 
   //stepOne data end
+
+  //stepTwo Data starts
+  const [sequence, setSequence] = useState([]);
+  //stepTwo Data ends
 
   return (
     <Fragment>
@@ -150,41 +154,34 @@ const JobCreate = () => {
           <Form
             className="form theme-form"
             onSubmit={handleSubmit}
-            style={{ width: "80%", margin: "0 10%" }}
+            style={{ width: "100%", margin: "0 10%" }}
           >
             {step === 1 && (
-              <h1>
-                <StepOne
-                  setJobName={setJobName}
-                  jobName={jobName}
-                  jobPriority={jobPriority}
-                  setJobPriority={setJobPriority}
-                  skills={skills}
-                  setSkills={setSkills}
-                  removeSkill={removeSkill}
-                  linkedInSearch={linkedInSearch}
-                  setLinkedInSearch={setLinkedInSearch}
-                  linkedInProfile={linkedInProfile}
-                  setLinkedInProfile={setLinkedInProfile}
-                  handleNext={handleNext}
-                />
-              </h1>
+              <StepOne
+                setJobName={setJobName}
+                jobName={jobName}
+                jobPriority={jobPriority}
+                setJobPriority={setJobPriority}
+                skills={skills}
+                setSkills={setSkills}
+                removeSkill={removeSkill}
+                linkedInSearch={linkedInSearch}
+                setLinkedInSearch={setLinkedInSearch}
+                linkedInProfile={linkedInProfile}
+                setLinkedInProfile={setLinkedInProfile}
+                handleNext={handleNext}
+              />
             )}
             {step === 2 && (
-              <h1>
-                <StepTwo />
-              </h1>
+              <StepTwo
+                handlePrevious={handlePrevious}
+                handleNext={handleNext}
+                sequence={sequence}
+                setSequence={setSequence}
+              />
             )}
-            {step === 3 && (
-              <h1>
-                <StepThree />
-              </h1>
-            )}
-            {step === 4 && (
-              <h1>
-                <Completed />
-              </h1>
-            )}
+            {step === 3 && <StepThree />}
+            {step === 4 && <Completed />}
           </Form>
         </div>
       </Container>

@@ -138,7 +138,7 @@ const StepOne = ({
 
   return (
     <Fragment>
-      <Container fluid={true}>
+      <Container fluid={true} style={{ width: "80%" }}>
         <Row style={{ justifyContent: "center" }}>
           <Col xl="8" className="mt-5">
             <Card>
