@@ -1,5 +1,9 @@
 import React, { Fragment, useState } from "react";
-import dragula from "react-dragula";
+import {
+  TransformWrapper,
+  TransformComponent,
+  useControls,
+} from "react-zoom-pan-pinch";
 import {
   ButtonGroup,
   Col,
@@ -32,7 +36,7 @@ import { Sequence } from "./sequence";
 import { BackgroundColor } from "../../../../../Constant";
 const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
   const [nextActive, setNextActive] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState([60]);
+  const [zoomLevel, setZoomLevel] = useState([40]);
   const handleNextStep = (e) => {
     e.preventDefault(e);
     handleNext(e);
@@ -41,57 +45,80 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
     e.preventDefault(e);
     handlePrevious(e);
   };
+  const wrapperStyle = {
+    width: "500px",
+  };
+  const Controls = () => {
+    const { zoomIn, zoomOut, resetTransform } = useControls();
+    const handleZoonIn = () => {
+      const zoom = parseInt(zoomLevel) + 10;
 
+      if (zoom <= 100) {
+        zoomIn();
+        setZoomLevel(zoom);
+      }
+    };
+    const handleZoonOut = () => {
+      const zoom = parseInt(zoomLevel) - 10;
+
+      if (zoom >= 0) {
+        zoomOut();
+        setZoomLevel(zoom);
+      }
+    };
+    return (
+      <div style={{ position: "fixed", zIndex: "1", top: 450 }}>
+        <ButtonGroup
+          vertical
+          style={{
+            // border: "1px solid #8FA8D7 ",
+            borderRadius: "8px",
+            // boxShadow: " 0px 0px 32px 0px #3D64FF94",
+          }}
+        >
+          <button
+            className="btn"
+            style={{
+              border: "1px solid #8FA8D7 ",
+              backgroundColor: "white",
+            }}
+            onClick={() => handleZoonIn()}
+          >
+            <div className="d-inline-flex">
+              <ZoomIn strokeWidth={0.5} color="#8FA8D7" />{" "}
+            </div>
+          </button>
+          <Btn
+            attrBtn={{
+              color: "white",
+              style: {
+                border: "1px solid #8FA8D7 ",
+              },
+            }}
+          >
+            <span style={{ color: "#8FA8D7" }}>{zoomLevel + "%"}</span>
+          </Btn>
+
+          <button
+            className="btn"
+            style={{
+              border: "1px solid #8FA8D7 ",
+              backgroundColor: "white",
+            }}
+            onClick={() => handleZoonOut()}
+          >
+            <div className="d-inline-flex">
+              <ZoomOut strokeWidth={0.5} color="#8FA8D7" />{" "}
+            </div>
+          </button>
+        </ButtonGroup>
+      </div>
+    );
+  };
   return (
     <Fragment>
       <DndProvider backend={HTML5Backend}>
         <Container>
-          <div style={{ position: "fixed", zIndex: "1", top: 450 }}>
-            <ButtonGroup
-              vertical
-              style={{
-                // border: "1px solid #8FA8D7 ",
-                borderRadius: "8px",
-                // boxShadow: " 0px 0px 32px 0px #3D64FF94",
-              }}
-            >
-              <Btn
-                attrBtn={{
-                  color: "white",
-                  style: {
-                    border: "1px solid #8FA8D7 ",
-                  },
-                }}
-              >
-                <div className="d-inline-flex">
-                  <ZoomIn strokeWidth={0.5} color="#8FA8D7" />{" "}
-                </div>
-              </Btn>
-              <Btn
-                attrBtn={{
-                  color: "white",
-                  style: {
-                    border: "1px solid #8FA8D7 ",
-                  },
-                }}
-              >
-                <span style={{ color: "#8FA8D7" }}>{zoomLevel + "%"}</span>
-              </Btn>
-
-              <Btn
-                attrBtn={{
-                  color: "white",
-                  style: {
-                    border: "1px solid #8FA8D7 ",
-                  },
-                }}
-              >
-                <div className="d-inline-flex">
-                  <ZoomOut strokeWidth={0.5} color="#8FA8D7" />{" "}
-                </div>
-              </Btn>
-            </ButtonGroup>
-          </div>
           <div
             style={{
               position: "fixed",
@@ -222,27 +249,49 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
               </span>
             </Link>
           </div>
+          <Row style={{ width: "100%" }}>
+            <Col sm="12">
+              {sequence.length ? (
+                <>
+                  <div
+                    style={{
+                      display: "flex",
+                      height: "100vh",
+                    }}
+                  >
+                    <TransformWrapper
+                      wrapperStyle={wrapperStyle}
+                      centerOnInit={true}
+                      onWheelStart={false}
+                      wheel={{ wheelDisabled: true }}
+                      minScale={0.2}
+                    >
+                      {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                        <>
+                          <Controls />
+                          <TransformComponent>
+                            <Sequence name={"A"}>
+                              <Sequence name={"b"}>
+                                <Sequence name={"c"}>
+                                  <Sequence name={"c"} />
+                                </Sequence>
+                              </Sequence>
+                            </Sequence>
+                          </TransformComponent>
+                        </>
+                      )}
+                    </TransformWrapper>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Sequence firstNode={true} />
+                </>
+              )}
+            </Col>
+          </Row>
         </Container>
-        <Row>
-          <Col sm="12">
-            {sequence.length ? (
-              <>
-                <Sequence name={"A"}>
-                  <Sequence name={"b"}>
-                    <Sequence name={"c"}>
-                      <Sequence name={"c"} />
-                    </Sequence>
-                  </Sequence>
-                </Sequence>
-              </>
-            ) : (
-              <>
-                {" "}
-                <Sequence firstNode={true} />
-              </>
-            )}
-          </Col>
-        </Row>
       </DndProvider>
     </Fragment>
   );

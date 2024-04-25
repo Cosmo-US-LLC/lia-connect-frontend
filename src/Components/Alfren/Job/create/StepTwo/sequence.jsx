@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDrop } from "react-dnd";
 import { Image } from "../../../../../AbstractElements";
 import startSequence from "../../../../../assets/used-files/images/startSequence.png";
+
 export const ItemTypes = {
   BOX: "box",
 };
@@ -53,6 +54,7 @@ export const Sequence = ({ firstNode = false, name, greedy, children }) => {
     >
       {firstNode ? (
         <>
+          {" "}
           <div ref={drop}>
             <Image attrImage={{ src: startSequence }} />
             <br />

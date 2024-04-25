@@ -16,8 +16,8 @@
 @import "utils/variables";
 
 :root {
-  --theme-default:#1264FD;
-  --theme-secondary: #1D1D1D;
+  --theme-default: #1264fd;
+  --theme-secondary: #1d1d1d;
   --light-background: rgba(242, 243, 247, 0.7);
   --body-font-color: #2f2f3b;
   --chart-border: #ecf3fa;
@@ -62,6 +62,11 @@ body.dark-only {
   --view-grid-bg: var(--light-bg);
   --view-border-marker: #2c2c45d4;
   -semi-dark: #1d1e26;
+}
+
+.transform-component-module_wrapper__SPB86 {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 // *** base ***
