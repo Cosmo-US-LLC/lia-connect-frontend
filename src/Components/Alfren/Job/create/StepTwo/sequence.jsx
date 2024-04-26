@@ -21,7 +21,14 @@ function getStyle() {
     alignItems: "center",
   };
 }
-export const Sequence = ({ firstNode = false, id, name, greedy, children }) => {
+export const Sequence = ({
+  firstNode = false,
+  id,
+  name,
+  greedy,
+  children,
+  options,
+}) => {
   const [hasDropped, setHasDropped] = useState(false);
   const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
   const [{ isOver, isOverCurrent }, drop] = useDrop(
@@ -62,25 +69,55 @@ export const Sequence = ({ firstNode = false, id, name, greedy, children }) => {
         </>
       ) : (
         <>
-          {" "}
-          <div ref={drop} style={getStyle()}>
-            <span style={{ marginTop: "8px", marginLeft: "4px" }}>
-              <Plus strokeWidth={1} color={"#787878"} />
-            </span>
-            <span style={{ color: "#595959", padding: "10px" }}>
-              {" "}
-              Add Action{" "}
-            </span>
-            <span
-              style={{
-                color: "#787878",
-                backgroundColor: "#EAE8E8",
-                padding: "10px",
-              }}
-            >
-              End
-            </span>
-            {/* <div>{children}</div> */}
+          <div>
+            {options.length ? (
+              <>
+                {options.map((item, index) => (
+                  <div ref={drop} style={getStyle()}>
+                    <span style={{ marginTop: "8px", marginLeft: "4px" }}>
+                      <Plus strokeWidth={1} color={"#787878"} />
+                    </span>
+                    <span style={{ color: "#595959", padding: "10px" }}>
+                      {" "}
+                      Add Action{" "}
+                    </span>
+                    <span
+                      style={{
+                        color: "#787878",
+                        backgroundColor: "#EAE8E8",
+                        padding: "10px",
+                      }}
+                    >
+                      End
+                    </span>
+                    {/* <div>{children}</div> */}
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {" "}
+                <div ref={drop} style={getStyle()}>
+                  <span style={{ marginTop: "8px", marginLeft: "4px" }}>
+                    <Plus strokeWidth={1} color={"#787878"} />
+                  </span>
+                  <span style={{ color: "#595959", padding: "10px" }}>
+                    {" "}
+                    Add Action{" "}
+                  </span>
+                  <span
+                    style={{
+                      color: "#787878",
+                      backgroundColor: "#EAE8E8",
+                      padding: "10px",
+                    }}
+                  >
+                    End
+                  </span>
+                  {/* <div>{children}</div> */}
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

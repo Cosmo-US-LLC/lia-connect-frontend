@@ -30,9 +30,7 @@ export const NestedSequence = ({ sequence }) => {
               <NestedSequence sequence={item.children} />
             </>
           ) : (
-            <>
-              <Sequence firstNode={false} />
-            </>
+            <Sequence firstNode={false} options={item.options} />
           )}
         </li>
       ))}

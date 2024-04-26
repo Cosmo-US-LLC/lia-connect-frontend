@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Children, Fragment, useState } from "react";
 import { Container, Row, Col, Progress, Form } from "reactstrap";
 import { Image, Progressbar } from "../../../../AbstractElements";
 import { Circle } from "react-feather";
@@ -9,6 +9,7 @@ import StepOne from "./StepOne/index";
 import StepTwo from "./StepTwo/index";
 import StepThree from "./StepThree/index";
 import Completed from "./Completed";
+import { options } from "@fullcalendar/core/preact.js";
 
 const JobCreate = () => {
   const [step, setStep] = useState(2);
@@ -42,16 +43,45 @@ const JobCreate = () => {
   //stepOne data end
 
   //stepTwo Data starts
+  const sequenceDetails = {
+    1: { options: {}, name: "View Profile", input: null },
+    2: {
+      options: {
+        1: { name: "Still not Accepted" },
+        2: { name: "Accepted" },
+      },
+      name: "Send Request",
+      input: null,
+    },
+    3: {
+      options: {},
+      name: "Withdraw Connection Request",
+      input: null,
+    },
+    4: {
+      options: {
+        1: { name: "Candidate Not Replied" },
+        2: { name: "Candidate Replied" },
+      },
+      name: "Send Message",
+      input: null,
+    },
+  };
   const [sequence, setSequence] = useState([
     {
       actionId: 1,
       actionName: "View Profile",
       id: 1,
+      options: [{ id: 0, name: "Default" }],
       children: [
         {
           actionId: 2,
           actionName: "Send Connection Request",
           id: 1,
+          options: [
+            { id: 1, name: "Still not Accepted" },
+            { id: 2, name: "Accepted" },
+          ],
           children: [],
         },
       ],
