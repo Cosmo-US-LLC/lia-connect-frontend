@@ -35,6 +35,8 @@ import { Actions } from "./actions";
 import { Sequence } from "./sequence";
 import { BackgroundColor } from "../../../../../Constant";
 import { NestedSequence } from "./nestedSequence";
+import { SequenceStart } from "./startSequence";
+
 const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
@@ -266,7 +268,7 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
           </div>
           <Row style={{ width: "100%" }}>
             <Col sm="12">
-              {sequence.length ? (
+              {sequence ? (
                 <>
                   <div
                     style={{
@@ -294,7 +296,7 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
               ) : (
                 <>
                   {" "}
-                  <Sequence id={1} firstNode={true} />
+                  <SequenceStart />
                 </>
               )}
             </Col>

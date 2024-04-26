@@ -5,6 +5,7 @@ import startSequence from "../../../../../assets/used-files/images/startSequence
 import { id } from "date-fns/locale";
 import { Plus } from "react-feather";
 import { BorderRadius } from "../../../../../Constant";
+import { Col, Row } from "reactstrap";
 
 export const ItemTypes = {
   BOX: "box",
@@ -17,18 +18,11 @@ function getStyle() {
     color: "white",
     backgroundColor: "transparent",
     textAlign: "center",
-    display: "flex",
+    display: "inline-flex",
     alignItems: "center",
   };
 }
-export const Sequence = ({
-  firstNode = false,
-  id,
-  name,
-  greedy,
-  children,
-  options,
-}) => {
+export const Sequence = ({ id, name, options }) => {
   const [hasDropped, setHasDropped] = useState(false);
   const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
   const [{ isOver, isOverCurrent }, drop] = useDrop(
@@ -36,91 +30,47 @@ export const Sequence = ({
       accept: ItemTypes.BOX,
       drop(_item, monitor) {
         const didDrop = monitor.didDrop();
-        if (didDrop && !greedy) {
+        if (didDrop) {
           return;
         }
         setHasDropped(true);
         setHasDroppedOnChild(didDrop);
-        return { name, id, firstNode };
+        return { name, id };
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         isOverCurrent: monitor.isOver({ shallow: true }),
       }),
     }),
-    [greedy, setHasDropped, setHasDroppedOnChild]
+    [setHasDropped, setHasDroppedOnChild]
   );
 
   return (
-    <div
-      className="mt-5 d-flex  justify-content-center align-items-center"
-      style={{ height: "60vh" }}
-    >
-      {firstNode ? (
-        <>
-          {" "}
-          <div ref={drop}>
-            <Image attrImage={{ src: startSequence }} />
-            <br />
-            {hasDropped && (
-              <span>dropped {hasDroppedOnChild && " on child"}</span>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            {options.length ? (
-              <>
-                {options.map((item, index) => (
-                  <div ref={drop} style={getStyle()}>
-                    <span style={{ marginTop: "8px", marginLeft: "4px" }}>
-                      <Plus strokeWidth={1} color={"#787878"} />
-                    </span>
-                    <span style={{ color: "#595959", padding: "10px" }}>
-                      {" "}
-                      Add Action{" "}
-                    </span>
-                    <span
-                      style={{
-                        color: "#787878",
-                        backgroundColor: "#EAE8E8",
-                        padding: "10px",
-                      }}
-                    >
-                      End
-                    </span>
-                    {/* <div>{children}</div> */}
-                  </div>
-                ))}
-              </>
-            ) : (
-              <>
+    <div className="mt-5" style={{ height: "60vh" }}>
+      <Row>
+        {options.map((item, index) => (
+          <Col xl={options.length === 1 ? "12" : "6"}>
+            <div ref={drop} style={getStyle()}>
+              <span style={{ marginTop: "8px", marginLeft: "4px" }}>
+                <Plus strokeWidth={1} color={"#787878"} />
+              </span>
+              <span style={{ color: "#595959", padding: "10px" }}>
                 {" "}
-                <div ref={drop} style={getStyle()}>
-                  <span style={{ marginTop: "8px", marginLeft: "4px" }}>
-                    <Plus strokeWidth={1} color={"#787878"} />
-                  </span>
-                  <span style={{ color: "#595959", padding: "10px" }}>
-                    {" "}
-                    Add Action{" "}
-                  </span>
-                  <span
-                    style={{
-                      color: "#787878",
-                      backgroundColor: "#EAE8E8",
-                      padding: "10px",
-                    }}
-                  >
-                    End
-                  </span>
-                  {/* <div>{children}</div> */}
-                </div>
-              </>
-            )}
-          </div>
-        </>
-      )}
+                Add Action{" "}
+              </span>
+              <span
+                style={{
+                  color: "#787878",
+                  backgroundColor: "#EAE8E8",
+                  padding: "10px",
+                }}
+              >
+                End
+              </span>
+            </div>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };

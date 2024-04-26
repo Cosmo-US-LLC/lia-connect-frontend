@@ -4,7 +4,7 @@ import { Sequence } from "./sequence";
 import { Col, Row } from "reactstrap";
 
 // Recursive component to render nested sequences
-export const NestedSequence = ({ sequence }) => {
+export const SequenceChildren = ({ sequence }) => {
   return (
     <Fragment>
       <Row>
@@ -31,17 +31,6 @@ export const NestedSequence = ({ sequence }) => {
             </span>
             <span className="ms-2">{sequence.actionName}</span>
           </div>
-        </Col>
-        <Col xl="12">
-          {sequence.children.length ? (
-            <>
-              {sequence.children.map((item, index) => (
-                <NestedSequence sequence={item} />
-              ))}
-            </>
-          ) : (
-            <Sequence firstNode={false} options={sequence.options} />
-          )}
         </Col>
       </Row>
     </Fragment>

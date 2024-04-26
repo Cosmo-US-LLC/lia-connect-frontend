@@ -67,26 +67,33 @@ const JobCreate = () => {
       input: null,
     },
   };
-  const [sequence, setSequence] = useState([
-    {
-      actionId: 1,
-      actionName: "View Profile",
-      id: 1,
-      options: [{ id: 0, name: "Default" }],
-      children: [
-        {
-          actionId: 2,
-          actionName: "Send Connection Request",
-          id: 1,
-          options: [
-            { id: 1, name: "Still not Accepted" },
-            { id: 2, name: "Accepted" },
-          ],
-          children: [],
-        },
-      ],
-    },
-  ]);
+  const [sequence, setSequence] = useState({
+    actionId: 1,
+    actionName: "View Profile",
+    id: 1,
+    options: [{ id: 0, name: "Default" }],
+    children: [
+      {
+        actionId: 2,
+        actionName: "Send Connection",
+        id: 1,
+        options: [
+          { id: 1, name: "Still not Accepted" },
+          { id: 2, name: "Accepted" },
+        ],
+        children: [
+          {
+            actionId: 2,
+            parentOptionId: 1,
+            actionName: "Withdraw Connection",
+            id: 1,
+            options: [{ id: 0, name: "Default" }],
+            children: [],
+          },
+        ],
+      },
+    ],
+  });
   //stepTwo Data ends
 
   return (
