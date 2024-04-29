@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Line } from "./components/line";
 import { Clock, MoreVertical } from "react-feather";
 import { Col, FormGroup, Input, Row, UncontrolledTooltip } from "reactstrap";
 import { H6 } from "../../../../../AbstractElements";
 import { Sequence } from "./sequence";
+import { DelayDropdown } from "./components/delayDropdown";
 export const SingleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
+  const [dropdownActive, setDropdownActive] = useState(false);
   return (
     <Fragment>
       <Line marginBottom={10} marginTop={10} />
@@ -30,10 +32,19 @@ export const SingleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
           >
             <Clock size={15} strokeWidth={1} />
           </span>
-          <span style={{ color: "#595959", padding: "10px" }}> 14 hours </span>
+          <span style={{ color: "#595959", padding: "10px" }}>
+            {sequence.delayTillNextActionValue}
+            {sequence.delayTillNextActionType === "h"
+              ? " hours"
+              : sequence.delayTillNextActionType === "d"
+              ? " days"
+              : sequence.delayTillNextActionType === "w"
+              ? " weeks"
+              : ""}
+          </span>
 
           <button
-            id="priorityToolTip"
+            id={"alfren" + sequence.sequenceId + "alfren"}
             className="d-flex"
             style={{
               cursor: "pointer",
@@ -42,72 +53,18 @@ export const SingleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
               fontWeight: "600",
               color: "black",
             }}
+            onClick={() => setDropdownActive(true)}
           >
             <MoreVertical size={15} strokeWidth={3} />
-
-            <UncontrolledTooltip
-              // isOpen={true}
-              target="priorityToolTip"
-              placement="bottom"
-              style={{
-                backgroundColor: "white",
-                boxShadow: "0px 6px 26px -3.89px #0000001A",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  left: "300px",
-                }}
-              >
-                <div
-                  className="mb-3"
-                  style={{
-                    color: "#595959",
-                    fontSize: "12px",
-                    fontWeight: "400",
-                    lineHeight: "19.2px",
-                    textAlign: "center",
-                  }}
-                >
-                  Delay before the next action:
-                </div>
-                <div>
-                  <FormGroup style={{ textAlign: "left" }}>
-                    <Row>
-                      <Col xl="4">
-                        <Input
-                          className="form-control"
-                          type="text"
-                          name="jobName"
-                          value={sequence.delayTillNextActionValue}
-                        />
-                      </Col>
-                      <Col xl="8">
-                        <Input
-                          className="form-control"
-                          type="select"
-                          name="jobName"
-                          value={sequence.delayTillNextActionType}
-                        >
-                          <option className="form-control" value="d">
-                            Days
-                          </option>
-                          <option className="form-control" value="h">
-                            Hours
-                          </option>
-                          <option className="form-control" value="w">
-                            {" "}
-                            Week
-                          </option>
-                        </Input>
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                </div>
-              </div>
-            </UncontrolledTooltip>
           </button>
+          <DelayDropdown
+            target={"alfren" + sequence.sequenceId + "alfren"}
+            sequence={sequence}
+            dropdownActive={dropdownActive}
+            setDropdownActive={setDropdownActive}
+            sequenceArray={sequenceArray}
+            setSequenceArray={setSequenceArray}
+          />
         </div>
       </div>
       <Line marginBottom={10} marginTop={10} />
