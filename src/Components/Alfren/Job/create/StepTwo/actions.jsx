@@ -17,27 +17,61 @@ export const Actions = ({
 }) => {
   const actionDetails = {
     1: {
-      options: [{ id: 1, name: "Default" }],
+      options: [
+        {
+          id: 1,
+          name: "Default",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
+      ],
       name: "View Profile",
       input: null,
     },
     2: {
       options: [
-        { id: 1, name: "Still not Accepted" },
-        { id: 2, name: "Accepted" },
+        {
+          id: 1,
+          name: "Still not Accepted",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
+        {
+          id: 2,
+          name: "Accepted",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
       ],
       name: "Send Request",
       input: null,
     },
     3: {
-      options: [{ id: 1, name: "Default" }],
+      options: [
+        {
+          id: 1,
+          name: "Default",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
+      ],
       name: "Withdraw Connection Request",
       input: null,
     },
     4: {
       options: [
-        { id: 1, name: "Candidate Not Replied" },
-        { id: 2, name: "Candidate Replied" },
+        {
+          id: 1,
+          name: "Candidate Not Replied",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
+        {
+          id: 2,
+          name: "Candidate Replied",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
       ],
       name: "Send Message",
       input: null,
@@ -58,8 +92,6 @@ export const Actions = ({
             : 1,
           actionId: item.id,
           actionName: item.name,
-          delayTillNextActionValue: 14,
-          delayTillNextActionType: "h",
           options: actionDetails[item.id].options,
           parentSequenceId: parentSequence ? parentSequence.id : 0,
           parentOptionId: parentSequence ? parentSequence.optionId : 1,

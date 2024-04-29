@@ -3,18 +3,20 @@ import { Link } from "react-feather";
 import { Col, FormGroup, Input, Row, UncontrolledTooltip } from "reactstrap";
 
 export const DelayDropdown = ({
+  index,
   target,
   sequence,
+  selectedOption,
   dropdownActive,
-  setDropdownActive,
+  setCloseDropdown,
   setSequenceArray,
   sequenceArray,
 }) => {
   const [delayTillNextActionValue, setDelayTillNextActionValue] = useState(
-    sequence.delayTillNextActionValue
+    selectedOption.delayTillNextActionValue
   );
   const [delayTillNextActionType, setDelayTillNextActionType] = useState(
-    sequence.delayTillNextActionType
+    selectedOption.delayTillNextActionType
   );
 
   const handleChangeDelayTillNextActionValue = (event) => {
@@ -27,25 +29,36 @@ export const DelayDropdown = ({
 
   const setDelay = (e) => {
     e.preventDefault();
-    setSequenceArray((prevArray) => {
-      return prevArray.map((item) => {
-        if (item.sequenceId === sequence.sequenceId) {
+    setSequenceArray((sequenceArray) => {
+      return sequenceArray.map((obj) => {
+        if (
+          obj.sequenceId === sequence.sequenceId &&
+          obj.options.some((option) => option.id === selectedOption.id)
+        ) {
           return {
-            ...item,
-            delayTillNextActionValue: delayTillNextActionValue,
-            delayTillNextActionType: delayTillNextActionType,
+            ...obj,
+            options: obj.options.map((option) => {
+              if (option.id === selectedOption.id) {
+                return {
+                  ...option,
+                  delayTillNextActionValue,
+                  delayTillNextActionType,
+                };
+              }
+              return option;
+            }),
           };
         }
-        return item;
+        return obj;
       });
     });
 
-    setDropdownActive(false);
+    setCloseDropdown(index);
   };
 
   return (
     <UncontrolledTooltip
-      isOpen={dropdownActive}
+      isOpen={dropdownActive[index]}
       target={target}
       placement="bottom"
       style={{
@@ -107,7 +120,7 @@ export const DelayDropdown = ({
           <Col xl="12" className="d-flex justify-space-between">
             <button
               className="btn btn-outline"
-              onClick={() => setDropdownActive(false)}
+              onClick={() => setCloseDropdown(index)}
             >
               <span>Cancel</span>
             </button>

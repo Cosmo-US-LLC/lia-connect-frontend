@@ -55,12 +55,11 @@ export const NestedSequence = ({
               setSequenceArray={setSequenceArray}
             />
           ) : (
-            // <DoubleOption
-            // sequence={sequence}
-            //   sequenceArray={sequenceArray}
-            //   setSequenceArray={setSequenceArray}
-            // />
-            "dd"
+            <DoubleOption
+              sequence={sequence}
+              sequenceArray={sequenceArray}
+              setSequenceArray={setSequenceArray}
+            />
           )}
         </Col>
         <Col xl="12">
@@ -76,7 +75,11 @@ export const NestedSequence = ({
                   >
                     {sequence.children.map((child, childrenIndex) =>
                       child.parentOptionId === item.id ? (
-                        <NestedSequence sequence={child} />
+                        <NestedSequence
+                          sequence={child}
+                          sequenceArray={sequenceArray}
+                          setSequenceArray={setSequenceArray}
+                        />
                       ) : (
                         <Sequence
                           key={childrenIndex} // Ensure each child has a unique key
@@ -97,7 +100,11 @@ export const NestedSequence = ({
                   <Row>
                     {sequence.children.map((item, index) => (
                       <Col xl={sequence.children.length === 1 ? "12" : "6"}>
-                        <NestedSequence sequence={item} />
+                        <NestedSequence
+                          sequence={item}
+                          sequenceArray={sequenceArray}
+                          setSequenceArray={setSequenceArray}
+                        />
                       </Col>
                     ))}
                   </Row>
