@@ -1,7 +1,7 @@
 import { Fragment } from "react";
-import { Line } from "./line";
+import { Line } from "./components/line";
 import { Clock, MoreVertical } from "react-feather";
-import { HorizontalLine } from "./horizontalLine";
+import { HorizontalLine } from "./components/horizontalLine";
 export const DoubleOption = ({ x, y1, x2, y2 }) => {
   return (
     <Fragment>

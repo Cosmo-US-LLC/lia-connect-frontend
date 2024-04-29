@@ -10,12 +10,16 @@ import {
 import { Sequence } from "./sequence";
 import { Col, Row } from "reactstrap";
 import { memo, useCallback, useState } from "react";
-import { Line } from "./line";
+import { Line } from "./components/line";
 import { SingleOption } from "./singleOption";
 import { DoubleOption } from "./doubleOption";
 
 // Recursive component to render nested sequences
-export const NestedSequence = ({ sequence }) => {
+export const NestedSequence = ({
+  sequence,
+  sequenceArray,
+  setSequenceArray,
+}) => {
   return (
     <Fragment>
       <Row>
@@ -44,7 +48,20 @@ export const NestedSequence = ({ sequence }) => {
           </div>
         </Col>
         <Col xl="12" className="text-center">
-          {sequence.options.length === 1 ? <SingleOption /> : <DoubleOption />}
+          {sequence.options.length === 1 ? (
+            <SingleOption
+              sequence={sequence}
+              sequenceArray={sequenceArray}
+              setSequenceArray={setSequenceArray}
+            />
+          ) : (
+            // <DoubleOption
+            // sequence={sequence}
+            //   sequenceArray={sequenceArray}
+            //   setSequenceArray={setSequenceArray}
+            // />
+            "dd"
+          )}
         </Col>
         <Col xl="12">
           {sequence.options.length &&

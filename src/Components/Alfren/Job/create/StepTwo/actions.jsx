@@ -58,6 +58,8 @@ export const Actions = ({
             : 1,
           actionId: item.id,
           actionName: item.name,
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
           options: actionDetails[item.id].options,
           parentSequenceId: parentSequence ? parentSequence.id : 0,
           parentOptionId: parentSequence ? parentSequence.optionId : 1,

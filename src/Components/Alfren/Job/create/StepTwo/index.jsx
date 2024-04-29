@@ -296,7 +296,11 @@ const StepTwo = ({
                         <>
                           <Controls />
                           <TransformComponent>
-                            <NestedSequence sequence={sequence} />
+                            <NestedSequence
+                              sequence={sequence}
+                              sequenceArray={sequenceArray}
+                              setSequenceArray={setSequenceArray}
+                            />
                           </TransformComponent>
                         </>
                       )}
