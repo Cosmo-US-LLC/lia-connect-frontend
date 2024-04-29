@@ -19,6 +19,7 @@ export const NestedSequence = ({
   sequence,
   sequenceArray,
   setSequenceArray,
+  addSequenceRecord,
 }) => {
   return (
     <Fragment>
@@ -79,6 +80,7 @@ export const NestedSequence = ({
                           sequence={child}
                           sequenceArray={sequenceArray}
                           setSequenceArray={setSequenceArray}
+                          addSequenceRecord={addSequenceRecord}
                         />
                       ) : (
                         <Sequence
@@ -86,6 +88,7 @@ export const NestedSequence = ({
                           id={sequence.sequenceId}
                           optionId={item.id}
                           name={sequence.actionName}
+                          addSequenceRecord={addSequenceRecord}
                         />
                       )
                     )}
@@ -104,6 +107,7 @@ export const NestedSequence = ({
                           sequence={item}
                           sequenceArray={sequenceArray}
                           setSequenceArray={setSequenceArray}
+                          addSequenceRecord={addSequenceRecord}
                         />
                       </Col>
                     ))}
@@ -119,6 +123,7 @@ export const NestedSequence = ({
                           id={sequence.sequenceId}
                           optionId={item.id}
                           name={sequence.actionName}
+                          addSequenceRecord={addSequenceRecord}
                         />
                       </Col>
                     ))}

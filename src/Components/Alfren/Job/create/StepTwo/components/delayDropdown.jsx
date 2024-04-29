@@ -125,7 +125,7 @@ export const DelayDropdown = ({
               <span>Cancel</span>
             </button>
             <button className="btn btn-primary " onClick={setDelay}>
-              <span>Next</span>
+              <span>Apply</span>
             </button>
           </Col>
         </div>

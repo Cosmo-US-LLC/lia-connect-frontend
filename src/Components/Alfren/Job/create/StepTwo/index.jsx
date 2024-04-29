@@ -300,6 +300,7 @@ const StepTwo = ({
                               sequence={sequence}
                               sequenceArray={sequenceArray}
                               setSequenceArray={setSequenceArray}
+                              addSequenceRecord={addSequenceRecord}
                             />
                           </TransformComponent>
                         </>

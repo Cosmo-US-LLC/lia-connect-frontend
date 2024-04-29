@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useDrag } from "react-dnd";
 export const ItemTypes = {
   BOX: "box",
@@ -77,7 +76,6 @@ export const Actions = ({
       input: null,
     },
   };
-  let seq = [];
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BOX,
@@ -85,16 +83,27 @@ export const Actions = ({
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && dropResult) {
-        const parentSequence = dropResult.id ? dropResult.id : 0;
+        const parentSequence = dropResult ? dropResult : 0;
+
         addSequenceRecord({
           sequenceId: parentSequence
-            ? parentSequence.id + parentSequence.optionId + 1
+            ? parentSequence.id && parentSequence.optionId
+              ? parentSequence.id + parentSequence.optionId + 1
+              : 1
             : 1,
           actionId: item.id,
           actionName: item.name,
           options: actionDetails[item.id].options,
-          parentSequenceId: parentSequence ? parentSequence.id : 0,
-          parentOptionId: parentSequence ? parentSequence.optionId : 1,
+          parentSequenceId: parentSequence
+            ? parentSequence.id
+              ? parentSequence.id
+              : 0
+            : 0,
+          parentOptionId: parentSequence
+            ? parentSequence.optionId
+              ? parentSequence.optionId
+              : 1
+            : 1,
         });
       }
     },
