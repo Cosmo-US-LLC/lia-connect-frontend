@@ -46,7 +46,7 @@ export const Sequence = (id, name, optionId) => {
   );
 
   return (
-    <div className="mt-5" style={{ height: "60vh" }}>
+    <div style={{ height: "60vh" }}>
       <div ref={drop} style={getStyle()}>
         <span style={{ marginTop: "8px", marginLeft: "4px" }}>
           <Plus strokeWidth={1} color={"#787878"} />

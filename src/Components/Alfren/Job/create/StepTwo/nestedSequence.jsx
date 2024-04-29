@@ -1,8 +1,18 @@
 import React, { Fragment, useEffect } from "react";
-import { Eye, GitMerge, GitPullRequest, MessageSquare } from "react-feather";
+import {
+  Clock,
+  Eye,
+  GitMerge,
+  GitPullRequest,
+  MessageSquare,
+  MoreVertical,
+} from "react-feather";
 import { Sequence } from "./sequence";
 import { Col, Row } from "reactstrap";
 import { memo, useCallback, useState } from "react";
+import { Line } from "./line";
+import { SingleOption } from "./singleOption";
+import { DoubleOption } from "./doubleOption";
 
 // Recursive component to render nested sequences
 export const NestedSequence = ({ sequence }) => {
@@ -11,7 +21,7 @@ export const NestedSequence = ({ sequence }) => {
       <Row>
         <Col xl="12">
           <div
-            className="btn d-inline-flex mt-5"
+            className="btn d-inline-flex"
             style={{ backgroundColor: "#1264FD", color: "white" }}
           >
             <span className="d-flex flex-row align-items-center">
@@ -32,6 +42,9 @@ export const NestedSequence = ({ sequence }) => {
             </span>
             <span className="ms-2">{sequence.actionName}</span>
           </div>
+        </Col>
+        <Col xl="12" className="text-center">
+          {sequence.options.length === 1 ? <SingleOption /> : <DoubleOption />}
         </Col>
         <Col xl="12">
           {sequence.options.length &&

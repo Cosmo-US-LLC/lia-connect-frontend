@@ -37,7 +37,6 @@ import { BackgroundColor } from "../../../../../Constant";
 import { NestedSequence } from "./nestedSequence";
 import { SequenceStart } from "./startSequence";
 import { Data } from "emoji-mart";
-
 const StepTwo = ({
   handlePrevious,
   handleNext,
@@ -157,7 +156,7 @@ const StepTwo = ({
                   }}
                 >
                   <span
-                    className="pt-3 pb-3 ps-4 pe-4"
+                    className="pt-3 pb-3"
                     style={{
                       fontSize: "20px",
                       fontWeight: 600,
