@@ -36,8 +36,15 @@ import { Sequence } from "./sequence";
 import { BackgroundColor } from "../../../../../Constant";
 import { NestedSequence } from "./nestedSequence";
 import { SequenceStart } from "./startSequence";
+import { Data } from "emoji-mart";
 
-const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
+const StepTwo = ({
+  handlePrevious,
+  handleNext,
+  sequence,
+  sequenceArray,
+  setSequenceArray,
+}) => {
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
   const handleNextStep = (e) => {
@@ -47,6 +54,10 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
   const handleBackStep = (e) => {
     e.preventDefault(e);
     handlePrevious(e);
+  };
+
+  const addSequenceRecord = (data) => {
+    setSequenceArray((sequenceArray) => [...sequenceArray, data]);
   };
 
   const Controls = () => {
@@ -168,11 +179,11 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                 >
                   <Eye strokeWidth={1} color="#1D1D1D" />
                   <Actions
+                    key={1}
                     id={1}
                     name={"View Profile"}
                     color={"#A8A7A7"}
-                    setSequence={setSequence}
-                    sequence={sequence}
+                    addSequenceRecord={addSequenceRecord}
                   />
                 </Btn>
 
@@ -188,11 +199,11 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                   {" "}
                   <GitMerge strokeWidth={1} color="#1D1D1D" />
                   <Actions
+                    key={2}
                     id={2}
                     name={"Send Connection"}
                     color={"#A8A7A7"}
-                    setSequence={setSequence}
-                    sequence={sequence}
+                    addSequenceRecord={addSequenceRecord}
                   />
                 </Btn>
                 <Btn
@@ -206,11 +217,11 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                 >
                   <GitPullRequest strokeWidth={1} color="#1D1D1D" />
                   <Actions
+                    key={3}
                     id={3}
                     name={"Withdraw Connection"}
                     color={"#A8A7A7"}
-                    setSequence={setSequence}
-                    sequence={sequence}
+                    addSequenceRecord={addSequenceRecord}
                   />
                 </Btn>
                 <Btn
@@ -224,11 +235,11 @@ const StepTwo = ({ handlePrevious, handleNext, sequence, setSequence }) => {
                 >
                   <MessageSquare strokeWidth={1} color="#1D1D1D" />
                   <Actions
+                    key={4}
                     id={4}
                     name={"Send a Message"}
                     color={"#A8A7A7"}
-                    setSequence={setSequence}
-                    sequence={sequence}
+                    addSequenceRecord={addSequenceRecord}
                   />
                 </Btn>
               </ButtonGroup>

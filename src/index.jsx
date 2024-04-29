@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
@@ -8,7 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 const Root = () => {
   return (
     <div className="App">
-      <App />
+      <StrictMode>
+        <App />
+      </StrictMode>
     </div>
   );
 };

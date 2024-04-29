@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Eye, GitMerge, GitPullRequest, MessageSquare } from "react-feather";
 import { Sequence } from "./sequence";
 import { Col, Row } from "reactstrap";
+import { memo, useCallback, useState } from "react";
 
 // Recursive component to render nested sequences
 export const NestedSequence = ({ sequence }) => {
@@ -33,14 +34,61 @@ export const NestedSequence = ({ sequence }) => {
           </div>
         </Col>
         <Col xl="12">
-          {sequence.children.length ? (
+          {sequence.options.length &&
+          sequence.children.length &&
+          sequence.children.length < sequence.options.length ? (
             <>
-              {sequence.children.map((item, index) => (
-                <NestedSequence sequence={item} />
-              ))}
+              <Row>
+                {sequence.options.map((item, index) => (
+                  <Col
+                    xl={sequence.options.length === 1 ? "12" : "6"}
+                    key={index}
+                  >
+                    {sequence.children.map((child, childrenIndex) =>
+                      child.parentOptionId === item.id ? (
+                        <NestedSequence sequence={child} />
+                      ) : (
+                        <Sequence
+                          key={childrenIndex} // Ensure each child has a unique key
+                          id={sequence.sequenceId}
+                          optionId={item.id}
+                          name={sequence.actionName}
+                        />
+                      )
+                    )}
+                  </Col>
+                ))}
+              </Row>
             </>
           ) : (
-            <Sequence firstNode={false} options={sequence.options} />
+            <>
+              {sequence.children.length ? (
+                <>
+                  <Row>
+                    {sequence.children.map((item, index) => (
+                      <Col xl={sequence.children.length === 1 ? "12" : "6"}>
+                        <NestedSequence sequence={item} />
+                      </Col>
+                    ))}
+                  </Row>
+                </>
+              ) : (
+                <>
+                  <Row>
+                    {sequence.options.map((item, index) => (
+                      <Col xl={sequence.options.length === 1 ? "12" : "6"}>
+                        <Sequence
+                          key={index}
+                          id={sequence.sequenceId}
+                          optionId={item.id}
+                          name={sequence.actionName}
+                        />
+                      </Col>
+                    ))}
+                  </Row>
+                </>
+              )}
+            </>
           )}
         </Col>
       </Row>

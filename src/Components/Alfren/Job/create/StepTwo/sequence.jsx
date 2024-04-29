@@ -22,7 +22,7 @@ function getStyle() {
     alignItems: "center",
   };
 }
-export const Sequence = ({ id, name, options }) => {
+export const Sequence = (id, name, optionId) => {
   const [hasDropped, setHasDropped] = useState(false);
   const [hasDroppedOnChild, setHasDroppedOnChild] = useState(false);
   const [{ isOver, isOverCurrent }, drop] = useDrop(
@@ -35,7 +35,7 @@ export const Sequence = ({ id, name, options }) => {
         }
         setHasDropped(true);
         setHasDroppedOnChild(didDrop);
-        return { name, id };
+        return { id, name };
       },
       collect: (monitor) => ({
         isOver: monitor.isOver(),
@@ -47,30 +47,21 @@ export const Sequence = ({ id, name, options }) => {
 
   return (
     <div className="mt-5" style={{ height: "60vh" }}>
-      <Row>
-        {options.map((item, index) => (
-          <Col xl={options.length === 1 ? "12" : "6"}>
-            <div ref={drop} style={getStyle()}>
-              <span style={{ marginTop: "8px", marginLeft: "4px" }}>
-                <Plus strokeWidth={1} color={"#787878"} />
-              </span>
-              <span style={{ color: "#595959", padding: "10px" }}>
-                {" "}
-                Add Action{" "}
-              </span>
-              <span
-                style={{
-                  color: "#787878",
-                  backgroundColor: "#EAE8E8",
-                  padding: "10px",
-                }}
-              >
-                End
-              </span>
-            </div>
-          </Col>
-        ))}
-      </Row>
+      <div ref={drop} style={getStyle()}>
+        <span style={{ marginTop: "8px", marginLeft: "4px" }}>
+          <Plus strokeWidth={1} color={"#787878"} />
+        </span>
+        <span style={{ color: "#595959", padding: "10px" }}> Add Action </span>
+        <span
+          style={{
+            color: "#787878",
+            backgroundColor: "#EAE8E8",
+            padding: "10px",
+          }}
+        >
+          End
+        </span>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Children, Fragment, useState } from "react";
+import React, { Children, Fragment, useEffect, useState } from "react";
 import { Container, Row, Col, Progress, Form } from "reactstrap";
 import { Image, Progressbar } from "../../../../AbstractElements";
 import { Circle } from "react-feather";
@@ -43,58 +43,45 @@ const JobCreate = () => {
   //stepOne data end
 
   //stepTwo Data starts
-  const sequenceDetails = {
-    1: { options: {}, name: "View Profile", input: null },
-    2: {
-      options: {
-        1: { name: "Still not Accepted" },
-        2: { name: "Accepted" },
-      },
-      name: "Send Request",
-      input: null,
-    },
-    3: {
-      options: {},
-      name: "Withdraw Connection Request",
-      input: null,
-    },
-    4: {
-      options: {
-        1: { name: "Candidate Not Replied" },
-        2: { name: "Candidate Replied" },
-      },
-      name: "Send Message",
-      input: null,
-    },
-  };
-  const [sequence, setSequence] = useState({
-    actionId: 1,
-    actionName: "View Profile",
-    id: 1,
-    options: [{ id: 0, name: "Default" }],
-    children: [
-      {
-        actionId: 2,
-        actionName: "Send Connection",
-        id: 1,
-        options: [
-          { id: 1, name: "Still not Accepted" },
-          { id: 2, name: "Accepted" },
-        ],
-        children: [
-          {
-            actionId: 2,
-            parentOptionId: 1,
-            actionName: "Withdraw Connection",
-            id: 1,
-            options: [{ id: 0, name: "Default" }],
-            children: [],
-          },
-        ],
-      },
-    ],
-  });
-  //stepTwo Data ends
+
+  const [sequence, setSequence] = useState();
+  const [sequenceArray, setSequenceArray] = useState([]);
+
+  function transformSequenceRecords(records) {
+    const map = new Map();
+
+    // Create a map with sequenceId as keys
+    for (const record of records) {
+      map.set(record.sequenceId, { ...record, children: [] });
+    }
+
+    // Build the tree structure
+    for (const record of records) {
+      if (record.parentSequenceId && map.has(record.parentSequenceId)) {
+        const parent = map.get(record.parentSequenceId);
+        parent.children.push(map.get(record.sequenceId));
+      }
+    }
+
+    console.log("mmmmm", records);
+
+    // Find and return the root node
+    let rootNode;
+    for (const record of records) {
+      if (!record.parentSequenceId) {
+        rootNode = map.get(record.sequenceId);
+        break;
+      }
+    }
+
+    return rootNode;
+  }
+
+  useEffect(() => {
+    const transformed = transformSequenceRecords(sequenceArray);
+    console.log("dgdfg", transformed, sequenceArray);
+    setSequence(transformed);
+  }, [sequenceArray]);
 
   return (
     <Fragment>
@@ -228,7 +215,8 @@ const JobCreate = () => {
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
                 sequence={sequence}
-                setSequence={setSequence}
+                sequenceArray={sequenceArray}
+                setSequenceArray={setSequenceArray}
               />
             )}
             {step === 3 && <StepThree />}
