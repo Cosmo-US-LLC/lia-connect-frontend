@@ -9,7 +9,7 @@ export const Line = ({ marginBottom, marginTop }) => {
     >
       <div
         style={{
-          borderLeft: "1px solid #DFDFDF",
+          borderLeft: "1px solid #8FA8D7",
           height: "50px",
           left: "50%",
           marginLeft: "-3px",

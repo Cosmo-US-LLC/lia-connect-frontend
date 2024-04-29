@@ -46,6 +46,11 @@ const StepTwo = ({
 }) => {
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
+  const handleResetButton = (e) => {
+    e.preventDefault(e);
+    setSequenceArray([]);
+  };
+
   const handleNextStep = (e) => {
     e.preventDefault(e);
     handleNext(e);
@@ -249,7 +254,7 @@ const StepTwo = ({
                 }}
               >
                 <Link
-                  onClick={handleNextStep}
+                  onClick={handleResetButton}
                   className="btn btn-outline-dark pe-5 ps-5 pt-2 pb-2 mb-2"
                   style={{ opacity: nextActive ? "100%" : "60%" }}
                 >

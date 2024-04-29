@@ -13,9 +13,9 @@ export const HorizontalLine = ({ x, y1, x2, y2 }) => {
           marginLeft: "-3px",
           top: "0",
           marginBottom: "10px",
-          borderTop: "1px solid #DFDFDF",
-          borderLeft: "1px solid #DFDFDF",
-          borderRight: "1px solid #DFDFDF",
+          borderTop: "1px solid #8FA8D7",
+          borderLeft: "1px solid #8FA8D7",
+          borderRight: "1px solid #8FA8D7",
           height: "50px",
           width: "50%",
         }}

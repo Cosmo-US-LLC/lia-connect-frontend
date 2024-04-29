@@ -72,6 +72,8 @@ export const NestedSequence = ({
                 {sequence.options.map((item, index) => (
                   <Col
                     xl={sequence.options.length === 1 ? "12" : "6"}
+                    xm={sequence.options.length === 1 ? "12" : "6"}
+                    xs={sequence.options.length === 1 ? "12" : "6"}
                     key={index}
                   >
                     {sequence.children.map((child, childrenIndex) =>
@@ -102,7 +104,11 @@ export const NestedSequence = ({
                 <>
                   <Row>
                     {sequence.children.map((item, index) => (
-                      <Col xl={sequence.children.length === 1 ? "12" : "6"}>
+                      <Col
+                        xl={sequence.children.length === 1 ? "12" : "6"}
+                        xm={sequence.options.length === 1 ? "12" : "6"}
+                        xs={sequence.options.length === 1 ? "12" : "6"}
+                      >
                         <NestedSequence
                           sequence={item}
                           sequenceArray={sequenceArray}
@@ -117,7 +123,11 @@ export const NestedSequence = ({
                 <>
                   <Row>
                     {sequence.options.map((item, index) => (
-                      <Col xl={sequence.options.length === 1 ? "12" : "6"}>
+                      <Col
+                        xl={sequence.options.length === 1 ? "12" : "6"}
+                        xm={sequence.options.length === 1 ? "12" : "6"}
+                        xs={sequence.options.length === 1 ? "12" : "6"}
+                      >
                         <Sequence
                           key={index}
                           id={sequence.sequenceId}

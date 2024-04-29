@@ -22,63 +22,70 @@ export const DoubleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
       <HorizontalLine />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         {sequence.options.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              border: "1px dashed  #DADADA",
-              boxShadow: "0px 6px 20px 0px #0000000F",
-              borderRadius: "4px",
-              color: "black",
-              backgroundColor: "#FFEFBD",
-              textAlign: "center",
-              display: "inline-flex",
-              alignItems: "center",
-            }}
-          >
-            <span
+          <div>
+            <div>
+              <span style={{ color: "#819ACB" }}>{item.name}</span>
+
+              <Line marginBottom={10} marginTop={10} />
+            </div>
+            <div
+              key={index}
               style={{
-                padding: "10px",
+                border: "1px dashed  #DADADA",
+                boxShadow: "0px 6px 20px 0px #0000000F",
+                borderRadius: "4px",
+                color: "black",
+                backgroundColor: "#FFEFBD",
+                textAlign: "center",
                 display: "inline-flex",
                 alignItems: "center",
               }}
             >
-              <Clock size={15} strokeWidth={1} />
-            </span>
-            <span style={{ color: "#595959", padding: "10px" }}>
-              {item.delayTillNextActionValue}
-              {item.delayTillNextActionType === "h"
-                ? " hours"
-                : item.delayTillNextActionType === "d"
-                ? " days"
-                : item.delayTillNextActionType === "w"
-                ? " weeks"
-                : ""}
-            </span>
+              <span
+                style={{
+                  padding: "10px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                }}
+              >
+                <Clock size={15} strokeWidth={1} />
+              </span>
+              <span style={{ color: "#595959", padding: "10px" }}>
+                {item.delayTillNextActionValue}
+                {item.delayTillNextActionType === "h"
+                  ? " hours"
+                  : item.delayTillNextActionType === "d"
+                  ? " days"
+                  : item.delayTillNextActionType === "w"
+                  ? " weeks"
+                  : ""}
+              </span>
 
-            <button
-              id={"alfren" + sequence.sequenceId + item.id + "alfren"}
-              className="d-flex"
-              style={{
-                cursor: "pointer",
-                border: "none",
-                backgroundColor: "transparent",
-                fontWeight: "600",
-                color: "black",
-              }}
-              onClick={() => setActiveDropdown(index)}
-            >
-              <MoreVertical size={15} strokeWidth={3} />
-            </button>
-            <DelayDropdown
-              index={index}
-              target={"alfren" + sequence.sequenceId + item.id + "alfren"}
-              selectedOption={item}
-              sequence={sequence}
-              dropdownActive={dropdownActive}
-              setCloseDropdown={setCloseDropdown}
-              sequenceArray={sequenceArray}
-              setSequenceArray={setSequenceArray}
-            />
+              <button
+                id={"alfren" + sequence.sequenceId + item.id + "alfren"}
+                className="d-flex"
+                style={{
+                  cursor: "pointer",
+                  border: "none",
+                  backgroundColor: "transparent",
+                  fontWeight: "600",
+                  color: "black",
+                }}
+                onClick={() => setActiveDropdown(index)}
+              >
+                <MoreVertical size={15} strokeWidth={3} />
+              </button>
+              <DelayDropdown
+                index={index}
+                target={"alfren" + sequence.sequenceId + item.id + "alfren"}
+                selectedOption={item}
+                sequence={sequence}
+                dropdownActive={dropdownActive}
+                setCloseDropdown={setCloseDropdown}
+                sequenceArray={sequenceArray}
+                setSequenceArray={setSequenceArray}
+              />
+            </div>
           </div>
         ))}
       </div>
