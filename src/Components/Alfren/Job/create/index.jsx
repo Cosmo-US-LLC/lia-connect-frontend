@@ -12,7 +12,7 @@ import Completed from "./Completed";
 import { options } from "@fullcalendar/core/preact.js";
 
 const JobCreate = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const handleNext = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -62,8 +62,6 @@ const JobCreate = () => {
         parent.children.push(map.get(record.sequenceId));
       }
     }
-
-    console.log("mmmmm", records);
 
     // Find and return the root node
     let rootNode;
@@ -219,7 +217,12 @@ const JobCreate = () => {
                 setSequenceArray={setSequenceArray}
               />
             )}
-            {step === 3 && <StepThree />}
+            {step === 3 && (
+              <StepThree
+                handlePrevious={handlePrevious}
+                handleNext={handleNext}
+              />
+            )}
             {step === 4 && <Completed />}
           </Form>
         </div>

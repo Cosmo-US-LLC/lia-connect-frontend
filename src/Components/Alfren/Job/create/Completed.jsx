@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   Container,
   Row,
@@ -8,30 +8,27 @@ import {
   InputGroupText,
   Input,
 } from "reactstrap";
+import { Image } from "../../../../AbstractElements";
+import completedJob from "../../../../assets/used-files/images/completedJob.svg";
+import { useNavigate } from "react-router-dom";
 
 const Completed = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigate("/jobs");
+    }, 4000);
+
+    // Clear timeout if the component unmounts before the timeout
+    return () => clearTimeout(timeout);
+  }, [history]);
   return (
     <Fragment>
       <Container fluid={true}>
         <Row>
           <Col sm="12" className="mt-5">
-            <InputGroup style={{ width: "120%", border: "none" }}>
-              <InputGroupText
-                style={{
-                  border: "none",
-                  backgroundColor: "#f5f9ff",
-                  color: "#5C5E64",
-                  fontSize: "12px",
-                  fontWeight: "400",
-                }}
-              >
-                View Per Page
-              </InputGroupText>
-              <Input
-                placeholder="50"
-                className="js-example-basic-single col-sm-6"
-              />
-            </InputGroup>
+            <Image attrImage={{ src: completedJob }} />
           </Col>
         </Row>
       </Container>
