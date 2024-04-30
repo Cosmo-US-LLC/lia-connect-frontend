@@ -120,6 +120,18 @@ export const Sequence = ({
       name: "Send Message",
       input: null,
     },
+    5: {
+      options: [
+        {
+          id: 1,
+          name: "Default",
+          delayTillNextActionValue: 14,
+          delayTillNextActionType: "h",
+        },
+      ],
+      name: "End Sequence",
+      input: null,
+    },
   };
 
   const addAction = (index) => {
@@ -141,18 +153,27 @@ export const Sequence = ({
         id={"alfrenactionalfren" + id + optionId}
         ref={drop}
         style={getStyle()}
-        onClick={() => setDropdownActive(!dropdownActive)}
       >
-        <span style={{ marginTop: "8px", marginLeft: "4px" }}>
+        <span
+          style={{ marginTop: "8px", marginLeft: "4px" }}
+          onClick={() => setDropdownActive(!dropdownActive)}
+        >
           <Plus strokeWidth={1} color={"#787878"} />
         </span>
-        <span style={{ color: "#595959", padding: "10px" }}> Add Action </span>
+        <span
+          style={{ color: "#595959", padding: "10px" }}
+          onClick={() => setDropdownActive(!dropdownActive)}
+        >
+          {" "}
+          Add Action{" "}
+        </span>
         <span
           style={{
             color: "#787878",
             backgroundColor: "#EAE8E8",
             padding: "10px",
           }}
+          onClick={() => addAction(5)}
         >
           End
         </span>
@@ -253,6 +274,21 @@ export const Sequence = ({
               </div>
               <div className="text-white">
                 <span>{"Send Message"}</span>
+              </div>
+            </button>
+            <button
+              className="pt-2 pb-2 ps-2 pe-3 d-flex mb-2"
+              style={{
+                border: "1px solid #AA1313",
+                backgroundColor: "#AA1313",
+                borderRadius: "8px",
+                width: "100%",
+                justifyContent: "center",
+              }}
+              onClick={() => addAction(5)}
+            >
+              <div className="text-white">
+                <span>{"End Sequence"}</span>
               </div>
             </button>
           </div>

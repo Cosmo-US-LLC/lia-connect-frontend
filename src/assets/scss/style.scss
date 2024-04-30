@@ -69,6 +69,14 @@ body.dark-only {
   width: 100% !important;
 }
 
+.custom-tooltip {
+  z-index: 1;
+  opacity: 1;
+}
+.ck-editor {
+  border-radius: 8px;
+  background-color: orange;
+}
 // *** base ***
 @import "base/reset";
 @import "base/typography";
