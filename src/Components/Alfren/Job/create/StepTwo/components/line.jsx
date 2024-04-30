@@ -12,7 +12,7 @@ export const Line = ({ marginBottom, marginTop }) => {
           borderLeft: "1px solid #8FA8D7",
           height: "50px",
           left: "50%",
-          marginLeft: "-3px",
+          marginLeft: "-10px",
           top: "0",
           marginTop: marginTop,
           marginBottom: marginBottom,

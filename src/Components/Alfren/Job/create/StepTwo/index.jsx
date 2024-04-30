@@ -282,6 +282,13 @@ const StepTwo = ({
             </Link>
           </div>
           <Row style={{ width: "100%" }}>
+            <span
+              style={{ textAlign: "left", fontWeight: "400", fontSize: "10px" }}
+              className="mt-5 mb-5"
+            >
+              * To ensure that the system performs at the optimal efficiency,
+              you can have up to 5 active jobs at a time.
+            </span>
             <Col sm="12">
               {sequence ? (
                 <>

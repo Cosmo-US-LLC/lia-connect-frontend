@@ -8,11 +8,13 @@ import {
   MoreVertical,
 } from "react-feather";
 import { Sequence } from "./sequence";
-import { Col, Row } from "reactstrap";
+import { Card, CardBody, Col, Row, UncontrolledTooltip } from "reactstrap";
 import { memo, useCallback, useState } from "react";
 import { Line } from "./components/line";
 import { SingleOption } from "./singleOption";
 import { DoubleOption } from "./doubleOption";
+import HeaderCard from "../../../../Common/Component/HeaderCard";
+import SimpleMdeReact from "react-simplemde-editor";
 
 // Recursive component to render nested sequences
 export const NestedSequence = ({
@@ -21,15 +23,23 @@ export const NestedSequence = ({
   setSequenceArray,
   addSequenceRecord,
 }) => {
+  const [dropdownActive, setDropdownActive] = useState(false);
+  const [text, setText] = useState(
+    `Enter text in the area on the left. For more info, click the ? (help) icon in the menu.`
+  );
+  const handleChange = (e) => {};
   return (
     <Fragment>
       <Row>
         <Col xl="12">
           <div
             className="btn d-inline-flex"
-            style={{ backgroundColor: "#1264FD", color: "white" }}
+            style={{
+              backgroundColor: "#1264FD",
+              color: "white",
+            }}
           >
-            <span className="d-flex flex-row align-items-center">
+            <span className="d-flex flex-row align-items-center justify-content-between">
               {(() => {
                 switch (sequence.actionId) {
                   case 1:
@@ -46,6 +56,43 @@ export const NestedSequence = ({
               })()}
             </span>
             <span className="ms-2">{sequence.actionName}</span>
+            {sequence.actionId === 4 && (
+              <div>
+                <span
+                  id={"alfrenmessagealfren" + sequence.id + sequence.optionId}
+                  onClick={() => setDropdownActive(!dropdownActive)}
+                >
+                  <MoreVertical strokeWidth={1} size={16} />
+                </span>
+                <UncontrolledTooltip
+                  isOpen={dropdownActive}
+                  target={
+                    "alfrenmessagealfren" + sequence.id + sequence.optionId
+                  }
+                  placement="bottom"
+                  style={{
+                    backgroundColor: "white",
+                    boxShadow: "0px 6px 26px -3.89px #0000001A",
+                    maxWidth: "90%",
+                  }}
+                >
+                  <Card>
+                    <HeaderCard title="dfgdf" />
+                    <CardBody>
+                      <SimpleMdeReact
+                        id="editor_container"
+                        onChange={() => handleChange}
+                        value={text}
+                        options={{
+                          autofocus: true,
+                          spellChecker: false,
+                        }}
+                      />
+                    </CardBody>
+                  </Card>
+                </UncontrolledTooltip>
+              </div>
+            )}
           </div>
         </Col>
         <Col xl="12" className="text-center">
