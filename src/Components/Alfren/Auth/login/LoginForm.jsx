@@ -51,7 +51,7 @@ const LoginForm = ({ logoClassMain }) => {
     setName("Emay Walter");
     if (email === "test@gmail.com" && password === "test123") {
       localStorage.setItem("login", JSON.stringify(true));
-      history(`${process.env.PUBLIC_URL}/dashboard/`);
+      history(`${process.env.PUBLIC_URL}/home`);
       toast.success("Successfully logged in!..");
     } else {
       toast.error("You enter wrong password or username!..");
@@ -264,7 +264,7 @@ const LoginForm = ({ logoClassMain }) => {
                 </div>
               </div>
 
-              <P attrPara={{ className: "text-center mb-0 " }}>
+              <P attrPara={{ className: "text-center mb-0 mt-5" }}>
                 Don't you have an account?{" "}
                 <Link
                   className="ms-2"

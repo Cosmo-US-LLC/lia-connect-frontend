@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Image } from "../../AbstractElements";
+import { Home, Search, User } from "react-feather";
+import { Link } from "react-router-dom";
 
-const Breadcrumbs = (props) => {
+const Breadcrumbs = ({ breadcrumbActive }) => {
   return (
     <Fragment>
       <Container fluid={true}>
@@ -10,25 +12,43 @@ const Breadcrumbs = (props) => {
           <Row>
             <Col xs="12">
               <ol className="breadcrumb">
-                <Image
-                  attrImage={{
-                    src: props.icon,
-                    className: `sidebar-icon-margin`,
-                    alt: "",
-                  }}
-                />
-                {props.parent ? (
-                  <li className="breadcrumb-item">{props.parent}</li>
-                ) : (
-                  ""
-                )}
+                <li className="me-2">
+                  {(() => {
+                    switch (breadcrumbActive.icon) {
+                      case "Home":
+                        return <Home strokeWidth={1} size={20} />;
+                      case "Candidate":
+                        return <User strokeWidth={1} size={20} />;
+                      case "Job":
+                        return <Search strokeWidth={1} size={20} />;
+                      default:
+                        return null;
+                    }
+                  })()}
+                </li>
 
-                {props.subParent ? (
-                  <li className="breadcrumb-item">{props.subParent}</li>
+                {breadcrumbActive.parent ? (
+                  <li className="d-flex breadcrumb-item">
+                    <Link
+                      to={breadcrumbActive.parent.path}
+                      style={{ color: "#595959" }}
+                    >
+                      {breadcrumbActive.parent.label}
+                    </Link>
+                  </li>
                 ) : (
                   ""
                 )}
-                <li className="breadcrumb-item active">{props.title}</li>
+                {breadcrumbActive.subParent ? (
+                  <li className=" d-flex  breadcrumb-item">
+                    {breadcrumbActive.subParent.label}
+                  </li>
+                ) : (
+                  ""
+                )}
+                <li className=" d-flex breadcrumb-item active">
+                  {breadcrumbActive.label}
+                </li>
               </ol>
             </Col>
           </Row>

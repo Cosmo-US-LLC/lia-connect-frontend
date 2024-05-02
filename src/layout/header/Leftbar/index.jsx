@@ -60,15 +60,21 @@ const Leftbar = () => {
   };
 
   function getActiveBreadcrumbs(currentRoute) {
-    let activeBreadcrumbs = [];
+    let activeBreadcrumbs = null;
 
     for (const item of breadcrumbData) {
       const fullPath = item.path;
-      if (fullPath === currentRoute) {
-        activeBreadcrumbs.push({ ...item, isActive: true });
+
+      // Convert the fullPath to a regular expression pattern
+      const pattern = new RegExp("^" + fullPath.replace(/:\w+/g, "\\w+") + "$");
+
+      // Check if the currentRoute matches the pattern
+      if (pattern.test(currentRoute)) {
+        activeBreadcrumbs = { ...item, isActive: true };
+        break;
       }
     }
-
+    console.log("activeBreadcrumbs", activeBreadcrumbs);
     return activeBreadcrumbs;
   }
 
@@ -81,7 +87,7 @@ const Leftbar = () => {
   return (
     <Fragment>
       <Col className="header-logo-wrapper col-auto p-0" id="out_side_click">
-        <div className="logo-wrapper">
+        <div className="logo-wrapper" style={{ backgroundColor: "#F9F9F9" }}>
           <Link to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}>
             <Image
               attrImage={{
@@ -117,11 +123,7 @@ const Leftbar = () => {
       <Col xxl="5" xl="6" lg="5" md="4" sm="3" className="left-header p-0">
         {/* <NotificationSlider /> */}
         {breadcrumbActive ? (
-          <Breadcrumbs
-            parent="Candidates"
-            title="All Candidates"
-            icon={CandidateIcon}
-          />
+          <Breadcrumbs breadcrumbActive={breadcrumbActive} />
         ) : null}
       </Col>
     </Fragment>

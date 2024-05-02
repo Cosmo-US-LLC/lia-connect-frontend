@@ -9,7 +9,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -61,7 +61,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -113,7 +113,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -165,7 +165,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -217,7 +217,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -269,7 +269,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{
@@ -321,7 +321,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <Media className="d-flex">
           <Image
             attrImage={{

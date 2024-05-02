@@ -12,7 +12,7 @@ export const MENUITEMS = [
   {
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/dashboard`,
+        path: `${process.env.PUBLIC_URL}/home`,
         icon: <Home strokeWidth={0.5} />,
         title: "Home",
         type: "link",

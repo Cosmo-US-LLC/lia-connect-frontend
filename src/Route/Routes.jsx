@@ -8,10 +8,11 @@ import CandidateLists from "../Components/Alfren/Candidates/list/index";
 //jobs
 import JobLists from "../Components/Alfren/Job/list/index";
 import JobCreate from "../Components/Alfren/Job/create/index";
+import JobDetail from "../Components/Alfren/Job/detail/index";
 
 export const routes = [
   {
-    path: `${process.env.PUBLIC_URL}/dashboard`,
+    path: `${process.env.PUBLIC_URL}/home`,
     Component: <Default />,
   },
   {
@@ -23,11 +24,15 @@ export const routes = [
     Component: <JobCreate />,
   },
   {
+    path: `${process.env.PUBLIC_URL}/jobs/detail/:id`,
+    Component: <JobDetail />,
+  },
+  {
     path: `${process.env.PUBLIC_URL}/candidates`,
     Component: <CandidateLists />,
   },
   {
-    path: `${process.env.PUBLIC_URL}/candidates/:id`,
+    path: `${process.env.PUBLIC_URL}/candidates/detail/:id`,
     Component: <CandidateDetail />,
   },
 ];

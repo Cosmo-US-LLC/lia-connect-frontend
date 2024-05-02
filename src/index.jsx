@@ -5,7 +5,7 @@ import App from "./App";
 import "./i18n";
 import reportWebVitals from "./reportWebVitals";
 
-const Root = () => {
+const Start = () => {
   return (
     <div className="App">
       <StrictMode>
@@ -16,7 +16,7 @@ const Root = () => {
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Root />);
+root.render(<Start />);
 
 // ReactDOM.createRoot(<App />, document.getElementById("root"));
 

@@ -401,7 +401,7 @@ const RegisterForm = ({ logoClassMain }) => {
                 </div>
               </div>
 
-              <P attrPara={{ className: "text-center mb-0 " }}>
+              <P attrPara={{ className: "text-center mb-0 mt-4" }}>
                 Already have an account?
                 <Link
                   className="ms-2"

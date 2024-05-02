@@ -95,10 +95,14 @@ const SidebarMenu = ({
               }}
             />
             <div className="upgradeAlert text-center">
-              <h4 style={{ color: "#000000", fontWeight: "bold" }}>
+              <h4
+                style={{ color: "#000000", fontSize: "16px", fontWeight: 600 }}
+              >
                 3 Days Left
               </h4>
-              <p style={{ color: "#545454" }}>
+              <p
+                style={{ color: "#545454", fontSize: "12px", fontWeight: 400 }}
+              >
                 Your Free Trial Will End In 3 Days.
               </p>
             </div>

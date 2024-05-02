@@ -24,7 +24,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
@@ -120,7 +120,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
@@ -157,7 +157,7 @@ export const dummytabledata = [
               <span style={{ fontSize: "8px", color: "#fba14d" }}>100</span>
             </div>
           </Col>
-        </div>{" "}
+        </div>
       </Link>
     ),
     potentialCandidates: (
@@ -216,7 +216,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
@@ -312,7 +312,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
@@ -408,7 +408,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
@@ -504,7 +504,7 @@ export const dummytabledata = [
   {
     id: 1,
     name: (
-      <Link to="1">
+      <Link to="detail/1">
         <div>Senior Product Design Lead</div>
         <div className="progress-showcase">
           <Col style={{ display: "flex", justifyContent: "space-between" }}>
