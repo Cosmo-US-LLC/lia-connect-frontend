@@ -10,6 +10,9 @@ import JobLists from "../Components/Alfren/Job/list/index";
 import JobCreate from "../Components/Alfren/Job/create/index";
 import JobDetail from "../Components/Alfren/Job/detail/index";
 
+import ChatApp from "../Components/Alfren/ChatApp/index";
+import Settings from "../Components/Alfren/Settings/index";
+
 export const routes = [
   {
     path: `${process.env.PUBLIC_URL}/home`,
@@ -34,5 +37,13 @@ export const routes = [
   {
     path: `${process.env.PUBLIC_URL}/candidates/detail/:id`,
     Component: <CandidateDetail />,
+  },
+  {
+    path: `${process.env.PUBLIC_URL}/settings`,
+    Component: <Settings />,
+  },
+  {
+    path: `${process.env.PUBLIC_URL}/messages`,
+    Component: <ChatApp />,
   },
 ];

@@ -250,7 +250,7 @@ const StepOne = ({
                       </H6>
                       {enterSkill ? (
                         <Input
-                          className="form-control"
+                          className="form-control mb-2"
                           type="text"
                           name="skillInputValue"
                           value={skillInputValue}

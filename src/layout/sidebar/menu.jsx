@@ -44,13 +44,13 @@ export const MENUITEMS = [
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/dashboard`,
+        path: `${process.env.PUBLIC_URL}/messages`,
         icon: <MessageCircle strokeWidth={0.5} />,
         title: "Messages",
         type: "link",
       },
       {
-        path: `${process.env.PUBLIC_URL}/dashboard`,
+        path: `${process.env.PUBLIC_URL}/settings`,
         icon: <Settings strokeWidth={0.5} />,
         title: "Settings",
         type: "link",

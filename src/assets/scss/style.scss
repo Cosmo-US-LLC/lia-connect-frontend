@@ -77,6 +77,26 @@ body.dark-only {
   border-radius: 8px;
   background-color: orange;
 }
+.gradient-border {
+  padding: 1rem; /* Adjust padding as needed */
+  background: #fff; /* Set your desired background color */
+  position: relative;
+}
+
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5px; /* Adjust border width as needed */
+  background: linear-gradient(
+    to right,
+    color1,
+    color2
+  ); /* Define your gradient colors */
+}
+
 // *** base ***
 @import "base/reset";
 @import "base/typography";

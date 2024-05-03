@@ -42,4 +42,14 @@ export const breadcrumbData = [
       path: "/jobs",
     },
   },
+  {
+    path: "/settings",
+    label: "Settings",
+    icon: "Setting",
+  },
+  {
+    path: "/messages",
+    label: "Messages",
+    icon: "Messages",
+  },
 ];

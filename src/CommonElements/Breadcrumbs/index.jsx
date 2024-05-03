@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Image } from "../../AbstractElements";
-import { Home, Search, User } from "react-feather";
+import { Home, MessageCircle, Search, Settings, User } from "react-feather";
 import { Link } from "react-router-dom";
 
 const Breadcrumbs = ({ breadcrumbActive }) => {
@@ -12,7 +12,7 @@ const Breadcrumbs = ({ breadcrumbActive }) => {
           <Row>
             <Col xs="12">
               <ol className="breadcrumb">
-                <li className="me-2">
+                <li className="me-2 pt-1">
                   {(() => {
                     switch (breadcrumbActive.icon) {
                       case "Home":
@@ -21,6 +21,10 @@ const Breadcrumbs = ({ breadcrumbActive }) => {
                         return <User strokeWidth={1} size={20} />;
                       case "Job":
                         return <Search strokeWidth={1} size={20} />;
+                      case "Setting":
+                        return <Settings strokeWidth={1} size={20} />;
+                      case "Messages":
+                        return <MessageCircle strokeWidth={1} size={20} />;
                       default:
                         return null;
                     }
