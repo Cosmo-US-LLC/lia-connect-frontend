@@ -155,6 +155,21 @@
     rgba(234, 235, 255, 0) 100%
   );
 }
+
+.gradientStyleHorizontal {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px; /* Adjust thickness as needed */
+  height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(234, 235, 255, 0) 0%,
+    #eaebff 53%,
+    rgba(234, 235, 255, 0) 100%
+  );
+}
 .planBillingDiv {
   width: 100%;
   border: 1px solid var(--Light-Levender, #ebf1fc);

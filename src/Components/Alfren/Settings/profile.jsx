@@ -50,7 +50,6 @@ const Profile = () => {
               style={{
                 textAlign: "left",
                 paddingRight: "5%",
-                borderRight: "1px solid #EBF1FC",
               }}
             >
               {" "}
@@ -234,12 +233,14 @@ const Profile = () => {
                   </FormGroup>
                 </Form>
               </div>
+              <div className="gradientStyleHorizontal"></div>
             </Col>
             <Col
               xl="6"
               className="mt-2"
               style={{
                 textAlign: "left",
+                paddingLeft: "3%",
               }}
             >
               <p style={{ fontSize: "18px", fontWeight: 600 }}>
