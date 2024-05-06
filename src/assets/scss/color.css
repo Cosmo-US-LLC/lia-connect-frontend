@@ -24196,7 +24196,7 @@ ul.dot-group li {
 .pricingtable .pricing-content li:last-child {
   margin: 0;
 }
-.pricingtable .pricing-content li:before {
+/* .pricingtable .pricing-content li:before {
   content: "\f00c";
   color: var(--theme-default);
   font-family: FontAwesome;
@@ -24207,7 +24207,7 @@ ul.dot-group li {
   position: absolute;
   top: 1px;
   left: 0;
-}
+} */
 
 @media (max-width: 1470px) {
   .pricing-block > div {

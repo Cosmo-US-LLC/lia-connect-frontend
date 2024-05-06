@@ -10,7 +10,7 @@ import subscriptionInactive from "../../../assets/used-files/icons/settings/subs
 import { Image } from "../../../AbstractElements";
 import Profile from "./profile";
 import Sequence from "./sequence";
-import Subscription from "./subscription";
+import Subscription from "./subscription/index";
 
 const Settings = () => {
   const [menu, setMenu] = useState([
