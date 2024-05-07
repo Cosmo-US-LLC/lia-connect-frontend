@@ -135,7 +135,15 @@ export const SmallWidgetsData = [
 ];
 
 export const AllCampaignsTable = {
-  header: ["AD Platform", "Campaign", "GEO", "Profitability", "Max Participation Avai.", "Status", "Create"],
+  header: [
+    "AD Platform",
+    "Campaign",
+    "GEO",
+    "Profitability",
+    "Max Participation Avai.",
+    "Status",
+    "Create",
+  ],
   body: [
     {
       ADPlatform: "facebook",

@@ -8,52 +8,123 @@ import {
   InputGroupText,
   Label,
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import {
-  Check,
-  CheckCircle,
-  Circle,
-  Eye,
-  Facebook,
-  Filter,
-  Key,
-  Linkedin,
-  Mail,
-  Twitter,
-} from "react-feather";
+import { AlertTriangle, Check, Circle, Eye, Key, X } from "react-feather";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { resetPassword } from "../../../../redux/Auth/authActions";
+import { PasswordReset } from "../../../../Constant/index";
 
-import logoWhite from "../../../../assets/images/logo/logo.png";
-import logoDark from "../../../../assets/images/logo/logo_dark.png";
-
-const ResetPwdForm = ({ logoClassMain }) => {
+const ResetPwdForm = () => {
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const [error, setError] = useState(true);
   const [togglePassword, setTogglePassword] = useState(false);
+  const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+  const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
+
+  const initialState = {
+    token: token,
+    password: "",
+  };
+  const [formData, setFormData] = useState(initialState);
+  const passwordRequirements = [
+    { text: "Atleast 1 letter should be uppercase.", status: 0 },
+    { text: "Atleast 1 special character include.", status: 0 },
+    { text: "Atleast 1 number include.", status: 0 },
+    { text: "Password should be 8 letter long.", status: 0 },
+  ];
+  const [requirements, setRequirements] = useState(passwordRequirements);
+
+  const handleChange = (e) => {
+    if (e.target.name == "password") {
+      const password = e.target.value;
+
+      // Update requirements based on entered password
+      const updatedRequirements = passwordRequirements.map((requirement) => {
+        const upperCase = /[A-Z]/.test(password);
+        const number = /[0-9]/.test(password);
+        const symbol = /[!@#$%^&*()_+\-=[\]{};':",./<>?|\\ ]/.test(password);
+
+        setError(true);
+
+        switch (requirement.text) {
+          case "Password should be 8 letter long.":
+            return {
+              ...requirement,
+              status: password.length >= 8 ? 1 : 0,
+            };
+          case "Atleast 1 special character include.":
+            return {
+              ...requirement,
+              status: symbol ? 1 : -1,
+            };
+          case "Atleast 1 number include.":
+            return {
+              ...requirement,
+              status: number ? 1 : -1,
+            };
+          case "Atleast 1 letter should be uppercase.":
+            return {
+              ...requirement,
+              status: upperCase ? 1 : -1,
+            };
+          default:
+            return requirement; // Keep other requirements unchanged
+        }
+      });
+      console.log("pppp", updatedRequirements);
+
+      const hasUnfulfilledRequirement = updatedRequirements.some(
+        (requirement) => requirement.status <= 0
+      );
+
+      console.log("hhhh", hasUnfulfilledRequirement);
+      setError(hasUnfulfilledRequirement);
+
+      setRequirements(updatedRequirements);
+    } else if (e.target.name == "confirm_password") {
+      setConfirmPasswordMatched(
+        formData.password !== e.target.value ? false : true
+      );
+    }
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit1 = (e) => {
+    dispatch(
+      resetPassword(formData, (resp) => {
+        if (resp.status == 204) {
+          toast.success(PasswordReset);
+          navigate("/auth/login");
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
   return (
     <Fragment>
       <div className="login-card">
         <div>
-          {/* <div>
-            <Link
-              className={`logo ${logoClassMain ? logoClassMain : ""}`}
-              to={process.env.PUBLIC_URL}
-            >
-              <Image
-                attrImage={{
-                  className: "img-fluid for-light",
-                  src: logoWhite,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "img-fluid for-dark",
-                  src: logoDark,
-                  alt: "looginpage",
-                }}
-              />
-            </Link>
-          </div> */}
           <div className="login-main">
-            <Form className="theme-form login-form">
+            <Form
+              className="theme-form login-form"
+              onSubmit={handleSubmit(onSubmit1)}
+            >
               <H4
                 attrH4={{
                   style: {
@@ -97,6 +168,9 @@ const ResetPwdForm = ({ logoClassMain }) => {
                     type={togglePassword ? "text" : "password"}
                     required
                     placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                   />
                   <InputGroupText>
                     <Eye
@@ -118,43 +192,58 @@ const ResetPwdForm = ({ logoClassMain }) => {
                     <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
-                    type={togglePassword ? "text" : "password"}
+                    type={toggleConfirmPassword ? "text" : "password"}
                     required
+                    name="confirm_password"
                     placeholder="Confirm Password"
+                    value={formData.confirm_password}
+                    onChange={handleChange}
                   />
                   <InputGroupText>
                     <Eye
                       strokeWidth={0.5}
                       size={16}
-                      onClick={() => setTogglePassword(!togglePassword)}
+                      onClick={() =>
+                        setToggleConfirmPassword(!toggleConfirmPassword)
+                      }
                     />
                   </InputGroupText>
                 </InputGroup>
               </FormGroup>
 
               <FormGroup>
-                <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={0.5} size={7} />
+                {requirements.map((element, index) => (
+                  <div
+                    style={{
+                      color:
+                        element.status === 0
+                          ? "#595959"
+                          : element.status === -1
+                          ? "#AA1313"
+                          : "#299A16",
+                    }}
+                  >
+                    {element.status === 0 ? (
+                      <Circle strokeWidth={0.5} size={7} />
+                    ) : element.status === -1 ? (
+                      <X strokeWidth={0.5} size={7} />
+                    ) : (
+                      <Check strokeWidth={0.5} size={7} />
+                    )}
+
+                    <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                      {element.text}
+                    </span>
+                  </div>
+                ))}
+                <div
+                  style={{
+                    color: confirmPasswordMatched ? "white" : "#AA1313",
+                  }}
+                >
+                  <AlertTriangle strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 letter should be uppercase.
-                  </span>
-                </div>
-                <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={0.5} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 special character include.
-                  </span>
-                </div>
-                <div style={{ color: "#AA1313" }}>
-                  <Check strokeWidth={0.5} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 number include.
-                  </span>
-                </div>
-                <div style={{ color: "#595959" }}>
-                  <Circle strokeWidth={0.5} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Password should be 12 letter long.
+                    Confirm Password Not matched
                   </span>
                 </div>
               </FormGroup>

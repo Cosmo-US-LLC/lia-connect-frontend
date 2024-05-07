@@ -23,54 +23,60 @@ import FaqProvider from "./_helper/Faq/FaqProvider";
 import AnimationThemeProvider from "./_helper/AnimationTheme/AnimationThemeProvider";
 import CustomizerProvider from "./_helper/Customizer/CustomizerProvider";
 import "react-range-slider-input/dist/style.css";
+import { Provider } from "react-redux";
+import store from "./store";
+import { ToastContainer } from "react-toastify";
 
 const App = () => (
   <div className="App">
-    <CustomizerProvider>
-      <FaqProvider>
-        <LearningProvider>
-          <JobSearchProvider>
-            <WishListProvider>
-              <FilterProvider>
-                <CartProvider>
-                  <ProductProvider>
-                    <SearchResultProvider>
-                      <EmailProvider>
-                        <TodoProvider>
-                          <BookmarkProvider>
-                            <TableProvider>
-                              <GalleryProvider>
-                                <TaskProvider>
-                                  <ContactProvider>
-                                    <ChatProvider>
-                                      <ProjectProvider>
-                                        <GoogleChartProvider>
-                                          <ChartjsProvider>
-                                            <ChartistProvider>
-                                              <AnimationThemeProvider>
-                                                <Routers />
-                                              </AnimationThemeProvider>
-                                            </ChartistProvider>
-                                          </ChartjsProvider>
-                                        </GoogleChartProvider>
-                                      </ProjectProvider>
-                                    </ChatProvider>
-                                  </ContactProvider>
-                                </TaskProvider>
-                              </GalleryProvider>
-                            </TableProvider>
-                          </BookmarkProvider>
-                        </TodoProvider>
-                      </EmailProvider>
-                    </SearchResultProvider>
-                  </ProductProvider>
-                </CartProvider>
-              </FilterProvider>
-            </WishListProvider>
-          </JobSearchProvider>
-        </LearningProvider>
-      </FaqProvider>
-    </CustomizerProvider>
+    <ToastContainer />
+    <Provider store={store}>
+      <CustomizerProvider>
+        <FaqProvider>
+          <LearningProvider>
+            <JobSearchProvider>
+              <WishListProvider>
+                <FilterProvider>
+                  <CartProvider>
+                    <ProductProvider>
+                      <SearchResultProvider>
+                        <EmailProvider>
+                          <TodoProvider>
+                            <BookmarkProvider>
+                              <TableProvider>
+                                <GalleryProvider>
+                                  <TaskProvider>
+                                    <ContactProvider>
+                                      <ChatProvider>
+                                        <ProjectProvider>
+                                          <GoogleChartProvider>
+                                            <ChartjsProvider>
+                                              <ChartistProvider>
+                                                <AnimationThemeProvider>
+                                                  <Routers />
+                                                </AnimationThemeProvider>
+                                              </ChartistProvider>
+                                            </ChartjsProvider>
+                                          </GoogleChartProvider>
+                                        </ProjectProvider>
+                                      </ChatProvider>
+                                    </ContactProvider>
+                                  </TaskProvider>
+                                </GalleryProvider>
+                              </TableProvider>
+                            </BookmarkProvider>
+                          </TodoProvider>
+                        </EmailProvider>
+                      </SearchResultProvider>
+                    </ProductProvider>
+                  </CartProvider>
+                </FilterProvider>
+              </WishListProvider>
+            </JobSearchProvider>
+          </LearningProvider>
+        </FaqProvider>
+      </CustomizerProvider>
+    </Provider>
   </div>
 );
 

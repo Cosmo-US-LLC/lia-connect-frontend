@@ -1,11 +1,7 @@
 import React, { Fragment } from "react";
 
-import Language from "./Language";
 import Notificationbar from "./Notificationbar";
-import MoonLight from "./MoonLight";
-import CartHeader from "./CartHeader";
 import BookmarkHeader from "./BookmarkHeader";
-import UserHeader from "./UserHeader";
 import { UL } from "../../../AbstractElements";
 import { Col } from "reactstrap";
 import Searchbar from "./Searchbar";

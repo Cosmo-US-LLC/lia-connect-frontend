@@ -8,41 +8,56 @@ import {
   InputGroupText,
   Label,
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import { Facebook, Filter, Linkedin, Mail, Twitter } from "react-feather";
-
-import logoWhite from "../../../../assets/images/logo/logo.png";
-import logoDark from "../../../../assets/images/logo/logo_dark.png";
+import { Mail } from "react-feather";
+import { forgotPassword } from "../../../../redux/Auth/authActions";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { ForgetPasswordRequestSent } from "../../../../Constant/index";
+import { useForm } from "react-hook-form";
 
 const ForgotPwdForm = ({ logoClassMain }) => {
-  const [togglePassword, setTogglePassword] = useState(false);
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const initialState = {
+    email: "",
+  };
+  const [formData, setFormData] = useState(initialState);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit1 = (e) => {
+    dispatch(
+      forgotPassword(formData, (resp) => {
+        if (resp.status == 204) {
+          toast.success(ForgetPasswordRequestSent);
+          navigate("auth/login");
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
   return (
     <Fragment>
       <div className="login-card">
         <div>
-          {/* <div>
-            <Link
-              className={`logo ${logoClassMain ? logoClassMain : ""}`}
-              to={process.env.PUBLIC_URL}
-            >
-              <Image
-                attrImage={{
-                  className: "img-fluid for-light",
-                  src: logoWhite,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "img-fluid for-dark",
-                  src: logoDark,
-                  alt: "looginpage",
-                }}
-              />
-            </Link>
-          </div> */}
           <div className="login-main">
-            <Form className="theme-form login-form">
+            <Form
+              className="theme-form login-form"
+              onSubmit={handleSubmit(onSubmit1)}
+            >
               <H4
                 attrH4={{
                   style: {
@@ -82,7 +97,14 @@ const ForgotPwdForm = ({ logoClassMain }) => {
                   <InputGroupText>
                     <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
-                  <Input type="email" required value="Example@email.com" />
+                  <Input
+                    type="email"
+                    required
+                    placeholder="Example@email.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </InputGroup>
               </FormGroup>
 
