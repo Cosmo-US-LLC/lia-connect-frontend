@@ -80,17 +80,15 @@ const ResetPwdForm = () => {
             return requirement; // Keep other requirements unchanged
         }
       });
-      console.log("pppp", updatedRequirements);
 
       const hasUnfulfilledRequirement = updatedRequirements.some(
         (requirement) => requirement.status <= 0
       );
 
-      console.log("hhhh", hasUnfulfilledRequirement);
       setError(hasUnfulfilledRequirement);
 
       setRequirements(updatedRequirements);
-    } else if (e.target.name == "confirm_password") {
+    } else if (e.target.name == "confirmPassword") {
       setConfirmPasswordMatched(
         formData.password !== e.target.value ? false : true
       );
@@ -194,9 +192,9 @@ const ResetPwdForm = () => {
                   <Input
                     type={toggleConfirmPassword ? "text" : "password"}
                     required
-                    name="confirm_password"
+                    name="confirmPassword"
                     placeholder="Confirm Password"
-                    value={formData.confirm_password}
+                    value={formData.confirmPassword}
                     onChange={handleChange}
                   />
                   <InputGroupText>

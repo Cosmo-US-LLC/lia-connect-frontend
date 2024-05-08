@@ -15,7 +15,7 @@ const SidebarLogo = () => {
 
   return (
     <div className="logo-wrapper" style={{ backgroundColor: "#F9F9F9" }}>
-      <Link to={`${process.env.PUBLIC_URL}/dashboard`}>
+      <Link to={`${process.env.PUBLIC_URL}/home`}>
         <Image
           attrImage={{
             className: "img-fluid d-inline",

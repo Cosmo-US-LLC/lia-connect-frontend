@@ -52,8 +52,8 @@ const RegisterForm = ({ logoClassMain }) => {
   const dispatch = useDispatch();
 
   const initialState = {
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   };
@@ -212,8 +212,8 @@ const RegisterForm = ({ logoClassMain }) => {
                       <Input
                         type="text"
                         placeholder="John"
-                        name="first_name"
-                        value={formData.first_name}
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleChange}
                       />
                     </InputGroup>
@@ -232,8 +232,8 @@ const RegisterForm = ({ logoClassMain }) => {
                       <Input
                         type="text"
                         placeholder="Doe"
-                        name="last_name"
-                        value={formData.last_name}
+                        name="lastName"
+                        value={formData.lastName}
                         onChange={handleChange}
                       />
                     </InputGroup>

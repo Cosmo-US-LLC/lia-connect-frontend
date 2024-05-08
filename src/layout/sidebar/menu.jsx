@@ -71,19 +71,19 @@ export const MENUITEMSBOTTOM = [
         active: false,
         children: [
           {
-            path: `${process.env.PUBLIC_URL}/dashboard`,
+            path: `${process.env.PUBLIC_URL}/profile`,
             title: "Profile",
             type: "link",
           },
           {
-            path: `${process.env.PUBLIC_URL}/dashboard`,
+            path: `${process.env.PUBLIC_URL}/messages`,
             title: "Messages",
             type: "link",
           },
         ],
       },
       {
-        path: `${process.env.PUBLIC_URL}/dashboard`,
+        path: `${process.env.PUBLIC_URL}/home`,
         icon: <AlertOctagon strokeWidth={0.5} />,
         title: "FeedBack",
         type: "link",

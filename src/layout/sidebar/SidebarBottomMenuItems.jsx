@@ -131,7 +131,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                       >
                         <span style={{ fontSize: "12px" }}>
                           {authenticated
-                            ? user.first_name + user.last_name
+                            ? user.firstName + " " + user.lastName
                             : name}
                         </span>
                         <span style={{ fontSize: "9px" }}>
