@@ -279,6 +279,7 @@ const StepOne = ({
                             borderRadius: "4px",
                             padding: "6px",
                             marginRight: "8px",
+                            marginTop: "8px",
                           }}
                         >
                           <span
