@@ -2,10 +2,11 @@
     Typography css start
 ==========================**/
 //Custom css Start
+
 body {
   font-size: $body-font-size;
   overflow-x: hidden;
-  font-family: 'poppins', sans-serif  !important;
+  font-family: "Poppins";
   color: $theme-body-font-color;
 }
 
@@ -57,7 +58,7 @@ code {
 
 .media {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 
   .media-body {
     flex: 1;

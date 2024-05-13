@@ -21,7 +21,7 @@ const Routers = () => {
 
   useEffect(() => {
     let abortController = new AbortController();
-    // setAuthenticated(JSON.parse(localStorage.getItem("authenticated")));
+    setAuthenticated(JSON.parse(localStorage.getItem("authenticated")));
     console.ignoredYellowBox = ["Warning: Each", "Warning: Failed"];
     console.disableYellowBox = true;
     return () => {
@@ -34,21 +34,17 @@ const Routers = () => {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path={"/"} element={<PrivateRoute />}>
-            {login || authenticated ? (
+            {authenticated ? (
               <>
                 <Route
                   exact
                   path={`${process.env.PUBLIC_URL}`}
-                  element={
-                    <Navigate to={`${process.env.PUBLIC_URL}/dashboard`} />
-                  }
+                  element={<Navigate to={`${process.env.PUBLIC_URL}/home`} />}
                 />
                 <Route
                   exact
                   path={`/`}
-                  element={
-                    <Navigate to={`${process.env.PUBLIC_URL}/dashboard`} />
-                  }
+                  element={<Navigate to={`${process.env.PUBLIC_URL}/home`} />}
                 />
               </>
             ) : (

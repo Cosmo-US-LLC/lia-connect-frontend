@@ -2,18 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = () => {
-  const login = JSON.parse(localStorage.getItem("login"));
-  const [authenticated, setAuthenticated] = useState(false);
+  const authenticated = JSON.parse(localStorage.getItem("authenticated"));
 
-  useEffect(() => {
-    setAuthenticated(JSON.parse(localStorage.getItem("authenticated")));
-    localStorage.setItem("authenticated", authenticated);
-    localStorage.setItem("login", login);
-  }, []);
-  return login || authenticated ? (
+  return authenticated ? (
     <Outlet />
   ) : (
-    <Navigate exact to={`${process.env.PUBLIC_URL}/login`} />
+    <Navigate exact to={`${process.env.PUBLIC_URL}/auth/login`} />
   );
 };
 

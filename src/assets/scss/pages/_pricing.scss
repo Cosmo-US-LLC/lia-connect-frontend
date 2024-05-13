@@ -33,27 +33,17 @@
 }
 
 .pricingtable {
-  text-align: center;
-  padding-top: 45px;
-  padding-bottom: 45px;
+  text-align: left;
+  // padding-top: 45px;
+  // padding-bottom: 45px;
   border-radius: 10px;
-  box-shadow: $card-hover-box-shadow;
+  background-color: #fafafa;
+  border: 1px solid var(#fafafa, #f5f9ff);
   overflow: hidden;
   position: relative;
   z-index: 1;
+  padding: 8%;
   height: 100%;
-  &:before,
-  &:after {
-    content: "";
-    background-color: var(--theme-default);
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    position: absolute;
-    right: -213px;
-    z-index: -1;
-    opacity: 0.1;
-  }
 }
 
 .pricingtable {
@@ -68,60 +58,145 @@
     opacity: 0.1;
   }
 
-  .title {
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
   .price-value {
-    color: $white;
-    background-color: var(--theme-default);
-    width: 130px;
-    height: 130px;
-    padding: 45px 0 0;
+    color: #000a32;
     margin: 0 auto 25px;
-    border-radius: 50%;
     .duration {
-      margin: 0 0 0 -5px;
+      margin: 0 0 0 15px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 25px;
+      color: #848199;
     }
     .amount {
-      font-size: 58px;
-      font-weight: 700;
-      line-height: 45px;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 48px;
       display: inline-block;
     }
 
     .currency {
-      vertical-align: top;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 48px;
+      display: inline-block;
     }
   }
 
   .pricing-content {
-    margin: 0 0 25px;
+    margin: 10 0 25px;
     display: inline-block;
+    width: 100%;
     li {
-      font-weight: 500;
+      font-weight: 400;
+      color: #848199;
+      font-size: 12px;
       text-align: left;
-      margin: 0 0 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       position: relative;
-      padding-left: 30px;
-
+      display: flex !important;
+      border-top: 1px solid #f2f2f2;
+      justify-content: space-between;
       &:last-child {
         margin: 0;
       }
+    }
+  }
+}
 
-      &:before {
-        content: "\f00c";
-        color: var(--theme-default);
-        font-family: FontAwesome;
-        text-align: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        position: absolute;
-        top: 1px;
-        left: 0;
+.pricingtable-headerTitle {
+  display: flex !important;
+  justify-content: space-between;
+  .title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000a32;
+  }
+  .billed {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #848199;
+  }
+}
+
+.pricingtableSignup {
+  margin-top: 25px;
+  background-color: #1264fd;
+  text-align: center;
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+
+  .btnSpan {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+  }
+}
+
+.gradientStyle {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(234, 235, 255, 0) 0%,
+    #eaebff 53%,
+    rgba(234, 235, 255, 0) 100%
+  );
+}
+
+.gradientStyleHorizontal {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px; /* Adjust thickness as needed */
+  height: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(234, 235, 255, 0) 0%,
+    #eaebff 53%,
+    rgba(234, 235, 255, 0) 100%
+  );
+}
+.planBillingDiv {
+  width: 100%;
+  border: 1px solid var(--Light-Levender, #ebf1fc);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  .divContent {
+    display: flex;
+    flex-direction: column;
+    .top {
+      color: #819acb;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .bottom {
+      color: #1d1d1d;
+      font-size: 20px;
+      font-weight: 600;
+      .bottomDuration {
+        color: #848199;
+        font-size: 10px;
+        font-weight: 400;
       }
+    }
+    .bottom2 {
+      color: #595959;
+      font-size: 14px;
+      font-weight: 400;
     }
   }
 }

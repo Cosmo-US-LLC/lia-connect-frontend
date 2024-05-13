@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-import { Btn, H4, H6, Image, P } from "../../../../AbstractElements";
+import { Btn, H4, H6, Image, P, ToolTip } from "../../../../AbstractElements";
 import {
   Form,
   FormGroup,
@@ -8,6 +8,8 @@ import {
   InputGroup,
   InputGroupText,
   Label,
+  Row,
+  Col,
 } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -22,6 +24,8 @@ import {
   Linkedin,
   Mail,
   Twitter,
+  User,
+  X,
 } from "react-feather";
 
 import logoWhite from "../../../../assets/images/logo/logo.png";
@@ -32,63 +36,136 @@ import LinkedInIcon from "../../../../assets/used-files/icons/LinkedInSquare.svg
 import { useForm } from "react-hook-form";
 import man from "../../../../assets/images/dashboard/profile.png";
 import { ToastContainer, toast } from "react-toastify";
+import { registerUser } from "../../../../redux/Auth/authActions";
+import { useDispatch } from "react-redux";
+import { UserRegistered } from "../../../../Constant/index";
 
 const RegisterForm = ({ logoClassMain }) => {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("test123");
+  const [error, setError] = useState(true);
   const [togglePassword, setTogglePassword] = useState(false);
   const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+  const [basictooltip, setbasictooltip] = useState(false);
+  const toggle = () => setbasictooltip(!basictooltip);
+  const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
 
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const initialState = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  };
+  const [formData, setFormData] = useState(initialState);
+  const passwordRequirements = [
+    { text: "Atleast 1 letter should be uppercase.", status: 0 },
+    { text: "Atleast 1 special character include.", status: 0 },
+    { text: "Atleast 1 number include.", status: 0 },
+    { text: "Password should be 8 letter long.", status: 0 },
+  ];
+  const [requirements, setRequirements] = useState(passwordRequirements);
+
+  const handleChange = (e) => {
+    if (e.target.name == "password") {
+      const password = e.target.value;
+
+      // Update requirements based on entered password
+      const updatedRequirements = passwordRequirements.map((requirement) => {
+        const upperCase = /[A-Z]/.test(password);
+        const number = /[0-9]/.test(password);
+        const symbol = /[!@#$%^&*()_+\-=[\]{};':",./<>?|\\ ]/.test(password);
+
+        setError(true);
+
+        switch (requirement.text) {
+          case "Password should be 8 letter long.":
+            return {
+              ...requirement,
+              status: password.length >= 8 ? 1 : 0,
+            };
+          case "Atleast 1 special character include.":
+            return {
+              ...requirement,
+              status: symbol ? 1 : -1,
+            };
+          case "Atleast 1 number include.":
+            return {
+              ...requirement,
+              status: number ? 1 : -1,
+            };
+          case "Atleast 1 letter should be uppercase.":
+            return {
+              ...requirement,
+              status: upperCase ? 1 : -1,
+            };
+          default:
+            return requirement; // Keep other requirements unchanged
+        }
+      });
+      console.log("pppp", updatedRequirements);
+
+      const hasUnfulfilledRequirement = updatedRequirements.some(
+        (requirement) => requirement.status <= 0
+      );
+
+      console.log("hhhh", hasUnfulfilledRequirement);
+      setError(hasUnfulfilledRequirement);
+
+      setRequirements(updatedRequirements);
+    } else if (e.target.name == "confirm_password") {
+      setConfirmPasswordMatched(
+        formData.password !== e.target.value ? false : true
+      );
+    }
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [value, setValue] = useState(localStorage.getItem("profileURL" || man));
-  const [name, setName] = useState(localStorage.getItem("Name"));
-
   const onSubmit1 = (e) => {
-    // e.preventDefault();
-    setValue(man);
-    setName("Emay Walter");
-    if (email === "test@gmail.com" && password === "test123") {
-      localStorage.setItem("login", JSON.stringify(true));
-      history(`${process.env.PUBLIC_URL}/dashboard/`);
-      toast.success("Successfully logged in!..");
+    if (error || isFormEmpty()) {
+      toast.error("Please fill out all fields!");
     } else {
-      toast.error("You enter wrong password or username!..");
+      dispatch(
+        registerUser(formData, (resp) => {
+          if (resp.status == 201) {
+            toast.success(UserRegistered);
+            setFormData(initialState);
+            navigate("/auth/login");
+          } else {
+            const err = resp.message;
+            if (Array.isArray(err)) {
+              err.forEach((element) => {
+                toast.error(element);
+              });
+            } else {
+              toast.error(err);
+            }
+          }
+        })
+      );
     }
+  };
+
+  const isFormEmpty = () => {
+    return Object.values(formData).some((value) => value.trim() === "");
   };
 
   return (
     <Fragment>
       <div className="login-card">
         <div>
-          {/* <div>
-            <Link
-              className={`logo ${logoClassMain ? logoClassMain : ""}`}
-              to={process.env.PUBLIC_URL}
-            >
-              <Image
-                attrImage={{
-                  className: "img-fluid for-light",
-                  src: logoWhite,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "img-fluid for-dark",
-                  src: logoDark,
-                  alt: "looginpage",
-                }}
-              />
-            </Link>
-          </div> */}
           <div className="login-main">
             <Form
-              className="theme-form login-form"
+              className="theme-form login-form needs-validation"
               onSubmit={handleSubmit(onSubmit1)}
             >
               <H4
@@ -121,6 +198,49 @@ const RegisterForm = ({ logoClassMain }) => {
                 Today is a new day. It's your day. You shape it. Sign up to
                 start managing your projects.
               </P>
+              <Row>
+                <Col xl="6">
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      First Name<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText>
+                        <User strokeWidth={0.5} size={16} />
+                      </InputGroupText>
+                      <Input
+                        type="text"
+                        placeholder="John"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+                <Col xl="6">
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      Last Name<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText>
+                        <User strokeWidth={0.5} size={16} />
+                      </InputGroupText>
+                      <Input
+                        type="text"
+                        placeholder="Doe"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+              </Row>
+
               <FormGroup>
                 <Label className="col-form-label m-0">
                   Email<span className="text-danger ms-1">*</span>
@@ -128,12 +248,18 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
-                  <Input type="email" placeholder="example@email.com" />
+                  <Input
+                    type="email"
+                    placeholder="example@email.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </InputGroup>
               </FormGroup>
-              <FormGroup>
+              <FormGroup id="PasswordValidationInput">
                 <Label className="col-form-label m-0">
                   Password
                   <span className="text-danger ms-1">*</span>
@@ -141,20 +267,71 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
                     placeholder="*********"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                   />
+
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />
                   </InputGroupText>
                 </InputGroup>
+
+                <ToolTip
+                  attrToolTip={{
+                    placement: "left",
+                    isOpen: basictooltip,
+                    target: "PasswordValidationInput",
+                    toggle: toggle,
+                    style: {
+                      backgroundColor: "white",
+                      boxShadow: "0px 5px 10px -3.89px #00000040",
+                    },
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      left: "300px",
+                      textAlign: "left",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    {requirements.map((element, index) => (
+                      <div
+                        style={{
+                          color:
+                            element.status === 0
+                              ? "#595959"
+                              : element.status === -1
+                              ? "#AA1313"
+                              : "#299A16",
+                        }}
+                      >
+                        {element.status === 0 ? (
+                          <Circle strokeWidth={0.5} size={7} />
+                        ) : element.status === -1 ? (
+                          <X strokeWidth={0.5} size={7} />
+                        ) : (
+                          <Check strokeWidth={0.5} size={7} />
+                        )}
+
+                        <span style={{ fontSize: "10px", marginLeft: "4px" }}>
+                          {element.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </ToolTip>
               </FormGroup>
 
               <FormGroup>
@@ -165,15 +342,18 @@ const RegisterForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={toggleConfirmPassword ? "text" : "password"}
+                    name="confirm_password"
                     placeholder="**********"
+                    value={formData.confirm_password}
+                    onChange={handleChange}
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() =>
                         setToggleConfirmPassword(!toggleConfirmPassword)
@@ -184,32 +364,12 @@ const RegisterForm = ({ logoClassMain }) => {
               </FormGroup>
 
               <FormGroup>
-                <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 letter should be uppercase.
-                  </span>
-                </div>
-                <div style={{ color: "#299A16" }}>
-                  <Check strokeWidth={1} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 special character include.
-                  </span>
-                </div>
-                <div style={{ color: "#AA1313" }}>
-                  <Check strokeWidth={1} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Atleast 1 number include.
-                  </span>
-                </div>
-                <div style={{ color: "#595959" }}>
-                  <Circle strokeWidth={1} size={7} />
-                  <span style={{ fontSize: "10px", marginLeft: "4px" }}>
-                    Password should be 12 letter long.
-                  </span>
-                </div>
-                <div style={{ color: "#AA1313" }}>
-                  <AlertTriangle strokeWidth={1} size={7} />
+                <div
+                  style={{
+                    color: confirmPasswordMatched ? "white" : "#AA1313",
+                  }}
+                >
+                  <AlertTriangle strokeWidth={0.5} size={7} />
                   <span style={{ fontSize: "10px", marginLeft: "4px" }}>
                     Confirm Password Not matched
                   </span>
@@ -311,7 +471,7 @@ const RegisterForm = ({ logoClassMain }) => {
                 </div>
               </div>
 
-              <P attrPara={{ className: "text-center mb-0 " }}>
+              <P attrPara={{ className: "text-center mb-0 mt-4" }}>
                 Already have an account?
                 <Link
                   className="ms-2"

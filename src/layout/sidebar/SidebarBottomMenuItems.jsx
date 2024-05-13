@@ -26,10 +26,11 @@ const SidebarBottomMENUITEMSBOTTOM = ({
   const history = useNavigate();
 
   const authenticated = JSON.parse(localStorage.getItem("authenticated"));
-  const auth0_profile = JSON.parse(localStorage.getItem("auth0_profile"));
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [profile, setProfile] = useState(defaultAvatar);
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("example@alfren.com");
+  const [name, setName] = useState(user.first_name + " " + user.last_name);
+  const [email, setEmail] = useState(user.email);
 
   const { t } = useTranslation();
   const toggletNavActive = (item) => {
@@ -72,8 +73,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
   const Logout = () => {
     localStorage.removeItem("profileURL");
     localStorage.removeItem("token");
-    localStorage.removeItem("auth0_profile");
-    localStorage.removeItem("Name");
+    localStorage.removeItem("user");
     localStorage.setItem("authenticated", false);
     history(`${process.env.PUBLIC_URL}/auth/login`);
   };
@@ -116,17 +116,26 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                         attrImage={{
                           className: "b-r-40 m-0",
                           src: `${
-                            authenticated ? auth0_profile.picture : profile
+                            authenticated
+                              ? user.picture
+                                ? user.profile
+                                : profile
+                              : profile
                           }`,
                           alt: "",
                         }}
                       />
-                      <div className="media-body m-l-10">
+                      <div
+                        className="media-body m-l-10"
+                        style={{ display: "flex", flexDirection: "column" }}
+                      >
                         <span style={{ fontSize: "12px" }}>
-                          {authenticated ? auth0_profile.name : name}
+                          {authenticated
+                            ? user.firstName + " " + user.lastName
+                            : name}
                         </span>
                         <span style={{ fontSize: "9px" }}>
-                          {authenticated ? auth0_profile.email : email}
+                          {authenticated ? user.email : email}
                         </span>
                       </div>
                     </div>
@@ -148,7 +157,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                     ""
                   )}
                   <div className="according-menu">
-                    <MoreVertical strokeWidth={1} />
+                    <MoreVertical strokeWidth={0.5} />
                   </div>
                 </a>
               ) : (
@@ -308,7 +317,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
               CurrentPath.includes("logout") ? "active" : ""
             }`}
           >
-            <LogOut strokeWidth={1} color={"rgb(170, 19, 19)"} />
+            <LogOut strokeWidth={0.5} color={"rgb(170, 19, 19)"} />
             <span style={{ color: "#AA1313" }}>Logout</span>
           </Link>
         </li>

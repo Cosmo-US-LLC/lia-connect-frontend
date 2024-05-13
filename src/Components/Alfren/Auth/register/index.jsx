@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import RegisterForm from "./RegisterForm";
-
+import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
 const Login = () => {
   return (
     <Fragment>
@@ -13,17 +13,24 @@ const Login = () => {
               xl="7"
               className="b-center bg-size"
               style={{
-                backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
+                backgroundImage: `url(${require("../../../../assets/used-files/images/auth/register.png")})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                display: "block",
+                // display: "block",
                 borderRadius: "20px",
               }}
             >
               <Image
                 attrImage={{
+                  className: "bg-img-cover bg-center m-3",
+                  src: LogoIcon,
+                  alt: "looginpage",
+                }}
+              />
+              <Image
+                attrImage={{
                   className: "bg-img-cover bg-center d-none",
-                  src: `${require("../../../../assets/used-files/images/auth/login.png")}`,
+                  src: `${require("../../../../assets/used-files/images/auth/register.png")}`,
                   alt: "looginpage",
                 }}
               />

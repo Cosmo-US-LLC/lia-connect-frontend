@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-import { Btn, H4, H6, Image, P } from "../../../../AbstractElements";
+import { Btn, H4, Image, P } from "../../../../AbstractElements";
 import {
   Form,
   FormGroup,
@@ -10,79 +10,60 @@ import {
   Label,
 } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Check,
-  CheckCircle,
-  Circle,
-  Eye,
-  Facebook,
-  Filter,
-  Key,
-  Linkedin,
-  Mail,
-  Twitter,
-} from "react-feather";
+import { Eye, Key, Mail } from "react-feather";
 
-import logoWhite from "../../../../assets/images/logo/logo.png";
-import logoDark from "../../../../assets/images/logo/logo_dark.png";
 import OrIcon from "../../../../assets/used-files/images/auth/Or.svg";
 import GoogleIcon from "../../../../assets/used-files/icons/Google.svg";
 import LinkedInIcon from "../../../../assets/used-files/icons/LinkedInSquare.svg";
 import { useForm } from "react-hook-form";
-import man from "../../../../assets/images/dashboard/profile.png";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../../../../redux/Auth/authActions";
+import { UserLoggedIn } from "../../../../Constant/index";
 
 const LoginForm = ({ logoClassMain }) => {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState("test123");
   const [togglePassword, setTogglePassword] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [value, setValue] = useState(localStorage.getItem("profileURL" || man));
-  const [name, setName] = useState(localStorage.getItem("Name"));
+  const initialState = {
+    email: "",
+    password: "",
+  };
+  const [formData, setFormData] = useState(initialState);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const onSubmit1 = (e) => {
-    // e.preventDefault();
-    setValue(man);
-    setName("Emay Walter");
-    if (email === "test@gmail.com" && password === "test123") {
-      localStorage.setItem("login", JSON.stringify(true));
-      history(`${process.env.PUBLIC_URL}/dashboard/`);
-      toast.success("Successfully logged in!..");
-    } else {
-      toast.error("You enter wrong password or username!..");
-    }
+    dispatch(
+      login(formData, (resp) => {
+        if (resp.status == 200) {
+          toast.success(UserLoggedIn);
+          localStorage.setItem("accessToken", resp.data.tokens.access.token);
+          localStorage.setItem("authenticated", true);
+          localStorage.setItem("user", JSON.stringify(resp.data.user));
+          navigate("/home");
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
   };
 
   return (
     <Fragment>
       <div className="login-card">
         <div>
-          {/* <div>
-            <Link
-              className={`logo ${logoClassMain ? logoClassMain : ""}`}
-              to={process.env.PUBLIC_URL}
-            >
-              <Image
-                attrImage={{
-                  className: "img-fluid for-light",
-                  src: logoWhite,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "img-fluid for-dark",
-                  src: logoDark,
-                  alt: "looginpage",
-                }}
-              />
-            </Link>
-          </div> */}
           <div className="login-main">
             <Form
               className="theme-form login-form"
@@ -125,9 +106,15 @@ const LoginForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Mail strokeWidth={1} size={16} />
+                    <Mail strokeWidth={0.5} size={16} />
                   </InputGroupText>
-                  <Input type="email" placeholder="example@email.com" />
+                  <Input
+                    type="email"
+                    placeholder="example@email.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -138,15 +125,18 @@ const LoginForm = ({ logoClassMain }) => {
 
                 <InputGroup>
                   <InputGroupText>
-                    <Key strokeWidth={1} size={16} />
+                    <Key strokeWidth={0.5} size={16} />
                   </InputGroupText>
                   <Input
                     type={togglePassword ? "text" : "password"}
-                    placeholder="aaaaaaaa"
+                    placeholder="*******"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                   />
                   <InputGroupText>
                     <Eye
-                      strokeWidth={1}
+                      strokeWidth={0.5}
                       size={16}
                       onClick={() => setTogglePassword(!togglePassword)}
                     />
@@ -264,7 +254,7 @@ const LoginForm = ({ logoClassMain }) => {
                 </div>
               </div>
 
-              <P attrPara={{ className: "text-center mb-0 " }}>
+              <P attrPara={{ className: "text-center mb-0 mt-5" }}>
                 Don't you have an account?{" "}
                 <Link
                   className="ms-2"

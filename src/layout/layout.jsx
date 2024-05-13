@@ -59,7 +59,6 @@ const AppLayout = ({ children, classNames, ...rest }) => {
         </div>
       </div>
       {/* <ThemeCustomize /> */}
-      <ToastContainer />
     </Fragment>
   );
 };
