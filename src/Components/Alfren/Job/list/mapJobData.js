@@ -936,7 +936,7 @@ export const mapTableData = (results) => {
               <Media key="1">
                 <Media body className="text-start switch-sm ">
                   <Label className="switch">
-                    <Input type="checkbox" />
+                    <Input type="checkbox" checked = {item.isJobActive ? true : false} />
                     <span className="switch-state"></span>
                   </Label>
                 </Media>

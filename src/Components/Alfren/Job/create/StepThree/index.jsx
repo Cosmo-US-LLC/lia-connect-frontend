@@ -15,16 +15,51 @@ import {
 } from "reactstrap";
 import { H6 } from "../../../../../AbstractElements";
 import { Link } from "react-router-dom";
+import { updateJob } from "../../../../../redux/Job/jobActions";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
-const StepThree = ({ handlePrevious, handleNext }) => {
+const StepThree = ({
+  handlePrevious,
+  handleNext,
+  candidateHaveDisplay,
+  setCandidateHaveDisplay,
+  candidateHaveOpenProfile,
+  setCandidateHaveOpenProfile,
+  candidateInOtherJob,
+  setCandidateInOtherJob,
+  jobId,
+}) => {
+  const dispatch = useDispatch();
   const handleBackStep = (e) => {
     e.preventDefault(e);
     handlePrevious(e);
   };
   const handleNextStep = (e) => {
     e.preventDefault(e);
-    handleNext(e);
+    submitStepThree(e);
   };
+
+
+  const submitStepThree= async (e) => {
+    const formData = {
+      jobId,
+      body:{candidateHaveDisplay,candidateHaveOpenProfile,candidateInOtherJob}
+    };
+    dispatch(
+      updateJob(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Job Added Successfully");
+          handleNext(e);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+
   return (
     <Fragment>
       <Container fluid={true} style={{ width: "80%" }}>
@@ -39,8 +74,9 @@ const StepThree = ({ handlePrevious, handleNext }) => {
                         <Input
                           id="solid1"
                           type="checkbox"
-                          defaultChecked
+                          checked={candidateInOtherJob ? true : false}
                           name="1"
+                          onClick={() => setCandidateInOtherJob(prevState => !prevState)}
                         />
                         <Label for="solid1">
                           Same Candidates found in other Jobs{" "}
@@ -50,9 +86,11 @@ const StepThree = ({ handlePrevious, handleNext }) => {
                         </Label>
                       </div>
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup >
                       <div className="checkbox checkbox-solid-primary">
-                        <Input id="solid3" type="checkbox" name="2" />
+                        <Input id="solid3" type="checkbox" name="2"  checked={candidateHaveOpenProfile ? true : false}
+                        onClick={() => setCandidateHaveOpenProfile(prevState => !prevState)}
+                         />
                         <Label for="solid3">
                           Does not have an open profile
                         </Label>
@@ -60,7 +98,9 @@ const StepThree = ({ handlePrevious, handleNext }) => {
                     </FormGroup>
                     <FormGroup>
                       <div className="checkbox checkbox-solid-primary">
-                        <Input id="solid2" type="checkbox" name="3" />
+                        <Input id="solid2" type="checkbox" name="3"  checked={candidateHaveDisplay ? true : false} 
+                         onClick={() => setCandidateHaveDisplay(prevState => !prevState)}
+                         />
                         <Label for="solid2">
                           No photo on candidate’s profile
                         </Label>

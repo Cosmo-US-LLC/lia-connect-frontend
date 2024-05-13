@@ -41,6 +41,9 @@ const JobCreate = () => {
   const [linkedInProfile, setLinkedInProfile] = useState([]);
 
   //stepOne data end
+  const [candidateInOtherJob, setCandidateInOtherJob] = useState(true);
+  const [candidateHaveOpenProfile, setCandidateHaveOpenProfile] = useState(false);
+  const [candidateHaveDisplay, setCandidateHaveDisplay] = useState(false);
 
   //stepTwo Data starts
 
@@ -74,6 +77,12 @@ const JobCreate = () => {
 
     return rootNode;
   }
+
+
+  //stepThree data
+  //stepThree data ends
+
+
 
   useEffect(() => {
     const transformed = transformSequenceRecords(sequenceArray);
@@ -223,6 +232,12 @@ const JobCreate = () => {
               <StepThree
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
+                candidateHaveDisplay={candidateHaveDisplay}
+                setCandidateHaveDisplay={setCandidateHaveDisplay}
+                candidateHaveOpenProfile={candidateHaveOpenProfile}
+                setCandidateHaveOpenProfile={setCandidateHaveOpenProfile}
+                candidateInOtherJob={candidateInOtherJob}
+                setCandidateInOtherJob={setCandidateInOtherJob}
                 jobId={jobId}
               />
             )}
