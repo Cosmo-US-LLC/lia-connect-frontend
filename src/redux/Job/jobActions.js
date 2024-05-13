@@ -11,6 +11,24 @@ export const stepOne = (user, cb) => async () => {
   }
 };
 
+export const stepTwo = (user, cb) => async () => {
+  try {
+    const { data, status } = await jobApi.stepTwo(user);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
+
+export const updateJob = (user, cb) => async () => {
+  try {
+    const { data, status } = await jobApi.updateJob(user);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
+
 export const fetchJobs = (formPayload, cb) => async () => {
   try {
     const { data, status } = await jobApi.fetchJobs(formPayload);

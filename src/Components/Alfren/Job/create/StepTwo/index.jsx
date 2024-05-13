@@ -37,13 +37,19 @@ import { BackgroundColor } from "../../../../../Constant";
 import { NestedSequence } from "./nestedSequence";
 import { SequenceStart } from "./startSequence";
 import { Data } from "emoji-mart";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { stepTwo } from "../../../../../redux/Job/jobActions";
+
 const StepTwo = ({
   handlePrevious,
   handleNext,
   sequence,
   sequenceArray,
   setSequenceArray,
+  jobId
 }) => {
+  const dispatch = useDispatch();
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
   const handleResetButton = (e) => {
@@ -53,7 +59,7 @@ const StepTwo = ({
 
   const handleNextStep = (e) => {
     e.preventDefault(e);
-    handleNext(e);
+    submitStepTwo(e);
   };
   const handleBackStep = (e) => {
     e.preventDefault(e);
@@ -129,6 +135,24 @@ const StepTwo = ({
           </button>
         </ButtonGroup>
       </div>
+    );
+  };
+
+  const submitStepTwo= async (e) => {
+    const formData = {
+      jobId,
+      body:{jobSequence: sequenceArray}
+    };
+    dispatch(
+      stepTwo(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Sequence Added Successfully");
+          handleNext(e);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
     );
   };
   return (
