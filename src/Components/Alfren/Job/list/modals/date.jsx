@@ -12,8 +12,12 @@ const DateModal = ({
   setIsDateSelected,
   closeDateDropdown,
 }) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [initialStartDate, initialEndDate] = isDateSelected ? isDateSelected.split('-').map(date => new Date(date.trim())) : [new Date(), new Date()];
+
+
+
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(initialEndDate);
 
   const handleStartDateChange = (date) => {
     var formattedDate = new Date(date);

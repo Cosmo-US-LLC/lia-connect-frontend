@@ -22,6 +22,9 @@ import HeaderCard from "../../../../Common/Component/HeaderCard";
 import { Flag, Info, Plus, Video, X, Youtube } from "react-feather";
 import StepActiveIcon from "../../.././../../assets/used-files/icons/candidate.svg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { stepOne } from "../../../../../redux/Job/jobActions";
 
 const StepOne = ({
   setJobName,
@@ -36,6 +39,7 @@ const StepOne = ({
   setLinkedInSearch,
   setLinkedInProfile,
   handleNext,
+  setJobId,
 }) => {
   const options = [
     {
@@ -94,9 +98,11 @@ const StepOne = ({
     } else if (name == "skillInputValue") {
       setSkillInputValue(value);
     } else if (name == "linkedInSearch") {
-      setLinkedInSearch(value);
+      const valueArray = value.split(',');
+      setLinkedInSearch(valueArray);
     } else if (name == "linkedInProfile") {
-      setLinkedInProfile(value);
+      const valueArray = value.split(',');
+      setLinkedInProfile(valueArray);
     }
   };
   const handleSelectChange = (e) => {
@@ -118,6 +124,7 @@ const StepOne = ({
   const [skillInputValue, setSkillInputValue] = useState("");
   const [linkedInSearchButton, setLinkedInSearchButton] = useState(true);
   const [nextActive, setNextActive] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (jobName && jobPriority && skills.length) {
@@ -133,7 +140,56 @@ const StepOne = ({
 
   const handleNextStep = (e) => {
     e.preventDefault(e);
-    handleNext(e);
+    submitStepOne(e);
+
+  };
+
+  function mapJobPriority(value, reverse = null) {
+    if (reverse) {
+      switch (value) {
+        case "HIGH":
+          return 1;
+        case "MEDIUM":
+          return 2;
+        case "LOW":
+          return 3;
+        default:
+          return null; 
+      }
+    } else {
+      switch (value) {
+        case 1:
+          return "HIGH";
+        case 2:
+          return "MEDIUM";
+        case 3:
+          return "LOW";
+        default:
+          return null; 
+      }
+    }
+  }
+
+  const submitStepOne = async (e) => {
+    const formData = {
+      name: jobName,
+      jobPriority: mapJobPriority(jobPriority),
+      linkedInURL: linkedInSearch.length ? linkedInSearch : linkedInProfile.length ? linkedInProfile  : [] ,
+      linkedInType: linkedInSearch.length ? "linkedInSearch" :  linkedInProfile.length ? "linkedInProfile" : null,
+      skills
+    };
+    dispatch(
+      stepOne(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Job step One completed");
+          setJobId(resp.data.id)
+          handleNext(e);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
   };
 
   return (

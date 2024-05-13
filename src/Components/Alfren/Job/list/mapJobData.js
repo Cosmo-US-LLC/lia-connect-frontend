@@ -17,7 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import { Tooltip } from "reactstrap";
 import Select from "react-select";
-import { max } from "date-fns";
+import { format, max } from "date-fns";
 import DropdownCommon from "../../../Common/Dropdown/index";
 
 export const dummytabledata = [
@@ -814,3 +814,156 @@ export const tableColumns = [
     width: "6%",
   },
 ];
+
+export const mapTableData = (results) => {
+  const currentDate = new Date();
+  let jobMappedList = results.map((item, index) => {
+    let date = new Date(item.createdAt);
+    
+    let differenceInMs = currentDate - date;
+    let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(1);
+    differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
+
+    date= date.toDateString()
+
+    return {
+      id: 1,
+      name: (
+        <Link to="detail/1">
+          <div style={{ width: "100%" }}>{item.name}</div>
+          <div className="progress-showcase">
+            <Col style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ width: "42%" }}>
+                {" "}
+                <Progressbar
+                  attrProgress={{
+                    value: "100",
+                    color: "progress1",
+                    className: "sm-progress-bar me-1 mb-0",
+                  }}
+                />
+                <span style={{ fontSize: "8px", color: "#b8d1fe" }}>42</span>
+              </div>
+              <div style={{ width: "20%" }}>
+                <Progressbar
+                  attrProgress={{
+                    value: "100",
+                    color: "progress2",
+                    className: "sm-progress-bar me-1 mb-0",
+                  }}
+                />
+                <span style={{ fontSize: "8px", color: "#ffe699" }}>20</span>
+              </div>
+              <div style={{ width: "36%" }}>
+                <Progressbar
+                  attrProgress={{
+                    value: "100",
+                    color: "progress3",
+                    barAriaLabelledBy: "75",
+                    className: "sm-progress-bar me-1 mb-0",
+                  }}
+                />
+                <span style={{ fontSize: "8px", color: "#fba14d" }}>36</span>
+              </div>
+            </Col>
+          </div>{" "}
+        </Link>
+      ),
+      potentialCandidates: (
+        <div className="d-flex">
+          <Users strokeWidth={1} size={16} />
+          <div className="ms-2 font-secondary">
+            <strong>
+              {item.potentialCandidates ? item.potentialCandidates : "N/A"}
+            </strong>
+          </div>
+        </div>
+      ),
+      outreach: (
+        <div className="d-flex">
+          <User strokeWidth={1} size={16} />
+          <div className="ms-2 font-secondary">
+            <strong>{item.outreach ? item.outreach : "N/A"}</strong>
+          </div>
+        </div>
+      ),
+      responseRate: (
+        <div>
+          <div className="font-secondary">
+            <strong>
+              {item.responseRate ? item.responseRate + "%" : "N/A"}
+            </strong>
+          </div>
+        </div>
+      ),
+      priority: (
+        <div className="d-flex">
+          <Flag
+            fill={
+              item.jobPriority == "HIGH"
+                ? "#DE3E3E"
+                : item.jobPriority == "LOW"
+                ? "#CECECE"
+                : "#FECF41"
+            }
+            color={
+              item.jobPriority == "HIGH"
+                ? "#AA1313"
+                : item.jobPriority == "LOW"
+                ? "#ABABAB"
+                : "#E2B323"
+            }
+            size={14}
+            strokeWidth={1.5}
+          />
+          <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+            {item.jobPriority}
+          </span>
+          <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+        </div>
+      ),
+      dateCreated: (
+        <div>
+          <span>{date}</span>
+          <span style={{ color: "#299A16" }}> ( {differenceInDays ? differenceInDays + ' Days' : "Today"})</span>
+        </div>
+      ),
+      status: (
+        <div>
+          {item.isJobCompleted ? (
+            <>
+              <span>Active</span>
+              <Media key="1">
+                <Media body className="text-start switch-sm ">
+                  <Label className="switch">
+                    <Input type="checkbox" />
+                    <span className="switch-state"></span>
+                  </Label>
+                </Media>
+              </Media>
+            </>
+          ) : (
+            "Draft"
+          )}
+        </div>
+      ),
+      remove: <Trash2 strokeWidth={0.5} color="#9B9999" size={20} />,
+    };
+  });
+
+  return jobMappedList;
+};
+
+export const mapSearchJobList = (results) => {
+  let jobList = results.map((item, index) => {
+    return {
+      id: item.id,
+      title: item.name,
+      isChecked: false
+    };
+  });
+
+  return jobList;
+};
+
+

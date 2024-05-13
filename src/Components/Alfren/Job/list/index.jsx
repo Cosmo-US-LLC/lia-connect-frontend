@@ -16,6 +16,7 @@ import { H4, H6, LI, ToolTip, UL } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
 import { Form, InputGroup, InputGroupText } from "reactstrap";
+import { mapSearchJobList, mapTableData,tableColumns } from "./mapJobData"
 import {
   Check,
   Clock,
@@ -31,8 +32,24 @@ import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import Date from "./modals/date";
 import { Link } from "react-router-dom";
+import { fetchJobs } from '../../../../redux/Job/jobActions'
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
-const DataTables = () => {
+const JobList = () => {
+  const [jobsList, setJobsList] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
+
+  
+  const [paginatedUpdated, setPaginatedUpdated] = useState(false);
+  const [pagination, setPagination] = useState({
+    limit:10,
+    page:1,
+    totalPages:null,
+    totalResults:null
+});
+
+  const dispatch = useDispatch();
   const [searchDropdown, setsSearchDropdown] = useState(false);
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
@@ -40,18 +57,7 @@ const DataTables = () => {
   const closeSearchDropdown = () => {
     setsSearchDropdown(false);
   };
-  const [jobs, setJobs] = useState([
-    { id: 1, title: "Marketing Manager", isChecked: false },
-    { id: 2, title: "Social Media Manager ", isChecked: false },
-    { id: 3, title: "Digital Strategist", isChecked: false },
-    { id: 4, title: "Jr. Seo Specialist", isChecked: false },
-    { id: 5, title: "Content Writer", isChecked: false },
-    { id: 6, title: "Sr. Graphic Designer", isChecked: false },
-    { id: 7, title: "Front-End Developers", isChecked: false },
-    { id: 8, title: "Marketing Executive", isChecked: false },
-    { id: 9, title: "Sr. Backend Engineer", isChecked: false },
-    { id: 10, title: "Web Designer", isChecked: false },
-  ]);
+  const [searchJobs, setSearchJobs] = useState([]);
   const [isJobSelected, setIsJobSelected] = useState(false);
   const [selectedJobs, setSelectedJobs] = useState([]);
 
@@ -60,21 +66,21 @@ const DataTables = () => {
   const [priorities, setPriorities] = useState([
     {
       id: 1,
-      title: "High",
+      title: "HIGH",
       isChecked: false,
       fill: "#DE3E3E",
       color: "#AA1313",
     },
     {
       id: 2,
-      title: "Medium",
+      title: "MEDIUM",
       isChecked: false,
       fill: "#FECF41",
       color: "#E2B323",
     },
     {
       id: 3,
-      title: "Low",
+      title: "LOW",
       isChecked: false,
       fill: "#CECECE",
       color: "#ABABAB",
@@ -127,6 +133,74 @@ const DataTables = () => {
       setIsPrioritySelected(false);
     }
   };
+
+
+  
+  useEffect(() => {
+    fetchJobPaginated();
+  }, [paginatedUpdated,selectedJobs,priorities,activeOnly,isDateSelected]);
+
+
+  useEffect(() => {
+    fetchJobNames();
+  }, []);
+
+  const  fetchJobPaginated = async (e) => {
+    const urlParams = 'page=' + pagination.page + '&limit=' + pagination.limit;
+    const ids = selectedJobs.length > 0 ? selectedJobs.map(item => item.id) : [];
+    const jobPriority = priorities.filter(item => item.isChecked).map(item => item.title); 
+    const isActive = activeOnly;
+    const [startDate, endDate] = isDateSelected ? isDateSelected.split('-').map(date => date.trim()) : ['', ''];
+
+    
+    const formPayload = {
+      urlParams,
+      body: {
+        ...(selectedJobs.length > 0 && { id: ids }),
+        ...(jobPriority.length > 0 && { jobPriority }),
+        ...(isDateSelected && { startDate, endDate }), 
+        isActive,
+      }
+    };
+
+    dispatch(
+      fetchJobs(formPayload, (resp) => {
+        if (resp.status == 200) {
+          toast.success("JobsFetched successfully");
+          setPagination(resp.data.pagination)
+          const results = resp.data.results 
+          setTotalResults(resp.data.pagination.totalResults)
+          const mappedResult =  mapTableData(results)
+          setJobsList(mappedResult)
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+  const  fetchJobNames = async (e) => {
+    const urlParams = 'page='+pagination.page+'&limit='+pagination.limit;
+    const formPayload ={
+      urlParams,
+    }
+    dispatch(
+      fetchJobs(formPayload, (resp) => {
+        if (resp.status == 200) {
+          toast.success("JobsFetched successfully");
+          const results = resp.data.results 
+          const mappedResult =  mapSearchJobList(results)
+          setSearchJobs(mappedResult)
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -163,8 +237,8 @@ const DataTables = () => {
                     </button>
                     {searchDropdown && (
                       <Jobs
-                        jobs={jobs}
-                        setJobs={setJobs}
+                        jobs={searchJobs}
+                        setJobs={setSearchJobs}
                         closeSearchDropdown={closeSearchDropdown}
                         setSelectedJobs={setSelectedJobs}
                         setIsJobSelected={setIsJobSelected}
@@ -405,12 +479,12 @@ const DataTables = () => {
 
                   <Col xl="3" className="mt-2" style={{ textAlign: "end" }}>
                     <H6>
-                      <strong>263 Jobs</strong>
+                      <strong>{totalResults} Jobs</strong>
                     </H6>
                   </Col>
                 </Row>
               </CardHeader>
-              <DataTableComponent />
+              <DataTableComponent paginatedUpdated={paginatedUpdated} data={jobsList} paginationDetails={pagination} tableColumns={tableColumns} setPagination={setPagination} setPaginatedUpdated={setPaginatedUpdated}/>
             </Card>
           </Col>
         </Row>
@@ -419,4 +493,4 @@ const DataTables = () => {
   );
 };
 
-export default DataTables;
+export default JobList;

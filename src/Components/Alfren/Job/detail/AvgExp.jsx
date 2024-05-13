@@ -11,7 +11,7 @@ const AvgExp = () => {
     series: [
       {
         name: "Count",
-        data: [7, 4, 7, 8, 9, 4, 8, 3, 5, 9, 9, 2, 3, 6, 6, 8, 4, 2, 5, 1],
+        data: [7, 4, 7, 8],
       },
     ],
     options: {
@@ -51,33 +51,12 @@ const AvgExp = () => {
       },
       xaxis: {
         labels: {
-          show: false, // Hide x-axis labels
+          show: true, // Hide x-axis labels
         },
         axisBorder: {
           show: false, // Hide x-axis border
         },
-        categories: [
-          "1Yr",
-          "2Yr",
-          "3Yr",
-          "4Yr",
-          "5Yr",
-          "6Yr",
-          "7Yr",
-          "8Yr",
-          "9Yr",
-          "10Yr",
-          "11Yr",
-          "12Yr",
-          "13Yr",
-          "14Yr",
-          "15Yr",
-          "16Yr",
-          "17Yr",
-          "18Yr",
-          "19Yr",
-          "20Yr",
-        ],
+        categories: ["1Yr", "2Yr", "3Yr", "4Yr"],
       },
       yaxis: {
         labels: {

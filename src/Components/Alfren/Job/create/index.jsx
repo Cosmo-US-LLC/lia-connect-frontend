@@ -9,9 +9,9 @@ import StepOne from "./StepOne/index";
 import StepTwo from "./StepTwo/index";
 import StepThree from "./StepThree/index";
 import Completed from "./Completed";
-import { options } from "@fullcalendar/core/preact.js";
 
 const JobCreate = () => {
+  const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
   const handleNext = (e) => {
     e.preventDefault();
@@ -37,8 +37,8 @@ const JobCreate = () => {
   const [jobName, setJobName] = useState(null);
   const [jobPriority, setJobPriority] = useState(null);
   const [skills, setSkills] = useState([]);
-  const [linkedInSearch, setLinkedInSearch] = useState(null);
-  const [linkedInProfile, setLinkedInProfile] = useState(null);
+  const [linkedInSearch, setLinkedInSearch] = useState([]);
+  const [linkedInProfile, setLinkedInProfile] = useState([]);
 
   //stepOne data end
 
@@ -206,6 +206,7 @@ const JobCreate = () => {
                 linkedInProfile={linkedInProfile}
                 setLinkedInProfile={setLinkedInProfile}
                 handleNext={handleNext}
+                setJobId={setJobId}
               />
             )}
             {step === 2 && (
@@ -215,12 +216,14 @@ const JobCreate = () => {
                 sequence={sequence}
                 sequenceArray={sequenceArray}
                 setSequenceArray={setSequenceArray}
+                jobId={jobId}
               />
             )}
             {step === 3 && (
               <StepThree
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
+                jobId={jobId}
               />
             )}
             {step === 4 && <Completed />}

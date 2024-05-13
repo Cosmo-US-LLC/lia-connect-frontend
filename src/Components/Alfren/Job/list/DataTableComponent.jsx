@@ -1,7 +1,6 @@
 import React, { Fragment, useCallback, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Btn, H4 } from "../../../../AbstractElements";
-import { dummytabledata, tableColumns } from "./Defaultdata";
 import {
   Pagination,
   PaginationItem,
@@ -13,10 +12,16 @@ import {
 import Select from "react-select";
 import { ChevronLeft, ChevronRight } from "react-feather";
 
-const DataTableComponent = () => {
+const DataTableComponent = ({
+  paginatedUpdated,
+  data,
+  tableColumns,
+  setPaginatedUpdated,
+  setPagination,
+  paginationDetails,
+}) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleDelet, setToggleDelet] = useState(false);
-  const [data, setData] = useState(dummytabledata);
 
   const handleRowSelected = useCallback((state) => {
     setSelectedRows(state.selectedRows);
@@ -41,31 +46,16 @@ const DataTableComponent = () => {
       },
     },
   };
-  const handleDelete = () => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete:\r ${selectedRows.map(
-          (r) => r.title
-        )}?`
-      )
-    ) {
-      setToggleDelet(!toggleDelet);
 
-      setData(
-        data.filter((item) =>
-          selectedRows.filter((elem) => elem.id === item.id).length > 0
-            ? false
-            : true
-        )
-      );
-      setSelectedRows("");
-    }
-  };
   const options = [
-    { value: "50", label: "50" },
-    { value: "100", label: "100" },
-    { value: "150", label: "150" },
+    { value: 10, label: "10" },
+    { value: 50, label: "50" },
+    { value: 100, label: "100" },
+    { value: 150, label: "150" },
   ];
+  const selectedOption = options.find(
+    (option) => option.value === paginationDetails.limit
+  );
 
   const customSelectStyles = {
     control: (provided, state) => ({
@@ -90,6 +80,44 @@ const DataTableComponent = () => {
       color: "black",
     }),
   };
+
+  const handleChangeLimit = (selectedOption) => {
+    setPagination({ ...paginationDetails, limit: selectedOption.value });
+    setPaginatedUpdated(!paginatedUpdated);
+  };
+
+  const handlePageChange = (page) => {
+    setPagination({ ...paginationDetails, page: page });
+    setPaginatedUpdated(!paginatedUpdated);
+  };
+
+
+  const renderPaginationItems = () => {
+    const items = [];
+    for (let i = 1; i <= paginationDetails.totalPages; i++) {
+      items.push(
+        <PaginationItem
+          key={i}
+          active={paginationDetails.page === i}
+          className="custom-pagination-item"
+        >
+          <PaginationLink
+            className={`custom-pagination-link ${
+              paginationDetails.page === i ? "active" : ""
+            }`}
+            onClick={() => handlePageChange(i)}
+          >
+            {i}
+            {paginationDetails.page === i && (
+              <span className="sr-only">(current)</span>
+            )}
+          </PaginationLink>
+        </PaginationItem>
+      );
+    }
+    return items;
+  };
+
   return (
     <Fragment>
       {selectedRows.length !== 0 && (
@@ -99,9 +127,6 @@ const DataTableComponent = () => {
           <H4 attrH4={{ className: "text-muted m-0" }}>
             Delet Selected Data..!
           </H4>
-          <Btn attrBtn={{ color: "danger", onClick: () => handleDelete() }}>
-            Delete
-          </Btn>
         </div>
       )}
       <DataTable
@@ -151,58 +176,36 @@ const DataTableComponent = () => {
               <Select
                 options={options}
                 styles={customSelectStyles}
-                placeholder="50"
+                value={selectedOption}
                 className="js-example-basic-single col-sm-6"
+                onChange={handleChangeLimit}
               />
             </InputGroup>
           </Form>
         </div>
         <Pagination className="pagination justify-content-end ">
           <ul className="pagination pagination-alfren">
-            <PaginationItem disabled className="custom-pagination-item">
-              <PaginationLink className="custom-pagination-link">
+            <PaginationItem
+              disabled={paginationDetails.page === 1}
+              className="custom-pagination-item"
+            >
+              <PaginationLink
+                className="custom-pagination-link"
+                onClick={() => handlePageChange(paginationDetails.page-1)}
+              >
                 <ChevronLeft strokeWidth={0.5} />
                 Prev
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem active className="custom-pagination-item">
+            {renderPaginationItems()}
+            <PaginationItem
+              disabled={paginationDetails.page === paginationDetails.totalPages}
+              className="custom-pagination-item"
+            >
               <PaginationLink
-                href="#javascript"
                 className="custom-pagination-link"
-              >
-                01
-                <span className="sr-only">{"(current)"}</span>
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="custom-pagination-item">
-              <PaginationLink
-                href="#javascript"
-                className="custom-pagination-link"
-              >
-                02
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="custom-pagination-item">
-              <PaginationLink
-                href="#javascript"
-                className="custom-pagination-link"
-              >
-                03
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="custom-pagination-item">
-              <PaginationLink
-                href="#javascript"
-                className="custom-pagination-link"
-              >
-                04
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem className="custom-pagination-item">
-              <PaginationLink
-                href="#javascript"
-                className="custom-pagination-link"
-              >
+                onClick={() => handlePageChange(paginationDetails.page+1)}
+                >
                 Next
                 <ChevronRight strokeWidth={0.5} />
               </PaginationLink>
