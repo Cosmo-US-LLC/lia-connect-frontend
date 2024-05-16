@@ -161,8 +161,8 @@ const DataTableComponent = ({
         style={{
           backgroundColor: "#f5f9ff",
           display: "inline-flex",
-          justifyContent: "space-around",
-          width: "100%"
+          justifyContent: "space-between",        
+          width: "80%"
         }}
       >
         <div className="justify-content-start">

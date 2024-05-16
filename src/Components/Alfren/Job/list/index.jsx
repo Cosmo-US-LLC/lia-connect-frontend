@@ -9,6 +9,7 @@ import {
   Media,
   Label,
   UncontrolledTooltip,
+  CardBody,
 } from "reactstrap";
 import { Progressbar, UL } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
@@ -420,7 +421,7 @@ const JobList = () => {
     dispatch(
       fetchJobs(formPayload, (resp) => {
         if (resp.status == 200) {
-          toast.success("JobsFetched successfully");
+          // toast.success("JobsFetched successfully");
           const results = resp.data.results;
           const mappedResult = mapSearchJobList(results);
           setSearchJobs(mappedResult);
@@ -489,6 +490,8 @@ const JobList = () => {
       let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(
         1
       );
+      differenceInDays = Math.round(differenceInDays)
+      
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
@@ -496,7 +499,7 @@ const JobList = () => {
         id: item.id,
         name: (
           <>
-            <Link to="detail/1">
+            <Link to={'detail/'+item.id} key={item.id} >
               <div
                 style={{
                   width: "50ch",
@@ -620,7 +623,7 @@ const JobList = () => {
             paddingBottom:"3px"
             }}>
               {priorities.map((option, index) => (
-                <li key={index} style={{borderBottom: "1px solid black",padding: "8px"}} onClick={() =>
+                <li key={index} style={{borderBottom: "1px solid #0000001f",padding: "8px"}} onClick={() =>
                   changeJobPriority(item.id, option.title)
                 }>
                     <Flag
@@ -712,12 +715,15 @@ const JobList = () => {
   
   useEffect(() => {
     fetchJobNames();
-  }, []);
+  }, [priorityDropdownRow]);
 
   useEffect(() => {
     const mappedRecords = mapTableData(jobAPIResult);
     setJobsList(mappedRecords);
   }, [priorityDropdownRow]);
+
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight-300);
+
 
   return (
     <Fragment>
@@ -973,6 +979,7 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
+              <div style={{ boxShadow: "none" ,maxHeight:`${maxHeight}px`, overflowY: "auto" }}  className="custom-scrollbar" >
               <DataTableComponent
                 paginatedUpdated={paginatedUpdated}
                 data={jobsList}
@@ -981,6 +988,8 @@ const JobList = () => {
                 setPagination={setPagination}
                 setPaginatedUpdated={setPaginatedUpdated}
               />
+              </div>
+             
             </Card>
           </Col>
         </Row>
