@@ -32,8 +32,8 @@ const DateModal = ({
   };
 
   const resetDate = () => {
-    setStartDate(new Date());
-    setEndDate(new Date());
+    setIsDateSelected(false)
+    closeDateDropdown();
   };
 
   const markDone = () => {
@@ -52,6 +52,19 @@ const DateModal = ({
     );
     closeDateDropdown();
   };
+
+
+
+
+ 
+
+
+
+
+
+
+
+
   return (
     <Fragment>
       <div

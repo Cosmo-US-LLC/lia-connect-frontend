@@ -43,6 +43,8 @@ const DataTableComponent = ({
     cells: {
       style: {
         background: "white",
+        width:"100%",
+
       },
     },
   };
@@ -139,6 +141,7 @@ const DataTableComponent = ({
         clearSelectedRows={toggleDelet}
         customStyles={customStyles}
       />
+      <div style={{position: "fixed",bottom: "22px",width:'100%'}}> 
       <span
         style={{
           fontSize: "10px",
@@ -150,13 +153,16 @@ const DataTableComponent = ({
         * To ensure that the system performs at the optimal efficiency, you can
         have up to 5 active jobs at a time.
       </span>
+      <br>
+      </br>
       <nav
         aria-label="Page navigation example"
         className="py-3"
         style={{
           backgroundColor: "#f5f9ff",
           display: "inline-flex",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
+          width: "100%"
         }}
       >
         <div className="justify-content-start">
@@ -213,6 +219,7 @@ const DataTableComponent = ({
           </ul>
         </Pagination>
       </nav>
+      </div>
     </Fragment>
   );
 };

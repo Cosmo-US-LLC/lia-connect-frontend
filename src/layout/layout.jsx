@@ -13,7 +13,11 @@ import CustomizerContext from "../_helper/Customizer";
 import AnimationThemeContext from "../_helper/AnimationTheme";
 import ConfigDB from "../Config/ThemeConfig";
 import Loader from "./Loader";
+import CustomContext from "../_helper/Customizer";
+
 const AppLayout = ({ children, classNames, ...rest }) => {
+  const { toggleIcon } = useContext(CustomContext);
+
   const { layout } = useContext(CustomizerContext);
   const { sidebarIconType } = useContext(CustomizerContext);
 
@@ -46,7 +50,7 @@ const AppLayout = ({ children, classNames, ...rest }) => {
               classNames={animationTheme}
               unmountOnExit
             >
-              <div className="page-body ">
+              <div className={`page-body ${toggleIcon ? "close_icon" : ""}`}>
                 <div>
                   <div>
                     <Outlet />
