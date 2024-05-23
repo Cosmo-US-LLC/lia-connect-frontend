@@ -67,7 +67,7 @@ const GenderGraph = () => {
               fontSize: "12px",
               fontWeight: 400,
               position: "relative",
-              width: "100%",
+              width: "90%",
               color: "#595959",
             }}
           >
@@ -93,7 +93,7 @@ const GenderGraph = () => {
           <div className="mt-5">
             <div className="pb-2">
               <span
-                class="badge"
+                className="badge"
                 style={{ color: "#EBF1FC", backgroundColor: "#EBF1FC" }}
               >
                 .
@@ -110,7 +110,7 @@ const GenderGraph = () => {
             </div>
             <div className="pb-2">
               <span
-                class="badge"
+                className="badge"
                 style={{ color: "#1264FD", backgroundColor: "#1264FD" }}
               >
                 .

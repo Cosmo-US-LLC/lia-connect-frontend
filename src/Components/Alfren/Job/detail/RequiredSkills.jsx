@@ -6,18 +6,10 @@ import TodoContext from "../../../../_helper/Todo";
 import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
 import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
 import { X } from "react-feather";
-const RequiredSkills = () => {
-  const [selectedSkills, setSelectedSkills] = useState([
-    { id: 1, title: "UX/UI Designer" },
-    { id: 2, title: "UX Research" },
-    { id: 3, title: "Adobe XD" },
-    { id: 4, title: "Adobe Photoshop" },
-    { id: 5, title: "Information Architecture" },
-    { id: 6, title: "Design Thinking" },
-    { id: 7, title: "Figma" },
-  ]);
-  const removeSkill = (jobId) => {
-    const updatedJobs = selectedSkills.filter((job) => job.id !== jobId);
+const RequiredSkills = ({jobDetails}) => {
+  const [selectedSkills, setSelectedSkills] = useState(jobDetails.skills);
+  const removeSkill = (jobName) => {
+    const updatedJobs = selectedSkills.filter(job => job !== jobName);
     // Update the state with the updatedJobs array
     setSelectedSkills(updatedJobs);
   };
@@ -46,7 +38,7 @@ const RequiredSkills = () => {
             ></span>
           </p>
           <div className="mt-4">
-            {selectedSkills.map((job, index) => (
+            {selectedSkills.map((skill, index) => (
               <button
                 key={index}
                 className="mt-2"
@@ -61,12 +53,12 @@ const RequiredSkills = () => {
                 }}
               >
                 <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                  {job.title}
+                  {skill}
                 </span>
                 <X
                   strokeWidth={1.5}
                   size={16}
-                  onClick={() => removeSkill(job.id)}
+                  onClick={() => removeSkill(skill)}
                 />
               </button>
             ))}

@@ -171,6 +171,7 @@ const StepOne = ({
   }
 
   const submitStepOne = async (e) => {
+
     const formData = {
       name: jobName,
       jobPriority: mapJobPriority(jobPriority),

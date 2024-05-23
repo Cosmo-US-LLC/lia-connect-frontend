@@ -30,10 +30,9 @@ import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import DateModal from "./modals/date";
 import { Link } from "react-router-dom";
-import { fetchJobs, updateJob } from "../../../../redux/Job/jobActions";
+import { fetchJobs, updateJob , deleteJobAction} from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { format, max } from "date-fns";
 
 const JobList = () => {
   const dispatch = useDispatch();
@@ -472,6 +471,22 @@ const JobList = () => {
       })
     );
   };
+
+  
+  
+  const deleteJob = (jobId) => {
+    dispatch(
+      deleteJobAction(jobId, (resp) => {
+        if (resp.status == 204) {
+          toast.success("Job Deleted Successfully");
+          setPaginatedUpdated(!paginatedUpdated);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
   
   const toggleDropdown = (index) => {
     const updatedDropdownStates = [...priorityDropdownRow];
@@ -684,6 +699,10 @@ const JobList = () => {
               color="#9B9999"
               size={20}
               className="ms-2"
+              onClick={() =>
+                deleteJob(item.id)
+              }
+              style={{cursor:"pointer"}}
             />
           </div>
         ),
