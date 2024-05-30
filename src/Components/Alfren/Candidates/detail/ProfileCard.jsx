@@ -10,7 +10,7 @@ import phoneIcon from "../../../../assets/used-files/icons/phone.svg";
 import envelopIcon from "../../../../assets/used-files/icons/envelope.svg";
 import websiteIcon from "../../../../assets/used-files/icons/website.svg";
 
-const ProfileCard = () => {
+const ProfileCard = ({ candidateDetails }) => {
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -20,7 +20,9 @@ const ProfileCard = () => {
               attrImage={{
                 className: "step1",
                 alt: "",
-                src: `${DefaultUserImage}`,
+                src: candidateDetails.candidate.image
+                  ? candidateDetails.candidate.image
+                  : `${DefaultUserImage}`,
               }}
             />
           </div>
@@ -46,24 +48,36 @@ const ProfileCard = () => {
               <div className="user-designation">
                 <div className="title">
                   <a href="#" target="_blank">
-                    <strong>Bianca Gottesman</strong>
+                    <strong>{candidateDetails.candidate.name}</strong>
                   </a>
                 </div>
                 <div className="desc mt-2">
-                  Cheif Executive Officer at Super Smalls
+                  {candidateDetails.candidate.currentJob.title}
                 </div>
-                <div className="desc mt-2">500+ Connections</div>
                 <div className="desc mt-2">
-                  <Image
-                    attrImage={{
-                      className: "me-2",
-                      alt: "",
-                      src: profileScore,
-                    }}
-                  />
-                  <strong className="me-2"> Profile Score:</strong>75/100{" "}
-                  <span className="ms-2 badge badge-success">Excellent </span>
+                  {candidateDetails.candidate.description}
                 </div>
+                
+                {candidateDetails.candidate.connections && (
+                  <div className="desc mt-2">
+                    {candidateDetails.candidate.connections}
+                  </div>
+                )}
+
+                {candidateDetails.candidate.profileScore && (
+                  <div className="desc mt-2">
+                    <Image
+                      attrImage={{
+                        className: "me-2",
+                        alt: "",
+                        src: profileScore,
+                      }}
+                    />
+                    <strong className="me-2"> Profile Score:</strong>
+                    {candidateDetails.candidate.profileScore}/100{" "}
+                    <span className="ms-2 badge badge-success">Excellent </span>
+                  </div>
+                )}
               </div>
             </Col>
           </Row>
@@ -78,54 +92,63 @@ const ProfileCard = () => {
           </div>
 
           <Row>
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: phoneIcon,
-                  }}
-                />
-                <div>
-                  <strong>Contact Number</strong>
-                  <br></br>
-                  <p>+1 562-659-3658</p>
+            {candidateDetails.candidate.contact.phone && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: phoneIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Contact Number</strong>
+                    <br></br>
+                    <p>{candidateDetails.candidate.contact.phone}</p>
+                  </div>
                 </div>
-              </div>
-            </Col>
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: envelopIcon,
-                  }}
-                />
-                <div>
-                  <strong>Email</strong>
-                  <br></br>
-                  <p>yourtestmail@gmail.com</p>
+              </Col>
+            )}
+
+            {candidateDetails.candidate.contact.email && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: envelopIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Email</strong>
+                    <br></br>
+                    <p>{candidateDetails.candidate.contact.email}</p>
+                  </div>
                 </div>
-              </div>
-            </Col>
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: websiteIcon,
-                  }}
-                />
-                <div>
-                  <strong>Website</strong>
-                  <br></br>
-                  <p className=" text-primary">figma.com</p>
+              </Col>
+            )}
+            {candidateDetails.candidate.contact.website && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: websiteIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Website</strong>
+                    <br></br>
+                    <p className=" text-primary">
+                      {candidateDetails.candidate.contact.website}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            )}
           </Row>
         </div>
       </Card>

@@ -4,7 +4,7 @@ import { Image } from "../../../../AbstractElements";
 
 import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
 
-const DetailsCard = () => {
+const DetailsCard = ({ candidateDetails }) => {
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -13,8 +13,21 @@ const DetailsCard = () => {
             <Col sm="12" lg="12" className="order-sm-0 order-xl-1">
               <div className="user-designation">
                 <div className="title">
-                  <p>
-                    <strong>Company: </strong> The Walt Disney Company
+                  <p className="d-flex justify-content-between align-items-center">
+                    {" "}
+                    <span>
+                      <strong>Company: </strong>{" "}
+                      <span>
+                        {candidateDetails.candidate.currentJob.company.name}
+                      </span>
+                    </span>
+                    <Image
+                      attrImage={{
+                        className: "companyLogo",
+                        alt: "",
+                        src: candidateDetails.candidate.currentJob.company.logo,
+                      }}
+                    />
                   </p>
                 </div>
               </div>

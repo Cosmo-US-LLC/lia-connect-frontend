@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Image, LI, ToolTip, UL } from "../../../../AbstractElements";
 import ProfileCard from "./ProfileCard";
@@ -8,10 +8,37 @@ import DetailsCard from "./DetailsCard";
 import ChatIcon from "../../../../assets/used-files/icons/Chat.svg";
 import BlacklistIcon from "../../../../assets/used-files/icons/Blacklisted.svg";
 import CommentInfoIcon from "../../../../assets/used-files/icons/commentInfo.svg";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActions";
+import { toast } from "react-toastify";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [candidateDetails, setCandidateDetails] = useState(null);
+
+  useEffect(() => {
+    getCandidateDetails();
+  }, [dispatch, id]);
+
+  const getCandidateDetails = () => {
+    dispatch(
+      fetchCandidateDetails(id, (resp) => {
+        if (resp.status == 200) {
+          toast.success("Candidate Details Fetched successfully");
+          const result = resp.data;
+          setCandidateDetails(result);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -108,11 +135,16 @@ const CandidatesList = () => {
             <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
               <Row>
                 <Col xl="12" md="6">
-                  <ProfileCard />
+                  {candidateDetails && (
+                    <ProfileCard candidateDetails={candidateDetails} />
+                  )}
                 </Col>
                 <Col xl="12" md="6">
-                  <DetailsCard />
+                {candidateDetails && (
+                  <DetailsCard candidateDetails={candidateDetails} />
+                )}
                 </Col>
+               
               </Row>
             </Col>
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
