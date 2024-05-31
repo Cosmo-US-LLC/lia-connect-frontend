@@ -28,7 +28,7 @@ const CandidatesList = () => {
     dispatch(
       fetchCandidateDetails(id, (resp) => {
         if (resp.status == 200) {
-          toast.success("Candidate Details Fetched successfully");
+          // toast.success("Candidate Details Fetched successfully");
           const result = resp.data;
           setCandidateDetails(result);
         } else {

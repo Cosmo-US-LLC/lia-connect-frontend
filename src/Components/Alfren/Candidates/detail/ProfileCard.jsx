@@ -60,7 +60,7 @@ const ProfileCard = ({ candidateDetails }) => {
                 
                 {candidateDetails.candidate.connections && (
                   <div className="desc mt-2">
-                    {candidateDetails.candidate.connections}
+                    {candidateDetails.candidate.connections} Connections
                   </div>
                 )}
 

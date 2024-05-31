@@ -41,7 +41,7 @@ const DetailsCard = ({ candidateDetails }) => {
                 <div>
                   <strong>City</strong>
                   <br></br>
-                  <p>Austin</p>
+                  <p>{candidateDetails.candidate.contact.city}</p>
                 </div>
               </div>
             </Col>
@@ -50,7 +50,7 @@ const DetailsCard = ({ candidateDetails }) => {
                 <div>
                   <strong>Country</strong>
                   <br></br>
-                  <p>United States</p>
+                  <p>{candidateDetails.candidate.contact.country}</p>
                 </div>
               </div>
             </Col>
@@ -72,19 +72,11 @@ const DetailsCard = ({ candidateDetails }) => {
                     Skills <span style={{ color: "red" }}>*</span>
                   </strong>
                   <br></br>
-                  <span className="badge badge-light m-1">UX/UI Designer</span>
-                  <span className="badge badge-light  m-1">UX Research</span>
-                  <span className="badge badge-light  m-1">
-                    Adobe Photoshop
-                  </span>
-                  <span className="badge badge-light  m-1">
-                    Adobe Illustrator
-                  </span>
-                  <span className="badge badge-light  m-1">Adobe XD</span>
-                  <span className="badge badge-light m-1">
-                    Information Architecture
-                  </span>
-                  <span className="badge badge-light  m-1">Figma</span>
+                  {candidateDetails.candidate.skills.map((skill, index) => (
+                    <span key={index} className="badge badge-light m-1">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             </Col>
@@ -92,20 +84,22 @@ const DetailsCard = ({ candidateDetails }) => {
               <div style={{ display: "flex", alignItems: "flex-start" }}>
                 <div>
                   <strong>Jobs</strong>
-                  <div>
-                    <p className=" text-primary">
-                      Mid-Level UI Designer{" "}
-                      <span
-                        className="ms-2 badge badge-success"
-                        style={{
-                          borderLeft: "2px solid #299A16 ",
-                          borderRadius: " 0px",
-                        }}
-                      >
-                        70% Skills Matched{" "}
-                      </span>
-                    </p>
-                  </div>
+                  {candidateDetails.candidate.jobs.map((job, index) => (
+                    <div>
+                      <p className=" text-primary">
+                        {job.name}
+                        <span
+                          className="ms-2 badge badge-success"
+                          style={{
+                            borderLeft: "2px solid #299A16 ",
+                            borderRadius: " 0px",
+                          }}
+                        >
+                         {job.skillMatchScore ?  job.skillMatchScore + 'Skills Matched' : "Skills matching in process"}
+                        </span>
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Col>
