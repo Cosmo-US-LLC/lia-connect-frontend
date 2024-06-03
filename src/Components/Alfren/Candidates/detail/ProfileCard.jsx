@@ -9,6 +9,7 @@ import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
 import phoneIcon from "../../../../assets/used-files/icons/phone.svg";
 import envelopIcon from "../../../../assets/used-files/icons/envelope.svg";
 import websiteIcon from "../../../../assets/used-files/icons/website.svg";
+import { Link } from "react-router-dom";
 
 const ProfileCard = ({ candidateDetails }) => {
   return (
@@ -26,7 +27,7 @@ const ProfileCard = ({ candidateDetails }) => {
               }}
             />
           </div>
-          <div
+          <Link to={candidateDetails.candidate.linkedIn} target="_blank"
             className="icon-wrapper step2"
             data-intro="Change Profile image here"
           >
@@ -37,7 +38,7 @@ const ProfileCard = ({ candidateDetails }) => {
                 src: linkedinIcon,
               }}
             />
-          </div>
+          </Link>
         </div>
         <div className="info  mt-5">
           <Row
@@ -57,7 +58,7 @@ const ProfileCard = ({ candidateDetails }) => {
                 <div className="desc mt-2">
                   {candidateDetails.candidate.description}
                 </div>
-                
+
                 {candidateDetails.candidate.connections && (
                   <div className="desc mt-2">
                     {candidateDetails.candidate.connections} Connections
@@ -92,63 +93,100 @@ const ProfileCard = ({ candidateDetails }) => {
           </div>
 
           <Row>
-            {candidateDetails.candidate.contact.phone && (
-              <Col xl="12" xs="6" className="text-left">
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <Image
-                    attrImage={{
-                      className: "me-2 mt-1",
-                      alt: "",
-                      src: phoneIcon,
-                    }}
-                  />
-                  <div>
-                    <strong>Contact Number</strong>
-                    <br></br>
+            <Col xl="12" xs="6" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <Image
+                  attrImage={{
+                    className: "me-2 mt-1",
+                    alt: "",
+                    src: phoneIcon,
+                  }}
+                />
+                <div>
+                  <strong>Contact Number</strong>
+                  <br></br>
+                  {candidateDetails.candidate.contact.phone ? (
                     <p>{candidateDetails.candidate.contact.phone}</p>
-                  </div>
+                  ) : (
+                    <p className=" text-primary">
+                      <span
+                        className="badge badge-success"
+                        style={{
+                          borderLeft: "2px solid #299A16 ",
+                          borderRadius: " 0px",
+                        }}
+                      >
+                        {"Fetching contact number in progress"}
+                      </span>
+                    </p>
+                  )}
                 </div>
-              </Col>
-            )}
+              </div>
+            </Col>
 
-            {candidateDetails.candidate.contact.email && (
-              <Col xl="12" xs="6" className="text-left">
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <Image
-                    attrImage={{
-                      className: "me-2 mt-1",
-                      alt: "",
-                      src: envelopIcon,
-                    }}
-                  />
-                  <div>
-                    <strong>Email</strong>
-                    <br></br>
+            <Col xl="12" xs="6" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <Image
+                  attrImage={{
+                    className: "me-2 mt-1",
+                    alt: "",
+                    src: envelopIcon,
+                  }}
+                />
+                <div>
+                  <strong>Email</strong>
+                  <br></br>
+                  {candidateDetails.candidate.contact.email ? (
                     <p>{candidateDetails.candidate.contact.email}</p>
-                  </div>
+                  ) : (
+                    <p className=" text-primary">
+                      <span
+                        className="badge badge-success"
+                        style={{
+                          borderLeft: "2px solid #299A16 ",
+                          borderRadius: " 0px",
+                        }}
+                      >
+                        {"Fetching email in progress"}
+                      </span>
+                    </p>
+                  )}
                 </div>
-              </Col>
-            )}
-            {candidateDetails.candidate.contact.website && (
-              <Col xl="12" xs="6" className="text-left">
-                <div style={{ display: "flex", alignItems: "flex-start" }}>
-                  <Image
-                    attrImage={{
-                      className: "me-2 mt-1",
-                      alt: "",
-                      src: websiteIcon,
-                    }}
-                  />
-                  <div>
-                    <strong>Website</strong>
-                    <br></br>
+              </div>
+            </Col>
+
+            <Col xl="12" xs="6" className="text-left">
+              <div style={{ display: "flex", alignItems: "flex-start" }}>
+                <Image
+                  attrImage={{
+                    className: "me-2 mt-1",
+                    alt: "",
+                    src: websiteIcon,
+                  }}
+                />
+                <div>
+                  <strong>Website</strong>
+                  <br></br>
+                  {candidateDetails.candidate.contact.website ? (
                     <p className=" text-primary">
                       {candidateDetails.candidate.contact.website}
                     </p>
-                  </div>
+                  ) : (
+                    <p className=" text-primary">
+                      <span
+                        className="badge badge-success"
+                        style={{
+                          borderLeft: "2px solid #299A16 ",
+                          borderRadius: " 0px",
+                        }}
+                      >
+                        {"Fetching website in progress"}
+                      </span>
+                    </p>
+                  )}
                 </div>
-              </Col>
-            )}
+              </div>
+            </Col>
           </Row>
         </div>
       </Card>

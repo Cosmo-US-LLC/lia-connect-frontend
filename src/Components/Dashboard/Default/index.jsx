@@ -20,14 +20,14 @@ const Dashboard = () => {
         <Row className="widget-grid">
           <GreetingCard />
           <WidgetsWrapper />
-          <OverallBalance />
-          <RecentOrders />
-          <ActivityCard />
-          <RecentSales />
-          <TimelineCard />
-          <PreAccountCard />
-          <TotalUserAndFollower />
-          <PaperNote />
+          {/* <OverallBalance /> */}
+          {/* <RecentOrders /> */}
+          {/* <ActivityCard /> */}
+          {/* <RecentSales /> */}
+          {/* <TimelineCard /> */}
+          {/* <PreAccountCard /> */}
+          {/* <TotalUserAndFollower /> */}
+          {/* <PaperNote /> */}
         </Row>
       </Container>
     </Fragment>
