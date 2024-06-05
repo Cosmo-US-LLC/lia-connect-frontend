@@ -80,7 +80,7 @@ const CandidateFunnel = () => {
             <div className="mt-3">
               <div className="pb-2">
                 <span
-                  class="badge rounded-pill"
+                  className="badge rounded-pill"
                   style={{ color: "#0B9289", backgroundColor: "#0B9289" }}
                 >
                   .
@@ -100,7 +100,7 @@ const CandidateFunnel = () => {
               </div>
               <div className="pb-2">
                 <span
-                  class="badge rounded-pill"
+                  className="badge rounded-pill"
                   style={{ color: "#924C0B", backgroundColor: "#924C0B" }}
                 >
                   .
@@ -120,7 +120,7 @@ const CandidateFunnel = () => {
               </div>
               <div className="pb-2">
                 <span
-                  class="badge rounded-pill"
+                  className="badge rounded-pill"
                   style={{ color: "#66920B", backgroundColor: "#66920B" }}
                 >
                   .

@@ -1915,6 +1915,13 @@
         margin-top: 80px;
         margin-left: $sidebar-compact-width;
         // animation: pagebody 1000ms ease-in-out;
+
+        &.close_icon {
+          margin-left: 90px;
+          width: calc(100% - 90px);
+        }
+
+        
       }
     }
 

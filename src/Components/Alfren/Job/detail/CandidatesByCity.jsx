@@ -242,7 +242,7 @@ const CandidatesByCity = () => {
               ></div>
               <div className="mt-5">
                 {/* Loop through legendItems and create legend entries */}
-                {legendItems.map((item) => (
+                {legendItems.map((item,index) => (
                   // <div key={item.city}>
                   //   <span
                   //     style={{ backgroundColor: item.color, padding: "5px" }}
@@ -251,7 +251,7 @@ const CandidatesByCity = () => {
                   //     {item.city} ({item.count})
                   //   </span>
                   // </div>
-                  <Col style={{ display: "flex", alignItems: "center" }}>
+                  <Col style={{ display: "flex", alignItems: "center" }} key={index}>
                     <div style={{ width: item.count }}>
                       {/* <Progressbar
                         attrProgress={{

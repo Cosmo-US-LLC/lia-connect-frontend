@@ -9,8 +9,10 @@ import StepOne from "./StepOne/index";
 import StepTwo from "./StepTwo/index";
 import StepThree from "./StepThree/index";
 import Completed from "./Completed";
+import { useLocation } from "react-router";
 
 const JobCreate = () => {
+  const location = useLocation();
   const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
   const handleNext = (e) => {
@@ -89,6 +91,21 @@ const JobCreate = () => {
     console.log("dgdfg", transformed, sequenceArray);
     setSequence(transformed);
   }, [sequenceArray]);
+
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const jobIdFromQuery = searchParams.get('jobId');
+    if (jobIdFromQuery) {
+      setJobId(jobIdFromQuery);
+    }
+    const setFromQuery = searchParams.get('step');
+    if (setFromQuery) {
+      setStep(+setFromQuery);
+
+    }
+
+  }, [location.search]);
 
   return (
     <Fragment>

@@ -37,3 +37,24 @@ export const fetchJobs = (formPayload, cb) => async () => {
     cb(error?.response?.data);
   }
 };
+
+
+
+export const fetchJobDetails = (id, cb) => async () => {
+  try {
+    const { data, status } = await jobApi.fetchJobDetails(id);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
+
+export const deleteJobAction = (id, cb) => async () => {
+  try {
+    const { data, status } = await jobApi.deleteJob(id);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
+

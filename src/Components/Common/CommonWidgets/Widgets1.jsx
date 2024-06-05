@@ -11,7 +11,6 @@ const Widgets1 = ({ data }) => {
           <div className={`widget-round ${data.color}`}>
             <div className='bg-round'>
               <SvgIcon className='svg-fill' iconId={`${data.icon}`} />
-              <SvgIcon className='half-circle svg-fill' iconId='halfcircle' />
             </div>
           </div>
           <div>

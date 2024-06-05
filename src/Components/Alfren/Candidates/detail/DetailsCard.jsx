@@ -4,7 +4,7 @@ import { Image } from "../../../../AbstractElements";
 
 import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
 
-const DetailsCard = () => {
+const DetailsCard = ({ candidateDetails }) => {
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -13,8 +13,21 @@ const DetailsCard = () => {
             <Col sm="12" lg="12" className="order-sm-0 order-xl-1">
               <div className="user-designation">
                 <div className="title">
-                  <p>
-                    <strong>Company: </strong> The Walt Disney Company
+                  <p className="d-flex justify-content-between align-items-center">
+                    {" "}
+                    <span>
+                      <strong>Company: </strong>{" "}
+                      <span>
+                        {candidateDetails.candidate.currentJob.company.name}
+                      </span>
+                    </span>
+                    <Image
+                      attrImage={{
+                        className: "companyLogo",
+                        alt: "",
+                        src: candidateDetails.candidate.currentJob.company.logo,
+                      }}
+                    />
                   </p>
                 </div>
               </div>
@@ -28,7 +41,7 @@ const DetailsCard = () => {
                 <div>
                   <strong>City</strong>
                   <br></br>
-                  <p>Austin</p>
+                  <p>{candidateDetails.candidate.contact.city}</p>
                 </div>
               </div>
             </Col>
@@ -37,7 +50,7 @@ const DetailsCard = () => {
                 <div>
                   <strong>Country</strong>
                   <br></br>
-                  <p>United States</p>
+                  <p>{candidateDetails.candidate.contact.country}</p>
                 </div>
               </div>
             </Col>
@@ -59,19 +72,11 @@ const DetailsCard = () => {
                     Skills <span style={{ color: "red" }}>*</span>
                   </strong>
                   <br></br>
-                  <span className="badge badge-light m-1">UX/UI Designer</span>
-                  <span className="badge badge-light  m-1">UX Research</span>
-                  <span className="badge badge-light  m-1">
-                    Adobe Photoshop
-                  </span>
-                  <span className="badge badge-light  m-1">
-                    Adobe Illustrator
-                  </span>
-                  <span className="badge badge-light  m-1">Adobe XD</span>
-                  <span className="badge badge-light m-1">
-                    Information Architecture
-                  </span>
-                  <span className="badge badge-light  m-1">Figma</span>
+                  {candidateDetails.candidate.skills.map((skill, index) => (
+                    <span key={index} className="badge badge-light m-1">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             </Col>
@@ -79,20 +84,22 @@ const DetailsCard = () => {
               <div style={{ display: "flex", alignItems: "flex-start" }}>
                 <div>
                   <strong>Jobs</strong>
-                  <div>
-                    <p className=" text-primary">
-                      Mid-Level UI Designer{" "}
-                      <span
-                        className="ms-2 badge badge-success"
-                        style={{
-                          borderLeft: "2px solid #299A16 ",
-                          borderRadius: " 0px",
-                        }}
-                      >
-                        70% Skills Matched{" "}
-                      </span>
-                    </p>
-                  </div>
+                  {candidateDetails.candidate.jobs.map((job, index) => (
+                    <div>
+                      <p className=" text-primary">
+                        {job.name}
+                        <span
+                          className="ms-2 badge badge-success"
+                          style={{
+                            borderLeft: "2px solid #299A16 ",
+                            borderRadius: " 0px",
+                          }}
+                        >
+                         {job.skillMatchScore ?  job.skillMatchScore + 'Skills Matched' : "Skills matching in process"}
+                        </span>
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Col>

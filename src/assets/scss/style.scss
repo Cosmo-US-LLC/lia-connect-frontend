@@ -96,7 +96,13 @@ body.dark-only {
     color2
   ); /* Define your gradient colors */
 }
-
+.companyLogo {
+  border-radius: 10px;
+  width:40px
+}
+// .hgByPU div:first-child {
+//   width: 100%;
+// }
 // *** base ***
 @import "base/reset";
 @import "base/typography";

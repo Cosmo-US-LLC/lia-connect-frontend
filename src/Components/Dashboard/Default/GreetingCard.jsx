@@ -7,13 +7,13 @@ import CarToon from '../../../assets/images/dashboard/cartoon.svg';
 
 const GreetingCard = () => {
   return (
-    <Col className='col-xxl-4 col-sm-6 box-col-6'>
+    <Col className='col-xxl-12 col-sm-12 box-col-12 mt-4'>
       <Card className=' profile-box'>
         <CardBody>
           <Media>
             <Media body>
               <div className='greeting-user'>
-                <H4 attrH4={{ className: 'f-w-600' }}>{WelcomeToCuba}</H4>
+                <H4 attrH4={{ className: 'f-w-600' }}>Welcome to Alfren</H4>
                 <P>{WelcomeMessage}</P>
                 <div className='whatsnew-btn'>
                   <Btn attrBtn={{ color: 'transparent', outline: true, className: 'btn btn-outline-white' }}>{WhatsNew}</Btn>

@@ -113,7 +113,7 @@ const RegisterForm = ({ logoClassMain }) => {
       setError(hasUnfulfilledRequirement);
 
       setRequirements(updatedRequirements);
-    } else if (e.target.name == "confirm_password") {
+    } else if (e.target.name == "confirmPassword") {
       setConfirmPasswordMatched(
         formData.password !== e.target.value ? false : true
       );
@@ -346,9 +346,9 @@ const RegisterForm = ({ logoClassMain }) => {
                   </InputGroupText>
                   <Input
                     type={toggleConfirmPassword ? "text" : "password"}
-                    name="confirm_password"
+                    name="confirmPassword"
                     placeholder="**********"
-                    value={formData.confirm_password}
+                    value={formData.confirmPassword}
                     onChange={handleChange}
                   />
                   <InputGroupText>

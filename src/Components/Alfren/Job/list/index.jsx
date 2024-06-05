@@ -6,62 +6,78 @@ import {
   Card,
   CardHeader,
   Input,
-  FormGroup,
   Media,
   Label,
-  Tooltip,
   UncontrolledTooltip,
+  CardBody,
 } from "reactstrap";
-import { H4, H6, LI, ToolTip, UL } from "../../../../AbstractElements";
+import { Progressbar, UL } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
-import Select from "react-select";
-import { Form, InputGroup, InputGroupText } from "reactstrap";
-import { mapSearchJobList, mapTableData,tableColumns } from "./mapJobData"
 import {
   Check,
+  ChevronDown,
   Clock,
-  FileText,
-  Filter,
   Flag,
   Info,
   Plus,
   Search,
+  Trash2,
+  User,
+  Users,
   X,
 } from "react-feather";
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
-import Date from "./modals/date";
+import DateModal from "./modals/date";
 import { Link } from "react-router-dom";
-import { fetchJobs } from '../../../../redux/Job/jobActions'
+import { fetchJobs, updateJob , deleteJobAction} from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const JobList = () => {
+  const dispatch = useDispatch();
+
+  //states
   const [jobsList, setJobsList] = useState([]);
-  const [totalResults, setTotalResults] = useState(0);
+  const [tableColumns, setTableColumns] = useState([]);
+  const [paginatedUpdated, setPaginatedUpdated] = useState(false);
+  const [searchJobs, setSearchJobs] = useState([]);
+  const [isJobSelected, setIsJobSelected] = useState(false);
+  const [selectedJobs, setSelectedJobs] = useState([]);
+  const [activeOnly, setActiveOnly] = useState(false);
+  const [pagination, setPagination] = useState({
+    limit: 10,
+    page: 1,
+    totalPages: null,
+    totalResults: null,
+  });
+
+  //dropdown states
+  const [searchDropdown, setsSearchDropdown] = useState(false);
+  const [priorityDropdown, setPriorityDropdown] = useState(false);
+  const [dateDropdown, setDateDropdown] = useState(false);
+  const [priorityDropdownRow, setPriorityDropdownRow] = useState([]);
+  const [jobAPIResult, setJobAPIResult] = useState([]);
 
   
-  const [paginatedUpdated, setPaginatedUpdated] = useState(false);
-  const [pagination, setPagination] = useState({
-    limit:10,
-    page:1,
-    totalPages:null,
-    totalResults:null
-});
+  // function handle dropdown states
 
-  const dispatch = useDispatch();
-  const [searchDropdown, setsSearchDropdown] = useState(false);
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
   };
   const closeSearchDropdown = () => {
     setsSearchDropdown(false);
   };
-  const [searchJobs, setSearchJobs] = useState([]);
-  const [isJobSelected, setIsJobSelected] = useState(false);
-  const [selectedJobs, setSelectedJobs] = useState([]);
+  const togglePriorityDropdown = () => {
+    setPriorityDropdown(!priorityDropdown);
+  };
+  const toggleDateDropdown = () => {
+    setDateDropdown(!dateDropdown);
+  };
+  const closeDateDropdown = () => {
+    setDateDropdown(false);
+  };
 
-  const [priorityDropdown, setPriorityDropdown] = useState(false);
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
   const [priorities, setPriorities] = useState([
     {
@@ -86,20 +102,9 @@ const JobList = () => {
       color: "#ABABAB",
     },
   ]);
-  const togglePriorityDropdown = () => {
-    setPriorityDropdown(!priorityDropdown);
-  };
 
-  const [dateDropdown, setDateDropdown] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
-  const toggleDateDropdown = () => {
-    setDateDropdown(!dateDropdown);
-  };
-  const closeDateDropdown = () => {
-    setDateDropdown(false);
-  };
 
-  const [activeOnly, setActiveOnly] = useState(false);
   const handleCheckboxChange = () => {
     setActiveOnly(!activeOnly);
   };
@@ -134,44 +139,271 @@ const JobList = () => {
     }
   };
 
-
-  
-  useEffect(() => {
-    fetchJobPaginated();
-  }, [paginatedUpdated,selectedJobs,priorities,activeOnly,isDateSelected]);
-
-
-  useEffect(() => {
-    fetchJobNames();
-  }, []);
-
-  const  fetchJobPaginated = async (e) => {
-    const urlParams = 'page=' + pagination.page + '&limit=' + pagination.limit;
-    const ids = selectedJobs.length > 0 ? selectedJobs.map(item => item.id) : [];
-    const jobPriority = priorities.filter(item => item.isChecked).map(item => item.title); 
+  const fetchJobPaginated = async (e) => {
+    const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
+    const ids =
+      selectedJobs.length > 0 ? selectedJobs.map((item) => item.id) : [];
+    const jobPriority = priorities
+      .filter((item) => item.isChecked)
+      .map((item) => item.title);
     const isActive = activeOnly;
-    const [startDate, endDate] = isDateSelected ? isDateSelected.split('-').map(date => date.trim()) : ['', ''];
+    const [startDate, endDate] = isDateSelected
+      ? isDateSelected.split("-").map((date) => date.trim())
+      : ["", ""];
 
-    
     const formPayload = {
       urlParams,
       body: {
         ...(selectedJobs.length > 0 && { id: ids }),
         ...(jobPriority.length > 0 && { jobPriority }),
-        ...(isDateSelected && { startDate, endDate }), 
+        ...(isDateSelected && { startDate, endDate }),
         isActive,
-      }
+      },
     };
 
     dispatch(
       fetchJobs(formPayload, (resp) => {
         if (resp.status == 200) {
-          toast.success("JobsFetched successfully");
-          setPagination(resp.data.pagination)
-          const results = resp.data.results 
-          setTotalResults(resp.data.pagination.totalResults)
-          const mappedResult =  mapTableData(results)
-          setJobsList(mappedResult)
+          // toast.success("JobsFetched successfully");
+          setPagination(resp.data.pagination);
+          const results = resp.data.results;
+          setTableColumns([
+            {
+              name: (
+                <>
+                  {resp.data.pagination.totalResults}{" "}
+                  {resp.data.pagination.totalResults === 1 ? "Job" : "Jobs"}
+                </>
+              ),
+              selector: (row) => row["name"],
+              sortable: false,
+              center: false,
+            },
+            {
+              name: (
+                <>
+                  <button
+                    id="potentialToolTip"
+                    className="d-flex"
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "white",
+                      border: "none",
+                      fontWeight: "600",
+                      color: "black",
+                    }}
+                  >
+                    Potential Candidates{" "}
+                    <Info
+                      className="ms-1"
+                      strokeWidth={1}
+                      size={16}
+                      color="#8FA8D7"
+                    />
+                    <UncontrolledTooltip
+                      target="potentialToolTip"
+                      placement="bottom"
+                      style={{
+                        backgroundColor: "#595959",
+                        boxShadow: "0px 6px 26px -3.89px #0000001A",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          left: "300px",
+                          backgroundColor: "#595959",
+                        }}
+                        className="d-flex"
+                      >
+                        <Info color="#8FA8D7" size={70} />
+                        <span className="ms-2 text-white">
+                          The total number of unique candidate profiles the tool
+                          has interacted with.
+                        </span>
+                      </div>
+                    </UncontrolledTooltip>
+                  </button>
+                </>
+              ),
+              selector: (row) => row["potentialCandidates"],
+              sortable: false,
+              center: true,
+              width: "15%",
+            },
+            {
+              name: (
+                <>
+                  <button
+                    id="potentialToolTip"
+                    className="d-flex"
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "white",
+                      border: "none",
+                      fontWeight: "600",
+                      color: "black",
+                    }}
+                  >
+                    Outreach{" "}
+                    <Info
+                      className="ms-1"
+                      strokeWidth={1}
+                      size={16}
+                      color="#8FA8D7"
+                    />
+                    <UncontrolledTooltip
+                      target="potentialToolTip"
+                      placement="bottom"
+                      style={{
+                        backgroundColor: "#595959",
+                        boxShadow: "0px 6px 26px -3.89px #0000001A",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          left: "300px",
+                          backgroundColor: "#595959",
+                        }}
+                        className="d-flex"
+                      >
+                        <Info color="#8FA8D7" size={70} />
+                        <span className="ms-2 text-white">
+                          The total number of unique candidate profiles the tool
+                          has interacted with.
+                        </span>
+                      </div>
+                    </UncontrolledTooltip>
+                  </button>
+                </>
+              ),
+              selector: (row) => row["outreach"],
+              sortable: false,
+              center: true,
+              width: "12%",
+            },
+            {
+              name: (
+                <>
+                  <button
+                    id="responseToolTip"
+                    className="d-flex"
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "white",
+                      border: "none",
+                      fontWeight: "600",
+                      color: "black",
+                    }}
+                  >
+                    Response Rate
+                    <Info
+                      className="ms-1"
+                      strokeWidth={1}
+                      size={16}
+                      color="#8FA8D7"
+                    />
+                    <UncontrolledTooltip
+                      target="responseToolTip"
+                      placement="bottom"
+                      style={{
+                        backgroundColor: "#595959",
+                        boxShadow: "0px 6px 26px -3.89px #0000001A",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          left: "300px",
+                          backgroundColor: "#595959",
+                        }}
+                        className="d-flex"
+                      >
+                        <Info color="#8FA8D7" size={70} />
+                        <span className="ms-2 text-white">
+                          The total number of unique candidate profiles the tool
+                          has interacted with.
+                        </span>
+                      </div>
+                    </UncontrolledTooltip>
+                  </button>
+                </>
+              ),
+              selector: (row) => row["responseRate"],
+              sortable: false,
+              center: true,
+              width: "12%",
+            },
+            {
+              name: (
+                <>
+                  <button
+                    id="priorityToolTip"
+                    className="d-flex"
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "white",
+                      border: "none",
+                      fontWeight: "600",
+                      color: "black",
+                    }}
+                  >
+                    Priority
+                    <Info
+                      className="ms-1"
+                      strokeWidth={1}
+                      size={16}
+                      color="#8FA8D7"
+                    />
+                    <UncontrolledTooltip
+                      target="priorityToolTip"
+                      placement="bottom"
+                      style={{
+                        backgroundColor: "#595959",
+                        boxShadow: "0px 6px 26px -3.89px #0000001A",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          left: "300px",
+                          backgroundColor: "#595959",
+                        }}
+                        className="d-flex"
+                      >
+                        <Info color="#8FA8D7" size={70} />
+                        <span className="ms-2 text-white">
+                          The total number of unique candidate profiles the tool
+                          has interacted with.
+                        </span>
+                      </div>
+                    </UncontrolledTooltip>
+                  </button>
+                </>
+              ),
+              selector: (row) => row["priority"],
+              sortable: false,
+              center: true,
+              width: "8%",
+            },
+            {
+              name: <>Date Created</>,
+              selector: (row) => row["dateCreated"],
+              sortable: false,
+              center: true,
+            },
+            {
+              name: <>Actions</>,
+              selector: (row) => row["actions"],
+              sortable: false,
+              center: true,
+              width: "10%",
+            },
+          ]);
+          setJobAPIResult(results);
+          const mappedRecords = mapTableData(results);
+          setJobsList(mappedRecords);
         } else {
           const err = resp.message;
           toast.error(err);
@@ -180,18 +412,18 @@ const JobList = () => {
     );
   };
 
-  const  fetchJobNames = async (e) => {
-    const urlParams = 'page='+pagination.page+'&limit='+pagination.limit;
-    const formPayload ={
+  const fetchJobNames = async (e) => {
+    const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
+    const formPayload = {
       urlParams,
-    }
+    };
     dispatch(
       fetchJobs(formPayload, (resp) => {
         if (resp.status == 200) {
-          toast.success("JobsFetched successfully");
-          const results = resp.data.results 
-          const mappedResult =  mapSearchJobList(results)
-          setSearchJobs(mappedResult)
+          // toast.success("JobsFetched successfully");
+          const results = resp.data.results;
+          const mappedResult = mapSearchJobList(results);
+          setSearchJobs(mappedResult);
         } else {
           const err = resp.message;
           toast.error(err);
@@ -199,6 +431,317 @@ const JobList = () => {
       })
     );
   };
+
+  const changeJobStatus = (jobId, status) => {
+    const formData = {
+      jobId,
+      body: {
+        isJobActive: !status,
+      },
+    };
+    dispatch(
+      updateJob(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Job Updated Successfully");
+          setPaginatedUpdated(!paginatedUpdated);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+  const changeJobPriority = (jobId, priority) => {
+    const formData = {
+      jobId,
+      body: {
+        jobPriority: priority,
+      },
+    };
+    dispatch(
+      updateJob(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Job Updated Successfully");
+          setPaginatedUpdated(!paginatedUpdated);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+  
+  
+  const deleteJob = (jobId) => {
+    dispatch(
+      deleteJobAction(jobId, (resp) => {
+        if (resp.status == 204) {
+          toast.success("Job Deleted Successfully");
+          setPaginatedUpdated(!paginatedUpdated);
+        } else {
+          const err = resp.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+  
+  const toggleDropdown = (index) => {
+    const updatedDropdownStates = [...priorityDropdownRow];
+    updatedDropdownStates[index] = !updatedDropdownStates[index];
+    setPriorityDropdownRow(updatedDropdownStates);
+
+  };
+
+
+  const mapTableData = (results) => {
+    let currentDate = new Date();
+    let jobMappedList = results.map((item, index) => {
+      let date = new Date(item.createdAt);
+
+      let differenceInMs = currentDate - date;
+      let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(
+        1
+      );
+      differenceInDays = Math.round(differenceInDays)
+      
+      differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
+
+      date = date.toDateString();
+      return {
+        id: item.id,
+        name: (
+          <>
+            <Link to={'detail/'+item.id} key={item.id} >
+              <div
+                style={{
+                  width: "50ch",
+                  overflow: "hidden",
+                  whiteSpace: "pre-wrap",
+                }}
+              >
+                {item.name}
+              </div>
+              <div className="progress-showcase">
+                <Col
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div style={{ width: "92%" }}>
+                    {" "}
+                    <Progressbar
+                      attrProgress={{
+                        value: "100",
+                        color: "progress1",
+                        className: "sm-progress-bar me-1 mb-0",
+                      }}
+                    />
+                    <span style={{ fontSize: "8px", color: "#b8d1fe" }}>
+                      100
+                    </span>
+                  </div>
+                  <div style={{ width: "4%" }}>
+                    <Progressbar
+                      attrProgress={{
+                        value: "100",
+                        color: "progress2",
+                        className: "sm-progress-bar me-1 mb-0 ",
+                      }}
+                    />
+                    <span style={{ fontSize: "8px", color: "#ffe699" }}>0</span>
+                  </div>
+                  <div style={{ width: "4%" }}>
+                    <Progressbar
+                      attrProgress={{
+                        value: "100",
+                        color: "progress3",
+                        barAriaLabelledBy: "75",
+                        className: "sm-progress-bar me-1 mb-0",
+                      }}
+                    />
+                    <span style={{ fontSize: "8px", color: "#fba14d" }}>0</span>
+                  </div>
+                </Col>
+              </div>
+            </Link>
+          </>
+        ),
+        potentialCandidates: (
+          <div className="d-flex">
+            <Users strokeWidth={1} size={16} />
+            <div className="ms-2 font-secondary">
+              <strong>
+                {item.potentialCandidates ? item.potentialCandidates : "N/A"}
+              </strong>
+            </div>
+          </div>
+        ),
+        outreach: (
+          <div className="d-flex">
+            <User strokeWidth={1} size={16} />
+            <div className="ms-2 font-secondary">
+              <strong>{item.outreach ? item.outreach : "N/A"}</strong>
+            </div>
+          </div>
+        ),
+        responseRate: (
+          <div>
+            <div className="font-secondary">
+              <strong>
+                {item.responseRate ? item.responseRate + "%" : "N/A"}
+              </strong>
+            </div>
+          </div>
+        ),
+        priority: (
+
+
+          <div className="custom-dropdown"  onClick={() => toggleDropdown(index)}>
+          <div className="selected-option" >
+            <Flag
+              fill={
+                item.jobPriority == "HIGH"
+                  ? "#DE3E3E"
+                  : item.jobPriority == "LOW"
+                  ? "#CECECE"
+                  : "#FECF41"
+              }
+              color={
+                item.jobPriority == "HIGH"
+                  ? "#AA1313"
+                  : item.jobPriority == "LOW"
+                  ? "#ABABAB"
+                  : "#E2B323"
+              }
+              size={14}
+              strokeWidth={1.5}
+            />
+            <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+              {item.jobPriority}
+            </span>
+            <ChevronDown
+              color="#8FA8D7"
+              size={14}
+              strokeWidth={1.5}
+            />
+          </div>
+         {
+          priorityDropdownRow[index] && (
+            <ul className="options" style={{padding: "10px",
+            position: "absolute",
+            boxShadow: "0px 10px 26px 0px #0000001A",
+            zIndex: 2,
+            backgroundColor: "white",
+            borderRadius: "8px",
+            width: "100%",
+            paddingBottom:"3px"
+            }}>
+              {priorities.map((option, index) => (
+                <li key={index} style={{borderBottom: "1px solid #0000001f",padding: "8px"}} onClick={() =>
+                  changeJobPriority(item.id, option.title)
+                }>
+                    <Flag
+                          fill={option.fill}
+                          color={option.color}
+                          size={14}
+                          strokeWidth={1.5}
+                        />
+                  {option.title}
+                </li>
+              ))}
+            </ul>
+          ) 
+         }
+        
+
+          
+        </div>
+        ),
+        dateCreated: (
+          <div>
+            <span>{date}</span>
+            <span style={{ color: "#299A16" }}>
+              {" "}
+              ( {differenceInDays ? differenceInDays + " Days" : "Today"})
+            </span>
+          </div>
+        ),
+        actions: (
+          <div className="d-flex align-items-center">
+            {item.isJobCompleted ? (
+              <div className="d-block">
+                <span>Active</span>
+                <Media key="1">
+                  <Media
+                    body
+                    className="text-start switch-sm "
+                    style={{ width: "12%" }}
+                  >
+                    <Label className="switch">
+                      <Input
+                        type="checkbox"
+                        checked={item.isJobActive ? true : false}
+                        onClick={() =>
+                          changeJobStatus(item.id, item.isJobActive)
+                        }
+                      />
+                      <span className="switch-state"></span>
+                    </Label>
+                  </Media>
+                </Media>
+              </div>
+            ) : (
+              "Draft"
+            )}
+            <Trash2
+              strokeWidth={1}
+              color="#9B9999"
+              size={20}
+              className="ms-2"
+              onClick={() =>
+                deleteJob(item.id)
+              }
+              style={{cursor:"pointer"}}
+            />
+          </div>
+        ),
+      };
+    });
+
+    return jobMappedList;
+  };
+  const mapSearchJobList = (results) => {
+    let jobList = results.map((item, index) => {
+      return {
+        id: item.id,
+        title: item.name,
+        isChecked: false,
+      };
+    });
+
+    return jobList;
+  };
+
+
+
+  useEffect(() => {
+    fetchJobPaginated();
+    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false))
+  }, [paginatedUpdated, selectedJobs, priorities, activeOnly, isDateSelected]);
+
+
+  
+  useEffect(() => {
+    fetchJobNames();
+  }, [priorityDropdownRow]);
+
+  useEffect(() => {
+    const mappedRecords = mapTableData(jobAPIResult);
+    setJobsList(mappedRecords);
+  }, [priorityDropdownRow]);
+
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight-300);
 
 
   return (
@@ -298,11 +841,11 @@ const JobList = () => {
                     >
                       <Clock strokeWidth={1} size={16} />
                       <span className="ms-2" style={{ fontSize: "12px" }}>
-                        Date Created
+                        {isDateSelected ? isDateSelected : "Date Created"}
                       </span>
                     </button>
                     {dateDropdown && (
-                      <Date
+                      <DateModal
                         isDateSelected={isDateSelected}
                         setIsDateSelected={setIsDateSelected}
                         closeDateDropdown={closeDateDropdown}
@@ -360,8 +903,10 @@ const JobList = () => {
                       className="btn btn-primary pe-2 ps-2"
                       style={{ display: "inline-flex" }}
                     >
-                      <span>Add New Job</span>
-                      <Plus strokeWidth={2} size={20} />
+                      <span style={{ fontSize: "14px", fontWeight: 400 }}>
+                        Add New Job
+                      </span>
+                      <Plus strokeWidth={1.5} size={20} />
                     </Link>
                   </Col>
                   <Col xl="9">
@@ -449,42 +994,21 @@ const JobList = () => {
                             />
                           </button>
                         ))}
-                      {isDateSelected && (
-                        <button
-                          style={{
-                            display: "inline-flex",
-                            border: "none",
-                            color: "#595959",
-                            backgroundColor: "#F7F7F7",
-                            borderRadius: "4px",
-                            padding: "6px",
-                            marginRight: "8px",
-                          }}
-                        >
-                          <span
-                            className="ms-1 me-2"
-                            style={{ fontSize: "12px" }}
-                          >
-                            {isDateSelected}
-                          </span>
-                          <X
-                            strokeWidth={1.5}
-                            size={16}
-                            onClick={() => setIsDateSelected(false)}
-                          />
-                        </button>
-                      )}
                     </div>
-                  </Col>
-
-                  <Col xl="3" className="mt-2" style={{ textAlign: "end" }}>
-                    <H6>
-                      <strong>{totalResults} Jobs</strong>
-                    </H6>
                   </Col>
                 </Row>
               </CardHeader>
-              <DataTableComponent paginatedUpdated={paginatedUpdated} data={jobsList} paginationDetails={pagination} tableColumns={tableColumns} setPagination={setPagination} setPaginatedUpdated={setPaginatedUpdated}/>
+              <div style={{ boxShadow: "none" ,maxHeight:`${maxHeight}px`, overflowY: "auto" }}  className="custom-scrollbar" >
+              <DataTableComponent
+                paginatedUpdated={paginatedUpdated}
+                data={jobsList}
+                paginationDetails={pagination}
+                tableColumns={tableColumns}
+                setPagination={setPagination}
+                setPaginatedUpdated={setPaginatedUpdated}
+              />
+              </div>
+             
             </Card>
           </Col>
         </Row>

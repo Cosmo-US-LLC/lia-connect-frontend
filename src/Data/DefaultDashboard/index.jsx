@@ -6,32 +6,32 @@ import {
 } from "./Chart";
 
 export const WidgetsData = {
-  title: "Purchase",
+  title: "Jobs",
   gros: 50,
-  total: 10_000,
+  total: 10,
   color: "secondary",
   icon: "cart",
 };
 export const WidgetsData2 = {
-  title: "Sales return",
+  title: "Candidates",
   gros: 20,
-  total: 7000,
+  total: 700,
   color: "warning",
   icon: "return-box",
 };
 export const WidgetsData3 = {
-  title: "Sales",
+  title: "Approached Candidates",
   gros: 70,
-  total: 4_200,
+  total: 400,
   color: "primary",
   icon: "tag",
 };
 export const WidgetsData4 = {
-  title: "Purchase rate",
+  title: "Hired Candidate",
   gros: 70,
-  total: 5700,
-  color: "success",
-  icon: "rate",
+  total: 42,
+  color: "primary",
+  icon: "tag",
 };
 export const WidgetsData1WidgetsPage = [
   {

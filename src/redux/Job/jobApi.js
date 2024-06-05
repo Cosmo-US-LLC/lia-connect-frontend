@@ -49,7 +49,37 @@ export default class JobApi {
       });
     };
 
+
+        
+    fetchJobDetails = async (id) => {
+      return new Promise((resolve, reject) => {
+        INSTANCE({
+          method: "GET",
+          url: "/jobs/" + id,
+        })
+          .then(resolve)
+          .catch(reject);
+      });
+    };
+
+
+    deleteJob = async (id) => {
+      return new Promise((resolve, reject) => {
+        INSTANCE({
+          method: "DELETE",
+          url: "/jobs/" + id,
+        })
+          .then(resolve)
+          .catch(reject);
+      });
+    };
+    
+
   }
+
+
+
+  
   
 
 
