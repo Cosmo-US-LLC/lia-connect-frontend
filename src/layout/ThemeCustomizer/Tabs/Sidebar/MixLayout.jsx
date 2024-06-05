@@ -3,7 +3,7 @@ import { H6, LI, UL } from '../../../../AbstractElements';
 import ConfigDB from '../../../../Config/ThemeConfig';
 import { MixLayout } from '../../../../Constant';
 import CustomizerContext from '../../../../_helper/Customizer';
-import CommenUL from './CommenUL
+import CommenUL from './CommenUL';
 
 const MixLayoutComponent = () => {
   const { addMixBackgroundLayout, setMixLayout } = useContext(CustomizerContext);

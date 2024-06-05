@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
-import { MENUITEMS } from "../../Sidebar/Menu";
+import { MENUITEMS } from "../../Sidebar/menu";
 import plusIcon from "../../../assets/used-files/icons/plus.svg";
 import { Image } from "../../../AbstractElements";
 

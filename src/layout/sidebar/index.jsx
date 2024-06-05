@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import CustomContext from "../../_helper/Customizer";
-import { MENUITEMS, MENUITEMSBOTTOM } from "./Menu";
+import { MENUITEMS, MENUITEMSBOTTOM } from "./menu";
 import SidebarIcon from "./SidebarIcon";
 import SidebarLogo from "./SidebarLogo";
 import SidebarMenu from "./SidebarMenu";

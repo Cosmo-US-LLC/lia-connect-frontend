@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { MENUITEMS } from "./Menu";
+import { MENUITEMS } from "./menu";
 import { Image } from "../../AbstractElements";
 import { ChevronDown, ChevronRight } from "react-feather";
 
