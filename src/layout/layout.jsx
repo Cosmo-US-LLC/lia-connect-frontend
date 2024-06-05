@@ -7,7 +7,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Taptop from "./TapTop";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import ThemeCustomize from "./ThemeCustomizer
+import ThemeCustomize from "./ThemeCustomizer"
 import Footer from "./Footer";
 import CustomizerContext from "../_helper/Customizer";
 import AnimationThemeContext from "../_helper/AnimationTheme";
