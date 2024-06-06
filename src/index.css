@@ -49,6 +49,7 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: #0d6efd;
+  --background-primary:#1264FD;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -143,7 +144,14 @@ h1,
   font-weight: 500;
   line-height: 1.2;
 }
-
+.main-heading{
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  font-weight: 600; /* Font weight 600 */
+  font-size: 92px; /* Font size 32px */
+  line-height: 44.8px; /* Line height 44.8px */
+  letter-spacing: -1%; /* Letter spacing -1% */
+  margin-bottom: 20px; /* Add spacing below the heading */
+}
 h1,
 .h1 {
   font-size: calc(1.375rem + 1.5vw);
@@ -35541,7 +35549,8 @@ ul.dot-group li {
 }
 
 .sm-progress-bar {
-  height: 5px;
+  height: 3px;
+  border-radius: 0px;
 }
 
 .lg-progress-bar {
@@ -82149,4 +82158,50 @@ rect {
   }
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 /*====todo css end====*/ /*# sourceMappingURL=index.css.map */

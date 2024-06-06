@@ -195,11 +195,11 @@ const StepOne = ({
 
   return (
     <Fragment>
-      <Container fluid={true} style={{ width: "80%" }}>
+      <Container fluid={true} style={{ width: "90%" }}>
         <Row style={{ justifyContent: "center" }}>
           <Col xl="8" className="mt-5">
             <Card>
-              <CardHeader>
+              <CardHeader className="border border-bottom-0">
                 <div style={{ textAlign: "left" }}>
                   <span
                     style={{
@@ -277,10 +277,10 @@ const StepOne = ({
                               className="d-flex"
                             >
                               <Info color="#8FA8D7" size={70} />
-                              <span className="ms-2 text-white">
+                              <div className="ms-2 text-white">
                                 Jobs with higher priority will be processed
                                 faster.
-                              </span>
+                              </div>
                             </div>
                           </UncontrolledTooltip>
                         </div>
@@ -373,7 +373,7 @@ const StepOne = ({
                               style={{
                                 color: "white",
                                 backgroundColor: "#1264FD",
-                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                                boxShadow: " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                                 border: "1px solid #1264FD",
                                 fontSize: "14px",
                                 borderRadius: "30px",
@@ -429,7 +429,7 @@ const StepOne = ({
                                 border: "1px solid #1264FD",
                                 borderRadius: "30px",
                                 color: "white",
-                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                                boxShadow:" rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                               }}
                             >
                               Linkedin Profiles URL

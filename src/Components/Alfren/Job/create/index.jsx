@@ -120,7 +120,7 @@ const JobCreate = () => {
             textAlign: "center",
           }}
         >
-          <div style={{ width: "60%" }}>
+          <div style={{ width: "40%" }}>
             <Col style={{ display: "flex" }}>
               <div>
                 <Image
@@ -132,7 +132,7 @@ const JobCreate = () => {
                   }}
                 />
               </div>
-              <div style={{ width: "100%", marginTop: "9px" }}>
+              <div style={{ width: "100%", marginTop: "10px" }}>
                 <Progressbar
                   attrProgress={{
                     value: "100",
@@ -140,7 +140,7 @@ const JobCreate = () => {
                       step == 3 || step == 2 || step == 4
                         ? "stepActive"
                         : "stepInActive",
-                    className: "sm-progress-bar  mb-0 ",
+                    className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
               </div>
@@ -152,18 +152,18 @@ const JobCreate = () => {
                       step == 2
                         ? StepActiveIcon
                         : step == 3 || step == 4
-                        ? StepCompletedIcon
-                        : StepInActiveIcon,
+                          ? StepCompletedIcon
+                          : StepInActiveIcon,
                   }}
                 />
               </div>
-              <div style={{ width: "100%", marginTop: "9px" }}>
+              <div style={{ width: "100%", marginTop: "10px" }}>
                 <Progressbar
                   attrProgress={{
                     value: "100",
                     color:
                       step == 3 || step == 4 ? "stepActive" : "stepInActive",
-                    className: "sm-progress-bar  mb-0",
+                    className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
               </div>
@@ -174,14 +174,14 @@ const JobCreate = () => {
                       step == 3
                         ? StepActiveIcon
                         : step == 4
-                        ? StepCompletedIcon
-                        : StepInActiveIcon,
+                          ? StepCompletedIcon
+                          : StepInActiveIcon,
                   }}
                 />
               </div>
             </Col>
           </div>
-          <div style={{ width: "67%" }}>
+          <div style={{ width: "45%" }}>
             <Col style={{ display: "flex", justifyContent: "space-between" }}>
               <span
                 style={{

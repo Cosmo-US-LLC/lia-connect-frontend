@@ -1,0 +1,39 @@
+.main-heading{
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  font-weight: 600; /* Font weight 600 */
+  font-size: 32px; /* Font size 32px */
+  line-height: 44.8px; /* Line height 44.8px */
+  letter-spacing: -1%; /* Letter spacing -1% */
+}
+.input-label-style{
+font-family: Poppins;
+font-size: 14px;
+font-weight: 600;
+line-height: 22.4px;
+text-align: right;
+}
+input::placeholder{
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22.4px;
+  color: var(--Body-Black, #595959);
+}
+.input-icons-style{
+  color: #8FA8D7;
+  font-size: large;
+}
+.display-flex-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-align-center{
+  text-align: center;
+}
+.margin-auto-style{
+  margin: auto;
+}
+.dynamic-color {
+  color: var(--dynamic-color);
+}
