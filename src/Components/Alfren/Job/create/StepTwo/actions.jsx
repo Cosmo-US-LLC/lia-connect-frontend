@@ -116,7 +116,7 @@ export const Actions = ({
   const opacity = isDragging ? 0.4 : 1;
   return (
     <div key={key} ref={drag} style={{ ...style, opacity }} data-testid={`box`}>
-      <span style={{ color: color }}> {name}</span>
+      <span style={{ color: color,fontSize:'13px' }}> {name}</span>
     </div>
   );
 };

@@ -25,7 +25,7 @@ const JobDetail = () => {
   const getJobDetails = () => {
     dispatch(
       fetchJobDetails(id, (resp) => {
-        if (resp.status == 200) {
+        if (resp?.status == 200) {
           toast.success("Jobs DetailsFetched successfully");
           const result = resp.data;
           setJobDetails(result);
@@ -38,7 +38,7 @@ const JobDetail = () => {
             );
           }
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })

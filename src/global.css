@@ -37,3 +37,64 @@ input::placeholder{
 .dynamic-color {
   color: var(--dynamic-color);
 }
+.buttonload {
+  background-color: #2804aa; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 24px; /* Some padding */
+  font-size: 16px; /* Set a font-size */
+}
+
+/* Add a right margin to each icon */
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+/* src/SkeletonCard.css */
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 60px;
+  background-color: #f0f0f0; /* Light Gray Background */
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+
+.skeleton-text {
+  background-color: #ddd; /* Gray */
+  height: 20px;
+  width: 80px; /* Adjust width as needed */
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-checkbox {
+  background-color: #ddd; /* Gray */
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-delete {
+  background-color: #ddd; /* Gray */
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

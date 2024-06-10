@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import { ChevronLeft, ChevronRight } from "react-feather";
+import SkeletonCard from "Layout/CardSkeleton";
 
 const DataTableComponent = ({
   paginatedUpdated,
@@ -19,6 +20,7 @@ const DataTableComponent = ({
   setPaginatedUpdated,
   setPagination,
   paginationDetails,
+  isLoading
 }) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleDelet, setToggleDelet] = useState(false);
@@ -43,7 +45,7 @@ const DataTableComponent = ({
     cells: {
       style: {
         background: "white",
-        width:"100%",
+        width: "100%",
 
       },
     },
@@ -104,9 +106,8 @@ const DataTableComponent = ({
           className="custom-pagination-item"
         >
           <PaginationLink
-            className={`custom-pagination-link ${
-              paginationDetails.page === i ? "active" : ""
-            }`}
+            className={`custom-pagination-link ${paginationDetails.page === i ? "active" : ""
+              }`}
             onClick={() => handlePageChange(i)}
           >
             {i}
@@ -131,94 +132,113 @@ const DataTableComponent = ({
           </H4>
         </div>
       )}
-      <DataTable
-        data={data}
-        columns={tableColumns}
-        center={true}
-        selectableRows
-        borderBottom={false}
-        onSelectedRowsChange={handleRowSelected}
-        clearSelectedRows={toggleDelet}
-        customStyles={customStyles}
-      />
-      <div style={{position: "fixed",bottom: "22px",width:'100%'}}> 
-      <span
-        style={{
-          fontSize: "10px",
-          fontWeight: "400",
-          lineHeight: "15px",
-          background: "#f5f9ff",
-        }}
-      >
-        * To ensure that the system performs at the optimal efficiency, you can
-        have up to 5 active jobs at a time.
-      </span>
-      <br>
-      </br>
-      <nav
-        aria-label="Page navigation example"
-        className="py-3"
-        style={{
-          backgroundColor: "#f5f9ff",
-          display: "inline-flex",
-          justifyContent: "space-between",        
-          width: "80%"
-        }}
-      >
-        <div className="justify-content-start">
-          <Form className="me-2">
-            <InputGroup style={{ width: "120%", border: "none" }}>
-              <InputGroupText
-                style={{
-                  border: "none",
-                  backgroundColor: "#f5f9ff",
-                  color: "#5C5E64",
-                  fontSize: "12px",
-                  fontWeight: "400",
-                }}
-              >
-                View Per Page
-              </InputGroupText>
-              <Select
-                options={options}
-                styles={customSelectStyles}
-                value={selectedOption}
-                className="js-example-basic-single col-sm-6"
-                onChange={handleChangeLimit}
-              />
-            </InputGroup>
-          </Form>
-        </div>
-        <Pagination className="pagination justify-content-end ">
-          <ul className="pagination pagination-alfren">
-            <PaginationItem
-              disabled={paginationDetails.page === 1}
-              className="custom-pagination-item"
-            >
-              <PaginationLink
-                className="custom-pagination-link"
-                onClick={() => handlePageChange(paginationDetails.page-1)}
-              >
-                <ChevronLeft strokeWidth={0.5} />
-                Prev
-              </PaginationLink>
-            </PaginationItem>
-            {renderPaginationItems()}
-            <PaginationItem
-              disabled={paginationDetails.page === paginationDetails.totalPages}
-              className="custom-pagination-item"
-            >
-              <PaginationLink
-                className="custom-pagination-link"
-                onClick={() => handlePageChange(paginationDetails.page+1)}
+      {
+        isLoading ? (
+          <div>
+            <DataTable
+              columns={tableColumns}
+              customStyles={customStyles}
+            />
+            <SkeletonCard/>
+            
+          </div>
+        ) : (
+          <DataTable
+            data={data}
+            columns={tableColumns}
+            center={true}
+            selectableRows
+            borderBottom={false}
+            onSelectedRowsChange={handleRowSelected}
+            clearSelectedRows={toggleDelet}
+            customStyles={customStyles}
+          />
+        )
+      }
+
+      <div style={{ position: "fixed", bottom: "22px", width: '100%' }}>
+        <span
+          style={{
+            fontSize: "10px",
+            fontWeight: "400",
+            lineHeight: "15px",
+            background: "#f5f9ff",
+          }}
+        >
+          * To ensure that the system performs at the optimal efficiency, you can
+          have up to 5 active jobs at a time.
+        </span>
+
+
+
+        <br>
+        </br>
+        <nav
+          aria-label="Page navigation example"
+          className="py-3"
+          style={{
+            backgroundColor: "#f5f9ff",
+            display: "inline-flex",
+            justifyContent: "space-between",
+            width: "80%"
+          }}
+        >
+          <div className="justify-content-start">
+            <Form className="me-2">
+              <InputGroup style={{ width: "120%", border: "none" }}>
+                <InputGroupText
+                  style={{
+                    border: "none",
+                    backgroundColor: "#f5f9ff",
+                    color: "#5C5E64",
+                    fontSize: "12px",
+                    fontWeight: "400",
+                  }}
                 >
-                Next
-                <ChevronRight strokeWidth={0.5} />
-              </PaginationLink>
-            </PaginationItem>
-          </ul>
-        </Pagination>
-      </nav>
+                  View Per Page
+                </InputGroupText>
+                <Select
+  options={options}
+  styles={customSelectStyles}
+  value={selectedOption}
+  className="js-example-basic-single col-sm-6"
+  onChange={handleChangeLimit}
+  menuPlacement="top" // Add this line to open the menu above the input
+/>
+
+              </InputGroup>
+            </Form>
+          </div>
+          <Pagination className="pagination justify-content-end ">
+            <ul className="pagination pagination-alfren">
+              <PaginationItem
+                disabled={paginationDetails.page === 1}
+                className="custom-pagination-item"
+              >
+                <PaginationLink
+                  className="custom-pagination-link"
+                  onClick={() => handlePageChange(paginationDetails.page - 1)}
+                >
+                  <ChevronLeft strokeWidth={0.5} />
+                  Prev
+                </PaginationLink>
+              </PaginationItem>
+              {renderPaginationItems()}
+              <PaginationItem
+                disabled={paginationDetails.page === paginationDetails.totalPages}
+                className="custom-pagination-item"
+              >
+                <PaginationLink
+                  className="custom-pagination-link"
+                  onClick={() => handlePageChange(paginationDetails.page + 1)}
+                >
+                  Next
+                  <ChevronRight strokeWidth={0.5} />
+                </PaginationLink>
+              </PaginationItem>
+            </ul>
+          </Pagination>
+        </nav>
       </div>
     </Fragment>
   );

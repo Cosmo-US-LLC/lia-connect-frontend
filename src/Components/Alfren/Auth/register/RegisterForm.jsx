@@ -47,6 +47,7 @@ const RegisterForm = ({ logoClassMain }) => {
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
   const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -131,12 +132,15 @@ const RegisterForm = ({ logoClassMain }) => {
   } = useForm();
 
   const onSubmit1 = (e) => {
+    setIsLoading(true)
     if (error || isFormEmpty()) {
       toast.error("Please fill out all fields!");
+      setIsLoading(false); // Set isLoading to false here
     } else {
       dispatch(
         registerUser(formData, (resp) => {
           if (resp.status == 201) {
+            setIsLoading(false)
             toast.success(UserRegistered);
             setFormData(initialState);
             navigate("/auth/login");
@@ -149,6 +153,7 @@ const RegisterForm = ({ logoClassMain }) => {
             } else {
               toast.error(err);
             }
+            setIsLoading(false) // Set isLoading to false here
           }
         })
       );
@@ -313,8 +318,8 @@ const RegisterForm = ({ logoClassMain }) => {
                             element.status === 0
                               ? "#595959"
                               : element.status === -1
-                              ? "#AA1313"
-                              : "#299A16",
+                                ? "#AA1313"
+                                : "#299A16",
                         }}
                       >
                         {element.status === 0 ? (
@@ -382,9 +387,18 @@ const RegisterForm = ({ logoClassMain }) => {
                     className: "d-block w-100 mt-2",
                     color: "primary",
                     type: "submit",
+                    disabled: isLoading
                   }}
                 >
-                  Register
+                  <span>
+                    {isLoading ? (
+                      <>
+                        <i className="fa fa-spinner fa-spin" /> Loading...
+                      </>
+                    ) : (
+                      "Register"
+                    )}
+                  </span>
                 </Btn>
               </FormGroup>
 

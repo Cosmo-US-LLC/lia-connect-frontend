@@ -28320,6 +28320,7 @@ ul.dot-group li {
 }
 .page-wrapper.modern-type .page-body-wrapper .page-body .container-fluid {
   max-width: 1500px;
+  background-color: red;
 }
 .page-wrapper.modern-type .page-body-wrapper .footer {
   margin-left: 360px;

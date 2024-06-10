@@ -13,11 +13,11 @@ import { Card, CardBody, Col, Row, UncontrolledTooltip } from "reactstrap";
 import { memo, useCallback, useState } from "react";
 import { Line } from "./components/line";
 import { SingleOption } from "./singleOption";
-import { DoubleOption } from "./doubleOption";
 import { SettingDropdown } from "./components/settingDropdown";
+import DoubleOption from "./doubleOption";
 
 // Recursive component to render nested sequences
-export const NestedSequence = ({
+ const NestedSequence = ({
   sequence,
   sequenceArray,
   setSequenceArray,
@@ -132,7 +132,7 @@ export const NestedSequence = ({
               </div>
             </Col>
             <Col xl="12" className="text-center">
-              {sequence.options.length === 1 ? (
+              {sequence?.options?.length === 1 ? (
                 <SingleOption
                   sequence={sequence}
                   sequenceArray={sequenceArray}
@@ -147,19 +147,19 @@ export const NestedSequence = ({
               )}
             </Col>
             <Col xl="12">
-              {sequence.options.length &&
-              sequence.children.length &&
-              sequence.children.length < sequence.options.length ? (
+              {sequence?.options?.length &&
+              sequence?.children?.length &&
+              sequence?.children?.length < sequence?.options?.length ? (
                 <>
                   <Row>
-                    {sequence.options.map((item, index) => (
+                    {sequence.options?.map((item, index) => (
                       <Col
                         xl={sequence.options.length === 1 ? "12" : "6"}
                         xm={sequence.options.length === 1 ? "12" : "6"}
                         xs={sequence.options.length === 1 ? "12" : "6"}
                         key={index}
                       >
-                        {sequence.children.map((child, childrenIndex) =>
+                        {sequence?.children?.map((child, childrenIndex) =>
                           child.parentOptionId === item.id ? (
                             <NestedSequence
                               sequence={child}
@@ -186,7 +186,7 @@ export const NestedSequence = ({
                   {sequence.children.length ? (
                     <>
                       <Row>
-                        {sequence.children.map((item, index) => (
+                        {sequence?.children?.map((item, index) => (
                           <Col
                             xl={sequence.children.length === 1 ? "12" : "6"}
                             xm={sequence.options.length === 1 ? "12" : "6"}
@@ -205,7 +205,7 @@ export const NestedSequence = ({
                   ) : (
                     <>
                       <Row>
-                        {sequence.options.map((item, index) => (
+                        {sequence?.options?.map((item, index) => (
                           <Col
                             xl={sequence.options.length === 1 ? "12" : "6"}
                             xm={sequence.options.length === 1 ? "12" : "6"}
@@ -253,3 +253,4 @@ export const NestedSequence = ({
     </Fragment>
   );
 };
+export default React.memo(NestedSequence);

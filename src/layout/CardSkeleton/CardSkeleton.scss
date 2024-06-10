@@ -1,0 +1,42 @@
+/* src/SkeletonCard.css */
+.skeleton-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%; /* Adjust width as needed */
+    margin: 0 auto; /* Center align */
+    height: 60px;
+    background-color: #f0f0f0; /* Light Gray Background */
+    border-radius: 4px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+  
+  .skeleton-text {
+    background-color: #ddd; /* Gray */
+    height: 20px;
+    width: 80px; /* Adjust width as needed */
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .skeleton-delete {
+    background-color: #ddd; /* Gray */
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
