@@ -74,7 +74,6 @@ const Leftbar = () => {
         break;
       }
     }
-    console.log("activeBreadcrumbs", activeBreadcrumbs);
     return activeBreadcrumbs;
   }
 

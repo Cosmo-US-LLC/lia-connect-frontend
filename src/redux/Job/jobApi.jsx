@@ -50,7 +50,6 @@ export default class JobApi {
     };
 
     fetchAllCandidate = async (data) => {
-      console.log('formPayload22222222222222222222', data)
       return new Promise((resolve, reject) => {
         INSTANCE({
           method: "POST",
