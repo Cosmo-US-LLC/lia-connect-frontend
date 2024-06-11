@@ -85,7 +85,7 @@ const JobCreate = () => {
     linkedInSearch: Yup.string()
       .required('LinkedIn Search URL is required')
       .matches(
-        /^https:\/\/www\.linkedin\.com\/search\/results\/people\/\?keywords=.*/,
+        /^https:\/\/www\.linkedin\.com\/search\/results\/people*/,
         'This LinkedIn Search URL cannot be supported'
       ),
     maxCandidates: Yup.number()
