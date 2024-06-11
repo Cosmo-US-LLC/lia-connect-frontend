@@ -40,8 +40,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { stepTwo } from "../../../../../redux/Job/jobActions";
 import NestedSequence from "./nestedSequence";
-import { SEQUENCE_DATA } from "./constants";
-
+import {SEQUENCE_DATA} from '../../../../../Constant/CreateJob';
 const StepTwo = ({
   handlePrevious,
   handleNext,

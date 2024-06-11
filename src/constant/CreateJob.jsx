@@ -1,4 +1,4 @@
-export const SEQUENCE_DATA=[
+ export const SEQUENCE_DATA=[
     {
         "sequenceId": 1,
         "actionId": 1,
