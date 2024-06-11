@@ -49,7 +49,7 @@ const StepOne = ({
   hasErrors,
   getCandidateCount
 }) => {
-  console.log('getCandidateCountgetCandidateCountgetCandidateCountgetCandidateCount i also want this', getCandidateCount)
+  console.log('hasErrors i also want this', hasErrors)
   const options = [
     {
       value: 1,
@@ -550,21 +550,21 @@ const StepOne = ({
                           </>
                         ) : (
                           <>
-                           <textarea
-  className="form-control"
-  name="linkedInProfile"
-  value={linkedInProfile}
-  placeholder="https://www.linkedin.com/abc..."
-  onChange={handleChange}
-  style={{ height: '150px' }} // Set the height here
-/>
+                            <textarea
+                              className="form-control"
+                              name="linkedInProfile"
+                              value={linkedInProfile}
+                              placeholder="https://www.linkedin.com/abc..."
+                              onChange={handleChange}
+                              style={{ height: '150px' }} // Set the height here
+                            />
 
 
                           </>
                         )}
                       </div>
                     </FormGroup>
-                    {
+                    {hasErrors ?
                       <div className="text-start" style={{ color: '#595959' }}>
                         <p style={{ fontSize: '12px' }}>LinkedIn profile found: <strong>{"1000+"}</strong></p>
                         <p style={{ fontSize: '12px' }}>
@@ -612,7 +612,7 @@ const StepOne = ({
 
                         >
                         </div>
-                      </div>
+                      </div> : ""
                     }
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
