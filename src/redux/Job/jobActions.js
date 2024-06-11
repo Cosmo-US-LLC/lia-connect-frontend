@@ -38,11 +38,20 @@ export const fetchJobs = (formPayload, cb) => async () => {
   }
 };
 
-
-
-export const fetchJobDetails = (id, cb) => async () => {
+export const fetchAllCandidates = (formPayload, cb) => async () => {
+  console.log('formPayload', formPayload)
   try {
-    const { data, status } = await jobApi.fetchJobDetails(id);
+    const { data, status } = await jobApi.fetchAllCandidate(formPayload);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
+
+
+export const fetchJobDetails = (url, cb) => async () => {
+  try {
+    const { data, status } = await jobApi.fetchJobDetail(url);
     cb({ data, status });
   } catch (error) {
     cb(error?.response?.data);

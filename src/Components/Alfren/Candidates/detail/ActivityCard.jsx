@@ -87,7 +87,7 @@ const ActivityCard = () => {
           </div>
         </CardHeader>
         <CardBody
-          className="pt-0 custom-scrollbar"
+          className="pt-0"
           style={{ maxHeight: "550px", overflowY: "auto" }}
         >
           <UL>

@@ -22,6 +22,7 @@ import { login } from "../../../../redux/Auth/authActions";
 import { UserLoggedIn } from "../../../../Constant/index";
 
 const LoginForm = ({ logoClassMain }) => {
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [togglePassword, setTogglePassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,16 +45,18 @@ const LoginForm = ({ logoClassMain }) => {
   };
 
   const onSubmit1 = (e) => {
+    setIsLoading(true); // Set loading to true before dispatching the action
     dispatch(
       login(formData, (resp) => {
-        if (resp.status == 200) {
+        setIsLoading(false); // Set loading to false when data is received
+        if (resp?.status == 200) {
           toast.success(UserLoggedIn);
           localStorage.setItem("accessToken", resp.data.tokens.access.token);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
           navigate("/home");
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })
@@ -160,16 +163,25 @@ const LoginForm = ({ logoClassMain }) => {
               </FormGroup>
 
               <FormGroup>
-                <Btn
-                  attrBtn={{
-                    className: "d-block w-100 mt-2",
-                    color: "primary",
-                    type: "submit",
-                  }}
-                >
-                  Sign In
-                </Btn>
-              </FormGroup>
+        <Btn
+          attrBtn={{
+            className: "d-block w-100 mt-2",
+            color: "primary",
+            type: "submit",
+            disabled: isLoading
+          }}
+        >
+          <span>
+            {isLoading ? (
+              <>
+                <i className="fa fa-spinner fa-spin" /> Loading...
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </span>
+        </Btn>
+      </FormGroup>
 
               <div className="login-social-title text-center">
                 <Image attrImage={{ src: OrIcon }} />
@@ -266,7 +278,7 @@ const LoginForm = ({ logoClassMain }) => {
                     lineHeight: "19.2px",
                     textAlign: "center",
                   }}
-                >
+                  >
                   Sign Up
                 </Link>
               </P>

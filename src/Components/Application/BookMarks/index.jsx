@@ -22,7 +22,7 @@ const BookmarksContain = () => {
                 <div className={`email-left-aside`}>
                   <div className='md-sidebar'>
                     <Btn attrBtn={{ onClick: (e) => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>bookmark filter</Btn>
-                    <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'}`}>
+                    <div className={`md-sidebar-aside job-left-aside ${isOpen && 'open'}`}>
                       <div className='email-left-aside'>
                         <Card>
                           <CardBody>

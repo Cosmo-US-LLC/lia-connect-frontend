@@ -3,7 +3,7 @@ import { Line } from "./components/line";
 import { Clock, MoreVertical } from "react-feather";
 import { HorizontalLine } from "./components/horizontalLine";
 import { DelayDropdown } from "./components/delayDropdown";
-export const DoubleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
+const DoubleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
   const [dropdownActive, setDropdownActive] = useState([false, false]);
   const setActiveDropdown = (index) => {
     const newDropdownActive = [...dropdownActive]; // Create a copy of the current state
@@ -21,7 +21,7 @@ export const DoubleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
       <Line marginBottom={0} marginTop={10} />
       <HorizontalLine />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        {sequence.options.map((item, index) => (
+        {sequence?.options?.map((item, index) => (
           <div>
             <div>
               <span style={{ color: "#819ACB" }}>{item.name}</span>
@@ -96,3 +96,4 @@ export const DoubleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
     </Fragment>
   );
 };
+export default DoubleOption;

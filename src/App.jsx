@@ -26,6 +26,7 @@ import "react-range-slider-input/dist/style.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./_helper/UserSignUp";
 
 const App = () => (
   <div className="App">
@@ -53,7 +54,9 @@ const App = () => (
                                             <ChartjsProvider>
                                               <ChartistProvider>
                                                 <AnimationThemeProvider>
+                                                <AuthProvider>
                                                   <Routers />
+                                                  </AuthProvider>
                                                 </AnimationThemeProvider>
                                               </ChartistProvider>
                                             </ChartjsProvider>

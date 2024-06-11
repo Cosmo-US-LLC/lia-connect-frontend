@@ -1,0 +1,211 @@
+.main-heading{
+  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+  font-weight: 600; /* Font weight 600 */
+  font-size: 32px; /* Font size 32px */
+  line-height: 44.8px; /* Line height 44.8px */
+  letter-spacing: -1%; /* Letter spacing -1% */
+}
+.input-label-style{
+font-family: Poppins;
+font-size: 14px;
+font-weight: 600;
+line-height: 22.4px;
+text-align: right;
+}
+input::placeholder{
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22.4px;
+  color: var(--Body-Black, #dadee3);
+}
+.input-icons-style{
+  color: #8FA8D7;
+  font-size: large;
+}
+.display-flex-style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-align-center{
+  text-align: center;
+}
+.margin-auto-style{
+  margin: auto;
+}
+.dynamic-color {
+  color: var(--dynamic-color);
+}
+.buttonload {
+  background-color: #2804aa; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 24px; /* Some padding */
+  font-size: 16px; /* Set a font-size */
+}
+
+/* Add a right margin to each icon */
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+/* src/SkeletonCard.css */
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 60px;
+  background-color: #f0f0f0; /* Light Gray Background */
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+
+.skeleton-text {
+  background-color: #ddd; /* Gray */
+  height: 20px;
+  width: 80px; /* Adjust width as needed */
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-checkbox {
+  background-color: #ddd; /* Gray */
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+/* Add this CSS to your stylesheet or inside a <style> tag in your component */
+.hide-scrollbar {
+  overflow-y: scroll; /* Enable scrolling but hide the scrollbar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.skeleton-delete {
+  background-color: #ddd; /* Gray */
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.custom-row {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: initial;
+  gap: 25px;
+}
+
+.custom-col {
+  padding: 0;
+}
+
+.potential-candidates {
+  flex: 0 0 35%; /* Adjust width for PotentialCandidates */
+}
+
+.blacklist {
+  flex: 0 0 35%; /* Adjust width for BlackList */
+}
+
+.priority {
+  flex: 0 0 26%; /* Small width for Priority */
+}
+
+@media (max-width: 1200px) {
+  .potential-candidates {
+    flex: 0 0 50%;
+  }
+  .blacklist {
+    flex: 0 0 30%;
+  }
+  .priority {
+    flex: 0 0 20%;
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-row {
+    flex-wrap: wrap;
+  }
+  .potential-candidates,
+  .blacklist,
+  .priority {
+    flex: 0 0 100%;
+  }
+}
+/* Firefox */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+  background-color: #dadee3;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+  background-color: #595959;
+  border-radius: 10px;
+}
+
+::-moz-scrollbar {
+  width: 10px;
+  height: 10px;
+background-color: #dadee3;
+  }
+  
+  ::-moz-scrollbar-thumb {
+  background-color: #595959;
+  border-radius: 10px;
+}
+
+::-ms-scrollbar {
+  width: 10px;
+  height: 10px;
+background-color: #dadee3;
+  }
+  
+  ::-ms-scrollbar-thumb {
+  background-color: #595959;
+  border-radius: 10px;
+}
+
+::scrollbar {
+  width: 10px;
+  height: 10px;
+background-color: #dadee3;
+  }
+  
+  ::scrollbar-thumb {
+  background-color: #595959;
+  border-radius: 10px;
+}
+.potential-candidate-style {
+  clip-path: polygon(55.5% 0%, 100% 0%, 100% 100%, 38.55% 100%) !important;
+  background: linear-gradient(270deg, #E5FFAD 0%, #F7FFE6 83.25%) !important;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.blacklist-style {
+  clip-path: polygon(55.5% 0%, 100% 0%, 100% 100%, 38.55% 100%) !important;
+  background: linear-gradient(270deg, #EBF1FC 0%, #EBF1FC 90.06%);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

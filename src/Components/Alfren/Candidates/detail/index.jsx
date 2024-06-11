@@ -27,12 +27,12 @@ const CandidatesList = () => {
   const getCandidateDetails = () => {
     dispatch(
       fetchCandidateDetails(id, (resp) => {
-        if (resp.status == 200) {
+        if (resp?.status == 200) {
           // toast.success("Candidate Details Fetched successfully");
           const result = resp.data;
           setCandidateDetails(result);
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })

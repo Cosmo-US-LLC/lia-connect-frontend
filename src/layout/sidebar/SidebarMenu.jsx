@@ -72,7 +72,7 @@ const SidebarMenu = ({
             : { margin: "0px" }
         }
       >
-        <ul className="sidebar-links custom-scrollbar">
+        <ul className="sidebar-links">
           <li className="back-btn">
             <div className="mobile-back text-end">
               <span>{"Back"}</span>

@@ -2394,18 +2394,6 @@ table tbody .border-bottom-warning td {
 .map-js-height .btn-group input + input {
   background-color: #ff3364;
 }
-
-/**====== custom scrollbar css start ======**/
-.custom-scrollbar::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px #ecf3fa;
-}
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(68, 102, 242, 0.15);
-}
-
 /**====== Custom scrollbar css end ======**/
 /**====== Animation css Start ======**/
 .comment {
@@ -24252,7 +24240,7 @@ ul.dot-group li {
 }
 
 .sm-progress-bar {
-  height: 5px;
+  height: 3px;
 }
 
 .lg-progress-bar {
@@ -28320,6 +28308,7 @@ ul.dot-group li {
 }
 .page-wrapper.modern-type .page-body-wrapper .page-body .container-fluid {
   max-width: 1500px;
+  background-color: red;
 }
 .page-wrapper.modern-type .page-body-wrapper .footer {
   margin-left: 360px;
@@ -33474,9 +33463,6 @@ body.dark-only .shopping-checkout-option .checkbox_animated:after {
 }
 body.dark-only .animate-chk .radio_animated:after {
   border: 2px solid #1d1e26;
-}
-body.dark-only .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(41, 50, 64, 0.52);
 }
 body.dark-only .product-box .product-img .product-hover ul li .btn {
   color: #98a6ad;

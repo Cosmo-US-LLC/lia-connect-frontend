@@ -14,17 +14,16 @@ import {
   FormGroup,
   UncontrolledTooltip,
 } from "reactstrap";
-import Select from "react-select";
+
 
 import { Btn, H4, H5, H6, Image, P } from "../../../../../AbstractElements";
 import FooterCard from "../../../../Forms/FormControl/Common/FooterCard";
 import HeaderCard from "../../../../Common/Component/HeaderCard";
 import { Flag, Info, Plus, Video, X, Youtube } from "react-feather";
-import StepActiveIcon from "../../.././../../assets/used-files/icons/candidate.svg";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { stepOne } from "../../../../../redux/Job/jobActions";
 
 const StepOne = ({
   setJobName,
@@ -40,7 +39,17 @@ const StepOne = ({
   setLinkedInProfile,
   handleNext,
   setJobId,
+  register,
+  errors,
+  setSkillInputValue,
+  skillInputValue,
+  linkedInSearchValue,
+  clearErrors,
+  isLoading,
+  hasErrors,
+  getCandidateCount
 }) => {
+  console.log('getCandidateCountgetCandidateCountgetCandidateCountgetCandidateCount i also want this', getCandidateCount)
   const options = [
     {
       value: 1,
@@ -93,38 +102,39 @@ const StepOne = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log("eeeeeeeeeeeeeeeeee", name, value)
     if (name == "jobName") {
       setJobName(value);
     } else if (name == "skillInputValue") {
       setSkillInputValue(value);
+      clearErrors('skillInputValue');
+
     } else if (name == "linkedInSearch") {
-      const valueArray = value.split(',');
-      setLinkedInSearch(valueArray);
+      console.log('value linkedInSearchlinkedInSearch', value)
+      setLinkedInSearch(value);
     } else if (name == "linkedInProfile") {
-      const valueArray = value.split(',');
-      setLinkedInProfile(valueArray);
+      setLinkedInProfile(value);
+    } else if (name == "maxCandidates") {
+
+      setMaxCandidates(value);
     }
   };
+
   const handleSelectChange = (e) => {
     setJobPriority(e.value);
   };
-
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter' && skillInputValue.trim() !== '') {
       e.preventDefault();
-      const inputValue = e.target.value;
-      if (inputValue.trim() !== "") {
-        setSkills([...skills, inputValue.trim()]);
-        setSkillInputValue("");
-      }
+      setSkills([...skills, skillInputValue.trim()]);
+      setSkillInputValue('');
+      clearErrors('skillInputValue');
     }
   };
 
   const [enterSkill, setEnterSkill] = useState(false);
-  const [skillInputValue, setSkillInputValue] = useState("");
   const [linkedInSearchButton, setLinkedInSearchButton] = useState(true);
   const [nextActive, setNextActive] = useState(false);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (jobName && jobPriority && skills.length) {
@@ -138,68 +148,27 @@ const StepOne = ({
     }
   }, [skills, jobName, jobPriority, linkedInSearch, linkedInProfile]);
 
-  const handleNextStep = (e) => {
-    e.preventDefault(e);
-    submitStepOne(e);
 
+
+
+  const [maxCandidates, setMaxCandidates] = useState(null);
+  const [isMaxChecked, setIsMaxChecked] = useState(false);
+
+
+  const handleCheckboxChange = () => {
+    setIsMaxChecked(!isMaxChecked);
+    setMaxCandidates(isMaxChecked ? '' : '500');
   };
 
-  function mapJobPriority(value, reverse = null) {
-    if (reverse) {
-      switch (value) {
-        case "HIGH":
-          return 1;
-        case "MEDIUM":
-          return 2;
-        case "LOW":
-          return 3;
-        default:
-          return null; 
-      }
-    } else {
-      switch (value) {
-        case 1:
-          return "HIGH";
-        case 2:
-          return "MEDIUM";
-        case 3:
-          return "LOW";
-        default:
-          return null; 
-      }
-    }
-  }
 
-  const submitStepOne = async (e) => {
-
-    const formData = {
-      name: jobName,
-      jobPriority: mapJobPriority(jobPriority),
-      linkedInURL: linkedInSearch.length ? linkedInSearch : linkedInProfile.length ? linkedInProfile  : [] ,
-      linkedInType: linkedInSearch.length ? "linkedInSearch" :  linkedInProfile.length ? "linkedInProfile" : null,
-      skills
-    };
-    dispatch(
-      stepOne(formData, (resp) => {
-        if (resp.status == 201) {
-          toast.success("Job step One completed");
-          setJobId(resp.data.id)
-          handleNext(e);
-        } else {
-          const err = resp.message;
-          toast.error(err);
-        }
-      })
-    );
-  };
 
   return (
     <Fragment>
-      <Container fluid={true} style={{ width: "80%" }}>
+      <Container fluid={true} style={{ width: "90%" }}>
         <Row style={{ justifyContent: "center" }}>
           <Col xl="8" className="mt-5">
             <Card>
-              <CardHeader>
+              <CardHeader className="">
                 <div style={{ textAlign: "left" }}>
                   <span
                     style={{
@@ -218,7 +187,7 @@ const StepOne = ({
               <CardBody>
                 <Row>
                   <Col xl="8">
-                    <FormGroup style={{ textAlign: "left" }}>
+                    <div className="form-group">
                       <H6
                         attrH6={{
                           className: "d-flex justify-content-between",
@@ -228,103 +197,135 @@ const StepOne = ({
                           Job Name <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
-                      <Input
-                        className="form-control"
+                      <input
+                        style={{
+                          border: errors.jobName ? ".1px solid #f2abab" : jobName ? "1px solid #efefef" : "1px solid #efefef"
+                        }}
                         type="text"
                         name="jobName"
                         value={jobName}
                         placeholder="Sr. UI/UX Designers"
                         onChange={handleChange}
+                        {...register('jobName')}
+                        className={`form-control shadow-none ${errors.jobName ? 'is-invalid' : ''}`}
                       />
-                    </FormGroup>
+
+
+                      <div className="invalid-feedback text-start">{errors.jobName?.message}</div>
+
+                    </div>
+
                   </Col>
                   <Col xl="4">
-                    <FormGroup style={{ textAlign: "left" }}>
-                      <H6
-                        attrH6={{
-                          className: "d-flex justify-content-between",
-                        }}
+                    <H6
+                      attrH6={{
+                        className: "d-flex justify-content-between",
+                      }}
+                    >
+                      <span style={{ fontWeight: "600", fontSize: "14px", marginBottom: '4px' }}>
+                        Job Priority
+                        <span className="ms-2 text-danger">*</span>
+                      </span>
+                      <div
+                        style={{ textAlign: "right" }}
+                        id="responseToolTip"
                       >
-                        <span style={{ fontWeight: "600", fontSize: "14px" }}>
-                          Job Priority{" "}
-                          <span className="ms-2 text-danger">*</span>
-                        </span>
-                        <div
-                          style={{ textAlign: "right" }}
-                          id="responseToolTip"
+                        {" "}
+                        <Info
+                          className="ms-1"
+                          strokeWidth={1}
+                          size={16}
+                          color="#8FA8D7"
+                        />
+                        <UncontrolledTooltip
+                          target="responseToolTip"
+                          placement="left"
+                          style={{
+                            backgroundColor: "#595959",
+                            boxShadow: "0px 6px 26px -3.89px #0000001A",
+                          }}
                         >
-                          {" "}
-                          <Info
-                            className="ms-1"
-                            strokeWidth={1}
-                            size={16}
-                            color="#8FA8D7"
-                          />
-                          <UncontrolledTooltip
-                            target="responseToolTip"
-                            placement="left"
+                          <div
                             style={{
+                              width: "100%",
+                              left: "300px",
                               backgroundColor: "#595959",
-                              boxShadow: "0px 6px 26px -3.89px #0000001A",
                             }}
+                            className="d-flex"
                           >
-                            <div
-                              style={{
-                                width: "100%",
-                                left: "300px",
-                                backgroundColor: "#595959",
-                              }}
-                              className="d-flex"
-                            >
-                              <Info color="#8FA8D7" size={70} />
-                              <span className="ms-2 text-white">
-                                Jobs with higher priority will be processed
-                                faster.
-                              </span>
+                            <Info color="#8FA8D7" size={70} />
+                            <div className="ms-2 text-white">
+                              Jobs with higher priority will be processed
+                              faster.
                             </div>
-                          </UncontrolledTooltip>
-                        </div>
-                      </H6>
-                      <Select
-                        options={options}
-                        defaultValue={options[jobPriority]}
-                        styles={customStyles}
-                        name="jobPriority"
-                        onChange={handleSelectChange}
-                      />
-                    </FormGroup>
+                          </div>
+                        </UncontrolledTooltip>
+                      </div>
+                    </H6>
+                    <select
+
+                      style={{ padding: '12px', position: 'relative', bottom: '4px' }}
+                      onChange={(e) => handleSelectChange(e.target.value.toUpperCase())}
+                      {...register('jobPriority')}
+                      className={`form-select ${errors.jobPriority ? 'is-invalid' : ''}`}
+                      defaultValue="Medium" // Set "Medium" as the default value
+                    >
+                      {options.map(option => (
+                        <option key={option.value} value={option.label.props.children[1].props.children}>
+                          {option.label.props.children[1].props.children}
+                        </option>
+                      ))}
+                    </select>
+
+
+
                   </Col>
                   <Col xl="12">
-                    <FormGroup style={{ textAlign: "left" }}>
+                    <FormGroup className="text-start mt-3">
                       <H6
                         attrH6={{
                           className: "d-flex justify-content-between",
                         }}
                       >
+                        <div className="invalid-feedback">{errors.jobPriority?.message}</div>
                         <span style={{ fontWeight: "600", fontSize: "14px" }}>
                           Skills <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
                       {enterSkill ? (
-                        <Input
-                          className="form-control mb-2"
-                          type="text"
-                          name="skillInputValue"
-                          value={skillInputValue}
-                          placeholder="Type skill name here......"
-                          onKeyDown={handleKeyPress}
-                          onChange={handleChange}
-                        />
-                      ) : (
-                        <button
-                          className="btn btn-outline-dark btn-pill pe-3 ps-3 pt-2 pb-2 d-inline-flex"
-                          onClick={() => setEnterSkill(true)}
-                        >
-                          {" "}
-                          <Plus strokeWidth={2} size={20} />
-                          <span>Add Skills</span>
-                        </button>
-                      )}
+                        <>
+                          <input
+                            style={{
+                              border: errors.skillInputValue ? ".1px solid #f2abab" : skillInputValue ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
+                            }}
+                            type="text"
+                            name="skillInputValue"
+                            value={skillInputValue}
+                            placeholder="Type skill name here......"
+                            onKeyDown={handleKeyPress}
+                            onChange={handleChange}
+                            className={`form-control shadow-none ${errors.skillInputValue ? "is-invalid" : ""
+                              }`}
+                          />
+
+                        </>
+                      )
+                        : (
+                          <>
+                            <button
+                              style={{
+                                border: errors.jobName ? ".1px solid #f2abab" : jobName ? "1px solid #00ff00" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
+                              }}
+                              className="btn btn-pill pe-3 ps-3 pt-2 pb-2 d-inline-flex"
+                              onClick={() => setEnterSkill(true)}
+                            >
+                              {" "}
+                              <Plus strokeWidth={2} size={20} />
+                              <span>Add Skills</span>
+                            </button>
+
+                          </>
+                        )}
                       {skills.map((skill, index) => (
                         <button
                           key={index}
@@ -352,9 +353,13 @@ const StepOne = ({
                           />
                         </button>
                       ))}
+                      <div className="invalid-feedback">
+                        {errors.skillInputValue?.message}
+                      </div>
                     </FormGroup>
                   </Col>
-                  <Col xl="12" className="mt-4">
+
+                  <Col xl="12" className="mt-3">
                     <FormGroup style={{ textAlign: "center" }}>
                       <span
                         style={{
@@ -373,7 +378,7 @@ const StepOne = ({
                               style={{
                                 color: "white",
                                 backgroundColor: "#1264FD",
-                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                                boxShadow: " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                                 border: "1px solid #1264FD",
                                 fontSize: "14px",
                                 borderRadius: "30px",
@@ -429,7 +434,7 @@ const StepOne = ({
                                 border: "1px solid #1264FD",
                                 borderRadius: "30px",
                                 color: "white",
-                                boxShadow: " 0px 0px 32px 0px #3D64FF94",
+                                boxShadow: " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                               }}
                             >
                               Linkedin Profiles URL
@@ -437,22 +442,23 @@ const StepOne = ({
                           </>
                         )}
                       </span>
+
                       <div className="mt-5">
                         <H6
                           attrH6={{
                             className: "d-flex justify-content-between",
                           }}
                         >
-                          {linkedInSearchButton ? (
+                          {!linkedInSearchButton ? (
                             <>
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
                               >
-                                Filter profiles in the 
-                                <span style={{ color: "#1264FD" }}>
+
+                                Filter profiles in the <span style={{ color: "#1264FD" }}>
                                   LinkedIn search
-                                </span>
-                                 and paste the URL below{" "}
+                                </span> and paste the URL below{" "}
+
                                 <span className="ms-2 text-danger">*</span>
                               </span>
                             </>
@@ -461,11 +467,11 @@ const StepOne = ({
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
                               >
-                                Copy the  
+                                Copy the {' '}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn Profile URL
+                                  LinkedIn Profile URL {' '}
                                 </span>
-                                 and paste it below{" "}
+                                and paste it below{" "}
                                 <span className="ms-2 text-danger">*</span>
                               </span>
                             </>
@@ -483,38 +489,144 @@ const StepOne = ({
                         </H6>
                         {linkedInSearchButton ? (
                           <>
-                            <Input
-                              className="form-control"
-                              name="linkedInSearch"
-                              value={linkedInSearch}
-                              type="text"
-                              placeholder="https://www.linkedin.com/search..."
-                              onChange={handleChange}
-                            />
+                            <div style={{ position: 'relative' }}>
+                              <input
+
+                                style={{
+                                  border: errors.linkedInSearch ? ".1px solid #f2abab" : linkedInSearch ? "1px solid #efefef" : ".1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
+                                }}
+                                type="text"
+                                name="linkedInSearch"
+                                placeholder="https://www.linkedin.com/search..."
+                                {...register('linkedInSearch')}
+                                className={`form-control shadow-none ${errors.linkedInSearch ? 'is-invalid' : linkedInSearchValue && 'is-valid'
+                                  }`}
+                              />
+                              {!errors.linkedInSearch && linkedInSearchValue && (
+                                <FaCheck
+                                  style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    color: 'green',
+                                  }}
+                                />
+                              )}
+                              {errors.linkedInSearch && (
+                                <div className="invalid-feedback text-start">{errors.linkedInSearch.message}</div>
+                              )}
+                            </div>
+                            {/* <div style={{ position: 'relative' }}>
+                              <input
+                                style={{
+                                  border: errors.linkedInSearch ? ".1px solid #f2abab" : linkedInSearchValue ? "1px solid green" : ".1px solid #efefef",
+                                  background: '#EBF1FC',
+                                  marginRight: '3px'
+                                }}
+                                type="text"
+                                name="linkedInSearch"
+                                placeholder="https://www.linkedin.com/search..."
+                                {...register('linkedInSearch')}
+                                value={linkedInSearch}
+                                onChange={handleChange}
+                                className={`form-control shadow-none ${errors.linkedInSearch ? 'is-invalid' : linkedInSearchValue && 'is-valid'}`}
+                              />
+                              {!errors.linkedInSearch && linkedInSearchValue && (
+                                <FaCheck
+                                  style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    color: 'green',
+                                  }}
+                                />
+                              )}
+                              {errors.linkedInSearch && (
+                                <div className="invalid-feedback text-start">{errors.linkedInSearch.message}</div>
+                              )}
+                            </div> */}
                           </>
                         ) : (
                           <>
-                            <Input
-                              className="form-control"
-                              name="linkedInProfile"
-                              value={linkedInProfile}
-                              type="text"
-                              placeholder="https://www.linkedin.com/abc..."
-                              onChange={handleChange}
-                            />
+                           <textarea
+  className="form-control"
+  name="linkedInProfile"
+  value={linkedInProfile}
+  placeholder="https://www.linkedin.com/abc..."
+  onChange={handleChange}
+  style={{ height: '150px' }} // Set the height here
+/>
+
+
                           </>
                         )}
                       </div>
                     </FormGroup>
+                    {
+                      <div className="text-start" style={{ color: '#595959' }}>
+                        <p style={{ fontSize: '12px' }}>LinkedIn profile found: <strong>{"1000+"}</strong></p>
+                        <p style={{ fontSize: '12px' }}>
+                          How many users you would like to add  to this list?  <span className="ms-2 text-danger">* <strong style={{ color: "#9F9B9B" }}>(max 500)</strong></span>
+                        </p>
+                        <div>
+                          <div className="d-flex gap-3">
+
+                            <span>
+                              <div>
+                                <input
+
+                                  style={{
+                                    border: errors.maxCandidates ? ".1px solid #f2abab" : maxCandidates ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px', width: '60px',
+                                    height: '14px',
+                                    display: 'inline-block'
+                                  }}
+                                  min={1}
+                                  max={500}
+                                  type="text"
+                                  name="maxCandidates"
+                                  value={maxCandidates}
+                                  onChange={handleChange}
+                                  {...register('maxCandidates')}
+                                  className={`form-control shadow-none ${errors.maxCandidates ? 'is-invalid' : ''}`}
+                                />
+                                <span style={{ position: 'absolute' }} className="invalid-feedback text-start">{errors.maxCandidates?.message}</span>
+                              </div>
+                            </span>
+                            <div className="display-flex-style gap-1">
+                              <input
+
+                                className="inp-cbx absolute"
+                                id="morning"
+                                type="checkbox"
+                                checked={isMaxChecked}
+                                onChange={handleCheckboxChange}
+                              /> <span style={{ fontSize: '12px', color: 'black' }} className="relative mottom-1.5">max</span>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div
+
+                        >
+                        </div>
+                      </div>
+                    }
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
-                    <Link
-                      onClick={handleNextStep}
-                      className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
-                      style={{ opacity: nextActive ? "100%" : "60%" }}
-                    >
-                      <span>Next</span>
-                    </Link>
+                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                      <span>
+                        {isLoading ? (
+                          <>
+                            <i className="fa fa-spinner fa-spin" /> Loading...
+                          </>
+                        ) : (
+                          "Next"
+                        )}
+                      </span>
+                    </button>
                   </Col>
                 </Row>
               </CardBody>

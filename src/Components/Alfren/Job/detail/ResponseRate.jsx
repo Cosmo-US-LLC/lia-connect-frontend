@@ -64,9 +64,10 @@ const ResponseRate = () => {
           </p>
 
           <Row>
-            <Col xl="4">
+            <Col xl="4" className="ps-0 pe-0">
               <RadialProgressChart chartHeight={140} chartOption={data} />
             </Col>
+
             <Col xl="8">
               <div style={{ textAlign: "left" }} className="mt-4 ">
                 <h4

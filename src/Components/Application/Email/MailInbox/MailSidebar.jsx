@@ -86,7 +86,7 @@ const MailSidebar = () => {
               <Col xl='4' md='12' className='box-md-12 pr-0'>
                 <div className='pe-0 b-r-light'></div>
                 <EmailTopToggle selectedFav={selectedFav} moreCallBack={moreCallBack} emailIds={emailIds} />
-                <div className='inbox custom-scrollbar'>
+                <div className='inbox'>
                   {selectedFav ? (
                     allEmails.filter((email) => email.favourite === true).length > 0 ? (
                       allEmails

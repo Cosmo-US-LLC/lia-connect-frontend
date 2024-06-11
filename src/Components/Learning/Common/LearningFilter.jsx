@@ -12,7 +12,7 @@ const LearningFilter = () => {
       <Col xl='3' className='xl-40 box-col-12 learning-filter order-1 order-xl-2'>
         <div className='md-sidebar'>
           <Btn attrBtn={{ onClick: (e) => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>Learning filter</Btn>
-          <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'} `}>
+          <div className={`md-sidebar-aside job-left-aside ${isOpen && 'open'} `}>
             <div className='default-according style-1 faq-accordion job-accordion' id='accordionoc'>
               <Row>
                 <FindCourseClass />

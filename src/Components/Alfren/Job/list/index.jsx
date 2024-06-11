@@ -26,16 +26,20 @@ import {
   Users,
   X,
 } from "react-feather";
+import { Modal, Button } from 'react-bootstrap';
+import { FaTimes, FaTrash } from 'react-icons/fa';
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import DateModal from "./modals/date";
 import { Link } from "react-router-dom";
-import { fetchJobs, updateJob , deleteJobAction} from "../../../../redux/Job/jobActions";
+import { fetchJobs, updateJob, deleteJobAction } from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import ConfirmationModal from "CommonElements/ConfirmationBox";
 
 const JobList = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   //states
   const [jobsList, setJobsList] = useState([]);
@@ -58,8 +62,11 @@ const JobList = () => {
   const [dateDropdown, setDateDropdown] = useState(false);
   const [priorityDropdownRow, setPriorityDropdownRow] = useState([]);
   const [jobAPIResult, setJobAPIResult] = useState([]);
+  const [show, setShow] = useState(false);
+  const [getJobId, setGetJobId] = useState(null)
+  const handleClose = () => setShow(false);
 
-  
+
   // function handle dropdown states
 
   const toggleSearchDropdown = () => {
@@ -163,7 +170,7 @@ const JobList = () => {
 
     dispatch(
       fetchJobs(formPayload, (resp) => {
-        if (resp.status == 200) {
+        if (resp?.status == 200) {
           // toast.success("JobsFetched successfully");
           setPagination(resp.data.pagination);
           const results = resp.data.results;
@@ -405,7 +412,7 @@ const JobList = () => {
           const mappedRecords = mapTableData(results);
           setJobsList(mappedRecords);
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })
@@ -413,19 +420,21 @@ const JobList = () => {
   };
 
   const fetchJobNames = async (e) => {
+    setIsLoading(true)
     const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
     const formPayload = {
       urlParams,
     };
     dispatch(
       fetchJobs(formPayload, (resp) => {
-        if (resp.status == 200) {
+        setIsLoading(false)
+        if (resp?.status == 200) {
           // toast.success("JobsFetched successfully");
           const results = resp.data.results;
           const mappedResult = mapSearchJobList(results);
           setSearchJobs(mappedResult);
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })
@@ -472,11 +481,15 @@ const JobList = () => {
     );
   };
 
-  
-  
-  const deleteJob = (jobId) => {
+
+
+  const deleteJob = () => {
+    console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
+    setIsLoading(true); // Set loading to true before dispatching the action
+    setShow(true)
     dispatch(
-      deleteJobAction(jobId, (resp) => {
+      deleteJobAction(getJobId, (resp) => {
+        setIsLoading(false); // Set loading to true before dispatching the action
         if (resp.status == 204) {
           toast.success("Job Deleted Successfully");
           setPaginatedUpdated(!paginatedUpdated);
@@ -487,7 +500,10 @@ const JobList = () => {
       })
     );
   };
-  
+  const handleOpenConfirmation = (jobId) => {
+    setGetJobId(jobId)
+    setShow(true)
+  }
   const toggleDropdown = (index) => {
     const updatedDropdownStates = [...priorityDropdownRow];
     updatedDropdownStates[index] = !updatedDropdownStates[index];
@@ -506,7 +522,7 @@ const JobList = () => {
         1
       );
       differenceInDays = Math.round(differenceInDays)
-      
+
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
@@ -514,7 +530,7 @@ const JobList = () => {
         id: item.id,
         name: (
           <>
-            <Link to={'detail/'+item.id} key={item.id} >
+            <Link to={'detail/' + item.id} key={item.id} >
               <div
                 style={{
                   width: "50ch",
@@ -597,66 +613,67 @@ const JobList = () => {
         priority: (
 
 
-          <div className="custom-dropdown"  onClick={() => toggleDropdown(index)}>
-          <div className="selected-option" >
-            <Flag
-              fill={
-                item.jobPriority == "HIGH"
-                  ? "#DE3E3E"
-                  : item.jobPriority == "LOW"
-                  ? "#CECECE"
-                  : "#FECF41"
-              }
-              color={
-                item.jobPriority == "HIGH"
-                  ? "#AA1313"
-                  : item.jobPriority == "LOW"
-                  ? "#ABABAB"
-                  : "#E2B323"
-              }
-              size={14}
-              strokeWidth={1.5}
-            />
-            <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
-              {item.jobPriority}
-            </span>
-            <ChevronDown
-              color="#8FA8D7"
-              size={14}
-              strokeWidth={1.5}
-            />
-          </div>
-         {
-          priorityDropdownRow[index] && (
-            <ul className="options" style={{padding: "10px",
-            position: "absolute",
-            boxShadow: "0px 10px 26px 0px #0000001A",
-            zIndex: 2,
-            backgroundColor: "white",
-            borderRadius: "8px",
-            width: "100%",
-            paddingBottom:"3px"
-            }}>
-              {priorities.map((option, index) => (
-                <li key={index} style={{borderBottom: "1px solid #0000001f",padding: "8px"}} onClick={() =>
-                  changeJobPriority(item.id, option.title)
-                }>
-                    <Flag
-                          fill={option.fill}
-                          color={option.color}
-                          size={14}
-                          strokeWidth={1.5}
-                        />
-                  {option.title}
-                </li>
-              ))}
-            </ul>
-          ) 
-         }
-        
+          <div className="custom-dropdown" onClick={() => toggleDropdown(index)}>
+            <div className="selected-option" >
+              <Flag
+                fill={
+                  item.jobPriority == "HIGH"
+                    ? "#DE3E3E"
+                    : item.jobPriority == "LOW"
+                      ? "#CECECE"
+                      : "#FECF41"
+                }
+                color={
+                  item.jobPriority == "HIGH"
+                    ? "#AA1313"
+                    : item.jobPriority == "LOW"
+                      ? "#ABABAB"
+                      : "#E2B323"
+                }
+                size={14}
+                strokeWidth={1.5}
+              />
+              <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+                {item.jobPriority}
+              </span>
+              <ChevronDown
+                color="#8FA8D7"
+                size={14}
+                strokeWidth={1.5}
+              />
+            </div>
+            {
+              priorityDropdownRow[index] && (
+                <ul className="options" style={{
+                  padding: "10px",
+                  position: "absolute",
+                  boxShadow: "0px 10px 26px 0px #0000001A",
+                  zIndex: 2,
+                  backgroundColor: "white",
+                  borderRadius: "8px",
+                  width: "100%",
+                  paddingBottom: "3px"
+                }}>
+                  {priorities.map((option, index) => (
+                    <li key={index} style={{ borderBottom: "1px solid #0000001f", padding: "8px" }} onClick={() =>
+                      changeJobPriority(item.id, option.title)
+                    }>
+                      <Flag
+                        fill={option.fill}
+                        color={option.color}
+                        size={14}
+                        strokeWidth={1.5}
+                      />
+                      {option.title}
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
 
-          
-        </div>
+
+
+          </div>
         ),
         dateCreated: (
           <div>
@@ -695,14 +712,15 @@ const JobList = () => {
               "Draft"
             )}
             <Trash2
+
               strokeWidth={1}
               color="#9B9999"
               size={20}
               className="ms-2"
               onClick={() =>
-                deleteJob(item.id)
+                handleOpenConfirmation(item.id)
               }
-              style={{cursor:"pointer"}}
+              style={{ cursor: "pointer" }}
             />
           </div>
         ),
@@ -731,7 +749,7 @@ const JobList = () => {
   }, [paginatedUpdated, selectedJobs, priorities, activeOnly, isDateSelected]);
 
 
-  
+
   useEffect(() => {
     fetchJobNames();
   }, [priorityDropdownRow]);
@@ -741,12 +759,18 @@ const JobList = () => {
     setJobsList(mappedRecords);
   }, [priorityDropdownRow]);
 
-  const [maxHeight, setMaxHeight] = useState(window.innerHeight-300);
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 300);
 
 
   return (
     <Fragment>
+
       <Container fluid={true}>
+        <ConfirmationModal
+          deleteJob={deleteJob}
+          handleClose={handleClose} show={show}
+          isLoading={isLoading}
+        />
         <Row>
           <Col sm="12">
             <Card style={{ boxShadow: "none" }}>
@@ -887,10 +911,10 @@ const JobList = () => {
                         </Label>
                       </Media>
                       <span
-                        className="ms-2"
                         style={{
                           opacity: activeOnly ? "100%" : "40%",
                           fontSize: "12px",
+                          marginLeft:'4px'
                         }}
                       >
                         Active Only
@@ -998,17 +1022,18 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <div style={{ boxShadow: "none" ,maxHeight:`${maxHeight}px`, overflowY: "auto" }}  className="custom-scrollbar" >
-              <DataTableComponent
-                paginatedUpdated={paginatedUpdated}
-                data={jobsList}
-                paginationDetails={pagination}
-                tableColumns={tableColumns}
-                setPagination={setPagination}
-                setPaginatedUpdated={setPaginatedUpdated}
-              />
+              <div style={{ boxShadow: "none", maxHeight: `${maxHeight}px`, overflowY: "auto" }}>
+                <DataTableComponent
+                  isLoading={isLoading}
+                  paginatedUpdated={paginatedUpdated}
+                  data={jobsList}
+                  paginationDetails={pagination}
+                  tableColumns={tableColumns}
+                  setPagination={setPagination}
+                  setPaginatedUpdated={setPaginatedUpdated}
+                />
               </div>
-             
+
             </Card>
           </Col>
         </Row>
