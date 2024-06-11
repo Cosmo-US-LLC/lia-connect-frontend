@@ -15,6 +15,7 @@
     "@fullcalendar/interaction": "^6.1.4",
     "@fullcalendar/react": "^6.1.4",
     "@fullcalendar/timegrid": "^6.1.4",
+    "@hookform/resolvers": "^3.6.0",
     "@mobiscroll/react-lite": "^4.10.9",
     "@react-google-maps/api": "^2.18.1",
     "@reactour/tour": "^3.4.0",
@@ -66,7 +67,7 @@
     "react-gradient-timepicker": "^0.0.3",
     "react-hook-form": "^7.43.9",
     "react-i18next": "^12.2.0",
-    "react-icons": "^4.8.0",
+    "react-icons": "^4.12.0",
     "react-image-crop": "^10.0.9",
     "react-leaflet": "^4.2.1",
     "react-masonry-css": "^1.0.16",
@@ -98,7 +99,8 @@
     "styled-components": "^5.3.10",
     "sweetalert2": "^11.7.3",
     "web-vitals": "^3.3.1",
-    "world-map-geojson": "^1.0.2"
+    "world-map-geojson": "^1.0.2",
+    "yup": "^1.4.0"
   },
   "proxy": "http://137.184.95.65:5000",
   "scripts": {

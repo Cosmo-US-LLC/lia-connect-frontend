@@ -1,0 +1,85 @@
+/* OTP screen style */
+.Linked-text-style {
+  font-size: 22.42px;
+  font-weight: 800;
+  line-height: 22.42px;
+  letter-spacing: 0.01em;
+color: black;
+}
+
+.custom-modal {
+  // max-width: 1200px;
+  /* Increase the width of the modal */
+  margin: 1.75rem auto;
+  /* Center the modal */
+  max-width: 630px;
+}
+.otp-img{
+  width: 293.81px;
+height: 213.32px;
+top: 0.22px;
+left: -3.81px;
+gap: 0px;
+opacity: 0px;
+object-fit: contain;
+}
+.otp-input-style{
+  width: Fixed (291.46px)px;
+height: Fill (35px)px;
+padding: 11.21px 14.01px 11.21px 14.01px;
+gap: 0px;
+border-radius: 2.8px 0px 0px 0px;
+border: 0.7px 0px 0px 0px;
+justify-content: space-between;
+opacity: 0px;
+
+}
+.custom-modal .modal-dialog {
+  max-width: 800px; /* Increase the width of the modal */
+  margin: 1.75rem auto; /* Center the modal */
+}
+
+.Linked-text-style {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  padding: 30px 0px;
+}
+
+.margin-auto-style {
+  margin: auto;
+}
+
+.center-placeholder {
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  text-align: center; /* Center the text */
+  padding: 11.21px 14.01px 11.21px 14.01px;
+}
+
+.center-placeholder::placeholder {
+  text-align: center; /* Center align the placeholder text */
+}
+.opt-login-btn{
+  padding: 11.21px 14.01px 11.21px 14.01px;
+  border-radius: 4px;
+}
+.check-span-text{
+  font-size: 9.81px;
+}
+.input-box-style{
+  padding: 0px 80px;
+}
+.space-y-gap > * + * {
+  margin-top: .5rem; /* 1rem is equivalent to 16px by default */
+}
+
+// To use a different color, you can call the mixin with a different argument
+@mixin dynamic-color($color) {
+  color: $color;
+}
+

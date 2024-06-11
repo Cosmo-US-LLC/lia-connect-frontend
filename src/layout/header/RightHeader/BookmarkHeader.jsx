@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useCallback } from "react";
-import { MENUITEMS } from "../../Sidebar/Menu";
+import { MENUITEMS } from "../../Sidebar/menu";
 import plusIcon from "../../../assets/used-files/icons/plus.svg";
 import { Image } from "../../../AbstractElements";
 
@@ -151,7 +151,7 @@ const BookmarkHeader = () => {
                   {Bookmark}
                 </h6>
                 <ul className="droplet-dropdown bookmark-dropdown">
-                  <li className="custom-scrollbar">
+                  <li>
                     <Row>
                       <Col xs="4" className="text-center">
                         <div className="bookmark-content">

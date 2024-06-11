@@ -34,7 +34,7 @@ const Email = () => {
       <Col xl='3' md='6 box-col-6'>
         <div className='md-sidebar'>
           <Btn attrBtn={{ onClick: (e) => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>email filter</Btn>
-          <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'} `}>
+          <div className={`md-sidebar-aside job-left-aside ${isOpen && 'open'} `}>
             <div className='email-left-aside'>
               <div className='email-left-aside'>
                 <Card>

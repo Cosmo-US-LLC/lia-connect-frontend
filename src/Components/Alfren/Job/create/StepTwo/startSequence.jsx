@@ -27,7 +27,7 @@ export const SequenceStart = ({ id, name }) => {
 
   return (
     <div
-      className="mt-5 d-flex  justify-content-center align-items-center"
+      className="d-flex  justify-content-center align-items-start"
       style={{ height: "60vh" }}
     >
       <>

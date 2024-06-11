@@ -22,7 +22,7 @@ const ChatStatus = () => {
           <div className='people-list' id='people-list'>
             <SearchChatList />
             {allMemberss && allMemberss.length > 0 ? (
-              <UL attrUL={{ className: 'simple-list list custom-scrollbar' }}>
+              <UL attrUL={{ className: 'simple-list list' }}>
                 {allMemberss.map((item) => {
                   return (
                     <LI

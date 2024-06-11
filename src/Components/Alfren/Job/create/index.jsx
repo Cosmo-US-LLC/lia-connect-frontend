@@ -10,11 +10,20 @@ import StepTwo from "./StepTwo/index";
 import StepThree from "./StepThree/index";
 import Completed from "./Completed";
 import { useLocation } from "react-router";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { fetchAllCandidates, stepOne } from "../../../../redux/Job/jobActions";
+
 
 const JobCreate = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
+  console.log('stepstepstepstepstepstepstepstepstepstepstepstepstepstep', step)
+  const dispatch = useDispatch()
   const handleNext = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -25,10 +34,12 @@ const JobCreate = () => {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitss = (e) => {
     e.preventDefault();
     // Handle form submission
   };
+
+
 
   const removeSkill = (name) => {
     const updatedItems = skills.filter((item) => item !== name);
@@ -37,61 +48,23 @@ const JobCreate = () => {
 
   //stepOne data
   const [jobName, setJobName] = useState(null);
+  console.log('jobName', jobName)
   const [jobPriority, setJobPriority] = useState(null);
+  console.log('jobPriority', jobPriority)
+  const [linkedInSearch, setLinkedInSearch] = useState("");
+  console.log('linkedInSearch i want this', linkedInSearch)
   const [skills, setSkills] = useState([]);
-  const [linkedInSearch, setLinkedInSearch] = useState([]);
+  console.log('skills', skills)
+  const [skillInputValue, setSkillInputValue] = useState('');
   const [linkedInProfile, setLinkedInProfile] = useState([]);
-
+  console.log('linkedInProfile', linkedInProfile)
   //stepOne data end
   const [candidateInOtherJob, setCandidateInOtherJob] = useState(true);
   const [candidateHaveOpenProfile, setCandidateHaveOpenProfile] = useState(false);
   const [candidateHaveDisplay, setCandidateHaveDisplay] = useState(false);
-
   //stepTwo Data starts
-
-  const [sequence, setSequence] = useState();
-  const [sequenceArray, setSequenceArray] = useState([]);
-
-  function transformSequenceRecords(records) {
-    const map = new Map();
-
-    // Create a map with sequenceId as keys
-    for (const record of records) {
-      map.set(record.sequenceId, { ...record, children: [] });
-    }
-
-    // Build the tree structure
-    for (const record of records) {
-      if (record.parentSequenceId && map.has(record.parentSequenceId)) {
-        const parent = map.get(record.parentSequenceId);
-        parent.children.push(map.get(record.sequenceId));
-      }
-    }
-
-    // Find and return the root node
-    let rootNode;
-    for (const record of records) {
-      if (!record.parentSequenceId) {
-        rootNode = map.get(record.sequenceId);
-        break;
-      }
-    }
-
-    return rootNode;
-  }
-
-
-  //stepThree data
-  //stepThree data ends
-
-
-
-  useEffect(() => {
-    const transformed = transformSequenceRecords(sequenceArray);
-    console.log("dgdfg", transformed, sequenceArray);
-    setSequence(transformed);
-  }, [sequenceArray]);
-
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
+  const [getCandidateCount, setGetTotalCount] = useState(null)
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -106,6 +79,104 @@ const JobCreate = () => {
     }
 
   }, [location.search]);
+  let validationSchema = Yup.object().shape({
+    jobName: Yup.string().required('Job Name is required'),
+    jobPriority: Yup.string().required('Job Priority is required'),
+    linkedInSearch: Yup.string()
+      .required('LinkedIn Search URL is required')
+      .matches(
+        /^https:\/\/www\.linkedin\.com\/search\/results\/people\/\?keywords=.*/,
+        'This LinkedIn Search URL cannot be supported'
+      ),
+    maxCandidates: Yup.number()
+      .typeError('Max Candidate cannot be more than 500')
+      .required('Max Candidate is required')
+      .min(1, 'Max Candidate must be at least 1')
+      .max(500, 'Max Candidate cannot be more than 500'),
+  });
+
+  // Manually check if skillInputValue is required
+  if (!skills || skills.length === 0) {
+    validationSchema = validationSchema.shape({
+      skillInputValue: Yup.string().required('Skill is required'),
+    });
+  }
+
+
+
+
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    clearErrors,
+    control, setValue,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
+  const hasErrors = Object.values(errors).some(error => error !== undefined);
+  console.log('hasErrors', hasErrors)
+  const linkedInSearchValue = watch('linkedInSearch');
+
+  const onSubmit = async (data, e) => {
+    console.log('Submitted data:', data);
+    setIsLoading(true); // Set loading to true before dispatching the action
+
+    const formData = {
+      name: data.jobName,
+      jobPriority: data.jobPriority.toUpperCase(), // Convert jobPriority to uppercase
+      linkedInURL: data?.linkedInSearch?.length
+        ? [data.linkedInSearch]
+        : linkedInProfile?.length
+        ? linkedInProfile
+        : [],
+      linkedInType: data?.linkedInSearch?.length
+        ? 'linkedInSearch'
+        : linkedInProfile?.length
+        ? 'linkedInProfile'
+        : null,
+      skills,
+      maxCandidates: parseInt(data.maxCandidates, 10), // Convert maxCandidates to a number
+    };
+
+    // Check if currentStep is 1 before dispatching stepOne
+    if (step === 1) {
+      try {
+        await dispatch(
+          stepOne(formData, (resp) => {
+            console.log('yes i run step 1');
+            setIsLoading(false); // Set loading to false when data is received
+            if (resp?.status === 201) {
+              toast.success('Job step One completed');
+              setJobId(resp.data.id);
+              handleNext(e);
+            } else {
+              const err = resp?.message;
+              toast.error(err);
+            }
+          })
+        );
+      } catch (error) {
+        setIsLoading(false); // Set loading to false if an error occurs
+        toast.error('Error occurred while processing the request');
+      }
+    } else {
+      setIsLoading(false); // If not step 1, set loading to false
+    }
+  };
+  // useEffect(() => {
+  //   const formData = {
+  //     url: linkedInSearch,
+  //   };
+  //   dispatch(
+  //     fetchAllCandidates(formData, (resp) => {
+  //       setGetTotalCount(resp?.data?.candidateCount)
+  //       console.log('resp', resp);
+  //     })
+  //   );
+  // }, [dispatch,linkedInSearch]);
 
   return (
     <Fragment>
@@ -120,7 +191,7 @@ const JobCreate = () => {
             textAlign: "center",
           }}
         >
-          <div style={{ width: "60%" }}>
+          <div style={{ width: "40%" }}>
             <Col style={{ display: "flex" }}>
               <div>
                 <Image
@@ -132,7 +203,7 @@ const JobCreate = () => {
                   }}
                 />
               </div>
-              <div style={{ width: "100%", marginTop: "9px" }}>
+              <div style={{ width: "100%", marginTop: "10px" }}>
                 <Progressbar
                   attrProgress={{
                     value: "100",
@@ -140,7 +211,7 @@ const JobCreate = () => {
                       step == 3 || step == 2 || step == 4
                         ? "stepActive"
                         : "stepInActive",
-                    className: "sm-progress-bar  mb-0 ",
+                    className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
               </div>
@@ -152,18 +223,18 @@ const JobCreate = () => {
                       step == 2
                         ? StepActiveIcon
                         : step == 3 || step == 4
-                        ? StepCompletedIcon
-                        : StepInActiveIcon,
+                          ? StepCompletedIcon
+                          : StepInActiveIcon,
                   }}
                 />
               </div>
-              <div style={{ width: "100%", marginTop: "9px" }}>
+              <div style={{ width: "100%", marginTop: "10px" }}>
                 <Progressbar
                   attrProgress={{
                     value: "100",
                     color:
                       step == 3 || step == 4 ? "stepActive" : "stepInActive",
-                    className: "sm-progress-bar  mb-0",
+                    className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
               </div>
@@ -174,14 +245,14 @@ const JobCreate = () => {
                       step == 3
                         ? StepActiveIcon
                         : step == 4
-                        ? StepCompletedIcon
-                        : StepInActiveIcon,
+                          ? StepCompletedIcon
+                          : StepInActiveIcon,
                   }}
                 />
               </div>
             </Col>
           </div>
-          <div style={{ width: "67%" }}>
+          <div style={{ width: "45%" }}>
             <Col style={{ display: "flex", justifyContent: "space-between" }}>
               <span
                 style={{
@@ -213,17 +284,27 @@ const JobCreate = () => {
               </span>
             </Col>
           </div>
-          <Form
+          <form
             className="form theme-form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             style={{ width: "100%", margin: "0 10%" }}
           >
             {step === 1 && (
               <StepOne
+                getCandidateCount={getCandidateCount}
+                hasErrors={hasErrors}
+                isLoading={isLoading}
+                control={control} setValue={setValue}
+                linkedInSearchValue={linkedInSearchValue}
+                errors={errors}
+                register={register}
                 setJobName={setJobName}
                 jobName={jobName}
                 jobPriority={jobPriority}
                 setJobPriority={setJobPriority}
+                setSkillInputValue={setSkillInputValue}
+                skillInputValue={skillInputValue}
+                clearErrors={clearErrors}
                 skills={skills}
                 setSkills={setSkills}
                 removeSkill={removeSkill}
@@ -239,9 +320,6 @@ const JobCreate = () => {
               <StepTwo
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
-                sequence={sequence}
-                sequenceArray={sequenceArray}
-                setSequenceArray={setSequenceArray}
                 jobId={jobId}
               />
             )}
@@ -259,7 +337,7 @@ const JobCreate = () => {
               />
             )}
             {step === 4 && <Completed />}
-          </Form>
+          </form>
         </div>
       </Container>
     </Fragment>

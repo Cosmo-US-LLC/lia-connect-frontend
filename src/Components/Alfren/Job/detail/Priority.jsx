@@ -6,14 +6,16 @@ import TodoContext from "../../../../_helper/Todo";
 import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
 import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
 import { ChevronDown, ChevronsDown, Flag } from "react-feather";
-const Priority = ({jobDetails}) => {
+const Priority = ({ jobDetails }) => {
   return (
     <Fragment>
-      <Card style={{ backgroundColor: jobDetails.jobPriority == "HIGH"
-                  ? "#de3e3e29"
-                  : jobDetails.jobPriority == "LOW"
-                  ? "white"
-                  : "#FFFCF1" }}>
+      <Card style={{
+        backgroundColor: jobDetails.jobPriority == "HIGH"
+          ? "#de3e3e29"
+          : jobDetails.jobPriority == "LOW"
+            ? "white"
+            : "#FFFCF1"
+      }}>
         <CardBody style={{ padding: "20px" }}>
           <p
             style={{
@@ -51,19 +53,21 @@ const Priority = ({jobDetails}) => {
                 jobDetails.jobPriority == "HIGH"
                   ? "#AA1313"
                   : jobDetails.jobPriority == "LOW"
-                  ? "#ABABAB"
-                  : "#E2B323"
-              } fill={ jobDetails.jobPriority == "HIGH"
-                  ? "#DE3E3E"
-                  : jobDetails.jobPriority == "LOW"
+                    ? "#ABABAB"
+                    : "#E2B323"
+              } fill={jobDetails.jobPriority == "HIGH"
+                ? "#DE3E3E"
+                : jobDetails.jobPriority == "LOW"
                   ? "#CECECE"
                   : "#FECF41"} />
             </p>
-            <h4 style={{ fontWeight: 900, fontSize: "38px", color: jobDetails.jobPriority == "HIGH"
-                  ? "#DE3E3E"
-                  : jobDetails.jobPriority == "LOW"
+            <h4 style={{
+              fontWeight: 900, fontSize: "38px", color: jobDetails.jobPriority == "HIGH"
+                ? "#DE3E3E"
+                : jobDetails.jobPriority == "LOW"
                   ? "#CECECE"
-                  : "#FECF41" }}>
+                  : "#FECF41"
+            }}>
               {jobDetails.jobPriority}
             </h4>
           </div>

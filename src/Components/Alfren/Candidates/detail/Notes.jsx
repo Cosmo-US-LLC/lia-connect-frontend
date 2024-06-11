@@ -46,7 +46,7 @@ const Notes = () => {
             <div className="todo-list-wrapper">
               <div className="todo-list-container todo-list-footer">
                 <div
-                  className="todo-list-body custom-scrollbar"
+                  className="todo-list-body"
                   style={{ maxHeight: "350px", overflowY: "auto" }}
                 >
                   <UL attrUL={{ className: "simple-list", id: "todo-list" }}>

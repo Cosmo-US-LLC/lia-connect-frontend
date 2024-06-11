@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SvgIcon from "../../Components/Common/Component/SvgIcon";
 import CustomizerContext from "../../_helper/Customizer";
-import { MENUITEMSBOTTOM } from "./Menu";
+import { MENUITEMSBOTTOM } from "./menu";
 import { Image, P } from "../../AbstractElements";
 import defaultAvatar from "../../assets/used-files/profile/default.png";
 import { MoreVertical, LogOut } from "react-feather";

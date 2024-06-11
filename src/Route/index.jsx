@@ -1,12 +1,12 @@
 import React from "react";
 import { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Loader from "../Layout/Loader";
 import { authRoutes } from "./AuthRoutes";
 import LayoutRoutes from "../Route/LayoutRoutes";
 import PrivateRoute from "./PrivateRoute";
 import { classes } from "../Data/Layouts";
 import Login from "../Components/Alfren/Auth/login/index";
+import Loader from "../Layout/Loader";
 
 // setup fake backend
 

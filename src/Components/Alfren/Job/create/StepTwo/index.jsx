@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   TransformWrapper,
   TransformComponent,
@@ -34,24 +34,71 @@ import { Actions } from "./actions";
 
 import { Sequence } from "./sequence";
 import { BackgroundColor } from "../../../../../Constant";
-import { NestedSequence } from "./nestedSequence";
 import { SequenceStart } from "./startSequence";
 import { Data } from "emoji-mart";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { stepTwo } from "../../../../../redux/Job/jobActions";
+import NestedSequence from "./nestedSequence";
+import { SEQUENCE_DATA } from "./constants";
 
 const StepTwo = ({
   handlePrevious,
   handleNext,
-  sequence,
-  sequenceArray,
-  setSequenceArray,
   jobId
 }) => {
   const dispatch = useDispatch();
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
+
+  const [sequence, setSequence] = useState();
+  console.log('sequence', sequence)
+  const [sequenceArray, setSequenceArray] = useState(SEQUENCE_DATA);
+  console.log('sequenceArray sequenceArraysequenceArraysequenceArraysequenceArray', sequenceArray)
+
+  function transformSequenceRecords(records) {
+    const map = new Map();
+
+    // Create a map with sequenceId as keys
+    for (const record of records) {
+      map.set(record.sequenceId, { ...record, children: [] });
+    }
+
+    // Build the tree structure
+    for (const record of records) {
+      if (record.parentSequenceId && map.has(record.parentSequenceId)) {
+        const parent = map.get(record.parentSequenceId);
+        parent.children.push(map.get(record.sequenceId));
+      }
+    }
+
+    // Find and return the root node
+    let rootNode;
+    for (const record of records) {
+      if (!record.parentSequenceId) {
+        rootNode = map.get(record.sequenceId);
+        break;
+      }
+    }
+
+    return rootNode;
+  }
+
+
+  //stepThree data
+  //stepThree data ends
+
+
+
+  useEffect(() => {
+    const transformed = transformSequenceRecords(sequenceArray);
+    console.log('transformed', transformed)
+    console.log("dgdfg", transformed, sequenceArray);
+    setSequence(transformed);
+  }, [sequenceArray]);
+
+
+
   const handleResetButton = (e) => {
     e.preventDefault(e);
     setSequenceArray([]);
@@ -88,6 +135,9 @@ const StepTwo = ({
         setZoomLevel(zoom);
       }
     };
+    const handleZoomChange = (event) => {
+      setZoomLevel(event.target.value);
+    };
     return (
       <div style={{ position: "fixed", zIndex: "1", top: 450 }}>
         <ButtonGroup
@@ -99,38 +149,37 @@ const StepTwo = ({
           }}
         >
           <button
-            className="btn"
-            style={{
-              border: "1px solid #8FA8D7 ",
-              backgroundColor: "white",
-            }}
+            className="btn no-outline border-0"
+
             onClick={() => handleZoonIn()}
           >
             <div className="d-inline-flex">
-              <ZoomIn strokeWidth={0.5} color="#8FA8D7" />{" "}
+              <ZoomIn style={{ position: 'relative', bottom: '43px' }} strokeWidth={0.5} color="#8FA8D7" />{" "}
             </div>
           </button>
           <Btn
             attrBtn={{
-              color: "white",
-              style: {
-                border: "1px solid #8FA8D7 ",
-              },
+              color: "transparent",
+
             }}
           >
-            <span style={{ color: "#8FA8D7" }}>{zoomLevel + "%"}</span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={zoomLevel}
+              onChange={handleZoomChange}
+              style={{ rotate: "-90deg", height: '5px' }}
+            />
           </Btn>
 
           <button
-            className="btn"
-            style={{
-              border: "1px solid #8FA8D7 ",
-              backgroundColor: "white",
-            }}
+            className="btn no-outline border-0"
+
             onClick={() => handleZoonOut()}
           >
             <div className="d-inline-flex">
-              <ZoomOut strokeWidth={0.5} color="#8FA8D7" />{" "}
+              <ZoomOut style={{ position: 'relative', top: '53px' }} strokeWidth={0.5} color="#8FA8D7" />{" "}
             </div>
           </button>
         </ButtonGroup>
@@ -138,13 +187,14 @@ const StepTwo = ({
     );
   };
 
-  const submitStepTwo= async (e) => {
+  const submitStepTwo = async (e) => {
     const formData = {
       jobId,
-      body:{jobSequence: sequenceArray}
+      body: { jobSequence: sequenceArray }
     };
     dispatch(
       stepTwo(formData, (resp) => {
+        console.log('yes i run step 2')
         if (resp.status == 201) {
           toast.success("Sequence Added Successfully");
           handleNext(e);
@@ -158,14 +208,13 @@ const StepTwo = ({
   return (
     <Fragment>
       <DndProvider backend={HTML5Backend}>
-        <Container>
+        <Container style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div
             style={{
               position: "fixed",
               right: 40,
-              top: 170,
-              width: "12%",
               zIndex: "1",
+              bottom: "20px"
             }}
           >
             <Card className="p-2">
@@ -274,7 +323,7 @@ const StepTwo = ({
               <Btn
                 attrBtn={{
                   color: "white",
-                  className: "pt-3 pb-3 ps-4 pe-4",
+                  className: "pt-3 pb-3 ps-4 pe-4 display-flex-style flex-column ",
                 }}
               >
                 <Link
@@ -294,21 +343,24 @@ const StepTwo = ({
               </Btn>
             </Card>
           </div>
-          <div style={{ position: "fixed", zIndex: "1", bottom: 30 }}>
+          <div style={{
+            position: "fixed", zIndex: "1", bottom: 30, width: "70%",
+            marginLeft: "-1000px"
+          }}>
             <Link
               onClick={handleBackStep}
               className="btn  pt-2 pb-2 d-inline-flex"
             >
               <ChevronLeft strokeWidth={1} color="#8FA8D7" />
-              <span className="ms-3" style={{ color: "#595959" }}>
+              <span style={{ color: "#595959" }}>
                 Back
               </span>
             </Link>
           </div>
-          <Row style={{ width: "100%" }}>
+          <Row style={{ width: "100%", height: '100vh' }}>
             <span
-              style={{ textAlign: "left", fontWeight: "400", fontSize: "10px" }}
-              className="mt-5 mb-5"
+              style={{ textAlign: "left", fontWeight: "400", fontSize: "13px" }}
+              className="mt-4"
             >
               * To ensure that the system performs at the optimal efficiency,
               you can have up to 5 active jobs at a time.

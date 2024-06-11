@@ -31,7 +31,7 @@ const ChatMenu = () => {
       <TabContent activeTab={activeTab}>
         <TabPane tabId='1'>
           <div className='people-list'>
-            <UL attrUL={{ className: 'simple-list list digits custom-scrollbar' }}>
+            <UL attrUL={{ className: 'simple-list list digits' }}>
               {allMemberss.map((member, i) => {
                 return (
                   <LI attrLI={{ className: 'clearfix border-0' }} key={i}>

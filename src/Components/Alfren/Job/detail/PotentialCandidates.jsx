@@ -1,25 +1,25 @@
-import React, { Fragment, useContext } from "react";
-import { toast } from "react-toastify";
-import { Card, CardBody, CardHeader } from "reactstrap";
-
-import TodoContext from "../../../../_helper/Todo";
-import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
-import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
+import React, { Fragment } from "react";
+import { Card, CardBody } from "reactstrap";
+import { BsThreeDots } from "react-icons/bs";
 const PotentialCandidates = () => {
   return (
     <Fragment>
-      <Card>
-        <CardBody style={{ padding: "20px" }}>
+      <Card style={{height:'177px'}}>
+        <CardBody style={{ padding: "20px" }} className="potential-candidate-style">
           <p
             style={{
+              marginBottom: '0px',
               fontSize: "12px",
               fontWeight: 400,
               position: "relative",
               width: "100%",
               color: "#595959",
+              textAlign: 'end'
             }}
           >
-            Potential Candidates
+            
+            <img style={{ marginRight: '50px' }} src="../../face.png" alt="no-img" /> <span style={{fontSize:'large'}}><BsThreeDots style={{color:'#C4C4C4'}}/></span>
+            <p style={{ marginRight: '80px' }} className="mb-0">Super!</p>
             <span
               style={{
                 position: "absolute",
@@ -28,15 +28,13 @@ const PotentialCandidates = () => {
                 width: "25%",
                 borderBottom: "1px solid #1264FD",
               }}
+
             ></span>
           </p>
-          <div style={{ textAlign: "center" }} className="mt-4">
-            <p style={{ fontWeight: 400, fontSize: "12px", color: "#8D8E90" }}>
-              Candidates Reached
-            </p>
-            <h4 style={{ fontWeight: 900, fontSize: "38px", color: "#1264FD" }}>
-              320
-            </h4>
+          <div className="text-end" >
+            <h4 style={{ fontWeight: 900, fontSize: "47px", color: "#299A16", textAlign: 'end', marginBottom: '0' }}>
+              75%            </h4>
+            <div style={{ fontSize: '10px', color: "#299A16" }} className="text-end">Reply Rate</div>
           </div>
         </CardBody>
       </Card>

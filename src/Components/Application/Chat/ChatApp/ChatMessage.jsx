@@ -24,7 +24,7 @@ const ChatMessage = () => {
   return (
     <Fragment>
       {allMemberss && chatss && selectedUserr ? (
-        <div className='chat-history chat-msg-box custom-scrollbar'>
+        <div className='chat-history chat-msg-box'>
           <UL attrUL={{ className: 'simple-list' }}>
             {selectedChat && selectedChat.messages.length > 0 ? (
               selectedChat.messages.map((item, index) => {

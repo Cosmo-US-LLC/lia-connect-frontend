@@ -83,7 +83,7 @@ const DataTables = () => {
 
     dispatch(
       fetchCandidates(formPayload, (resp) => {
-        if (resp.status == 200) {
+        if (resp?.status == 200) {
           // toast.success("JobsFetched successfully");
           setPagination(resp.data.pagination);
           const results = resp.data.results;
@@ -128,7 +128,7 @@ const DataTables = () => {
           const mappedRecords = mapTableData(results);
           setCandidateList(mappedRecords);
         } else {
-          const err = resp.message;
+          const err = resp?.message;
           toast.error(err);
         }
       })

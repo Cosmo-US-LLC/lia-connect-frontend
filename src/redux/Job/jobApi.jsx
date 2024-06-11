@@ -49,13 +49,24 @@ export default class JobApi {
       });
     };
 
-
+    fetchAllCandidate = async (data) => {
+      console.log('formPayload22222222222222222222', data)
+      return new Promise((resolve, reject) => {
+        INSTANCE({
+          method: "POST",
+          url: "/jobs/candidates-count",
+          data
+        })
+          .then(resolve)
+          .catch(reject);
+      });
+    };
         
-    fetchJobDetails = async (id) => {
+      fetchJobDetail = async (url) => {
       return new Promise((resolve, reject) => {
         INSTANCE({
           method: "GET",
-          url: "/jobs/" + id,
+          url: url,
         })
           .then(resolve)
           .catch(reject);
