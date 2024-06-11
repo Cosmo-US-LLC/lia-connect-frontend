@@ -1,13 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Card, CardBody, CardHeader, Col, Media, Row } from "reactstrap";
-
-import TodoContext from "../../../../_helper/Todo";
-import { H4, H5, H6, Image, LI, P, UL } from "../../../../AbstractElements";
-import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
-import { Codepen } from "react-feather";
-import linkedin from "../../../../assets/used-files/images/jobDetail/linkedin.svg";
-import message from "../../../../assets/used-files/images/jobDetail/message.svg";
+import { CiCircleInfo } from "react-icons/ci";
 import { fetchJobDetails } from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { FiMessageSquare, FiUser } from "react-icons/fi";
@@ -15,8 +9,8 @@ import { FiLinkedin } from "react-icons/fi";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
-  console.log('topCandidateDetail', topCandidateDetail)
   const [hideScroll, setHideScroll] = useState(true); // State to control scrollbar visibility
+  const [showInfoBox, setShowInfoBox] = useState(false); // State to control info box visibility
   const dispatch = useDispatch();
 
   const getJobDetails = () => {
@@ -41,26 +35,44 @@ const TopCandidate = ({ id }) => {
   return (
     <Fragment>
       <div className={`candidate-container ${hideScroll ? "hide-scrollbar" : ""}`} style={{ maxHeight: "420px", overflowY: "auto" }}>
-      <p
+        <p
+          style={{
+            fontSize: "12px",
+            fontWeight: 400,
+            position: "relative",
+            width: "100%",
+            color: "#595959",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          Top Candidates
+          <span
             style={{
-              fontSize: "12px",
-              fontWeight: 400,
-              position: "relative",
-              width: "100%",
-              color: "#595959",
+              position: "absolute",
+              bottom: "10px",
+              left: "0",
+              width: "12%",
+              borderBottom: "1px solid #1264FD",
             }}
-          >
-            Candidates By City
-            <span
-              style={{
-                position: "absolute",
-                bottom: "0",
-                left: "0",
-                width: "30%",
-                borderBottom: "1px solid #1264FD",
-              }}
-            ></span>
+          ></span>
+          <p style={{ color: '#819ACB' }}>
+            Score
+            <CiCircleInfo
+              style={{ color: 'black', fontSize: 'large', position: 'relative', top: '5px', cursor: 'pointer',left:'1px' }}
+              onMouseEnter={() => setShowInfoBox(true)}
+              onMouseLeave={() => setShowInfoBox(false)}
+            />
+            {showInfoBox  && (
+              <div className="info-box" onMouseEnter={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)}>
+                <img src="../../score-tip1.png" alt="Info Image 1" />
+                <img src="../../score-tip2.png" alt="Info Image 2" />
+                <img src="../../score-tip3.png" alt="Info Image 3" />
+              </div>
+            )}
           </p>
+        </p>
         {topCandidateDetail?.map((topCand, index) => {
           return (
             <Card
@@ -71,7 +83,6 @@ const TopCandidate = ({ id }) => {
                 marginBottom: "10px",
               }}
             >
-              
               <CardBody style={{ padding: "10px" }}>
                 <div className="media">
                   <div className="avatar me-3 ms-1">
@@ -161,6 +172,27 @@ const TopCandidate = ({ id }) => {
           );
         })}
       </div>
+      <style>
+        {`
+          .info-box {
+            position: absolute;
+            top: 25px;
+            right: 0;
+            left:0;
+            background: white;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            display: flex;
+            gap: 10px;
+          }
+          .info-box img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+          }
+        `}
+      </style>
     </Fragment>
   );
 };
