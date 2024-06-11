@@ -1,18 +1,9 @@
-import React, { Fragment, useContext } from "react";
-import { toast } from "react-toastify";
-import { Card, CardBody, CardHeader, Col } from "reactstrap";
+import React, { Fragment } from "react";
+import { Card, CardBody, Col } from "reactstrap";
 
-import TodoContext from "../../../../_helper/Todo";
 import {
-  H4,
-  H5,
-  H6,
-  Image,
-  LI,
   Progressbar,
-  UL,
 } from "../../../../AbstractElements";
-import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
 const CandidateFunnel = () => {
   return (
     <Fragment>

@@ -1,42 +1,38 @@
-import React, { Fragment, useContext } from "react";
-import { toast } from "react-toastify";
-import { Card, CardBody, CardHeader } from "reactstrap";
-
-import TodoContext from "../../../../_helper/Todo";
-import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
-import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
+import React, { Fragment } from "react";
+import { Card, CardBody } from "reactstrap";
+import { BsThreeDots } from "react-icons/bs";
 const BlackList = () => {
   return (
     <Fragment>
-      <Card>
-        <CardBody style={{ padding: "20px" }}>
+      <Card style={{height:'177px'}}>
+        <CardBody style={{ padding: "20px" }} className="blacklist-style">
           <p
             style={{
+              marginBottom: '0px',
               fontSize: "12px",
               fontWeight: 400,
               position: "relative",
               width: "100%",
               color: "#595959",
+              textAlign: 'end'
             }}
           >
-            Blacklisted Candidate
+            
             <span
               style={{
                 position: "absolute",
                 bottom: "0",
                 left: "0",
-                width: "15%",
+                width: "25%",
                 borderBottom: "1px solid #1264FD",
               }}
+
             ></span>
           </p>
-          <div style={{ textAlign: "center" }} className="mt-4">
-            <p style={{ fontWeight: 400, fontSize: "12px", color: "#8D8E90" }}>
-              Blacklisted
-            </p>
-            <h4 style={{ fontWeight: 900, fontSize: "38px", color: "#1264FD" }}>
-              10
-            </h4>
+          <div className="text-end" >
+            <h4 style={{ fontWeight: 900, fontSize: "55px", color: "#1264FD", textAlign: 'end', marginBottom: '0',marginTop:"30px",marginRight:'30px' }}>
+              85%            </h4>
+            <div style={{ fontSize: '10px', color: "#1264FD" ,marginRight:'32px'}} className="text-end">Acceptance</div>
           </div>
         </CardBody>
       </Card>

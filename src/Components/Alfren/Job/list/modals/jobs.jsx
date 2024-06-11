@@ -98,7 +98,7 @@ const Jobs = ({
         <div className="mt-3">
           <UL
             attrUL={{
-              className: "flex-row custom-scrollbar",
+              className: "flex-row ",
               style: { maxHeight: "300px", overflowY: "auto" },
             }}
           >

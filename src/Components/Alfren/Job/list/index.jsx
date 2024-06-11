@@ -1022,7 +1022,7 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <div style={{ boxShadow: "none", maxHeight: `${maxHeight}px`, overflowY: "auto" }} className="custom-scrollbar" >
+              <div style={{ boxShadow: "none", maxHeight: `${maxHeight}px`, overflowY: "auto" }}>
                 <DataTableComponent
                   isLoading={isLoading}
                   paginatedUpdated={paginatedUpdated}

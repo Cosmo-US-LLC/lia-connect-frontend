@@ -62,11 +62,11 @@ export default class JobApi {
       });
     };
         
-    fetchJobDetails = async (id) => {
+      fetchJobDetail = async (url) => {
       return new Promise((resolve, reject) => {
         INSTANCE({
           method: "GET",
-          url: "/jobs/" + id,
+          url: url,
         })
           .then(resolve)
           .catch(reject);

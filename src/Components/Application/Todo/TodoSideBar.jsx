@@ -10,12 +10,12 @@ const TodoSideBar = () => {
     <Col xl='3' className='xl-30 box-col-12'>
       <div className='md-sidebar'>
         <Btn attrBtn={{ onClick: (e) => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>To Do filter</Btn>
-        <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'} `}>
+        <div className={`md-sidebar-aside job-left-aside  ${isOpen && 'open'} `}>
           <div className='email-left-aside'>
             <div className='email-left-aside'>
               <Card>
                 <CardBody>
-                  <div className='email-app-sidebar left-bookmark custom-scrollbar'>
+                  <div className='email-app-sidebar left-bookmark '>
                     <div className='d-flex align-items-center'>
                       <div className='media-size-email'>
                         <Image attrImage={{ className: 'me-3 img-40 rounded-circle', src: user, alt: '' }} />

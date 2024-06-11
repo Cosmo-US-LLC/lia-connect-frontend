@@ -13,7 +13,7 @@ const FileSideBar = () => {
       <Col xl='3' className='box-col-3 pe-0 file-spacing'>
         <div className='md-sidebar job-sidebar'>
           <Btn attrBtn={{ onClick: () => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>File Filter</Btn>
-          <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'}`}>
+          <div className={`md-sidebar-aside job-left-aside ${isOpen && 'open'}`}>
             <div className='file-sidebar'>
               <Card>
                 <CardBody>

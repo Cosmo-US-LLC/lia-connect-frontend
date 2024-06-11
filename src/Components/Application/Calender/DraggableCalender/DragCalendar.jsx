@@ -111,7 +111,7 @@ class DragCalendar extends Component {
       <Fragment>
         <Col xxl="3" className="box-col-12">
           <div className="md-sidebar">
-            <div className={`md-sidebar-aside job-left-aside custom-scrollbar `}>
+            <div className={`md-sidebar-aside job-left-aside `}>
               <div className="email-sidebar">
                 <div className={`email-left-aside`}></div>
                 <div id="external-events">

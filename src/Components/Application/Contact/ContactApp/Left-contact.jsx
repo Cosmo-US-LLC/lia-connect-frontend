@@ -17,7 +17,7 @@ const LeftContact = () => {
       <Col xl='3' className='box-col-6'>
         <div className='md-sidebar'>
           <Btn attrBtn={{ onClick: (e) => setIsOpen(!isOpen), color: 'primary', className: 'md-sidebar-toggle' }}>contact filter</Btn>
-          <div className={`md-sidebar-aside job-left-aside custom-scrollbar ${isOpen && 'open'}`}>
+          <div className={`md-sidebar-aside job-left-aside ${isOpen && 'open'}`}>
             <div className='email-sidebar'>
               <div className={`email-left-aside`}>
                 <Card>

@@ -117,7 +117,6 @@ export const SettingDropdown = ({
             padding: "10px",
             color: "#595959",
           }}
-          className="custom-scrollbar"
         >
           <div
             style={{
@@ -135,7 +134,7 @@ export const SettingDropdown = ({
               Input Your LinkedIn Message
             </span>
           </div>
-          <div className="custom-scrollbar">
+          <div>
             <CKEditor
               editor={ClassicEditor}
               config={{

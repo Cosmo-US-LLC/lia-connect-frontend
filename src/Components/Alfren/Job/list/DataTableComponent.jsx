@@ -20,7 +20,7 @@ const DataTableComponent = ({
   setPaginatedUpdated,
   setPagination,
   paginationDetails,
-  isLoading
+  isLoading,
 }) => {
   const [selectedRows, setSelectedRows] = useState([]);
   const [toggleDelet, setToggleDelet] = useState(false);
@@ -28,6 +28,7 @@ const DataTableComponent = ({
   const handleRowSelected = useCallback((state) => {
     setSelectedRows(state.selectedRows);
   }, []);
+
   const customStyles = {
     headCells: {
       style: {
@@ -46,7 +47,6 @@ const DataTableComponent = ({
       style: {
         background: "white",
         width: "100%",
-
       },
     },
   };
@@ -95,29 +95,54 @@ const DataTableComponent = ({
     setPaginatedUpdated(!paginatedUpdated);
   };
 
-
   const renderPaginationItems = () => {
+    const { page, totalPages } = paginationDetails;
     const items = [];
-    for (let i = 1; i <= paginationDetails.totalPages; i++) {
+    const maxDisplayedPages = 5;
+
+    const startPage = Math.max(1, page - 2);
+    const endPage = Math.min(totalPages, page + 2);
+
+    if (startPage > 1) {
       items.push(
-        <PaginationItem
-          key={i}
-          active={paginationDetails.page === i}
-          className="custom-pagination-item"
-        >
-          <PaginationLink
-            className={`custom-pagination-link ${paginationDetails.page === i ? "active" : ""
-              }`}
-            onClick={() => handlePageChange(i)}
-          >
-            {i}
-            {paginationDetails.page === i && (
-              <span className="sr-only">(current)</span>
-            )}
+        <PaginationItem key={1} active={page === 1}>
+          <PaginationLink onClick={() => handlePageChange(1)}>1</PaginationLink>
+        </PaginationItem>
+      );
+      if (startPage > 2) {
+        items.push(
+          <PaginationItem key="ellipsis-start" disabled>
+            <PaginationLink>...</PaginationLink>
+          </PaginationItem>
+        );
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      items.push(
+        <PaginationItem key={i} active={page === i}>
+          <PaginationLink onClick={() => handlePageChange(i)}>{i}</PaginationLink>
+        </PaginationItem>
+      );
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        items.push(
+          <PaginationItem key="ellipsis-end" disabled>
+            <PaginationLink>...</PaginationLink>
+          </PaginationItem>
+        );
+      }
+      items.push(
+        <PaginationItem key={totalPages} active={page === totalPages}>
+          <PaginationLink onClick={() => handlePageChange(totalPages)}>
+            {totalPages}
           </PaginationLink>
         </PaginationItem>
       );
     }
+
     return items;
   };
 
@@ -127,36 +152,28 @@ const DataTableComponent = ({
         <div
           className={`d-flex align-items-center justify-content-between bg-light-info p-2`}
         >
-          <H4 attrH4={{ className: "text-muted m-0" }}>
-            Delet Selected Data..!
-          </H4>
+          <H4 attrH4={{ className: "text-muted m-0" }}>Delet Selected Data..!</H4>
         </div>
       )}
-      {
-        isLoading ? (
-          <div>
-            <DataTable
-              columns={tableColumns}
-              customStyles={customStyles}
-            />
-            <SkeletonCard/>
-            
-          </div>
-        ) : (
-          <DataTable
-            data={data}
-            columns={tableColumns}
-            center={true}
-            selectableRows
-            borderBottom={false}
-            onSelectedRowsChange={handleRowSelected}
-            clearSelectedRows={toggleDelet}
-            customStyles={customStyles}
-          />
-        )
-      }
+      {isLoading ? (
+        <div>
+          <DataTable columns={tableColumns} customStyles={customStyles} />
+          <SkeletonCard />
+        </div>
+      ) : (
+        <DataTable
+          data={data}
+          columns={tableColumns}
+          center={true}
+          selectableRows
+          borderBottom={false}
+          onSelectedRowsChange={handleRowSelected}
+          clearSelectedRows={toggleDelet}
+          customStyles={customStyles}
+        />
+      )}
 
-      <div style={{ position: "fixed", bottom: "22px", width: '100%' }}>
+      <div style={{ position: "fixed", bottom: "22px", width: "100%" }}>
         <span
           style={{
             fontSize: "10px",
@@ -169,10 +186,7 @@ const DataTableComponent = ({
           have up to 5 active jobs at a time.
         </span>
 
-
-
-        <br>
-        </br>
+        <br />
         <nav
           aria-label="Page navigation example"
           className="py-3"
@@ -180,7 +194,7 @@ const DataTableComponent = ({
             backgroundColor: "#f5f9ff",
             display: "inline-flex",
             justifyContent: "space-between",
-            width: "80%"
+            width: "80%",
           }}
         >
           <div className="justify-content-start">
@@ -198,18 +212,17 @@ const DataTableComponent = ({
                   View Per Page
                 </InputGroupText>
                 <Select
-  options={options}
-  styles={customSelectStyles}
-  value={selectedOption}
-  className="js-example-basic-single col-sm-6"
-  onChange={handleChangeLimit}
-  menuPlacement="top" // Add this line to open the menu above the input
-/>
-
+                  options={options}
+                  styles={customSelectStyles}
+                  value={selectedOption}
+                  className="js-example-basic-single col-sm-6"
+                  onChange={handleChangeLimit}
+                  menuPlacement="top" // Add this line to open the menu above the input
+                />
               </InputGroup>
             </Form>
           </div>
-          <Pagination className="pagination justify-content-end ">
+          <Pagination className="pagination justify-content-end">
             <ul className="pagination pagination-alfren">
               <PaginationItem
                 disabled={paginationDetails.page === 1}

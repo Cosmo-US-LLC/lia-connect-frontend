@@ -32,7 +32,7 @@ const ChatStatus = () => {
           <div className='people-list' id='people-list'>
             <SearchChatList />
             {memberss && memberss.length > 0 ? (
-              <UL attrUL={{ className: 'simple-list list custom-scrollbar' }}>
+              <UL attrUL={{ className: 'simple-list list' }}>
                 {memberss
                   .filter((x) => x.id !== currentUserr.id)
                   .map((item) => {

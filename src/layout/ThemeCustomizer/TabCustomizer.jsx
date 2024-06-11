@@ -25,7 +25,7 @@ const TabCustomizer = ({ selected, callbackNavTab }) => {
                     <Btn attrBtn={{ color: 'primary', className: 'plus-popup mt-2', onClick: () => toggle(!modal) }} >{Configuration}</Btn>
                     <ConfigurationClass modal={modal} toggle={toggle} />
                 </div>
-                <div className="customizer-body custom-scrollbar tab-content">
+                <div className="customizer-body tab-content">
                     <TabPane tabId="check-layout">
                         <CheckLayout />
                     </TabPane>

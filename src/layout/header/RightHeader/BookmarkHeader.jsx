@@ -151,7 +151,7 @@ const BookmarkHeader = () => {
                   {Bookmark}
                 </h6>
                 <ul className="droplet-dropdown bookmark-dropdown">
-                  <li className="custom-scrollbar">
+                  <li>
                     <Row>
                       <Col xs="4" className="text-center">
                         <div className="bookmark-content">

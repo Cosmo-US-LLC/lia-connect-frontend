@@ -46,9 +46,10 @@ const StepOne = ({
   linkedInSearchValue,
   clearErrors,
   isLoading,
-  hasErrors
+  hasErrors,
+  getCandidateCount
 }) => {
-  console.log('linkedInSearchlinkedInSearchlinkedInSearchlinkedInSearchlinkedInSearch', linkedInSearch)
+  console.log('getCandidateCountgetCandidateCountgetCandidateCountgetCandidateCount i also want this', getCandidateCount)
   const options = [
     {
       value: 1,
@@ -109,7 +110,7 @@ const StepOne = ({
       clearErrors('skillInputValue');
 
     } else if (name == "linkedInSearch") {
-console.log('value linkedInSearchlinkedInSearch', value)
+      console.log('value linkedInSearchlinkedInSearch', value)
       setLinkedInSearch(value);
     } else if (name == "linkedInProfile") {
       setLinkedInProfile(value);
@@ -448,7 +449,7 @@ console.log('value linkedInSearchlinkedInSearch', value)
                             className: "d-flex justify-content-between",
                           }}
                         >
-                          {linkedInSearchButton ? (
+                          {!linkedInSearchButton ? (
                             <>
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
@@ -466,9 +467,9 @@ console.log('value linkedInSearchlinkedInSearch', value)
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
                               >
-                                Copy the
+                                Copy the {' '}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn Profile URL
+                                  LinkedIn Profile URL {' '}
                                 </span>
                                 and paste it below{" "}
                                 <span className="ms-2 text-danger">*</span>
@@ -488,7 +489,6 @@ console.log('value linkedInSearchlinkedInSearch', value)
                         </H6>
                         {linkedInSearchButton ? (
                           <>
-
                             <div style={{ position: 'relative' }}>
                               <input
 
@@ -517,69 +517,103 @@ console.log('value linkedInSearchlinkedInSearch', value)
                                 <div className="invalid-feedback text-start">{errors.linkedInSearch.message}</div>
                               )}
                             </div>
+                            {/* <div style={{ position: 'relative' }}>
+                              <input
+                                style={{
+                                  border: errors.linkedInSearch ? ".1px solid #f2abab" : linkedInSearchValue ? "1px solid green" : ".1px solid #efefef",
+                                  background: '#EBF1FC',
+                                  marginRight: '3px'
+                                }}
+                                type="text"
+                                name="linkedInSearch"
+                                placeholder="https://www.linkedin.com/search..."
+                                {...register('linkedInSearch')}
+                                value={linkedInSearch}
+                                onChange={handleChange}
+                                className={`form-control shadow-none ${errors.linkedInSearch ? 'is-invalid' : linkedInSearchValue && 'is-valid'}`}
+                              />
+                              {!errors.linkedInSearch && linkedInSearchValue && (
+                                <FaCheck
+                                  style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    color: 'green',
+                                  }}
+                                />
+                              )}
+                              {errors.linkedInSearch && (
+                                <div className="invalid-feedback text-start">{errors.linkedInSearch.message}</div>
+                              )}
+                            </div> */}
                           </>
                         ) : (
                           <>
-                            <Input
-                              className="form-control"
-                              name="linkedInProfile"
-                              value={linkedInProfile}
-                              type="text"
-                              placeholder="https://www.linkedin.com/abc..."
-                              onChange={handleChange}
-                            />
+                           <textarea
+  className="form-control"
+  name="linkedInProfile"
+  value={linkedInProfile}
+  placeholder="https://www.linkedin.com/abc..."
+  onChange={handleChange}
+  style={{ height: '150px' }} // Set the height here
+/>
+
+
                           </>
                         )}
                       </div>
                     </FormGroup>
-                    <div className="text-start" style={{ color: '#595959' }}>
-                      <p style={{ fontSize: '12px' }}>LinkedIn profile found: <strong>1000+</strong></p>
-                      <p style={{ fontSize: '12px' }}>
-                        How many users you would like to add  to this list?  <span className="ms-2 text-danger">* <strong style={{ color: "#9F9B9B" }}>(max 500)</strong></span>
-                      </p>
-                      <div>
-                        <div className="d-flex gap-3">
+                    {
+                      <div className="text-start" style={{ color: '#595959' }}>
+                        <p style={{ fontSize: '12px' }}>LinkedIn profile found: <strong>{"1000+"}</strong></p>
+                        <p style={{ fontSize: '12px' }}>
+                          How many users you would like to add  to this list?  <span className="ms-2 text-danger">* <strong style={{ color: "#9F9B9B" }}>(max 500)</strong></span>
+                        </p>
+                        <div>
+                          <div className="d-flex gap-3">
 
-                          <span>
-                            <div>
+                            <span>
+                              <div>
+                                <input
+
+                                  style={{
+                                    border: errors.maxCandidates ? ".1px solid #f2abab" : maxCandidates ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px', width: '60px',
+                                    height: '14px',
+                                    display: 'inline-block'
+                                  }}
+                                  min={1}
+                                  max={500}
+                                  type="text"
+                                  name="maxCandidates"
+                                  value={maxCandidates}
+                                  onChange={handleChange}
+                                  {...register('maxCandidates')}
+                                  className={`form-control shadow-none ${errors.maxCandidates ? 'is-invalid' : ''}`}
+                                />
+                                <span style={{ position: 'absolute' }} className="invalid-feedback text-start">{errors.maxCandidates?.message}</span>
+                              </div>
+                            </span>
+                            <div className="display-flex-style gap-1">
                               <input
 
-                                style={{
-                                  border: errors.maxCandidates ? ".1px solid #f2abab" : maxCandidates ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px', width: '60px',
-                                  height: '14px',
-                                  display: 'inline-block'
-                                }}
-                                min={1}
-                                max={500}
-                                type="text"
-                                name="maxCandidates"
-                                value={maxCandidates}
-                                onChange={handleChange}
-                                {...register('maxCandidates')}
-                                className={`form-control shadow-none ${errors.maxCandidates ? 'is-invalid' : ''}`}
-                              />
-                              <span style={{ position: 'absolute' }} className="invalid-feedback text-start">{errors.maxCandidates?.message}</span>
+                                className="inp-cbx absolute"
+                                id="morning"
+                                type="checkbox"
+                                checked={isMaxChecked}
+                                onChange={handleCheckboxChange}
+                              /> <span style={{ fontSize: '12px', color: 'black' }} className="relative mottom-1.5">max</span>
                             </div>
-                          </span>
-                          <div className="display-flex-style gap-1">
-                            <input
-
-                              className="inp-cbx absolute"
-                              id="morning"
-                              type="checkbox"
-                              checked={isMaxChecked}
-                              onChange={handleCheckboxChange}
-                            /> <span style={{ fontSize: '12px', color: 'black' }} className="relative mottom-1.5">max</span>
                           </div>
+
                         </div>
 
-                      </div>
+                        <div
 
-                      <div
-
-                      >
+                        >
+                        </div>
                       </div>
-                    </div>
+                    }
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
                     <button type="submit" className="btn btn-primary" disabled={isLoading}>

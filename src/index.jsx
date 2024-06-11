@@ -9,9 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 const Start = () => {
   return (
     <div className="App">
-      <StrictMode>
         <App />
-      </StrictMode>
     </div>
   );
 };

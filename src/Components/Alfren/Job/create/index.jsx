@@ -22,6 +22,7 @@ const JobCreate = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
+  console.log('stepstepstepstepstepstepstepstepstepstepstepstepstepstep', step)
   const dispatch = useDispatch()
   const handleNext = (e) => {
     e.preventDefault();
@@ -63,68 +64,7 @@ const JobCreate = () => {
   const [candidateHaveDisplay, setCandidateHaveDisplay] = useState(false);
   //stepTwo Data starts
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
-  const [sequence, setSequence] = useState();
-  console.log('sequence', sequence)
-  const [sequenceArray, setSequenceArray] = useState([
-    {
-      "sequenceId": 1,
-      "actionId": 1,
-      "actionName": "View Profile",
-      "options": [
-        {
-          "id": 1,
-          "name": "Default",
-          "delayTillNextActionValue": 14,
-          "delayTillNextActionType": "h"
-        }
-      ],
-      "parentSequenceId": 0,
-      "parentOptionId": 1
-    }
-  ]);
-  console.log('sequenceArray sequenceArraysequenceArraysequenceArraysequenceArray', sequenceArray)
-
-  function transformSequenceRecords(records) {
-    const map = new Map();
-
-    // Create a map with sequenceId as keys
-    for (const record of records) {
-      map.set(record.sequenceId, { ...record, children: [] });
-    }
-
-    // Build the tree structure
-    for (const record of records) {
-      if (record.parentSequenceId && map.has(record.parentSequenceId)) {
-        const parent = map.get(record.parentSequenceId);
-        parent.children.push(map.get(record.sequenceId));
-      }
-    }
-
-    // Find and return the root node
-    let rootNode;
-    for (const record of records) {
-      if (!record.parentSequenceId) {
-        rootNode = map.get(record.sequenceId);
-        break;
-      }
-    }
-
-    return rootNode;
-  }
-
-
-  //stepThree data
-  //stepThree data ends
-
-
-
-  useEffect(() => {
-    const transformed = transformSequenceRecords(sequenceArray);
-    console.log('transformed', transformed)
-    console.log("dgdfg", transformed, sequenceArray);
-    setSequence(transformed);
-  }, [sequenceArray]);
-
+  const [getCandidateCount, setGetTotalCount] = useState(null)
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -149,7 +89,7 @@ const JobCreate = () => {
         'This LinkedIn Search URL cannot be supported'
       ),
     maxCandidates: Yup.number()
-      .typeError('Max Candidate must be a number')
+      .typeError('Max Candidate cannot be more than 500')
       .required('Max Candidate is required')
       .min(1, 'Max Candidate must be at least 1')
       .max(500, 'Max Candidate cannot be more than 500'),
@@ -181,36 +121,49 @@ const JobCreate = () => {
   const linkedInSearchValue = watch('linkedInSearch');
 
   const onSubmit = async (data, e) => {
-    console.log(('sssssssssssssssssssssssssss dataa', data));
+    console.log('Submitted data:', data);
     setIsLoading(true); // Set loading to true before dispatching the action
+
     const formData = {
       name: data.jobName,
       jobPriority: data.jobPriority.toUpperCase(), // Convert jobPriority to uppercase
-      linkedInURL: data?.linkedInSearch?.length ? [data.linkedInSearch] : linkedInProfile?.length ? linkedInProfile : [],
-      linkedInType: data?.linkedInSearch?.length ? "linkedInSearch" : linkedInProfile?.length ? "linkedInProfile" : null,
+      linkedInURL: data?.linkedInSearch?.length
+        ? [data.linkedInSearch]
+        : linkedInProfile?.length
+        ? linkedInProfile
+        : [],
+      linkedInType: data?.linkedInSearch?.length
+        ? 'linkedInSearch'
+        : linkedInProfile?.length
+        ? 'linkedInProfile'
+        : null,
       skills,
-      maxCandidates: parseInt(data.maxCandidates, 10) // Convert maxCandidates to a number
+      maxCandidates: parseInt(data.maxCandidates, 10), // Convert maxCandidates to a number
     };
 
-    // Rest of your code
-
-
-    try {
-      await dispatch(stepOne(formData, (resp) => {
-        console.log('yes i run step 1')
-        setIsLoading(false); // Set loading to false when data is received
-        if (resp?.status === 201) {
-          toast.success("Job step One completed");
-          setJobId(resp.data.id);
-          handleNext(e);
-        } else {
-          const err = resp?.message;
-          toast.error(err);
-        }
-      }));
-    } catch (error) {
-      setIsLoading(false); // Set loading to false if an error occurs
-      toast.error("Error occurred while processing the request");
+    // Check if currentStep is 1 before dispatching stepOne
+    if (step === 1) {
+      try {
+        await dispatch(
+          stepOne(formData, (resp) => {
+            console.log('yes i run step 1');
+            setIsLoading(false); // Set loading to false when data is received
+            if (resp?.status === 201) {
+              toast.success('Job step One completed');
+              setJobId(resp.data.id);
+              handleNext(e);
+            } else {
+              const err = resp?.message;
+              toast.error(err);
+            }
+          })
+        );
+      } catch (error) {
+        setIsLoading(false); // Set loading to false if an error occurs
+        toast.error('Error occurred while processing the request');
+      }
+    } else {
+      setIsLoading(false); // If not step 1, set loading to false
     }
   };
   // useEffect(() => {
@@ -219,6 +172,7 @@ const JobCreate = () => {
   //   };
   //   dispatch(
   //     fetchAllCandidates(formData, (resp) => {
+  //       setGetTotalCount(resp?.data?.candidateCount)
   //       console.log('resp', resp);
   //     })
   //   );
@@ -337,6 +291,7 @@ const JobCreate = () => {
           >
             {step === 1 && (
               <StepOne
+                getCandidateCount={getCandidateCount}
                 hasErrors={hasErrors}
                 isLoading={isLoading}
                 control={control} setValue={setValue}
@@ -365,9 +320,6 @@ const JobCreate = () => {
               <StepTwo
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
-                sequence={sequence}
-                sequenceArray={sequenceArray}
-                setSequenceArray={setSequenceArray}
                 jobId={jobId}
               />
             )}

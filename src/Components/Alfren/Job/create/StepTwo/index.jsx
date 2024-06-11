@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   TransformWrapper,
   TransformComponent,
@@ -40,18 +40,65 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { stepTwo } from "../../../../../redux/Job/jobActions";
 import NestedSequence from "./nestedSequence";
+import { SEQUENCE_DATA } from "./constants";
 
 const StepTwo = ({
   handlePrevious,
   handleNext,
-  sequence,
-  sequenceArray,
-  setSequenceArray,
   jobId
 }) => {
   const dispatch = useDispatch();
   const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
+
+  const [sequence, setSequence] = useState();
+  console.log('sequence', sequence)
+  const [sequenceArray, setSequenceArray] = useState(SEQUENCE_DATA);
+  console.log('sequenceArray sequenceArraysequenceArraysequenceArraysequenceArray', sequenceArray)
+
+  function transformSequenceRecords(records) {
+    const map = new Map();
+
+    // Create a map with sequenceId as keys
+    for (const record of records) {
+      map.set(record.sequenceId, { ...record, children: [] });
+    }
+
+    // Build the tree structure
+    for (const record of records) {
+      if (record.parentSequenceId && map.has(record.parentSequenceId)) {
+        const parent = map.get(record.parentSequenceId);
+        parent.children.push(map.get(record.sequenceId));
+      }
+    }
+
+    // Find and return the root node
+    let rootNode;
+    for (const record of records) {
+      if (!record.parentSequenceId) {
+        rootNode = map.get(record.sequenceId);
+        break;
+      }
+    }
+
+    return rootNode;
+  }
+
+
+  //stepThree data
+  //stepThree data ends
+
+
+
+  useEffect(() => {
+    const transformed = transformSequenceRecords(sequenceArray);
+    console.log('transformed', transformed)
+    console.log("dgdfg", transformed, sequenceArray);
+    setSequence(transformed);
+  }, [sequenceArray]);
+
+
+
   const handleResetButton = (e) => {
     e.preventDefault(e);
     setSequenceArray([]);
@@ -107,7 +154,7 @@ const StepTwo = ({
             onClick={() => handleZoonIn()}
           >
             <div className="d-inline-flex">
-              <ZoomIn style={{ position: 'relative', bottom: '43px'}} strokeWidth={0.5} color="#8FA8D7" />{" "}
+              <ZoomIn style={{ position: 'relative', bottom: '43px' }} strokeWidth={0.5} color="#8FA8D7" />{" "}
             </div>
           </button>
           <Btn
@@ -132,7 +179,7 @@ const StepTwo = ({
             onClick={() => handleZoonOut()}
           >
             <div className="d-inline-flex">
-              <ZoomOut style={{ position: 'relative', top: '53px'}} strokeWidth={0.5} color="#8FA8D7" />{" "}
+              <ZoomOut style={{ position: 'relative', top: '53px' }} strokeWidth={0.5} color="#8FA8D7" />{" "}
             </div>
           </button>
         </ButtonGroup>
@@ -147,7 +194,7 @@ const StepTwo = ({
     };
     dispatch(
       stepTwo(formData, (resp) => {
-      console.log('yes i run step 2')
+        console.log('yes i run step 2')
         if (resp.status == 201) {
           toast.success("Sequence Added Successfully");
           handleNext(e);

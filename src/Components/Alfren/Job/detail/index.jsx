@@ -23,18 +23,18 @@ const JobDetail = () => {
   const [jobDetails, setJobDetails] = useState(null);
 
   const getJobDetails = () => {
+    const url = `/jobs/${id}`;
     dispatch(
-      fetchJobDetails(id, (resp) => {
+      fetchJobDetails(url, (resp) => {
         if (resp?.status == 200) {
-          toast.success("Jobs DetailsFetched successfully");
           const result = resp.data;
           setJobDetails(result);
           if (!result.isJobCompleted) {
             navigate(
               "/jobs/create?jobId=" +
-                id +
-                "&step=" +
-                (result.isJobSequenceSet === true ? "3" : "2")
+              id +
+              "&step=" +
+              (result.isJobSequenceSet === true ? "3" : "2")
             );
           }
         } else {
@@ -63,35 +63,36 @@ const JobDetail = () => {
 
             <Row>
               <Col xl="12" className="col-ed-5 box-col-5">
-                <Row>
-                  <Col xl="3" md="3">
+                <Row className="custom-row">
+                  <Col className="custom-col potential-candidates">
                     <PotentialCandidates />
                   </Col>
-                  <Col xl="3" md="3">
-                    <ResponseRate />
-                  </Col>
-                  <Col xl="3" md="3">
+                  <Col className="custom-col blacklist">
                     <BlackList />
                   </Col>
-                  <Col xl="3" md="3">
+                  <Col className="custom-col priority">
                     <Priority jobDetails={jobDetails} />
                   </Col>
                 </Row>
               </Col>
               <Col xl="12" className="col-ed-5 box-col-5">
                 <Row>
-                  <Col xl="5" md="5">
-                    <TopCandidate />
+                  <Col xl="5" md="5" className="top-candidate-scroll" style={{
+                    background: "white",
+                    maxHeight: "491px",
+                    padding: "55px 27px"
+                  }}>
+                    <TopCandidate id={id} />
                   </Col>
                   <Col xl="7" md="7">
                     <Row>
-                      <Col xl="4" md="4">
+                      {/* <Col xl="4" md="4">
                         <GenderGraph />
-                      </Col>
-                      <Col xl="4" md="4">
+                      </Col> */}
+                      <Col xl="6" md="6">
                         <CandidatesByCity />
                       </Col>
-                      <Col xl="4" md="4">
+                      <Col xl="6" md="6">
                         <AvgExp />
                       </Col>
                     </Row>

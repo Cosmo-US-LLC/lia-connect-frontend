@@ -87,7 +87,7 @@ const GenderGraph = () => {
               options={chartData.options}
               series={chartData.series}
               type="pie"
-              height={250}
+              height={210}
             />
           </div>
           <div className="mt-5">
