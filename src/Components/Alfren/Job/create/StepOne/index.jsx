@@ -15,7 +15,6 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-
 import { Btn, H4, H5, H6, Image, P } from "../../../../../AbstractElements";
 import FooterCard from "../../../../Forms/FormControl/Common/FooterCard";
 import HeaderCard from "../../../../Common/Component/HeaderCard";
@@ -47,9 +46,9 @@ const StepOne = ({
   clearErrors,
   isLoading,
   hasErrors,
-  getCandidateCount
+  getCandidateCount,
 }) => {
-  console.log('hasErrors i also want this', hasErrors)
+  console.log("hasErrors i also want this", hasErrors);
   const options = [
     {
       value: 1,
@@ -102,20 +101,18 @@ const StepOne = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("eeeeeeeeeeeeeeeeee", name, value)
+    console.log("eeeeeeeeeeeeeeeeee", name, value);
     if (name == "jobName") {
       setJobName(value);
     } else if (name == "skillInputValue") {
       setSkillInputValue(value);
-      clearErrors('skillInputValue');
-
+      clearErrors("skillInputValue");
     } else if (name == "linkedInSearch") {
-      console.log('value linkedInSearchlinkedInSearch', value)
+      console.log("value linkedInSearchlinkedInSearch", value);
       setLinkedInSearch(value);
     } else if (name == "linkedInProfile") {
       setLinkedInProfile(value);
     } else if (name == "maxCandidates") {
-
       setMaxCandidates(value);
     }
   };
@@ -124,11 +121,11 @@ const StepOne = ({
     setJobPriority(e.value);
   };
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && skillInputValue.trim() !== '') {
+    if (e.key === "Enter" && skillInputValue.trim() !== "") {
       e.preventDefault();
       setSkills([...skills, skillInputValue.trim()]);
-      setSkillInputValue('');
-      clearErrors('skillInputValue');
+      setSkillInputValue("");
+      clearErrors("skillInputValue");
     }
   };
 
@@ -148,19 +145,13 @@ const StepOne = ({
     }
   }, [skills, jobName, jobPriority, linkedInSearch, linkedInProfile]);
 
-
-
-
   const [maxCandidates, setMaxCandidates] = useState(null);
   const [isMaxChecked, setIsMaxChecked] = useState(false);
 
-
   const handleCheckboxChange = () => {
     setIsMaxChecked(!isMaxChecked);
-    setMaxCandidates(isMaxChecked ? '' : '500');
+    setMaxCandidates(isMaxChecked ? "" : "500");
   };
-
-
 
   return (
     <Fragment>
@@ -199,22 +190,27 @@ const StepOne = ({
                       </H6>
                       <input
                         style={{
-                          border: errors.jobName ? ".1px solid #f2abab" : jobName ? "1px solid #efefef" : "1px solid #efefef"
+                          border: errors.jobName
+                            ? ".1px solid #f2abab"
+                            : jobName
+                            ? "1px solid #efefef"
+                            : "1px solid #efefef",
                         }}
                         type="text"
                         name="jobName"
                         value={jobName}
                         placeholder="Sr. UI/UX Designers"
                         onChange={handleChange}
-                        {...register('jobName')}
-                        className={`form-control shadow-none ${errors.jobName ? 'is-invalid' : ''}`}
+                        {...register("jobName")}
+                        className={`form-control shadow-none ${
+                          errors.jobName ? "is-invalid" : ""
+                        }`}
                       />
 
-
-                      <div className="invalid-feedback text-start">{errors.jobName?.message}</div>
-
+                      <div className="invalid-feedback text-start">
+                        {errors.jobName?.message}
+                      </div>
                     </div>
-
                   </Col>
                   <Col xl="4">
                     <H6
@@ -222,14 +218,17 @@ const StepOne = ({
                         className: "d-flex justify-content-between",
                       }}
                     >
-                      <span style={{ fontWeight: "600", fontSize: "14px", marginBottom: '4px' }}>
+                      <span
+                        style={{
+                          fontWeight: "600",
+                          fontSize: "14px",
+                          marginBottom: "4px",
+                        }}
+                      >
                         Job Priority
                         <span className="ms-2 text-danger">*</span>
                       </span>
-                      <div
-                        style={{ textAlign: "right" }}
-                        id="responseToolTip"
-                      >
+                      <div style={{ textAlign: "right" }} id="responseToolTip">
                         {" "}
                         <Info
                           className="ms-1"
@@ -263,22 +262,29 @@ const StepOne = ({
                       </div>
                     </H6>
                     <select
-
-                      style={{ padding: '12px', position: 'relative', bottom: '4px' }}
-                      onChange={(e) => handleSelectChange(e.target.value.toUpperCase())}
-                      {...register('jobPriority')}
-                      className={`form-select ${errors.jobPriority ? 'is-invalid' : ''}`}
+                      style={{
+                        padding: "12px",
+                        position: "relative",
+                        bottom: "4px",
+                      }}
+                      onChange={(e) =>
+                        handleSelectChange(e.target.value.toUpperCase())
+                      }
+                      {...register("jobPriority")}
+                      className={`form-select ${
+                        errors.jobPriority ? "is-invalid" : ""
+                      }`}
                       defaultValue="Medium" // Set "Medium" as the default value
                     >
-                      {options.map(option => (
-                        <option key={option.value} value={option.label.props.children[1].props.children}>
+                      {options.map((option) => (
+                        <option
+                          key={option.value}
+                          value={option.label.props.children[1].props.children}
+                        >
                           {option.label.props.children[1].props.children}
                         </option>
                       ))}
                     </select>
-
-
-
                   </Col>
                   <Col xl="12">
                     <FormGroup className="text-start mt-3">
@@ -287,7 +293,9 @@ const StepOne = ({
                           className: "d-flex justify-content-between",
                         }}
                       >
-                        <div className="invalid-feedback">{errors.jobPriority?.message}</div>
+                        <div className="invalid-feedback">
+                          {errors.jobPriority?.message}
+                        </div>
                         <span style={{ fontWeight: "600", fontSize: "14px" }}>
                           Skills <span className="ms-2 text-danger">*</span>
                         </span>
@@ -296,7 +304,13 @@ const StepOne = ({
                         <>
                           <input
                             style={{
-                              border: errors.skillInputValue ? ".1px solid #f2abab" : skillInputValue ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
+                              border: errors.skillInputValue
+                                ? ".1px solid #f2abab"
+                                : skillInputValue
+                                ? "1px solid #efefef"
+                                : "1px solid #efefef",
+                              background: "#EBF1FC",
+                              marginRight: "3px",
                             }}
                             type="text"
                             name="skillInputValue"
@@ -304,28 +318,32 @@ const StepOne = ({
                             placeholder="Type skill name here......"
                             onKeyDown={handleKeyPress}
                             onChange={handleChange}
-                            className={`form-control shadow-none ${errors.skillInputValue ? "is-invalid" : ""
-                              }`}
+                            className={`form-control shadow-none ${
+                              errors.skillInputValue ? "is-invalid" : ""
+                            }`}
                           />
-
                         </>
-                      )
-                        : (
-                          <>
-                            <button
-                              style={{
-                                border: errors.jobName ? ".1px solid #f2abab" : jobName ? "1px solid #00ff00" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
-                              }}
-                              className="btn btn-pill pe-3 ps-3 pt-2 pb-2 d-inline-flex"
-                              onClick={() => setEnterSkill(true)}
-                            >
-                              {" "}
-                              <Plus strokeWidth={2} size={20} />
-                              <span>Add Skills</span>
-                            </button>
-
-                          </>
-                        )}
+                      ) : (
+                        <>
+                          <button
+                            style={{
+                              border: errors.jobName
+                                ? ".1px solid #f2abab"
+                                : jobName
+                                ? "1px solid #00ff00"
+                                : "1px solid #efefef",
+                              background: "#EBF1FC",
+                              marginRight: "3px",
+                            }}
+                            className="btn btn-pill pe-3 ps-3 pt-2 pb-2 d-inline-flex"
+                            onClick={() => setEnterSkill(true)}
+                          >
+                            {" "}
+                            <Plus strokeWidth={2} size={20} />
+                            <span>Add Skills</span>
+                          </button>
+                        </>
+                      )}
                       {skills.map((skill, index) => (
                         <button
                           key={index}
@@ -378,7 +396,8 @@ const StepOne = ({
                               style={{
                                 color: "white",
                                 backgroundColor: "#1264FD",
-                                boxShadow: " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
+                                boxShadow:
+                                  " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                                 border: "1px solid #1264FD",
                                 fontSize: "14px",
                                 borderRadius: "30px",
@@ -434,7 +453,8 @@ const StepOne = ({
                                 border: "1px solid #1264FD",
                                 borderRadius: "30px",
                                 color: "white",
-                                boxShadow: " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
+                                boxShadow:
+                                  " rgba(61, 100, 255, 0.58) 0px 0px 21px 0px",
                               }}
                             >
                               Linkedin Profiles URL
@@ -454,11 +474,11 @@ const StepOne = ({
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
                               >
-
-                                Filter profiles in the <span style={{ color: "#1264FD" }}>
+                                Filter profiles in the{" "}
+                                <span style={{ color: "#1264FD" }}>
                                   LinkedIn search
-                                </span> and paste the URL below{" "}
-
+                                </span>{" "}
+                                and paste the URL below{" "}
                                 <span className="ms-2 text-danger">*</span>
                               </span>
                             </>
@@ -467,9 +487,9 @@ const StepOne = ({
                               <span
                                 style={{ fontWeight: "600", fontSize: "14px" }}
                               >
-                                Copy the {' '}
+                                Copy the{" "}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn Profile URL {' '}
+                                  LinkedIn Profile URL{" "}
                                 </span>
                                 and paste it below{" "}
                                 <span className="ms-2 text-danger">*</span>
@@ -489,32 +509,43 @@ const StepOne = ({
                         </H6>
                         {linkedInSearchButton ? (
                           <>
-                            <div style={{ position: 'relative' }}>
+                            <div style={{ position: "relative" }}>
                               <input
-
                                 style={{
-                                  border: errors.linkedInSearch ? ".1px solid #f2abab" : linkedInSearch ? "1px solid #efefef" : ".1px solid #efefef", background: '#EBF1FC', marginRight: '3px'
+                                  border: errors.linkedInSearch
+                                    ? ".1px solid #f2abab"
+                                    : linkedInSearch
+                                    ? "1px solid #efefef"
+                                    : ".1px solid #efefef",
+                                  background: "#EBF1FC",
+                                  marginRight: "3px",
                                 }}
                                 type="text"
                                 name="linkedInSearch"
                                 placeholder="https://www.linkedin.com/search..."
-                                {...register('linkedInSearch')}
-                                className={`form-control shadow-none ${errors.linkedInSearch ? 'is-invalid' : linkedInSearchValue && 'is-valid'
-                                  }`}
+                                {...register("linkedInSearch")}
+                                className={`form-control shadow-none ${
+                                  errors.linkedInSearch
+                                    ? "is-invalid"
+                                    : linkedInSearchValue && "is-valid"
+                                }`}
                               />
-                              {!errors.linkedInSearch && linkedInSearchValue && (
-                                <FaCheck
-                                  style={{
-                                    position: 'absolute',
-                                    right: '10px',
-                                    top: '50%',
-                                    transform: 'translateY(-50%)',
-                                    color: 'green',
-                                  }}
-                                />
-                              )}
+                              {!errors.linkedInSearch &&
+                                linkedInSearchValue && (
+                                  <FaCheck
+                                    style={{
+                                      position: "absolute",
+                                      right: "10px",
+                                      top: "50%",
+                                      transform: "translateY(-50%)",
+                                      color: "green",
+                                    }}
+                                  />
+                                )}
                               {errors.linkedInSearch && (
-                                <div className="invalid-feedback text-start">{errors.linkedInSearch.message}</div>
+                                <div className="invalid-feedback text-start">
+                                  {errors.linkedInSearch.message}
+                                </div>
                               )}
                             </div>
                             {/* <div style={{ position: 'relative' }}>
@@ -556,31 +587,41 @@ const StepOne = ({
                               value={linkedInProfile}
                               placeholder="https://www.linkedin.com/abc..."
                               onChange={handleChange}
-                              style={{ height: '150px' }} // Set the height here
+                              style={{ height: "150px" }} // Set the height here
                             />
-
-
                           </>
                         )}
                       </div>
                     </FormGroup>
-                    {hasErrors ?
-                      <div className="text-start" style={{ color: '#595959' }}>
-                        <p style={{ fontSize: '12px' }}>LinkedIn profile found: <strong>{"1000+"}</strong></p>
-                        <p style={{ fontSize: '12px' }}>
-                          How many users you would like to add  to this list?  <span className="ms-2 text-danger">* <strong style={{ color: "#9F9B9B" }}>(max 500)</strong></span>
+                    {linkedInSearchValue && !hasErrors && <div className="text-start" style={{ color: "#595959" }}>
+                        <p style={{ fontSize: "12px" }}>
+                          LinkedIn profile found: <strong>{"1000+"}</strong>
+                        </p>
+                        <p style={{ fontSize: "12px" }}>
+                          How many users you would like to add to this list?{" "}
+                          <span className="ms-2 text-danger">
+                            *{" "}
+                            <strong style={{ color: "#9F9B9B" }}>
+                              (max 500)
+                            </strong>
+                          </span>
                         </p>
                         <div>
                           <div className="d-flex gap-3">
-
                             <span>
                               <div>
                                 <input
-
                                   style={{
-                                    border: errors.maxCandidates ? ".1px solid #f2abab" : maxCandidates ? "1px solid #efefef" : "1px solid #efefef", background: '#EBF1FC', marginRight: '3px', width: '60px',
-                                    height: '14px',
-                                    display: 'inline-block'
+                                    border: errors.maxCandidates
+                                      ? ".1px solid #f2abab"
+                                      : maxCandidates
+                                      ? "1px solid #efefef"
+                                      : "1px solid #efefef",
+                                    background: "#EBF1FC",
+                                    marginRight: "3px",
+                                    width: "60px",
+                                    height: "14px",
+                                    display: "inline-block",
                                   }}
                                   min={1}
                                   max={500}
@@ -588,35 +629,46 @@ const StepOne = ({
                                   name="maxCandidates"
                                   value={maxCandidates}
                                   onChange={handleChange}
-                                  {...register('maxCandidates')}
-                                  className={`form-control shadow-none ${errors.maxCandidates ? 'is-invalid' : ''}`}
+                                  {...register("maxCandidates")}
+                                  className={`form-control shadow-none ${
+                                    errors.maxCandidates ? "is-invalid" : ""
+                                  }`}
                                 />
-                                <span style={{ position: 'absolute' }} className="invalid-feedback text-start">{errors.maxCandidates?.message}</span>
+                                <span
+                                  style={{ position: "absolute" }}
+                                  className="invalid-feedback text-start"
+                                >
+                                  {errors.maxCandidates?.message}
+                                </span>
                               </div>
                             </span>
                             <div className="display-flex-style gap-1">
                               <input
-
                                 className="inp-cbx absolute"
                                 id="morning"
                                 type="checkbox"
                                 checked={isMaxChecked}
                                 onChange={handleCheckboxChange}
-                              /> <span style={{ fontSize: '12px', color: 'black' }} className="relative mottom-1.5">max</span>
+                              />{" "}
+                              <span
+                                style={{ fontSize: "12px", color: "black" }}
+                                className="relative mottom-1.5"
+                              >
+                                max
+                              </span>
                             </div>
                           </div>
-
                         </div>
-
-                        <div
-
-                        >
-                        </div>
-                      </div> : ""
-                    }
+                        <div></div>
+                      </div>}
+       
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
-                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={isLoading}
+                    >
                       <span>
                         {isLoading ? (
                           <>

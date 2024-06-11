@@ -118,11 +118,9 @@ const JobCreate = () => {
     });
 // Check for specific error
 const hasErrors = errors.linkedInSearch !== undefined;
-    console.log('hasErrors', hasErrors)
   const linkedInSearchValue = watch('linkedInSearch');
 
   const onSubmit = async (data, e) => {
-    console.log('Submitted data:', data);
     setIsLoading(true); // Set loading to true before dispatching the action
 
     const formData = {
@@ -147,7 +145,6 @@ const hasErrors = errors.linkedInSearch !== undefined;
       try {
         await dispatch(
           stepOne(formData, (resp) => {
-            console.log('yes i run step 1');
             setIsLoading(false); // Set loading to false when data is received
             if (resp?.status === 201) {
               toast.success('Job step One completed');
