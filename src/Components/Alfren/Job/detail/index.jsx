@@ -62,7 +62,7 @@ const JobDetail = () => {
             </p>
 
             <Row>
-              <Col xl="12" className="col-ed-5 box-col-5">
+              <Col xl="12" className="col-ed-5 box-col-5 p-0">
                 <Row className="custom-row">
                   <Col className="custom-col potential-candidates">
                     <PotentialCandidates />
@@ -80,7 +80,7 @@ const JobDetail = () => {
                   <Col xl="5" md="5" className="top-candidate-scroll" style={{
                     background: "white",
                     maxHeight: "491px",
-                    padding: "55px 27px"
+                    padding: "19px 27px"
                   }}>
                     <TopCandidate id={id} />
                   </Col>

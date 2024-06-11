@@ -78,18 +78,18 @@ const JobCreate = () => {
 
     }
 
-  }, [location.search]);
-  let validationSchema = Yup.object().shape({
-    jobName: Yup.string().required('Job Name is required'),
+    }, [location.search]);
+    let validationSchema = Yup.object().shape({
+      jobName: Yup.string().required('Job Name is required'),
     jobPriority: Yup.string().required('Job Priority is required'),
     linkedInSearch: Yup.string()
       .required('LinkedIn Search URL is required')
       .matches(
         /^https:\/\/www\.linkedin\.com\/search\/results\/people\/\?keywords=.*/,
         'This LinkedIn Search URL cannot be supported'
-      ),
+        ),
     maxCandidates: Yup.number()
-      .typeError('Max Candidate cannot be more than 500')
+    .typeError('Max Candidate cannot be more than 500')
       .required('Max Candidate is required')
       .min(1, 'Max Candidate must be at least 1')
       .max(500, 'Max Candidate cannot be more than 500'),
@@ -113,11 +113,12 @@ const JobCreate = () => {
     clearErrors,
     control, setValue,
     formState: { errors }
-  } = useForm({
+    } = useForm({
     resolver: yupResolver(validationSchema)
-  });
-  const hasErrors = Object.values(errors).some(error => error !== undefined);
-  console.log('hasErrors', hasErrors)
+    });
+// Check for specific error
+const hasErrors = errors.linkedInSearch !== undefined;
+    console.log('hasErrors', hasErrors)
   const linkedInSearchValue = watch('linkedInSearch');
 
   const onSubmit = async (data, e) => {
