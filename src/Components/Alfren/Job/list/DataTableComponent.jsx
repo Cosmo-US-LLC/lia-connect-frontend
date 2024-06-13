@@ -98,8 +98,7 @@ const DataTableComponent = ({
   const renderPaginationItems = () => {
     const { page, totalPages } = paginationDetails;
     const items = [];
-    const maxDisplayedPages = 5;
-
+  
     const startPage = Math.max(1, page - 2);
     const endPage = Math.min(totalPages, page + 2);
 
@@ -121,7 +120,12 @@ const DataTableComponent = ({
     for (let i = startPage; i <= endPage; i++) {
       items.push(
         <PaginationItem key={i} active={page === i}>
-          <PaginationLink onClick={() => handlePageChange(i)}>{i}</PaginationLink>
+          <PaginationLink
+            onClick={() => handlePageChange(i)}
+            className={page === i ? "active-pagination-link" : ""}
+          >
+            {i}
+          </PaginationLink>
         </PaginationItem>
       );
     }
@@ -152,7 +156,7 @@ const DataTableComponent = ({
         <div
           className={`d-flex align-items-center justify-content-between bg-light-info p-2`}
         >
-          <H4 attrH4={{ className: "text-muted m-0" }}>Delet Selected Data..!</H4>
+          <H4 attrH4={{ className: "text-muted m-0" }}>Delete Selected Data..!</H4>
         </div>
       )}
       {isLoading ? (
@@ -173,13 +177,15 @@ const DataTableComponent = ({
         />
       )}
 
-      <div style={{ position: "fixed", bottom: "22px", width: "100%" }}>
+      <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
         <span
           style={{
             fontSize: "10px",
             fontWeight: "400",
             lineHeight: "15px",
             background: "#f5f9ff",
+            position:'relative',
+            top:"18px"
           }}
         >
           * To ensure that the system performs at the optimal efficiency, you can
@@ -223,7 +229,7 @@ const DataTableComponent = ({
             </Form>
           </div>
           <Pagination className="pagination justify-content-end">
-            <ul className="pagination pagination-alfren">
+            <ul className="pagination pagination-alfren" >
               <PaginationItem
                 disabled={paginationDetails.page === 1}
                 className="custom-pagination-item"
@@ -256,4 +262,5 @@ const DataTableComponent = ({
     </Fragment>
   );
 };
+
 export default DataTableComponent;

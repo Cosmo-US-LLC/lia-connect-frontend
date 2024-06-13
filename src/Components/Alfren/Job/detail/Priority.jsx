@@ -10,6 +10,7 @@ const Priority = ({ jobDetails }) => {
   return (
     <Fragment>
       <Card style={{
+        cursor:'pointer',
         backgroundColor: jobDetails.jobPriority == "HIGH"
           ? "#de3e3e29"
           : jobDetails.jobPriority == "LOW"

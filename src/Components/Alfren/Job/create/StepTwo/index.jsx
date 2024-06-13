@@ -9,14 +9,8 @@ import {
   Col,
   Container,
   Row,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  CardBody,
   Card,
 } from "reactstrap";
-import { Direction, Range, getTrackBackground } from "react-range";
 import {
   ChevronLeft,
   Eye,
@@ -27,34 +21,35 @@ import {
   ZoomOut,
 } from "react-feather";
 import { Link } from "react-router-dom";
-import { Btn, LI, UL } from "../../../../../AbstractElements";
+import { Btn } from "../../../../../AbstractElements";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Actions } from "./actions";
 
-import { Sequence } from "./sequence";
-import { BackgroundColor } from "../../../../../Constant";
 import { SequenceStart } from "./startSequence";
-import { Data } from "emoji-mart";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { stepTwo } from "../../../../../redux/Job/jobActions";
 import NestedSequence from "./nestedSequence";
-import {SEQUENCE_DATA} from '../../../../../Constant/CreateJob';
+import { SEQUENCE_DATA } from '../../../../../Constant/CreateJob';
 const StepTwo = ({
   handlePrevious,
   handleNext,
   jobId
 }) => {
   const dispatch = useDispatch();
-  const [nextActive, setNextActive] = useState(false);
   const [zoomLevel, setZoomLevel] = useState([40]);
-
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [sequence, setSequence] = useState();
   console.log('sequence', sequence)
   const [sequenceArray, setSequenceArray] = useState(SEQUENCE_DATA);
   console.log('sequenceArray sequenceArraysequenceArraysequenceArraysequenceArray', sequenceArray)
+  const message = sequence?.input
+    ? sequence?.input
+    : "<p>Update on Your Job Application</p><p>Dear [Candidate's Name],</p><p>I hope this email finds you well.</p><p>I wanted to reach out and thank you for your interest in the [Job Title] position at [Company Name]. We appreciate the time and effort you've invested in the application process.</p><p>After careful consideration, we regret to inform you that we have decided to pursue other candidates whose qualifications more closely align with the requirements of the role.</p><p>Please know that this decision was not made lightly, and we genuinely appreciate the opportunity to learn about your skills and experiences. We encourage you to continue pursuing opportunities that match your expertise and career goals.</p><p>Thank you once again for your interest in joining our team. We wish you all the best in your future endeavors.</p><p>Warm regards,</p><p>[Your Name]<br>[Your Position]<br>[Company Name]<br>[Contact Information]</p>";
 
+  const [editorContent, setEditorContent] = useState(message);
+  console.log('editorContent', editorContent)
   function transformSequenceRecords(records) {
     const map = new Map();
 
@@ -82,11 +77,6 @@ const StepTwo = ({
 
     return rootNode;
   }
-
-
-  //stepThree data
-  //stepThree data ends
-
 
 
   useEffect(() => {
@@ -137,19 +127,19 @@ const StepTwo = ({
     const handleZoomChange = (event) => {
       setZoomLevel(event.target.value);
     };
+
+
     return (
       <div style={{ position: "fixed", zIndex: "1", top: 450 }}>
         <ButtonGroup
           vertical
           style={{
-            // border: "1px solid #8FA8D7 ",
             borderRadius: "8px",
-            // boxShadow: " 0px 0px 32px 0px #3D64FF94",
           }}
         >
           <button
             className="btn no-outline border-0"
-
+            style={{ outline: 'none' }}
             onClick={() => handleZoonIn()}
           >
             <div className="d-inline-flex">
@@ -168,7 +158,7 @@ const StepTwo = ({
               max="100"
               value={zoomLevel}
               onChange={handleZoomChange}
-              style={{ rotate: "-90deg", height: '5px' }}
+              style={{ rotate: "-90deg", height: '2.5px' }}
             />
           </Btn>
 
@@ -187,12 +177,14 @@ const StepTwo = ({
   };
 
   const submitStepTwo = async (e) => {
+    setIsLoading(true)
     const formData = {
       jobId,
       body: { jobSequence: sequenceArray }
     };
     dispatch(
       stepTwo(formData, (resp) => {
+        setIsLoading(false)
         console.log('yes i run step 2')
         if (resp.status == 201) {
           toast.success("Sequence Added Successfully");
@@ -328,17 +320,27 @@ const StepTwo = ({
                 <Link
                   onClick={handleResetButton}
                   className="btn btn-outline-dark pe-5 ps-5 pt-2 pb-2 mb-2"
-                  style={{ opacity: nextActive ? "100%" : "60%" }}
+                  style={{ opacity: sequenceArray.length !== 2 ? "100%" : "60%" }}
                 >
                   <span>Reset</span>
                 </Link>
                 <Link
-                  onClick={handleNextStep}
-                  className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
-                  style={{ opacity: nextActive ? "100%" : "60%" }}
-                >
-                  <span>Next</span>
-                </Link>
+  disabled={isLoading || sequenceArray.length !== 2}
+  onClick={handleNextStep}
+  className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
+  style={{ opacity: isLoading ? "60%" : "100%" }}
+>
+  <span>
+    {isLoading ? (
+      <>
+        <i className="fa fa-spinner fa-spin" /> Loading...
+      </>
+    ) : (
+      "Next"
+    )}
+  </span>
+</Link>
+
               </Btn>
             </Card>
           </div>
@@ -384,6 +386,7 @@ const StepTwo = ({
                           <Controls />
                           <TransformComponent>
                             <NestedSequence
+                            setEditorContent={setEditorContent}
                               sequence={sequence}
                               sequenceArray={sequenceArray}
                               setSequenceArray={setSequenceArray}

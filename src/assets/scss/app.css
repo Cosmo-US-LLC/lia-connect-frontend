@@ -15819,7 +15819,7 @@ body.modal-open .select2-container--open .select2-dropdown {
     03.  Card CSS Start
 ==========================**/
 .card {
-  margin-bottom: 30px;
+  margin-bottom: 23px;
   border: none;
   transition: all 0.3s ease;
   letter-spacing: 0.5px;
@@ -35291,7 +35291,7 @@ ul.dot-group li {
 }
 .pagination-theme .page-item.active .page-link {
   color: #fff !important;
-  background-color: var(--theme-default) !important;
+  background-color: black!important;
   border-color: var(--theme-default);
 }
 
@@ -35300,7 +35300,7 @@ ul.dot-group li {
 }
 .pagination-primary .page-item.active .page-link {
   color: #fff !important;
-  background-color: var(--theme-default) !important;
+  background-color: black !important;
   border-color: var(--theme-default);
 }
 

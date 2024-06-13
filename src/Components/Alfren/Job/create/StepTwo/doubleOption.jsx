@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Line } from "./components/line";
+import  Line  from "./components/line";
 import { Clock, MoreVertical } from "react-feather";
 import { HorizontalLine } from "./components/horizontalLine";
 import { DelayDropdown } from "./components/delayDropdown";

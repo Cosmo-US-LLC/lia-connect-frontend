@@ -48,7 +48,7 @@ const StepOne = ({
   hasErrors,
   getCandidateCount,
 }) => {
-  console.log("hasErrors i also want this", hasErrors);
+  console.log("hasErrors i also want this", !hasErrors);
   const options = [
     {
       value: 1,

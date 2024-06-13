@@ -1,4 +1,4 @@
-export const Line = ({ marginBottom, marginTop }) => {
+ const Line = ({ marginBottom, marginTop }) => {
   return (
     <div
       style={{
@@ -21,3 +21,4 @@ export const Line = ({ marginBottom, marginTop }) => {
     </div>
   );
 };
+export default Line;

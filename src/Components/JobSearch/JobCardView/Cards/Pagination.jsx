@@ -9,27 +9,27 @@ const Pagination = () => {
         <nav aria-label='...'>
           <UL attrUL={{ className: 'pagination pagination-primary justify-content-end simple-list d-flex flex-row' }}>
             <LI attrLI={{ className: 'page-item disabled border-0' }}>
-              <a className='page-link' href='#javascript' tabIndex='-1'>
+              <a className='page-link'  href='#javascript' tabIndex='-1'>
                 Previous
               </a>
             </LI>
             <LI attrLI={{ className: 'page-item border-0' }}>
-              <a className='page-link' href='#javascript'>
+              <a className='page-link'  href='#javascript'>
                 1
               </a>
             </LI>
             <LI attrLI={{ className: 'page-item active border-0' }}>
-              <a className='page-link' href='#javascript'>
+              <a className='page-link'  href='#javascript'>
                 2 <span className='sr-only'>(current)</span>
               </a>
             </LI>
             <LI attrLI={{ className: 'page-item border-0' }}>
-              <a className='page-link' href='#javascript'>
+              <a className='page-link'  href='#javascript'>
                 3
               </a>
             </LI>
             <LI attrLI={{ className: 'page-item border-0' }}>
-              <a className='page-link' href='#javascript'>
+              <a className='page-link'  href='#javascript'>
                 Next
               </a>
             </LI>

@@ -141,13 +141,16 @@ const DataTableComponent = ({
         clearSelectedRows={toggleDelet}
         customStyles={customStyles}
       />
-      <div style={{position: "fixed",bottom: "22px",width:'100%'}}> 
+      <div style={{position: "fixed",bottom: "0px",width:'100%'}}> 
       <span
         style={{
           fontSize: "10px",
           fontWeight: "400",
           lineHeight: "15px",
           background: "#f5f9ff",
+          display:'block',
+          top:'30px',
+          position:'relative'
         }}
       >
         * To ensure that the system performs at the optimal efficiency, you can

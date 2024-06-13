@@ -75,7 +75,7 @@ const DateModal = ({
           zIndex: 2,
           backgroundColor: "white",
           borderRadius: "8px",
-          width: "50%",
+          width: "64%",
           left: "180px",
           border: "1px solid #EBEBEB",
         }}
