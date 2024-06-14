@@ -1,8 +1,11 @@
 import { Fragment, useState } from "react";
 import { Link, Settings, X } from "react-feather";
-import { Col, FormGroup, Input, Row, UncontrolledTooltip } from "reactstrap";
+import { Col, UncontrolledTooltip } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const SettingDropdown = ({
   target,
@@ -12,35 +15,38 @@ export const SettingDropdown = ({
   setConfigureDropDownActive,
   configureDropDownActive,
   deleteSequence,
+  markAsConfigured, // New prop
 }) => {
-  const message = sequence.input
-    ? sequence.input
-    : "<p>Update on Your Job Application</p><p>Dear [Candidate's Name],</p><p>I hope this email finds you well.</p><p>I wanted to reach out and thank you for your interest in the [Job Title] position at [Company Name]. We appreciate the time and effort you've invested in the application process.</p><p>After careful consideration, we regret to inform you that we have decided to pursue other candidates whose qualifications more closely align with the requirements of the role.</p><p>Please know that this decision was not made lightly, and we genuinely appreciate the opportunity to learn about your skills and experiences. We encourage you to continue pursuing opportunities that match your expertise and career goals.</p><p>Thank you once again for your interest in joining our team. We wish you all the best in your future endeavors.</p><p>Warm regards,</p><p>[Your Name]<br>[Your Position]<br>[Company Name]<br>[Contact Information]</p>";
+  // Define the schema for validation using Yup
+  const schema = yup.object().shape({
+    message: yup.string().required("Message is required"),
+  });
 
-  const [editorContent, setEditorContent] = useState(message);
+  // Set up the form with react-hook-form
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      message: "",
+    },
+  });
 
-  const handleEditorChange = (event, editor) => {
-    const data = editor.getData();
-    setEditorContent(data);
-    console.log(data); // You can log the data if needed
-  };
-
-  const setMessage = (e) => {
-    e.preventDefault();
+  const setMessage = (data) => {
     setSequenceArray((sequenceArray) => {
       return sequenceArray.map((obj) => {
         if (obj.sequenceId === sequence.sequenceId) {
           return {
             ...obj,
-            input: editorContent,
+            input: data.message,
           };
         }
         return obj;
       });
     });
 
+    markAsConfigured(sequence.sequenceId); // Mark as configured
     setConfigureDropDownActive(false);
   };
+
   return (
     <Fragment>
       <UncontrolledTooltip
@@ -52,12 +58,7 @@ export const SettingDropdown = ({
           boxShadow: "0px 6px 26px -3.89px #0000001A",
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            padding: "3px",
-          }}
-        >
+        <div style={{ width: "100%", padding: "3px" }}>
           <button
             className="btn btn-outline d-flex pt-3 pb-3"
             onClick={() => deleteSequence(sequence)}
@@ -100,21 +101,25 @@ export const SettingDropdown = ({
         placement="bottom"
         style={{
           backgroundColor: "#FAFAFA",
-          boxShadow: " 0px 10px 26px 0px #0000001A",
+          boxShadow: "0px 10px 26px 0px #0000001A",
           border: "1px solid #E9E9E9",
-          maxWidth: "660px",
-          maxHeight: "450px",
+          maxWidth: "600px", // Increased width
+          maxHeight: "300px", // Increased height
+          width: "600px", // Set width explicitly
+          height: "300px", // Set height explicitly
           borderRadius: "16px",
           overflowX: "hidden",
           left: "50%",
           transform: "translateX(-50%)",
+          position: 'relative'
         }}
+
       >
         <div
           style={{
             maxWidth: "100%",
             height: "100%",
-            padding: "10px",
+            padding: "10px", // Increased padding for better layout
             color: "#595959",
           }}
         >
@@ -127,39 +132,64 @@ export const SettingDropdown = ({
           >
             <span
               style={{
-                fontSize: "14px",
+                fontSize: "16px", // Increased font size
                 fontWeight: 600,
               }}
             >
               Input Your LinkedIn Message
             </span>
           </div>
-          <div>
-            <CKEditor
-              editor={ClassicEditor}
-              config={{
-                toolbar: ["link"],
-                style: { borderRadius: "8px" },
-              }}
-              data={editorContent}
-              onChange={handleEditorChange}
-            />
-          </div>
-          <div className="mt-4">
-            <Col xl="12" className="d-flex justify-space-between">
-              <button className="btn btn-primary " onClick={setMessage}>
-                <span>Save</span>
-              </button>
-              <button
-                className="btn btn-outline"
-                onClick={() => setConfigureDropDownActive(false)}
-              >
-                <span>Cancel</span>
-              </button>
-            </Col>
-          </div>
+          <form onSubmit={handleSubmit(setMessage)}>
+            <div>
+              <Controller
+                name="message"
+                control={control}
+                render={({ field }) => (
+                  <CKEditor
+                    required
+                    editor={ClassicEditor}
+                    config={{
+                      placeholder: `Dear John Doe,
+
+Thank you for your interest in the Software Engineer position at Tech Solutions Inc. After careful consideration, we regret to inform you that we have decided to pursue other candidates for this role.
+
+We appreciate the effort you've put into your application and encourage you to apply for future openings that align with your expertise.
+
+Best regards,
+
+The Hiring Team
+Tech Solutions Inc.
+contact@techsolutions.com`,
+                      toolbar: ["link"],
+                      style: { borderRadius: "8px", height: '500px' }, // Set the height here
+                    }}
+                    data={field.value}
+                    onChange={(event, editor) => field.onChange(editor.getData())}
+                  />
+                )}
+              />
+              {errors.message && (
+                <p style={{ color: "red" }}>{errors.message.message}</p>
+              )}
+            </div>
+            <div className="mt-4">
+              <Col xl="12" className="d-flex justify-space-between">
+                <button type="submit" className="btn btn-primary ">
+                  <span>Save</span>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline"
+                  onClick={() => setConfigureDropDownActive(false)}
+                >
+                  <span>Cancel</span>
+                </button>
+              </Col>
+            </div>
+          </form>
         </div>
       </UncontrolledTooltip>
+
     </Fragment>
   );
 };

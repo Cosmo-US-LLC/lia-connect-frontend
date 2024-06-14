@@ -79,46 +79,53 @@ const JobCreate = () => {
     }
 
     }, [location.search]);
-    let validationSchema = Yup.object().shape({
-      jobName: Yup.string().required('Job Name is required'),
-    jobPriority: Yup.string().required('Job Priority is required'),
-    linkedInSearch: Yup.string()
-      .required('LinkedIn Search URL is required')
-      .matches(
-        /^https:\/\/www\.linkedin\.com\/search\/results\/people*/,
-        'This LinkedIn Search URL cannot be supported'
-        ),
-    maxCandidates: Yup.number()
-    .typeError('Max Candidate cannot be more than 500')
-      .required('Max Candidate is required')
-      .min(1, 'Max Candidate must be at least 1')
-      .max(500, 'Max Candidate cannot be more than 500'),
-  });
+
+
+// Validation schema should be defined here
+let validationSchema = Yup.object().shape({
+  jobName: Yup.string().required('Job Name is required'),
+  jobPriority: Yup.string().required('Job Priority is required'),
+  linkedInSearch: Yup.string()
+    .required('LinkedIn Search URL is required')
+    .matches(
+      /^https:\/\/www\.linkedin\.com\/search\/results\/people.*/,
+      'This LinkedIn Search URL cannot be supported'
+    ),
+  maxCandidates: Yup.number()
+    .typeError('Max Candidate must be a number')
+    .required('Max Candidate is required')
+    .min(1, 'Max Candidate must be at least 1')
+    .max(500, 'Max Candidate cannot be more than 500'),
+});
 
   // Manually check if skillInputValue is required
   if (!skills || skills.length === 0) {
-    validationSchema = validationSchema.shape({
+    validationSchema = validationSchema?.shape({
       skillInputValue: Yup.string().required('Skill is required'),
     });
   }
-
-
-
-
 
   const {
     register,
     handleSubmit,
     watch,
     clearErrors,
-    control, setValue,
-    formState: { errors }
-    } = useForm({
-    resolver: yupResolver(validationSchema)
-    });
-// Check for specific error
-const hasErrors = errors.linkedInSearch !== undefined;
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    mode: 'onChange',
+  });
+
   const linkedInSearchValue = watch('linkedInSearch');
+  const [hasErrors, setHasErrors] = useState(false);
+
+  useEffect(() => {
+    // Check for specific error
+    const currentError = !!errors.linkedInSearch;
+    setHasErrors(currentError);
+  }, [errors.linkedInSearch]);
 
   const onSubmit = async (data, e) => {
     setIsLoading(true); // Set loading to true before dispatching the action

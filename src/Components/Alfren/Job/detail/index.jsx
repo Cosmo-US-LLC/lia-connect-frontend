@@ -79,10 +79,11 @@ const JobDetail = () => {
                 <Row>
                   <Col xl="5" md="5" className="top-candidate-scroll" style={{
                     background: "white",
-                    maxHeight: "491px",
+                    maxHeight: "480px",
                     padding: "19px 27px"
                   }}>
                     <TopCandidate id={id} />
+
                   </Col>
                   <Col xl="7" md="7">
                     <Row>

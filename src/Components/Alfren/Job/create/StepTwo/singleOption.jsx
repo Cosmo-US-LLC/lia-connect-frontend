@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { Line } from "./components/line";
+import Line from "./components/line";
 import { Clock, MoreVertical } from "react-feather";
 import { Col, FormGroup, Input, Row, UncontrolledTooltip } from "reactstrap";
 import { H6 } from "../../../../../AbstractElements";
@@ -51,10 +51,10 @@ export const SingleOption = ({ sequence, sequenceArray, setSequenceArray }) => {
               {item.delayTillNextActionType === "h"
                 ? " hours"
                 : item.delayTillNextActionType === "d"
-                ? " days"
-                : item.delayTillNextActionType === "w"
-                ? " weeks"
-                : ""}
+                  ? " days"
+                  : item.delayTillNextActionType === "w"
+                    ? " weeks"
+                    : ""}
             </span>
 
             <button

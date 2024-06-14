@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Container,
   Row,
@@ -30,6 +30,8 @@ const StepThree = ({
   setCandidateInOtherJob,
   jobId,
 }) => {
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
+
   const dispatch = useDispatch();
   const handleBackStep = (e) => {
     e.preventDefault(e);
@@ -41,13 +43,15 @@ const StepThree = ({
   };
 
 
-  const submitStepThree= async (e) => {
+  const submitStepThree = async (e) => {
+    setIsLoading(true)
     const formData = {
       jobId,
-      body:{candidateHaveDisplay,candidateHaveOpenProfile,candidateInOtherJob}
+      body: { candidateHaveDisplay, candidateHaveOpenProfile, candidateInOtherJob }
     };
     dispatch(
       updateJob(formData, (resp) => {
+        setIsLoading(false)
         if (resp.status == 201) {
           toast.success("Job Added Successfully");
           handleNext(e);
@@ -88,9 +92,9 @@ const StepThree = ({
                     </FormGroup>
                     <FormGroup >
                       <div className="checkbox checkbox-solid-primary">
-                        <Input id="solid3" type="checkbox" name="2"  checked={candidateHaveOpenProfile ? true : false}
-                        onClick={() => setCandidateHaveOpenProfile(prevState => !prevState)}
-                         />
+                        <Input id="solid3" type="checkbox" name="2" checked={candidateHaveOpenProfile ? true : false}
+                          onClick={() => setCandidateHaveOpenProfile(prevState => !prevState)}
+                        />
                         <Label for="solid3">
                           Does not have an open profile
                         </Label>
@@ -98,9 +102,9 @@ const StepThree = ({
                     </FormGroup>
                     <FormGroup>
                       <div className="checkbox checkbox-solid-primary">
-                        <Input id="solid2" type="checkbox" name="3"  checked={candidateHaveDisplay ? true : false} 
-                         onClick={() => setCandidateHaveDisplay(prevState => !prevState)}
-                         />
+                        <Input id="solid2" type="checkbox" name="3" checked={candidateHaveDisplay ? true : false}
+                          onClick={() => setCandidateHaveDisplay(prevState => !prevState)}
+                        />
                         <Label for="solid2">
                           No photo on candidate’s profile
                         </Label>
@@ -112,7 +116,7 @@ const StepThree = ({
                     <Link
                       onClick={handleBackStep}
                       className="btn btn-outline-light pe-5 ps-5 pt-2 pb-2 me-3"
-                      // style={{ opacity: nextActive ? "100%" : "60%" }}
+                    // style={{ opacity: nextActive ? "100%" : "60%" }}
                     >
                       <span>Back to Sequence </span>
                     </Link>
@@ -120,7 +124,13 @@ const StepThree = ({
                       onClick={handleNextStep}
                       className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
                     >
-                      <span>Complete</span>
+                      {isLoading ? (
+                        <>
+                          <i className="fa fa-spinner fa-spin" /> Loading...
+                        </>
+                      ) : (
+                        "Complete"
+                      )}
                     </Link>
                   </Col>
                 </Row>

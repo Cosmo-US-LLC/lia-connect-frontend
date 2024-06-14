@@ -198,6 +198,12 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
+                      textAlign:'start',
+                      padding:'0px',
+                      display:'flex',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      gap:.2
                     }}
                   >
                     Potential Candidates{" "}
@@ -236,7 +242,6 @@ const JobList = () => {
               selector: (row) => row["potentialCandidates"],
               sortable: false,
               center: true,
-              width: "15%",
             },
             {
               name: (
@@ -250,6 +255,10 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
+                      display:'flex',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      gap:.2
                     }}
                   >
                     Outreach{" "}
@@ -288,7 +297,6 @@ const JobList = () => {
               selector: (row) => row["outreach"],
               sortable: false,
               center: true,
-              width: "12%",
             },
             {
               name: (
@@ -302,6 +310,10 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
+                      display:'flex',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      gap:.2
                     }}
                   >
                     Response Rate
@@ -340,7 +352,6 @@ const JobList = () => {
               selector: (row) => row["responseRate"],
               sortable: false,
               center: true,
-              width: "12%",
             },
             {
               name: (
@@ -354,6 +365,10 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
+                      display:'flex',
+                      justifyContent:'center',
+                      alignItems:'center',
+                      gap:.2
                     }}
                   >
                     Priority
@@ -652,13 +667,15 @@ const JobList = () => {
                   backgroundColor: "white",
                   borderRadius: "8px",
                   width: "100%",
-                  paddingBottom: "3px"
+                  paddingBottom: "3px",
+                  cursor:'pointer'
                 }}>
                   {priorities.map((option, index) => (
                     <li key={index} style={{ borderBottom: "1px solid #0000001f", padding: "8px" }} onClick={() =>
                       changeJobPriority(item.id, option.title)
                     }>
                       <Flag
+                      style={{cursor:"pointer"}}
                         fill={option.fill}
                         color={option.color}
                         size={14}
@@ -693,17 +710,17 @@ const JobList = () => {
                   <Media
                     body
                     className="text-start switch-sm "
-                    style={{ width: "12%" }}
                   >
                     <Label className="switch">
                       <Input
                         type="checkbox"
+                        style={{background:'black'}}
                         checked={item.isJobActive ? true : false}
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
                         }
                       />
-                      <span className="switch-state"></span>
+                      <span className="switch-state" style={{backgroundColor:'black'}}></span>
                     </Label>
                   </Media>
                 </Media>
@@ -907,7 +924,7 @@ const JobList = () => {
                             onChange={handleCheckboxChange}
                             checked={activeOnly}
                           />
-                          <span className="switch-state"></span>
+                          <span className="switch-state" style={{background:'black'}}></span>
                         </Label>
                       </Media>
                       <span

@@ -86,7 +86,7 @@ const SidebarMenu = ({
             setNavActive={setNavActive}
             activeClass={activeClass}
           />
-          <li className="sidebar-list mt-5 text-center trailDiv">
+          <li className="sidebar-list text-center trailDiv">
             <Image
               attrImage={{
                 src: upgradeAlert,

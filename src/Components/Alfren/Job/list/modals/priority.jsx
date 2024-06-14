@@ -44,17 +44,17 @@ const Priority = ({ priorities, setPriorities, setIsPrioritySelected }) => {
           left: "180px",
         }}
       >
-        <div className="mt-3">
+        <div>
           <UL
             attrUL={{
               className: "flex-row",
-              style: { maxHeight: "300px", overflowY: "auto" },
+              style: { maxHeight: "300px", overflowY: "auto",cursor:'pointer'},
             }}
           >
             {priorities.map((item, index) => (
               <li
                 key={index}
-                className="ms-4 me-4 border-bottom mb-2 d-flex align-items-center"
+                className=" border-bottom mb-2 d-flex align-items-center"
                 style={{ borderRadius: 0 }}
                 onClick={() => toggleLICheck(item.id)} // Call toggleLICheck when clicked
               >
@@ -64,7 +64,7 @@ const Priority = ({ priorities, setPriorities, setIsPrioritySelected }) => {
                   size={14}
                   strokeWidth={1.5}
                 />
-                <span className="ps-3 flex-grow-1">{item.title}</span>
+                <span style={{marginLeft:'10px'}}>{item.title}</span>
                 <span className="ms-auto pe-3">
                   <Check
                     strokeWidth={1}
