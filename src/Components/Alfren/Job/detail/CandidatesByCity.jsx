@@ -3,61 +3,61 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { Card, CardBody, Col, Progress } from "reactstrap";
-import pakistanGeoJSON from "@amcharts/amcharts4-geodata/pakistanLow"; // Ensure this path is correct and the package is installed
+import pakistanCitiesGeoJSON from "@amcharts/amcharts4-geodata/pakistanLow"; 
 
 const CandidatesByCity = () => {
   let data = [
-    { id: "PK-IS", value: 60 }, // Example data for Islamabad
-    { id: "PK-PB", value: 80 }, // Example data for Punjab
-    { id: "PK-SD", value: 10 }, // Example data for Sindh
-    { id: "PK-KP", value: 5 },  // Example data for Khyber Pakhtunkhwa
-    { id: "PK-BL", value: 20 }, // Example data for Balochistan
+    { id: "PK-ISB", value: 60 }, // Example data for Islamabad
+    { id: "PK-LHR", value: 80 }, // Example data for Lahore
+    { id: "PK-KHI", value: 10 }, // Example data for Karachi
+    { id: "PK-PEW", value: 5 },  // Example data for Peshawar
+    { id: "PK-QUA", value: 20 }, // Example data for Quetta
   ];
 
-  var minColor = "#CDD7F4";
-  var maxColor = "#1264FD";
+  const minColor = "#CDD7F4";
+  const maxColor = "#1264FD";
 
   const sortedData = data.sort((a, b) => b.value - a.value);
   const top5 = sortedData.slice(0, 5);
   const legendItems = top5.map(({ id, value }) => {
-    const regionName = getRegionName(id); // You need to implement this function
+    const cityName = getCityName(id); // You need to implement this function
 
     const color = interpolateColor(minColor, maxColor, value, 0, 100);
 
     return {
-      city: `${regionName}`,
+      city: `${cityName}`,
       count: value,
       color: color,
     };
   });
 
-  function getRegionName(regionCode) {
-    const regionNames = {
-      "PK-IS": "Islamabad",
-      "PK-PB": "Punjab",
-      "PK-SD": "Sindh",
-      "PK-KP": "Khyber Pakhtunkhwa",
-      "PK-BL": "Balochistan",
+  function getCityName(cityCode) {
+    const cityNames = {
+      "PK-ISB": "Islamabad",
+      "PK-LHR": "Lahore",
+      "PK-KHI": "Karachi",
+      "PK-PEW": "Peshawar",
+      "PK-QUA": "Quetta",
     };
-    return regionNames[regionCode] || "Unknown";
+    return cityNames[cityCode] || "Unknown";
   }
 
   function interpolateColor(minColor, maxColor, value, minValue, maxValue) {
-    var minR = parseInt(minColor.slice(1, 3), 16);
-    var minG = parseInt(minColor.slice(3, 5), 16);
-    var minB = parseInt(minColor.slice(5, 7), 16);
+    const minR = parseInt(minColor.slice(1, 3), 16);
+    const minG = parseInt(minColor.slice(3, 5), 16);
+    const minB = parseInt(minColor.slice(5, 7), 16);
 
-    var maxR = parseInt(maxColor.slice(1, 3), 16);
-    var maxG = parseInt(maxColor.slice(3, 5), 16);
-    var maxB = parseInt(maxColor.slice(5, 7), 16);
+    const maxR = parseInt(maxColor.slice(1, 3), 16);
+    const maxG = parseInt(maxColor.slice(3, 5), 16);
+    const maxB = parseInt(maxColor.slice(5, 7), 16);
 
-    var percentage = (value - minValue) / (maxValue - minValue);
+    const percentage = (value - minValue) / (maxValue - minValue);
 
-    var r = Math.round(minR + percentage * (maxR - minR));
-    var g = Math.round(minG + percentage * (maxG - minG));
-    var b = Math.round(minB + percentage * (maxB - minB));
+    const r = Math.round(minR + percentage * (maxR - minR));
+    const g = Math.round(minG + percentage * (maxG - minG));
+    const b = Math.round(minB + percentage * (maxB - minB));
 
-    var interpolatedColor =
+    const interpolatedColor =
       "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 
     return interpolatedColor;
@@ -79,7 +79,7 @@ const CandidatesByCity = () => {
 
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
-        geoJSON: pakistanGeoJSON,
+        geoJSON: pakistanCitiesGeoJSON,
         valueField: "value",
         calculateAggregates: true,
       })
@@ -145,17 +145,17 @@ const CandidatesByCity = () => {
               ></div>
               <div className="mt-5 w-100">
                 {legendItems.map((item, index) => (
-                  <Col style={{ display: "flex", alignItems: "center",justifyContent:'space-between' }} key={index}>
+                  <Col style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }} key={index}>
                     <span style={{ fontSize: "14px", color: "black" }}>
                       {item.city}
                     </span>
-                    <div style={{textAlign:'start'}}>
-                    <div style={{ width: item.count }}>
-                      <Progress
-                        style={{ backgroundColor: item.color }}
-                        className="sm-progress-bar me-1 mb-0"
-                      />
-                    </div>
+                    <div style={{ textAlign: 'start' }}>
+                      <div style={{ width: item.count }}>
+                        <Progress
+                          style={{ backgroundColor: item.color }}
+                          className="sm-progress-bar me-1 mb-0"
+                        />
+                      </div>
                     </div>
                   </Col>
                 ))}
@@ -167,7 +167,9 @@ const CandidatesByCity = () => {
     </Fragment>
   );
 };
+
 export default CandidatesByCity;
+
 
 
 
