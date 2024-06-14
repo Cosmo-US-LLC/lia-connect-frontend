@@ -177,43 +177,45 @@ const StepTwo = ({
       </div>
     );
   };
-
   const submitStepTwo = async (e) => {
     setIsLoading(true);
-
+  
     // Filter sequenceArray to include only objects with actionName "Send Connection"
     const formattedSequenceArray = sequenceArray.map((item) => {
       // Check if the current item's actionName is "Send Connection"
       if (item.actionName === "Send Connection") {
-        // Return the item with added config payload
+        // Return a new object with the existing properties and added config payload
         return {
           ...item,
           config: configMessage,
-        }
-      } else {
-        // Return the item as is if actionName is not "Send Connection"
-        return item;
+        };
       }
+      // Return the item as is if actionName is not "Send Connection"
+      return item;
     });
-
+  
     const formData = {
       jobId,
       body: { jobSequence: formattedSequenceArray },
     };
-
-    dispatch(
-      stepTwo(formData, (resp) => {
-        setIsLoading(false);
-        if (resp.status == 201) {
-          toast.success("Sequence Added Successfully");
-          handleNext(e);
-        } else {
-          const err = resp.message;
-          toast.error(err);
-        }
-      })
-    );
+  
+    try {
+      const resp = await dispatch(stepTwo(formData));
+      setIsLoading(false);
+      if (resp.status === 201) {
+        toast.success("Sequence Added Successfully");
+        handleNext(e);
+      } else {
+        const err = resp.message;
+        toast.error(err);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error submitting step two:", error);
+      toast.error("Failed to add sequence. Please try again.");
+    }
   };
+  
   return (
     <Fragment>
       <DndProvider backend={HTML5Backend}>

@@ -46,7 +46,7 @@ const CarouselSection = () => {
     switch (activeIndex) {
       case 0:
         return (
-          <div className='text-center mt-2'>
+          <div style={{height:'80px'}} className='text-center mt-2'>
             <p className='security-text-color'>Your security is our priority.</p>
             <strong className='font-weight-bold text-highlight'>AWS Data Protection</strong>
             <span className='security-text-color'>for</span>
@@ -56,7 +56,7 @@ const CarouselSection = () => {
       case 1:
         return (
 
-          <div className='text-center mt-2'>
+          <div style={{height:'80px'}} className='text-center mt-2'>
             <p className='security-text-color'>Reach and build connections</p>
             <span> with </span>  <strong className='font-weight-bold text-highlight'>900 Million Users</strong>
             <span className='security-text-color'> , on </span>
@@ -66,7 +66,7 @@ const CarouselSection = () => {
       case 2:
         return (
 
-          <div className='text-center mt-2'>
+          <div style={{height:'80px'}} className='text-center mt-2'>
             <p className='security-text-color'>Tap the best</p>
             <strong className='font-weight-bold text-highlight'>Untapped Talent.</strong>
             <p className='d-none mt-1 security-text-color'> secure credentials.</p>
@@ -75,7 +75,7 @@ const CarouselSection = () => {
         );
       case 3:
         return (
-          <div className='text-center mt-2'>
+          <div style={{height:'80px'}} className='text-center mt-2'>
             <p className='security-text-color'>Reduce your cost of</p>
             <span className='security-text-color'> hiring </span>
             <strong className='font-weight-bold text-highlight'>Up To 30%.</strong>

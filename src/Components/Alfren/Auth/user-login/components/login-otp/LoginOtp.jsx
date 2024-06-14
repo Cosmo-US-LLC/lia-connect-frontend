@@ -12,9 +12,9 @@ function LoginOtp(props) {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
+      {/* <Button color="danger" onClick={toggle}>
         Click Me
-      </Button>
+      </Button> */}
       <Modal
         size="md"
         fullscreen='md'          // Set modal size to large

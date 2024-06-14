@@ -35,7 +35,21 @@ console.log('editorContent', editorContent)
     useEffect(()=>{
       dispatch(setConfigMessage(editorContent));
     },[dispatch,editorContent])
-
+    const setMessage = (data) => {
+      setSequenceArray((sequenceArray) => {
+        return sequenceArray.map((obj) => {
+          if (obj.sequenceId === sequence.sequenceId) {
+            return {
+              ...obj,
+              input: data.message,
+            };
+          }
+          return obj;
+        });
+      });
+  
+      setConfigureDropDownActive(false);
+    };
 
   return (
     <Fragment>
@@ -154,7 +168,7 @@ console.log('editorContent', editorContent)
             </div>
             <div className="mt-4">
               <Col xl="12" className="d-flex justify-space-between">
-                <button type="submit" className="btn btn-primary ">
+                <button type="submit" className="btn btn-primary "  onClick={setMessage}>
                   <span>Save</span>
                 </button>
                 <button

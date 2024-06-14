@@ -10,6 +10,14 @@ export const login = (user, cb) => async () => {
     cb(error?.response?.data);
   }
 };
+export const LinkedInlogin = (user, cb) => async () => {
+  try {
+    const { data, status } = await authApi.Linkedinlogin(user);
+    cb({ data, status });
+  } catch (error) {
+    cb(error?.response?.data);
+  }
+};
 export const registerUser = (formData, cb) => async () => {
   try {
     const { data, status } = await authApi.registerUser(formData);

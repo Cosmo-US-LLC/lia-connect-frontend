@@ -12,6 +12,17 @@ export default class AuthApi {
         .catch(reject);
     });
   };
+  Linkedinlogin = async (data) => {
+    return new Promise((resolve, reject) => {
+      INSTANCE({
+        method: "POST",
+        url: "/auth/linked-in/login",
+        data,
+      })
+        .then(resolve)
+        .catch(reject);
+    });
+  };
   registerUser = async (data) => {
     return new Promise((resolve, reject) => {
       INSTANCE({
