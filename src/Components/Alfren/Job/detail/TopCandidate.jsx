@@ -197,8 +197,12 @@ const TopCandidate = ({ id }) => {
         `}
       </style>
       {topCandidateDetail &&
-      <div className="shadow-container">
-          <p style={{ color: '#1264FD', fontFamily: 600, fontSize: '16px',textDecoration:'underline' }}> <span style={{   }}>View More</span></p>
+        <div className="shadow-container">
+          <p style={{
+            color: '#1264FD', fontFamily: 600, fontSize: '16px', textDecoration: 'underline', position: "relative",
+            top: "54px",
+            right: "15px"
+          }}> <span style={{}}>View More</span></p>
         </div>
       }
     </Fragment>

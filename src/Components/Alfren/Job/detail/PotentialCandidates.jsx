@@ -4,7 +4,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { BiSolidCheckbox } from "react-icons/bi";
 
 
-const PotentialCandidates = () => {
+const PotentialCandidates = ({ Message }) => {
   return (
     <Fragment>
       <Card style={{ height: '177px' }}>
@@ -29,7 +29,7 @@ const PotentialCandidates = () => {
               bottom: "4px "
             }}></div>
             <div>
-              <h1 style={{ fontWeight: 'bolder', fontSize: '50px', color: '#299A16', marginTop: '22px', marginLeft: '17px' }}>137/ <strong style={{ fontSize: '26px', color: "#E4AC00", position: 'relative', right: '14px' }}>218 </strong></h1>
+              <h1 style={{ fontWeight: 'bolder', fontSize: '50px', color: '#299A16', marginTop: '22px', marginLeft: '17px' }}>{Message?.accepted}/ <strong style={{ fontSize: '26px', color: "#E4AC00", position: 'relative', right: '14px' }}>{Message?.sent} </strong></h1>
               <p><span><BiSolidCheckbox style={{ color: '#299A16', marginBottom: "-2px" }} /></span> Reply Received</p>
               <span style={{
                 position: "relative",
@@ -69,7 +69,7 @@ const PotentialCandidates = () => {
             </p>
             <div className="text-end" >
               <h4 style={{ fontWeight: 900, fontSize: "47px", color: "#299A16", textAlign: 'end', marginBottom: '0' }}>
-                75%            </h4>
+                {Message?.acceptancePercentage}%            </h4>
               <div style={{ fontSize: '10px', color: "#299A16" }} className="text-end">Reply Rate</div>
             </div>
           </CardBody>

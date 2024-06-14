@@ -31,9 +31,8 @@ const LoginSection = () => {
       LinkedInlogin(formData, (resp) => {
         console.log('resp', resp)
         if (resp && resp?.data && resp?.status === 200 ||resp===undefined) {
-          localStorage.setItem("accessToken", resp?.data?.tokens?.access?.token);
-          localStorage.setItem("authenticated", true);
-          navigate("/dashboard");
+          localStorage.setItem("isLinkedInLogin", true);
+          navigate("/home");
         } else {
           const err = resp?.message;
           toast.error(err);

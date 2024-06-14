@@ -1,17 +1,13 @@
-import React, { Fragment, useContext } from "react";
-import { toast } from "react-toastify";
-import { Card, CardBody, CardHeader } from "reactstrap";
-
-import TodoContext from "../../../../_helper/Todo";
-import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
-import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
+import React, { Fragment, useEffect, useState } from "react";
+import { Card, CardBody, Progress, Col } from "reactstrap";
 import ReactApexChart from "react-apexcharts";
-const AvgExp = () => {
-  const chartData = {
+
+const AvgExp = ({ AvgExpStatsData,avgExperience }) => {
+  const [chartData, setChartData] = useState({
     series: [
       {
         name: "Count",
-        data: [7, 4, 7, 8],
+        data: [], // This will be populated based on AvgExpStatsData
       },
     ],
     options: {
@@ -31,12 +27,12 @@ const AvgExp = () => {
           columnWidth: "90%",
           endingShape: "rounded",
           colors: {
-            backgroundColor: "#8FA8D7",
-            borderRadius: 2, // Control border radius for rounded corners
+            background: "#8FA8D7",
+            borderRadius: 2,
             border: {
               opacity: 1,
               width: 1,
-              color: "#8FA8D7", // Match bar color for seamless appearance
+              color: "#8FA8D7",
             },
           },
         },
@@ -47,30 +43,30 @@ const AvgExp = () => {
       stroke: {
         show: true,
         width: 1,
-        colors: ["#8FA8D7"], // Change bar color
+        colors: ["#8FA8D7"],
       },
       xaxis: {
         labels: {
-          show: true, // Hide x-axis labels
+          show: true,
+          rotate: 0, // Ensure labels are not rotated
         },
         axisBorder: {
-          show: false, // Hide x-axis border
+          show: false,
         },
-        categories: ["1Yr", "2Yr", "3Yr", "4Yr"],
+        categories: [], // This will be populated based on AvgExpStatsData
       },
       yaxis: {
         labels: {
-          show: false, // Hide y-axis labels
+          show: false,
         },
         axisBorder: {
-          show: false, // Hide y-axis border
+          show: false,
         },
       },
       fill: {
         opacity: 1,
-        colors: ["#8FA8D7"], // Change bar color
+        colors: ["#8FA8D7"],
       },
-
       tooltip: {
         y: {
           formatter: function (val) {
@@ -79,7 +75,30 @@ const AvgExp = () => {
         },
       },
     },
-  };
+  });
+
+  useEffect(() => {
+    if (AvgExpStatsData) {
+      const { category, values } = AvgExpStatsData;
+      setChartData({
+        ...chartData,
+        series: [
+          {
+            ...chartData.series[0],
+            data: values,
+          },
+        ],
+        options: {
+          ...chartData.options,
+          xaxis: {
+            ...chartData.options.xaxis,
+            categories: category.map(year => year ? `${year} yr` : "N/A"),
+          },
+        },
+      });
+    }
+  }, [AvgExpStatsData]);
+
   return (
     <Fragment>
       <Card style={{ height: "90%" }}>
@@ -106,6 +125,7 @@ const AvgExp = () => {
           </p>
           <div>
             <div style={{ textAlign: "center" }}>
+              {/* Static display of average years */}
               <p
                 style={{
                   fontWeight: 900,
@@ -113,7 +133,7 @@ const AvgExp = () => {
                   color: "#1264FD",
                 }}
               >
-                3
+                {avgExperience}
                 <span
                   style={{
                     fontWeight: 500,
@@ -126,6 +146,7 @@ const AvgExp = () => {
               </p>
             </div>
             <div>
+              {/* ApexCharts bar chart */}
               <ReactApexChart
                 options={chartData.options}
                 series={chartData.series}
@@ -133,10 +154,12 @@ const AvgExp = () => {
                 height={250}
               />
             </div>
+
           </div>
         </CardBody>
       </Card>
     </Fragment>
   );
 };
+
 export default AvgExp;
