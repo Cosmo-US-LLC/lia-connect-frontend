@@ -1,11 +1,12 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, Settings, X } from "react-feather";
 import { Col, UncontrolledTooltip } from "reactstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch } from "react-redux";
+import { setConfigMessage } from "store/slices/createJob";
 
 export const SettingDropdown = ({
   target,
@@ -15,37 +16,26 @@ export const SettingDropdown = ({
   setConfigureDropDownActive,
   configureDropDownActive,
   deleteSequence,
-  markAsConfigured, // New prop
 }) => {
-  // Define the schema for validation using Yup
-  const schema = yup.object().shape({
-    message: yup.string().required("Message is required"),
-  });
+  const dispatch = useDispatch();
 
-  // Set up the form with react-hook-form
-  const { control, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      message: "",
-    },
-  });
 
-  const setMessage = (data) => {
-    setSequenceArray((sequenceArray) => {
-      return sequenceArray.map((obj) => {
-        if (obj.sequenceId === sequence.sequenceId) {
-          return {
-            ...obj,
-            input: data.message,
-          };
-        }
-        return obj;
-      });
-    });
+  const message = sequence.input
+    ? sequence.input
+    : "<p>Update on Your Job Application</p><p>Dear [Candidate's Name],</p><p>I hope this email finds you well.</p><p>I wanted to reach out and thank you for your interest in the [Job Title] position at [Company Name]. We appreciate the time and effort you've invested in the application process.</p><p>After careful consideration, we regret to inform you that we have decided to pursue other candidates whose qualifications more closely align with the requirements of the role.</p><p>Please know that this decision was not made lightly, and we genuinely appreciate the opportunity to learn about your skills and experiences. We encourage you to continue pursuing opportunities that match your expertise and career goals.</p><p>Thank you once again for your interest in joining our team. We wish you all the best in your future endeavors.</p><p>Warm regards,</p><p>[Your Name]<br>[Your Position]<br>[Company Name]<br>[Contact Information]</p>";
 
-    markAsConfigured(sequence.sequenceId); // Mark as configured
-    setConfigureDropDownActive(false);
-  };
+  const [editorContent, setEditorContent] = useState(message);
+console.log('editorContent', editorContent)
+  const handleEditorChange = (event, editor) => {
+    const data = editor.getData();
+    setEditorContent(data);
+    // Dispatch the editorContent to the Redux store
+    console.log(data); // You can log the data if needed
+    };
+    useEffect(()=>{
+      dispatch(setConfigMessage(editorContent));
+    },[dispatch,editorContent])
+
 
   return (
     <Fragment>
@@ -139,38 +129,28 @@ export const SettingDropdown = ({
               Input Your LinkedIn Message
             </span>
           </div>
-          <form onSubmit={handleSubmit(setMessage)}>
             <div>
-              <Controller
-                name="message"
-                control={control}
-                render={({ field }) => (
-                  <CKEditor
-                    required
-                    editor={ClassicEditor}
-                    config={{
-                      placeholder: `Dear John Doe,
-
-Thank you for your interest in the Software Engineer position at Tech Solutions Inc. After careful consideration, we regret to inform you that we have decided to pursue other candidates for this role.
-
-We appreciate the effort you've put into your application and encourage you to apply for future openings that align with your expertise.
-
-Best regards,
-
-The Hiring Team
-Tech Solutions Inc.
-contact@techsolutions.com`,
-                      toolbar: ["link"],
-                      style: { borderRadius: "8px", height: '500px' }, // Set the height here
-                    }}
-                    data={field.value}
-                    onChange={(event, editor) => field.onChange(editor.getData())}
-                  />
-                )}
-              />
-              {errors.message && (
-                <p style={{ color: "red" }}>{errors.message.message}</p>
-              )}
+              <CKEditor
+                  required
+                  editor={ClassicEditor}
+                  config={{
+                    placeholder: `Dear John Doe,
+                
+                    Thank you for your interest in the Software Engineer position at Tech Solutions Inc. After careful consideration, we regret to inform you that we have decided to pursue other candidates for this role.
+                    
+                    We appreciate the effort you've put into your application and encourage you to apply for future openings that align with your expertise.
+                    
+                    Best regards,
+                    
+                    The Hiring Team
+                    Tech Solutions Inc.
+                    contact@techsolutions.com`,
+                    toolbar: ["link"],
+                    style: { borderRadius: "8px", height: '100px' }, // Set the height to 100px here
+                  }}
+                  onChange={handleEditorChange}
+                />
+             
             </div>
             <div className="mt-4">
               <Col xl="12" className="d-flex justify-space-between">
@@ -186,7 +166,6 @@ contact@techsolutions.com`,
                 </button>
               </Col>
             </div>
-          </form>
         </div>
       </UncontrolledTooltip>
 

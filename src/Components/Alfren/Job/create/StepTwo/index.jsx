@@ -27,7 +27,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { Actions } from "./actions";
 
 import { SequenceStart } from "./startSequence";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { stepTwo } from "../../../../../redux/Job/jobActions";
 import NestedSequence from "./nestedSequence";
@@ -38,6 +38,8 @@ const StepTwo = ({
   jobId
 }) => {
   const dispatch = useDispatch();
+  const configMessage = useSelector((state) => state.message.content);
+  console.log('configMessage', configMessage)
   const [zoomLevel, setZoomLevel] = useState([40]);
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [sequence, setSequence] = useState();
@@ -47,7 +49,7 @@ const StepTwo = ({
   const message = sequence?.input
     ? sequence?.input
     : "<p>Update on Your Job Application</p><p>Dear [Candidate's Name],</p><p>I hope this email finds you well.</p><p>I wanted to reach out and thank you for your interest in the [Job Title] position at [Company Name]. We appreciate the time and effort you've invested in the application process.</p><p>After careful consideration, we regret to inform you that we have decided to pursue other candidates whose qualifications more closely align with the requirements of the role.</p><p>Please know that this decision was not made lightly, and we genuinely appreciate the opportunity to learn about your skills and experiences. We encourage you to continue pursuing opportunities that match your expertise and career goals.</p><p>Thank you once again for your interest in joining our team. We wish you all the best in your future endeavors.</p><p>Warm regards,</p><p>[Your Name]<br>[Your Position]<br>[Company Name]<br>[Contact Information]</p>";
-console.log('message', message)
+
   const [editorContent, setEditorContent] = useState(message);
   console.log('editorContent', editorContent)
   function transformSequenceRecords(records) {
@@ -177,15 +179,31 @@ console.log('message', message)
   };
 
   const submitStepTwo = async (e) => {
-    setIsLoading(true)
+    setIsLoading(true);
+
+    // Filter sequenceArray to include only objects with actionName "Send Connection"
+    const formattedSequenceArray = sequenceArray.map((item) => {
+      // Check if the current item's actionName is "Send Connection"
+      if (item.actionName === "Send Connection") {
+        // Return the item with added config payload
+        return {
+          ...item,
+          config: configMessage,
+        }
+      } else {
+        // Return the item as is if actionName is not "Send Connection"
+        return item;
+      }
+    });
+
     const formData = {
       jobId,
-      body: { jobSequence: sequenceArray }
+      body: { jobSequence: formattedSequenceArray },
     };
+
     dispatch(
       stepTwo(formData, (resp) => {
-        setIsLoading(false)
-        console.log('yes i run step 2')
+        setIsLoading(false);
         if (resp.status == 201) {
           toast.success("Sequence Added Successfully");
           handleNext(e);
@@ -325,21 +343,21 @@ console.log('message', message)
                   <span>Reset</span>
                 </Link>
                 <Link
-  disabled={isLoading || sequenceArray.length !== 2}
-  onClick={handleNextStep}
-  className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
-  style={{ opacity: isLoading ? "60%" : "100%" }}
->
-  <span>
-    {isLoading ? (
-      <>
-        <i className="fa fa-spinner fa-spin" /> Loading...
-      </>
-    ) : (
-      "Next"
-    )}
-  </span>
-</Link>
+                  disabled={isLoading || sequenceArray.length !== 2}
+                  onClick={handleNextStep}
+                  className="btn btn-primary pe-5 ps-5 pt-2 pb-2"
+                  style={{ opacity: isLoading ? "60%" : "100%" }}
+                >
+                  <span>
+                    {isLoading ? (
+                      <>
+                        <i className="fa fa-spinner fa-spin" /> Loading...
+                      </>
+                    ) : (
+                      "Next"
+                    )}
+                  </span>
+                </Link>
 
               </Btn>
             </Card>
@@ -386,7 +404,7 @@ console.log('message', message)
                           <Controls />
                           <TransformComponent>
                             <NestedSequence
-                            setEditorContent={setEditorContent}
+                              setEditorContent={setEditorContent}
                               sequence={sequence}
                               sequenceArray={sequenceArray}
                               setSequenceArray={setSequenceArray}
