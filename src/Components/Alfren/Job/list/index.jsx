@@ -501,11 +501,11 @@ const JobList = () => {
   const deleteJob = () => {
     console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
     setIsLoading(true); // Set loading to true before dispatching the action
-    setShow(false)
     dispatch(
       deleteJobAction(getJobId, (resp) => {
         setIsLoading(false); // Set loading to true before dispatching the action
         if (resp.status == 204) {
+          setShow(false)
           toast.success("Job Deleted Successfully");
           setPaginatedUpdated(!paginatedUpdated);
         } else {
