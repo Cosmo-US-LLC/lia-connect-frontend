@@ -231,3 +231,7 @@ background-color: #dadee3;
   line-height: 22.4px;
   text-align: left;
 }
+.ck.ck-editor__main>.ck-editor__editable {
+  border-color: var(--ck-color-base-border);
+  height: 190px;
+}

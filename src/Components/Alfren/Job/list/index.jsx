@@ -501,7 +501,7 @@ const JobList = () => {
   const deleteJob = () => {
     console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
     setIsLoading(true); // Set loading to true before dispatching the action
-    setShow(true)
+    setShow(false)
     dispatch(
       deleteJobAction(getJobId, (resp) => {
         setIsLoading(false); // Set loading to true before dispatching the action

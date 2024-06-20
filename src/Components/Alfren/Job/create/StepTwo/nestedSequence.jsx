@@ -24,6 +24,7 @@ import DoubleOption from "./doubleOption";
   addSequenceRecord,
 }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
+  console.log('dropdownActive11111111111111111', dropdownActive)
   const [configureDropDownActive, setConfigureDropDownActive] = useState(false);
 
   const deleteSequence = (item) => {
@@ -118,6 +119,7 @@ import DoubleOption from "./doubleOption";
                     >
                       <MoreVertical size={15} strokeWidth={3} />
                       <SettingDropdown
+                      setDropdownActive={setDropdownActive}
                         target={"alfrenSettingalfren" + sequence.sequenceId}
                         sequence={sequence}
                         dropdownActive={dropdownActive}
