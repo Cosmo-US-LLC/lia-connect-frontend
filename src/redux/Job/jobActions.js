@@ -11,14 +11,16 @@ export const stepOne = (user, cb) => async () => {
   }
 };
 
-export const stepTwo = (user, cb) => async () => {
+// action creator
+export const stepTwo = (user) => async (dispatch) => {
   try {
     const { data, status } = await jobApi.stepTwo(user);
-    cb({ data, status });
+    return { data, status };
   } catch (error) {
-    cb(error?.response?.data);
+    return { error: error?.response?.data };
   }
 };
+
 
 export const updateJob = (user, cb) => async () => {
   try {
