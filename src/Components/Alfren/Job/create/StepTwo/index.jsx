@@ -182,15 +182,12 @@ const StepTwo = ({
   
     // Filter sequenceArray to include only objects with actionName "Send Connection"
     const formattedSequenceArray = sequenceArray.map((item) => {
-      // Check if the current item's actionName is "Send Connection"
       if (item.actionName === "Send Connection") {
-        // Return a new object with the existing properties and added config payload
         return {
           ...item,
           config: configMessage,
         };
       }
-      // Return the item as is if actionName is not "Send Connection"
       return item;
     });
   
@@ -201,18 +198,21 @@ const StepTwo = ({
   
     try {
       const resp = await dispatch(stepTwo(formData));
+  
       setIsLoading(false);
+  
       if (resp.status === 201) {
         toast.success("Sequence Added Successfully");
         handleNext(e);
       } else {
-        const err = resp.message;
+        const err = resp.error?.message || resp.message || "An error occurred";
         toast.error(err);
       }
     } catch (error) {
       setIsLoading(false);
-      console.error("Error submitting step two:", error);
-      toast.error("Failed to add sequence. Please try again.");
+      console.error("Error in submitStepTwo:", error);
+      const errMsg = error.message || "An unexpected error occurred!";
+      toast.error(errMsg);
     }
   };
   
