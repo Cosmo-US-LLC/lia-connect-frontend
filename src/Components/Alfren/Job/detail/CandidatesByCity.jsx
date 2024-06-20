@@ -22,48 +22,48 @@ const CandidatesByCity = ({ CityStatsData }) => {
   const minColor = "#CDD7F4";
   const maxColor = "#1264FD";
 
-useEffect(() => {
-  let root = am5.Root.new("chartdiv");
+  useEffect(() => {
+    let root = am5.Root.new("chartdiv");
 
-  root.setThemes([am5themes_Animated.new(root)]);
+    root.setThemes([am5themes_Animated.new(root)]);
 
-  let chart = root.container.children.push(
-    am5map.MapChart.new(root, {
-      panX: "none",
-      panY: "none",
-      projection: am5map.geoMercator(),
-      layout: root.horizontalLayout,
-    })
-  );
+    let chart = root.container.children.push(
+      am5map.MapChart.new(root, {
+        panX: "none",
+        panY: "none",
+        projection: am5map.geoMercator(),
+        layout: root.horizontalLayout,
+      })
+    );
 
-  let polygonSeries = chart.series.push(
-    am5map.MapPolygonSeries.new(root, {
-      geoJSON: pakistanCitiesGeoJSON,
-      valueField: "value", // Ensure this matches your data structure
-      calculateAggregates: true,
-    })
-  );
+    let polygonSeries = chart.series.push(
+      am5map.MapPolygonSeries.new(root, {
+        geoJSON: pakistanCitiesGeoJSON,
+        valueField: "value", // Ensure this matches your data structure
+        calculateAggregates: true,
+      })
+    );
 
-  polygonSeries.mapPolygons.template.setAll({
-    tooltipText: "{name}: {value}",
-  });
+    polygonSeries.mapPolygons.template.setAll({
+      tooltipText: "{name}: {value}",
+    });
 
-  polygonSeries.set("heatRules", [
-    {
-      target: polygonSeries.mapPolygons.template,
-      dataField: "value",
-      min: am5.color(minColor),
-      max: am5.color(maxColor),
-      key: "fill",
-    },
-  ]);
+    polygonSeries.set("heatRules", [
+      {
+        target: polygonSeries.mapPolygons.template,
+        dataField: "value",
+        min: am5.color(minColor),
+        max: am5.color(maxColor),
+        key: "fill",
+      },
+    ]);
 
-  polygonSeries.data.setAll(data); // Set the transformed data here
+    polygonSeries.data.setAll(data); // Set the transformed data here
 
-  return () => {
-    root.dispose();
-  };
-}, [data, pakistanCitiesGeoJSON]); // Ensure pakistanCitiesGeoJSON is a dependency
+    return () => {
+      root.dispose();
+    };
+  }, [data, pakistanCitiesGeoJSON]); // Ensure pakistanCitiesGeoJSON is a dependency
 
 
   const sortedData = data.sort((a, b) => b.value - a.value);
@@ -77,7 +77,7 @@ useEffect(() => {
       setData(filteredData);
     }
   }, [CityStatsData]);
-  
+
   return (
     <Card style={{ height: "90%", marginLeft: '12px' }}>
       <CardBody style={{ padding: "20px" }}>
@@ -111,7 +111,11 @@ useEffect(() => {
             }}
           >
             <div id="chartdiv" style={{ width: "100%", height: "200px" }}></div>
-            <div className="mt-5 w-100">
+            <div className="mt-5 w-100" style={{
+              height: "134px",
+              overflow: "auto",
+              padding:'12px'
+            }}>
               {top5.map((item, index) => (
                 <Col key={index} style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
                   <span style={{ fontSize: "14px", color: "black" }}>
