@@ -21,29 +21,57 @@ const JobDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [jobDetails, setJobDetails] = useState(null);
-
+  const [jobStats, setJobStats] = useState(null);
+  console.log('jobStats', jobStats)
+  const [error, setError] = useState(null);
+  
   const getJobDetails = () => {
     const url = `/jobs/${id}`;
-    dispatch(
-      fetchJobDetails(url, (resp) => {
-        if (resp?.status == 200) {
-          const result = resp.data;
-          setJobDetails(result);
-          if (!result.isJobCompleted) {
-            navigate(
-              "/jobs/create?jobId=" +
-              id +
-              "&step=" +
-              (result.isJobSequenceSet === true ? "3" : "2")
-            );
-          }
-        } else {
-          const err = resp?.message;
-          toast.error(err);
+    
+    const handleJobDetailsResponse = (resp) => {
+      if (resp?.status === 200) {
+        const result = resp.data;
+        setJobDetails(result);
+        
+        // Conditional logic based on result
+        if (!result.isJobCompleted) {
+          const step = result.isJobSequenceSet === true ? "3" : "2";
+          navigate(`/jobs/create?jobId=${id}&step=${step}`);
         }
-      })
-    );
+        
+        // Call another API (/jobs/${id}/stats)
+        fetchJobStats();
+        
+      } else {
+        const err = resp?.message;
+        toast.error(err);
+      }
+    };
+    
+    const fetchJobStats = () => {
+      const statsUrl = `/jobs/${id}/stats`;
+      
+      const handleJobStatsResponse = (statsResp) => {
+        if (statsResp?.status === 200) {
+          const statsData = statsResp.data;
+          setJobStats(statsData);
+        } else {
+          const statsErr = statsResp?.message;
+          toast.error(statsErr);
+        }
+      };
+      
+      dispatch(fetchJobDetails(statsUrl, handleJobStatsResponse));
+    };
+    
+    dispatch(fetchJobDetails(url, handleJobDetailsResponse));
   };
+  
+  useEffect(() => {
+    getJobDetails();
+  }, []); // Empty dependency array to run once on mount
+  
+  
 
   useEffect(() => {
     getJobDetails();
@@ -65,10 +93,10 @@ const JobDetail = () => {
               <Col xl="12" className="col-ed-5 box-col-5 p-0">
                 <Row className="custom-row">
                   <Col className="custom-col potential-candidates">
-                    <PotentialCandidates />
+                    <PotentialCandidates Message={jobStats?.message}/>
                   </Col>
                   <Col className="custom-col blacklist">
-                    <BlackList />
+                    <BlackList Connection={jobStats?.connection} />
                   </Col>
                   <Col className="custom-col priority">
                     <Priority jobDetails={jobDetails} />
@@ -91,10 +119,10 @@ const JobDetail = () => {
                         <GenderGraph />
                       </Col> */}
                       <Col xl="6" md="6">
-                        <CandidatesByCity />
+                        <CandidatesByCity CityStatsData={jobStats?.byCity}/>
                       </Col>
                       <Col xl="6" md="6">
-                        <AvgExp />
+                        <AvgExp AvgExpStatsData={jobStats?.byExperience} avgExperience={jobStats?.avgExperience}/>
                       </Col>
                     </Row>
                   </Col>

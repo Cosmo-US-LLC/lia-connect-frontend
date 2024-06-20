@@ -22,7 +22,6 @@ import DoubleOption from "./doubleOption";
   sequenceArray,
   setSequenceArray,
   addSequenceRecord,
-  setEditorContent
 }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
   const [configureDropDownActive, setConfigureDropDownActive] = useState(false);

@@ -10,14 +10,26 @@ const Priority = ({ jobDetails }) => {
   return (
     <Fragment>
       <Card style={{
-        cursor:'pointer',
+        cursor: 'pointer',
         backgroundColor: jobDetails.jobPriority == "HIGH"
           ? "#de3e3e29"
           : jobDetails.jobPriority == "LOW"
             ? "white"
             : "#FFFCF1"
       }}>
-        <CardBody style={{ padding: "20px" }}>
+        <CardBody style={{
+              padding: "20px",
+              borderBottom: jobDetails.jobPriority == "HIGH"
+              ? "2px solid red"
+              : jobDetails.jobPriority == "LOW"
+                ? "2px solid #cecece"
+                : "2px solid #FECF41",
+                borderRadius: jobDetails.jobPriority == "HIGH"
+              ? "10px"
+              : jobDetails.jobPriority == "LOW"
+                ? "10px"
+                : "10px",
+              }}>
           <p
             style={{
               fontSize: "12px",
@@ -25,6 +37,7 @@ const Priority = ({ jobDetails }) => {
               position: "relative",
               width: "100%",
               color: "#595959",
+              bottom:'7px'
             }}
           >
             Priority

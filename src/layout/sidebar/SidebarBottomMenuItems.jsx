@@ -71,10 +71,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
     setMainMenu({ mainmenu: MENUITEMSBOTTOM });
   };
   const Logout = () => {
-    localStorage.removeItem("profileURL");
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.setItem("authenticated", false);
+    localStorage.clear()
     history(`${process.env.PUBLIC_URL}/auth/login`);
   };
 
