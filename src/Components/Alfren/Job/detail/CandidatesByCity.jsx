@@ -29,7 +29,7 @@ const CandidatesByCity = ({ CityStatsData }) => {
       setData(transformedData);
     }
   }, [CityStatsData]);
-  
+
   useEffect(() => {
     let root = am5.Root.new("chartdiv");
 
@@ -133,7 +133,9 @@ const CandidatesByCity = ({ CityStatsData }) => {
                     <Progress
                       value={item.value}
                       max={top5[0].value}
+                      title={`Value: ${item.value}`}
                       style={{
+                        cursor:'pointer',
                         backgroundColor: interpolateColor(
                           minColor,
                           maxColor,
