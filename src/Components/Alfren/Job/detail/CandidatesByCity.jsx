@@ -3,15 +3,14 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { Card, CardBody, Col, Progress } from "reactstrap";
-import pakistanCitiesGeoJSON from "@amcharts/amcharts5-geodata/pakistanLow";
+import PakistanCitiesJson from "@amcharts/amcharts5-geodata/pakistanLow";
 
 const CandidatesByCity = ({ CityStatsData }) => {
-  console.log('CityStatsData', CityStatsData)
   const [data, setData] = useState([]);
 
   useEffect(() => {
     if (CityStatsData && CityStatsData.length > 0) {
-      const transformedData = CityStatsData.map(item => ({
+      const transformedData = CityStatsData.map((item) => ({
         id: item.id,
         value: item.value,
       }));
@@ -21,7 +20,16 @@ const CandidatesByCity = ({ CityStatsData }) => {
 
   const minColor = "#CDD7F4";
   const maxColor = "#1264FD";
-
+  useEffect(() => {
+    if (CityStatsData && CityStatsData.length > 0) {
+      const transformedData = CityStatsData.map((item) => ({
+        id: item.id || "N/A", // Replace empty id with "N/A"
+        value: item.value,
+      }));
+      setData(transformedData);
+    }
+  }, [CityStatsData]);
+  
   useEffect(() => {
     let root = am5.Root.new("chartdiv");
 
@@ -38,8 +46,8 @@ const CandidatesByCity = ({ CityStatsData }) => {
 
     let polygonSeries = chart.series.push(
       am5map.MapPolygonSeries.new(root, {
-        geoJSON: pakistanCitiesGeoJSON,
-        valueField: "value", // Ensure this matches your data structure
+        geoJSON: PakistanCitiesJson,
+        valueField: "value",
         calculateAggregates: true,
       })
     );
@@ -58,28 +66,18 @@ const CandidatesByCity = ({ CityStatsData }) => {
       },
     ]);
 
-    polygonSeries.data.setAll(data); // Set the transformed data here
+    polygonSeries.data.setAll(data);
 
     return () => {
       root.dispose();
     };
-  }, [data, pakistanCitiesGeoJSON]); // Ensure pakistanCitiesGeoJSON is a dependency
-
+  }, [data, PakistanCitiesJson]);
 
   const sortedData = data.sort((a, b) => b.value - a.value);
   const top5 = sortedData.slice(0, 20);
-  useEffect(() => {
-    if (CityStatsData && CityStatsData.length > 0) {
-      const filteredData = CityStatsData.map(item => ({
-        id: item.id.trim() === "" ? "N/A" : item.id,
-        value: item.value,
-      }));
-      setData(filteredData);
-    }
-  }, [CityStatsData]);
 
   return (
-    <Card style={{ height: "90%", marginLeft: '12px' }}>
+    <Card style={{ height: "90%", marginLeft: "12px" }}>
       <CardBody style={{ padding: "20px" }}>
         <p
           style={{
@@ -90,7 +88,7 @@ const CandidatesByCity = ({ CityStatsData }) => {
             color: "#595959",
           }}
         >
-          Candidates By City
+          Candidates By States
           <span
             style={{
               position: "absolute",
@@ -111,21 +109,39 @@ const CandidatesByCity = ({ CityStatsData }) => {
             }}
           >
             <div id="chartdiv" style={{ width: "100%", height: "200px" }}></div>
-            <div className="mt-5 w-100" style={{
-              height: "134px",
-              overflow: "auto",
-              padding:'12px'
-            }}>
+            <div
+              className="mt-5 w-100"
+              style={{
+                height: "134px",
+                overflow: "auto",
+                padding: "12px",
+              }}
+            >
               {top5.map((item, index) => (
-                <Col key={index} style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: "14px", color: "black" }}>
+                <Col
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span style={{ fontSize: "11px", color: "black" }}>
                     {item.id}
                   </span>
-                  <div style={{ width: "50%", textAlign: 'end' }}>
+                  <div style={{ width: "50%", textAlign: "end" }}>
                     <Progress
                       value={item.value}
                       max={top5[0].value}
-                      style={{ backgroundColor: interpolateColor(minColor, maxColor, item.value, 0, top5[0].value) }}
+                      style={{
+                        backgroundColor: interpolateColor(
+                          minColor,
+                          maxColor,
+                          item.value,
+                          0,
+                          top5[0].value
+                        ),
+                      }}
                       className="sm-progress-bar me-1 mb-0"
                     />
                   </div>

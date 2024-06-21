@@ -177,7 +177,7 @@ const DataTableComponent = ({
         />
       )}
 
-      <div style={{ position: "fixed", bottom: "0px", width: "100%" }}>
+      <div style={{ position: "fixed", bottom: "34px", width: "100%" }}>
         <span
           style={{
             fontSize: "10px",
@@ -185,7 +185,7 @@ const DataTableComponent = ({
             lineHeight: "15px",
             background: "#f5f9ff",
             position:'relative',
-            top:"18px"
+            top:"10px"
           }}
         >
           * To ensure that the system performs at the optimal efficiency, you can
@@ -218,10 +218,11 @@ const DataTableComponent = ({
                   View Per Page
                 </InputGroupText>
                 <Select
+
                   options={options}
                   styles={customSelectStyles}
                   value={selectedOption}
-                  className="js-example-basic-single col-sm-6"
+                  className="js-example-basic-single col-sm-6 cusrsor-pointer-apply"
                   onChange={handleChangeLimit}
                   menuPlacement="top" // Add this line to open the menu above the input
                 />

@@ -50,7 +50,7 @@ const JobList = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [activeOnly, setActiveOnly] = useState(false);
   const [pagination, setPagination] = useState({
-    limit: 10,
+    limit: 100,
     page: 1,
     totalPages: null,
     totalResults: null,

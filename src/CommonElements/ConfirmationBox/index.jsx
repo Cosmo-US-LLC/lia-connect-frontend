@@ -28,7 +28,7 @@ const ConfirmationModal = ({ handleClose, show, deleteJob, isLoading }) => {
             <span>
               {isLoading ? (
                 <>
-                  <i className="fa fa-spinner fa-spin" /> Loading...
+                  <i className="fa fa-spinner fa-spin" /> Deleting...
                 </>
               ) : (
                 "Delete"

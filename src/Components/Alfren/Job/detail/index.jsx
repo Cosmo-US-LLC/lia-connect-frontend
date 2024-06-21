@@ -119,7 +119,7 @@ const JobDetail = () => {
                         <GenderGraph />
                       </Col> */}
                       <Col xl="6" md="6">
-                        <CandidatesByCity CityStatsData={jobStats?.byCity}/>
+                        <CandidatesByCity CityStatsData={jobStats?.byState}/>
                       </Col>
                       <Col xl="6" md="6">
                         <AvgExp AvgExpStatsData={jobStats?.byExperience} avgExperience={jobStats?.avgExperience}/>
