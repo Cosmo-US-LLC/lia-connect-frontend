@@ -158,11 +158,13 @@ const TopCandidate = ({ id }) => {
                               fontWeight: 400,
                             }}
                           >
-                            {"6 Years"}
+                            {topCand?.experienceInYear} Years
                           </p>
                         </div>
                         <div className="display-flex-style gap-3">
-                          <a href={topCand.linkedIn}><FiLinkedin style={{ color: "#337cc7", fontSize: "large" }} /></a>
+                          <a href={topCand.linkedIn} target="_blank" rel="noopener noreferrer">
+                            <FiLinkedin style={{ color: "#337cc7", fontSize: "large" }} />
+                          </a>
                           <FiMessageSquare style={{ color: "#595959", fontSize: "large" }} />
                         </div>
                       </div>
@@ -200,9 +202,9 @@ const TopCandidate = ({ id }) => {
         <div className="shadow-container">
           <p style={{
             color: '#1264FD', fontFamily: 600, fontSize: '16px', textDecoration: 'underline', position: "relative",
-            top: "54px",
+            top: "38px",
             right: "15px"
-          }}> <span style={{}}>View More</span></p>
+          }}> <span style={{ fontWeight: 600, fontSize: '16px',position:'relative' ,bottom:'5px' }}>View More</span></p>
         </div>
       }
     </Fragment>

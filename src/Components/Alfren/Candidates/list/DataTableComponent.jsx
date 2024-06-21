@@ -141,7 +141,7 @@ const DataTableComponent = ({
         clearSelectedRows={toggleDelet}
         customStyles={customStyles}
       />
-      <div style={{position: "fixed",bottom: "0px",width:'100%'}}> 
+      <div style={{position: "fixed",bottom: "40px",width:'100%'}}> 
       <span
         style={{
           fontSize: "10px",
@@ -178,6 +178,7 @@ const DataTableComponent = ({
                   color: "#5C5E64",
                   fontSize: "12px",
                   fontWeight: "400",
+                 
                 }}
               >
                 View Per Page
@@ -186,7 +187,7 @@ const DataTableComponent = ({
                 options={options}
                 styles={customSelectStyles}
                 value={selectedOption}
-                className="js-example-basic-single col-sm-6"
+                className="js-example-basic-single col-sm-6 cusrsor-pointer-apply"
                 onChange={handleChangeLimit}
               />
             </InputGroup>

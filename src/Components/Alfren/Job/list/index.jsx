@@ -50,7 +50,7 @@ const JobList = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [activeOnly, setActiveOnly] = useState(false);
   const [pagination, setPagination] = useState({
-    limit: 10,
+    limit: 100,
     page: 1,
     totalPages: null,
     totalResults: null,
@@ -501,11 +501,11 @@ const JobList = () => {
   const deleteJob = () => {
     console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
     setIsLoading(true); // Set loading to true before dispatching the action
-    setShow(false)
     dispatch(
       deleteJobAction(getJobId, (resp) => {
         setIsLoading(false); // Set loading to true before dispatching the action
         if (resp.status == 204) {
+          setShow(false)
           toast.success("Job Deleted Successfully");
           setPaginatedUpdated(!paginatedUpdated);
         } else {

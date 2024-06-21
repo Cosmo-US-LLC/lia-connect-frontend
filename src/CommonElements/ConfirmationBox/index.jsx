@@ -5,10 +5,9 @@ import './ConfirmationBox.scss';
 
 const ConfirmationModal = ({ handleClose, show, deleteJob, isLoading }) => {
 
-
   return (
     <div className="text-center">
-      <Modal show={show} onHide={handleClose} centered className="modal-confirm">
+      <Modal  show={show} onHide={handleClose} centered className="modal-confirm">
         <Modal.Header className="flex-column">
           <div className="icon-box">
             <FaTrash size={46} />
@@ -29,7 +28,7 @@ const ConfirmationModal = ({ handleClose, show, deleteJob, isLoading }) => {
             <span>
               {isLoading ? (
                 <>
-                  <i className="fa fa-spinner fa-spin" /> Loading...
+                  <i className="fa fa-spinner fa-spin" /> Deleting...
                 </>
               ) : (
                 "Delete"

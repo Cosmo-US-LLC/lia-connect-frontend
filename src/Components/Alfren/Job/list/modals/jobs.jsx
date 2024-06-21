@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Input } from "reactstrap";
-import { H4, H6, LI, ToolTip, UL } from "../../../../../AbstractElements";
-
-import { InputGroup, InputGroupText } from "reactstrap";
 import { Check, Search, X } from "react-feather";
+import { InputGroup, InputGroupText } from "reactstrap";
+import { UL } from "AbstractElements";
+import { useDebouncedCallback } from "use-debounce";
 
 const Jobs = ({
   closeSearchDropdown,
@@ -12,61 +12,65 @@ const Jobs = ({
   setSelectedJobs,
   setIsJobSelected,
 }) => {
-  const toggleLICheck = (jobId) => {
-    // Map through the jobs array
-    const updatedJobs = jobs.map((job) => {
-      // If the job id matches the jobId parameter, toggle its checked property
-      if (job.id === jobId) {
-        return {
-          ...job,
-          isChecked: !job.isChecked, // Toggle the checked property
-        };
-      }
-      return job; // Return the job object unchanged if the id doesn't match
-    });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedJobsName, setSelectedJobsName] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
 
-    // Update the state with the updatedJobs array
+  // Debounce the handleSearch function
+  const handleSearchDebounced = useDebouncedCallback((value) => {
+    const query = value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = jobs.filter((job) =>
+      job.title.toLowerCase().includes(query)
+    );
+    setFilteredJobs(filtered);
+  }, 200); // Adjust the delay as needed (in milliseconds)
+
+  const toggleLICheck = (jobId) => {
+    const updatedJobs = jobs.map((job) =>
+      job.id === jobId ? { ...job, isChecked: !job.isChecked } : job
+    );
     setJobs(updatedJobs);
-    // Get the titles of the selected jobs
+    updateSelectedJobsName(updatedJobs);
+  };
+
+  const resetJobs = () => {
+    const resetJobs = jobs.map((job) => ({ ...job, isChecked: false }));
+    setJobs(resetJobs);
+    updateSelectedJobsName(resetJobs);
+  };
+
+  const updateSelectedJobsName = (updatedJobs) => {
     const selectedJobTitles = updatedJobs
       .filter((job) => job.isChecked)
       .map((job) => job.title);
 
-    // Set the limit for the number of words
     const wordLimit = 3;
+    let concatenatedTitles = selectedJobTitles
+      ? selectedJobTitles.slice(0, wordLimit).join(", ")
+      : "";
 
-    // Concatenate the titles up to the word limit
-    let concatenatedTitles = selectedJobTitles.slice(0, wordLimit).join(", ");
-
-    // If there are more selected jobs than the word limit, append the count of additional jobs
-    if (selectedJobTitles.length > wordLimit) {
+    if (selectedJobTitles && selectedJobTitles.length > wordLimit) {
       const additionalCount = selectedJobTitles.length - wordLimit;
       concatenatedTitles += ` + ${additionalCount} more`;
     }
 
-    // Set the concatenated titles in the state variable
     setSelectedJobsName(concatenatedTitles);
   };
-  const resetJobs = () => {
-    const resetJobs = jobs.map((job) => ({
-      ...job,
-      isChecked: false,
-    }));
-    setJobs(resetJobs);
-    setSelectedJobsName(null);
-  };
-  const [selectedJobsName, setSelectedJobsName] = useState("");
 
   const markDone = () => {
     const selectedJobs = jobs.filter((job) => job.isChecked);
     setSelectedJobs(selectedJobs);
     closeSearchDropdown();
-
-    const isAnyJobSelected = selectedJobs.some((job) => job.isChecked);
-
-    // Set prioritySelected based on whether any priority is selected
-    setIsJobSelected(isAnyJobSelected);
+    setIsJobSelected(selectedJobs.length > 0);
   };
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    handleSearchDebounced(value);
+  };
+
   return (
     <Fragment>
       <div
@@ -91,23 +95,28 @@ const Jobs = ({
             <Search strokeWidth={0.5} />
           </InputGroupText>
           <Input
-            placeholder="All Campaigns"
+            placeholder="Search Jobs"
             className="js-example-basic-single col-sm-3"
+            value={searchQuery}
+            onChange={handleInputChange}
           />
         </InputGroup>
         <div className="mt-3">
           <UL
-            attrUL={{
-              className: "flex-row ",
-              style: { maxHeight: "300px", overflowY: "auto" },
+            className="flex-row"
+            style={{
+              maxHeight: "300px",
+              overflowY: "auto",
+              listStyleType: "none",
+              paddingLeft: 0,
             }}
           >
-            {jobs.map((job, index) => (
+            {filteredJobs.map((job, index) => (
               <li
                 key={index}
                 className="ms-4 me-4 border-bottom mb-2 d-flex align-items-center"
-                style={{ borderRadius: 0 }}
-                onClick={() => toggleLICheck(job.id)} // Call toggleLICheck when clicked
+                style={{ borderRadius: 0, cursor: "pointer" }}
+                onClick={() => toggleLICheck(job.id)}
               >
                 <span className="ps-3 flex-grow-1">{job.title}</span>
                 <span className="ms-auto pe-3">
