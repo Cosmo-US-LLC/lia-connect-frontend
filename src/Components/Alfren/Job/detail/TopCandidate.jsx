@@ -6,32 +6,47 @@ import { fetchJobDetails } from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { FiMessageSquare, FiUser } from "react-icons/fi";
 import { FiLinkedin } from "react-icons/fi";
+import { useNavigate } from "react-router";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
   const [hideScroll, setHideScroll] = useState(true); // State to control scrollbar visibility
   const [showInfoBox, setShowInfoBox] = useState(false); // State to control info box visibility
+  const [topCandidateId, setGetTopCandidateId] = useState(null)
+  console.log('topCandidateId', topCandidateId)
   const dispatch = useDispatch();
-
-  const getJobDetails = () => {
-    const url = `/jobs/${id}/top-candidates`;
-    dispatch(
-      fetchJobDetails(url, (resp) => {
-        if (resp?.status === 200) {
-          const result = resp.data;
-          setJobDetails(result);
-        } else {
-          const err = resp?.message;
-          toast.error(err);
-        }
-      })
-    );
-  };
-
+  const navigate = useNavigate()
   useEffect(() => {
-    getJobDetails();
+    if (id) {
+      const url = `/jobs/${id}/top-candidates`;
+      dispatch(fetchJobDetails(url, handleFetchResponse));
+    }
   }, [dispatch, id]);
+  
+  useEffect(() => {
+    if (topCandidateId) {
+      const url = `/candidate/${topCandidateId}`;
+      dispatch(fetchJobDetails(url, handleFetchResponse));
+    }
+  }, [dispatch, topCandidateId]);
+  
+  const handleFetchResponse = (resp) => {
+    if (resp?.status === 200) {
+      setJobDetails(resp.data);
+      if (topCandidateId) {
+        navigate(`/candidates/detail/${topCandidateId}`);
+      }
+    } else {
+      toast.error(resp?.message);
+    }
+  };
+  
 
+
+
+  const handleGetId = (id) => {
+    setGetTopCandidateId(id)
+  }
   return (
     <Fragment>
       <p
@@ -64,7 +79,7 @@ const TopCandidate = ({ id }) => {
             onMouseLeave={() => setShowInfoBox(false)}
           />
           {showInfoBox && (
-            <div className="info-box" onMouseEnter={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="info-box " onMouseEnter={() => setShowInfoBox(true)} onMouseLeave={() => setShowInfoBox(false)}>
               <img src="../../score-tip1.png" alt="Info Image 1" />
               <img src="../../score-tip2.png" alt="Info Image 2" />
               <img src="../../score-tip3.png" alt="Info Image 3" />
@@ -77,11 +92,13 @@ const TopCandidate = ({ id }) => {
           return (
             <>
               <Card
+                onClick={() => handleGetId(topCand.id)}
                 key={index}
                 style={{
                   border: "1px solid #EBF1FC",
                   boxShadow: "3px 3px 3px 0px #BA9FC914",
                   marginBottom: "10px",
+                  cursor: 'pointer'
                 }}
               >
                 <CardBody style={{ padding: "10px" }}>
@@ -204,7 +221,7 @@ const TopCandidate = ({ id }) => {
             color: '#1264FD', fontFamily: 600, fontSize: '16px', textDecoration: 'underline', position: "relative",
             top: "38px",
             right: "15px"
-          }}> <span style={{ fontWeight: 600, fontSize: '16px',position:'relative' ,bottom:'5px' }}>View More</span></p>
+          }}> <span style={{ fontWeight: 600, fontSize: '16px', position: 'relative', bottom: '5px' }}>View More</span></p>
         </div>
       }
     </Fragment>

@@ -82,9 +82,11 @@ const Jobs = ({
           backgroundColor: "white",
           borderRadius: "8px",
           width: "50%",
+          maxHeight:'400px',
+          overflow:'auto'
         }}
       >
-        <InputGroup style={{ boxShadow: "0px 2px 12px 0px #00000014" }}>
+        <InputGroup>
           <InputGroupText
             style={{
               borderRight: "none",
@@ -95,6 +97,7 @@ const Jobs = ({
             <Search strokeWidth={0.5} />
           </InputGroupText>
           <Input
+          style={{width:'27.3%',position:'fixed',boxShadow:'rgba(0, 0, 0, 0.08) 0px 2px 12px 0px'}}
             placeholder="Search Jobs"
             className="js-example-basic-single col-sm-3"
             value={searchQuery}

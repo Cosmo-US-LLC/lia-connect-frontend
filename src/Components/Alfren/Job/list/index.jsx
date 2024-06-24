@@ -36,6 +36,7 @@ import { fetchJobs, updateJob, deleteJobAction } from "../../../../redux/Job/job
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConfirmationModal from "CommonElements/ConfirmationBox";
+import usePagination from "Hooks/usePagination";
 
 const JobList = () => {
   const dispatch = useDispatch();
@@ -49,12 +50,9 @@ const JobList = () => {
   const [isJobSelected, setIsJobSelected] = useState(false);
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [activeOnly, setActiveOnly] = useState(false);
-  const [pagination, setPagination] = useState({
-    limit: 100,
-    page: 1,
-    totalPages: null,
-    totalResults: null,
-  });
+  const [jobNamePagination] = usePagination(100);
+  const [pagination, setPagination] = usePagination(10);
+
 
   //dropdown states
   const [searchDropdown, setsSearchDropdown] = useState(false);
@@ -436,7 +434,7 @@ const JobList = () => {
 
   const fetchJobNames = async (e) => {
     setIsLoading(true)
-    const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
+    const urlParams = "page=" + jobNamePagination.page + "&limit=" + jobNamePagination.limit;
     const formPayload = {
       urlParams,
     };
