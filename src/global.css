@@ -238,3 +238,17 @@ background-color: #dadee3;
 .cusrsor-pointer-apply{
   cursor: pointer;
 }
+.col-xl-5 {
+  flex: 0 0 auto;
+  max-width:40.5% !important;
+}
+.progress-showcase{
+  margin-bottom: 20px;
+}
+.funnel_parapragh {
+  margin: 0; /* Remove default margin */
+  padding-top: 10px; /* Adjust vertical spacing */
+}
+.bg-progress6{
+  background-color: #1264fd !important;
+}

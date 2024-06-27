@@ -15,7 +15,7 @@ const RequiredSkills = ({jobDetails}) => {
   };
   return (
     <Fragment>
-      <Card style={{ height: "100%" ,position:'relative',bottom:'30px'}}>
+      <Card style={{ height: "85%" ,position:'relative',bottom:'30px'}}>
         <CardBody style={{ padding: "20px" }}>
           <p
             style={{

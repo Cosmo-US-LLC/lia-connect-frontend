@@ -90,7 +90,7 @@ const JobDetail = () => {
             </p>
 
             <Row>
-              <Col xl="12" className="col-ed-5 box-col-5 p-0">
+              <Col xl="12" className="col-ed-5 box-col-5 p-0" >
                 <Row className="custom-row">
                   <Col className="custom-col potential-candidates">
                     <PotentialCandidates Message={jobStats?.message}/>
@@ -103,12 +103,15 @@ const JobDetail = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col xl="12" className="col-ed-5 box-col-5">
+              <Col xl="12" className="col-ed-5 box-col-5" >
                 <Row>
                   <Col xl="5" md="5" className="top-candidate-scroll" style={{
                     background: "white",
                     maxHeight: "480px",
-                    padding: "19px 27px"
+                    padding: "19px 27px",
+                    marginLeft:'13px',
+                    boxShadow:'0px 9px 20px rgba(46, 35, 94, 0.07)',
+                    borderRadius:'8px'
                   }}>
                     <TopCandidate id={id} />
 
@@ -128,10 +131,10 @@ const JobDetail = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col xl="12" className="col-ed-5 box-col-5">
+              <Col xl="12" className="col-ed-5 box-col-5" style={{marginBottom:'30px'}}>
                 <Row>
                   <Col xl="6" md="6">
-                    <CandidateFunnel />
+                    <CandidateFunnel CandidateFunnel={jobStats?.candidateFunnel}/>
                   </Col>
                   <Col xl="6" md="6">
                     <RequiredSkills jobDetails={jobDetails} />
