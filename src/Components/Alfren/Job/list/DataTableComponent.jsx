@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 import { ChevronLeft, ChevronRight } from "react-feather";
-import SkeletonCard from "Layout/CardSkeleton";
+import SkeletonCard from "layout/CardSkeleton";
 
 const DataTableComponent = ({
   paginatedUpdated,

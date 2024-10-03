@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
@@ -8,6 +8,7 @@ import PakistanCitiesJson from "@amcharts/amcharts4-geodata/pakistanLow";
 const CandidatesByCity = ({ CityStatsData }) => {
 
   const [data, setData] = useState([]);
+  const chartDivRef = useRef(null);
   console.log('PakistanCitiesJson', PakistanCitiesJson)
   useLayoutEffect(() => {
     if (CityStatsData && CityStatsData.length > 0) {
@@ -75,8 +76,9 @@ const CandidatesByCity = ({ CityStatsData }) => {
   }
 
   useLayoutEffect(() => {
-    let root = am5.Root.new("chartdiv");
-
+    if (!chartDivRef.current) return;
+    // let root = am5.Root.new("chartdiv");
+    const root = am5.Root.new(chartDivRef.current);
     root.setThemes([am5themes_Animated.new(root)]);
 
     let chart = root.container.children.push(
@@ -116,7 +118,7 @@ const CandidatesByCity = ({ CityStatsData }) => {
   }, [data]);
 
   return (
-    <Card style={{ height: "90%", marginLeft: "12px" }}>
+    <Card id="chartdiv" ref={chartDivRef} style={{ height: "90%", marginLeft: "12px" }}>
       <CardBody style={{ padding: "20px" }}>
         <p
           style={{

@@ -5,14 +5,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Taptop from "./TapTop";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import Header from "./header";
+import Sidebar from "./sidebar";
 import ThemeCustomize from "./ThemeCustomizer"
-import Footer from "./Footer";
+import Footer from "./footer";
 import CustomizerContext from "../_helper/Customizer";
 import AnimationThemeContext from "../_helper/AnimationTheme";
 import ConfigDB from "../Config/ThemeConfig";
-import Loader from "./Loader";
+import Loader from "./loader";
 import CustomContext from "../_helper/Customizer";
 
 const AppLayout = ({ children, classNames, ...rest }) => {

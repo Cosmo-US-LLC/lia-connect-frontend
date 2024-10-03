@@ -9,7 +9,7 @@ import { Row } from "reactstrap";
 import CustomContext from "../../_helper/Customizer";
 import Leftbar from "./Leftbar/index";
 import RightHeader from "./RightHeader/index";
-import { MENUITEMS } from "../Sidebar/menu";
+import { MENUITEMS } from "../sidebar/menu";
 
 const Header = () => {
   const { toggleIcon } = useContext(CustomContext);
