@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { DailyDropdown, FollowerGenderTitle } from '../../../Constant';
+import { DailyDropdown, FollowerGenderTitle } from '../../../constant';
 import { FollowerGenderChart } from '../../../Data/Social/Chart';
 import DropdownCommon from '../../Common/Dropdown';
 

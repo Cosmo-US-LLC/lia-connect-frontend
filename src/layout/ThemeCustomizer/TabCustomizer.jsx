@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useCallback } from 'react';
 import { TabContent, TabPane } from 'reactstrap';
 import { Btn, H5, P } from '../../AbstractElements';
-import { Configuration } from '../../Constant';
+import { Configuration } from '../../constant';
 import ConfigurationClass from './ConfigurationClass';
 import CheckLayout from './Tabs/CheckLayout';
 import SidebarCusmizer from './Tabs/Sidebar';

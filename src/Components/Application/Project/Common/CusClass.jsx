@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Progress } from 'reactstrap';
 import { H6, Image, LI, P, UL } from '../../../../AbstractElements';
-import { Issues, Resolved, Comment, Done } from '../../../../Constant';
+import { Issues, Resolved, Comment, Done } from '../../../../constant';
 
 const CusClass = ({ item }) => {
   return (

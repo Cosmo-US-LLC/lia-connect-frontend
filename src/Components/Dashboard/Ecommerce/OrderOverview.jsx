@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5, UL, LI } from '../../../AbstractElements';
-import { Earning, Order, OrderOverviewTitle, Refunds } from '../../../Constant';
+import { Earning, Order, OrderOverviewTitle, Refunds } from '../../../constant';
 import { LightCardData2 } from '../../../Data/DefaultDashboard';
 import { OptionsOverView, OptionsOverViewBarChart } from '../../../Data/Ecommerce/Chart';
 import ReactApexChart from 'react-apexcharts';

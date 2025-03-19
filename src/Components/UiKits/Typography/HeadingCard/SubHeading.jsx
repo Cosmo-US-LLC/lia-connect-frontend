@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fragment } from 'react';
 import { P } from '../../../../AbstractElements';
-import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, SubHeading } from '../../../../Constant';
+import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, SubHeading } from '../../../../constant';
 
 const SubHeadings = () => {
   return (

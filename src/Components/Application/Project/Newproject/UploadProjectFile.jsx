@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup, Label, Row } from 'reactstrap';
-import { UploadProjectFile } from '../../../../Constant';
+import { UploadProjectFile } from '../../../../constant';
 import Dropzone from 'react-dropzone-uploader';
 
 const UploadProjectFileClass = () => {

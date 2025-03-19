@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonOutline } from "../../../../../Constant";
+import { ButtonOutline } from "../../../../../constant";
 import CommonHeaderClass from "../../Common/CommonHeaderClass2";
 
 const ButtonOutlineCard = () => {

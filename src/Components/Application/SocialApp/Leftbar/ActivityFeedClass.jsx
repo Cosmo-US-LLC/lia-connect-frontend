@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { Card, CardHeader, CardBody, Media, Collapse } from 'reactstrap';
 import { Btn, H3, Image, P } from '../../../../AbstractElements';
-import { ActivityFeed } from '../../../../Constant';
+import { ActivityFeed } from '../../../../constant';
 import { ActivityFeedData } from '../../../../Data/SocialHeader';
 
 const ActivityFeedClass = () => {

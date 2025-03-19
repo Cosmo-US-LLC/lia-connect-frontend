@@ -11,7 +11,7 @@ import {
   MessageSquare,
   Plus,
 } from "react-feather";
-import { BorderRadius } from "../../../../../Constant";
+import { BorderRadius } from "../../../../../constant";
 import { Col, Row, UncontrolledTooltip } from "reactstrap";
 import { Actions } from "./actions";
 

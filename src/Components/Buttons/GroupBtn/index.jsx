@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardBody, ButtonGroup, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Nesting, Vertical } from '../../../Constant';
+import { Nesting, Vertical } from '../../../constant';
 import { Breadcrumbs, Btn } from '../../../AbstractElements';
 import GroupButtonClass from './GroupButton';
 import RadioBtnClass from './RadioBtn';

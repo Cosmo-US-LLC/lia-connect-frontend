@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { H6, P } from '../../../../AbstractElements';
-import { ContactHistory } from '../../../../Constant';
+import { ContactHistory } from '../../../../constant';
 
 const HistoryClass = () => {
     const closehistory = () => {

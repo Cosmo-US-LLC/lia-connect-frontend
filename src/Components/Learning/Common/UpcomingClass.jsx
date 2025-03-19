@@ -1,4 +1,4 @@
-import { BusinessAnalyst, CourseBy, UpcomingCourses, UXDevelopment, WebDevelopment } from '../../../Constant';
+import { BusinessAnalyst, CourseBy, UpcomingCourses, UXDevelopment, WebDevelopment } from '../../../constant';
 import { Btn, H5 } from '../../../AbstractElements';
 import React, { Fragment, useState } from 'react';
 import { Media, Col, Card, CardHeader, Collapse, CardBody } from 'reactstrap';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import { Col } from 'reactstrap';
 import { H5, H6 } from '../../../../AbstractElements';
-import { SmallShadow } from '../../../../Constant';
+import { SmallShadow } from '../../../../constant';
 
 const SmallShadows = () => {
   return (

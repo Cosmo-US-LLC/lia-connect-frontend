@@ -78,25 +78,25 @@ const JobCreate = () => {
 
     }
 
-    }, [location.search]);
+  }, [location.search]);
 
 
-// Validation schema should be defined here
-let validationSchema = Yup.object().shape({
-  jobName: Yup.string().required('Job Name is required'),
-  jobPriority: Yup.string().required('Job Priority is required'),
-  linkedInSearch: Yup.string()
-    .required('LinkedIn Search URL is required')
-    .matches(
-      /^https:\/\/www\.linkedin\.com\/search\/results\/people.*/,
-      'This LinkedIn Search URL cannot be supported'
-    ),
-  maxCandidates: Yup.number()
-    .typeError('Max Candidate must be a number')
-    .required('Max Candidate is required')
-    .min(1, 'Max Candidate must be at least 1')
-    .max(500, 'Max Candidate cannot be more than 500'),
-});
+  // Validation schema should be defined here
+  let validationSchema = Yup.object().shape({
+    jobName: Yup.string().required('Job Name is required'),
+    jobPriority: Yup.string().required('Job Priority is required'),
+    linkedInSearch: Yup.string()
+      .required('LinkedIn Search URL is required')
+      .matches(
+        /^https:\/\/www\.linkedin\.com\/search\/results\/(people|PEOPLE)\/\?keywords=.*$/i,
+        'This LinkedIn Search URL cannot be supported'
+      ),
+    maxCandidates: Yup.number()
+      .typeError('Max Candidate must be a number')
+      .required('Max Candidate is required')
+      .min(1, 'Max Candidate must be at least 1')
+      .max(500, 'Max Candidate cannot be more than 500'),
+  });
 
   // Manually check if skillInputValue is required
   if (!skills || skills.length === 0) {
@@ -127,6 +127,7 @@ let validationSchema = Yup.object().shape({
     setHasErrors(currentError);
   }, [errors.linkedInSearch]);
 
+
   const onSubmit = async (data, e) => {
     setIsLoading(true); // Set loading to true before dispatching the action
 
@@ -136,13 +137,13 @@ let validationSchema = Yup.object().shape({
       linkedInURL: data?.linkedInSearch?.length
         ? [data.linkedInSearch]
         : linkedInProfile?.length
-        ? linkedInProfile
-        : [],
+          ? linkedInProfile
+          : [],
       linkedInType: data?.linkedInSearch?.length
         ? 'linkedInSearch'
         : linkedInProfile?.length
-        ? 'linkedInProfile'
-        : null,
+          ? 'linkedInProfile'
+          : null,
       skills,
       maxCandidates: parseInt(data.maxCandidates, 10), // Convert maxCandidates to a number
     };

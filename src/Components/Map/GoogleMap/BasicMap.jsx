@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Card, Col, CardBody } from "reactstrap";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import HeaderCard from "../../Common/Component/HeaderCard";
-import { BasicDemo } from "../../../Constant";
+import { BasicDemo } from "../../../constant";
 
 const containerStyle = {
   height: "500px",

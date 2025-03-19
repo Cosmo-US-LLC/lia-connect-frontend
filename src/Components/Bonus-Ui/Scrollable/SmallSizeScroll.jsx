@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
-import { smallSizescroll } from '../../../Constant';
+import { smallSizescroll } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const SmallSizeScroll = () => {

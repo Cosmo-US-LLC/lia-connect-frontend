@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
-import { DefaultInput, DefaultSelect, InputSizing, LargeInput, LargeSelect, SmallInput, SmallSelect } from '../../../../Constant';
+import { DefaultInput, DefaultSelect, InputSizing, LargeInput, LargeSelect, SmallInput, SmallSelect } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../Common/FooterCard';
 

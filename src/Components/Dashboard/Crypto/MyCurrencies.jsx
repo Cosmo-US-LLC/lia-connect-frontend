@@ -2,7 +2,7 @@ import React from 'react';
 import { TrendingDown, TrendingUp } from 'react-feather';
 import { Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { H5, H6 } from '../../../AbstractElements';
-import { MyCurrenciesTitle, Trade } from '../../../Constant';
+import { MyCurrenciesTitle, Trade } from '../../../constant';
 import { MyCurrenciesTableData } from '../../../Data/Crypto';
 import SvgIcon from '../../Common/Component/SvgIcon';
 

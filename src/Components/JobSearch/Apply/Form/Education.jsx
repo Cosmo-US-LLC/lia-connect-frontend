@@ -1,5 +1,5 @@
 import { H6 } from '../../../../AbstractElements';
-import { YourEducation, CollegeName, Period, DegreeLevel, Specialization } from '../../../../Constant';
+import { YourEducation, CollegeName, Period, DegreeLevel, Specialization } from '../../../../constant';
 import React, { Fragment, useState } from 'react';
 import { Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import DatePicker from 'react-datepicker';

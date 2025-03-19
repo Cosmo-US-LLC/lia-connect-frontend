@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { Image, H5, P } from '../../../AbstractElements';
-import { DiscoverPera, DiscoverPro, UpdateNow } from '../../../Constant';
+import { DiscoverPera, DiscoverPro, UpdateNow } from '../../../constant';
 
 import discoverImage from '../../../assets/images/dashboard-2/discover.png';
 

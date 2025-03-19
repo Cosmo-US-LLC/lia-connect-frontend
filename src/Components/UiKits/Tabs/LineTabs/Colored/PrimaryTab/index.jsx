@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { H5, P } from '../../../../../../AbstractElements';
-import { Contact, Hometxt, Profile, SimpleMaterialTab } from '../../../../../../Constant';
+import { Contact, Hometxt, Profile, SimpleMaterialTab } from '../../../../../../constant';
 
 const PrimaryColorTab = () => {
   const [PrimarycolorLineTab, setPrimarycolorLineTab] = useState('1');

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup, Label, Row } from 'reactstrap';
-import { EnterSomeDetails } from '../../../../Constant';
+import { EnterSomeDetails } from '../../../../constant';
 
 const EnterSomeDetailsClass = ({ register, errors }) => {
   return (

@@ -3,7 +3,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import TypeaheadOne from './TypeaheadOne';
 import { Container, Row, Col, Card, CardBody, Form } from 'reactstrap';
 import axios from 'axios';
-import { BasicDemo, MultipleSelections, CustomSelections, Remote } from '../../../../Constant';
+import { BasicDemo, MultipleSelections, CustomSelections, Remote } from '../../../../constant';
 import { Breadcrumbs } from '../../../../AbstractElements';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import { TypeaheadDataApi } from '../../../../api';

@@ -1,4 +1,4 @@
-import { Featured, HighestPrices, LowestPrices, ShowingProducts } from '../../../../Constant';
+import { Featured, HighestPrices, LowestPrices, ShowingProducts } from '../../../../constant';
 import FilterContext from '../../../../_helper/Ecommerce/Filter';
 import React, { Fragment, useContext } from 'react';
 import { Col, Input } from 'reactstrap';

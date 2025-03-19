@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Breadcrumbs } from '../../../../AbstractElements';
-import { ProductListDesc, ProductListTitle } from '../../../../Constant';
+import { ProductListDesc, ProductListTitle } from '../../../../constant';
 import ProductTableData from './ProductTableData';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 import HeaderCard from '../../../Common/Component/HeaderCard';

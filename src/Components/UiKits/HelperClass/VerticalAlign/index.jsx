@@ -1,5 +1,5 @@
 import React from 'react';
-import { VerticalAlign } from '../../../../Constant';
+import { VerticalAlign } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass';
 
 const VerticalAlignCard = () => {

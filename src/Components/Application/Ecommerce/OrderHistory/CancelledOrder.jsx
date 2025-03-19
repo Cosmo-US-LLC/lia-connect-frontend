@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { X } from 'react-feather';
 import { Card, CardBody, Col, Media, Row } from 'reactstrap';
 import { Btn, H6 } from '../../../../AbstractElements';
-import { CancelledOrders, Price } from '../../../../Constant';
+import { CancelledOrders, Price } from '../../../../constant';
 import { OrderHistoryData } from '../../../../Data/Ecommerce/OrderHistoryList';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { LI, UL } from '../../../../AbstractElements';
-import { LinksAndButtons } from '../../../../Constant';
+import { LinksAndButtons } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const LinksButtons = () => {

@@ -3,7 +3,7 @@ import { Card, CardBody, Col } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { clickAndDrag } from '../../../Constant';
+import { clickAndDrag } from '../../../constant';
 
 const ClickAndDrag = () => {
     return (

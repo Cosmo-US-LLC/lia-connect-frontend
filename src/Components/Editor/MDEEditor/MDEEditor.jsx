@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { MDEEditorExample } from '../../../Constant';
+import { MDEEditorExample } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import SmallEditor from './SmallEditor';
 import SimpleMDE from 'react-simplemde-editor';

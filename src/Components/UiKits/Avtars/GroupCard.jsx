@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image, LI, UL } from '../../../AbstractElements';
-import { Groups } from '../../../Constant';
+import { Groups } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const GroupCard = () => {

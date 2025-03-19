@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageSizes } from '../../../../Constant';
+import { ImageSizes } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass';
 
 const ImageSizeCard = () => {

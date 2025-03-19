@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { Company, Country, CreditVolume, Email, FirstName, Id, InverseTablePrimaryBackground, inverstablecode, inverstabletext, inverstabletext2, LastName, Role, Useclass } from '../../../../Constant';
+import { Company, Country, CreditVolume, Email, FirstName, Id, InverseTablePrimaryBackground, inverstablecode, inverstabletext, inverstabletext2, LastName, Role, Useclass } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { Inversetabaledata } from '../../../../Data/Table/bootstraptabledata';
 

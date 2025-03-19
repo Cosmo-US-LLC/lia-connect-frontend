@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, Media, Form, Label, Input, CardFooter } from 'reactstrap';
 import { H5, H6, P, Btn } from '../../../../AbstractElements';
-import { COD, Fast, HorizontalStyle, XYZSeller, ABCSeller, DeliveryOption, BuyingOption } from '../../../../Constant';
-import { Submit, Cancel } from '../../../../Constant';
+import { COD, Fast, HorizontalStyle, XYZSeller, ABCSeller, DeliveryOption, BuyingOption } from '../../../../constant';
+import { Submit, Cancel } from '../../../../constant';
 
 const HorizontalClass = () => {
   return (

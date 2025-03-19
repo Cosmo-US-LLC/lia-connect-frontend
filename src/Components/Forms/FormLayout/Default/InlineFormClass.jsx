@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Btn, H5, H6 } from '../../../../AbstractElements';
-import { Password, Username, InlineForm, InlineFormWithLabel, InlineFormWithoutLabel, Login } from '../../../../Constant';
+import { Password, Username, InlineForm, InlineFormWithLabel, InlineFormWithoutLabel, Login } from '../../../../constant';
 
 const InlineFormClass = () => {
   return (

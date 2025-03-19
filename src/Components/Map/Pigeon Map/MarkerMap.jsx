@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Map, Marker } from "pigeon-maps"
-import { MarkerMap } from '../../../Constant';
+import { MarkerMap } from '../../../constant';
 import { H5 } from '../../../AbstractElements';
 
 const MarkerMapComp = (props) => {

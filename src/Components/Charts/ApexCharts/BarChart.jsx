@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { BarChart } from '../../../Constant';
+import { BarChart } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import Chart from 'react-apexcharts';
 import { apexBarChart } from './apexData';

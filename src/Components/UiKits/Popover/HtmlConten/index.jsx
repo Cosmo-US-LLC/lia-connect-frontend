@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { HTMLContent } from '../../../../Constant';
+import { HTMLContent } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import CommonPopover from '../common/CommonPopover';
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import blogSingle from '../../assets/images/blog/blog-single.jpg';
 import { Container, Row, Col, Media, Card, CardBody } from 'reactstrap';
-import { Comment } from '../../Constant';
+import { Comment } from '../../constant';
 import { Breadcrumbs, H4, LI, P, UL } from '../../AbstractElements';
 import { BlogSingleData } from '../Common/Data/Blog';
 import CommonContain from './CommonContain';

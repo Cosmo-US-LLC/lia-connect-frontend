@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { login } from "../../../../redux/Auth/authActions";
-import { UserLoggedIn } from "../../../../Constant/index";
+import { UserLoggedIn } from "../../../../constant/index";
 
 const LoginForm = ({ logoClassMain }) => {
   const [isLoading, setIsLoading] = useState(false); // State to track loading status

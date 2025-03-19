@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H3, H5 } from '../../../../AbstractElements';
-import { Headings } from '../../../../Constant';
+import { Headings } from '../../../../constant';
 
 const FadedHeadingCard = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, Col } from 'reactstrap';
 import { P, Image, H4, UL, LI } from '../../../AbstractElements';
-import { MarkJecno } from '../../../Constant';
+import { MarkJecno } from '../../../constant';
 import blog from '../../../assets/images/blog/blog.jpg';
 
 const BlogBox = () => {

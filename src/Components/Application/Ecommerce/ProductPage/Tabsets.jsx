@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Card, Row, Col, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { P } from '../../../../AbstractElements';
-import { Febric, Video, Details, Brand } from '../../../../Constant';
+import { Febric, Video, Details, Brand } from '../../../../constant';
 
 const Tabset = () => {
   const [activeTab, setActiveTab] = useState('1');

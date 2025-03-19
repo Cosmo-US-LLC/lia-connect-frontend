@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { FirstName, Id, LastName, TableHeadOptions, TableHeadspan, thead, theadlight, theadtext, tomake, Username } from '../../../../Constant';
+import { FirstName, Id, LastName, TableHeadOptions, TableHeadspan, thead, theadlight, theadtext, tomake, Username } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { Captiontabledata } from '../../../../Data/Table/bootstraptabledata';
 

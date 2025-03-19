@@ -31,7 +31,7 @@ import {
   SocialApp,
   Support,
   TextEditor,
-} from '../../../Constant';
+} from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import IcoCommon from './IcoCommon';
 import { IcoDataApi } from '../../../api';

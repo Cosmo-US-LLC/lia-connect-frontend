@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { Btn, H5, ToolTip } from "../../../../AbstractElements";
-import { BasicTooltip, HoverMe, PopoverTitle } from "../../../../Constant";
+import { BasicTooltip, HoverMe, PopoverTitle } from "../../../../constant";
 
 const Basic = () => {
   const [basictooltip, setbasictooltip] = useState(false);

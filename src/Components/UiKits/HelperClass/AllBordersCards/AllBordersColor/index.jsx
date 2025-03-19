@@ -1,5 +1,5 @@
 import React from 'react';
-import { AllBordersColor } from '../../../../../Constant';
+import { AllBordersColor } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass';
 
 const AllBorersColorCard

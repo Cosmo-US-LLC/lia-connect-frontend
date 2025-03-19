@@ -1,5 +1,5 @@
 import { H6 } from '../../../../AbstractElements';
-import { PersonalDetails, FullName, Email, Password, RepeatPassword, BirthDate, PhoneNumber } from '../../../../Constant';
+import { PersonalDetails, FullName, Email, Password, RepeatPassword, BirthDate, PhoneNumber } from '../../../../constant';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import React, { Fragment, useState } from 'react';
 import { Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';

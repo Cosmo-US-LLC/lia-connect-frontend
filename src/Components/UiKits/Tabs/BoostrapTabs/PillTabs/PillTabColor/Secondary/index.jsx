@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-import { Contact, Hometxt, Profile, SecondaryColor } from '../../../../../../../Constant';
+import { Contact, Hometxt, Profile, SecondaryColor } from '../../../../../../../constant';
 import { H5, P } from '../../../../../../../AbstractElements';
 
 const PillSecondaryTab = () => {

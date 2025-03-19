@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Row } from 'reactstrap';
 import { H5, Image } from '../../../../../AbstractElements';
-import { JOHANDIO } from '../../../../../Constant';
+import { JOHANDIO } from '../../../../../constant';
 
 const UserTitle = () => {
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { LargeModal, SizesModal, SmallModal } from '../../../../Constant';
+import { LargeModal, SizesModal, SmallModal } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import CommonModal from '../common/modal';
 

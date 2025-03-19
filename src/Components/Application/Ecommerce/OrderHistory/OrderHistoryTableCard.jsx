@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { DatatableOrderhistory } from '../../../../Constant';
+import { DatatableOrderhistory } from '../../../../constant';
 import OrderHistoryTable from './OrderHistoryTable';
 
 const OrderHistoryTableCard = () => {

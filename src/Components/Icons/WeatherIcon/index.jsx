@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Breadcrumbs } from '../../../AbstractElements';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import { WhetherIconsWithAnimations } from '../../../Constant';
+import { WhetherIconsWithAnimations } from '../../../constant';
 import { weatherIconData } from '../../Common/Data/Icons';
 
 const WeatherIcons = () => {

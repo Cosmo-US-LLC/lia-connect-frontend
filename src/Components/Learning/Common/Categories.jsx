@@ -1,4 +1,4 @@
-import { BackendDevelopment, Design, Development, FrontendDevelopment, InterfaceDesign, UIDesign, UserExperience, UXDesign } from '../../../Constant';
+import { BackendDevelopment, Design, Development, FrontendDevelopment, InterfaceDesign, UIDesign, UserExperience, UXDesign } from '../../../constant';
 import { Btn, H5, LI, UL } from '../../../AbstractElements';
 import React, { Fragment, useState } from 'react';
 import { Card, CardHeader, Col, Collapse } from 'reactstrap';

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Col } from "reactstrap";
-import { SteplineChart } from "../../../Constant";
+import { SteplineChart } from "../../../constant";
 import HeaderCard from "../../Common/Component/HeaderCard";
 import Chart from 'react-apexcharts';
 import { apexSteplineChart } from "./apexData";

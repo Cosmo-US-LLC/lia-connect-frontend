@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { Headings } from '../../../../Constant';
+import { Headings } from '../../../../constant';
 import HeadingTag from './HeadingTag';
 import SubHeadings from './SubHeading';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { P } from '../../../../AbstractElements';
-import { Offsets } from '../../../../Constant';
+import { Offsets } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const OffsetCard = () => {

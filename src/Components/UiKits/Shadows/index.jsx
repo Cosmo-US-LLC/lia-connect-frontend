@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import { Breadcrumbs } from '../../../AbstractElements';
-import { Examples } from '../../../Constant';
+import { Examples } from '../../../constant';
 import LargeShadows from './Large';
 import NoShadows from './NoShadow';
 import RegularShadows from './Regular';

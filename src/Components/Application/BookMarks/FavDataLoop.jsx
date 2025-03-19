@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState } from "react";
-import { NoBookmarksFound } from "../../../Constant";
+import { NoBookmarksFound } from "../../../constant";
 import { Row, Card, Col } from "reactstrap";
 import SweetAlert from "sweetalert2";
 import BookmarkContext from "../../../_helper/Bookmark";

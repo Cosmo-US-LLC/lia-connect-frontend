@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Col, Card, CardBody, Form, Label, Input, InputGroup, InputGroupText, Row } from 'reactstrap'
 import { Btn } from "../../../../AbstractElements";
-import { FirstName, LastName, Username, State, City, BrowserDefaults, Zip, SubmitForm } from '../../../../Constant';
+import { FirstName, LastName, Username, State, City, BrowserDefaults, Zip, SubmitForm } from '../../../../constant';
 import HeaderCard from "../../../Common/Component/HeaderCard";
 
 const BrowserDefaultsClass = () => {

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Col, Card, CardBody, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
-import { Hometxt, Profile, Contact, ColorTab } from '../../../../Constant';
+import { Hometxt, Profile, Contact, ColorTab } from '../../../../constant';
 import { P } from '../../../../AbstractElements';
 import { TabCardData } from '../../../Common/Data/Bonus-ui';
 import HeaderCard from '../../../Common/Component/HeaderCard';

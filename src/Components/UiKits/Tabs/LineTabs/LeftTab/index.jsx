@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { H5, P } from '../../../../../AbstractElements';
-import { Hometxt, Inbox, MaterialLeftTab, Profile, Settings } from '../../../../../Constant';
+import { Hometxt, Inbox, MaterialLeftTab, Profile, Settings } from '../../../../../constant';
 
 const LeftTab = () => {
   const [LeftLineTab, setLeftLineTab] = useState('1');

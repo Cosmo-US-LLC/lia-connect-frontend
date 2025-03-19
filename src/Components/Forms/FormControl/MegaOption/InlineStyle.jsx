@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, Media, Form, Label, Input } from 'reactstrap';
 import { H5, H6, P } from '../../../../AbstractElements';
-import { COD, Fast, InlineStyle, Free, Local, Standard } from '../../../../Constant';
+import { COD, Fast, InlineStyle, Free, Local, Standard } from '../../../../constant';
 import FooterCard from '../Common/FooterCard';
 
 const InlineClass = () => {

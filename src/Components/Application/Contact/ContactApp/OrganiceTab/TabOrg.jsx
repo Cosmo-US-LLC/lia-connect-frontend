@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { TabPane } from 'reactstrap';
 import { orgList } from '../../../../Common/Data/ContactApp/OrgList';
 import { H5, H6, P, Image, UL, LI } from '../../../../../AbstractElements';
-import { EmailAddress, Gender, General, Personal, Print } from '../../../../../Constant';
+import { EmailAddress, Gender, General, Personal, Print } from '../../../../../constant';
 
 const TabOrg = () => {
     return (

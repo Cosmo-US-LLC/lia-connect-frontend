@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { H6, UL } from '../../../../AbstractElements';
-import { MAX, MIN, Price, STEP } from '../../../../Constant';
+import { MAX, MIN, Price, STEP } from '../../../../constant';
 import { getBrands, getColors, getGender } from '../../../../Services/Ecommerce.service';
 import FilterContext from '../../../../_helper/Ecommerce/Filter';
 import ProductContext from '../../../../_helper/Ecommerce/Product';

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Col } from "reactstrap";
-import { RadarChart } from "../../../Constant";
+import { RadarChart } from "../../../constant";
 import HeaderCard from "../../Common/Component/HeaderCard";
 import Chart from 'react-apexcharts';
 import { apexRadarPolygonfillCharts } from "./apexData";

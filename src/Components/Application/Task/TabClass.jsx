@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, TabContent, TabPane } from 'reactstrap';
-import { TodayTasks, DelayedTasks, UpcomingTasks, ThisWeekTask, ThisMonthTasks, AssignedToMe, MyTasks, Newsletter, Business, Holidays, Notification } from '../../../Constant';
+import { TodayTasks, DelayedTasks, UpcomingTasks, ThisWeekTask, ThisMonthTasks, AssignedToMe, MyTasks, Newsletter, Business, Holidays, Notification } from '../../../constant';
 import ListOfTask from './ListTask';
 import EmptyTaskClass from './EmptyTaskClass';
 import AssignedToMeClass from './AssignedToMe';

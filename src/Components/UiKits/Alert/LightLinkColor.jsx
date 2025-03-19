@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Alerts, H5 } from '../../../AbstractElements';
-import { LinkColor } from '../../../Constant';
+import { LinkColor } from '../../../constant';
 
 const LightLinkColor = () => {
   return (

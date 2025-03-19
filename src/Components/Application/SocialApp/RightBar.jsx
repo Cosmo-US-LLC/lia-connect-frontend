@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Col, Card, CardHeader, CardBody, Media, Collapse } from "reactstrap";
 import timeline4 from "../../../assets/images/social-app/timeline-4.png";
-import { ProfileIntro, SocialNetworks, Dribbble, Facebooks, Twitters, AboutMe, FavouriteMusicBands } from "../../../Constant";
+import { ProfileIntro, SocialNetworks, Dribbble, Facebooks, Twitters, AboutMe, FavouriteMusicBands } from "../../../constant";
 import { Btn, H5, P } from "../../../AbstractElements";
 import Followers from "../../Bonus-Ui/Tour/Leftbar/Followers";
 import Followings from "../../Bonus-Ui/Tour/Leftbar/Followings";

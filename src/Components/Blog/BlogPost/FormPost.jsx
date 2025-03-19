@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Ckeditor from "react-ckeditor-component";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { Col, Form, FormGroup, Label, Input } from "reactstrap";
-import { Title, Type, Category, Content, Text, Audio, Video, Image } from "../../../Constant";
+import { Title, Type, Category, Content, Text, Audio, Video, Image } from "../../../constant";
 
 const FormPost = () => {
   const data = [{ name: "Lifestyle" }, { name: "Travel" }];

@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { resetPassword } from "../../../../redux/Auth/authActions";
-import { PasswordReset } from "../../../../Constant/index";
+import { PasswordReset } from "../../../../constant/index";
 
 const ResetPwdForm = () => {
   const {

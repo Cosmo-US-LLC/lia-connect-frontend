@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Card, CardBody, Col, Container, Media, Row } from 'reactstrap';
-import { MarkJecno, MARKJENCOEMAIL } from '../../../Constant';
+import { MarkJecno, MARKJENCOEMAIL } from '../../../constant';
 import NavTab from './NavTab';
 import { Link } from 'react-router-dom';
 import Img from '../../../assets/images/user/user.png';

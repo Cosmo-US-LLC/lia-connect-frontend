@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import { Container, Row, Col, Card, CardBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { Target, Info, CheckCircle, PlusCircle } from 'react-feather';
 import { Link } from 'react-router-dom';
-import { Done, All, Doing, CreateNewProject } from '../../../../Constant';
+import { Done, All, Doing, CreateNewProject } from '../../../../constant';
 import { Breadcrumbs } from '../../../../AbstractElements';
 import ProjectContext from '../../../../_helper/Project';
 import CusClass from '../Common/CusClass';

@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import { Card, CardBody, CardHeader, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import { H5, H4, H6, P, Image, Btn } from '../../../../AbstractElements';
 import { Link } from 'react-router-dom';
-import { MyProfile, Bio, Password, Website, Save, EmailAddress } from '../../../../Constant';
+import { MyProfile, Bio, Password, Website, Save, EmailAddress } from '../../../../constant';
 import CustomizerContext from '../../../../_helper/Customizer';
 
 const MyProfileEdit = () => {

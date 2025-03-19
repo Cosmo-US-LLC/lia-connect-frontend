@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5, UL, LI, Image } from '../../../AbstractElements';
-import { FacebookCampaignTitle, FollowersGoals, FollowersGoalsTotal, FollowersToday, FollowersTodayTotal } from '../../../Constant';
+import { FacebookCampaignTitle, FollowersGoals, FollowersGoalsTotal, FollowersToday, FollowersTodayTotal } from '../../../constant';
 
 const FacebookCampaign = () => {
   const customersList = ['1', '6', '7', '3', '8'];

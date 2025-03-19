@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { P } from '../../../../AbstractElements';
-import { GridColumn } from '../../../../Constant';
+import { GridColumn } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const GridColumnCard = () => {

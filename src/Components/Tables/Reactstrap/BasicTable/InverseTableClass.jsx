@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Age, FirstName, insidetable, InverseTable, JoinDate, LastName, Office, Position, Salary, tableinverse, Useclass } from '../../../../Constant';
+import { Age, FirstName, insidetable, InverseTable, JoinDate, LastName, Office, Position, Salary, tableinverse, Useclass } from '../../../../constant';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
 import { inverse } from '../../../../Data/Table/bootstraptabledata';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import { Col } from 'reactstrap';
 import { H5, H6 } from '../../../../AbstractElements';
-import { NoShadow } from '../../../../Constant';
+import { NoShadow } from '../../../../constant';
 
 const NoShadows = () => {
   return (

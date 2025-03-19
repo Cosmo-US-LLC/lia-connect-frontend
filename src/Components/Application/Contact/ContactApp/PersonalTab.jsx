@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useState } from 'react';
-import { Personal } from '../../../../Constant';
+import { Personal } from '../../../../constant';
 import ListNewContact from './ListNewContact';
 import ContactDetailsClass from './ContactDetail';
 import UpdateUser from './UpdateUser';

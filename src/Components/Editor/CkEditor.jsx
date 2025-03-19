@@ -1,4 +1,4 @@
-import { CKEditorExample } from '../../Constant';
+import { CKEditorExample } from '../../constant';
 import { Breadcrumbs, H1, H5, P } from '../../AbstractElements';
 import React, { Fragment, useState } from 'react';
 import CKEditors from 'react-ckeditor-component';

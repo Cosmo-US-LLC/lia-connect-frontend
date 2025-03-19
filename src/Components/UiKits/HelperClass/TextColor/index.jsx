@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextColor } from '../../../../Constant';
+import { TextColor } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass';
 
 const TextColorCard = () => {

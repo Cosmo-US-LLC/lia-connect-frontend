@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
-import { PostEdit, Post, Discard } from '../../../Constant';
+import { PostEdit, Post, Discard } from '../../../constant';
 import { Breadcrumbs, Btn } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import FormPost from './FormPost';

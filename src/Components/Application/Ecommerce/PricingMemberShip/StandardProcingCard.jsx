@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { H3, LI, UL } from '../../../../AbstractElements';
-import { Standard, Premium, SignUp } from '../../../../Constant';
+import { Standard, Premium, SignUp } from '../../../../constant';
 import { Btn } from '../../../../AbstractElements';
 import { Row, Col, CardBody } from 'reactstrap';
 

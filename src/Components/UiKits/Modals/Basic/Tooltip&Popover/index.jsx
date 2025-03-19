@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Tooltip } from 'reactstrap';
 import { Btn, H5, P } from '../../../../../AbstractElements';
-import { ModalTitle, TooltipsAndPopovers } from '../../../../../Constant';
+import { ModalTitle, TooltipsAndPopovers } from '../../../../../constant';
 import CommonModal from '../../common/modal';
 
 const TooltipModal = () => {

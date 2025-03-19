@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { toast } from 'react-toastify';
-import { CustomDirections, BottomLeft, BottomCenter, RightBottom, TopCenter } from '../../../Constant';
+import { CustomDirections, BottomLeft, BottomCenter, RightBottom, TopCenter } from '../../../constant';
 import { Btn, H5 } from '../../../AbstractElements';
 
 // toast.configure();

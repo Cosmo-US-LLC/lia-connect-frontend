@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { AnotherLink, DropdownButton, DropdownHeader, DropdownWithHeader } from '../../../Constant';
+import { AnotherLink, DropdownButton, DropdownHeader, DropdownWithHeader } from '../../../constant';
 
 const WithHeader = () => {
   return (

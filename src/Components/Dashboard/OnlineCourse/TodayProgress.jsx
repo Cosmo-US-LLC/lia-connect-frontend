@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { TodayProgressMessage, TodayProgressTitle } from '../../../Constant';
+import { TodayProgressMessage, TodayProgressTitle } from '../../../constant';
 import { todayProgressData } from '../../../Data/OnlineCourse/ChartData';
 
 const TodayProgress = () => {

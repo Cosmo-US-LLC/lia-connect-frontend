@@ -1,4 +1,4 @@
-import { BasicCalendars } from '../../../Constant';
+import { BasicCalendars } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import myEventsList from './Events';
 import React, { Fragment } from 'react';

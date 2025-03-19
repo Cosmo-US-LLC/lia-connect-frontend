@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { DailyDropdown, MyCourseTitle } from '../../../Constant';
+import { DailyDropdown, MyCourseTitle } from '../../../constant';
 import { MyCourseData } from '../../../Data/OnlineCourse';
 import DropdownCommon from '../../Common/Dropdown';
 import CourseCard from './CourseCard';

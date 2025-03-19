@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Timeline1 from './Timeline1';
 import VerticalTimelineComp from './VerticalTimelineComp';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import { Examples } from '../../../Constant';
+import { Examples } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
 

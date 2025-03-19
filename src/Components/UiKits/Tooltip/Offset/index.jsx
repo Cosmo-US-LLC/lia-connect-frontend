@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardHeader, Col, Tooltip } from "reactstrap";
 import { Btn, H5 } from "../../../../AbstractElements";
-import { Offsets } from "../../../../Constant";
+import { Offsets } from "../../../../constant";
 import OffsetTooltip from "./OffsetsTooltip";
 
 const Offset = () => {

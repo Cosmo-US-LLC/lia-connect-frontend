@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input, InputGroup,  InputGroupText } from 'reactstrap';
-import { BasicInputGroups, LeftAddon, RightAddon, JointAddon, LeftRightAddon, SolidStyle, FlatStyle, RaiseStyle } from '../../../../Constant';
+import { BasicInputGroups, LeftAddon, RightAddon, JointAddon, LeftRightAddon, SolidStyle, FlatStyle, RaiseStyle } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../Common/FooterCard';
 

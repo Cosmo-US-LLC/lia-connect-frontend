@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { CryptoAnnotationsTitle } from '../../../Constant';
+import { CryptoAnnotationsTitle } from '../../../constant';
 import { optionsAnnotation } from '../../Common/Data/ApexChart';
 
 const CryptoAnnotations = () => {

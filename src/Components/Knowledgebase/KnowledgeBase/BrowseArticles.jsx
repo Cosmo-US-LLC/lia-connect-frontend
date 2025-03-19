@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Archive, ArrowRight, FileText } from 'react-feather';
 import errorImg from '../../../assets/images/search-not-found.png';
 import { H5, H6, Image, LI, UL } from '../../../AbstractElements';
-import { BrowseArticles } from '../../../Constant';
+import { BrowseArticles } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import axios from 'axios';

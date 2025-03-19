@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Badges, H1, H2, H3, H4, H5, H6 } from '../../../AbstractElements';
-import { BadgesExample, New } from '../../../Constant';
+import { BadgesExample, New } from '../../../constant';
 
 const BadgeExample = () => {
   return (

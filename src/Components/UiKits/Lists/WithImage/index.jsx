@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image, LI, UL } from '../../../../AbstractElements';
-import { WithImages } from '../../../../Constant';
+import { WithImages } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const WithImage = () => {

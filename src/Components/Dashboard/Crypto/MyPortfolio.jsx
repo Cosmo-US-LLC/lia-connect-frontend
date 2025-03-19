@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { H5, H6 } from '../../../AbstractElements';
-import { CryptoDropdown, MyPortfolioTitle } from '../../../Constant';
+import { CryptoDropdown, MyPortfolioTitle } from '../../../constant';
 import { portfolioLegend } from '../../../Data/Crypto';
 import { myPortfolioChartOption } from '../../../Data/Crypto/Chart';
 import SvgIcon from '../../Common/Component/SvgIcon';

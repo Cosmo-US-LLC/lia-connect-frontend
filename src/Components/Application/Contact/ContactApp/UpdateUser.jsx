@@ -3,7 +3,7 @@ import { Btn, Image } from '../../../../AbstractElements';
 import { useForm } from 'react-hook-form';
 import ContactAppContext from '../../../../_helper/Contact';
 import { Row, Col, Label, Input, FormGroup, Form } from 'reactstrap';
-import { Name, Age, Mobile, Save, Cancel } from '../../../../Constant';
+import { Name, Age, Mobile, Save, Cancel } from '../../../../constant';
 
 const UpdateUser = ({ editdata, userEditCallback, editurl }) => {
     const { editUser } = useContext(ContactAppContext);

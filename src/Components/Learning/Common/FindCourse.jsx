@@ -1,4 +1,4 @@
-import { FindCourse, Filter } from '../../../Constant';
+import { FindCourse, Filter } from '../../../constant';
 import { H5, Btn } from '../../../AbstractElements';
 import CatCheckBox from './CheckBox/CatCheckBox';
 import DurationCheckBox from './CheckBox/DurationCheck';

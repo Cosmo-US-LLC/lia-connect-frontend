@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardHeader, Table } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
-import { Budget, CustomTableColorHoverStripped, DomesticGross, FilmTitle, Id, Released, Studio } from '../../../../Constant';
+import { Budget, CustomTableColorHoverStripped, DomesticGross, FilmTitle, Id, Released, Studio } from '../../../../constant';
 import { customtablecolor } from '../../../../Data/Table/bootstraptabledata';
 
 const CustomHoverClass = () => {

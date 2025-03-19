@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import { H4, Image } from '../../../AbstractElements';
-import { TapUpBalance, ThisMonth, TotalBalanceTitle } from '../../../Constant';
+import { TapUpBalance, ThisMonth, TotalBalanceTitle } from '../../../constant';
 
 import CountUp from 'react-countup';
 import WidgetImg from '../../../assets/images/dashboard-2/widget-img.png';

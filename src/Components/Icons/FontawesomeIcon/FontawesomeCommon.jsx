@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
-import { Icons } from "../../../Constant";
+import { Icons } from "../../../constant";
 
 const FontawesomeCommon = ({ iconType, title, parentCallback }) => {
 

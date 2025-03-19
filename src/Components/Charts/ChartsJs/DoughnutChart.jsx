@@ -1,7 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Col, Card, CardBody } from "reactstrap";
-import { DoughnutChart } from "../../../Constant";
+import { DoughnutChart } from "../../../constant";
 import { doughnutData, doughnutOption } from "../../../Data/Chart/chartjs";
 import HeaderCard from '../../Common/Component/HeaderCard';
 

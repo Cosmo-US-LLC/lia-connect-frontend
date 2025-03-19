@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, CardBody, Form, Label, Input, InputGroup, InputGroupText, Row } from 'reactstrap';
-import { CustomStyles, Username } from '../../../../Constant';
+import { CustomStyles, Username } from '../../../../constant';
 import { useForm } from 'react-hook-form';
 import { Btn, H5 } from '../../../../AbstractElements';
 

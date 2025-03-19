@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { Email, Password, Website, HorizontalFormLayout, Option, ContactNumber, CompanyName, Checkboxes, Radios, Disabled } from '../../../../Constant';
+import { Email, Password, Website, HorizontalFormLayout, Option, ContactNumber, CompanyName, Checkboxes, Radios, Disabled } from '../../../../constant';
 import FooterCard from '../../FormControl/Common/FooterCard';
 
 const HorizontalFormLayoutClass = () => {

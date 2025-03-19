@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardHeader } from 'reactstrap';
 import { Btn, H4 } from '../../../../AbstractElements';
 import { UserEditTableAPI } from '../../../../api';
-import { Delete, Edit, Update, UsersTableHeader, UsersTableTitle } from '../../../../Constant';
+import { Delete, Edit, Update, UsersTableHeader, UsersTableTitle } from '../../../../constant';
 import CustomizerContext from '../../../../_helper/Customizer';
 
 const UserTable = () => {

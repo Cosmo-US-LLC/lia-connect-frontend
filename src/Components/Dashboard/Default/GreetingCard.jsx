@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Media } from 'reactstrap';
 import { H4, P, Btn, Image } from '../../../AbstractElements';
-import { WelcomeMessage, WelcomeToCuba, WhatsNew } from '../../../Constant';
+import { WelcomeMessage, WelcomeToCuba, WhatsNew } from '../../../constant';
 
 import CarToon from '../../../assets/images/dashboard/cartoon.svg';
 

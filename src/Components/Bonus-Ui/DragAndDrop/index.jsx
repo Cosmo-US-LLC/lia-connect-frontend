@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Row } from 'reactstrap';
 // import dragula from 'react-dragula';
-// import { ClickAndDrag, SpillDragNDrop, CopyDragNDrop } from '../../../Constant';
+// import { ClickAndDrag, SpillDragNDrop, CopyDragNDrop } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 // import HeaderCard from '../../Common/Component/HeaderCard';
 import Drag1 from './Drag1';

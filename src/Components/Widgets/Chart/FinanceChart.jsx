@@ -3,7 +3,7 @@ import Charts from 'react-apexcharts';
 import { Navigation } from 'react-feather';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { Finance } from '../../../Constant';
+import { Finance } from '../../../constant';
 import { columnChart } from '../../Common/Data/ApexChart';
 
 const FinanceChart = () => {

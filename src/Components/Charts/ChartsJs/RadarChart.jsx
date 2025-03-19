@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Card, CardBody } from "reactstrap";
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { RadarChart } from '../../../Constant';
+import { RadarChart } from '../../../constant';
 import { Radar } from "react-chartjs-2";
 import { RadarChartData } from "../../../Data/Chart/chartjs";
 

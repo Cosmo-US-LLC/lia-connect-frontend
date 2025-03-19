@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { P } from '../../../../AbstractElements';
-import { NoDataFound } from '../../../../Constant';
+import { NoDataFound } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const NoDataFoundClass = ({ title }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5, Progressbar } from '../../../../AbstractElements';
-import { BasicProgressBars } from '../../../../Constant';
+import { BasicProgressBars } from '../../../../constant';
 
 const Basic = () => {
   return (

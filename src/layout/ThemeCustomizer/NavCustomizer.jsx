@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
-import { BuyNow, CheckFeatures, Document, QuickOption, Support } from '../../Constant';
+import { BuyNow, CheckFeatures, Document, QuickOption, Support } from '../../constant';
 
 const NavCustomizer = ({ callbackNav, selected }) => {
   return (

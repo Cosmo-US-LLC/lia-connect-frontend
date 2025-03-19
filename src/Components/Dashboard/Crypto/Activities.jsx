@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { H5, Image } from '../../../AbstractElements';
-import { ActivitiesTitle, DailyDropdown } from '../../../Constant';
+import { ActivitiesTitle, DailyDropdown } from '../../../constant';
 import { activitiesMyOption } from '../../../Data/Crypto';
 import DropdownCommon from '../../Common/Dropdown';
 

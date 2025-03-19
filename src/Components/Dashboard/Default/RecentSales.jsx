@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
 import { Image, H5, P } from '../../../AbstractElements';
-import { DailyDropdown, RecentSalesTitle } from '../../../Constant';
+import { DailyDropdown, RecentSalesTitle } from '../../../constant';
 import { RecentSalesData } from '../../../Data/DefaultDashboard';
 import DropdownCommon from '../../Common/Dropdown';
 

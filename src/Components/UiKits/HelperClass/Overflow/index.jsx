@@ -1,5 +1,5 @@
 import React from 'react';
-import { Overflow } from '../../../../Constant';
+import { Overflow } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass2';
 
 const OverflowCard = () => {

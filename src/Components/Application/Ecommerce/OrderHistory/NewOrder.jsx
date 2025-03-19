@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { X } from 'react-feather';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H6, Btn } from '../../../../AbstractElements';
-import { NewOrder, Price } from '../../../../Constant';
+import { NewOrder, Price } from '../../../../constant';
 import { OrderHistoryData } from '../../../../Data/Ecommerce/OrderHistoryList';
 
 const NewOrderClass = () => {

@@ -3,7 +3,7 @@ import { Container, Row } from "reactstrap";
 import { Breadcrumbs } from '../../../AbstractElements';
 import PieChartClass from './PieChart';
 import GoogleContext from '../../../_helper/GoogleChart';
-import { AreaChart, BarChart2, BasicBarChart, ComboChart, GanttChart, LineChart, MaterialDesign, PieChart, SliceVisibilityThreshold, StackingAreaChart, WordTree } from '../../../Constant';
+import { AreaChart, BarChart2, BasicBarChart, ComboChart, GanttChart, LineChart, MaterialDesign, PieChart, SliceVisibilityThreshold, StackingAreaChart, WordTree } from '../../../constant';
 import PieChart2Class from './PieChart2';
 import PieChart3Class from './PieChart3';
 import PieChart4Class from './PieChart4';

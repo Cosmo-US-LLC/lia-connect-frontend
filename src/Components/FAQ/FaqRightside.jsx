@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, CardHeader, Media, Input } from 'reactstrap';
-import { SearchArticles, Navigation, AskOurCommunity, AskQuestion, ContactUs, LatestUpdates, SeeAll } from '../../Constant';
+import { SearchArticles, Navigation, AskOurCommunity, AskQuestion, ContactUs, LatestUpdates, SeeAll } from '../../constant';
 import { Search, MessageCircle, Mail, HelpCircle, Settings, MessageSquare } from 'react-feather';
 import { H5, LI, P, UL } from '../../AbstractElements';
 import { ASKQUESData, LatestData } from '../../Data/FAQ';

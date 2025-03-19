@@ -1,5 +1,5 @@
 import React from 'react';
-import { Articles, Knowledgebase, AskOurCommunity, Tutorials, HelpCenter, ContactUs, VideoTutorials, VictoriaWilson } from '../../Constant';
+import { Articles, Knowledgebase, AskOurCommunity, Tutorials, HelpCenter, ContactUs, VideoTutorials, VictoriaWilson } from '../../constant';
 import { Edit, Globe, BookOpen, FileText, Youtube, MessageCircle, Mail, RotateCcw, DollarSign, Check, Link, Codepen } from 'react-feather';
 
 export const ASKQUESData = [

@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormGroup, Label, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { Cancel, Collection, Description, EditBookmark, General, Group, MyBookmarks, Save, Title, WebUrl } from '../../../Constant';
+import { Cancel, Collection, Description, EditBookmark, General, Group, MyBookmarks, Save, Title, WebUrl } from '../../../constant';
 import BookmarkContext from '../../../_helper/Bookmark';
 
 const EditBookmarkModal = () => {

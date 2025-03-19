@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { H5, P, Btn, Image } from '../../../AbstractElements';
-import { DepositNow, GreetingMessage4, GreetingMessage4SubMessage } from '../../../Constant';
+import { DepositNow, GreetingMessage4, GreetingMessage4SubMessage } from '../../../constant';
 
 import WelcomeImage from '../../../assets/images/dashboard-4/crypto.png';
 const GreetingCard = () => {

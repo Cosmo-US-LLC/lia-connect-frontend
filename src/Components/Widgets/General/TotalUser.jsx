@@ -2,7 +2,7 @@ import React from 'react';
 import { UserMinus, UserPlus } from 'react-feather';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { UL, LI, H5 } from '../../../AbstractElements';
-import { TotalUsers, WeeklyMonDropdown } from '../../../Constant';
+import { TotalUsers, WeeklyMonDropdown } from '../../../constant';
 import DropdownCommon from '../../Common/Dropdown';
 const TotalUser = () => {
   return (

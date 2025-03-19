@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from "reactstrap";
 import { H3 } from '../../../../AbstractElements';
-import { Assign, Date, Email, Id, Phone, Price, Progress, ResponsiveTables, Status, Task } from '../../../../Constant';
+import { Assign, Date, Email, Id, Phone, Price, Progress, ResponsiveTables, Status, Task } from '../../../../constant';
 import { responsivetabledata } from '../../../../Data/Table/bootstraptabledata';
 
 const ResponsiveClass = () => {

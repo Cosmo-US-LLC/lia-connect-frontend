@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { FollowersGrowth, WeeklyMonDropdown } from '../../../Constant';
+import { FollowersGrowth, WeeklyMonDropdown } from '../../../constant';
 import { GrowthChartData, GrowthChartDataResponsive } from '../../../Data/DefaultDashboard/Chart';
 
 import ReactApexChart from 'react-apexcharts';

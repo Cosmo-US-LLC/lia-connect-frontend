@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5, UL, LI, H4 } from '../../../AbstractElements';
-import { Cancelled,  Delivered, LastMonth, profit, profit2, RecentOrdersTitle, WeeklyMonDropdown } from '../../../Constant';
+import { Cancelled,  Delivered, LastMonth, profit, profit2, RecentOrdersTitle, WeeklyMonDropdown } from '../../../constant';
 import { RecentOrderChart } from '../../../Data/DefaultDashboard/Chart';
 import DropdownCommon from '../../Common/Dropdown';
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
-import { Doing, Done, ProgressLevel, ProjectRate, ProjectStatus } from '../../../../Constant';
+import { Doing, Done, ProgressLevel, ProjectRate, ProjectStatus } from '../../../../constant';
 
 const ProjectRateClass = ({ register }) => {
     return (

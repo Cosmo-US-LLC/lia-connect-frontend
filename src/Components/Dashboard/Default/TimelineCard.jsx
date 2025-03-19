@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { DailyDropdown, Timeline } from '../../../Constant';
+import { DailyDropdown, Timeline } from '../../../constant';
 import { TimeLineChart } from '../../../Data/DefaultDashboard/Chart';
 import DropdownCommon from '../../Common/Dropdown';
 

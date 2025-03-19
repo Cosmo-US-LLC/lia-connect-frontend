@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { BlockQuotes, Footer, H5, P } from '../../../../AbstractElements';
-import { Blockquotes, SourceTitle } from '../../../../Constant';
+import { Blockquotes, SourceTitle } from '../../../../constant';
 
 const BlockQuoteCard = () => {
   return (

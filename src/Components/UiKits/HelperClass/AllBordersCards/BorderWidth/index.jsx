@@ -1,5 +1,5 @@
 import React from 'react';
-import { BorderWidth } from '../../../../../Constant';
+import { BorderWidth } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass2';
 
 const BorderWidthCard = () => {

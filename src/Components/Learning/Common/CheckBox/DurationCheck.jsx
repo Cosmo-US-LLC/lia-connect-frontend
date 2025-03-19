@@ -1,4 +1,4 @@
-import { Duration } from '../../../../Constant';
+import { Duration } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Input, Label } from 'reactstrap';
 

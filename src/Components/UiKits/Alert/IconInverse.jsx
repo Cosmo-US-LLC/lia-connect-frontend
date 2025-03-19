@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Alerts, H5, P } from '../../../AbstractElements';
-import { AlertWithIconInverse } from '../../../Constant';
+import { AlertWithIconInverse } from '../../../constant';
 import { IconInverseData } from '../../Common/Data/Ui-kits';
 import CommonAlert from './Common/CommonAlert';
 

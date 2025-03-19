@@ -188,6 +188,7 @@ const DataTables = () => {
             },
           ]);
           const mappedRecords = mapTableData(results);
+          console.log("mappedRecords",mappedRecords);
           setCandidateList(mappedRecords);
         } else {
           const err = resp?.message;
@@ -223,7 +224,7 @@ const DataTables = () => {
         linkedin: <Link to={(item.linkedProfile)} target="_blank">{item.linkedProfile}</Link>,
         profileScore: (
           item.profileScore ? <div>
-            <div className="font-secondary">52/100</div>
+            <div className="font-secondary">{item.profileScore}</div>
             <div className="badge badge-light-warning">Average</div>
           </div> : "N/A"
 

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 import { Form, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { Cancel, Save } from '../../../Constant';
+import { Cancel, Save } from '../../../constant';
 
 const CreateTag = ({ tagCallback, tagModal }) => {
 

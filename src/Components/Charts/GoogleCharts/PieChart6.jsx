@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
-import { RotatingPieChart } from '../../../Constant';
+import { RotatingPieChart } from '../../../constant';
 import { Chart } from "react-google-charts";
 import { H5 } from '../../../AbstractElements';
 

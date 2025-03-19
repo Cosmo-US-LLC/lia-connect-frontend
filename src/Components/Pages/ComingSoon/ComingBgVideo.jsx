@@ -3,7 +3,7 @@ import CountdownComponent from './CountdownData';
 import { Container } from 'reactstrap';
 import comingsoon from '../../../assets/images/other-images/coming-soon-bg.jpg';
 import authVideo from '../../../assets/video/auth-bg.mp4';
-import { WE_ARE_COMING_SOON } from '../../../Constant';
+import { WE_ARE_COMING_SOON } from '../../../constant';
 import { H5, Image } from '../../../AbstractElements';
 
 const ComingsoonVideo = (props) => {

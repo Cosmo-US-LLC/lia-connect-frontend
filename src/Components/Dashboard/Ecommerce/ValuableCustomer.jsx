@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, Table } from 'reactstrap';
 import { H5, Image } from '../../../AbstractElements';
-import { DailyDropdown, ValuableCustomerTitle } from '../../../Constant';
+import { DailyDropdown, ValuableCustomerTitle } from '../../../constant';
 import { ValuableCustomerData } from '../../../Data/Ecommerce';
 import DropdownCommon from '../../Common/Dropdown';
 

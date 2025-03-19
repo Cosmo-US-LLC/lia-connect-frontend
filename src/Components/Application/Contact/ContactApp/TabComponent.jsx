@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { TabContent, TabPane } from 'reactstrap';
-import { FollowUp, Favourites, Ideas, Business, Holidays, Important } from '../../../../Constant';
+import { FollowUp, Favourites, Ideas, Business, Holidays, Important } from '../../../../constant';
 import HistoryClass from './History';
 import NoDataFoundClass from './NoDataFound';
 import OrgenizationTab from './OrgenizationTab';

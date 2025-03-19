@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Table } from 'reactstrap';
 import { P } from '../../../../AbstractElements';
-import { ColumnOrdering, ExtraLarge,ExtraextraLarge, ExtraSmall, GridBehavior, GridOptions, GutterWidth, Large, Medium, Nestable, Offsets, Small } from '../../../../Constant';
+import { ColumnOrdering, ExtraLarge,ExtraextraLarge, ExtraSmall, GridBehavior, GridOptions, GutterWidth, Large, Medium, Nestable, Offsets, Small } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const GridOptionsCard = () => {

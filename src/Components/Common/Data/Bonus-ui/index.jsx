@@ -1,5 +1,5 @@
 import React from 'react';
-import { AbsoluteStyle, BorderBottom, BorderColorState, BorderLeft, BorderRight, BorderTop, ColorState, DragBothTitleCard, DragOnlyCard, DragOnlyContent } from '../../../../Constant';
+import { AbsoluteStyle, BorderBottom, BorderColorState, BorderLeft, BorderRight, BorderTop, ColorState, DragBothTitleCard, DragOnlyCard, DragOnlyContent } from '../../../../constant';
 import { Book, Briefcase, Droplet, Heart, MapPin } from 'react-feather';
 
 export const CarouselsData = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontSize } from '../../../../../Constant';
+import { FontSize } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass';
 
 const FontSizeCard = () => {

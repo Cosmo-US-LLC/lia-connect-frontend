@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Breadcrumbs } from '../../../../AbstractElements';
-import { BecomeMember, SimplePricingCard } from '../../../../Constant';
+import { BecomeMember, SimplePricingCard } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import Standards from './Standard';
 import StandardPricingcard from './StandardProcingCard';

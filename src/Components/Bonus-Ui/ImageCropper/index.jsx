@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useRef, useCallback } from 'react';
 import { Container, Card, CardBody } from 'reactstrap';
 import ReactCrop from 'react-image-crop';
-import { ImageCropper } from '../../../Constant';
+import { ImageCropper } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
 

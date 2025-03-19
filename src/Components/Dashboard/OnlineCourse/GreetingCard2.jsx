@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5, Btn, Image } from '../../../AbstractElements';
-import { BetterResults, DoYouWantToGet, MoreDetails } from '../../../Constant';
+import { BetterResults, DoYouWantToGet, MoreDetails } from '../../../constant';
 import SvgIcon from '../../Common/Component/SvgIcon';
 import greetingImage from '../../../assets/images/dashboard-3/better.png';
 import SquareGroupUi from './SquareGroupUi';

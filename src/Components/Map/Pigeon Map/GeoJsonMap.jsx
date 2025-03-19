@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Map, GeoJson, GeoJsonFeature } from 'pigeon-maps';
-import { GeoJsonMaps } from '../../../Constant';
+import { GeoJsonMaps } from '../../../constant';
 import { H5 } from '../../../AbstractElements';
 
 const GeoJsonMap = () => {

@@ -1,4 +1,4 @@
-import { Accounting, Categories, Design, Development, Management } from '../../../../Constant';
+import { Accounting, Categories, Design, Development, Management } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Input, Label } from 'reactstrap';
 

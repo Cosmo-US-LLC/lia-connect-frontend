@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Breadcrumbs } from '../../../../AbstractElements';
-import { WishlistTitle } from '../../../../Constant';
+import { WishlistTitle } from '../../../../constant';
 import WishListData from './WishListData';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Form, Input, Label } from 'reactstrap';
 import { H5, Btn } from '../../../AbstractElements';
-import { BTC, BuyCoins, DailyDropdown, EnterCoinsConverTedTo, EnterYourMoney, ETH, LTC, USD } from '../../../Constant';
+import { BTC, BuyCoins, DailyDropdown, EnterCoinsConverTedTo, EnterYourMoney, ETH, LTC, USD } from '../../../constant';
 import DropdownCommon from '../../Common/Dropdown';
 
 const BuyCard = () => {

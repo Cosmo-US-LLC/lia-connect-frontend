@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Col, Card, CardBody } from 'reactstrap';
 import dragula from 'react-dragula';
-import { ClickAndDrag } from '../../../Constant';
+import { ClickAndDrag } from '../../../constant';
 
 const Drag1 = () => {
     const dragulaDecorator = (componentBackingInstance) => {

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Btn } from '../../../../../AbstractElements';
-import { ModalTitle, Simple } from '../../../../../Constant';
+import { ModalTitle, Simple } from '../../../../../constant';
 import CommonModal from '../../common/modal';
 
 const BasicBtn = () => {

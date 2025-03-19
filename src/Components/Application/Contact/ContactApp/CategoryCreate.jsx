@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { AddCategory, Cancel, Save } from '../../../../Constant';
+import { AddCategory, Cancel, Save } from '../../../../constant';
 import { Form, FormGroup, Input, ModalBody, ModalHeader, Modal } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
 

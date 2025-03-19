@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { LI, UL } from '../../../../../AbstractElements';
 import CountUp from 'react-countup';
 import { Label } from 'reactstrap';
-import { Comment, Like } from '../../../../../Constant';
+import { Comment, Like } from '../../../../../constant';
 
 const UserFooter = () => {
   return (

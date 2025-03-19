@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useContext, useState } from 'react';
-import { CreatedByMe, Favourites, MyBookmark, Newsletter, Notification, NoBookmarksFound } from '../../../Constant';
+import { CreatedByMe, Favourites, MyBookmark, Newsletter, Notification, NoBookmarksFound } from '../../../constant';
 import BookmarkContext from '../../../_helper/Bookmark';
 import DataLoop from './DataLoop';
 import FavDataLoop from './FavDataLoop';

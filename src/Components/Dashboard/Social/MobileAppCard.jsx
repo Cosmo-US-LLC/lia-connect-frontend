@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { Btn, H5, Image } from '../../../AbstractElements';
-import { HaveYouTriedOur, MobileApplication, TryNow } from '../../../Constant';
+import { HaveYouTriedOur, MobileApplication, TryNow } from '../../../constant';
 
 import wave from '../../../assets/images/dashboard-5/wave.png';
 import mobileImage from '../../../assets/images/dashboard-5/mobile-img.png';

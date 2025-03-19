@@ -2,7 +2,7 @@ import React, { useContext, Fragment, useState, useEffect } from "react";
 import { Input } from "reactstrap";
 import { Btn, H6, UL } from "../../../../AbstractElements";
 import ConfigDB from "../../../../Config/ThemeConfig";
-import { Apply, UnlimitedColor } from "../../../../Constant";
+import { Apply, UnlimitedColor } from "../../../../constant";
 import CustomizerContext from "../../../../_helper/Customizer";
 
 const ColorsComponent = () => {

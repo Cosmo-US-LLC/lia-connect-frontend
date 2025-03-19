@@ -1,5 +1,5 @@
 import { getCartTotal } from '../../../../Services/Ecommerce.service';
-import { Price, ProductName, Quantity, Sub_total } from '../../../../Constant';
+import { Price, ProductName, Quantity, Sub_total } from '../../../../constant';
 import { H6, P } from '../../../../AbstractElements';
 import InvoiceHeader from './InvoiceHeader';
 import InvoiceDescription from './InvoiceDescription';

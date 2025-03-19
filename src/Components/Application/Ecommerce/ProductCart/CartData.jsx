@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import { CartTitle, CartTableHeader } from "../../../../Constant";
+import { CartTitle, CartTableHeader } from "../../../../constant";
 import { getCartTotal } from "../../../../Services/Ecommerce.service";
 import { Btn, H6, Image } from "../../../../AbstractElements";
 import { CardBody, Table, Row, Input } from "reactstrap";

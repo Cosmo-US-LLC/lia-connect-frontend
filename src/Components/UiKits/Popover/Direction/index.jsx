@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { Direction } from '../../../../Constant';
+import { Direction } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import { DirectionData } from '../../../Common/Data/Ui-kits';
 import CommonPopover from '../common/CommonPopover';

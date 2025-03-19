@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { HoverableRows, Id, Schedule, Security, SignalName, Stage, Status, TeamLead } from '../../../../Constant';
+import { HoverableRows, Id, Schedule, Security, SignalName, Stage, Status, TeamLead } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { Hovertabledata } from '../../../../Data/Table/bootstraptabledata';
 

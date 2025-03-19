@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useContext } from 'react';
 import { H6, LI, UL } from '../../../../AbstractElements';
 import ConfigDB from '../../../../Config/ThemeConfig';
-import { MixLayout } from '../../../../Constant';
+import { MixLayout } from '../../../../constant';
 import CustomizerContext from '../../../../_helper/Customizer';
 import CommenUL from './CommenUL';
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { H3, H4, P, Image } from '../../../../AbstractElements';
-import { InvoiceHash, IssuedJan, PaymentDue } from '../../../../Constant';
+import { InvoiceHash, IssuedJan, PaymentDue } from '../../../../constant';
 import { Col, Media, Row } from 'reactstrap';
 import logo1 from '../../../../assets/images/other-images/logo-login.png';
 

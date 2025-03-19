@@ -1,5 +1,5 @@
 import { H6 } from '../../../../AbstractElements';
-import { Position, YourExperience, Period, CompanyName, Location } from '../../../../Constant';
+import { Position, YourExperience, Period, CompanyName, Location } from '../../../../constant';
 import React, { Fragment, useState } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from 'react-datepicker';

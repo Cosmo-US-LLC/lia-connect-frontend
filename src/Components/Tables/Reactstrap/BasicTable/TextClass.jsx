@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
-import { ColorType, Description, Id, TextBackgroundUtilities } from '../../../../Constant';
+import { ColorType, Description, Id, TextBackgroundUtilities } from '../../../../constant';
 import { Backgroundcolordata } from '../../../../Data/Table/bootstraptabledata';
 
 const TextClass = () => {

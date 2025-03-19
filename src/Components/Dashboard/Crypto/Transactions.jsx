@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Nav, NavItem } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { TransactionsTitle } from '../../../Constant';
+import { TransactionsTitle } from '../../../constant';
 import { transactionTableData } from '../../../Data/Crypto';
 import useShowClass from '../../../Hooks/useShowClass';
 import TransactionTable from './TransactionTable';

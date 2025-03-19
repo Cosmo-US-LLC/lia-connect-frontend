@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Form, Label, FormGroup, Button } from "reactstrap";
-import { Password, ConfirmPassword, Previous, Next } from "../../../../Constant";
+import { Password, ConfirmPassword, Previous, Next } from "../../../../constant";
 import { useForm } from "react-hook-form";
 
 const Emails = ({ setSteps, setFormdata, formdata }) => {

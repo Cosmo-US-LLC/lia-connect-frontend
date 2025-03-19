@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup, Label, Row } from 'reactstrap';
-import { ClientName } from '../../../../Constant';
+import { ClientName } from '../../../../constant';
 
 const ClientNameClass = ({ register, errors }) => {
     return (

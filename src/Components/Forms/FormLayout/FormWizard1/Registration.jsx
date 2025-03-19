@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { Row, Col, Form, Label, FormGroup, Button } from "reactstrap";
-import { FirstName, LastName, Next } from "../../../../Constant";
+import { FirstName, LastName, Next } from "../../../../constant";
 
 const Registration = ({ setSteps, setFormdata, formdata }) => {
   const {

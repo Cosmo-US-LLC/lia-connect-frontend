@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col } from 'reactstrap';
 import { H5 } from '../../AbstractElements';
-import { FeaturedTutorials } from '../../Constant';
+import { FeaturedTutorials } from '../../constant';
 import FeaturesTutorial from '../Knowledgebase/KnowledgeBase/FeaturesTutorial';
 
 const FAQFeaturesTutorial = () => {

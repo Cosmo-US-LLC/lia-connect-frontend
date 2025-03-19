@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardBody, Form } from 'reactstrap';
 import Dropzone from 'react-dropzone-uploader';
 import { ToastContainer, toast } from 'react-toastify';
-import { SingleFileUpload, MultiImageUpload, MultipleImageVideoAudioUpload, LimitationFileUpload, CustomFileUpload } from '../../../Constant';
+import { SingleFileUpload, MultiImageUpload, MultipleImageVideoAudioUpload, LimitationFileUpload, CustomFileUpload } from '../../../constant';
 import { Breadcrumbs } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
 

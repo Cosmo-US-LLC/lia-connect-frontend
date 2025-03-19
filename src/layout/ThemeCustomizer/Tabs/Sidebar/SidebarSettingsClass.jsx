@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { H6, LI, UL } from '../../../../AbstractElements';
-import { Border, Default, IconColor, SidebarSettings } from '../../../../Constant';
+import { Border, Default, IconColor, SidebarSettings } from '../../../../constant';
 import CustomizerContext from '../../../../_helper/Customizer';
 
 const SidebarSettingsClass = () => {

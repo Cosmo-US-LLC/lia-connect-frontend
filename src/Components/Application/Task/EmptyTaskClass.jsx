@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Printer } from 'react-feather';
 import { Card, CardBody, CardHeader, Row } from 'reactstrap';
 import { H6 } from '../../../AbstractElements';
-import { NoTaskDueToday, Print } from '../../../Constant';
+import { NoTaskDueToday, Print } from '../../../constant';
 
 const EmptyTaskClass = ({ title }) => {
     return (

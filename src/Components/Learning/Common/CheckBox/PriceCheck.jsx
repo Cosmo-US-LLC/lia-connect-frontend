@@ -1,4 +1,4 @@
-import { AllCourses, FreeCourses, PaidCourses, Price } from '../../../../Constant';
+import { AllCourses, FreeCourses, PaidCourses, Price } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Input, Label } from 'reactstrap';
 

@@ -5,7 +5,7 @@ import { Card, CardBody } from 'reactstrap';
 import { Image, LI, H5, UL } from '../../../AbstractElements';
 
 import userImage from '../../../assets/images/dashboard-4/user.png';
-import { YourBalance, YourTotalBalance } from '../../../Constant';
+import { YourBalance, YourTotalBalance } from '../../../constant';
 import { YourBalanceTransaction } from '../../../Data/Crypto';
 import SvgIcon from '../Component/SvgIcon';
 

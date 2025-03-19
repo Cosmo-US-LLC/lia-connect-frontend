@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { Draft, More, Spam, Trash } from '../../../../Constant';
+import { Draft, More, Spam, Trash } from '../../../../constant';
 import EmailContext from '../../../../_helper/Email';
 
 const EmailTopToggle = ({ selectedFav, moreCallBack }) => {

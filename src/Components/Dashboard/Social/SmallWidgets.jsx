@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { H4 } from '../../../AbstractElements';
-import { DailyDropdown } from '../../../Constant';
+import { DailyDropdown } from '../../../constant';
 
 import DropdownCommon from '../../Common/Dropdown';
 import SmallWidgetsChart from './SmallWidgetsChart';

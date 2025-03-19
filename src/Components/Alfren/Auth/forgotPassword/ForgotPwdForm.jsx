@@ -13,7 +13,7 @@ import { forgotPassword } from "../../../../redux/Auth/authActions";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { ForgetPasswordRequestSent } from "../../../../Constant/index";
+import { ForgetPasswordRequestSent } from "../../../../constant/index";
 import { useForm } from "react-hook-form";
 
 const ForgotPwdForm = ({ logoClassMain }) => {

@@ -3,7 +3,7 @@ import React, { Fragment, useContext } from 'react';
 import sad from '../../../assets/images/other-images/sad.png';
 import { Link } from 'react-router-dom';
 import { Container, Button, Media, Col } from "reactstrap"
-import { BACK_TO_HOME_PAGE } from "../../../Constant";
+import { BACK_TO_HOME_PAGE } from "../../../constant";
 import { H2, P } from '../../../AbstractElements';
 import CustomizerContext from '../../../_helper/Customizer';
 

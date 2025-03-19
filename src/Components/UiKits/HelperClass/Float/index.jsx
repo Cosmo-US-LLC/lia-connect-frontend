@@ -1,5 +1,5 @@
 import React from 'react';
-import { Float } from '../../../../Constant';
+import { Float } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass2';
 
 const FloatCard = () => {

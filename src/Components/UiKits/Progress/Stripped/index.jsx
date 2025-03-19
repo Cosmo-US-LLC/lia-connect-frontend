@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5, Progressbar } from '../../../../AbstractElements';
-import { ProgressBarsStriped } from '../../../../Constant';
+import { ProgressBarsStriped } from '../../../../constant';
 
 const Striped = () => {
   return (

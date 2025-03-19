@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, Table, CardHeader } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
-import { BreckpointSpecific, Id, Name, OrderId, Price, Quantity, Total } from '../../../../Constant';
+import { BreckpointSpecific, Id, Name, OrderId, Price, Quantity, Total } from '../../../../constant';
 import { breckpointSpecific } from '../../../../Data/Table/bootstraptabledata';
 
 const BreckpointClass = () => {

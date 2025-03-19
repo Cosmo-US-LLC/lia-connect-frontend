@@ -5,7 +5,7 @@ import TimelineTab from './TimelineTab';
 import AboutTab from './AboutTab';
 import FriendsTab from './FriendsTab';
 import PhotosTab from './PhotosTab';
-import { Timline, Friends, About, Photos, GeneralManager } from '../../../Constant';
+import { Timline, Friends, About, Photos, GeneralManager } from '../../../constant';
 
 const SocialApp = () => {
   const [activeTab, setActiveTab] = useState('1');

@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Icons } from "../../../Constant";
+import { Icons } from "../../../constant";
 import { Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
 
 const ThemifyCommon = ({ iconType, title, parentCallback }) => {

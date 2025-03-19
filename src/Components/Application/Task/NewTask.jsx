@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label } from 'reactstrap';
-import { AddTask, TaskTitle, Collection, General, Description, Save, Cancel, NewTask } from '../../../Constant';
+import { AddTask, TaskTitle, Collection, General, Description, Save, Cancel, NewTask } from '../../../constant';
 import { CheckCircle } from 'react-feather';
 import { Btn } from '../../../AbstractElements';
 import TaskContext from '../../../_helper/Task';

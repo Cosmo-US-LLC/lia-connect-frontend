@@ -1,5 +1,5 @@
 import React from "react";
-import { BorderRadius } from "../../../../../Constant";
+import { BorderRadius } from "../../../../../constant";
 import CommonHeaderClass from "../../Common/CommonHeaderClass2";
 
 const BorderRadiusCard = () => {

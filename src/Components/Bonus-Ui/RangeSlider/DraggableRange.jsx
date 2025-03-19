@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, Card, CardBody, Label, Form } from 'reactstrap';
-import { Default, DraggableRange } from '../../../Constant';
+import { Default, DraggableRange } from '../../../constant';
 import { Range, getTrackBackground } from "react-range";
 import HeaderCard from '../../Common/Component/HeaderCard';
 

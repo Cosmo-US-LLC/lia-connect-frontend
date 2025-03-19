@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-import { Contact, DangerColor, Hometxt, Profile } from '../../../../../../../Constant';
+import { Contact, DangerColor, Hometxt, Profile } from '../../../../../../../constant';
 import { H5, P } from '../../../../../../../AbstractElements';
 
 const PillDangerTab = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
 import { H6 } from '../../../AbstractElements';
-import { PurchaseNow } from '../../../Constant';
+import { PurchaseNow } from '../../../constant';
 
 import purchase from '../../../assets/images/dashboard/purchase.png';
 

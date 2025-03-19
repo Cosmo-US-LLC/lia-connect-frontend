@@ -2,7 +2,7 @@ import React from 'react';
 import { CardBody, CardHeader, Col } from 'reactstrap';
 import { Mail, Bell, Settings, Music, AlertTriangle, AlertCircle } from 'react-feather';
 import { Badges, Btn, H5 } from '../../../AbstractElements';
-import { Messages, Notification } from '../../../Constant';
+import { Messages, Notification } from '../../../constant';
 
 const ButtonPart = () => {
   return (

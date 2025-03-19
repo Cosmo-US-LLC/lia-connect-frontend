@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import { Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { Btn, H4, P } from "../AbstractElements";
-import { EmailAddress, ForgotPassword, Password, RememberPassword, SignIn } from "../Constant";
+import { EmailAddress, ForgotPassword, Password, RememberPassword, SignIn } from "../constant";
 
 import { useNavigate } from "react-router-dom";
 import man from "../assets/images/dashboard/profile.png";

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5, UL, LI, P, H6, Image } from '../../../AbstractElements';
-import { RecentActivity, TopCategoriesTitle } from '../../../Constant';
+import { RecentActivity, TopCategoriesTitle } from '../../../constant';
 import { RecentActivityData } from '../../../Data/Ecommerce';
 import TopCategories from './TopCategories';
 

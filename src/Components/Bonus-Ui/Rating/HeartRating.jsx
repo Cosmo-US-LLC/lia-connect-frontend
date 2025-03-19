@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import Rating from 'react-rating';
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { HeartRating } from '../../../Constant';
+import { HeartRating } from '../../../constant';
 import { H6 } from '../../../AbstractElements';
 
 const HeartRatingClass = () => {

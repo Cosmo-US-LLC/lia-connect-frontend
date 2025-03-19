@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Clock } from 'react-feather';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Alerts, P } from '../../../AbstractElements';
-import { AlertWithIcon } from '../../../Constant';
+import { AlertWithIcon } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { IconsWithOutlineData } from '../../Common/Data/Ui-kits';
 import CommonAlert from './Common/CommonAlert';

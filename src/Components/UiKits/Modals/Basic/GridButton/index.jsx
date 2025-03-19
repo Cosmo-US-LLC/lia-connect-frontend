@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { Btn } from '../../../../../AbstractElements';
-import { ModalTitle, UsingTheGrid } from '../../../../../Constant';
+import { ModalTitle, UsingTheGrid } from '../../../../../constant';
 import CommonModal from '../../common/modal';
 
 const GridModal = () => {

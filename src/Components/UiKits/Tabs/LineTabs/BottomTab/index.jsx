@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { H5, P } from '../../../../../AbstractElements';
-import { Contact, Hometxt, MaterialBottomTab, Profile } from '../../../../../Constant';
+import { Contact, Hometxt, MaterialBottomTab, Profile } from '../../../../../constant';
 
 const BottomTab = () => {
   const [BottomLineTab, setBottomLineTab] = useState('1');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { P } from '../../../../../AbstractElements';
-import { Action, BasicTabs, Contact, Hometxt, Profile } from '../../../../../Constant';
+import { Action, BasicTabs, Contact, Hometxt, Profile } from '../../../../../constant';
 import HeaderCard from '../../../../Common/Component/HeaderCard';
 
 const BasicTabCard = () => {

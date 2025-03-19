@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import HeaderCard from "../../Common/Component/HeaderCard";
-import { Polygons } from "../../../Constant";
+import { Polygons } from "../../../constant";
 import { Col, Card, CardBody } from "reactstrap";
 import { GoogleMap, Polygon, useJsApiLoader } from "@react-google-maps/api";
 

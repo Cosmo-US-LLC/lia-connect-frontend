@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
-import { CustomStateButtons } from "../../../Constant";
+import { CustomStateButtons } from "../../../constant";
 import { Breadcrumbs, Btn, H5 } from '../../../AbstractElements';
 import { FlatButtonData } from '../../Common/Data/Buttons';
 

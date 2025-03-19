@@ -3,7 +3,7 @@ import { ArrowRight } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5, UL, LI, H6, Image } from '../../../AbstractElements';
-import { ActiveLessonsTitle, View } from '../../../Constant';
+import { ActiveLessonsTitle, View } from '../../../constant';
 import { ActiveLessonsList } from '../../../Data/OnlineCourse';
 import LessonChart from './LessonChart';
 

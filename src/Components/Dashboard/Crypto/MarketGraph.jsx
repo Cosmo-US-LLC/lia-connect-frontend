@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5, Btn } from '../../../AbstractElements';
-import { MarketGraphTitle, SeeAllBalance } from '../../../Constant';
+import { MarketGraphTitle, SeeAllBalance } from '../../../constant';
 import { MarketGraphLegend } from '../../../Data/Crypto';
 import { MarketGraphOption } from '../../../Data/Crypto/Chart';
 import DailyFilterNav from './DailyFilterNav';

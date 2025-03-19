@@ -1,4 +1,4 @@
-import { PortfolioTitle } from "../../../Constant";
+import { PortfolioTitle } from "../../../constant";
 import { H4, P, Image } from "../../../AbstractElements";
 import PagesSort from "./Pages";
 import React, { Fragment, useState, useEffect } from "react";

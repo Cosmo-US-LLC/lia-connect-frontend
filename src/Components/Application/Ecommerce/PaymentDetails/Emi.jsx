@@ -1,5 +1,5 @@
 import { Btn, LI, UL } from '../../../../AbstractElements';
-import { BankName, EMI, SelectCard, SelectDuration, Submit } from '../../../../Constant';
+import { BankName, EMI, SelectCard, SelectDuration, Submit } from '../../../../constant';
 import mastercard from '../../../../assets/images/ecommerce/mastercard.png';
 import visa from '../../../../assets/images/ecommerce/visa.png';
 import paypal from '../../../../assets/images/ecommerce/paypal.png';

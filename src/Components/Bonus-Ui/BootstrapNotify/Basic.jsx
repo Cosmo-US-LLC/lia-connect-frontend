@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { toast } from 'react-toastify';
-import { BasicExamples, SuccessNotification, InfoNotification, WarningNotification, DangerNotification } from '../../../Constant';
+import { BasicExamples, SuccessNotification, InfoNotification, WarningNotification, DangerNotification } from '../../../constant';
 import { Btn, H5 } from '../../../AbstractElements';
 
 // toast.configure();

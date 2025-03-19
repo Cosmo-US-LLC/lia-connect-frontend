@@ -1,5 +1,5 @@
 import React from 'react';
-import { MarginBottom } from '../../../../../Constant';
+import { MarginBottom } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass';
 
 const MarginBottomCard = () => {

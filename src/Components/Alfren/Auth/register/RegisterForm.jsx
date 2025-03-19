@@ -38,7 +38,7 @@ import man from "../../../../assets/images/dashboard/profile.png";
 import { ToastContainer, toast } from "react-toastify";
 import { registerUser } from "../../../../redux/Auth/authActions";
 import { useDispatch } from "react-redux";
-import { UserRegistered } from "../../../../Constant/index";
+import { UserRegistered } from "../../../../constant/index";
 
 const RegisterForm = ({ logoClassMain }) => {
   const [error, setError] = useState(true);

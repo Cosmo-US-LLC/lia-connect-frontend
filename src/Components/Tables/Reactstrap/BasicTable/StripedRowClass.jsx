@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { FirstName, Game, Id, LastName, Point, StripedRow, tablestriped, tablestripedspan, tablestripedspan1, Use } from '../../../../Constant';
+import { FirstName, Game, Id, LastName, Point, StripedRow, tablestriped, tablestripedspan, tablestripedspan1, Use } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { stripedrowtabledata } from '../../../../Data/Table/bootstraptabledata';
 

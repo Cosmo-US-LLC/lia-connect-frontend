@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { CardFooter } from 'reactstrap'
 import { Btn } from "../../../../AbstractElements";
-import { Submit, Cancel } from "../../../../Constant";
+import { Submit, Cancel } from "../../../../constant";
 
 const FooterCard = () => {
     return (

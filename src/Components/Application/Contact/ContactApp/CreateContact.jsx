@@ -1,4 +1,4 @@
-import { NewContacts, AddContacts, Name, Age, Mobile, Save, Cancel } from '../../../../Constant';
+import { NewContacts, AddContacts, Name, Age, Mobile, Save, Cancel } from '../../../../constant';
 import defaultuser from '../../../../assets/images/user/user.png';
 import { Btn, Image } from '../../../../AbstractElements';
 import ContactAppContext from '../../../../_helper/Contact';

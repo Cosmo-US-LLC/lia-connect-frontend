@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { Close, SaveChanges } from '../../../../Constant';
+import { Close, SaveChanges } from '../../../../constant';
 
 const CommonModal = (props) => {
   return (

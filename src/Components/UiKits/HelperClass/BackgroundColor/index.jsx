@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackgroundColor } from '../../../../Constant';
+import { BackgroundColor } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass';
 
 const BackgroundColorCard = () => {

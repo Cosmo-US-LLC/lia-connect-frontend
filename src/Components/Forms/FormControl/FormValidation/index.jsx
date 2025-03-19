@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import TooltipForm from '../TooltipForm';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import { Tooltips } from '../../../../Constant';
+import { Tooltips } from '../../../../constant';
 import { Breadcrumbs, H5 } from '../../../../AbstractElements';
 import CustomStylesClass from './CustomStyles';
 import BrowserDefaultsClass from './BrowserDefaults';

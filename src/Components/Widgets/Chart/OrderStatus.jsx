@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import Chart from 'react-apexcharts';
 import { progress1, progress2, progress3, progress4, progress5 } from '../../Common/Data/ApexChart';
-import { OrderStatus } from '../../../Constant';
+import { OrderStatus } from '../../../constant';
 import { ShoppingBag } from 'react-feather';
 import { H5 } from '../../../AbstractElements';
 

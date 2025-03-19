@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Alerts } from '../../../AbstractElements';
-import { LightAlerts } from '../../../Constant';
+import { LightAlerts } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const LightAlert = () => {

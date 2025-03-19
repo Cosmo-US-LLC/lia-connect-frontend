@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Badges, H5 } from '../../../../AbstractElements';
-import { ContextualVariations, Danger, Dark, Info, Light, Primary, secondary, Success, Warning } from '../../../../Constant';
+import { ContextualVariations, Danger, Dark, Info, Light, Primary, secondary, Success, Warning } from '../../../../constant';
 
 const ContextualPills = () => {
   return (

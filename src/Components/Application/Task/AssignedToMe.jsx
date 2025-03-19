@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { Link, MoreHorizontal, Printer, Trash2 } from 'react-feather';
 import { Card, CardBody, CardHeader, Table } from 'reactstrap';
-import { NoTasksFound, Print } from '../../../Constant';
+import { NoTasksFound, Print } from '../../../constant';
 import SweetAlert from 'sweetalert2';
 import { H6, P } from '../../../AbstractElements';
 import TaskContext from '../../../_helper/Task';

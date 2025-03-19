@@ -1,4 +1,4 @@
-import { Earnings, Products, Messages, NewUser } from '../../Constant';
+import { Earnings, Products, Messages, NewUser } from '../../constant';
 import { Database, ShoppingBag, MessageCircle, UserPlus } from 'react-feather';
 export const NumbersUpData = [
   {

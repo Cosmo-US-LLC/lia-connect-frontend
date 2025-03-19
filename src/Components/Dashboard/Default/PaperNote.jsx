@@ -3,7 +3,7 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
 import { H5, UL, LI, Image, P } from '../../../AbstractElements';
-import { BlogMessage, Inprogress, PaperNoteTitle, ViewProject } from '../../../Constant';
+import { BlogMessage, Inprogress, PaperNoteTitle, ViewProject } from '../../../constant';
 import blogImage from '../../../assets/images/dashboard/papernote.jpg';
 import { NoteLabels } from '../../../Data/DefaultDashboard';
 

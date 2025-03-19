@@ -8,7 +8,7 @@ import {
     JohnyWaston,
     JohnyWilliam,
     SarahLoren,
-} from '../../../../Constant';
+} from '../../../../constant';
 
 export const activityLogData = [
     {

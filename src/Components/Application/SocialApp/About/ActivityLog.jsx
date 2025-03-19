@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import HeaderCard from '../../../Common/Component/HeaderCard';
-import { ActivityLog } from '../../../../Constant';
+import { ActivityLog } from '../../../../constant';
 import { H6, P } from '../../../../AbstractElements';
 import { MessageSquare, ThumbsUp, UserPlus } from 'react-feather';
 

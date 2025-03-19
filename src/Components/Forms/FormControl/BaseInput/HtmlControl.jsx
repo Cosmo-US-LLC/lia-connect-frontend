@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
-import { BasicHTMLInputControl, ColorPicker, DateAndTime, MaximumLength, Month, Password, Placeholder, SimpleInput, StaticText, Telephone, Textarea, Time, Week } from '../../../../Constant';
+import { BasicHTMLInputControl, ColorPicker, DateAndTime, MaximumLength, Month, Password, Placeholder, SimpleInput, StaticText, Telephone, Textarea, Time, Week } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../Common/FooterCard';
 

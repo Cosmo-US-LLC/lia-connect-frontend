@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { Breadcrumbs, Btn } from '../../../../AbstractElements';
 import ProjectContext from '../../../../_helper/Project';
-import { Add, Cancel } from '../../../../Constant';
+import { Add, Cancel } from '../../../../constant';
 import ProjectTitleClass from './ProjectTitle';
 import ClientNameClass from './ClientName';
 import ProjectRateClass from './ProjectRate';

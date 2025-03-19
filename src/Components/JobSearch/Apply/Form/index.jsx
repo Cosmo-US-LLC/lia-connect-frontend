@@ -1,5 +1,5 @@
 import one from '../../../../assets/images/job-search/1.jpg';
-import { UIDesigner, CreativeTelecom, Submit, Cancel } from '../../../../Constant';
+import { UIDesigner, CreativeTelecom, Submit, Cancel } from '../../../../constant';
 import { Btn, H6, P, Image } from '../../../../AbstractElements';
 import PersonalDetail from './PersonalDetail';
 import EducationClass from './Education';

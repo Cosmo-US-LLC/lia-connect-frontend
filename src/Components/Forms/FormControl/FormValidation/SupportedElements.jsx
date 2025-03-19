@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Form, FormGroup, Label, Input } from 'reactstrap'
-import { SupportedElements } from "../../../../Constant";
+import { SupportedElements } from "../../../../constant";
 import HeaderCard from "../../../Common/Component/HeaderCard";
 
 const SupportedElementsClass = () => {

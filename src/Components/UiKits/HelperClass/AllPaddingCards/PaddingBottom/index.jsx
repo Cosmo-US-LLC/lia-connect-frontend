@@ -1,5 +1,5 @@
 import React from 'react';
-import { PaddingBottom } from '../../../../../Constant';
+import { PaddingBottom } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass';
 
 const PaddingBottomCard = () => {

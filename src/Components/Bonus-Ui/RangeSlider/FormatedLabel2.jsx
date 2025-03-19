@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, Card, CardBody, Label, Form } from 'reactstrap';
-import { Default, FormatedLabel } from '../../../Constant';
+import { Default, FormatedLabel } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Range, getTrackBackground } from "react-range";
 

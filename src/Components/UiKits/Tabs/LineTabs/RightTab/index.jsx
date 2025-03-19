@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { H5, P } from '../../../../../AbstractElements';
-import { Hometxt, Inbox, MaterialRightTab, Profile, Settings } from '../../../../../Constant';
+import { Hometxt, Inbox, MaterialRightTab, Profile, Settings } from '../../../../../constant';
 
 const RightTab = () => {
   const [RightLineTab, setRightLineTab] = useState('1');

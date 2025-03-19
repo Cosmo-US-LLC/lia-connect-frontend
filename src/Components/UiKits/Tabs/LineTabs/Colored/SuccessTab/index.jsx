@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Nav, NavLink, Row, TabContent, TabPane } from 'reactstrap';
 import { H5, P } from '../../../../../../AbstractElements';
-import { Hometxt, Inbox, Profile, Settings, SimpleMaterialTab } from '../../../../../../Constant';
+import { Hometxt, Inbox, Profile, Settings, SimpleMaterialTab } from '../../../../../../constant';
 
 const SuccessColorTab = () => {
   const [InfoRightLineTab, setInfoRightLineTab] = useState('1');

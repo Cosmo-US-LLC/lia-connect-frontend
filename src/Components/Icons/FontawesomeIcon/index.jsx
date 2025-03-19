@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useCallback } from 'react';
 import { Breadcrumbs } from '../../../AbstractElements';
 import { Container, Row } from 'reactstrap';
 import axios from 'axios';
-import { Currency, WebApp, Spinner, FormControl, Directional, VideoPlayer, MedicalPlayer, TextEditor, BrandPlayer } from '../../../Constant';
+import { Currency, WebApp, Spinner, FormControl, Directional, VideoPlayer, MedicalPlayer, TextEditor, BrandPlayer } from '../../../constant';
 import FontawesomeCommon from './FontawesomeCommon';
 import IconMarkUp from '../Icon-markup';
 import { FontawsomeDataApi } from '../../../api';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import { Image, H5, LI, UL } from '../../../AbstractElements';
-import { BrooklynSimmons, BrooklynSimmonsEmail } from '../../../Constant';
+import { BrooklynSimmons, BrooklynSimmonsEmail } from '../../../constant';
 import { SocialProfileStatus } from '../../../Data/Social';
 
 import profileImage from '../../../assets/images/dashboard-5/profile.png';

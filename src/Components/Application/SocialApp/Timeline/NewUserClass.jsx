@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col, Input, InputGroup, Media } from 'reactstrap';
 import { Btn, H6, Image, P } from '../../../../AbstractElements';
-import { AlexendraDhadio, ELANA, IssaBell, JasonBorne, MoreCommnets, OliviaJon } from '../../../../Constant';
+import { AlexendraDhadio, ELANA, IssaBell, JasonBorne, MoreCommnets, OliviaJon } from '../../../../constant';
 import one from '../../../../assets/images/user/1.jpg';
 import three from '../../../../assets/images/user/3.jpg';
 import two from '../../../../assets/images/user/2.png';

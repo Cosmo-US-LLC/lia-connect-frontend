@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp } from 'react-feather';
-import { Month, Sale, Today, Week, Year } from '../../Constant';
+import { Month, Sale, Today, Week, Year } from '../../constant';
 
 export const ArrowCardData = [
   {

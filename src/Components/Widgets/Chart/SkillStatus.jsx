@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
-import { SkillStatus } from '../../../Constant';
+import { SkillStatus } from '../../../constant';
 import Chart from 'react-apexcharts';
 import { radialChartLive } from '../../Common/Data/ApexChart';
 import { TrendingUp } from 'react-feather';

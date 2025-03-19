@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { Row, Media, Label, Input, Col, Form, FormGroup } from 'reactstrap';
 import { Btn, H5, H6, Image, LI, P, UL } from '../../../../AbstractElements';
-import { NewMessage, To, ATTACHMENTS, DownloadAll, Reply, ReplyAll, Forward, Send, Messages, Subject } from '../../../../Constant';
+import { NewMessage, To, ATTACHMENTS, DownloadAll, Reply, ReplyAll, Forward, Send, Messages, Subject } from '../../../../constant';
 import CKEditor from 'react-ckeditor-component';
 import email1 from '../../../../assets/images/email/1.jpg';
 import email2 from '../../../../assets/images/email/2.jpg';

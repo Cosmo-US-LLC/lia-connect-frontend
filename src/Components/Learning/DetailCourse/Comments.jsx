@@ -1,5 +1,5 @@
 import { H4, H6, Image, LI, P, UL } from '../../../AbstractElements';
-import { JolioMark } from '../../../Constant';
+import { JolioMark } from '../../../constant';
 import React, { Fragment } from 'react';
 import { Col, Media, Row } from 'reactstrap';
 

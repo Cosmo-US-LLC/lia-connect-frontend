@@ -3,7 +3,7 @@ import { Card, CardBody, Col } from 'reactstrap';
 import { P } from '../../../AbstractElements';
 import ScrollBars from 'react-custom-scrollbars-2';
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { scrollpara, scrollpara1, scrollpara2, scrollpara3 } from '../../../Constant';
+import { scrollpara, scrollpara1, scrollpara2, scrollpara3 } from '../../../constant';
 
 const VerticalScroll = () => {
     return (

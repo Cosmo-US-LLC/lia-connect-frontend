@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useContext, useState } from 'react';
-import { Name, Age, MobileNo, EmailAddress, History, Edit, Delete, Print, General } from '../../../../Constant';
+import { Name, Age, MobileNo, EmailAddress, History, Edit, Delete, Print, General } from '../../../../constant';
 import { H5, H6, Image, LI, P, UL } from '../../../../AbstractElements';
 import ContactAppContext from '../../../../_helper/Contact';
 import SearchNotFoundClass from './SearchNotFoundClass';

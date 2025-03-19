@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import Masonry from 'react-masonry-css';
 import { Container, Row, Col, Card, CardBody, Media } from 'reactstrap';
-import { PortfolioTitle, MasonryGalleryWithDescription } from '../../Constant';
+import { PortfolioTitle, MasonryGalleryWithDescription } from '../../constant';
 import { Breadcrumbs, H4, P } from '../../AbstractElements';
 import GalleryContext from '../../_helper/Gallery';
 import HeaderCard from '../Common/Component/HeaderCard';

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col, Input, InputGroup, Media } from 'reactstrap';
 import { Btn, H6, Image, P } from '../../../../AbstractElements';
-import { ELANA, IssaBell, JasonBorne, MoreCommnets } from '../../../../Constant';
+import { ELANA, IssaBell, JasonBorne, MoreCommnets } from '../../../../constant';
 import one from '../../../../assets/images/user/1.jpg';
 import timeline2 from '../../../../assets/images/social-app/timeline-2.png';
 import { MoreVertical } from 'react-feather';

@@ -1,5 +1,5 @@
 import { DollarSign, Layers, ShoppingBag, ShoppingCart } from 'react-feather';
-import { Cancel, Done, New, Pending } from '../../Constant';
+import { Cancel, Done, New, Pending } from '../../constant';
 
 export const WidgetJoinsData = [
   {

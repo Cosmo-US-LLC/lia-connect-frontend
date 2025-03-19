@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Card, CardBody, Label, Input } from 'reactstrap'
-import { AnimatedRadioButtons, Option } from "../../../../Constant";
+import { AnimatedRadioButtons, Option } from "../../../../constant";
 import HeaderCard from "../../../Common/Component/HeaderCard";
 
 const AnimatedClass = () => {

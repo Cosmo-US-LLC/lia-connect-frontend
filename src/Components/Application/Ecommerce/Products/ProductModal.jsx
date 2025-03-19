@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Btn, H4, H6, Image, LI, P, UL } from '../../../../AbstractElements';
-import { ProductDetails, Quantity, AddToCart, ViewDetails, ProductSizeArray } from '../../../../Constant';
+import { ProductDetails, Quantity, AddToCart, ViewDetails, ProductSizeArray } from '../../../../constant';
 import CartContext from '../../../../_helper/Ecommerce/Cart';
 import ProductContext from '../../../../_helper/Ecommerce/Product';
 import { Modal, Col, InputGroup, InputGroupText, Input } from 'reactstrap';

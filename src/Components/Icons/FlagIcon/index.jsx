@@ -3,7 +3,7 @@ import { Breadcrumbs } from '../../../AbstractElements';
 import IconMarkUp from '../Icon-markup';
 import { Container, Row, Col, Card, CardHeader, CardBody, Media } from 'reactstrap';
 import axios from 'axios';
-import { FlagIcons } from '../../../Constant';
+import { FlagIcons } from '../../../constant';
 import { FlagIconDataApi } from '../../../api';
 
 const FlagIcon = () => {

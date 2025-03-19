@@ -1,5 +1,5 @@
 import { Image } from '../../../../AbstractElements';
-import { CreditCard } from '../../../../Constant';
+import { CreditCard } from '../../../../constant';
 import card from '../../../../assets/images/ecommerce/card.png';
 import { Card, CardBody, Col, Form, FormGroup, Input, Row } from 'reactstrap';
 import React, { Fragment } from 'react';

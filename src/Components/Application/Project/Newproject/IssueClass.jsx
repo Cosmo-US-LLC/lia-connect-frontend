@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
-import { Big, Comment, Issues, Medium, Resolved, Small } from '../../../../Constant';
+import { Big, Comment, Issues, Medium, Resolved, Small } from '../../../../constant';
 
 const IssueClass = ({ register }) => {
     return (

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Col, Card, CardBody } from 'reactstrap';
 import dragula from 'react-dragula';
-import { CopyDragNDrop } from '../../../Constant';
+import { CopyDragNDrop } from '../../../constant';
 
 const Drag3 = () => {
     const dragulaDecoratorRight = (componentBackingInstance) => {

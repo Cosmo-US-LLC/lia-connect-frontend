@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Btn, P } from '../../../../../AbstractElements';
-import { ModalTitle, VerticallyCentered } from '../../../../../Constant';
+import { ModalTitle, VerticallyCentered } from '../../../../../constant';
 import CommonModal from '../../common/modal';
 
 const VerticalBtn = () => {

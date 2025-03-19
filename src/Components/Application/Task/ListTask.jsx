@@ -2,7 +2,7 @@ import React, { Fragment, useRef } from 'react';
 import ReactToPrint from 'react-to-print';
 import { Printer } from 'react-feather';
 import { Card, CardHeader } from 'reactstrap';
-import { CreatedByMe, Print } from '../../../Constant';
+import { CreatedByMe, Print } from '../../../constant';
 import { H6 } from '../../../AbstractElements';
 import CreatedByme from './CreatedByme';
 

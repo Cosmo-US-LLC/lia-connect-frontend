@@ -1,5 +1,5 @@
 import { Progressbar } from "AbstractElements";
-import { BorderRadius } from "Constant";
+import { BorderRadius } from "constant";
 import React, { Fragment } from "react";
 import ReactApexChart from "react-apexcharts";
 import { Card, CardBody, Col } from "reactstrap";

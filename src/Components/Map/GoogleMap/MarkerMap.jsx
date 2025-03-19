@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import HeaderCard from "../../Common/Component/HeaderCard";
-import { CurrentLocation, MarkerMap } from "../../../Constant";
+import { CurrentLocation, MarkerMap } from "../../../constant";
 import { Card, CardBody, Col } from "reactstrap";
 import {
   GoogleMap,

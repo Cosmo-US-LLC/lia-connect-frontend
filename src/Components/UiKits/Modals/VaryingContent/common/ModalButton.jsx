@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Btn } from '../../../../../AbstractElements';
-import { NewMessage } from '../../../../../Constant';
+import { NewMessage } from '../../../../../constant';
 import FormModal from './FormModal';
 
 const ModalButton = ({ btnText, defaultVal }) => {

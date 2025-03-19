@@ -1,5 +1,5 @@
 import { Image, H4, H6, P } from '../../../../AbstractElements';
-import { JohanDeo, JohanDeoMailId, ProjectDescription, ProjectDescriptionDetails } from '../../../../Constant';
+import { JohanDeo, JohanDeoMailId, ProjectDescription, ProjectDescriptionDetails } from '../../../../constant';
 import { Col, Media, Row } from 'reactstrap';
 import React, { Fragment } from 'react';
 import user1 from '../../../../assets/images/user/1.jpg';

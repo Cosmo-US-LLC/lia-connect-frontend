@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useContext } from 'react';
 import { Input } from 'reactstrap';
 import { H6 } from '../../../../AbstractElements';
 import ConfigDB from '../../../../Config/ThemeConfig';
-import { Fade, FadeBottom, None, RouterAnimation, SildeFade, ZoomFade, ZoomOut } from '../../../../Constant';
+import { Fade, FadeBottom, None, RouterAnimation, SildeFade, ZoomFade, ZoomOut } from '../../../../constant';
 import AnimationThemeContext from '../../../../_helper/AnimationTheme';
 
 const AnimationFade = () => {

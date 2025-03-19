@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5, Btn } from '../../../AbstractElements';
-import { Create, UpcomingScheduleTitle } from '../../../Constant';
+import { Create, UpcomingScheduleTitle } from '../../../constant';
 import { ScheduleListData } from '../../../Data/OnlineCourse';
 import ScheduleListBox from './ScheduleListBox';
 

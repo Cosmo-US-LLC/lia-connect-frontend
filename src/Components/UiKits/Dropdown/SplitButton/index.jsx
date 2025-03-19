@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { DropdownSplitButton } from '../../../../Constant';
+import { DropdownSplitButton } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import { SplitData } from '../../../Common/Data/Ui-kits';
 import SplitButtonDropdown from './SplitButtonDropdown';

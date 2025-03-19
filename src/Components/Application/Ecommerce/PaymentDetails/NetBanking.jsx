@@ -1,5 +1,5 @@
 import { Btn } from '../../../../AbstractElements';
-import { BankName, NetBanking, Submit } from '../../../../Constant';
+import { BankName, NetBanking, Submit } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col, FormGroup, Input, Row } from 'reactstrap';
 import HeaderCard from '../../../Common/Component/HeaderCard';

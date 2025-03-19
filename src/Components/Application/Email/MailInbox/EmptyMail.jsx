@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Image, P } from '../../../../AbstractElements';
-import { NoMailFound } from '../../../../Constant';
+import { NoMailFound } from '../../../../constant';
 
 var images = require.context('../../../../assets/images', true);
 

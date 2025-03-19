@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { Date, EmployeeName, Hours, Id, Performance, sizetable, Status } from '../../../../Constant';
+import { Date, EmployeeName, Hours, Id, Performance, sizetable, Status } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { Sizingtabledata } from '../../../../Data/Table/bootstraptabledata';
 

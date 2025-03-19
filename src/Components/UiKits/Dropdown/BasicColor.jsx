@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { Action, AnotherAction, BasicColorDropdown, SomethingElseHere } from '../../../Constant';
+import { Action, AnotherAction, BasicColorDropdown, SomethingElseHere } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { BasicColorData } from '../../Common/Data/Ui-kits';
 import CommonDropDown from './Common/CommonDropDown';

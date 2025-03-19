@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Col, Card, CardBody, Button } from 'reactstrap';
 import SweetAlert from 'sweetalert2';
-import { BasicExamples } from '../../../Constant';
+import { BasicExamples } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { BasicSweetalrtData } from '../../Common/Data/Bonus-ui';
 

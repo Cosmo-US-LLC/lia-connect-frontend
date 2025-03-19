@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Col, Form, FormGroup, Input, Media, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
 import ChatAppContext from '../../../../_helper/Chat';
-import { CALL, STATUS, PROFILE, Active, ChataApp_p1, ChataApp_p2, Following, Follower, MarkJecno } from '../../../../Constant';
+import { CALL, STATUS, PROFILE, Active, ChataApp_p1, ChataApp_p2, Following, Follower, MarkJecno } from '../../../../constant';
 import two from '../../../../assets/images/user/2.png';
 import { H5, Image, LI, P, UL } from '../../../../AbstractElements';
 

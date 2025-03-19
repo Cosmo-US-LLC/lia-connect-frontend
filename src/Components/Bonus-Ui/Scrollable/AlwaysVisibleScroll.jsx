@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import { P } from '../../../AbstractElements';
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { scrollpara, scrollpara1, scrollpara2, scrollpara3 } from '../../../Constant';
+import { scrollpara, scrollpara1, scrollpara2, scrollpara3 } from '../../../constant';
 
 const AlwaysVisibleScroll = () => {
     return (

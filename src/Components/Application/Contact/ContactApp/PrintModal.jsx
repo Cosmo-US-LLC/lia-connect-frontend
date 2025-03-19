@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react';
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { Cancel, PrintViews, Print } from '../../../../Constant';
+import { Cancel, PrintViews, Print } from '../../../../constant';
 import PrintPreview from '../PrintPreview';
 import ReactToPrint from 'react-to-print';
 import { Btn } from '../../../../AbstractElements';

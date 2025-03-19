@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Card, CardBody } from "reactstrap";
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { PolarChart } from '../../../Constant';
+import { PolarChart } from '../../../constant';
 import { PolarArea } from "react-chartjs-2";
 import { polarData, polarOption } from "../../../Data/Chart/chartjs";
 

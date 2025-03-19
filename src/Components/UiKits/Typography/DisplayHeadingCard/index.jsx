@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H1, H5 } from '../../../../AbstractElements';
-import { DisplayHeadings } from '../../../../Constant';
+import { DisplayHeadings } from '../../../../constant';
 
 const DisplayHeadingCard = () => {
   return (

@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { useForm } from 'react-hook-form';
 import { Col, Form, Label, Input, InputGroup, InputGroupText, Row } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { FirstName, LastName, Username, State, City, Zip, SubmitForm } from '../../../Constant';
+import { FirstName, LastName, Username, State, City, Zip, SubmitForm } from '../../../constant';
 
 const TooltipForm = () => {
   const {

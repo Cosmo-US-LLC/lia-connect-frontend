@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Dropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { Active, Disabled, DropdownButton, DropdownWithDisable, Normal } from '../../../Constant';
+import { Active, Disabled, DropdownButton, DropdownWithDisable, Normal } from '../../../constant';
 
 const WithDisable = () => {
   return (

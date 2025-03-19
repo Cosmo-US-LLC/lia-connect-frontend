@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
-import { EmailAddress, ExampleMultipleSelect, ExampleSelect, ExampleTextarea, Password, RaiseInputStyle } from '../../../../Constant';
+import { EmailAddress, ExampleMultipleSelect, ExampleSelect, ExampleTextarea, Password, RaiseInputStyle } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../Common/FooterCard';
 

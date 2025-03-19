@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { H6 } from '../../../AbstractElements';
-import { DailyDropdown } from '../../../Constant';
+import { DailyDropdown } from '../../../constant';
 import SvgIcon from '../../Common/Component/SvgIcon';
 import DropdownCommon from '../../Common/Dropdown';
 

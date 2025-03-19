@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { Btn } from '../../../../AbstractElements';
-import { OffsetToTooltip } from '../../../../Constant';
+import { OffsetToTooltip } from '../../../../constant';
 import { OffsetPopoverData } from '../../../Common/Data/Ui-kits';
 import CommonPopover from '../common/CommonPopover';
 

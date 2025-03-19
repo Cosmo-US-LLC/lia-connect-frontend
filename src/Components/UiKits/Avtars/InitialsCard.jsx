@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
-import { Initials } from '../../../Constant';
+import { Initials } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const InitialsCard = () => {

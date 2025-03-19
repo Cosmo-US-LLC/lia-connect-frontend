@@ -3,7 +3,7 @@ import Registration from "./Registration";
 import Email from "./Email";
 import Birthdate from "./Birthdate";
 import { Container, Row, Col, Card, CardBody } from "reactstrap";
-import { FormWizardWithIcon } from "../../../../Constant";
+import { FormWizardWithIcon } from "../../../../constant";
 import { Breadcrumbs } from "../../../../AbstractElements";
 import HeaderCard from "../../../Common/Component/HeaderCard";
 

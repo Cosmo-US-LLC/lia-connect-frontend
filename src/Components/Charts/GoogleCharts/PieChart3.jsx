@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { DonutChart } from '../../../Constant';
+import { DonutChart } from '../../../constant';
 import { Chart } from "react-google-charts";
 import HeaderCard from '../../Common/Component/HeaderCard';
 

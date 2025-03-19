@@ -1,4 +1,4 @@
-import { AssignedToMe, Business, CreatedByMe, DelayedTasks, Holidays, MyTasks, Newsletter, Notification, ThisMonthTasks, ThisWeekTask, TodayTasks, UpcomingTasks } from "../../../../Constant";
+import { AssignedToMe, Business, CreatedByMe, DelayedTasks, Holidays, MyTasks, Newsletter, Notification, ThisMonthTasks, ThisWeekTask, TodayTasks, UpcomingTasks } from "../../../../constant";
 
 export const taskData = [
     {

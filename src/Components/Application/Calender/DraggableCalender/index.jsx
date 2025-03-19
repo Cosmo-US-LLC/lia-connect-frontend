@@ -1,5 +1,5 @@
 import { Breadcrumbs } from "../../../../AbstractElements";
-import { Dragging_Event } from "../../../../Constant";
+import { Dragging_Event } from "../../../../constant";
 import DragCalendar from "./DragCalendar";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import React, { Fragment } from "react";

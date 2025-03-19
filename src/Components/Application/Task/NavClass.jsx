@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useState } from 'react';
 import { Col, Card, CardBody, Nav, NavItem } from 'reactstrap';
-import { Views, Tags } from '../../../Constant';
+import { Views, Tags } from '../../../constant';
 import { PlusCircle } from 'react-feather';
 import NewTaskClass from './NewTask';
 import HeaderProfile from './HeaderProfile';

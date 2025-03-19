@@ -1,5 +1,5 @@
 import { Btn, H1, H3, H5, H6 } from '../../../../AbstractElements';
-import { Standard, Premium, LorumIpsum, Business, Extra, Purchase } from '../../../../Constant';
+import { Standard, Premium, LorumIpsum, Business, Extra, Purchase } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Col, CardBody, Card, Row } from 'reactstrap';
 

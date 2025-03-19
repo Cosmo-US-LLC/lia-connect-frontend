@@ -1,7 +1,7 @@
 import one from '../../../../assets/images/ecommerce/01.jpg';
 import two from '../../../../assets/images/ecommerce/02.jpg';
 import three from '../../../../assets/images/ecommerce/03.jpg';
-import { NewProducts, FancyShirt, FancyShirtPrice } from '../../../../Constant';
+import { NewProducts, FancyShirt, FancyShirtPrice } from '../../../../constant';
 import { H6, P, Image } from '../../../../AbstractElements';
 import Slider from 'react-slick';
 import { Row, Col, Media } from 'reactstrap';

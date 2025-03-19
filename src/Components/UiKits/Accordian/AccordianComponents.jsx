@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 import { Accordion } from 'react-bootstrap';
-import { CollapsibleGroupItem } from '../../../Constant';
+import { CollapsibleGroupItem } from '../../../constant';
 import { H5 } from '../../../AbstractElements';
 
 export const AllCloseAccordian = (props) => {

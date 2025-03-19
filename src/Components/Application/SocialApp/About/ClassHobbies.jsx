@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { MoreVertical } from 'react-feather';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5, P } from '../../../../AbstractElements';
-import { Hobbies } from '../../../../Constant';
+import { Hobbies } from '../../../../constant';
 
 const ClassHobbies = () => {
     return (

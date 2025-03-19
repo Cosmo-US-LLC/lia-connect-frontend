@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontStyle } from '../../../../../Constant';
+import { FontStyle } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass2';
 
 const FontStyleCard = () => {

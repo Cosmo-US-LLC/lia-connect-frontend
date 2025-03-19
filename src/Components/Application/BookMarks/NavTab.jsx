@@ -2,7 +2,7 @@ import React, { Fragment, useCallback, useContext, useState } from 'react';
 import { Bookmark, PlusCircle } from 'react-feather';
 import { Nav, NavItem } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { NewBookmark, Views, CreatedByMe, Favourites, SharedWithMe, MyBookmark, Tags, Newsletter, Notification, Business, Holidays, Important, Orgenization } from '../../../Constant';
+import { NewBookmark, Views, CreatedByMe, Favourites, SharedWithMe, MyBookmark, Tags, Newsletter, Notification, Business, Holidays, Important, Orgenization } from '../../../constant';
 import BookmarkContext from '../../../_helper/Bookmark';
 import BookmarkModal from './ModalBookMark';
 import ModalTag from './ModalTag';

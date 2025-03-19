@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Modal, ModalBody, ModalHeader, ModalFooter, Row, Button } from 'reactstrap';
 import { Btn, P } from '../../AbstractElements';
-import { Configuration, CopyText, Cancel } from '../../Constant';
+import { Configuration, CopyText, Cancel } from '../../constant';
 import { ConfigDB } from '../../Config/ThemeConfig';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';

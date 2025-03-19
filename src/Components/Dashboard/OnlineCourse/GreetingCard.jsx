@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { H4, Image, P } from '../../../AbstractElements';
-import { HelloJashmin, welcomeMessage } from '../../../Constant';
+import { HelloJashmin, welcomeMessage } from '../../../constant';
 import Hand from '../../../assets/images/dashboard-3/hand.svg';
 import welcome from '../../../assets/images/dashboard-3/widget.svg';
 

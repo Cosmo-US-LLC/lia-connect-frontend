@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H4, H5, P } from '../../../AbstractElements';
 import Alerts from '../../../CommonElements/Alert';
-import { AdditionalContent } from '../../../Constant';
+import { AdditionalContent } from '../../../constant';
 
 const AdditionalContents = () => {
 

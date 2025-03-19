@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { LI, UL } from '../../../../AbstractElements';
-import { FlushStyle } from '../../../../Constant';
+import { FlushStyle } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const FlushStyles = () => {

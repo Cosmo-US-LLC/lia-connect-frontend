@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Badges, H5 } from '../../../../AbstractElements';
-import { ContextualVariations, Danger, Dark, Light, Primary, secondary, Success, Warning, Info } from '../../../../Constant';
+import { ContextualVariations, Danger, Dark, Light, Primary, secondary, Success, Warning, Info } from '../../../../constant';
 
 const ContextualBadge = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Card, CardHeader, CardBody, Media, Form, FormGroup, Input, Collapse } from 'reactstrap';
-import { MutualFriends } from '../../../../Constant';
+import { MutualFriends } from '../../../../constant';
 import { Btn, H5, Image } from '../../../../AbstractElements';
 import { MutualFriendsData } from '../../../../Data/SocialHeader';
 import { ChevronDown, ChevronUp } from 'react-feather';

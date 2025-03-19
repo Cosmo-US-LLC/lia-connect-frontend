@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Row, TabContent, TabPane } from 'reactstrap';
 import { LI, UL } from '../../../../AbstractElements';
-import { Hometxt, JavaScriptBehavior, Messages, Profile, Settings } from '../../../../Constant';
+import { Hometxt, JavaScriptBehavior, Messages, Profile, Settings } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const JavascriptBase = () => {

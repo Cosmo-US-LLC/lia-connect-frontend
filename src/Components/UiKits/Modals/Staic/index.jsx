@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { Btn, P } from '../../../../AbstractElements';
-import { Close, NewMessage, SendMessage, StaticExample } from '../../../../Constant';
+import { Close, NewMessage, SendMessage, StaticExample } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const StaticModal = () => {

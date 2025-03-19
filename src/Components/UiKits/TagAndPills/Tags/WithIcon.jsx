@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail, DollarSign, Headphones, Link, GitHub, Award, Activity, Heart } from 'react-feather';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Badges, H5 } from '../../../../AbstractElements';
-import { TagsWithIcon } from '../../../../Constant';
+import { TagsWithIcon } from '../../../../constant';
 
 const TagWithIcon = () => {
 

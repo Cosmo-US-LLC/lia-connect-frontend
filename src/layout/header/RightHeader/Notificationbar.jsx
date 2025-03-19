@@ -8,7 +8,7 @@ import {
   Notification,
   OrderComplete,
   TicketsGenerated,
-} from "../../../Constant";
+} from "../../../constant";
 import { Image } from "../../../AbstractElements";
 
 const Notificationbar = () => {

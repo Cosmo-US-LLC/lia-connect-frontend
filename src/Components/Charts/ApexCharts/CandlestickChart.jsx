@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Col } from "reactstrap";
-import { CandlestickChart } from "../../../Constant";
+import { CandlestickChart } from "../../../constant";
 import HeaderCard from "../../Common/Component/HeaderCard";
 import Chart from 'react-apexcharts';
 import { apexCandleStickCharts } from "./apexData";

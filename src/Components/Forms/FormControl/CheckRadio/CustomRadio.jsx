@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, FormGroup, Label, Input } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { CustomRadio, InlineRadio, Disabled, Checked, RadioStates, Option } from '../../../../Constant';
+import { CustomRadio, InlineRadio, Disabled, Checked, RadioStates, Option } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const CustomRadioClass = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Alerts, H5 } from '../../../AbstractElements';
-import { OutlineDarkAlerts } from '../../../Constant';
+import { OutlineDarkAlerts } from '../../../constant';
 
 const DarkOutlineAlert = () => {
   return (

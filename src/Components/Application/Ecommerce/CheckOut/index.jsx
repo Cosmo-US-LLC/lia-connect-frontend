@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 import { Breadcrumbs } from '../../../../AbstractElements';
-import { BillingDetails } from '../../../../Constant';
+import { BillingDetails } from '../../../../constant';
 import CheckoutTableData from './CheckoutTableData';
 import ProductPlaceOrder from './ProductPlaceOrder';
 import HeaderCard from '../../../Common/Component/HeaderCard';

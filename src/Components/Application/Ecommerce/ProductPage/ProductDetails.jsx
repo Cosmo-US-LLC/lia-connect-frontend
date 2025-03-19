@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { H3, LI, P, UL } from "../../../../AbstractElements";
-import { Brand, Availability, AddToCart, BuyNow } from "../../../../Constant";
+import { Brand, Availability, AddToCart, BuyNow } from "../../../../constant";
 import ProductContext from "../../../../_helper/Ecommerce/Product";
 import WishtListContext from "../../../../_helper/Ecommerce/Wishlist";
 import SocialIcons from "./SocialIcons";

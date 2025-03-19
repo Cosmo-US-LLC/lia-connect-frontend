@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { H3, H4 } from '../../../../AbstractElements';
-import { CartEmpty, ExploreShortlistItems } from '../../../../Constant';
+import { CartEmpty, ExploreShortlistItems } from '../../../../constant';
 import { Col, Container, Row } from 'reactstrap';
 
 const EmptyCart = () => {

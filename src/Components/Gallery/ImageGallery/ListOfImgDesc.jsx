@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Col, Media } from "reactstrap";
-import { IMAGE_GALLERY, PortfolioTitle } from "../../../Constant";
+import { IMAGE_GALLERY, PortfolioTitle } from "../../../constant";
 import HeaderCard from "../../Common/Component/HeaderCard";
 
 const ListOfImageDesc = ({ smallImages, setPhotoIndex, photoIndex }) => {

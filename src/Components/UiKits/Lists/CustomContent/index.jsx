@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { H5, LI, P, UL } from '../../../../AbstractElements';
-import { CustomContent, CustomcontentText, CustomcontentText2, Daysago, ListGrouphead } from '../../../../Constant';
+import { CustomContent, CustomcontentText, CustomcontentText2, Daysago, ListGrouphead } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const CustomContents = () => {

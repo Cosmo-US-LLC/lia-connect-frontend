@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { DailyDropdown, Visitors } from '../../../Constant';
+import { DailyDropdown, Visitors } from '../../../constant';
 import { OptionsVisitorChart } from '../../../Data/Ecommerce/Chart';
 import SvgIcon from '../../Common/Component/SvgIcon';
 import DropdownCommon from '../../Common/Dropdown';

@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { FirstName, LastName, Phone, EmailAddress, Country, CountryMenu, Address, TownCity, StateCountry, PostalCode, CheckMeOut, PlaceOrder, } from '../../../../Constant';
+import { FirstName, LastName, Phone, EmailAddress, Country, CountryMenu, Address, TownCity, StateCountry, PostalCode, CheckMeOut, PlaceOrder, } from '../../../../constant';
 import { Btn } from '../../../../AbstractElements';
 import { Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import { useForm } from 'react-hook-form';

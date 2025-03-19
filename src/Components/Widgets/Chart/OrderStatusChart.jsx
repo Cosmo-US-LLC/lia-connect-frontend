@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 
-import { OrderStatus } from '../../../Constant';
+import { OrderStatus } from '../../../constant';
 import { ShoppingBag } from 'react-feather';
 import { H5 } from '../../../AbstractElements';
 

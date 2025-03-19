@@ -1,4 +1,4 @@
-import { Views, FollowUp, Orgenization, Favourites, Ideas, Business, Holidays, Important, Personal } from '../../../../Constant';
+import { Views, FollowUp, Orgenization, Favourites, Ideas, Business, Holidays, Important, Personal } from '../../../../constant';
 import CreateContact from './CreateContact';
 import CategoryCreate from './CategoryCreate';
 import { Nav, NavItem } from 'reactstrap';

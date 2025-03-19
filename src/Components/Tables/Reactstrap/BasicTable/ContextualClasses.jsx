@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
-import {  ContextualClasses } from '../../../../Constant';
+import {  ContextualClasses } from '../../../../constant';
 
 const ContextualClass = () => {
   return (

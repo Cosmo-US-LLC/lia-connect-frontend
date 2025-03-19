@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { MonthlyProfitsGrowth, MonthlyProfitsTitle } from '../../../Constant';
+import { MonthlyProfitsGrowth, MonthlyProfitsTitle } from '../../../constant';
 import { MonthlyProfitsChartData } from '../../../Data/Ecommerce/Chart';
 
 const MonthlyProfits = () => {

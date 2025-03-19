@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { DailyDropdown, LearningOverviewGrowth, LearningOverviewTitle } from '../../../Constant';
+import { DailyDropdown, LearningOverviewGrowth, LearningOverviewTitle } from '../../../constant';
 import { LearningOverviewChartData } from '../../../Data/OnlineCourse/ChartData';
 import DropdownCommon from '../../Common/Dropdown';
 

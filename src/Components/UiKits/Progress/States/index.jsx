@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
 import Progressbar from '../../../../CommonElements/Progressbar';
-import { ProgressBarsStates } from '../../../../Constant';
+import { ProgressBarsStates } from '../../../../constant';
 
 const States = () => {
   return (

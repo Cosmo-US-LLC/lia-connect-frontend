@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
-import { Calories, Dessert, DessertType, Fat, Id, Price, StripedRowInverseTable, tablestriped, tablestripedspan, tablestripedspan1, Use, Weigth } from '../../../../Constant';
+import { Calories, Dessert, DessertType, Fat, Id, Price, StripedRowInverseTable, tablestriped, tablestripedspan, tablestripedspan1, Use, Weigth } from '../../../../constant';
 import { H3 } from '../../../../AbstractElements';
 import { stripedwithinverse } from '../../../../Data/Table/bootstraptabledata';
 

@@ -1,4 +1,4 @@
-import { Completed, Progress, Registration, Status } from '../../../../Constant';
+import { Completed, Progress, Registration, Status } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Input, Label } from 'reactstrap';
 

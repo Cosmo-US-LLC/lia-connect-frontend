@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Badges, H5 } from '../../../../AbstractElements';
-import { TagsWithNumber } from '../../../../Constant';
+import { TagsWithNumber } from '../../../../constant';
 
 const TagWithNum = () => {
 

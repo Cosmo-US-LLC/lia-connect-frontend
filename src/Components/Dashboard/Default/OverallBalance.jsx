@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5, UL, LI } from '../../../AbstractElements';
-import { Earning, Expense, OverallBalanceTitle } from '../../../Constant';
+import { Earning, Expense, OverallBalanceTitle } from '../../../constant';
 import LightCard from './LitghtCard';
 import ReactApexChart from 'react-apexcharts';
 import { CurrencyChartData } from '../../../Data/DefaultDashboard/Chart';

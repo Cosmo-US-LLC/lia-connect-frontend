@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-import { Contact, Hometxt, Profile, TabsWithIcon } from '../../../../../Constant';
+import { Contact, Hometxt, Profile, TabsWithIcon } from '../../../../../constant';
 import { P } from '../../../../../AbstractElements';
 import HeaderCard from '../../../../Common/Component/HeaderCard';
 

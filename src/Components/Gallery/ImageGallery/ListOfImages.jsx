@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
-import { IMAGE_GALLERY } from '../../../Constant';
+import { IMAGE_GALLERY } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const ListOfImage = ({ smallImages, setPhotoIndex, photoIndex, withDesc }) => {

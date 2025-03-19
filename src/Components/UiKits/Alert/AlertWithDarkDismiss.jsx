@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Alerts, P } from '../../../AbstractElements';
-import { Dismissing } from '../../../Constant';
+import { Dismissing } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { data } from '../../Common/Data/Ui-kits';
 import CommonAlert from './Common/CommonAlert';

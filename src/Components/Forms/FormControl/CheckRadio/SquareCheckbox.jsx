@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Row, Col, Card, CardBody, FormGroup, Label, Input, CardHeader } from 'reactstrap'
 import { H5 } from "../../../../AbstractElements";
-import { Checked, Default, Disabled, SolidCheckbox } from "../../../../Constant";
+import { Checked, Default, Disabled, SolidCheckbox } from "../../../../constant";
 
 const SquareCheckboxClass = () => {
     return (

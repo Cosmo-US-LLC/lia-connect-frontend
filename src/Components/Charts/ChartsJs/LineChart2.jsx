@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { Col, Card, CardBody } from "reactstrap";
-import { LineChart2 } from "../../../Constant";
+import { LineChart2 } from "../../../constant";
 import { lineChart2Data, lineChart2option } from "../../../Data/Chart/chartjs";
 import HeaderCard from '../../Common/Component/HeaderCard';
 

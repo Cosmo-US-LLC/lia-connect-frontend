@@ -3,7 +3,7 @@ import { Row, Col, Card, CardBody } from 'reactstrap'
 import Rating from 'react-rating';
 import HeaderCard from "../../Common/Component/HeaderCard";
 import { H6 } from "../../../AbstractElements";
-import { ThumbsUpDownRating } from "../../../Constant";
+import { ThumbsUpDownRating } from "../../../constant";
 
 const ThumbsUpDownRatingClass = () => {
     const [thumbs, setThumbs] = useState(0)

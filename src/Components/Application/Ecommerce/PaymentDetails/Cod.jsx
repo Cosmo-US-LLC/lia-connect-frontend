@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Btn } from '../../../../AbstractElements';
-import { COD, Submit } from '../../../../Constant';
+import { COD, Submit } from '../../../../constant';
 import { Card, CardBody, Col, FormGroup, Input, Row } from 'reactstrap';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 

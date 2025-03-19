@@ -4,7 +4,7 @@ import Charts from 'react-apexcharts';
 import { lineChart1, lineChart2, lineChart3 } from '../../Common/Data/ApexChart';
 
 import { H4, H6 } from '../../../AbstractElements';
-import { CompareToLastMonth, TotalProject, TotalSale } from '../../../Constant';
+import { CompareToLastMonth, TotalProject, TotalSale } from '../../../constant';
 
 const ChartWidgets = () => {
   return (

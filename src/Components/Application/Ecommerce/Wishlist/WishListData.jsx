@@ -1,5 +1,5 @@
 import ProductContext from '../../../../_helper/Ecommerce/Product';
-import { Price, MoveToCarts } from '../../../../Constant';
+import { Price, MoveToCarts } from '../../../../constant';
 import CartContext from '../../../../_helper/Ecommerce/Cart';
 import { Btn, H6, Image } from '../../../../AbstractElements';
 import { useNavigate } from 'react-router';

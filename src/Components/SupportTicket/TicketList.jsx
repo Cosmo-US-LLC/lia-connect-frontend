@@ -1,4 +1,4 @@
-import { Profit, Loss } from '../../Constant';
+import { Profit, Loss } from '../../constant';
 import { TicketData } from '../../Data/SupportTicket';
 import { H4, H6, LI, UL } from '../../AbstractElements';
 import React, { Fragment } from 'react';

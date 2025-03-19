@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, Media, Form, Label, Input } from 'reactstrap';
 import { H6, P } from '../../../../AbstractElements';
-import { DefaultStyle, COD, Fast } from '../../../../Constant';
+import { DefaultStyle, COD, Fast } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../Common/FooterCard';
 

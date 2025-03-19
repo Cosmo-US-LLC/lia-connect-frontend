@@ -1,5 +1,5 @@
 import { H6 } from '../../../../AbstractElements';
-import { UploadCoverLetter, UploadRecommendations, UploadYourCV, UploadYourFiles } from '../../../../Constant';
+import { UploadCoverLetter, UploadRecommendations, UploadYourCV, UploadYourFiles } from '../../../../constant';
 import React, { Fragment } from 'react';
 import { Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 

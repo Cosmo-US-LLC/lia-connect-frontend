@@ -2,7 +2,7 @@ import React from 'react';
 import { TrendingDown, TrendingUp } from 'react-feather';
 import { Card, CardBody, CardHeader, Table } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { AllCampaignsTitle, DailyDropdown } from '../../../Constant';
+import { AllCampaignsTitle, DailyDropdown } from '../../../constant';
 import { AllCampaignsTable } from '../../../Data/Social';
 import DropdownCommon from '../../Common/Dropdown';
 

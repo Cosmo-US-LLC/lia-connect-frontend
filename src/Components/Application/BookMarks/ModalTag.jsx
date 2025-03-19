@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Form, FormGroup, Input, Label, Modal, ModalBody, Button } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { Cancel, Save } from '../../../Constant';
+import { Cancel, Save } from '../../../constant';
 
 const ModalTag = (props) => {
   return (

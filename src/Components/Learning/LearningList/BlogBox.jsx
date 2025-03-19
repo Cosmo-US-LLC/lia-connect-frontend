@@ -1,4 +1,4 @@
-import { JavaLanguage, WebDevelopment } from '../../../Constant';
+import { JavaLanguage, WebDevelopment } from '../../../constant';
 import { H6, Image, LI, P, UL } from '../../../AbstractElements';
 import React, { Fragment } from 'react';
 import { Card, Col, Row } from 'reactstrap';

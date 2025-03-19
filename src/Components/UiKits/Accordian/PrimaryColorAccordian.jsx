@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Accordion, Col } from 'react-bootstrap';
 import { Card, CardBody, CardHeader, Collapse } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { AllCloseAccordion, CollapsibleGroupItem } from '../../../Constant';
+import { AllCloseAccordion, CollapsibleGroupItem } from '../../../constant';
 
 const PrimaryColorAccordian = () => {
   const [isOpen, setIsOpen] = useState(1);

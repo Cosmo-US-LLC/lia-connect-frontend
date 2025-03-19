@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { ColumnChart } from '../../../Constant';
+import { ColumnChart } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import Chart from 'react-apexcharts';
 import { apexLineWithAnnotationCharts } from './apexData';

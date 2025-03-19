@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { Btn, H5, ToolTip } from '../../../../AbstractElements';
-import { Direction } from '../../../../Constant';
+import { Direction } from '../../../../constant';
 import CommonTooltip from './CommonTooltip';
 
 const Directions = () => {

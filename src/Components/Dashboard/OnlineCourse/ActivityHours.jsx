@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import { H5 } from '../../../AbstractElements';
-import { ActivityHoursTitle, DailyDropdown } from '../../../Constant';
+import { ActivityHoursTitle, DailyDropdown } from '../../../constant';
 import { LightCardBoxData } from '../../../Data/OnlineCourse';
 import { ActivityHoursChartData } from '../../../Data/OnlineCourse/ChartData';
 import DropdownCommon from '../../Common/Dropdown';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Card, CardBody, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import { PaginationColor, Previous, Next } from '../../../Constant';
+import { PaginationColor, Previous, Next } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const PaginationColorClass = () => {

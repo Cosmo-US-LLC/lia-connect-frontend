@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
 import { Image } from '../../../AbstractElements';
-import { Sizing } from '../../../Constant';
+import { Sizing } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const SizingCard = () => {

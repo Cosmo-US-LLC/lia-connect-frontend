@@ -1,4 +1,4 @@
-import { CouponCode } from '../../Constant';
+import { CouponCode } from '../../constant';
 
 export const OfferProductsData = [
   {

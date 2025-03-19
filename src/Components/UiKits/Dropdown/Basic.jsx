@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, Col, Dropdown, DropdownItem, DropdownMenu } from 'reactstrap';
 import { Btn } from '../../../AbstractElements';
-import { Action, AnotherAction, BasicDropdown, DropdownButton, SomethingElseHere } from '../../../Constant';
+import { Action, AnotherAction, BasicDropdown, DropdownButton, SomethingElseHere } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const Basic = () => {

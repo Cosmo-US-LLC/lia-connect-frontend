@@ -9,7 +9,7 @@ import five from "../../assets/images/user/5.jpg";
 import eleven from "../../assets/images/user/11.png";
 import six from "../../assets/images/user/6.jpg";
 
-import { AndewJon, SarahLoren, BuckyBarnes, ComerenDiaz, JasonBorne, JohnyWaston, JohnyWilliam } from "../../Constant";
+import { AndewJon, SarahLoren, BuckyBarnes, ComerenDiaz, JasonBorne, JohnyWaston, JohnyWilliam } from "../../constant";
 
 
 export const AvatarsData = [

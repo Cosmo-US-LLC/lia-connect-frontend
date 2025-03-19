@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Col, Row, Card, CardBody } from "reactstrap";
 import Lightbox from "react-18-image-lightbox";
 import axios from "axios";
-import { PortfolioTitle } from "../../../Constant";
+import { PortfolioTitle } from "../../../constant";
 import { BigImageApi, ImageLightApi } from "../../../api";
 import { H4, Image, P } from "../../../AbstractElements";
 

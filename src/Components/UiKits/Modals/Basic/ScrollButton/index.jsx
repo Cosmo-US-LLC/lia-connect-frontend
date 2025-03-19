@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Btn, P } from '../../../../../AbstractElements';
-import { ModalTitle, ScrollingLongContent } from '../../../../../Constant';
+import { ModalTitle, ScrollingLongContent } from '../../../../../constant';
 import CommonModal from '../../common/modal';
 
 const ScrollBtn = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Fragment } from 'react';
 import { Card, CardBody, CardHeader } from 'reactstrap';
 import { H1, H2, H3, H4, H5, H6 } from '../../../../../AbstractElements';
-import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, ExtraBold900 } from '../../../../../Constant';
+import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, ExtraBold900 } from '../../../../../constant';
 
 const Bold900Card = () => {
   return (

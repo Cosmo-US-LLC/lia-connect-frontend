@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonColor } from "../../../../../Constant";
+import { ButtonColor } from "../../../../../constant";
 import CommonHeaderClass from "../../Common/CommonHeaderClass";
 
 const ButtonColorCard = () => {

@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { MARKJENCO, MARKJENCOEMAIL } from '../../../Constant';
+import { MARKJENCO, MARKJENCOEMAIL } from '../../../constant';
 import { Link } from 'react-router-dom';
 import { H6, Image, P } from '../../../AbstractElements';
 import CustomizerContext from '../../../_helper/Customizer';

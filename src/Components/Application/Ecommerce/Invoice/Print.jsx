@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useRef } from 'react';
 import { Btn } from '../../../../AbstractElements';
-import { Cancel, Print } from '../../../../Constant';
+import { Cancel, Print } from '../../../../constant';
 import CartContext from '../../../../_helper/Ecommerce/Cart';
 import ProductContext from '../../../../_helper/Ecommerce/Product';
 import ItemDescription from './ItemDescription';

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { ProductReview } from '../../../../Constant';
+import { ProductReview } from '../../../../constant';
 import Ratings from 'react-ratings-declarative';
 
 const StarRatings = () => {

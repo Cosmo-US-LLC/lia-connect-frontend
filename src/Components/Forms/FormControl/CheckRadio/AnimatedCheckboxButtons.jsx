@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Card, CardBody, Label, Input } from 'reactstrap'
-import { AnimatedCheckboxButtons, Option } from "../../../../Constant";
+import { AnimatedCheckboxButtons, Option } from "../../../../constant";
 import HeaderCard from "../../../Common/Component/HeaderCard";
 
 const AnimatedCheckboxButtonsClass = () => {

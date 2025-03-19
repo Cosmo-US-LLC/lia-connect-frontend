@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Col, Card, CardBody } from 'reactstrap';
 import dragula from 'react-dragula';
-import { SpillDragNDrop } from '../../../Constant';
+import { SpillDragNDrop } from '../../../constant';
 
 const Drag2 = () => {
     const dragulaDecoratorSpill = (componentBackingInstance) => {

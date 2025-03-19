@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, Row } from 'reactstrap';
 import { Image, P } from '../../../../AbstractElements';
-import { UserProfileDesc3 } from '../../../../Constant';
+import { UserProfileDesc3 } from '../../../../constant';
 import UserFooter from './Common/UserFooter';
 import UserTitle from './Common/UserTitle';
 

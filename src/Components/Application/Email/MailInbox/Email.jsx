@@ -3,7 +3,7 @@ import { UL, LI, Btn } from '../../../../AbstractElements';
 import { Col, Card, CardBody, Media } from 'reactstrap';
 import user from '../../../../assets/images/user/1.jpg';
 import { Link } from 'react-router-dom';
-import { MARKJENCO, MARKJENCOEMAIL, NEWMAIL, Inbox, AllMail, Sent, Draft, Trash, IMPORTANT, Starred, UNREAD, Spam, OUTBOX, UPDATE, ALERT, NOTES } from '../../../../Constant';
+import { MARKJENCO, MARKJENCOEMAIL, NEWMAIL, Inbox, AllMail, Sent, Draft, Trash, IMPORTANT, Starred, UNREAD, Spam, OUTBOX, UPDATE, ALERT, NOTES } from '../../../../constant';
 import EmailContext from '../../../../_helper/Email';
 import CustomizerContext from '../../../../_helper/Customizer';
 

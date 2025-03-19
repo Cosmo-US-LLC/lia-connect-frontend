@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { AreaSpalineChart } from '../../../Constant';
+import { AreaSpalineChart } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import Chart from 'react-apexcharts';
 import { areaSpaline } from './apexData';

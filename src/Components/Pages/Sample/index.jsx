@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Breadcrumbs, P } from '../../../AbstractElements';
-import { SampleCard } from '../../../Constant';
+import { SampleCard } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 
 const Sample = () => {

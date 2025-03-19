@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5, P } from '../../../../AbstractElements';
-import { TextColor } from '../../../../Constant';
+import { TextColor } from '../../../../constant';
 
 const TextColorCard = () => {
   return (

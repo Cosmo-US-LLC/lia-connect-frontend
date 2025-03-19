@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Row, Col, Card, CardBody, FormGroup, Label, Input } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { Default, Disabled, Checked, Option, CustomCheckbox, CheckboxStates, InlineCheckbox, SuccessState, BrandState, PrimaryState } from '../../../../Constant';
+import { Default, Disabled, Checked, Option, CustomCheckbox, CheckboxStates, InlineCheckbox, SuccessState, BrandState, PrimaryState } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 
 const CustomCheckboxClass = () => {

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, CardBody, Row } from 'reactstrap';
-import { NoBookmarksFound, SharedWithMe } from '../../../Constant';
+import { NoBookmarksFound, SharedWithMe } from '../../../constant';
 import GridClass from './Common/GridClass';
 
 const SharedWithMee = () => {

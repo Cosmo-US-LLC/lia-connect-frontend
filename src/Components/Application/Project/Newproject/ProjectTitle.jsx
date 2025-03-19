@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Col, FormGroup,  Label, Row } from 'reactstrap';
-import { ProjectTitle } from '../../../../Constant';
+import { ProjectTitle } from '../../../../constant';
 
 const ProjectTitleClass = ({ register, errors }) => {
     return (

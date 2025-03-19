@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, Col } from 'reactstrap';
 import { H5, H6, UL, LI, P } from '../../../AbstractElements';
-import { Activity, DailyDropdown } from '../../../Constant';
+import { Activity, DailyDropdown } from '../../../constant';
 import { ActivityData } from '../../../Data/DefaultDashboard';
 import DropdownCommon from '../../Common/Dropdown';
 

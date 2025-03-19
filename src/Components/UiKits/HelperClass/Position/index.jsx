@@ -1,5 +1,5 @@
 import React from 'react';
-import { Position } from '../../../../Constant';
+import { Position } from '../../../../constant';
 import CommonHeaderClass from '../Common/CommonHeaderClass2';
 
 const PositionCard = () => {

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, Col } from "reactstrap";
-import { MixedChart } from "../../../Constant";
+import { MixedChart } from "../../../constant";
 import HeaderCard from "../../Common/Component/HeaderCard";
 import Chart from 'react-apexcharts';
 import { apexMixedCharts } from "./apexData";

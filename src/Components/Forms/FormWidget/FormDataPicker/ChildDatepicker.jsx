@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, FormGroup, Label } from 'reactstrap'
-import { SpecificDateRange, MinDate, MaxDate, DateRange } from "../../../../Constant";
+import { SpecificDateRange, MinDate, MaxDate, DateRange } from "../../../../constant";
 import DatePicker from "react-datepicker";
 const ChildDatepicker = () => {
     const [startDate, setstartDate] = useState(new Date())

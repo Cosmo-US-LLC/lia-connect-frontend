@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { BasicModal } from '../../../../Constant';
+import { BasicModal } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import BasicBtn from './BasicButton';
 import GridModal from './GridButton';

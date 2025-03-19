@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Col, Card, CardBody } from 'reactstrap';
 import Rating from 'react-rating';
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { PillRating } from '../../../Constant';
+import { PillRating } from '../../../constant';
 
 const PillRatingClass = () => {
     return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Accordion, Col } from 'react-bootstrap';
 import { Card, CardBody, CardHeader, Collapse } from 'reactstrap';
 import { Btn, H5 } from '../../../AbstractElements';
-import { BasicAccordion, CollapsibleGroupItem } from '../../../Constant';
+import { BasicAccordion, CollapsibleGroupItem } from '../../../constant';
 
 const BasicAccordions = () => {
   const [isOpen, setIsOpen] = useState(1);

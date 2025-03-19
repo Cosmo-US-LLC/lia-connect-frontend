@@ -1,4 +1,4 @@
-import { Johnketer, HerryVenter, LoainDeo, HorenHors, FenterJessy, Done, Pending, Success, InProcess } from '../../Constant';
+import { Johnketer, HerryVenter, LoainDeo, HorenHors, FenterJessy, Done, Pending, Success, InProcess } from '../../constant';
 
 export const BestSellerData = [
   {

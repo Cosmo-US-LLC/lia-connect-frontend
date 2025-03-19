@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Card, CardBody, CardHeader, Nav } from 'reactstrap';
 import { Image, H5 } from '../../../AbstractElements';
-import { DailyDropdown, RecentOrdersTitle } from '../../../Constant';
+import { DailyDropdown, RecentOrdersTitle } from '../../../constant';
 import DropdownCommon from '../../Common/Dropdown';
 import RecentOrderContentTab from './RecentOrderContentTab';
 import useShowClass from '../../../Hooks/useShowClass';

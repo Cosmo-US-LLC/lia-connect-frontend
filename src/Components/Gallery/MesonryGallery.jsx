@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react';
 import Masonry from 'react-masonry-css';
 import { Container, Row, Col, Card, CardBody, Media } from 'reactstrap';
 import { Breadcrumbs } from '../../AbstractElements';
-import { MasonryGallery } from '../../Constant';
+import { MasonryGallery } from '../../constant';
 import GalleryContext from '../../_helper/Gallery';
 import HeaderCard from '../Common/Component/HeaderCard';
 

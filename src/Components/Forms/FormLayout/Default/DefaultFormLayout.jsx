@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { H5 } from '../../../../AbstractElements';
-import { DefaultFormLayout, EmailAddress, Password } from '../../../../Constant';
+import { DefaultFormLayout, EmailAddress, Password } from '../../../../constant';
 import FooterCard from '../../FormControl/Common/FooterCard';
 
 const DefaultFormLayoutClass = () => {

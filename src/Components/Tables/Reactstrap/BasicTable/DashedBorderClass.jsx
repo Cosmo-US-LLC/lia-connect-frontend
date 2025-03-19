@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardHeader, Table } from 'reactstrap';
 import { H3 } from '../../../../AbstractElements';
-import { classname, DashedBorder, Hours, Id, Spots, Trainer, Type } from '../../../../Constant';
+import { classname, DashedBorder, Hours, Id, Spots, Trainer, Type } from '../../../../constant';
 import { dashedborderdata } from '../../../../Data/Table/bootstraptabledata';
 
 const DashedBorderClass = () => {

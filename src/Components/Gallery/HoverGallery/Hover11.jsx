@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Card, CardBody, CardHeader, Col, Row } from "reactstrap";
 import { H5, Image } from "../../../AbstractElements";
-import { HoverEffect } from "../../../Constant";
+import { HoverEffect } from "../../../constant";
 
 const Hover11 = () => {
     return (

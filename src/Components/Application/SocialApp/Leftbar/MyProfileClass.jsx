@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Card, CardBody, CardHeader, Collapse, Media, UncontrolledTooltip } from 'reactstrap';
 import { Btn, H5, H6, Image, LI, UL } from '../../../../AbstractElements';
-import { Likes, Messages, MyPage, MyProfile, Notification, View } from '../../../../Constant';
+import { Likes, Messages, MyPage, MyProfile, Notification, View } from '../../../../constant';
 import { customersData } from '../../../../Data/SocialHeader';
 import one from '../../../../assets/images/user/1.jpg';
 import { ChevronDown, ChevronUp } from 'react-feather';

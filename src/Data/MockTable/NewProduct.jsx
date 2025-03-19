@@ -1,4 +1,4 @@
-import { Bag, HikeShoes, TreePot, TShirt, Watch } from '../../Constant'; 
+import { Bag, HikeShoes, TreePot, TShirt, Watch } from '../../constant'; 
 
 export const NewProductData = [
   {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { Alerts, Btn, H5, P } from "../../../AbstractElements";
-import { TextAsAction } from "../../../Constant";
+import { TextAsAction } from "../../../constant";
 import { TextAsActionsData } from "../../Common/Data/Ui-kits";
 import CommonAlert from "./Common/CommonAlert";
 

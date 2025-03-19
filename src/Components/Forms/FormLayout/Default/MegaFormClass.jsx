@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { H6 } from '../../../../AbstractElements';
-import { EmailAddress, Website, BillingInformation, CompanyInformation, MegaForm, AccountInformation, ContactNumber, CompanyName, YourName } from '../../../../Constant';
+import { EmailAddress, Website, BillingInformation, CompanyInformation, MegaForm, AccountInformation, ContactNumber, CompanyName, YourName } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import FooterCard from '../../FormControl/Common/FooterCard';
 

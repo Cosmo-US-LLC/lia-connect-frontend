@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Col, Card, CardBody } from "reactstrap";
 import HeaderCard from '../../Common/Component/HeaderCard';
-import { BarChart } from '../../../Constant';
+import { BarChart } from '../../../constant';
 import { Bar } from 'react-chartjs-2';
 import { barChartData, barChartOptions } from '../../../Data/Chart/chartjs';
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { BadgeColor } from "../../../../Constant";
+import { BadgeColor } from "../../../../constant";
 import CommonHeaderClass from "../Common/CommonHeaderClass";
 
 const BadgeColorCard = () => {

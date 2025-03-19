@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontWeight } from '../../../../../Constant';
+import { FontWeight } from '../../../../../constant';
 import CommonHeaderClass from '../../Common/CommonHeaderClass2';
 
 const FontWeightCard = () => {

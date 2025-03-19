@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import { StickyNote, AddNewNote } from '../../../Constant';
+import { StickyNote, AddNewNote } from '../../../constant';
 import axios from 'axios';
 import { Breadcrumbs, H5 } from '../../../AbstractElements';
 import { StickyApi } from '../../../api';

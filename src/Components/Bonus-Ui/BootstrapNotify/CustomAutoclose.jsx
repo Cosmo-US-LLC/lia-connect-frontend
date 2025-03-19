@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Col, Card, CardBody, CardHeader } from "reactstrap";
 import { toast } from "react-toastify";
-import { CustomAutoclose, AutoCloseIn1000Sec, AutoCloseIn15000Sec, AutoCloseIn500Sec, AutoCloseIn5000Sec } from "../../../Constant";
+import { CustomAutoclose, AutoCloseIn1000Sec, AutoCloseIn15000Sec, AutoCloseIn500Sec, AutoCloseIn5000Sec } from "../../../constant";
 import { Btn, H5 } from "../../../AbstractElements";
 
 // toast.configure();

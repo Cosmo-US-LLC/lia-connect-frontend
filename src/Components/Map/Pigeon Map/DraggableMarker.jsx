@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Map, Draggable, Marker } from "pigeon-maps";
 import { Col, Card, CardBody, CardHeader } from 'reactstrap';
-import { DraggableMarkers } from '../../../Constant';
+import { DraggableMarkers } from '../../../constant';
 import { H5 } from '../../../AbstractElements';
 
 const DraggableMarker = () => {

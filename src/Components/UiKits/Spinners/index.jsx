@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Breadcrumbs, H6, Spinner } from '../../../AbstractElements';
-import { LoaderStyle } from '../../../Constant';
+import { LoaderStyle } from '../../../constant';
 import HeaderCard from '../../Common/Component/HeaderCard';
 import { Data } from './SpinnerData';
 

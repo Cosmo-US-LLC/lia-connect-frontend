@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Form, Label, Button, FormGroup } from "reactstrap";
-import { Submit, BirthDate, Age, Previous } from "../../../../Constant";
+import { Submit, BirthDate, Age, Previous } from "../../../../constant";
 import { useForm } from "react-hook-form";
 
 const Birthdate = ({ setSteps, setFormdata, formdata }) => {

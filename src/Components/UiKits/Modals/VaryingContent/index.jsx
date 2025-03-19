@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Col } from 'reactstrap';
-import { VaryingModalContent } from '../../../../Constant';
+import { VaryingModalContent } from '../../../../constant';
 import HeaderCard from '../../../Common/Component/HeaderCard';
 import ModalButton from './common/ModalButton';
 
