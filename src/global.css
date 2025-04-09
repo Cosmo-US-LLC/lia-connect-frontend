@@ -1,37 +1,37 @@
-.main-heading{
-  font-family: 'Poppins', sans-serif; /* Use Poppins font */
+.main-heading {
+  font-family: "Poppins", sans-serif; /* Use Poppins font */
   font-weight: 600; /* Font weight 600 */
   font-size: 32px; /* Font size 32px */
   line-height: 44.8px; /* Line height 44.8px */
   letter-spacing: -1%; /* Letter spacing -1% */
 }
-.input-label-style{
-font-family: Poppins;
-font-size: 14px;
-font-weight: 600;
-line-height: 22.4px;
-text-align: right;
+.input-label-style {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22.4px;
+  text-align: right;
 }
-input::placeholder{
+input::placeholder {
   font-family: Poppins;
   font-size: 12px;
   font-weight: 400;
   line-height: 22.4px;
   color: var(--Body-Black, #dadee3);
 }
-.input-icons-style{
-  color: #8FA8D7;
+.input-icons-style {
+  color: #8fa8d7;
   font-size: large;
 }
-.display-flex-style{
+.display-flex-style {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.text-align-center{
+.text-align-center {
   text-align: center;
 }
-.margin-auto-style{
+.margin-auto-style {
   margin: auto;
 }
 .dynamic-color {
@@ -97,6 +97,13 @@ input::placeholder{
   animation: pulse 1.5s infinite ease-in-out;
 }
 
+/* Add this CSS to me start */
+.logo-img {
+  width: 100px !important;
+  height: auto;
+}
+/* Add this CSS to me end */
+
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -158,9 +165,9 @@ input::placeholder{
   width: 6px;
   height: 10px;
   background-color: #dadee3;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
   background-color: #595959;
   border-radius: 10px;
 }
@@ -168,10 +175,10 @@ input::placeholder{
 ::-moz-scrollbar {
   width: 10px;
   height: 10px;
-background-color: #dadee3;
-  }
-  
-  ::-moz-scrollbar-thumb {
+  background-color: #dadee3;
+}
+
+::-moz-scrollbar-thumb {
   background-color: #595959;
   border-radius: 10px;
 }
@@ -179,10 +186,10 @@ background-color: #dadee3;
 ::-ms-scrollbar {
   width: 10px;
   height: 10px;
-background-color: #dadee3;
-  }
-  
-  ::-ms-scrollbar-thumb {
+  background-color: #dadee3;
+}
+
+::-ms-scrollbar-thumb {
   background-color: #595959;
   border-radius: 10px;
 }
@@ -190,22 +197,22 @@ background-color: #dadee3;
 ::scrollbar {
   width: 10px;
   height: 10px;
-background-color: #dadee3;
-  }
-  
-  ::scrollbar-thumb {
+  background-color: #dadee3;
+}
+
+::scrollbar-thumb {
   background-color: #595959;
   border-radius: 10px;
 }
 .potential-candidate-style {
   clip-path: polygon(62.5% 0%, 100% 0%, 100% 100%, 51.55% 100%) !important;
-  background: linear-gradient(270deg, #E5FFAD 0%, #F7FFE6 83.25%) !important;
+  background: linear-gradient(270deg, #e5ffad 0%, #f7ffe6 83.25%) !important;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 .blacklist-style {
   clip-path: polygon(73.5% 0%, 100% 0%, 100% 100%, 66.55% 100%) !important;
-  background: linear-gradient(270deg, #EBF1FC 0%, #EBF1FC 90.06%);
+  background: linear-gradient(270deg, #ebf1fc 0%, #ebf1fc 90.06%);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -220,35 +227,40 @@ background-color: #dadee3;
   background-color: black !important;
   color: white !important;
 }
-.pagination-alfren .page-link{
+.pagination-alfren .page-link {
   border: none;
   background-color: #f5f9ff;
 }
-.rdt_Table .rdt_TableHead .rdt_TableHeadRow .rdt_TableCol .rdt_TableCol_Sortable > div {
+.rdt_Table
+  .rdt_TableHead
+  .rdt_TableHeadRow
+  .rdt_TableCol
+  .rdt_TableCol_Sortable
+  > div {
   font-weight: 500 !important;
   font-size: 14px;
   font-weight: 900;
   line-height: 22.4px;
   text-align: left;
 }
-.ck.ck-editor__main>.ck-editor__editable {
+.ck.ck-editor__main > .ck-editor__editable {
   border-color: var(--ck-color-base-border);
   height: 190px;
 }
-.cusrsor-pointer-apply{
+.cusrsor-pointer-apply {
   cursor: pointer;
 }
 .col-xl-5 {
   flex: 0 0 auto;
-  max-width:40.5% !important;
+  max-width: 40.5% !important;
 }
-.progress-showcase{
+.progress-showcase {
   margin-bottom: 20px;
 }
 .funnel_parapragh {
   margin: 0; /* Remove default margin */
   padding-top: 10px; /* Adjust vertical spacing */
 }
-.bg-progress6{
+.bg-progress6 {
   background-color: #1264fd !important;
 }

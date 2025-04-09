@@ -10,15 +10,10 @@ import { toast } from "react-toastify";
 import { fetchCandidates } from "../../../../redux/candidate/candidateActions";
 import { Input, Label, Media } from "reactstrap";
 import { Image } from "../../../../AbstractElements";
-import user1 from "../../../../assets/images/user/1.jpg";
+import user1 from "../../../../assets/images/user/user.png";
 import { Mail } from "react-feather";
 import { Link } from "react-router-dom";
-import {
-  Check,
-  Search,
-  User,
-  MapPin
-} from "react-feather";
+import { Check, Search, User, MapPin } from "react-feather";
 import Jobs from "Components/Alfren/Job/list/modals/jobs";
 import Priority from "Components/Alfren/Job/list/modals/priority";
 import DateModal from "Components/Alfren/Job/list/modals/date";
@@ -33,7 +28,7 @@ const DataTables = () => {
   const [priorityDropdownRow, setPriorityDropdownRow] = useState([]);
   const [jobAPIResult, setJobAPIResult] = useState([]);
   const [show, setShow] = useState(false);
-  const [getJobId, setGetJobId] = useState(null)
+  const [getJobId, setGetJobId] = useState(null);
 
   const [jobsList, setJobsList] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
@@ -49,7 +44,6 @@ const DataTables = () => {
     totalPages: null,
     totalResults: null,
   });
-
 
   // function handle dropdown states
 
@@ -101,17 +95,17 @@ const DataTables = () => {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      background: state.isSelected ? "#333" : "#ECEDFC", // Adjust for selection state
+      background: state.isSelected ? "#333" : "#ECEDFC",
       border: "none",
       boxShadow: state.isFocused ? "0 0 0 1px #ccc" : "none",
       minHeight: "38px",
       padding: "0 10px",
-      color: "#8E92ED", // Text color for both regular and selected states
+      color: "#8E92ED",
       borderRadius: "0px 30px 30px 0px",
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? "#222" : "#ECEDFC", // Adjust for selection state
+      backgroundColor: state.isSelected ? "#222" : "#ECEDFC",
       color: "#8E92ED",
       cursor: "pointer",
     }),
@@ -130,7 +124,6 @@ const DataTables = () => {
       color: "#8E92ED",
     }),
   };
-
 
   useEffect(() => {
     fetchCandidatePaginated();
@@ -188,7 +181,7 @@ const DataTables = () => {
             },
           ]);
           const mappedRecords = mapTableData(results);
-          console.log("mappedRecords",mappedRecords);
+          console.log("mappedRecords", mappedRecords);
           setCandidateList(mappedRecords);
         } else {
           const err = resp?.message;
@@ -198,63 +191,134 @@ const DataTables = () => {
     );
   };
 
-
+  console.log("candidateList", candidateList);
 
   const mapTableData = (results) => {
     let candidateMappedList = results.map((item, index) => {
+      console.log("item", item);
       return {
         id: index,
         name: (
-          <Link to={'detail/' + item.id} key={item.id}>
+          <Link to={"detail/" + item.id} key={item.id}>
             <Media className="d-flex">
-              <Image
+              {/* <Image
                 attrImage={{
                   className: "rounded-circle img-30 me-3",
                   src: item.image ? item.image : `${user1}`,
                   alt: "Generic placeholder image",
                 }}
-              />
+              /> */}
               <Media body className="align-self-center">
                 <div>{item.name}</div>
               </Media>
             </Media>
           </Link>
         ),
-        jobTitle: (item.jobTitle),
-        linkedin: <Link to={(item.linkedProfile)} target="_blank">{item.linkedProfile}</Link>,
-        profileScore: (
-          item.profileScore ? <div>
-            <div className="font-secondary">{item.profileScore}</div>
-            <div className="badge badge-light-warning">Average</div>
-          </div> : "N/A"
-
-        ),
-        lastAction: (
-          item.lastAction ? <div>
-            <span
-              className="f-w-700 "
-              style={{ color: "#299A16", display: "inline-flex" }}
+        jobTitle: item.jobTitle ? item.jobTitle.split(" @")[0] : "N/A",
+        linkedin: (
+          <Link
+            to={item.linkedProfile}
+            target="_blank"
+            style={{
+              width: "130px",
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "40px",
+                height: "40px",
+              }}
             >
-              <Mail strokeWidth={0.5} size={15} />{" "}
-              <span className="pe-1 ps-2">Send a message</span>
-              <Check strokeWidth={0.5} size={15} />
-            </span>
-            <div className="mt-1" style={{ color: "#C6C9F0" }}>
-              May 29, 2017
+              <img
+                src={item.image || user1}
+                alt={item.name}
+                style={{
+                  borderRadius: "50%",
+                  width: "100%",
+                  height: "100%",
+                  cursor: "pointer",
+                  objectFit: "cover",
+                }}
+              />
             </div>
-          </div> : "N/A"
+          </Link>
         ),
+
+        // linkedin: <Link to={(item.linkedProfile)} target="_blank">{item.linkedProfile}</Link>,
+        profileScore: item.profileScore ? (
+          <div
+            style={{
+              width: "100px",
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="d-flex gap-2 align-items-center">
+              <div className="font-secondary">{item.profileScore}</div>
+              <div className="badge badge-light-warning">Average</div>
+            </div>
+          </div>
+        ) : (
+          "N/A"
+        ),
+        lastAction: item.lastAction
+          ? (() => {
+              const [actionName, actionDate] = item.lastAction.split(" on ");
+              return (
+                <div style={{}}>
+                  <span
+                    className="f-w-700"
+                    style={{
+                      color: "#299A16",
+                      display: "inline-flex",
+                      fontSize: "11px",
+                    }}
+                  >
+                    {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
+                    <span style={{}}>{actionName}</span>
+                    {/* <Check strokeWidth={0.5} size={15} /> */}
+                  </span>
+                  <div
+                    className=""
+                    style={{ color: "#C6C9F0", fontSize: "11px" }}
+                  >
+                    {actionDate}
+                  </div>
+                </div>
+              );
+            })()
+          : "N/A",
+
         blacklist: (
           <Media key="1">
-            <Media body className="text-end switch-sm ">
+            <Media
+              body
+              className="  switch-sm  "
+              style={{
+                width: "110px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Label className="switch">
-                <Input type="checkbox" checked={item.blacklist ? true : false} />
+                <Input
+                  type="checkbox"
+                  checked={item.blacklisted ? true : false}
+                />
                 <span className="switch-state"></span>
               </Label>
             </Media>
           </Media>
         ),
-      };;
+      };
     });
 
     return candidateMappedList;
@@ -267,7 +331,13 @@ const DataTables = () => {
           <Col sm="12">
             <Card style={{ boxShadow: "none" }}>
               <CardHeader>
-                <Row style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <Col xl="9">
                     {" "}
                     <button
@@ -329,7 +399,6 @@ const DataTables = () => {
                         Name
                       </span>
                     </button>
-
                     <button
                       style={{
                         display: "inline-flex",
@@ -354,13 +423,12 @@ const DataTables = () => {
                         {isDateSelected ? isDateSelected : "Location"}
                       </span>
                     </button>
-
                     <button
                       style={{
                         display: "inline-flex",
-                        position: 'relative',
-                        bottom: '3px',
-                        marginRight: '8px',
+                        position: "relative",
+                        bottom: "3px",
+                        marginRight: "8px",
                         border:
                           dateDropdown || isDateSelected
                             ? "1px solid #337CC7"
@@ -376,7 +444,10 @@ const DataTables = () => {
                       }}
                       onClick={toggleDateDropdown}
                     >
-                      <span className="ms-2" style={{ fontSize: "12px", marginRight: '5px' }}>
+                      <span
+                        className="ms-2"
+                        style={{ fontSize: "12px", marginRight: "5px" }}
+                      >
                         {isDateSelected ? isDateSelected : "Experience"}
                       </span>
                       <ChevronDown strokeWidth={1} size={16} />
@@ -384,8 +455,8 @@ const DataTables = () => {
                     <button
                       style={{
                         display: "inline-flex",
-                        position: 'relative',
-                        bottom: '3px',
+                        position: "relative",
+                        bottom: "3px",
                         border:
                           dateDropdown || isDateSelected
                             ? "1px solid #337CC7"
@@ -402,12 +473,14 @@ const DataTables = () => {
                       }}
                       onClick={toggleDateDropdown}
                     >
-                      <span className="ms-2" style={{ fontSize: "12px", marginRight: '5px' }}>
+                      <span
+                        className="ms-2"
+                        style={{ fontSize: "12px", marginRight: "5px" }}
+                      >
                         {isDateSelected ? isDateSelected : "More Filters"}
                       </span>
                       <Sliders strokeWidth={1} size={16} />
                     </button>
-
                     <button
                       style={{
                         display: "inline-flex",
@@ -440,31 +513,36 @@ const DataTables = () => {
                             onChange={handleCheckboxChange}
                             checked={activeOnly}
                           />
-                          <span className="switch-state" style={{ background: 'black' }}></span>
+                          <span
+                            className="switch-state"
+                            style={{ background: "black" }}
+                          ></span>
                         </Label>
                       </Media>
                       <span
                         style={{
                           opacity: activeOnly ? "100%" : "40%",
                           fontSize: "12px",
-                          marginLeft: '4px'
+                          marginLeft: "4px",
                         }}
                       >
                         Blacklisted Only
                       </span>
                     </button>
                   </Col>
-                  <Col style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "14px"
-                  }}>
+                  <Col
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "14px",
+                    }}
+                  >
                     <span
                       style={{
                         opacity: activeOnly ? "100%" : "40%",
                         fontSize: "12px",
-                        marginLeft: '4px'
+                        marginLeft: "4px",
                       }}
                     >
                       Sort By:

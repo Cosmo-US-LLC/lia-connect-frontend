@@ -7,6 +7,7 @@ import { Image } from "../../AbstractElements";
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import SidebarBottomMenuItems from "./SidebarBottomMenuItems";
+import { MarginTop } from "constant";
 const SidebarMenu = ({
   setMainMenu,
   setBottomMenu,
@@ -90,25 +91,26 @@ const SidebarMenu = ({
             <Image
               attrImage={{
                 src: upgradeAlert,
-                className: `sidebar-icon-margin`,
+                className: `sidebar-icon-margin  `,
                 alt: "",
+                style: { width: "100px", height: "100px" },
               }}
             />
             <div className="upgradeAlert text-center">
               <h4
-                style={{ color: "#000000", fontSize: "16px", fontWeight: 600 }}
+                style={{ color: "#000000", fontSize: "14px", fontWeight: 600 }}
               >
                 3 Days Left
               </h4>
               <p
-                style={{ color: "#545454", fontSize: "12px", fontWeight: 400 }}
+                style={{ color: "#545454", fontSize: "10px", fontWeight: 400 }}
               >
                 Your Free Trial Will End In 3 Days.
               </p>
             </div>
             <Button
               style={{
-                padding: "3% 16% 3% 16%",
+                padding: "2% 9% 2% 9%",
                 fontSize: "16px",
                 fontWeight: "400",
               }}

@@ -7,7 +7,7 @@ import SvgIcon from "../../Components/Common/Component/SvgIcon";
 import CustomizerContext from "../../_helper/Customizer";
 import { MENUITEMSBOTTOM } from "./menu";
 import { Image, P } from "../../AbstractElements";
-import defaultAvatar from "../../assets/used-files/profile/default.png";
+import defaultAvatar from "../../assets/used-files/profile/default-avatar.jpg";
 import { MoreVertical, LogOut } from "react-feather";
 
 const SidebarBottomMENUITEMSBOTTOM = ({
@@ -71,7 +71,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
     setMainMenu({ mainmenu: MENUITEMSBOTTOM });
   };
   const Logout = () => {
-    localStorage.clear()
+    localStorage.clear();
     history(`${process.env.PUBLIC_URL}/auth/login`);
   };
 
@@ -108,10 +108,27 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                   }}
                 >
                   {menuItem.profile ? (
-                    <div className="media profile-media">
-                      <Image
+                    <div className="media profile-media rounded-circle">
+                      <div className="bg-white rounded-circle p-2 d-inline-block">
+                        <Image
+                          attrImage={{
+                            className: "",
+                            src: `${
+                              authenticated
+                                ? user.picture
+                                  ? user.profile
+                                  : profile
+                                : profile
+                            }`,
+                            alt: "",
+                            style: { width: "26px", height: "auto" },
+                          }}
+                        />
+                      </div>
+
+                      {/* <Image
                         attrImage={{
-                          className: "b-r-40 m-0",
+                          className: "",
                           src: `${
                             authenticated
                               ? user.picture
@@ -120,8 +137,9 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                               : profile
                           }`,
                           alt: "",
+                          style: { width: "16px", height: "auto" },
                         }}
-                      />
+                      /> */}
                       <div
                         className="media-body m-l-10"
                         style={{ display: "flex", flexDirection: "column" }}

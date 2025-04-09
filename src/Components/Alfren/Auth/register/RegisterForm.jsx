@@ -28,7 +28,7 @@ import {
   X,
 } from "react-feather";
 
-import logoWhite from "../../../../assets/images/logo/logo.png";
+import logoWhite from "../../../../assets/images/logo/logo.svg";
 import logoDark from "../../../../assets/images/logo/logo_dark.png";
 import OrIcon from "../../../../assets/used-files/images/auth/Or.svg";
 import GoogleIcon from "../../../../assets/used-files/icons/Google.svg";

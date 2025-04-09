@@ -6,9 +6,15 @@ import CustomizerContext from "../../_helper/Customizer";
 const SidebarIcon = () => {
   const { layoutURL } = useContext(CustomizerContext);
   return (
+    // <div className="logo-icon-wrapper">
+       
+    //   <Link to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}>
+    //     <img className="logo-img" src={cubaimg} alt="Logo" />
+    //   </Link>
+    // </div>
     <div className="logo-icon-wrapper">
       <Link to={`${process.env.PUBLIC_URL}/dashboard/default/${layoutURL}`}>
-        <img className="img-fluid" src={cubaimg} alt="" />
+        <img className="" src={cubaimg} alt="" />
       </Link>
     </div>
   );

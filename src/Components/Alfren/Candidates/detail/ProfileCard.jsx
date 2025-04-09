@@ -12,6 +12,9 @@ import websiteIcon from "../../../../assets/used-files/icons/website.svg";
 import { Link } from "react-router-dom";
 
 const ProfileCard = ({ candidateDetails }) => {
+  console.log("candidateDetails", candidateDetails);
+  const jobTitle = candidateDetails.candidate.currentJob.title.split(' @')[0];
+
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -27,7 +30,9 @@ const ProfileCard = ({ candidateDetails }) => {
               }}
             />
           </div>
-          <Link to={candidateDetails.candidate.linkedIn} target="_blank"
+          <Link
+            to={candidateDetails.candidate.linkedIn}
+            target="_blank"
             className="icon-wrapper step2"
             data-intro="Change Profile image here"
           >
@@ -53,7 +58,7 @@ const ProfileCard = ({ candidateDetails }) => {
                   </a>
                 </div>
                 <div className="desc mt-2">
-                  {candidateDetails.candidate.currentJob.title}
+                  {jobTitle}
                 </div>
                 <div className="desc mt-2">
                   {candidateDetails.candidate.description}
@@ -82,111 +87,121 @@ const ProfileCard = ({ candidateDetails }) => {
               </div>
             </Col>
           </Row>
-          <div className="text-center mt-3 mb-3">
-            {" "}
-            <Image
-              attrImage={{
-                alt: "",
-                src: lineBreaker,
-              }}
-            />
-          </div>
+          {candidateDetails.candidate.contact.phone ||
+            candidateDetails.candidate.contact.email ||
+            (candidateDetails.candidate.contact.website && (
+              <div className="text-center mt-3 mb-3">
+                {" "}
+                <Image
+                  attrImage={{
+                    alt: "",
+                    src: lineBreaker,
+                  }}
+                />
+              </div>
+            ))}
 
           <Row>
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: phoneIcon,
-                  }}
-                />
-                <div>
-                  <strong>Contact Number</strong>
-                  <br></br>
-                  {candidateDetails.candidate.contact.phone ? (
-                    <p>{candidateDetails.candidate.contact.phone}</p>
-                  ) : (
-                    <p className=" text-primary">
-                      <span
-                        className="badge badge-success"
-                        style={{
-                          borderLeft: "2px solid #299A16 ",
-                          borderRadius: " 0px",
-                        }}
-                      >
-                        {"Fetching contact number in progress"}
-                      </span>
-                    </p>
-                  )}
+            {candidateDetails.candidate.contact.phone && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: phoneIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Contact Number</strong>
+                    <br></br>
+                    {candidateDetails.candidate.contact.phone ? (
+                      <p>{candidateDetails.candidate.contact.phone}</p>
+                    ) : (
+                      <p className=" text-primary">
+                        <span
+                          className="badge badge-success"
+                          style={{
+                            borderLeft: "2px solid #299A16 ",
+                            borderRadius: " 0px",
+                          }}
+                        >
+                          {"Fetching contact number in progress"}
+                        </span>
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            )}
 
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: envelopIcon,
-                  }}
-                />
-                <div>
-                  <strong>Email</strong>
-                  <br></br>
-                  {candidateDetails.candidate.contact.email ? (
-                    <p>{candidateDetails.candidate.contact.email}</p>
-                  ) : (
-                    <p className=" text-primary">
-                      <span
-                        className="badge badge-success"
-                        style={{
-                          borderLeft: "2px solid #299A16 ",
-                          borderRadius: " 0px",
-                        }}
-                      >
-                        {"Fetching email in progress"}
-                      </span>
-                    </p>
-                  )}
+            {candidateDetails.candidate.contact.email && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: envelopIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Email</strong>
+                    <br></br>
+                    {candidateDetails.candidate.contact.email ? (
+                      <p>{candidateDetails.candidate.contact.email}</p>
+                    ) : (
+                      <p className=" text-primary">
+                        <span
+                          className="badge badge-success"
+                          style={{
+                            borderLeft: "2px solid #299A16 ",
+                            borderRadius: " 0px",
+                          }}
+                        >
+                          {"Fetching email in progress"}
+                        </span>
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            )}
 
-            <Col xl="12" xs="6" className="text-left">
-              <div style={{ display: "flex", alignItems: "flex-start" }}>
-                <Image
-                  attrImage={{
-                    className: "me-2 mt-1",
-                    alt: "",
-                    src: websiteIcon,
-                  }}
-                />
-                <div>
-                  <strong>Website</strong>
-                  <br></br>
-                  {candidateDetails.candidate.contact.website ? (
-                    <p className=" text-primary">
-                      {candidateDetails.candidate.contact.website}
-                    </p>
-                  ) : (
-                    <p className=" text-primary">
-                      <span
-                        className="badge badge-success"
-                        style={{
-                          borderLeft: "2px solid #299A16 ",
-                          borderRadius: " 0px",
-                        }}
-                      >
-                        {"Fetching website in progress"}
-                      </span>
-                    </p>
-                  )}
+            {candidateDetails.candidate.contact.website && (
+              <Col xl="12" xs="6" className="text-left">
+                <div style={{ display: "flex", alignItems: "flex-start" }}>
+                  <Image
+                    attrImage={{
+                      className: "me-2 mt-1",
+                      alt: "",
+                      src: websiteIcon,
+                    }}
+                  />
+                  <div>
+                    <strong>Website</strong>
+                    <br></br>
+                    {candidateDetails.candidate.contact.website ? (
+                      <p className=" text-primary">
+                        {candidateDetails.candidate.contact.website}
+                      </p>
+                    ) : (
+                      <p className=" text-primary">
+                        <span
+                          className="badge badge-success"
+                          style={{
+                            borderLeft: "2px solid #299A16 ",
+                            borderRadius: " 0px",
+                          }}
+                        >
+                          {"Fetching website in progress"}
+                        </span>
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            )}
           </Row>
         </div>
       </Card>

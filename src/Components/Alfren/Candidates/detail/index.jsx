@@ -42,8 +42,8 @@ const CandidatesList = () => {
   return (
     <Fragment>
       <Container fluid={true}>
-        <div style={{ textAlign: "right" }}>
-          <button className="btn btn-primary me-2 py-1 px-2">
+        <div style={{ textAlign: "right" }} >
+          <button className="btn btn-primary me-2 py-1 px-2 mt-2">
             <Image
               attrImage={{
                 src: ChatIcon,
@@ -53,7 +53,7 @@ const CandidatesList = () => {
             Messages
           </button>
           <button
-            className="btn btn-outline-dark py-1 px-2"
+            className="btn btn-outline-dark py-1 px-2 mt-2"
             id="TooltipBlacklist"
           >
             <Image
@@ -130,7 +130,7 @@ const CandidatesList = () => {
             </div>
           </ToolTip>
         </div>
-        <div className="user-profile mt-4">
+        <div className="user-profile mt-4  ">
           <Row>
             <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
               <Row>

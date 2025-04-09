@@ -17,25 +17,25 @@ const CarouselSection = () => {
       case 0:
         return (
           <div>
-            <strong>Security</strong> <strong className='protocol-style'>Protocol</strong>
+            <strong className='text-style'>Security</strong> <strong className='protocol-style'>Protocol</strong>
           </div>
         );
       case 1:
         return (
           <div>
-            <strong>Wider</strong> <strong className='protocol-style'>Range</strong>
+            <strong className='text-style'>Wider</strong> <strong className='protocol-style'>Range</strong>
           </div>
         );
       case 2:
         return (
           <div>
-            <strong>Top</strong> <strong className='protocol-style'>Talent</strong>
+            <strong className='text-style'>Top</strong> <strong className='protocol-style'>Talent</strong>
           </div>
         );
       case 3:
         return (
           <div>
-            <strong>Reduced</strong> <strong className='protocol-style'>Cost</strong>
+            <strong className='text-style'>Reduced</strong> <strong className='protocol-style'>Cost</strong>
           </div>
         );
       default:
