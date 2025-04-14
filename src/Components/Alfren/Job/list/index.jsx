@@ -524,6 +524,8 @@ const JobList = () => {
 
   };
 
+  console.log({jobsList})
+
 
   const mapTableData = (results) => {
     let currentDate = new Date();
@@ -539,6 +541,7 @@ const JobList = () => {
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
+      console.log({item})
       return {
         id: item.id,
         name: (
@@ -589,7 +592,7 @@ const JobList = () => {
                         className: "sm-progress-bar me-1 mb-0",
                       }}
                     />
-                    <span style={{ fontSize: "8px", color: "#fba14d" }}>0</span>
+                    <span style={{ fontSize: "8px", color: "#fba14d" }}>0s</span>
                   </div>
                 </Col>
               </div>

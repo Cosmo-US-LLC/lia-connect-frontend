@@ -13,6 +13,7 @@ const TopCandidate = ({ id }) => {
   const [hideScroll, setHideScroll] = useState(true); // State to control scrollbar visibility
   const [showInfoBox, setShowInfoBox] = useState(false); // State to control info box visibility
   const [topCandidateId, setGetTopCandidateId] = useState(null)
+  console.log({topCandidateDetail})
   console.log('topCandidateId', topCandidateId)
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -216,11 +217,11 @@ const TopCandidate = ({ id }) => {
         `}
       </style>
       {topCandidateDetail &&
-        <div className="shadow-container">
+        <div className="  relative">
           <p style={{
-            color: '#1264FD', fontFamily: 600, fontSize: '16px', textDecoration: 'underline', position: "relative",
-            top: "38px",
-            right: "15px"
+            color: '#1264FD', fontFamily: 600, fontSize: '16px', textDecoration: 'underline', position: "absolute",
+            bottom: "0px",
+            right: "25px"
           }}> <span style={{ fontWeight: 600, fontSize: '16px', position: 'relative', bottom: '5px' }}>View More</span></p>
         </div>
       }
