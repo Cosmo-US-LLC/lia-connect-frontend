@@ -26,9 +26,18 @@ const SidebarMenu = ({
 
   useEffect(() => {
     if (toggleIcon) {
-      document.querySelector(".trailDiv").classList.add("d-none");
+      const trailDiv = document.querySelector(".trailDiv");
+      if (trailDiv) {
+        trailDiv.classList.add("d-none");
+      }
     }
   }, [toggleIcon]);
+
+  // useEffect(() => {
+  //   if (toggleIcon) {
+  //     document.querySelector(".trailDiv").classList.add("d-none");
+  //   }
+  // }, [toggleIcon]);
   const scrollToRight = () => {
     if (margin <= -2598 || margin <= -2034) {
       if (width === 492) {

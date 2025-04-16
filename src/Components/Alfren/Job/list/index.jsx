@@ -184,173 +184,173 @@ const JobList = () => {
               sortable: false,
               center: false,
             },
-            {
-              name: (
-                <>
-                  <button
-                    id="potentialToolTip"
-                    className="d-flex"
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "white",
-                      border: "none",
-                      fontWeight: "600",
-                      color: "black",
-                      textAlign:'start',
-                      padding:'0px',
-                      display:'flex',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      gap:.2
-                    }}
-                  >
-                    Potential Candidates{" "}
-                    <Info
-                      className="ms-1"
-                      strokeWidth={1}
-                      size={16}
-                      color="#8FA8D7"
-                    />
-                    <UncontrolledTooltip
-                      target="potentialToolTip"
-                      placement="bottom"
-                      style={{
-                        backgroundColor: "#595959",
-                        boxShadow: "0px 6px 26px -3.89px #0000001A",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "100%",
-                          left: "300px",
-                          backgroundColor: "#595959",
-                        }}
-                        className="d-flex"
-                      >
-                        <Info color="#8FA8D7" size={70} />
-                        <span className="ms-2 text-white">
-                          The total number of unique candidate profiles the tool
-                          has interacted with.
-                        </span>
-                      </div>
-                    </UncontrolledTooltip>
-                  </button>
-                </>
-              ),
-              selector: (row) => row["potentialCandidates"],
-              sortable: false,
-              center: true,
-            },
-            {
-              name: (
-                <>
-                  <button
-                    id="potentialToolTip"
-                    className="d-flex"
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "white",
-                      border: "none",
-                      fontWeight: "600",
-                      color: "black",
-                      display:'flex',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      gap:.2
-                    }}
-                  >
-                    Outreach{" "}
-                    <Info
-                      className="ms-1"
-                      strokeWidth={1}
-                      size={16}
-                      color="#8FA8D7"
-                    />
-                    <UncontrolledTooltip
-                      target="potentialToolTip"
-                      placement="bottom"
-                      style={{
-                        backgroundColor: "#595959",
-                        boxShadow: "0px 6px 26px -3.89px #0000001A",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "100%",
-                          left: "300px",
-                          backgroundColor: "#595959",
-                        }}
-                        className="d-flex"
-                      >
-                        <Info color="#8FA8D7" size={70} />
-                        <span className="ms-2 text-white">
-                          The total number of unique candidate profiles the tool
-                          has interacted with.
-                        </span>
-                      </div>
-                    </UncontrolledTooltip>
-                  </button>
-                </>
-              ),
-              selector: (row) => row["outreach"],
-              sortable: false,
-              center: true,
-            },
-            {
-              name: (
-                <>
-                  <button
-                    id="responseToolTip"
-                    className="d-flex"
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "white",
-                      border: "none",
-                      fontWeight: "600",
-                      color: "black",
-                      display:'flex',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      gap:.2
-                    }}
-                  >
-                    Response Rate
-                    <Info
-                      className="ms-1"
-                      strokeWidth={1}
-                      size={16}
-                      color="#8FA8D7"
-                    />
-                    <UncontrolledTooltip
-                      target="responseToolTip"
-                      placement="bottom"
-                      style={{
-                        backgroundColor: "#595959",
-                        boxShadow: "0px 6px 26px -3.89px #0000001A",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: "100%",
-                          left: "300px",
-                          backgroundColor: "#595959",
-                        }}
-                        className="d-flex"
-                      >
-                        <Info color="#8FA8D7" size={70} />
-                        <span className="ms-2 text-white">
-                          The total number of unique candidate profiles the tool
-                          has interacted with.
-                        </span>
-                      </div>
-                    </UncontrolledTooltip>
-                  </button>
-                </>
-              ),
-              selector: (row) => row["responseRate"],
-              sortable: false,
-              center: true,
-            },
+            // {
+            //   name: (
+            //     <>
+            //       <button
+            //         id="potentialToolTip"
+            //         className="d-flex"
+            //         style={{
+            //           cursor: "pointer",
+            //           backgroundColor: "white",
+            //           border: "none",
+            //           fontWeight: "600",
+            //           color: "black",
+            //           textAlign:'start',
+            //           padding:'0px',
+            //           display:'flex',
+            //           justifyContent:'center',
+            //           alignItems:'center',
+            //           gap:.2
+            //         }}
+            //       >
+            //         Potential Candidates{" "}
+            //         <Info
+            //           className="ms-1"
+            //           strokeWidth={1}
+            //           size={16}
+            //           color="#8FA8D7"
+            //         />
+            //         <UncontrolledTooltip
+            //           target="potentialToolTip"
+            //           placement="bottom"
+            //           style={{
+            //             backgroundColor: "#595959",
+            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
+            //           }}
+            //         >
+            //           <div
+            //             style={{
+            //               width: "100%",
+            //               left: "300px",
+            //               backgroundColor: "#595959",
+            //             }}
+            //             className="d-flex"
+            //           >
+            //             <Info color="#8FA8D7" size={70} />
+            //             <span className="ms-2 text-white">
+            //               The total number of unique candidate profiles the tool
+            //               has interacted with.
+            //             </span>
+            //           </div>
+            //         </UncontrolledTooltip>
+            //       </button>
+            //     </>
+            //   ),
+            //   selector: (row) => row["potentialCandidates"],
+            //   sortable: false,
+            //   center: true,
+            // },
+            // {
+            //   name: (
+            //     <>
+            //       <button
+            //         id="potentialToolTip"
+            //         className="d-flex"
+            //         style={{
+            //           cursor: "pointer",
+            //           backgroundColor: "white",
+            //           border: "none",
+            //           fontWeight: "600",
+            //           color: "black",
+            //           display:'flex',
+            //           justifyContent:'center',
+            //           alignItems:'center',
+            //           gap:.2
+            //         }}
+            //       >
+            //         Outreach{" "}
+            //         <Info
+            //           className="ms-1"
+            //           strokeWidth={1}
+            //           size={16}
+            //           color="#8FA8D7"
+            //         />
+            //         <UncontrolledTooltip
+            //           target="potentialToolTip"
+            //           placement="bottom"
+            //           style={{
+            //             backgroundColor: "#595959",
+            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
+            //           }}
+            //         >
+            //           <div
+            //             style={{
+            //               width: "100%",
+            //               left: "300px",
+            //               backgroundColor: "#595959",
+            //             }}
+            //             className="d-flex"
+            //           >
+            //             <Info color="#8FA8D7" size={70} />
+            //             <span className="ms-2 text-white">
+            //               The total number of unique candidate profiles the tool
+            //               has interacted with.
+            //             </span>
+            //           </div>
+            //         </UncontrolledTooltip>
+            //       </button>
+            //     </>
+            //   ),
+            //   selector: (row) => row["outreach"],
+            //   sortable: false,
+            //   center: true,
+            // },
+            // {
+            //   name: (
+            //     <>
+            //       <button
+            //         id="responseToolTip"
+            //         className="d-flex"
+            //         style={{
+            //           cursor: "pointer",
+            //           backgroundColor: "white",
+            //           border: "none",
+            //           fontWeight: "600",
+            //           color: "black",
+            //           display:'flex',
+            //           justifyContent:'center',
+            //           alignItems:'center',
+            //           gap:.2
+            //         }}
+            //       >
+            //         Response Rate
+            //         <Info
+            //           className="ms-1"
+            //           strokeWidth={1}
+            //           size={16}
+            //           color="#8FA8D7"
+            //         />
+            //         <UncontrolledTooltip
+            //           target="responseToolTip"
+            //           placement="bottom"
+            //           style={{
+            //             backgroundColor: "#595959",
+            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
+            //           }}
+            //         >
+            //           <div
+            //             style={{
+            //               width: "100%",
+            //               left: "300px",
+            //               backgroundColor: "#595959",
+            //             }}
+            //             className="d-flex"
+            //           >
+            //             <Info color="#8FA8D7" size={70} />
+            //             <span className="ms-2 text-white">
+            //               The total number of unique candidate profiles the tool
+            //               has interacted with.
+            //             </span>
+            //           </div>
+            //         </UncontrolledTooltip>
+            //       </button>
+            //     </>
+            //   ),
+            //   selector: (row) => row["responseRate"],
+            //   sortable: false,
+            //   center: true,
+            // },
             {
               name: (
                 <>
@@ -405,7 +405,7 @@ const JobList = () => {
               selector: (row) => row["priority"],
               sortable: false,
               center: true,
-              width: "8%",
+              width: "14%",
             },
             {
               name: <>Date Created</>,
@@ -570,7 +570,7 @@ const JobList = () => {
                       }}
                     />
                     <span style={{ fontSize: "8px", color: "#b8d1fe" }}>
-                      100
+                      50
                     </span>
                   </div>
                   <div style={{ width: "4%" }}>
@@ -581,7 +581,7 @@ const JobList = () => {
                         className: "sm-progress-bar me-1 mb-0 ",
                       }}
                     />
-                    <span style={{ fontSize: "8px", color: "#ffe699" }}>0</span>
+                    <span style={{ fontSize: "8px", color: "#ffe699" }}>30</span>
                   </div>
                   <div style={{ width: "4%" }}>
                     <Progressbar
@@ -592,40 +592,40 @@ const JobList = () => {
                         className: "sm-progress-bar me-1 mb-0",
                       }}
                     />
-                    <span style={{ fontSize: "8px", color: "#fba14d" }}>0s</span>
+                    <span style={{ fontSize: "8px", color: "#fba14d" }}>20</span>
                   </div>
                 </Col>
               </div>
             </Link>
           </>
         ),
-        potentialCandidates: (
-          <div className="d-flex">
-            <Users strokeWidth={1} size={16} />
-            <div className="ms-2 font-secondary">
-              <strong>
-                {item.potentialCandidates ? item.potentialCandidates : "N/A"}
-              </strong>
-            </div>
-          </div>
-        ),
-        outreach: (
-          <div className="d-flex">
-            <User strokeWidth={1} size={16} />
-            <div className="ms-2 font-secondary">
-              <strong>{item.outreach ? item.outreach : "N/A"}</strong>
-            </div>
-          </div>
-        ),
-        responseRate: (
-          <div>
-            <div className="font-secondary">
-              <strong>
-                {item.responseRate ? item.responseRate + "%" : "N/A"}
-              </strong>
-            </div>
-          </div>
-        ),
+        // potentialCandidates: (
+        //   <div className="d-flex">
+        //     <Users strokeWidth={1} size={16} />
+        //     <div className="ms-2 font-secondary">
+        //       <strong>
+        //         {item.potentialCandidates ? item.potentialCandidates : "N/A"}
+        //       </strong>
+        //     </div>
+        //   </div>
+        // ),
+        // outreach: (
+        //   <div className="d-flex">
+        //     <User strokeWidth={1} size={16} />
+        //     <div className="ms-2 font-secondary">
+        //       <strong>{item.outreach ? item.outreach : "N/A"}</strong>
+        //     </div>
+        //   </div>
+        // ),
+        // responseRate: (
+        //   <div>
+        //     <div className="font-secondary">
+        //       <strong>
+        //         {item.responseRate ? item.responseRate + "%" : "N/A"}
+        //       </strong>
+        //     </div>
+        //   </div>
+        // ),
         priority: (
 
 

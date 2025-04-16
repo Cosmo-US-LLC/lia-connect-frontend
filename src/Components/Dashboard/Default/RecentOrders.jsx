@@ -8,7 +8,7 @@ import DropdownCommon from '../../Common/Dropdown';
 
 const RecentOrders = () => {
   return (
-    <Col xxl='4' xl='7' md='6' sm='5' className='box-col-6'>
+    <Col xxl='6' xl='7' md='6' sm='5' className='box-col-6'>
       <Card className='height-equal'>
         <CardHeader className='card-no-border'>
           <div className='header-top'>

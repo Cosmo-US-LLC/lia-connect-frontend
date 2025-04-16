@@ -5,26 +5,29 @@ import {
   Widgets2ChartDataWidgets,
 } from "./Chart";
 
-export const WidgetsData = {
-  title: "Jobs",
+export const totalJobsWidgetsData = {
+  title: "Total Jobs",
   gros: 50,
   total: 10,
   color: "secondary",
   icon: "cart",
+  animation : true
 };
-export const WidgetsData2 = {
-  title: "Candidates",
+export const inProgressWidgetsData = {
+  title: "In Progress",
   gros: 20,
   total: 700,
   color: "warning",
   icon: "return-box",
+  animation : true
 };
-export const WidgetsData3 = {
-  title: "Approached Candidates",
+export const completedJobsWidgetsData = {
+  title: "Completed Jobs",
   gros: 70,
   total: 400,
   color: "primary",
   icon: "tag",
+  animation : true
 };
 export const WidgetsData4 = {
   title: "Hired Candidate",
@@ -33,6 +36,10 @@ export const WidgetsData4 = {
   color: "primary",
   icon: "tag",
 };
+
+
+
+
 export const WidgetsData1WidgetsPage = [
   {
     title: "Purchase",

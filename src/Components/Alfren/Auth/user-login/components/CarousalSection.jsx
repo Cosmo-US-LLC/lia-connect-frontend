@@ -8,7 +8,7 @@ const CarouselSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % CAROUSAL_ITEMS.length);
-    }, 3000); // Adjust the interval as needed (milliseconds)
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);

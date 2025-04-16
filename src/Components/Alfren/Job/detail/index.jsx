@@ -69,7 +69,7 @@ const JobDetail = () => {
   
   useEffect(() => {
     getJobDetails();
-  }, []); // Empty dependency array to run once on mount
+  }, []);  
   
   
 
