@@ -26,13 +26,18 @@ import {
   Users,
   X,
 } from "react-feather";
-import { Modal, Button } from 'react-bootstrap';
-import { FaTimes, FaTrash } from 'react-icons/fa';
+import "./style.css";
+import { Modal, Button } from "react-bootstrap";
+import { FaTimes, FaTrash } from "react-icons/fa";
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import DateModal from "./modals/date";
 import { Link } from "react-router-dom";
-import { fetchJobs, updateJob, deleteJobAction } from "../../../../redux/Job/jobActions";
+import {
+  fetchJobs,
+  updateJob,
+  deleteJobAction,
+} from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConfirmationModal from "CommonElements/ConfirmationBox";
@@ -53,7 +58,6 @@ const JobList = () => {
   const [jobNamePagination] = usePagination(100);
   const [pagination, setPagination] = usePagination(10);
 
-
   //dropdown states
   const [searchDropdown, setsSearchDropdown] = useState(false);
   const [priorityDropdown, setPriorityDropdown] = useState(false);
@@ -61,9 +65,8 @@ const JobList = () => {
   const [priorityDropdownRow, setPriorityDropdownRow] = useState([]);
   const [jobAPIResult, setJobAPIResult] = useState([]);
   const [show, setShow] = useState(false);
-  const [getJobId, setGetJobId] = useState(null)
+  const [getJobId, setGetJobId] = useState(null);
   const handleClose = () => setShow(false);
-
 
   // function handle dropdown states
 
@@ -363,10 +366,10 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
-                      display:'flex',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      gap:.2
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: 0.2,
                     }}
                   >
                     Priority
@@ -408,6 +411,82 @@ const JobList = () => {
               width: "14%",
             },
             {
+              name: <>Connections</>,
+              selector: (row) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                      color: "#007bff",
+                    }}
+                  >
+                    Sent:{" "}
+                    {row.sentConnectionCount !== undefined
+                      ? row.sentConnectionCount
+                      : 0}
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                      color: "#007bff",
+                    }}
+                  >
+                    Accepted:{" "}
+                    {row.acceptedConnectionCount !== undefined
+                      ? row.acceptedConnectionCount
+                      : 0}
+                  </div>
+                </div>
+              ),
+              sortable: false,
+              center: false,
+              width: "20%",
+            },
+            {
+              name: <>Messages</>,
+              selector: (row) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                      color: "#007bff",
+                    }}
+                  >
+                    Send:{" "}
+                    {row.sentMessageCount !== undefined
+                      ? row.sentMessageCount
+                      : 0}
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: "bold",
+                      color: "#007bff",
+                    }}
+                  >
+                    Replied:{" "}
+                    {row.checkedMessageReplyCount !== undefined
+                      ? row.checkedMessageReplyCount
+                      : 0}
+                  </div>
+                </div>
+              ),
+              sortable: false,
+              center: false,
+              width: "20%",
+            },
+            {
               name: <>Date Created</>,
               selector: (row) => row["dateCreated"],
               sortable: false,
@@ -433,14 +512,15 @@ const JobList = () => {
   };
 
   const fetchJobNames = async (e) => {
-    setIsLoading(true)
-    const urlParams = "page=" + jobNamePagination.page + "&limit=" + jobNamePagination.limit;
+    setIsLoading(true);
+    const urlParams =
+      "page=" + jobNamePagination.page + "&limit=" + jobNamePagination.limit;
     const formPayload = {
       urlParams,
     };
     dispatch(
       fetchJobs(formPayload, (resp) => {
-        setIsLoading(false)
+        setIsLoading(false);
         if (resp?.status == 200) {
           // toast.success("JobsFetched successfully");
           const results = resp.data.results;
@@ -494,16 +574,14 @@ const JobList = () => {
     );
   };
 
-
-
   const deleteJob = () => {
-    console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
+    console.log("yes i runnnnnnnnnnnnnnnnnnnnn");
     setIsLoading(true); // Set loading to true before dispatching the action
     dispatch(
       deleteJobAction(getJobId, (resp) => {
         setIsLoading(false); // Set loading to true before dispatching the action
         if (resp.status == 204) {
-          setShow(false)
+          setShow(false);
           toast.success("Job Deleted Successfully");
           setPaginatedUpdated(!paginatedUpdated);
         } else {
@@ -514,137 +592,117 @@ const JobList = () => {
     );
   };
   const handleOpenConfirmation = (jobId) => {
-    setGetJobId(jobId)
-    setShow(true)
-  }
+    setGetJobId(jobId);
+    setShow(true);
+  };
   const toggleDropdown = (index) => {
     const updatedDropdownStates = [...priorityDropdownRow];
     updatedDropdownStates[index] = !updatedDropdownStates[index];
     setPriorityDropdownRow(updatedDropdownStates);
-
   };
 
-  console.log({jobsList})
-
+  console.log({ jobsList });
 
   const mapTableData = (results) => {
     let currentDate = new Date();
+
     let jobMappedList = results.map((item, index) => {
       let date = new Date(item.createdAt);
-
       let differenceInMs = currentDate - date;
       let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(
         1
       );
-      differenceInDays = Math.round(differenceInDays)
-
+      differenceInDays = Math.round(differenceInDays);
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
-      console.log({item})
+
       return {
         id: item.id,
+
         name: (
           <>
-            <Link to={'detail/' + item.id} key={item.id} >
+            <Link to={"detail/" + item.id} key={item.id}>
               <div
-                style={{
-                  width: "50ch",
-                  overflow: "hidden",
-                  whiteSpace: "pre-wrap",
-                }}
+                style={{ fontWeight: "600", fontSize: "14px", color: "#000" }}
               >
                 {item.name}
               </div>
-              <div className="progress-showcase">
-                <Col
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div style={{ width: "92%" }}>
-                    {" "}
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress1",
-                        className: "sm-progress-bar me-1 mb-0",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#b8d1fe" }}>
-                      50
-                    </span>
-                  </div>
-                  <div style={{ width: "4%" }}>
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress2",
-                        className: "sm-progress-bar me-1 mb-0 ",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#ffe699" }}>30</span>
-                  </div>
-                  <div style={{ width: "4%" }}>
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress3",
-                        barAriaLabelledBy: "75",
-                        className: "sm-progress-bar me-1 mb-0",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#fba14d" }}>20</span>
-                  </div>
-                </Col>
-              </div>
             </Link>
+            <div
+              className="progress-container"
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                margin: "20px 0",
+              }}
+            >
+              <div
+                className="progress-wrapper"
+                id={`progress1Tooltip`}
+                style={{ flex: 1, marginRight: "10px" }}
+              >
+                <Progressbar
+                  attrProgress={{
+                    value: 20,
+                    color: "progress1",
+                    className: "sm-progress-bar",
+                  }}
+                  style={{ height: "20px", borderRadius: "5px" }}
+                />
+                <UncontrolledTooltip
+                  placement="top"
+                  target={`progress1Tooltip`}
+                  title="Fetched Candidates"
+                >
+                  Fetched Candidates: 20% out of 100
+                </UncontrolledTooltip>
+              </div>
+              <div
+                className="progress-wrapper"
+                id={`progress2Tooltip`}
+                style={{ flex: 1 }}
+              >
+                <Progressbar
+                  attrProgress={{
+                    value: 40,
+                    color: "progress2",
+                    className: "sm-progress-bar",
+                  }}
+                  style={{ height: "20px", borderRadius: "5px" }}
+                />
+                <UncontrolledTooltip
+                  placement="top"
+                  target={`progress2Tooltip`}
+                  title="Fetched Profile Details"
+                >
+                  Fetched Profile Details: 40% out of 100
+                </UncontrolledTooltip>
+              </div>
+            </div>
           </>
         ),
-        // potentialCandidates: (
-        //   <div className="d-flex">
-        //     <Users strokeWidth={1} size={16} />
-        //     <div className="ms-2 font-secondary">
-        //       <strong>
-        //         {item.potentialCandidates ? item.potentialCandidates : "N/A"}
-        //       </strong>
-        //     </div>
-        //   </div>
-        // ),
-        // outreach: (
-        //   <div className="d-flex">
-        //     <User strokeWidth={1} size={16} />
-        //     <div className="ms-2 font-secondary">
-        //       <strong>{item.outreach ? item.outreach : "N/A"}</strong>
-        //     </div>
-        //   </div>
-        // ),
-        // responseRate: (
-        //   <div>
-        //     <div className="font-secondary">
-        //       <strong>
-        //         {item.responseRate ? item.responseRate + "%" : "N/A"}
-        //       </strong>
-        //     </div>
-        //   </div>
-        // ),
+
         priority: (
-
-
-          <div className="custom-dropdown" onClick={() => toggleDropdown(index)}>
-            <div className="selected-option" >
+          <div
+            className="custom-dropdown"
+            onClick={() => toggleDropdown(index)}
+          >
+            <div className="selected-option">
               <Flag
                 fill={
                   item.jobPriority == "HIGH"
                     ? "#DE3E3E"
                     : item.jobPriority == "LOW"
-                      ? "#CECECE"
-                      : "#FECF41"
+                    ? "#CECECE"
+                    : "#FECF41"
                 }
                 color={
                   item.jobPriority == "HIGH"
                     ? "#AA1313"
                     : item.jobPriority == "LOW"
-                      ? "#ABABAB"
-                      : "#E2B323"
+                    ? "#ABABAB"
+                    : "#E2B323"
                 }
                 size={14}
                 strokeWidth={1.5}
@@ -652,76 +710,45 @@ const JobList = () => {
               <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
                 {item.jobPriority}
               </span>
-              <ChevronDown
-                color="#8FA8D7"
-                size={14}
-                strokeWidth={1.5}
-              />
+              <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
             </div>
-            {
-              priorityDropdownRow[index] && (
-                <ul className="options" style={{
-                  padding: "10px",
-                  position: "absolute",
-                  boxShadow: "0px 10px 26px 0px #0000001A",
-                  zIndex: 2,
-                  backgroundColor: "white",
-                  borderRadius: "8px",
-                  width: "100%",
-                  paddingBottom: "3px",
-                  cursor:'pointer'
-                }}>
-                  {priorities.map((option, index) => (
-                    <li key={index} style={{ borderBottom: "1px solid #0000001f", padding: "8px" }} onClick={() =>
-                      changeJobPriority(item.id, option.title)
-                    }>
-                      <Flag
-                      style={{cursor:"pointer"}}
-                        fill={option.fill}
-                        color={option.color}
-                        size={14}
-                        strokeWidth={1.5}
-                      />
-                      {option.title}
-                    </li>
-                  ))}
-                </ul>
-              )
-            }
-
-
-
           </div>
         ),
+
         dateCreated: (
           <div>
             <span>{date}</span>
-            <span style={{ color: "#299A16" }}>
+            {/* <span style={{ color: "#299A16" }}>
               {" "}
-              ( {differenceInDays ? differenceInDays + " Days" : "Today"})
-            </span>
+              ({differenceInDays ? differenceInDays + " Days" : "Today"})
+            </span> */}
           </div>
         ),
+
         actions: (
           <div className="d-flex align-items-center">
             {item.isJobCompleted ? (
               <div className="d-block">
-                <span>Active</span>
+                <span>{item.isJobActive ? "Active" : "Inactive"}</span>
                 <Media key="1">
-                  <Media
-                    body
-                    className="text-start switch-sm "
-                  >
+                  <Media body className="text-start switch-sm ">
                     <Label className="switch">
                       <Input
                         type="checkbox"
-                        style={{background:'black'}}
                         checked={item.isJobActive ? true : false}
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
                         }
+                        aria-label={`Toggle job status for ${item.name}`}
                       />
-                      <span className="switch-state" style={{backgroundColor:'black'}}></span>
+                      <span
+                        className="switch-state"
+                        style={{
+                          backgroundColor: item.isJobActive
+                            ? "black"
+                            : "#D3D3D3",
+                        }}
+                      ></span>
                     </Label>
                   </Media>
                 </Media>
@@ -730,14 +757,11 @@ const JobList = () => {
               "Draft"
             )}
             <Trash2
-
               strokeWidth={1}
               color="#9B9999"
               size={20}
               className="ms-2"
-              onClick={() =>
-                handleOpenConfirmation(item.id)
-              }
+              onClick={() => handleOpenConfirmation(item.id)}
               style={{ cursor: "pointer" }}
             />
           </div>
@@ -747,6 +771,7 @@ const JobList = () => {
 
     return jobMappedList;
   };
+
   const mapSearchJobList = (results) => {
     let jobList = results.map((item, index) => {
       return {
@@ -759,14 +784,10 @@ const JobList = () => {
     return jobList;
   };
 
-
-
   useEffect(() => {
     fetchJobPaginated();
-    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false))
+    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false));
   }, [paginatedUpdated, selectedJobs, priorities, activeOnly, isDateSelected]);
-
-
 
   useEffect(() => {
     fetchJobNames();
@@ -779,14 +800,13 @@ const JobList = () => {
 
   const [maxHeight, setMaxHeight] = useState(window.innerHeight - 300);
 
-
   return (
     <Fragment>
-
       <Container fluid={true}>
         <ConfirmationModal
           deleteJob={deleteJob}
-          handleClose={handleClose} show={show}
+          handleClose={handleClose}
+          show={show}
           isLoading={isLoading}
         />
         <Row>
@@ -925,14 +945,17 @@ const JobList = () => {
                             onChange={handleCheckboxChange}
                             checked={activeOnly}
                           />
-                          <span className="switch-state" style={{background:'black'}}></span>
+                          <span
+                            className="switch-state"
+                            style={{ background: "black" }}
+                          ></span>
                         </Label>
                       </Media>
                       <span
                         style={{
                           opacity: activeOnly ? "100%" : "40%",
                           fontSize: "12px",
-                          marginLeft:'4px'
+                          marginLeft: "4px",
                         }}
                       >
                         Active Only
@@ -1040,7 +1063,13 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <div style={{ boxShadow: "none", maxHeight: `${maxHeight}px`, overflowY: "auto" }}>
+              <div
+                style={{
+                  boxShadow: "none",
+                  maxHeight: `${maxHeight}px`,
+                  overflowY: "auto",
+                }}
+              >
                 <DataTableComponent
                   isLoading={isLoading}
                   paginatedUpdated={paginatedUpdated}
@@ -1051,7 +1080,6 @@ const JobList = () => {
                   setPaginatedUpdated={setPaginatedUpdated}
                 />
               </div>
-
             </Card>
           </Col>
         </Row>
