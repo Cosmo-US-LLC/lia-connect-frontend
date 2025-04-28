@@ -1068,7 +1068,6 @@ const JobList = () => {
                           opacity: activeOnly ? "100%" : "40%",
                           fontSize: "12px",
                           marginLeft: "4px",
-                          marginLeft: "4px",
                         }}
                       >
                         Active Only
