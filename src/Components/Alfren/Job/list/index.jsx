@@ -771,7 +771,7 @@ const JobList = () => {
                     <Label className="switch">
                       <Input
                         type="checkbox"
-                        style={{ background: "black" }}
+                        style={{ background: `${item.isJobActive ? "black" : "red"}` }}
                         checked={item.isJobActive ? true : false}
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
@@ -779,7 +779,7 @@ const JobList = () => {
                       />
                       <span
                         className="switch-state"
-                        style={{ backgroundColor: "black" }}
+                        style={{ backgroundColor: `${item.isJobActive ? "darkgreen" : "darkred"}` }}
                       ></span>
                     </Label>
                   </Media>
@@ -978,7 +978,7 @@ const JobList = () => {
                           />
                           <span
                             className="switch-state"
-                            style={{ background: "black" }}
+                            style={{ background: `${activeOnly ? "darkgreen" : "darkred"}` }}
                           ></span>
                         </Label>
                       </Media>
