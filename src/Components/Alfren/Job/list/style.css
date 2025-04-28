@@ -1,0 +1,55 @@
+/* Container for progress bars under job name */
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+
+  width: 100%;
+  min-width: 330px;
+}
+
+.progress-wrapper {
+  width: 18%; /* 5 bars = 90% total, leaves gap space */
+}
+
+.sm-progress-bar {
+  height: 6px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* You can also style each progress color (optional) */
+.progress1 {
+  background-color: #8ecae6;
+}
+
+.progress2 {
+  background-color: #219ebc;
+}
+
+.progress3 {
+  background-color: #ffb703;
+}
+
+.progress4 {
+  background-color: #fb8500;
+}
+
+.progress5 {
+  background-color: #023047;
+}
+
+/* Optional hover or tooltip styling (if you want to enhance) */
+.sm-progress-bar:hover {
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+.job-row {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
