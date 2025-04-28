@@ -84,3 +84,8 @@ const App = () => (
 );
 
 export default App;
+
+/*
+Hello this is me typing to get my activity level to increase so that I can avoid having extremely low activity level for no reason when I am just browsing between windows
+
+*/

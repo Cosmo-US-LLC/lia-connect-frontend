@@ -26,13 +26,17 @@ import {
   Users,
   X,
 } from "react-feather";
-import { Modal, Button } from 'react-bootstrap';
-import { FaTimes, FaTrash } from 'react-icons/fa';
+import { Modal, Button } from "react-bootstrap";
+import { FaTimes, FaTrash } from "react-icons/fa";
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import DateModal from "./modals/date";
 import { Link } from "react-router-dom";
-import { fetchJobs, updateJob, deleteJobAction } from "../../../../redux/Job/jobActions";
+import {
+  fetchJobs,
+  updateJob,
+  deleteJobAction,
+} from "../../../../redux/Job/jobActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConfirmationModal from "CommonElements/ConfirmationBox";
@@ -53,7 +57,6 @@ const JobList = () => {
   const [jobNamePagination] = usePagination(100);
   const [pagination, setPagination] = usePagination(10);
 
-
   //dropdown states
   const [searchDropdown, setsSearchDropdown] = useState(false);
   const [priorityDropdown, setPriorityDropdown] = useState(false);
@@ -61,9 +64,8 @@ const JobList = () => {
   const [priorityDropdownRow, setPriorityDropdownRow] = useState([]);
   const [jobAPIResult, setJobAPIResult] = useState([]);
   const [show, setShow] = useState(false);
-  const [getJobId, setGetJobId] = useState(null)
+  const [getJobId, setGetJobId] = useState(null);
   const handleClose = () => setShow(false);
-
 
   // function handle dropdown states
 
@@ -145,7 +147,13 @@ const JobList = () => {
   };
 
   const fetchJobPaginated = async (e) => {
-    const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
+    const urlParams =
+      "page=" +
+      pagination.page +
+      "&limit=" +
+      pagination.limit +
+      "&includeCandidateStats=" +
+      true;
     const ids =
       selectedJobs.length > 0 ? selectedJobs.map((item) => item.id) : [];
     const jobPriority = priorities
@@ -363,10 +371,10 @@ const JobList = () => {
                       border: "none",
                       fontWeight: "600",
                       color: "black",
-                      display:'flex',
-                      justifyContent:'center',
-                      alignItems:'center',
-                      gap:.2
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: 0.2,
                     }}
                   >
                     Priority
@@ -433,14 +441,15 @@ const JobList = () => {
   };
 
   const fetchJobNames = async (e) => {
-    setIsLoading(true)
-    const urlParams = "page=" + jobNamePagination.page + "&limit=" + jobNamePagination.limit;
+    setIsLoading(true);
+    const urlParams =
+      "page=" + jobNamePagination.page + "&limit=" + jobNamePagination.limit;
     const formPayload = {
       urlParams,
     };
     dispatch(
       fetchJobs(formPayload, (resp) => {
-        setIsLoading(false)
+        setIsLoading(false);
         if (resp?.status == 200) {
           // toast.success("JobsFetched successfully");
           const results = resp.data.results;
@@ -494,16 +503,14 @@ const JobList = () => {
     );
   };
 
-
-
   const deleteJob = () => {
-    console.log('yes i runnnnnnnnnnnnnnnnnnnnn')
+    console.log("yes i runnnnnnnnnnnnnnnnnnnnn");
     setIsLoading(true); // Set loading to true before dispatching the action
     dispatch(
       deleteJobAction(getJobId, (resp) => {
         setIsLoading(false); // Set loading to true before dispatching the action
         if (resp.status == 204) {
-          setShow(false)
+          setShow(false);
           toast.success("Job Deleted Successfully");
           setPaginatedUpdated(!paginatedUpdated);
         } else {
@@ -514,18 +521,43 @@ const JobList = () => {
     );
   };
   const handleOpenConfirmation = (jobId) => {
-    setGetJobId(jobId)
-    setShow(true)
-  }
+    setGetJobId(jobId);
+    setShow(true);
+  };
   const toggleDropdown = (index) => {
     const updatedDropdownStates = [...priorityDropdownRow];
     updatedDropdownStates[index] = !updatedDropdownStates[index];
     setPriorityDropdownRow(updatedDropdownStates);
-
   };
 
-  console.log({jobsList})
+  console.log({ jobsList });
 
+  const calculateWidth = (item, bar) => {
+    const total =
+      item?.candidateStats?.messageStatus?.replied +
+      item?.candidateStats?.isConnectionRequestSent?.sent +
+      item?.candidateStats?.isConnectionRequestSent?.not_sent;
+
+    let width = 0;
+
+    if (bar == 1) {
+      width = (item?.candidateStats?.messageStatus?.replied / total) * 100;
+    } else if (bar == 2) {
+      width =
+        (item?.candidateStats?.isConnectionRequestSent?.sent / total) * 100;
+    } else if (bar == 3) {
+      width =
+        (item?.candidateStats?.isConnectionRequestSent?.not_sent / total) * 100;
+    }
+
+    if (width > 90) width = 90;
+    if (width < 5) width = 5;
+
+    if (total == 0) {
+      return "33.33%";
+    }
+    return `${width}%`;
+  };
 
   const mapTableData = (results) => {
     let currentDate = new Date();
@@ -536,17 +568,17 @@ const JobList = () => {
       let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(
         1
       );
-      differenceInDays = Math.round(differenceInDays)
+      differenceInDays = Math.round(differenceInDays);
 
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
-      console.log({item})
+      console.log({ item });
       return {
         id: item.id,
         name: (
           <>
-            <Link to={'detail/' + item.id} key={item.id} >
+            <Link to={"detail/" + item.id} key={item.id}>
               <div
                 style={{
                   width: "50ch",
@@ -560,7 +592,19 @@ const JobList = () => {
                 <Col
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <div style={{ width: "92%" }}>
+                  {/* {item?.candidateStats?.totalCandidates} */}
+                  {/* {calculateWidth(item, 1)}
+                  {calculateWidth(item, 2)}
+                  {calculateWidth(item, 3)} */}
+                  {/* {item?.candidateStats?.messageStatus} */}
+                  {/* {item?.candidateStats?.degreeOfConnection} */}
+                  {/* {item?.candidateStats?.isConnectionRequestSent} */}
+                  <div
+                    style={{
+                      width: calculateWidth(item, 3),
+                    }}
+                    title="Number of candidates you didn't interact with."
+                  >
                     {" "}
                     <Progressbar
                       attrProgress={{
@@ -570,10 +614,15 @@ const JobList = () => {
                       }}
                     />
                     <span style={{ fontSize: "8px", color: "#b8d1fe" }}>
-                      50
+                      {item?.candidateStats?.isConnectionRequestSent?.not_sent}
                     </span>
                   </div>
-                  <div style={{ width: "4%" }}>
+                  <div
+                    style={{
+                      width: calculateWidth(item, 2),
+                    }}
+                    title="Number of candidates you interacted with."
+                  >
                     <Progressbar
                       attrProgress={{
                         value: "100",
@@ -581,9 +630,16 @@ const JobList = () => {
                         className: "sm-progress-bar me-1 mb-0 ",
                       }}
                     />
-                    <span style={{ fontSize: "8px", color: "#ffe699" }}>30</span>
+                    <span style={{ fontSize: "8px", color: "#ffe699" }}>
+                      {item?.candidateStats?.isConnectionRequestSent?.sent}
+                    </span>
                   </div>
-                  <div style={{ width: "4%" }}>
+                  <div
+                    style={{
+                      width: calculateWidth(item, 1),
+                    }}
+                    title="Number of candidates processed."
+                  >
                     <Progressbar
                       attrProgress={{
                         value: "100",
@@ -592,7 +648,9 @@ const JobList = () => {
                         className: "sm-progress-bar me-1 mb-0",
                       }}
                     />
-                    <span style={{ fontSize: "8px", color: "#fba14d" }}>20</span>
+                    <span style={{ fontSize: "8px", color: "#fba14d" }}>
+                      {item?.candidateStats?.messageStatus?.replied}
+                    </span>
                   </div>
                 </Col>
               </div>
@@ -627,24 +685,25 @@ const JobList = () => {
         //   </div>
         // ),
         priority: (
-
-
-          <div className="custom-dropdown" onClick={() => toggleDropdown(index)}>
-            <div className="selected-option" >
+          <div
+            className="custom-dropdown"
+            onClick={() => toggleDropdown(index)}
+          >
+            <div className="selected-option">
               <Flag
                 fill={
                   item.jobPriority == "HIGH"
                     ? "#DE3E3E"
                     : item.jobPriority == "LOW"
-                      ? "#CECECE"
-                      : "#FECF41"
+                    ? "#CECECE"
+                    : "#FECF41"
                 }
                 color={
                   item.jobPriority == "HIGH"
                     ? "#AA1313"
                     : item.jobPriority == "LOW"
-                      ? "#ABABAB"
-                      : "#E2B323"
+                    ? "#ABABAB"
+                    : "#E2B323"
                 }
                 size={14}
                 strokeWidth={1.5}
@@ -652,15 +711,12 @@ const JobList = () => {
               <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
                 {item.jobPriority}
               </span>
-              <ChevronDown
-                color="#8FA8D7"
-                size={14}
-                strokeWidth={1.5}
-              />
+              <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
             </div>
-            {
-              priorityDropdownRow[index] && (
-                <ul className="options" style={{
+            {priorityDropdownRow[index] && (
+              <ul
+                className="options"
+                style={{
                   padding: "10px",
                   position: "absolute",
                   boxShadow: "0px 10px 26px 0px #0000001A",
@@ -669,28 +725,30 @@ const JobList = () => {
                   borderRadius: "8px",
                   width: "100%",
                   paddingBottom: "3px",
-                  cursor:'pointer'
-                }}>
-                  {priorities.map((option, index) => (
-                    <li key={index} style={{ borderBottom: "1px solid #0000001f", padding: "8px" }} onClick={() =>
-                      changeJobPriority(item.id, option.title)
-                    }>
-                      <Flag
-                      style={{cursor:"pointer"}}
-                        fill={option.fill}
-                        color={option.color}
-                        size={14}
-                        strokeWidth={1.5}
-                      />
-                      {option.title}
-                    </li>
-                  ))}
-                </ul>
-              )
-            }
-
-
-
+                  cursor: "pointer",
+                }}
+              >
+                {priorities.map((option, index) => (
+                  <li
+                    key={index}
+                    style={{
+                      borderBottom: "1px solid #0000001f",
+                      padding: "8px",
+                    }}
+                    onClick={() => changeJobPriority(item.id, option.title)}
+                  >
+                    <Flag
+                      style={{ cursor: "pointer" }}
+                      fill={option.fill}
+                      color={option.color}
+                      size={14}
+                      strokeWidth={1.5}
+                    />
+                    {option.title}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ),
         dateCreated: (
@@ -708,20 +766,20 @@ const JobList = () => {
               <div className="d-block">
                 <span>Active</span>
                 <Media key="1">
-                  <Media
-                    body
-                    className="text-start switch-sm "
-                  >
+                  <Media body className="text-start switch-sm ">
                     <Label className="switch">
                       <Input
                         type="checkbox"
-                        style={{background:'black'}}
+                        style={{ background: "black" }}
                         checked={item.isJobActive ? true : false}
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
                         }
                       />
-                      <span className="switch-state" style={{backgroundColor:'black'}}></span>
+                      <span
+                        className="switch-state"
+                        style={{ backgroundColor: "black" }}
+                      ></span>
                     </Label>
                   </Media>
                 </Media>
@@ -730,14 +788,11 @@ const JobList = () => {
               "Draft"
             )}
             <Trash2
-
               strokeWidth={1}
               color="#9B9999"
               size={20}
               className="ms-2"
-              onClick={() =>
-                handleOpenConfirmation(item.id)
-              }
+              onClick={() => handleOpenConfirmation(item.id)}
               style={{ cursor: "pointer" }}
             />
           </div>
@@ -759,14 +814,10 @@ const JobList = () => {
     return jobList;
   };
 
-
-
   useEffect(() => {
     fetchJobPaginated();
-    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false))
+    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false));
   }, [paginatedUpdated, selectedJobs, priorities, activeOnly, isDateSelected]);
-
-
 
   useEffect(() => {
     fetchJobNames();
@@ -779,14 +830,13 @@ const JobList = () => {
 
   const [maxHeight, setMaxHeight] = useState(window.innerHeight - 300);
 
-
   return (
     <Fragment>
-
       <Container fluid={true}>
         <ConfirmationModal
           deleteJob={deleteJob}
-          handleClose={handleClose} show={show}
+          handleClose={handleClose}
+          show={show}
           isLoading={isLoading}
         />
         <Row>
@@ -925,14 +975,17 @@ const JobList = () => {
                             onChange={handleCheckboxChange}
                             checked={activeOnly}
                           />
-                          <span className="switch-state" style={{background:'black'}}></span>
+                          <span
+                            className="switch-state"
+                            style={{ background: "black" }}
+                          ></span>
                         </Label>
                       </Media>
                       <span
                         style={{
                           opacity: activeOnly ? "100%" : "40%",
                           fontSize: "12px",
-                          marginLeft:'4px'
+                          marginLeft: "4px",
                         }}
                       >
                         Active Only
@@ -1040,7 +1093,13 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <div style={{ boxShadow: "none", maxHeight: `${maxHeight}px`, overflowY: "auto" }}>
+              <div
+                style={{
+                  boxShadow: "none",
+                  maxHeight: `${maxHeight}px`,
+                  overflowY: "auto",
+                }}
+              >
                 <DataTableComponent
                   isLoading={isLoading}
                   paginatedUpdated={paginatedUpdated}
@@ -1051,7 +1110,6 @@ const JobList = () => {
                   setPaginatedUpdated={setPaginatedUpdated}
                 />
               </div>
-
             </Card>
           </Col>
         </Row>
