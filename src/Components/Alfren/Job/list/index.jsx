@@ -416,82 +416,6 @@ const JobList = () => {
               width: "14%",
             },
             {
-              name: <>Connections</>,
-              selector: (row) => (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      color: "#007bff",
-                    }}
-                  >
-                    Sent:{" "}
-                    {row.sentConnectionCount !== undefined
-                      ? row.sentConnectionCount
-                      : 0}
-                  </div>
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      color: "#007bff",
-                    }}
-                  >
-                    Accepted:{" "}
-                    {row.acceptedConnectionCount !== undefined
-                      ? row.acceptedConnectionCount
-                      : 0}
-                  </div>
-                </div>
-              ),
-              sortable: false,
-              center: false,
-              width: "20%",
-            },
-            {
-              name: <>Messages</>,
-              selector: (row) => (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      color: "#007bff",
-                    }}
-                  >
-                    Send:{" "}
-                    {row.sentMessageCount !== undefined
-                      ? row.sentMessageCount
-                      : 0}
-                  </div>
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                      color: "#007bff",
-                    }}
-                  >
-                    Replied:{" "}
-                    {row.checkedMessageReplyCount !== undefined
-                      ? row.checkedMessageReplyCount
-                      : 0}
-                  </div>
-                </div>
-              ),
-              sortable: false,
-              center: false,
-              width: "20%",
-            },
-            {
               name: <>Date Created</>,
               selector: (row) => row["dateCreated"],
               sortable: false,
@@ -637,9 +561,9 @@ const JobList = () => {
 
   const mapTableData = (results) => {
     let currentDate = new Date();
-
     let jobMappedList = results.map((item, index) => {
       let date = new Date(item.createdAt);
+
       let differenceInMs = currentDate - date;
       let differenceInDays = (differenceInMs / (1000 * 60 * 60 * 24)).toFixed(
         1
@@ -652,12 +576,15 @@ const JobList = () => {
       console.log({ item });
       return {
         id: item.id,
-
         name: (
           <>
             <Link to={"detail/" + item.id} key={item.id}>
               <div
-                style={{ fontWeight: "600", fontSize: "14px", color: "#000" }}
+                style={{
+                  width: "50ch",
+                  overflow: "hidden",
+                  whiteSpace: "pre-wrap",
+                }}
               >
                 {item.name}
               </div>
@@ -824,22 +751,20 @@ const JobList = () => {
             )}
           </div>
         ),
-
         dateCreated: (
           <div>
             <span>{date}</span>
-            {/* <span style={{ color: "#299A16" }}>
+            <span style={{ color: "#299A16" }}>
               {" "}
-              ({differenceInDays ? differenceInDays + " Days" : "Today"})
-            </span> */}
+              ( {differenceInDays ? differenceInDays + " Days" : "Today"})
+            </span>
           </div>
         ),
-
         actions: (
           <div className="d-flex align-items-center">
             {item.isJobCompleted ? (
               <div className="d-block">
-                <span>{item.isJobActive ? "Active" : "Inactive"}</span>
+                <span>Active</span>
                 <Media key="1">
                   <Media body className="text-start switch-sm ">
                     <Label className="switch">
@@ -850,7 +775,6 @@ const JobList = () => {
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
                         }
-                        aria-label={`Toggle job status for ${item.name}`}
                       />
                       <span
                         className="switch-state"
@@ -878,7 +802,6 @@ const JobList = () => {
 
     return jobMappedList;
   };
-
   const mapSearchJobList = (results) => {
     let jobList = results.map((item, index) => {
       return {
@@ -893,7 +816,6 @@ const JobList = () => {
 
   useEffect(() => {
     fetchJobPaginated();
-    setPriorityDropdownRow(Array(jobAPIResult.length).fill(false));
     setPriorityDropdownRow(Array(jobAPIResult.length).fill(false));
   }, [paginatedUpdated, selectedJobs, priorities, activeOnly, isDateSelected]);
 
@@ -1053,10 +975,6 @@ const JobList = () => {
                             onChange={handleCheckboxChange}
                             checked={activeOnly}
                           />
-                          <span
-                            className="switch-state"
-                            style={{ background: "black" }}
-                          ></span>
                           <span
                             className="switch-state"
                             style={{ background: "black" }}
