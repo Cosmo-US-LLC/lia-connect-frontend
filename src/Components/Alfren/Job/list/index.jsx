@@ -541,7 +541,8 @@ const JobList = () => {
     let width = 0;
 
     if (bar == 1) {
-      width = (item?.candidateStats?.messageStatus?.replied / total) * 100;
+      width = 
+        (item?.candidateStats?.messageStatus?.replied / total) * 100;
     } else if (bar == 2) {
       width =
         (item?.candidateStats?.isConnectionRequestSent?.sent / total) * 100;
@@ -603,7 +604,7 @@ const JobList = () => {
                     style={{
                       width: calculateWidth(item, 3),
                     }}
-                    title="Number of candidates you didn't interact with."
+                    title="Pending Candidates"
                   >
                     {" "}
                     <Progressbar
@@ -621,7 +622,7 @@ const JobList = () => {
                     style={{
                       width: calculateWidth(item, 2),
                     }}
-                    title="Number of candidates you interacted with."
+                    title="Processing Candidates"
                   >
                     <Progressbar
                       attrProgress={{
@@ -638,7 +639,7 @@ const JobList = () => {
                     style={{
                       width: calculateWidth(item, 1),
                     }}
-                    title="Number of candidates processed."
+                    title="Processed Candidates"
                   >
                     <Progressbar
                       attrProgress={{
