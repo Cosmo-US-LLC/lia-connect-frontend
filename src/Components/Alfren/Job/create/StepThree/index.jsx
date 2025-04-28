@@ -118,7 +118,7 @@ const StepThree = ({
                       className="btn btn-outline-light pe-5 ps-5 pt-2 pb-2 me-3"
                     // style={{ opacity: nextActive ? "100%" : "60%" }}
                     >
-                      <span>Back to Sequence </span>
+                      <span>Back to Job Details</span>
                     </Link>
                     <Link
                       onClick={handleNextStep}

@@ -150,7 +150,7 @@ const StepOne = ({
 
   const handleCheckboxChange = () => {
     setIsMaxChecked(!isMaxChecked);
-    setMaxCandidates(isMaxChecked ? "" : "500");
+    setMaxCandidates(isMaxChecked ? null : "500");
   };
 
   return (
@@ -377,9 +377,9 @@ const StepOne = ({
                     </FormGroup>
                   </Col>
 
-                  <Col xl="12" className="mt-3">
+                  <Col xl="12" className="mt-0">
                     <FormGroup style={{ textAlign: "center" }}>
-                      <span
+                      {/* <span
                         style={{
                           border: "1px solid rgb(232, 233, 238)",
                           fontSize: "14px",
@@ -461,9 +461,9 @@ const StepOne = ({
                             </span>
                           </>
                         )}
-                      </span>
+                      </span> */}
 
-                      <div className="mt-5">
+                      <div className="mt-2">
                         <H6
                           attrH6={{
                             className: "d-flex justify-content-between",
@@ -489,7 +489,8 @@ const StepOne = ({
                               >
                                 Copy the{" "}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn Profile URL{" "}
+                                  LinkedIn URL{" "}
+                                  {/* LinkedIn Profile URL{" "} */}
                                 </span>
                                 and paste it below{" "}
                                 <span className="ms-2 text-danger">*</span>
@@ -519,6 +520,7 @@ const StepOne = ({
                                     : ".1px solid #efefef",
                                   background: "#EBF1FC",
                                   marginRight: "3px",
+                                  paddingRight: "35px",
                                 }}
                                 type="text"
                                 name="linkedInSearch"
@@ -532,15 +534,26 @@ const StepOne = ({
                               />
                               {!errors.linkedInSearch &&
                                 linkedInSearchValue && (
-                                  <FaCheck
+                                  <span
                                     style={{
+                                      // border: "1px solid #1264FD",
+                                      padding: "6px 0",
                                       position: "absolute",
                                       right: "10px",
                                       top: "50%",
                                       transform: "translateY(-50%)",
-                                      color: "green",
+                                      width: "50px",
+                                      height: "30px",
+                                      background: "linear-gradient(to right,rgba(235, 241, 252, 0), #ebf1fc, #ebf1fc)",
                                     }}
-                                  />
+                                  >
+                                    <FaCheck
+                                      style={{
+                                        color: "green",
+                                        float: "right",
+                                      }}
+                                    />
+                                  </span>
                                 )}
                               {errors.linkedInSearch && (
                                 <div className="invalid-feedback text-start">
@@ -593,10 +606,11 @@ const StepOne = ({
                         )}
                       </div>
                     </FormGroup>
-                    {linkedInSearchValue && !hasErrors && <div className="text-start" style={{ color: "#595959" }}>
-                        <p style={{ fontSize: "12px" }}>
+                    {linkedInSearchValue && !hasErrors && (
+                      <div className="text-start" style={{ color: "#595959" }}>
+                        {/* <p style={{ fontSize: "12px" }}>
                           LinkedIn profile found: <strong>{"1000+"}</strong>
-                        </p>
+                        </p> */}
                         <p style={{ fontSize: "12px" }}>
                           How many users you would like to add to this list?{" "}
                           <span className="ms-2 text-danger">
@@ -660,8 +674,8 @@ const StepOne = ({
                           </div>
                         </div>
                         <div></div>
-                      </div>}
-       
+                      </div>
+                    )}
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
                     <button

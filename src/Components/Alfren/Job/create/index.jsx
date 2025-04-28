@@ -22,7 +22,7 @@ const JobCreate = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
-  console.log('stepstepstepstepstepstepstepstepstepstepstepstepstepstep', step)
+  // console.log('stepstepstepstepstepstepstepstepstepstepstepstepstepstep', step)
   const dispatch = useDispatch()
   const handleNext = (e) => {
     e.preventDefault();
@@ -31,7 +31,8 @@ const JobCreate = () => {
 
   const handlePrevious = (e) => {
     e.preventDefault();
-    setStep(step - 1);
+    // setStep(step - 1);
+    setStep(1);
   };
 
   const handleSubmitss = (e) => {
@@ -155,7 +156,7 @@ const JobCreate = () => {
           stepOne(formData, (resp) => {
             setIsLoading(false); // Set loading to false when data is received
             if (resp?.status === 201) {
-              toast.success('Job step One completed');
+              toast.success('Job details saved!');
               setJobId(resp.data.id);
               handleNext(e);
             } else {
@@ -198,8 +199,8 @@ const JobCreate = () => {
           }}
         >
           <div style={{ width: "40%" }}>
-            <Col style={{ display: "flex" }}>
-              <div>
+            <Col style={{ display: "flex", paddingTop: "5px" }}>
+              <div style={{ scale: "1.3" }}>
                 <Image
                   attrImage={{
                     src:
@@ -209,48 +210,24 @@ const JobCreate = () => {
                   }}
                 />
               </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
+              <div style={{ width: "100%", marginTop: "7px" }}>
                 <Progressbar
                   attrProgress={{
-                    value: "100",
+                    value: `${step == 1 ? "50" : "100"}`,
                     color:
-                      step == 3 || step == 2 || step == 4
-                        ? "stepActive"
-                        : "stepInActive",
+                      true ? "stepActive" : "stepInActive",
+                      // step == 2 || step == 3 ? "stepActive" : "stepInActive",
                     className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
               </div>
-              <div>
-                {" "}
+              <div style={{ scale: "1.3" }}>
                 <Image
                   attrImage={{
                     src:
                       step == 2
                         ? StepActiveIcon
-                        : step == 3 || step == 4
-                          ? StepCompletedIcon
-                          : StepInActiveIcon,
-                  }}
-                />
-              </div>
-              <div style={{ width: "100%", marginTop: "10px" }}>
-                <Progressbar
-                  attrProgress={{
-                    value: "100",
-                    color:
-                      step == 3 || step == 4 ? "stepActive" : "stepInActive",
-                    className: "sm-progress-bar  mb-0 rounded-0",
-                  }}
-                />
-              </div>
-              <div>
-                <Image
-                  attrImage={{
-                    src:
-                      step == 3
-                        ? StepActiveIcon
-                        : step == 4
+                        : step == 3
                           ? StepCompletedIcon
                           : StepInActiveIcon,
                   }}
@@ -271,7 +248,7 @@ const JobCreate = () => {
                 Setup New Job
               </span>
 
-              <span
+              {/* <span
                 className="me-4"
                 style={{
                   color:
@@ -279,11 +256,11 @@ const JobCreate = () => {
                 }}
               >
                 Set Sequence
-              </span>
+              </span> */}
 
               <span
                 style={{
-                  color: step == 3 || step == 4 ? "#1264fd" : "#e0e0e7",
+                  color: step == 2 || step == 3 ? "#1264fd" : "#e0e0e7",
                 }}
               >
                 Complete
@@ -323,13 +300,11 @@ const JobCreate = () => {
               />
             )}
             {step === 2 && (
-              <StepTwo
-                handlePrevious={handlePrevious}
-                handleNext={handleNext}
-                jobId={jobId}
-              />
-            )}
-            {step === 3 && (
+              // <StepTwo
+              //   handlePrevious={handlePrevious}
+              //   handleNext={handleNext}
+              //   jobId={jobId}
+              // />              
               <StepThree
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
@@ -342,7 +317,21 @@ const JobCreate = () => {
                 jobId={jobId}
               />
             )}
-            {step === 4 && <Completed />}
+            {/* {step === 3 && (
+              <StepThree
+                handlePrevious={handlePrevious}
+                handleNext={handleNext}
+                candidateHaveDisplay={candidateHaveDisplay}
+                setCandidateHaveDisplay={setCandidateHaveDisplay}
+                candidateHaveOpenProfile={candidateHaveOpenProfile}
+                setCandidateHaveOpenProfile={setCandidateHaveOpenProfile}
+                candidateInOtherJob={candidateInOtherJob}
+                setCandidateInOtherJob={setCandidateInOtherJob}
+                jobId={jobId}
+              />
+            )} */}
+            {step === 3 && <Completed />}
+            {/* {step === 4 && <Completed />} */}
           </form>
         </div>
       </Container>
