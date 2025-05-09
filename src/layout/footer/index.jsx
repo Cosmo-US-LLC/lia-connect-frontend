@@ -15,7 +15,7 @@ const Footer = () => {
           <Row>
             <Col md="10" className="text-center">
               <P attrPara={{ className: "mb-0" }}>
-                {"2024 - 25 Copy Right by Alfren HR powerd by Cosomo Inc."}
+                {"2024 - 25 Copy Right by Alfren HR powerd by Cosmo Inc."}
               </P>
             </Col>
           </Row>
