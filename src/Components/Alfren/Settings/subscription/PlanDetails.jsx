@@ -46,10 +46,6 @@ const PlanDetails = ({
 
   const stripe = useStripe();
   const elements = useElements();
-  const handleActivatePlan = (index) => {
-    setActivatePlan(index);
-    setPlanAndBilling(true);
-  };
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -101,18 +97,6 @@ const PlanDetails = ({
     }
   };
 
-  const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: "16px", // Font size
-        color: "#424770", // Text color
-        letterSpacing: "0.025em", // Letter spacing
-        backgroundColor: "white", // Card background color
-        padding: "10px", // Padding around the card
-        borderRadius: "4px",
-      },
-    },
-  };
 
   return (
     <div>

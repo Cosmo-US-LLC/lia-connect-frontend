@@ -105,7 +105,7 @@
   "proxy": "http://137.184.95.65:5000",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts --max_old_space_size=8096 build",
+    "build": "react-scripts --max_old_space_size=16384 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --fix --ext .js,.jsx .",

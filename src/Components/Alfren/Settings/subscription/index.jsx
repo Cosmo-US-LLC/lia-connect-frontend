@@ -7,11 +7,18 @@ import { Check, X } from "react-feather";
 import SubscribePlan from "./SubscribePlan";
 import PlanDetails from "./PlanDetails";
 import { INSTANCE } from "Config/axiosInstance";
+import { CheckoutProvider } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51O0jx3Ath9C2NE0MvIrV1nitk2yYftCYjwr2v2HPghQNJrTuVXbN8R82JPw3DSQzZjm2MBuB69nn88kbYQ4azLOW00WCTYP7Wg"
+);
 
 const Subscription = () => {
   const [planAndBilling, setPlanAndBilling] = useState(false);
   const [monthlyButtonActive, setMonthlyButtonActive] = useState(true);
   const [activatePlan, setActivatePlan] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const subscriptionDetails = [
     {
@@ -30,6 +37,23 @@ const Subscription = () => {
     },
   ];
 
+  const fetchClientSecret = async () => {
+    setLoading(true);
+    const plan = subscriptionDetails[activatePlan];
+    try {
+      const response = await INSTANCE.post("/payment/create-payment-intent", {
+        plan: { name: plan, price: 79 },
+      });
+      const { clientSecret } = response.data;
+      return clientSecret;
+    } catch (error) {
+      console.error("Error during payment:", error);
+      alert("Something went wrong, please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Fragment>
       {planAndBilling ? (
@@ -40,14 +64,19 @@ const Subscription = () => {
           /> */}
         </>
       ) : (
-        <PlanDetails
-          setMonthlyButtonActive={setMonthlyButtonActive}
-          monthlyButtonActive={monthlyButtonActive}
-          subscriptionDetails={subscriptionDetails}
-          setPlanAndBilling={setPlanAndBilling}
-          setActivatePlan={setActivatePlan}
-          activatePlan={activatePlan}
-        />
+        <CheckoutProvider
+          stripe={stripePromise}
+          options={{ fetchClientSecret }}
+        >
+          <PlanDetails
+            setMonthlyButtonActive={setMonthlyButtonActive}
+            monthlyButtonActive={monthlyButtonActive}
+            subscriptionDetails={subscriptionDetails}
+            setPlanAndBilling={setPlanAndBilling}
+            setActivatePlan={setActivatePlan}
+            activatePlan={activatePlan}
+          />
+        </CheckoutProvider>
       )}
     </Fragment>
   );
