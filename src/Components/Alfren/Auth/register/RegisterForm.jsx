@@ -402,9 +402,9 @@ const RegisterForm = ({ logoClassMain }) => {
                 </Btn>
               </FormGroup>
 
-              <div className="login-social-title text-center">
+              {/* <div className="login-social-title text-center">
                 <Image attrImage={{ src: OrIcon }} />
-              </div>
+              </div> */}
 
               {/* <div className="social my-4 text-center ">
                 <div className="btn-showcase">

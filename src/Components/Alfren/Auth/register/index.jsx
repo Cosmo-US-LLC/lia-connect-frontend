@@ -13,9 +13,12 @@ const Login = () => {
               xl="7"
               className="b-center bg-size"
               style={{
-                backgroundImage: `url(${require("../../../../assets/used-files/images/auth/register.png")})`,
-                backgroundSize: "cover",
+                // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/register.png")})`,
+                backgroundImage: `url('/img/alfren-hr.gif')`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
+                backgroundColor: "#F2F4FF",
                 // display: "block",
                 borderRadius: "20px",
               }}
@@ -51,7 +54,7 @@ const Login = () => {
                   },
                 }}
               >
-                © 2024 Lia Connect. ALL RIGHTS RESERVED
+                © 2024 Alfren HR. ALL RIGHTS RESERVED
               </P>
             </Col>
           </Row>

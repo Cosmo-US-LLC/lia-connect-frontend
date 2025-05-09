@@ -41,19 +41,19 @@ const Dashboard = () => {
     );
   }
 
-  if (!isLinkedInConnected) {
-    return <UserLogin />;
-  }
+  // if (!isLinkedInConnected) {
+  //   return <UserLogin />;
+  // }
 
   return (
     <Fragment>
       <Container fluid={true}>
         <Row className="widget-grid">
-          <GreetingCard />
+          <GreetingCard isLinkedInLogin={isLinkedInConnected} />
           <WidgetsWrapper />
           {/* <OverallBalance /> */}
-          <ActivityCard />
-          <RecentOrders />
+          {/* <ActivityCard />
+          <RecentOrders /> */}
 
           {/* <RecentSales /> */}
           {/* <TimelineCard /> */}

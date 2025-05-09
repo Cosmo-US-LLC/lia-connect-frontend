@@ -73,6 +73,7 @@ const StepThree = ({
               <CardBody>
                 <Row>
                   <Col xl="8" style={{ textAlign: "left" }}>
+                    <h5>Do not include candidates for which</h5>
                     <FormGroup>
                       <div className="checkbox checkbox-solid-primary">
                         <Input

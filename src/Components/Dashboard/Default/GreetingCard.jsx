@@ -1,52 +1,199 @@
-import React from 'react';
-import { Card, CardBody, Col, Media } from 'reactstrap';
-import { H4, P, Btn, Image } from '../../../AbstractElements';
-import { WelcomeMessage, WelcomeToCuba, WhatsNew } from '../../../constant';
+import React, { useState } from "react";
+import { Card, CardBody, Col, Media } from "reactstrap";
+import { H4, P, Btn, Image } from "../../../AbstractElements";
+import { WelcomeMessage, WelcomeToCuba, WhatsNew } from "../../../constant";
 
-import CarToon from '../../../assets/images/dashboard/cartoon.svg';
+import CarToon from "../../../assets/images/dashboard/cartoon.svg";
 
-const GreetingCard = () => {
+const GreetingCard = ({ isLinkedInLogin }) => {
+  const authenticated = JSON.parse(localStorage.getItem("authenticated"));
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [name, setName] = useState(user?.first_name);
+
   return (
-    <Col className='col-xxl-12 col-sm-12 box-col-12 mt-3'>
-      <Card className=' profile-box'>
+    <Col className="col-xxl-12 col-sm-12 box-col-12 mt-3">
+      <Card className=" profile-box">
         <CardBody>
           <Media>
             <Media body>
-              <div className='greeting-user'>
-                <H4 attrH4={{ className: 'f-w-600' }}>Welcome to Alfren</H4>
-                <P>{WelcomeMessage}</P>
-                <div className='whatsnew-btn'>
-                  <Btn attrBtn={{ color: 'transparent', outline: true, className: 'btn btn-outline-white' }}>{WhatsNew}</Btn>
-                </div>
+              <div className="greeting-user">
+                {/* <H4 attrH4={{ className: 'f-w-600' }}>Welcome to Alfren</H4> */}
+                <H4 attrH4={{ className: "f-w-600" }}>
+                  Let's get started{" "}
+                  <span style={{ textTransform: "capitalize" }}>
+                    {authenticated ? user.firstName : name}
+                  </span>{" "}
+                  👋
+                </H4>
+                {/* <P>{WelcomeMessage}</P> */}
+                <P>
+                  {isLinkedInLogin
+                    ? "Create a job to get leads and find the best candidates for your job."
+                    : "Connect your LinkedIn account to get the most out of AlfrenHR."}
+                </P>
+
+                {isLinkedInLogin ? (
+                  <div
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      maxWidth: "70%",
+                      padding: "20px",
+                      borderRadius: "5px",
+                      color: "#000000",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
+                      <div style={{ marginRight: "10px" }}>
+                        <img
+                          src="/img/job.png"
+                          alt="Job"
+                          style={{ width: "30px", height: "30px" }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          gap: "10px",
+                        }}
+                      >
+                        <div>
+                          <h5 style={{ fontWeight: "700" }}>Create a Job</h5>
+                          <p style={{ whiteSpace: "nowrap" }}>
+                            Post a job to start getting the best leads from
+                            LinkedIn on AlfrenHr.
+                          </p>
+                        </div>
+                        <button
+                          style={{
+                            border: "1px solid lightgrey",
+                            padding: "7px 14px",
+                            borderRadius: "7px",
+                            backgroundColor: "white",
+                          }}
+                        >
+                          + Create a Job
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      maxWidth: "70%",
+                      padding: "20px",
+                      borderRadius: "5px",
+                      color: "#000000",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
+                    >
+                      <div style={{ marginRight: "10px" }}>
+                        <img
+                          src="/img/linked-in.png"
+                          alt="LinkedIn"
+                          style={{ width: "30px", height: "30px" }}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          gap: "10px",
+                        }}
+                      >
+                        <div>
+                          <h5 style={{ fontWeight: "700" }}>
+                            Connect your LinkedIn account
+                          </h5>
+                          <p style={{ whiteSpace: "nowrap" }}>
+                            Unlock the full potential of AlfrenHR by connecting
+                            your LinkedIn account.
+                          </p>
+                        </div>
+                        <button
+                          style={{
+                            border: "1px solid lightgrey",
+                            padding: "7px 14px",
+                            borderRadius: "7px",
+                            backgroundColor: "white",
+                          }}
+                        >
+                          + Connect Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </Media>
             <div>
-              <div className='clockbox'>
-                <svg id='clock' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'>
-                  <g id='face'>
-                    <circle className='circle' cx={300} cy={300} r='253.9' />
-                    <path className='hour-marks' d='M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6' />
-                    <circle className='mid-circle' cx={300} cy={300} r='16.2' />
+              <div className="clockbox">
+                <svg
+                  id="clock"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 600 600"
+                >
+                  <g id="face">
+                    <circle className="circle" cx={300} cy={300} r="253.9" />
+                    <path
+                      className="hour-marks"
+                      d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6"
+                    />
+                    <circle className="mid-circle" cx={300} cy={300} r="16.2" />
                   </g>
-                  <g id='hour'>
-                    <path className='hour-hand' d='M300.5 298V142' />
-                    <circle className='sizing-box' cx={300} cy={300} r='253.9' />
+                  <g id="hour">
+                    <path className="hour-hand" d="M300.5 298V142" />
+                    <circle
+                      className="sizing-box"
+                      cx={300}
+                      cy={300}
+                      r="253.9"
+                    />
                   </g>
-                  <g id='minute'>
-                    <path className='minute-hand' d='M300.5 298V67' />
-                    <circle className='sizing-box' cx={300} cy={300} r='253.9' />
+                  <g id="minute">
+                    <path className="minute-hand" d="M300.5 298V67" />
+                    <circle
+                      className="sizing-box"
+                      cx={300}
+                      cy={300}
+                      r="253.9"
+                    />
                   </g>
-                  <g id='second'>
-                    <path className='second-hand' d='M300.5 350V55' />
-                    <circle className='sizing-box' cx={300} cy={300} r='253.9'></circle>
+                  <g id="second">
+                    <path className="second-hand" d="M300.5 350V55" />
+                    <circle
+                      className="sizing-box"
+                      cx={300}
+                      cy={300}
+                      r="253.9"
+                    ></circle>
                   </g>
                 </svg>
               </div>
-              <div className='badge f-10 p-0' id='txt' />
+              <div className="badge f-10 p-0" id="txt" />
             </div>
           </Media>
-          <div className='cartoon'>
-            <Image attrImage={{ src: CarToon, alt: 'vector women with leptop' }} />
+          <div className="cartoon">
+            <Image
+              attrImage={{ src: CarToon, alt: "vector women with leptop" }}
+            />
           </div>
         </CardBody>
       </Card>

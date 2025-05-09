@@ -1,27 +1,85 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
-import {
-  Widgets2Data,
-  Widgets2Data2,
-  totalJobsWidgetsData,
-  inProgressWidgetsData,
-  completedJobsWidgetsData,
-  WidgetsData4,
-} from "../../../Data/DefaultDashboard";
 import Widgets1 from "../../Common/CommonWidgets/Widgets1";
 import Widgets2 from "../../Common/CommonWidgets/Widgets2";
+import { BorderRadius } from "constant";
 
 const WidgetsWrapper = () => {
+  const data = [
+    {
+      title: "Total Jobs",
+      gros: 50,
+      total: 10,
+      color: "secondary",
+      icon: "svg/case.svg",
+      animation : true,
+      style: { backgroundColor: "#ffc107", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "In Progress",
+      gros: 20,
+      total: 700,
+      color: "warning",
+      icon: "svg/glass.svg",
+      animation : true,
+      style: { backgroundColor: "black", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "Completed Jobs",
+      gros: 70,
+      total: 400,
+      color: "primary",
+      icon: "svg/flag.svg",
+      animation : true,
+      style: { backgroundColor: "#007bff", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "Connection Requests",
+      gros: 70,
+      total: 400,
+      color: "info",
+      icon: "svg/user-add.svg",
+      animation : true,
+      style: { backgroundColor: "#29a746", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "Messages",
+      gros: 70,
+      total: 400,
+      color: "danger",
+      icon: "svg/message.svg",
+      animation : true,
+      style: { backgroundColor: "#dc3545", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "Engagements",
+      gros: 70,
+      total: 400,
+      color: "muted",
+      icon: "svg/join.svg",
+      animation : true,
+      style: { backgroundColor: "#6c757d", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    }
+  ]
   return (
     <>
       <Col xl="4">
-        <Widgets1 data={totalJobsWidgetsData} />
+        <Widgets1 data={data[0]} />
       </Col>
       <Col xl="4">
-        <Widgets1 data={inProgressWidgetsData} />
+        <Widgets1 data={data[1]} />
       </Col>
       <Col xl="4">
-        <Widgets1 data={completedJobsWidgetsData} />
+        <Widgets1 data={data[2]} />
+      </Col>
+      <Col xl="4">
+        <Widgets1 data={data[3]} />
+      </Col>
+      <Col xl="4">
+        <Widgets1 data={data[4]} />
+      </Col>
+      <Col xl="4">
+        <Widgets1 data={data[5]} />
       </Col>
       {/* <Col xl="3">
         <Widgets1 data={WidgetsData4} />

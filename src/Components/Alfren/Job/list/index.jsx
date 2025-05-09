@@ -777,6 +777,7 @@ const JobList = () => {
                           changeJobStatus(item.id, item.isJobActive)
                         }
                       />
+                      {/* askjn few ojk few qwe iupi jjfh akjasfdnjfdf sdfm, */}
                       <span
                         className="switch-state"
                         style={{ backgroundColor: `${item.isJobActive ? "darkgreen" : "darkred"}` }}
