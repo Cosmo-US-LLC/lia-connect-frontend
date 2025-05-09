@@ -33,7 +33,7 @@ const SubscribePlan = ({ activePlan, monthlyButtonActive }) => {
                     Billed
                     {monthlyButtonActive ? " Monthly" : " Yearly"}
                   </span>
-                  <span className="bottom">{activePlan.name}</span>
+                  {/* <span className="bottom">{activePlan.name}</span> */}
                 </div>
               </div>
             </Col>
@@ -43,7 +43,7 @@ const SubscribePlan = ({ activePlan, monthlyButtonActive }) => {
                 <div className="divContent">
                   <span className="top">Payment</span>
                   <span className="bottom">
-                    ${activePlan.price}{" "}
+                    {/* ${activePlan.price}{" "} */}
                     <span className="bottomDuration">per user/month</span>
                   </span>
                 </div>

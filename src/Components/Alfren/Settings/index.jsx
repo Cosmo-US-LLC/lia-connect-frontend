@@ -11,6 +11,12 @@ import { Image } from "../../../AbstractElements";
 import Profile from "./profile";
 import Sequence from "./sequence";
 import Subscription from "./subscription/index";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51O0jx3Ath9C2NE0MvIrV1nitk2yYftCYjwr2v2HPghQNJrTuVXbN8R82JPw3DSQzZjm2MBuB69nn88kbYQ4azLOW00WCTYP7Wg"
+);
 
 const Settings = () => {
   const [menu, setMenu] = useState([
@@ -19,11 +25,11 @@ const Settings = () => {
       activeIcon: profileActive,
       inactiveIcon: profileInactive,
     },
-    {
-      name: "Campaign Sequence ",
-      activeIcon: sequenceActive,
-      inactiveIcon: sequenceInactive,
-    },
+    // {
+    //   name: "Campaign Sequence ",
+    //   activeIcon: sequenceActive,
+    //   inactiveIcon: sequenceInactive,
+    // },
     {
       name: "Subscription & Billing",
       activeIcon: subscriptionActive,
@@ -82,9 +88,13 @@ const Settings = () => {
                       case 0:
                         return <Profile />;
                       case 1:
-                        return <Sequence />;
+                        return (
+                          <Elements stripe={stripePromise}>
+                            <Subscription />
+                          </Elements>
+                        );
                       case 2:
-                        return <Subscription />;
+                        return <Sequence />;
                       default:
                         return null;
                     }
