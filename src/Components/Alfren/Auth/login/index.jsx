@@ -3,6 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import LoginForm from "./LoginForm";
 import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
+import Gif from "../../../../assets/alfren-hr.gif";
 
 const Login = () => {
   return (
@@ -14,7 +15,9 @@ const Login = () => {
               xl="7"
               className="b-center bg-size"
               style={{
-                backgroundImage: `url('/img/alfren-hr.gif')`,
+                backgroundImage: `url(${require("../../../../assets/alfren-hr.gif")})`,
+                // backgroundImage: {Gif},
+                // backgroundImage: `url('/img/alfren-hr.gif')`,
                 // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",

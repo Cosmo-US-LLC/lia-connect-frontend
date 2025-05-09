@@ -12,11 +12,38 @@ import TotalUserAndFollower from "./TotalUserAndFollower";
 import PaperNote from "./PaperNote";
 import UserLogin from "Components/Alfren/Auth/user-login";
 import { INSTANCE } from "Config/axiosInstance";
+import axios from "axios";
+// import { fetchStats } from "redux/Job/jobActions";
+import { fetchStats } from "../../../redux/Job/jobActions";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  // const api = `http://localhost:3001/v1`;
+  const [data, setData] = React.useState();
+
+  useEffect(() => {
+    const url = `/jobs/stats`;
+    dispatch(fetchStats(url, handleFetchResponse));
+  }, [dispatch]);
+
+  const handleFetchResponse = (resp) => {
+    if (resp?.status === 200) {
+      setData(resp.data);
+    } else {
+      toast.error(resp?.message);
+    }
+  };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   const [isLinkedInConnected, setIsLinkedInConnected] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     const checkStatus = async () => {
       try {

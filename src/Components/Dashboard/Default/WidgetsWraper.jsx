@@ -34,7 +34,7 @@ const WidgetsWrapper = () => {
       style: { backgroundColor: "#007bff", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
     },
     {
-      title: "Connection Requests",
+      title: "Connection Requests Sent",
       gros: 70,
       total: 400,
       color: "info",
@@ -43,7 +43,7 @@ const WidgetsWrapper = () => {
       style: { backgroundColor: "#29a746", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
     },
     {
-      title: "Messages",
+      title: "Messages Sent",
       gros: 70,
       total: 400,
       color: "danger",
@@ -52,13 +52,22 @@ const WidgetsWrapper = () => {
       style: { backgroundColor: "#dc3545", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
     },
     {
-      title: "Engagements",
+      title: "Replies Received",
       gros: 70,
       total: 400,
       color: "muted",
       icon: "svg/join.svg",
       animation : true,
       style: { backgroundColor: "#6c757d", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
+    },
+    {
+      title: "Profiles In Processing",
+      gros: 70,
+      total: 400,
+      color: "muted",
+      icon: "svg/process.svg",
+      animation : true,
+      style: { backgroundColor: "#2ea5f0", padding: "10px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }
     }
   ]
   return (
@@ -80,6 +89,9 @@ const WidgetsWrapper = () => {
       </Col>
       <Col xl="4">
         <Widgets1 data={data[5]} />
+      </Col>
+      <Col xl="4">
+        <Widgets1 data={data[6]} />
       </Col>
       {/* <Col xl="3">
         <Widgets1 data={WidgetsData4} />

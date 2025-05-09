@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { MENUITEMS } from "./menu";
 import { Image } from "../../AbstractElements";
 import { ChevronDown, ChevronRight } from "react-feather";
+import { INSTANCE } from "Config/axiosInstance";
 
 const SidebarMenuItems = ({
   setMainMenu,
@@ -11,8 +12,27 @@ const SidebarMenuItems = ({
   setNavActive,
   activeClass,
 }) => {
-  const isLinkedInLogin = localStorage.getItem("isLinkedInLogin");
+  // const isLinkedInLogin = localStorage.getItem("isLinkedInLogin");
   const CurrentPath = window.location.pathname;
+
+  const [isLinkedInLogin, setIsLinkedInLogin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkStatus = async () => {
+      try {
+        const response = await INSTANCE.post("/auth/checkLinkedInStatus");
+        setIsLinkedInLogin(response.data.isLinkedInConnected);
+      } catch (error) {
+        console.error("Error checking LinkedIn status:", error);
+        setIsLinkedInLogin(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkStatus();
+  }, []);
 
   const { t } = useTranslation();
   const toggletNavActive = (item) => {
@@ -108,9 +128,29 @@ const SidebarMenuItems = ({
               )}
               {/* <h4 style={{ color: "black"}}>{menuItem.title.toLowerCase().includes("home") ? "Yes" : "No"}</h4> */}
               {menuItem.type === "link" ? (
-                !isLinkedInLogin &&
-                (menuItem.title.toLowerCase().includes("home") ||
-                  menuItem.title.toLowerCase().includes("settings")) ? (
+                isLinkedInLogin ? (
+                  <Link
+                    to={menuItem.path}
+                    className={`sidebar-link sidebar-title link-nav  ${
+                      CurrentPath.includes(menuItem.title.toLowerCase())
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() => toggletNavActive(menuItem)}
+                  >
+                    {menuItem.icon}
+
+                    <span>{t(menuItem.title)}</span>
+                    {menuItem.badge ? (
+                      <label className={menuItem.badge}>
+                        {menuItem.badgetxt}
+                      </label>
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                ) : menuItem.title.toLowerCase().includes("home") ||
+                  menuItem.title.toLowerCase().includes("settings") ? (
                   <Link
                     to={menuItem.path}
                     className={`sidebar-link sidebar-title link-nav  ${

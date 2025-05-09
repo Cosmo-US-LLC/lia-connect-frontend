@@ -3,6 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import RegisterForm from "./RegisterForm";
 import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
+import Gif from "../../../../assets/alfren-hr.gif";
+
 const Login = () => {
   return (
     <Fragment>
@@ -14,7 +16,9 @@ const Login = () => {
               className="b-center bg-size"
               style={{
                 // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/register.png")})`,
-                backgroundImage: `url('/img/alfren-hr.gif')`,
+                // backgroundImage: {Gif},
+                backgroundImage: `url(${require("../../../../assets/alfren-hr.gif")})`,
+                // backgroundImage: `url('/img/alfren-hr.gif')`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",

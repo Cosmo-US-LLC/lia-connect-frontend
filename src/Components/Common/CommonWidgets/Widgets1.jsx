@@ -7,7 +7,7 @@ import CountUp from "react-countup";
 const Widgets1 = ({ data }) => {
   return (
     <Card className="widget-1">
-      <CardBody>
+      <CardBody style={{ padding: "2rem" }}>
         <div className="widget-content">
           <div className={`widget-roun ${data.color}`} style={data?.style}>
             <div className="bg-round">

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Card, CardBody, Col, Media } from "reactstrap";
 import { H4, P, Btn, Image } from "../../../AbstractElements";
 import { WelcomeMessage, WelcomeToCuba, WhatsNew } from "../../../constant";
+import LinkedIn from "../../../assets/images/dashboard/linked-in.png";
+import Job from "../../../assets/images/dashboard/job.png";
 
 import CarToon from "../../../assets/images/dashboard/cartoon.svg";
 
@@ -51,7 +53,8 @@ const GreetingCard = ({ isLinkedInLogin }) => {
                     >
                       <div style={{ marginRight: "10px" }}>
                         <img
-                          src="/img/job.png"
+                          // src="/img/job.png"
+                          src={Job}
                           alt="Job"
                           style={{ width: "30px", height: "30px" }}
                         />
@@ -67,7 +70,8 @@ const GreetingCard = ({ isLinkedInLogin }) => {
                       >
                         <div>
                           <h5 style={{ fontWeight: "700" }}>Create a Job</h5>
-                          <p style={{ whiteSpace: "nowrap" }}>
+                          {/* <p style={{ whiteSpace: "nowrap" }}> */}
+                          <p style={{ width: "100%" }}>
                             Post a job to start getting the best leads from
                             LinkedIn on AlfrenHr.
                           </p>
@@ -104,7 +108,8 @@ const GreetingCard = ({ isLinkedInLogin }) => {
                     >
                       <div style={{ marginRight: "10px" }}>
                         <img
-                          src="/img/linked-in.png"
+                          // src="/img/linked-in.png"
+                          src={LinkedIn}
                           alt="LinkedIn"
                           style={{ width: "30px", height: "30px" }}
                         />
@@ -122,7 +127,8 @@ const GreetingCard = ({ isLinkedInLogin }) => {
                           <h5 style={{ fontWeight: "700" }}>
                             Connect your LinkedIn account
                           </h5>
-                          <p style={{ whiteSpace: "nowrap" }}>
+                          {/* <p style={{ whiteSpace: "nowrap" }}> */}
+                          <p style={{ width: "100%" }}>
                             Unlock the full potential of AlfrenHR by connecting
                             your LinkedIn account.
                           </p>

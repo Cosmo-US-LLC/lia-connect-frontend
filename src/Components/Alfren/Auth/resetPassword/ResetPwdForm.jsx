@@ -42,6 +42,7 @@ const ResetPwdForm = () => {
     { text: "Password should be 8 letter long.", status: 0 },
   ];
   const [requirements, setRequirements] = useState(passwordRequirements);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.name == "password") {
@@ -101,14 +102,18 @@ const ResetPwdForm = () => {
   };
 
   const onSubmit1 = (e) => {
+    setLoading(true);
     dispatch(
       resetPassword(formData, (resp) => {
         if (resp.status == 204) {
           toast.success(PasswordReset);
+          setLoading(false);
           navigate("/auth/login");
         } else {
           const err = resp.message;
           toast.error(err);
+          setLoading(false);
+          navigate("/auth/login");
         }
       })
     );
@@ -252,9 +257,10 @@ const ResetPwdForm = () => {
                     className: "d-block w-100 mt-2",
                     color: "primary",
                     type: "submit",
+                    disabled: loading
                   }}
                 >
-                  Confirm
+                  {loading ? "Loading" : "Confirm"}
                 </Btn>
               </FormGroup>
             </Form>

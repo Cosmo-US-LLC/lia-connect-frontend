@@ -27,6 +27,7 @@ const ForgotPwdForm = ({ logoClassMain }) => {
     email: "",
   };
   const [formData, setFormData] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -36,14 +37,17 @@ const ForgotPwdForm = ({ logoClassMain }) => {
   };
 
   const onSubmit1 = (e) => {
+    setLoading(true);
     dispatch(
       forgotPassword(formData, (resp) => {
         if (resp.status == 204) {
           toast.success(ForgetPasswordRequestSent);
+          setLoading(false);
           navigate("auth/login");
         } else {
           const err = resp.message;
           toast.error(err);
+          setLoading(false);
         }
       })
     );
@@ -114,9 +118,10 @@ const ForgotPwdForm = ({ logoClassMain }) => {
                     className: "d-block w-100 mt-2",
                     color: "primary",
                     type: "submit",
+                    disabled: loading,
                   }}
                 >
-                  Send Request
+                  {loading ? "Loading" : "Send Request"}
                 </Btn>
               </FormGroup>
             </Form>
