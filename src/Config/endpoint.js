@@ -1,4 +1,5 @@
 export const baseURL = "http://localhost:3001/v1";
+export const baseURLFlask = "http://localhost:5000/";
 // export const baseURL = "https://api.alfrenhr.com/v1/";
 /*
 daio djiioa dwaij dajoroi jdmksfkm iejsoi nvxfnj kkklsadi ewqf zsed ikjl qewer nkfas fnkvxvcmn fjisaiofjjjake is not avavilable but I can get you in contact with him soon enough

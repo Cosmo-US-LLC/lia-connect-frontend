@@ -1,44 +1,59 @@
-import React from 'react';
-import { Form, FormGroup, Input, InputGroup, InputGroupText, Label } from "reactstrap";
+import React, { useState } from "react";
+import {
+  Form,
+  FormGroup,
+  Input,
+  InputGroup,
+  InputGroupText,
+  Label,
+} from "reactstrap";
 import { GoPerson } from "react-icons/go";
 import { IoKeyOutline } from "react-icons/io5";
-import { useForm, Controller } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
-import { LinkedInlogin } from "../../../../../redux/Auth/authActions";
-import { useNavigate } from 'react-router';
-import { toast } from 'react-toastify';
+import { useForm, Controller } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { baseURL, baseURLFlask } from "Config/endpoint";
+import { INSTANCE } from "Config/axiosInstance";
+
 const schema = yup.object().shape({
-  username: yup.string().required('LinkedIn Username is required'),
-  password: yup.string().required('LinkedIn Password is required'),
+  username: yup.string().required("LinkedIn Username is required"),
+  password: yup.string().required("LinkedIn Password is required"),
 });
 
 const LoginSection = () => {
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const [loading, setLoading] = useState(false);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-   const formData= {
-    email:data.username,
-    password:data.password
-  }
-    console.log(data); // This will log the values of username and password
-    dispatch(
-      LinkedInlogin(formData, (resp) => {
-        console.log('resp', resp)
-        if (resp && resp?.data && resp?.status === 200 ||resp===undefined) {
-          localStorage.setItem("isLinkedInLogin", true);
-          navigate("/home");
-        } else {
-          const err = resp?.message;
-          toast.error(err);
-        }
-      })
-    );
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      const response = await INSTANCE.post(`/auth/linkWithLinkedIn`, {
+        email: data.username,
+        password: data.password,
+      });
+
+      if (response.status === 200 && response.data.token) {
+        localStorage.setItem("isLinkedInLogin", true);
+        toast.success("LinkedIn Login Successful");
+        setTimeout(() => window.location.reload(), 1000);
+      } else {
+        toast.error("Login failed:" + response.data.message);
+      }
+    } catch (error) {
+      toast.error(
+        "Error occurred:" + (error.response?.data?.message || error.message)
+      );
+    }
+    setLoading(false);
   };
 
   return (
@@ -48,8 +63,8 @@ const LoginSection = () => {
           LinkedIn Username<span className="text-danger ms-1">*</span>
         </Label>
         <InputGroup>
-          <InputGroupText className='input-group-text-custom'>
-            <GoPerson className='input-icons-style' />
+          <InputGroupText className="input-group-text-custom">
+            <GoPerson className="input-icons-style" />
           </InputGroupText>
           <Controller
             name="username"
@@ -64,15 +79,18 @@ const LoginSection = () => {
             )}
           />
         </InputGroup>
-        {errors.username && <p className="text-danger">{errors.username.message}</p>}
+        {errors.username && (
+          <p className="text-danger">{errors.username.message}</p>
+        )}
       </FormGroup>
+
       <FormGroup>
         <Label className="col-form-label m-0 input-label-style">
           LinkedIn Password<span className="text-danger ms-1">*</span>
         </Label>
         <InputGroup>
-          <InputGroupText className='input-group-text-custom'>
-            <IoKeyOutline className='input-icons-style' />
+          <InputGroupText className="input-group-text-custom">
+            <IoKeyOutline className="input-icons-style" />
           </InputGroupText>
           <Controller
             name="password"
@@ -87,18 +105,23 @@ const LoginSection = () => {
             )}
           />
         </InputGroup>
-        {errors.password && <p className="text-danger">{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-danger">{errors.password.message}</p>
+        )}
       </FormGroup>
+
       <FormGroup check>
-        <Input defaultChecked className='bg-primary' type="checkbox" />
-        {' '}
-        <Label >
-          I agree to the <span className='text-primary'>Terms of Services</span>
+        <Input defaultChecked className="bg-primary" type="checkbox" />{" "}
+        <Label>
+          I agree to the <span className="text-primary">Terms of Services</span>
         </Label>
       </FormGroup>
-      <button type="submit" className="sign-btn">Sign in to LinkedIn</button>
+
+      <button type="submit" className="sign-btn" disabled={loading}>
+        {loading ? "Signing in..." : "Sign in to LinkedIn"}
+      </button>
     </Form>
   );
-}
+};
 
 export default React.memo(LoginSection);

@@ -47,7 +47,7 @@ const StepThree = ({
     setIsLoading(true)
     const formData = {
       jobId,
-      body: { candidateHaveDisplay, candidateHaveOpenProfile, candidateInOtherJob }
+      body: { candidateHaveDisplay, candidateHaveOpenProfile, candidateInOtherJob, isJobCompleted: true },
     };
     dispatch(
       updateJob(formData, (resp) => {
