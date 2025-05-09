@@ -11,6 +11,7 @@ const SidebarMenuItems = ({
   setNavActive,
   activeClass,
 }) => {
+  const isLinkedInLogin = localStorage.getItem("isLinkedInLogin");
   const CurrentPath = window.location.pathname;
 
   const { t } = useTranslation();
@@ -57,7 +58,15 @@ const SidebarMenuItems = ({
       {MENUITEMS.map((Item, i) => (
         <Fragment key={i}>
           {Item.Items.map((menuItem, i) => (
-            <li className="sidebar-list" key={i}>
+            <li
+              className="sidebar-list"
+              key={i}
+              title={
+                isLinkedInLogin
+                  ? menuItem.title
+                  : "Connect your LinkedIn account to access this feature"
+              }
+            >
               {menuItem.type === "sub" ? (
                 <a
                   href="javascript"
@@ -66,10 +75,15 @@ const SidebarMenuItems = ({
                       ? "active"
                       : ""
                   } ${menuItem.active && "active"}`}
+                  style={{
+                    opacity: isLinkedInLogin ? 1 : 0.5,
+                  }}
                   onClick={(event) => {
                     event.preventDefault();
-                    setNavActive(menuItem);
-                    activeClass(menuItem.active);
+                    if (isLinkedInLogin) {
+                      setNavActive(menuItem);
+                      activeClass(menuItem.active);
+                    }
                   }}
                 >
                   {menuItem.icon}
@@ -92,28 +106,53 @@ const SidebarMenuItems = ({
               ) : (
                 ""
               )}
-
+              {/* <h4 style={{ color: "black"}}>{menuItem.title.toLowerCase().includes("home") ? "Yes" : "No"}</h4> */}
               {menuItem.type === "link" ? (
-                <Link
-                  to={menuItem.path}
-                  className={`sidebar-link sidebar-title link-nav  ${
-                    CurrentPath.includes(menuItem.title.toLowerCase())
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() => toggletNavActive(menuItem)}
-                >
-                  {menuItem.icon}
+                !isLinkedInLogin &&
+                (menuItem.title.toLowerCase().includes("home") ||
+                  menuItem.title.toLowerCase().includes("settings")) ? (
+                  <Link
+                    to={menuItem.path}
+                    className={`sidebar-link sidebar-title link-nav  ${
+                      CurrentPath.includes(menuItem.title.toLowerCase())
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() => toggletNavActive(menuItem)}
+                  >
+                    {menuItem.icon}
 
-                  <span>{t(menuItem.title)}</span>
-                  {menuItem.badge ? (
-                    <label className={menuItem.badge}>
-                      {menuItem.badgetxt}
-                    </label>
-                  ) : (
-                    ""
-                  )}
-                </Link>
+                    <span>{t(menuItem.title)}</span>
+                    {menuItem.badge ? (
+                      <label className={menuItem.badge}>
+                        {menuItem.badgetxt}
+                      </label>
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                ) : (
+                  <Link
+                    to={"#"}
+                    className={`sidebar-link sidebar-title link-nav  ${
+                      CurrentPath.includes(menuItem.title.toLowerCase())
+                        ? "active"
+                        : ""
+                    }`}
+                    style={{ opacity: 0.5 }}
+                  >
+                    {menuItem.icon}
+
+                    <span>{t(menuItem.title)}</span>
+                    {menuItem.badge ? (
+                      <label className={menuItem.badge}>
+                        {menuItem.badgetxt}
+                      </label>
+                    ) : (
+                      ""
+                    )}
+                  </Link>
+                )
               ) : (
                 ""
               )}
