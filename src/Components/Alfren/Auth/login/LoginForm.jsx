@@ -187,7 +187,7 @@ const LoginForm = ({ logoClassMain }) => {
                 <Image attrImage={{ src: OrIcon }} />
               </div>
 
-              <div className="social my-4 text-center ">
+              {/* <div className="social my-4 text-center ">
                 <div className="btn-showcase">
                   <a
                     className="btn"
@@ -264,7 +264,7 @@ const LoginForm = ({ logoClassMain }) => {
                     </span>
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <P attrPara={{ className: "text-center mb-0 mt-5" }}>
                 Don't you have an account?{" "}

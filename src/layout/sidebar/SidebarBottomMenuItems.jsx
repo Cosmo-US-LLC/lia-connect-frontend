@@ -178,7 +178,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
               ) : (
                 ""
               )}
-
+{/* 
               {menuItem.type === "link" ? (
                 <Link
                   to={menuItem.path + "/" + layoutId}
@@ -203,9 +203,9 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                 </Link>
               ) : (
                 ""
-              )}
+              )} */}
 
-              {menuItem.children ? (
+              {/* {menuItem.children ? (
                 <ul
                   className="sidebar-submenu"
                   style={
@@ -320,7 +320,7 @@ const SidebarBottomMENUITEMSBOTTOM = ({
                 </ul>
               ) : (
                 ""
-              )}
+              )} */}
             </li>
           ))}
         </Fragment>
