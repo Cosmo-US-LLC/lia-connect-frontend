@@ -29,6 +29,30 @@ export const completedJobsWidgetsData = {
   icon: "tag",
   animation : true
 };
+export const ConnectionsWidgetsData = {
+  title: "Connection Requests",
+  gros: 70,
+  total: 400,
+  color: "primary",
+  icon: "tag",
+  animation : true
+};
+export const MessagesWidgetsData = {
+  title: "Messages",
+  gros: 70,
+  total: 400,
+  color: "primary",
+  icon: "tag",
+  animation : true
+};
+export const EngagementWidgetsData = {
+  title: "Engagements",
+  gros: 70,
+  total: 400,
+  color: "primary",
+  icon: "tag",
+  animation : true
+};
 export const WidgetsData4 = {
   title: "Hired Candidate",
   gros: 70,

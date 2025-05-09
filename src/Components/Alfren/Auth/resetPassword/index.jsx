@@ -52,7 +52,7 @@ const Login = () => {
                   },
                 }}
               >
-                © 2024 Lia Connect. ALL RIGHTS RESERVED
+                © 2024 Alfren HR. ALL RIGHTS RESERVED
               </P>
             </Col>
           </Row>

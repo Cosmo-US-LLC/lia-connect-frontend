@@ -57,7 +57,7 @@ const RegisterFrom = ({ logoClassMain }) => {
               <FormGroup>
                 <Btn attrBtn={{ className: 'd-block w-100', color: 'primary', type: 'submit' }}>Create Account</Btn>
               </FormGroup>
-              <div className='login-social-title'>
+              {/* <div className='login-social-title'>
                 <H6 attrH6={{ className: 'text-muted or mt-4' }}>Or Sign up with</H6>
               </div>
               <div className='social my-4 '>
@@ -74,7 +74,7 @@ const RegisterFrom = ({ logoClassMain }) => {
                     facebook
                   </a>
                 </div>
-              </div>
+              </div> */}
               <P attrPara={{ className: 'mb-0 text-start' }}>
                 Already have an account?
                 <Link className='ms-2' to={`${process.env.PUBLIC_URL}/pages/authentication/login-simple`}>

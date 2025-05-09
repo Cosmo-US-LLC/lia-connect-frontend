@@ -111,7 +111,7 @@ const Header = () => {
       <div className={`page-header ${toggleIcon ? "close_icon" : ""}`}>
         <Row className="header-wrapper m-0">
           <Leftbar />
-          <RightHeader />
+          {/* <RightHeader /> */}
         </Row>
       </div>
     </Fragment>

@@ -113,7 +113,7 @@ const StepOne = ({
     } else if (name == "linkedInProfile") {
       setLinkedInProfile(value);
     } else if (name == "maxCandidates") {
-      setMaxCandidates(value);
+      setMaxCandidates(parseInt(value));
     }
   };
 
@@ -150,7 +150,7 @@ const StepOne = ({
 
   const handleCheckboxChange = () => {
     setIsMaxChecked(!isMaxChecked);
-    setMaxCandidates(isMaxChecked ? null : "500");
+    setMaxCandidates(isMaxChecked ? null : 100);
   };
 
   return (
@@ -185,7 +185,7 @@ const StepOne = ({
                         }}
                       >
                         <span style={{ fontWeight: "600", fontSize: "14px" }}>
-                          Job Name <span className="ms-2 text-danger">*</span>
+                          Job Title <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
                       <input
@@ -616,7 +616,7 @@ const StepOne = ({
                           <span className="ms-2 text-danger">
                             *{" "}
                             <strong style={{ color: "#9F9B9B" }}>
-                              (max 500)
+                              (max 100)
                             </strong>
                           </span>
                         </p>
@@ -638,7 +638,7 @@ const StepOne = ({
                                     display: "inline-block",
                                   }}
                                   min={1}
-                                  max={500}
+                                  max={100}
                                   type="text"
                                   name="maxCandidates"
                                   value={maxCandidates}

@@ -163,31 +163,31 @@ const LoginForm = ({ logoClassMain }) => {
               </FormGroup>
 
               <FormGroup>
-        <Btn
-          attrBtn={{
-            className: "d-block w-100 mt-2",
-            color: "primary",
-            type: "submit",
-            disabled: isLoading
-          }}
-        >
-          <span>
-            {isLoading ? (
-              <>
-                <i className="fa fa-spinner fa-spin" /> Loading...
-              </>
-            ) : (
-              "Sign In"
-            )}
-          </span>
-        </Btn>
-      </FormGroup>
+                <Btn
+                  attrBtn={{
+                    className: "d-block w-100 mt-2",
+                    color: "primary",
+                    type: "submit",
+                    disabled: isLoading,
+                  }}
+                >
+                  <span>
+                    {isLoading ? (
+                      <>
+                        <i className="fa fa-spinner fa-spin" /> Loading...
+                      </>
+                    ) : (
+                      "Sign In"
+                    )}
+                  </span>
+                </Btn>
+              </FormGroup>
 
-              <div className="login-social-title text-center">
+              {/* <div className="login-social-title text-center">
                 <Image attrImage={{ src: OrIcon }} />
-              </div>
+              </div> */}
 
-              <div className="social my-4 text-center ">
+              {/* <div className="social my-4 text-center ">
                 <div className="btn-showcase">
                   <a
                     className="btn"
@@ -264,7 +264,7 @@ const LoginForm = ({ logoClassMain }) => {
                     </span>
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <P attrPara={{ className: "text-center mb-0 mt-5" }}>
                 Don't you have an account?{" "}
@@ -278,7 +278,7 @@ const LoginForm = ({ logoClassMain }) => {
                     lineHeight: "19.2px",
                     textAlign: "center",
                   }}
-                  >
+                >
                   Sign Up
                 </Link>
               </P>

@@ -74,7 +74,7 @@ const AppLayout = ({ children, classNames, ...rest }) => {
           <Footer />
         </div>
       </div>
-      {showTrialAlert === true ? (
+      {/* {showTrialAlert === true ? (
         <div
           style={{
             position: "fixed",
@@ -85,7 +85,7 @@ const AppLayout = ({ children, classNames, ...rest }) => {
         >
           <TrialAlertItem onClose={handleCloseTrial} />
         </div>
-      ): ""}
+      ): ""} */}
       {/* <ThemeCustomize /> */}
     </Fragment>
   );

@@ -16552,14 +16552,14 @@ select.crypto-select.primary {
 .widget-1 .widget-round {
   position: relative;
   display: inline-block;
-  border-width: 1px;
+  /* border-width: 1px;
   border-style: solid;
-  border-radius: 100%;
+  border-radius: 100%; */
 }
 .widget-1 .widget-round .bg-round {
   width: 56px;
   height: 56px;
-  box-shadow: 1px 2px 21px -2px rgba(214, 214, 227, 0.83);
+  /* box-shadow: 1px 2px 21px -2px rgba(214, 214, 227, 0.83); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16597,7 +16597,7 @@ select.crypto-select.primary {
     bottom: -8px;
   }
 }
-.widget-1 .widget-round.primary {
+/* .widget-1 .widget-round.primary {
   border-color: var(--theme-default);
 }
 .widget-1 .widget-round.secondary {
@@ -16608,7 +16608,7 @@ select.crypto-select.primary {
 }
 .widget-1 .widget-round.warning {
   border-color: #ffaa05;
-}
+} */
 .widget-1 .widget-content {
   display: flex;
   align-items: center;

@@ -18,18 +18,18 @@ const Dashboard = () => {
   // Retrieve isLinkedInLogin from localStorage
   const isLinkedInLogin = localStorage.getItem("isLinkedInLogin");
   console.log('isLinkedInLogin', isLinkedInLogin)
-  if (isLinkedInLogin===null) {
-    return <UserLogin />;
-  }else{
+  // if (isLinkedInLogin===null) {
+  //   return <UserLogin />;
+  // }else{
   return (
     <Fragment>
       <Container fluid={true}>
         <Row className="widget-grid">
-          <GreetingCard />
+          <GreetingCard isLinkedInLogin={isLinkedInLogin} />
           <WidgetsWrapper />
            {/* <OverallBalance />  */}
-           <ActivityCard />
-           <RecentOrders /> 
+           {/* <ActivityCard />
+           <RecentOrders />  */}
            
            {/* <RecentSales />  */}
            {/* <TimelineCard />  */}
@@ -40,7 +40,7 @@ const Dashboard = () => {
       </Container>
     </Fragment>
   );
-  }
+  // }
 };
 
 export default Dashboard;

@@ -9,7 +9,7 @@ const Widgets1 = ({ data }) => {
     <Card className="widget-1">
       <CardBody>
         <div className="widget-content">
-          <div className={`widget-round ${data.color}`}>
+          <div className={`widget-roun ${data.color}`} style={data?.style}>
             <div className="bg-round">
               <SvgIcon className="svg-fill" iconId={`${data.icon}`} />
             </div>
