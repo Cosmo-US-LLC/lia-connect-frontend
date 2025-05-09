@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Col,
   Container,
@@ -15,9 +15,68 @@ import { Eye, Info, Key, Linkedin, Mail, User } from "react-feather";
 import Select from "react-select";
 import linkedInIcon from "../../../assets/used-files/icons/settings/linkedIn.svg";
 import { Link } from "react-router-dom";
+import { INSTANCE } from "Config/axiosInstance";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [togglePassword, setTogglePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [updatedProfileData, setUpdatedProfileData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    linkedInEmail: "",
+  });
+
+  useEffect(() => {
+    const getProfile = async () => {
+      setLoading(true);
+      try {
+        const response = await INSTANCE.post("/auth/myProfile");
+        setUpdatedProfileData({
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+          linkedInEmail: response.data.linkedInEmail,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching profile details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProfile();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedProfileData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await INSTANCE.post(
+        "/auth/updateProfile",
+        updatedProfileData
+      );
+      if (response.status === 200) {
+        toast.success("Profile Updated Successfully");
+      }
+    } catch (error) {
+      toast.success("Error updating profile");
+      console.error("Error updating profile:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -32,6 +91,7 @@ const Profile = () => {
       padding: "10px 12px", // Adjust padding to reduce the height
     }),
   };
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -82,7 +142,8 @@ const Profile = () => {
                           color: "#819ACB",
                         }}
                         type="email"
-                        value="example@email.com"
+                        value={updatedProfileData?.email}
+                        disabled
                       />
                       <InputGroupText
                         style={{
@@ -93,7 +154,7 @@ const Profile = () => {
                           borderRight: "1px solid #EBF1FC",
                         }}
                       >
-                        <span
+                        {/* <span
                           style={{
                             color: "#1264FD",
                             fontSize: "13px",
@@ -103,11 +164,11 @@ const Profile = () => {
                           }}
                         >
                           Change
-                        </span>
+                        </span> */}
                       </InputGroupText>
                     </InputGroup>
                   </FormGroup>
-                  <FormGroup id="PasswordValidationInput">
+                  {/* <FormGroup id="PasswordValidationInput">
                     <Label
                       className="col-form-label m-0"
                       style={{ fontSize: "14px", fontWeight: 600 }}
@@ -170,7 +231,7 @@ const Profile = () => {
                         </span>
                       </InputGroupText>
                     </InputGroup>
-                  </FormGroup>
+                  </FormGroup> */}
                   <FormGroup>
                     <Label className="col-form-label m-0">
                       First Name<span className="text-danger ms-1">*</span>
@@ -197,7 +258,9 @@ const Profile = () => {
                           color: "#819ACB",
                         }}
                         type="text"
-                        value="John"
+                        name="firstName"
+                        value={updatedProfileData?.firstName}
+                        onChange={handleInputChange}
                       />
                     </InputGroup>
                   </FormGroup>
@@ -227,7 +290,9 @@ const Profile = () => {
                           color: "#819ACB",
                         }}
                         type="text"
-                        value="Doe"
+                        name="lastName"
+                        value={updatedProfileData?.lastName}
+                        onChange={handleInputChange}
                       />
                     </InputGroup>
                   </FormGroup>
@@ -243,15 +308,13 @@ const Profile = () => {
                 paddingLeft: "3%",
               }}
             >
-              <p style={{ fontSize: "18px", fontWeight: 600 }}>
-                LinkedIn Credentials
-              </p>
-              <p style={{ fontSize: "12px", fontWeight: 400 }} className="pb-4">
+              <p style={{ fontSize: "18px", fontWeight: 600 }}>LinkedIn</p>
+              {/* <p style={{ fontSize: "12px", fontWeight: 400 }} className="pb-4">
                 There are many variations of passages of Lorem Ipsum available,
                 but the majority have suffered alteration in some form, by
                 injected humour, or randomized words which don't look even
                 slightly believable.
-              </p>
+              </p> */}
 
               <p className="pb-4">
                 <span
@@ -264,13 +327,13 @@ const Profile = () => {
                   style={{ fontSize: "14px", fontWeight: 600 }}
                   className="ms-5"
                 >
-                  Martin Leonardo
+                  {updatedProfileData?.linkedInEmail}
                 </span>
                 <span>
                   <Image attrImage={{ src: linkedInIcon, className: "ms-2" }} />
                 </span>
               </p>
-              <p style={{ fontSize: "14px", fontWeight: 600 }}>
+              {/* <p style={{ fontSize: "14px", fontWeight: 600 }}>
                 Your Preferred LinkedIn Contract{" "}
                 <Info strokeWidth={1} size={14} color="#8FA8D7" />
               </p>
@@ -281,16 +344,20 @@ const Profile = () => {
               <FormGroup>
                 {" "}
                 <Select styles={customStyles} name="jobPriority" />
-              </FormGroup>
+              </FormGroup> */}
             </Col>
 
             <Col xl="12" style={{ textAlign: "right" }}>
-              <Link className="btn btn-outline-light pe-4 ps-4 pt-2 pb-2 me-3">
-                <span>Reset</span>
-              </Link>
-              <Link className="btn btn-primary  pe-4 ps-4 pt-2 pb-2">
+              {/* <Link className="btn btn-primary  pe-4 ps-4 pt-2 pb-2">
                 <span>Save</span>
-              </Link>
+              </Link> */}
+              <button
+                onClick={handleSubmit}
+                className="btn btn-primary pe-4 ps-4 pt-2 pb-2"
+                disabled={loading}
+              >
+                {loading ? "Saving..." : "Save"}
+              </button>
             </Col>
           </Row>
         </div>
