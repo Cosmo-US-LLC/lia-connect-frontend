@@ -24,10 +24,10 @@ const Dashboard = () => {
   // const api = `http://localhost:3001/v1`;
   const [data, setData] = React.useState();
 
-  useEffect(() => {
-    const url = `/jobs/stats`;
-    dispatch(fetchStats(url, handleFetchResponse));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const url = `/jobs/stats`;
+  //   dispatch(fetchStats(url, handleFetchResponse));
+  // }, [dispatch]);
 
   const handleFetchResponse = (resp) => {
     if (resp?.status === 200) {
