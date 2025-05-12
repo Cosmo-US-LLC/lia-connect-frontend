@@ -6,7 +6,7 @@ import LayoutRoutes from "../Route/LayoutRoutes";
 import PrivateRoute from "./PrivateRoute";
 import { classes } from "../Data/Layouts";
 import Login from "../Components/Alfren/Auth/login/index";
-import Loader from "../layout/loader";
+import Loader from "layout/loader";
 
 // setup fake backend
 
