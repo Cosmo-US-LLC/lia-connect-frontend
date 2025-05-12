@@ -25,7 +25,7 @@ const Dashboard = () => {
   const [data, setData] = React.useState();
 
   useEffect(() => {
-    const url = `/jobs/stats`;
+    const url = `/jobs/jobs-stats`;
     dispatch(fetchStats(url, handleFetchResponse));
   }, [dispatch]);
 
