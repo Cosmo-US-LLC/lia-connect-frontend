@@ -46,6 +46,14 @@ const DataTables = () => {
   });
 
   // function handle dropdown states
+  const statuses = [
+    "Shortlisted",
+    "Rejected",
+    "Pending",
+  ];
+  const [status, setStatus] = useState("");
+  const [isStatusSelected, setIsStatusSelected] = useState(false);
+  const [statusDropdown, setStatusDropdown] = useState(false);
 
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
@@ -162,7 +170,7 @@ const DataTables = () => {
               center: true,
             },
             {
-              name: "Profile Score",
+              name: "Overall Score",
               selector: (row) => row["profileScore"],
               sortable: true,
               center: true,
@@ -170,6 +178,12 @@ const DataTables = () => {
             {
               name: "Last Action",
               selector: (row) => row["lastAction"],
+              sortable: true,
+              center: true,
+            },
+            {
+              name: "Status",
+              selector: (row) => row["status"],
               sortable: true,
               center: true,
             },
@@ -214,7 +228,15 @@ const DataTables = () => {
             </Media>
           </Link>
         ),
-        jobTitle: item.jobTitle ? item.jobTitle.split(" @")[0] : "N/A",
+        jobTitle: item.jobTitle ? (
+          // item?.jobTitle.split(" @")[0]
+          <a href={`http://localhost:3000/v1/jobs/detail/${item?.jobId}`}>
+            {item?.jobTitle}
+            {/* {item?.jobTitle.split(" @")[0]} */}
+          </a>
+        ) : (
+          "N/A"
+        ),
         linkedin: (
           <Link
             to={item.linkedProfile}
@@ -224,6 +246,7 @@ const DataTables = () => {
               display: "inline-flex",
               justifyContent: "center",
               alignItems: "center",
+              overflow: "visible",
             }}
           >
             <div
@@ -233,11 +256,11 @@ const DataTables = () => {
                 alignItems: "center",
                 width: "40px",
                 height: "40px",
+                position: "relative",
+                overflow: "visible",
               }}
             >
               <img
-                src={item.image || user1}
-                alt={item.name}
                 style={{
                   borderRadius: "50%",
                   width: "100%",
@@ -245,7 +268,32 @@ const DataTables = () => {
                   cursor: "pointer",
                   objectFit: "cover",
                 }}
+                src={item.image || user1}
+                alt={item.name}
               />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-5px",
+                  right: "-10px",
+                  backgroundColor: "#FFF",
+                  // backgroundColor: "#0a66c2",
+                  padding: "3px",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  fill="#bdbdbd"
+                  viewBox="0 0 256 256"
+                >
+                  <path d="M224,104a8,8,0,0,1-16,0V59.32l-66.33,66.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"></path>
+                </svg>
+              </div>
             </div>
           </Link>
         ),
@@ -261,7 +309,7 @@ const DataTables = () => {
             }}
           >
             <div className="d-flex gap-2 align-items-center">
-              <div className="font-secondary">{item.profileScore}</div>
+              <div className="font-secondary">{item.profileScore}%</div>
               <div className="badge badge-light-warning">Average</div>
             </div>
           </div>
@@ -295,6 +343,47 @@ const DataTables = () => {
               );
             })()
           : "N/A",
+
+        status: item.status ? (
+          <div
+            style={{
+              width: "100px",
+              display: "inline-flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {item.status == "Shortlisted" ? (
+              <div style={{
+                color: "green",
+                backgroundColor: "#E6F9E6",
+                padding: "5px 10px",
+                borderRadius: "20px",
+                fontSize: "12px",
+              }}>{item.status}</div>
+            ) : item.status == "Rejected" ? (
+              <div style={{
+                color: "red",
+                backgroundColor: "#F9E6E6",
+                padding: "5px 10px",
+                borderRadius: "20px",
+                fontSize: "12px",
+              }}>{item.status}</div>
+            ) : (
+              <div style={{
+                color: "grey",
+                backgroundColor: "#F0F0F0",
+                padding: "5px 10px",
+                borderRadius: "20px",
+                fontSize: "12px",
+              }}>
+                {item.status}
+              </div>
+            )}
+          </div>
+        ) : (
+          "N/A"
+        ),
 
         blacklist: (
           <Media key="1">
@@ -399,88 +488,69 @@ const DataTables = () => {
                         Name
                       </span>
                     </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        border:
-                          dateDropdown || isDateSelected
-                            ? "1px solid #337CC7"
-                            : "1px solid #F0F0F0",
-                        color:
-                          dateDropdown || isDateSelected
-                            ? "#337CC7"
-                            : "#595959",
-                        backgroundColor:
-                          dateDropdown || isDateSelected ? "#F5F9FF" : "white",
-                        borderRadius: "4px",
-                        padding: "8px",
-                        marginRight: "8px",
-                      }}
-                      onClick={toggleDateDropdown}
-                    >
-                      <MapPin strokeWidth={1} size={16} />
-                      <span className="ms-2" style={{ fontSize: "12px" }}>
-                        {isDateSelected ? isDateSelected : "Location"}
-                      </span>
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        position: "relative",
-                        bottom: "3px",
-                        marginRight: "8px",
-                        border:
-                          dateDropdown || isDateSelected
-                            ? "1px solid #337CC7"
-                            : "1px solid #F0F0F0",
-                        color:
-                          dateDropdown || isDateSelected
-                            ? "#337CC7"
-                            : "#595959",
-                        backgroundColor:
-                          dateDropdown || isDateSelected ? "#F5F9FF" : "white",
-                        borderRadius: "4px",
-                        padding: "8px",
-                      }}
-                      onClick={toggleDateDropdown}
-                    >
-                      <span
-                        className="ms-2"
-                        style={{ fontSize: "12px", marginRight: "5px" }}
+                    <div style={{
+                      display: "inline-flex",
+                      position: "relative",
+                      bottom: "3px",
+                      marginRight: "8px",
+                    }}>
+                      <button
+                        style={{
+                          display: "inline-flex",
+                          border:
+                            statusDropdown || isStatusSelected
+                              ? "1px solid #337CC7"
+                              : "1px solid #F0F0F0",
+                          color:
+                            statusDropdown || isStatusSelected
+                              ? "#337CC7"
+                              : "#595959",
+                          backgroundColor:
+                            statusDropdown || isStatusSelected ? "#F5F9FF" : "white",
+                          borderRadius: "4px",
+                          padding: "8px",
+                        }}
+                        onClick={()=>setStatusDropdown(!statusDropdown)}
                       >
-                        {isDateSelected ? isDateSelected : "Experience"}
-                      </span>
-                      <ChevronDown strokeWidth={1} size={16} />
-                    </button>
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        position: "relative",
-                        bottom: "3px",
-                        border:
-                          dateDropdown || isDateSelected
-                            ? "1px solid #337CC7"
-                            : "1px solid #F0F0F0",
-                        color:
-                          dateDropdown || isDateSelected
-                            ? "#337CC7"
-                            : "#595959",
-                        backgroundColor:
-                          dateDropdown || isDateSelected ? "#F5F9FF" : "white",
-                        borderRadius: "4px",
-                        padding: "8px",
-                        marginRight: "8px",
-                      }}
-                      onClick={toggleDateDropdown}
-                    >
-                      <span
-                        className="ms-2"
-                        style={{ fontSize: "12px", marginRight: "5px" }}
-                      >
-                        {isDateSelected ? isDateSelected : "More Filters"}
-                      </span>
-                      <Sliders strokeWidth={1} size={16} />
-                    </button>
+                        <span
+                          className="ms-2"
+                          style={{ fontSize: "12px", marginRight: "5px" }}
+                        >
+                          {isStatusSelected ? isStatusSelected : "Status"}
+                        </span>
+                        <ChevronDown strokeWidth={1} size={16} />
+                      </button>
+                      {statusDropdown && (
+                        <div style={{
+                          position: "absolute",
+                          top: "40px",
+                          backgroundColor: "white",
+                          border: "1px solid #F0F0F0",
+                          borderRadius: "4px",
+                          padding: "2px 4px",
+                          zIndex: 1,
+                        }}>
+                          {statuses.map((status) => (
+                            <div
+                              key={status}
+                              onClick={() => {
+                                setStatus(status);
+                                setIsStatusSelected(status);
+                                setStatusDropdown(false);
+                              }}
+                              style={{
+                                padding: "4px",
+                                cursor: "pointer",
+                                color: "#595959",
+                              }}
+                            >
+                              {status}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
                     <button
                       style={{
                         display: "inline-flex",

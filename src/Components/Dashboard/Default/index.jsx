@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   // const api = `http://localhost:3001/v1`;
   const [data, setData] = React.useState();
+  const [connectModel, setConnectModel] = useState(false);
 
   useEffect(() => {
     const url = `/jobs/jobs-stats`;
@@ -76,7 +77,7 @@ const Dashboard = () => {
     <Fragment>
       <Container fluid={true}>
         <Row className="widget-grid">
-          <GreetingCard isLinkedInLogin={isLinkedInConnected} />
+          <GreetingCard isLinkedInLogin={isLinkedInConnected} connectModel={connectModel} setConnectModel={setConnectModel} />
           <WidgetsWrapper />
           {/* <OverallBalance /> */}
           {/* <ActivityCard />
@@ -89,6 +90,49 @@ const Dashboard = () => {
               <PaperNote /> */}
         </Row>
       </Container>
+      
+      <div
+        style={{
+          position: "fixed",
+          top: "0",
+          left: "0",
+          zIndex: "999",
+          width: "100%",
+          height: "100%",
+          // backgroundColor: "rgba(0, 0, 0, 0.5)",
+          display: connectModel ? "flex" : "none",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: "999",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+          onClick={() => setConnectModel(false)}
+        ></div>
+        <div
+          style={{
+            backgroundColor: "white",
+            // padding: "20px",
+            borderRadius: "10px",
+            width: "900px",
+            textAlign: "center",
+            position: "relative",
+            zIndex: "1000",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <UserLogin setConnectModel={setConnectModel} />
+          {/* <button onClick={() => setConnectModel(false)}>Close</button> */}
+        </div>
+      </div>
     </Fragment>
   );
 };
