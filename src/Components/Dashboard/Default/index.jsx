@@ -25,10 +25,10 @@ const Dashboard = () => {
   const [data, setData] = React.useState();
   const [connectModel, setConnectModel] = useState(false);
 
-  useEffect(() => {
-    const url = `/jobs/jobs-stats`;
-    dispatch(fetchStats(url, handleFetchResponse));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const url = `/jobs/stats`;
+  //   dispatch(fetchStats(url, handleFetchResponse));
+  // }, [dispatch]);
 
   const handleFetchResponse = (resp) => {
     if (resp?.status === 200) {
