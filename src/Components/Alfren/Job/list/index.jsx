@@ -177,7 +177,6 @@ const JobList = () => {
     dispatch(
       fetchJobs(formPayload, (resp) => {
         if (resp?.status == 200) {
-          // toast.success("JobsFetched successfully");
           setPagination(resp.data.pagination);
           const results = resp.data.results;
           setTableColumns([
@@ -191,242 +190,179 @@ const JobList = () => {
               selector: (row) => row["name"],
               sortable: false,
               center: false,
+              width: "25%",
             },
-            // {
-            //   name: (
-            //     <>
-            //       <button
-            //         id="potentialToolTip"
-            //         className="d-flex"
-            //         style={{
-            //           cursor: "pointer",
-            //           backgroundColor: "white",
-            //           border: "none",
-            //           fontWeight: "600",
-            //           color: "black",
-            //           textAlign:'start',
-            //           padding:'0px',
-            //           display:'flex',
-            //           justifyContent:'center',
-            //           alignItems:'center',
-            //           gap:.2
-            //         }}
-            //       >
-            //         Potential Candidates{" "}
-            //         <Info
-            //           className="ms-1"
-            //           strokeWidth={1}
-            //           size={16}
-            //           color="#8FA8D7"
-            //         />
-            //         <UncontrolledTooltip
-            //           target="potentialToolTip"
-            //           placement="bottom"
-            //           style={{
-            //             backgroundColor: "#595959",
-            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
-            //           }}
-            //         >
-            //           <div
-            //             style={{
-            //               width: "100%",
-            //               left: "300px",
-            //               backgroundColor: "#595959",
-            //             }}
-            //             className="d-flex"
-            //           >
-            //             <Info color="#8FA8D7" size={70} />
-            //             <span className="ms-2 text-white">
-            //               The total number of unique candidate profiles the tool
-            //               has interacted with.
-            //             </span>
-            //           </div>
-            //         </UncontrolledTooltip>
-            //       </button>
-            //     </>
-            //   ),
-            //   selector: (row) => row["potentialCandidates"],
-            //   sortable: false,
-            //   center: true,
-            // },
-            // {
-            //   name: (
-            //     <>
-            //       <button
-            //         id="potentialToolTip"
-            //         className="d-flex"
-            //         style={{
-            //           cursor: "pointer",
-            //           backgroundColor: "white",
-            //           border: "none",
-            //           fontWeight: "600",
-            //           color: "black",
-            //           display:'flex',
-            //           justifyContent:'center',
-            //           alignItems:'center',
-            //           gap:.2
-            //         }}
-            //       >
-            //         Outreach{" "}
-            //         <Info
-            //           className="ms-1"
-            //           strokeWidth={1}
-            //           size={16}
-            //           color="#8FA8D7"
-            //         />
-            //         <UncontrolledTooltip
-            //           target="potentialToolTip"
-            //           placement="bottom"
-            //           style={{
-            //             backgroundColor: "#595959",
-            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
-            //           }}
-            //         >
-            //           <div
-            //             style={{
-            //               width: "100%",
-            //               left: "300px",
-            //               backgroundColor: "#595959",
-            //             }}
-            //             className="d-flex"
-            //           >
-            //             <Info color="#8FA8D7" size={70} />
-            //             <span className="ms-2 text-white">
-            //               The total number of unique candidate profiles the tool
-            //               has interacted with.
-            //             </span>
-            //           </div>
-            //         </UncontrolledTooltip>
-            //       </button>
-            //     </>
-            //   ),
-            //   selector: (row) => row["outreach"],
-            //   sortable: false,
-            //   center: true,
-            // },
-            // {
-            //   name: (
-            //     <>
-            //       <button
-            //         id="responseToolTip"
-            //         className="d-flex"
-            //         style={{
-            //           cursor: "pointer",
-            //           backgroundColor: "white",
-            //           border: "none",
-            //           fontWeight: "600",
-            //           color: "black",
-            //           display:'flex',
-            //           justifyContent:'center',
-            //           alignItems:'center',
-            //           gap:.2
-            //         }}
-            //       >
-            //         Response Rate
-            //         <Info
-            //           className="ms-1"
-            //           strokeWidth={1}
-            //           size={16}
-            //           color="#8FA8D7"
-            //         />
-            //         <UncontrolledTooltip
-            //           target="responseToolTip"
-            //           placement="bottom"
-            //           style={{
-            //             backgroundColor: "#595959",
-            //             boxShadow: "0px 6px 26px -3.89px #0000001A",
-            //           }}
-            //         >
-            //           <div
-            //             style={{
-            //               width: "100%",
-            //               left: "300px",
-            //               backgroundColor: "#595959",
-            //             }}
-            //             className="d-flex"
-            //           >
-            //             <Info color="#8FA8D7" size={70} />
-            //             <span className="ms-2 text-white">
-            //               The total number of unique candidate profiles the tool
-            //               has interacted with.
-            //             </span>
-            //           </div>
-            //         </UncontrolledTooltip>
-            //       </button>
-            //     </>
-            //   ),
-            //   selector: (row) => row["responseRate"],
-            //   sortable: false,
-            //   center: true,
-            // },
             {
-              name: (
-                <>
-                  <button
-                    id="priorityToolTip"
-                    className="d-flex"
+              name: <>Candidates</>,
+              selector: (row) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    lineHeight: "1.5",
+                  }}
+                >
+                  <div
                     style={{
-                      cursor: "pointer",
-                      backgroundColor: "white",
-                      border: "none",
-                      fontWeight: "600",
-                      color: "black",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: 0.2,
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
                     }}
                   >
-                    Priority
-                    <Info
-                      className="ms-1"
-                      strokeWidth={1}
-                      size={16}
-                      color="#8FA8D7"
-                    />
-                    <UncontrolledTooltip
-                      target="priorityToolTip"
-                      placement="bottom"
+                    Total:{" "}
+                    <span
                       style={{
-                        backgroundColor: "#595959",
-                        boxShadow: "0px 6px 26px -3.89px #0000001A",
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
                       }}
                     >
-                      <div
-                        style={{
-                          width: "100%",
-                          left: "300px",
-                          backgroundColor: "#595959",
-                        }}
-                        className="d-flex"
-                      >
-                        <Info color="#8FA8D7" size={70} />
-                        <span className="ms-2 text-white">
-                          The total number of unique candidate profiles the tool
-                          has interacted with.
-                        </span>
-                      </div>
-                    </UncontrolledTooltip>
-                  </button>
-                </>
+                      {row.totalCandidates || 0}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Shortlisted:{" "}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {row.shortlistedCandidates || 0}
+                    </span>
+                  </div>
+                </div>
               ),
-              selector: (row) => row["priority"],
               sortable: false,
-              center: true,
-              width: "14%",
+              center: false,
+              width: "18%",
             },
             {
-              name: <>Date Created</>,
-              selector: (row) => row["dateCreated"],
+              name: <>Connection Requests</>,
+              selector: (row) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    lineHeight: "1.5",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Sent:{" "}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {row.sentConnectionCount || 0}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Accepted:{" "}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {row.acceptedConnectionCount || 0}
+                    </span>
+                  </div>
+                </div>
+              ),
               sortable: false,
-              center: true,
+              center: false,
+              width: "20%",
+            },
+            {
+              name: <>Messages</>,
+              selector: (row) => (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    fontSize: "14px",
+                    fontWeight: 400,
+                    lineHeight: "1.5",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Sent:{" "}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {row.sentMessageCount || 0}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      fontWeight: 400,
+                      color: "#666666",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Reply Received:{" "}
+                    <span
+                      style={{
+                        fontWeight: 500,
+                        color: "#007BFF",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {row.checkedMessageReplyCount || 0}
+                    </span>
+                  </div>
+                </div>
+              ),
+              sortable: false,
+              center: false,
+              width: "20%",
             },
             {
               name: <>Actions</>,
               selector: (row) => row["actions"],
               sortable: false,
               center: true,
-              width: "10%",
+              width: "12%",
             },
           ]);
           setJobAPIResult(results);
@@ -541,8 +477,7 @@ const JobList = () => {
     let width = 0;
 
     if (bar == 1) {
-      width = 
-        (item?.candidateStats?.messageStatus?.replied / total) * 100;
+      width = (item?.candidateStats?.messageStatus?.replied / total) * 100;
     } else if (bar == 2) {
       width =
         (item?.candidateStats?.isConnectionRequestSent?.sent / total) * 100;
@@ -574,7 +509,6 @@ const JobList = () => {
       differenceInDays = +differenceInDays < 1 ? 0 : differenceInDays;
 
       date = date.toDateString();
-      console.log({ item });
       return {
         id: item.id,
         name: (
@@ -582,109 +516,16 @@ const JobList = () => {
             <Link to={"detail/" + item.id} key={item.id}>
               <div
                 style={{
-                  width: "50ch",
+                  width: "25ch",
                   overflow: "hidden",
                   whiteSpace: "pre-wrap",
                 }}
               >
                 {item.name}
               </div>
-              <div className="progress-showcase">
-                <Col
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  {/* {item?.candidateStats?.totalCandidates} */}
-                  {/* {calculateWidth(item, 1)}
-                  {calculateWidth(item, 2)}
-                  {calculateWidth(item, 3)} */}
-                  {/* {item?.candidateStats?.messageStatus} */}
-                  {/* {item?.candidateStats?.degreeOfConnection} */}
-                  {/* {item?.candidateStats?.isConnectionRequestSent} */}
-                  <div
-                    style={{
-                      width: calculateWidth(item, 3),
-                    }}
-                    title="Pending Candidates"
-                  >
-                    {" "}
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress1",
-                        className: "sm-progress-bar me-1 mb-0",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#b8d1fe" }}>
-                      {item?.candidateStats?.isConnectionRequestSent?.not_sent}
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      width: calculateWidth(item, 2),
-                    }}
-                    title="Processing Candidates"
-                  >
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress2",
-                        className: "sm-progress-bar me-1 mb-0 ",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#ffe699" }}>
-                      {item?.candidateStats?.isConnectionRequestSent?.sent}
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      width: calculateWidth(item, 1),
-                    }}
-                    title="Processed Candidates"
-                  >
-                    <Progressbar
-                      attrProgress={{
-                        value: "100",
-                        color: "progress3",
-                        barAriaLabelledBy: "75",
-                        className: "sm-progress-bar me-1 mb-0",
-                      }}
-                    />
-                    <span style={{ fontSize: "8px", color: "#fba14d" }}>
-                      {item?.candidateStats?.messageStatus?.replied}
-                    </span>
-                  </div>
-                </Col>
-              </div>
             </Link>
           </>
         ),
-        // potentialCandidates: (
-        //   <div className="d-flex">
-        //     <Users strokeWidth={1} size={16} />
-        //     <div className="ms-2 font-secondary">
-        //       <strong>
-        //         {item.potentialCandidates ? item.potentialCandidates : "N/A"}
-        //       </strong>
-        //     </div>
-        //   </div>
-        // ),
-        // outreach: (
-        //   <div className="d-flex">
-        //     <User strokeWidth={1} size={16} />
-        //     <div className="ms-2 font-secondary">
-        //       <strong>{item.outreach ? item.outreach : "N/A"}</strong>
-        //     </div>
-        //   </div>
-        // ),
-        // responseRate: (
-        //   <div>
-        //     <div className="font-secondary">
-        //       <strong>
-        //         {item.responseRate ? item.responseRate + "%" : "N/A"}
-        //       </strong>
-        //     </div>
-        //   </div>
-        // ),
         priority: (
           <div
             className="custom-dropdown"
@@ -771,7 +612,9 @@ const JobList = () => {
                     <Label className="switch">
                       <Input
                         type="checkbox"
-                        style={{ background: `${item.isJobActive ? "black" : "red"}` }}
+                        style={{
+                          background: `${item.isJobActive ? "black" : "red"}`,
+                        }}
                         checked={item.isJobActive ? true : false}
                         onClick={() =>
                           changeJobStatus(item.id, item.isJobActive)
@@ -780,7 +623,11 @@ const JobList = () => {
                       {/* askjn few ojk few qwe iupi jjfh akjasfdnjfdf sdfm, */}
                       <span
                         className="switch-state"
-                        style={{ backgroundColor: `${item.isJobActive ? "darkgreen" : "darkred"}` }}
+                        style={{
+                          backgroundColor: `${
+                            item.isJobActive ? "darkgreen" : "darkred"
+                          }`,
+                        }}
                       ></span>
                     </Label>
                   </Media>
@@ -881,7 +728,7 @@ const JobList = () => {
                         setIsJobSelected={setIsJobSelected}
                       />
                     )}
-                    <button
+                    {/* <button
                       style={{
                         display: "inline-flex",
                         border:
@@ -913,8 +760,8 @@ const JobList = () => {
                         setPriorities={setPriorities}
                         setIsPrioritySelected={setIsPrioritySelected}
                       />
-                    )}
-                    <button
+                    )} */}
+                    {/* <button
                       style={{
                         display: "inline-flex",
                         border:
@@ -944,7 +791,7 @@ const JobList = () => {
                         setIsDateSelected={setIsDateSelected}
                         closeDateDropdown={closeDateDropdown}
                       />
-                    )}
+                    )} */}
                     <button
                       style={{
                         display: "inline-flex",
@@ -979,7 +826,11 @@ const JobList = () => {
                           />
                           <span
                             className="switch-state"
-                            style={{ background: `${activeOnly ? "darkgreen" : "darkred"}` }}
+                            style={{
+                              background: `${
+                                activeOnly ? "darkgreen" : "darkred"
+                              }`,
+                            }}
                           ></span>
                         </Label>
                       </Media>
@@ -1095,23 +946,61 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <div
-                style={{
-                  boxShadow: "none",
-                  maxHeight: `${maxHeight}px`,
-                  overflowY: "auto",
-                }}
-              >
-                <DataTableComponent
-                  isLoading={isLoading}
-                  paginatedUpdated={paginatedUpdated}
-                  data={jobsList}
-                  paginationDetails={pagination}
-                  tableColumns={tableColumns}
-                  setPagination={setPagination}
-                  setPaginatedUpdated={setPaginatedUpdated}
-                />
-              </div>
+              <CardBody style={{ padding: 0 }}>
+                <div
+                  style={{
+                    boxShadow: "none",
+                    maxHeight: `${maxHeight}px`,
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <DataTableComponent
+                    isLoading={isLoading}
+                    paginatedUpdated={paginatedUpdated}
+                    data={jobsList}
+                    paginationDetails={pagination}
+                    tableColumns={tableColumns}
+                    setPagination={setPagination}
+                    setPaginatedUpdated={setPaginatedUpdated}
+                    customStyles={{
+                      headRow: {
+                        style: {
+                          position: "sticky",
+                          top: 0,
+                          zIndex: 2,
+                          backgroundColor: "white",
+                          borderBottom: "1px solid #e0e0e0",
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                        },
+                      },
+                      headCells: {
+                        style: {
+                          backgroundColor: "white",
+                          fontWeight: "bold",
+                          padding: "12px 8px",
+                          position: "relative",
+                          zIndex: 2,
+                        },
+                      },
+                      table: {
+                        style: {
+                          width: "100%",
+                          tableLayout: "fixed",
+                        },
+                      },
+                      cells: {
+                        style: {
+                          padding: "8px",
+                          wordBreak: "break-word",
+                        },
+                      },
+                    }}
+                  />
+                </div>
+              </CardBody>
             </Card>
           </Col>
         </Row>
