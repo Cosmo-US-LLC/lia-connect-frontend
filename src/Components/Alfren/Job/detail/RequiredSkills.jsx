@@ -5,17 +5,13 @@ import { Card, CardBody, CardHeader } from "reactstrap";
 import TodoContext from "../../../../_helper/Todo";
 import { H4, H5, H6, Image, LI, UL } from "../../../../AbstractElements";
 import PlusIcon from "../../../../assets/used-files/icons/plus.svg";
-import { X } from "react-feather";
-const RequiredSkills = ({jobDetails}) => {
+
+const RequiredSkills = ({ jobDetails }) => {
   const [selectedSkills, setSelectedSkills] = useState(jobDetails.skills);
-  const removeSkill = (jobName) => {
-    const updatedJobs = selectedSkills.filter(job => job !== jobName);
-    // Update the state with the updatedJobs array
-    setSelectedSkills(updatedJobs);
-  };
+
   return (
     <Fragment>
-      <Card style={{ height: "85%" ,position:'relative',bottom:'30px'}}>
+      <Card style={{ height: "85%", position: "relative", bottom: "30px" }}>
         <CardBody style={{ padding: "20px" }}>
           <p
             style={{
@@ -48,18 +44,11 @@ const RequiredSkills = ({jobDetails}) => {
                   color: "#595959",
                   backgroundColor: "#F7F7F7",
                   borderRadius: "4px",
-                  padding: "6px",
+                  padding: "6px 12px",
                   marginRight: "8px",
                 }}
               >
-                <span className="ms-2 me-2" style={{ fontSize: "12px" }}>
-                  {skill}
-                </span>
-                <X
-                  strokeWidth={1.5}
-                  size={16}
-                  onClick={() => removeSkill(skill)}
-                />
+                <span style={{ fontSize: "12px" }}>{skill}</span>
               </button>
             ))}
           </div>
