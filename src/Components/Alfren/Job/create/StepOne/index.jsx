@@ -23,6 +23,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { INSTANCE } from "Config/axiosInstance";
+import JobTitleAutocomplete from "./JobTitleInput";
+import SkillsAutocomplete from "./SkillsAutocomplete";
+import ImageModal from "./ImageModal";
 
 const StepOne = ({
   setJobName,
@@ -47,6 +51,7 @@ const StepOne = ({
   isLoading,
   hasErrors,
   getCandidateCount,
+  setValue,
 }) => {
   console.log("hasErrors i also want this", !hasErrors);
   const options = [
@@ -99,6 +104,18 @@ const StepOne = ({
     }),
   };
 
+  // const [skillData, setSkillsData] = useState([]);
+  // const [filteredJobs, setFilteredJobs] = useState([]);
+  // const [showDropdown, setShowDropdown] = useState(false);
+
+  // useEffect(() => {
+  //   const fetchSkillSet = async () => {
+  //     const response = await INSTANCE.post("/jobs/skillset", {});
+  //     setSkillsData(response.data);
+  //   };
+  //   fetchSkillSet();
+  // }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log("eeeeeeeeeeeeeeeeee", name, value);
@@ -132,6 +149,10 @@ const StepOne = ({
   const [enterSkill, setEnterSkill] = useState(false);
   const [linkedInSearchButton, setLinkedInSearchButton] = useState(true);
   const [nextActive, setNextActive] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     if (jobName && jobPriority && skills.length) {
@@ -148,9 +169,17 @@ const StepOne = ({
   const [maxCandidates, setMaxCandidates] = useState(null);
   const [isMaxChecked, setIsMaxChecked] = useState(false);
 
-  const handleCheckboxChange = () => {
-    setIsMaxChecked(!isMaxChecked);
-    setMaxCandidates(isMaxChecked ? null : 100);
+  const handleCheckboxChange = (e) => {
+    const isChecked = e.target.checked;
+    setIsMaxChecked(isChecked);
+
+    if (isChecked) {
+      setValue("maxCandidates", 100);
+    } else {
+      setValue("maxCandidates", maxCandidates || "");
+    }
+
+    clearErrors("maxCandidates");
   };
 
   return (
@@ -188,7 +217,7 @@ const StepOne = ({
                           Job Title <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
-                      <input
+                      {/* <input
                         style={{
                           border: errors.jobName
                             ? ".1px solid #f2abab"
@@ -205,14 +234,20 @@ const StepOne = ({
                         className={`form-control shadow-none ${
                           errors.jobName ? "is-invalid" : ""
                         }`}
+                      /> */}
+                      <JobTitleAutocomplete
+                        value={jobName}
+                        onChange={setJobName}
+                        error={!jobName}
+                        register={register}
+                        clearErrors={clearErrors}
                       />
-
                       <div className="invalid-feedback text-start">
                         {errors.jobName?.message}
                       </div>
                     </div>
                   </Col>
-                  <Col xl="4">
+                  {/* <Col xl="4">
                     <H6
                       attrH6={{
                         className: "d-flex justify-content-between",
@@ -285,7 +320,7 @@ const StepOne = ({
                         </option>
                       ))}
                     </select>
-                  </Col>
+                  </Col> */}
                   <Col xl="12">
                     <FormGroup className="text-start mt-3">
                       <H6
@@ -300,7 +335,18 @@ const StepOne = ({
                           Skills <span className="ms-2 text-danger">*</span>
                         </span>
                       </H6>
-                      {enterSkill ? (
+                      <SkillsAutocomplete
+                        skills={skills}
+                        setSkills={setSkills}
+                        skillInputValue={skillInputValue}
+                        setSkillInputValue={setSkillInputValue}
+                        register={register}
+                        error={errors.skillInputValue}
+                        jobTitle={jobName}
+                        clearErrors={clearErrors}
+                      />
+
+                      {/* {enterSkill ? (
                         <>
                           <input
                             style={{
@@ -343,7 +389,7 @@ const StepOne = ({
                             <span>Add Skills</span>
                           </button>
                         </>
-                      )}
+                      )} */}
                       {skills.map((skill, index) => (
                         <button
                           key={index}
@@ -489,8 +535,7 @@ const StepOne = ({
                               >
                                 Copy the{" "}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn URL{" "}
-                                  {/* LinkedIn Profile URL{" "} */}
+                                  LinkedIn URL {/* LinkedIn Profile URL{" "} */}
                                 </span>
                                 and paste it below{" "}
                                 <span className="ms-2 text-danger">*</span>
@@ -498,14 +543,28 @@ const StepOne = ({
                             </>
                           )}
                           <div>
-                            <Link
-                              to={"#"}
-                              className="d-flex"
-                              style={{ fontSize: "12px", fontWeight: "400" }}
+                            <div
+                              onClick={openModal}
+                              style={{
+                                cursor: "pointer",
+                                padding: "8px 15px",
+                                // backgroundColor: "#1264FD",
+                                color: "#1264FD",
+                                borderRadius: "5px",
+                                display: "inline-block",
+                                fontWeight: "500",
+                                fontSize: "12px",
+                                marginBottom: "10px",
+                              }}
                             >
-                              <Youtube size={14} />
-                              <span className="ms-2">Watch Tutorial</span>
-                            </Link>
+                              How to Get URL
+                            </div>
+
+                            {/* Modal */}
+                            <ImageModal
+                              isOpen={isModalOpen}
+                              onRequestClose={closeModal}
+                            />
                           </div>
                         </H6>
                         {linkedInSearchButton ? (
@@ -544,7 +603,8 @@ const StepOne = ({
                                       transform: "translateY(-50%)",
                                       width: "50px",
                                       height: "30px",
-                                      background: "linear-gradient(to right,rgba(235, 241, 252, 0), #ebf1fc, #ebf1fc)",
+                                      background:
+                                        "linear-gradient(to right,rgba(235, 241, 252, 0), #ebf1fc, #ebf1fc)",
                                     }}
                                   >
                                     <FaCheck
