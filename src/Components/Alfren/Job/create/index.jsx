@@ -10,20 +10,19 @@ import StepTwo from "./StepTwo/index";
 import StepThree from "./StepThree/index";
 import Completed from "./Completed";
 import { useLocation } from "react-router";
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchAllCandidates, stepOne } from "../../../../redux/Job/jobActions";
-
 
 const JobCreate = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState(null);
   const [step, setStep] = useState(1);
   // console.log('stepstepstepstepstepstepstepstepstepstepstepstepstepstep', step)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleNext = (e) => {
     e.preventDefault();
     setStep(step + 1);
@@ -40,8 +39,6 @@ const JobCreate = () => {
     // Handle form submission
   };
 
-
-
   const removeSkill = (name) => {
     const updatedItems = skills.filter((item) => item !== name);
     setSkills(updatedItems);
@@ -49,60 +46,53 @@ const JobCreate = () => {
 
   //stepOne data
   const [jobName, setJobName] = useState(null);
-  console.log('jobName', jobName)
   const [jobPriority, setJobPriority] = useState(null);
-  console.log('jobPriority', jobPriority)
   const [linkedInSearch, setLinkedInSearch] = useState("");
-  console.log('linkedInSearch i want this', linkedInSearch)
   const [skills, setSkills] = useState([]);
-  console.log('skills', skills)
-  const [skillInputValue, setSkillInputValue] = useState('');
+  const [skillInputValue, setSkillInputValue] = useState("");
   const [linkedInProfile, setLinkedInProfile] = useState([]);
-  console.log('linkedInProfile', linkedInProfile)
   //stepOne data end
   const [candidateInOtherJob, setCandidateInOtherJob] = useState(true);
-  const [candidateHaveOpenProfile, setCandidateHaveOpenProfile] = useState(false);
+  const [candidateHaveOpenProfile, setCandidateHaveOpenProfile] =
+    useState(false);
   const [candidateHaveDisplay, setCandidateHaveDisplay] = useState(false);
   //stepTwo Data starts
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
-  const [getCandidateCount, setGetTotalCount] = useState(null)
+  const [getCandidateCount, setGetTotalCount] = useState(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const jobIdFromQuery = searchParams.get('jobId');
+    const jobIdFromQuery = searchParams.get("jobId");
     if (jobIdFromQuery) {
       setJobId(jobIdFromQuery);
     }
-    const setFromQuery = searchParams.get('step');
+    const setFromQuery = searchParams.get("step");
     if (setFromQuery) {
       setStep(+setFromQuery);
-
     }
-
   }, [location.search]);
-
 
   // Validation schema should be defined here
   let validationSchema = Yup.object().shape({
-    jobName: Yup.string().required('Job Name is required'),
-    jobPriority: Yup.string().required('Job Priority is required'),
+    jobName: Yup.string().required("Job Name is required"),
+    jobPriority: Yup.string().required("Job Priority is required"),
     linkedInSearch: Yup.string()
-      .required('LinkedIn Search URL is required')
+      .required("LinkedIn Search URL is required")
       .matches(
         /^https:\/\/www\.linkedin\.com\/search\/results\/(people|PEOPLE)\/\?keywords=.*$/i,
-        'This LinkedIn Search URL cannot be supported'
+        "This LinkedIn Search URL cannot be supported"
       ),
     maxCandidates: Yup.number()
-      .typeError('Max Candidate must be a number')
-      .required('Max Candidate is required')
-      .min(1, 'Max Candidate must be at least 1')
-      .max(500, 'Max Candidate cannot be more than 500'),
+      .typeError("Max Candidate must be a number")
+      .required("Max Candidate is required")
+      .min(1, "Max Candidate must be at least 1")
+      .max(500, "Max Candidate cannot be more than 500"),
   });
 
   // Manually check if skillInputValue is required
   if (!skills || skills.length === 0) {
     validationSchema = validationSchema?.shape({
-      skillInputValue: Yup.string().required('Skill is required'),
+      skillInputValue: Yup.string().required("Skill is required"),
     });
   }
 
@@ -115,11 +105,11 @@ const JobCreate = () => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
-    mode: 'onChange',
+    // resolver: yupResolver(validationSchema),
+    mode: "onChange",
   });
 
-  const linkedInSearchValue = watch('linkedInSearch');
+  const linkedInSearchValue = watch("linkedInSearch");
   const [hasErrors, setHasErrors] = useState(false);
 
   useEffect(() => {
@@ -128,25 +118,25 @@ const JobCreate = () => {
     setHasErrors(currentError);
   }, [errors.linkedInSearch]);
 
-
   const onSubmit = async (data, e) => {
     setIsLoading(true); // Set loading to true before dispatching the action
 
     const formData = {
       name: data.jobName,
-      jobPriority: data.jobPriority.toUpperCase(), // Convert jobPriority to uppercase
-      linkedInURL: data?.linkedInSearch?.length
-        ? [data.linkedInSearch]
-        : linkedInProfile?.length
-          ? linkedInProfile
-          : [],
-      linkedInType: data?.linkedInSearch?.length
-        ? 'linkedInSearch'
-        : linkedInProfile?.length
-          ? 'linkedInProfile'
-          : null,
+      linkedInURL: [data.linkedInSearch],
       skills,
       maxCandidates: parseInt(data.maxCandidates, 10), // Convert maxCandidates to a number
+      // jobPriority: "HIGH", // Convert jobPriority to uppercase
+      // linkedInURL: data?.linkedInSearch?.length
+      //   ? [data.linkedInSearch]
+      //   : linkedInProfile?.length
+      //     ? linkedInProfile
+      //     : [],
+      // linkedInType: data?.linkedInSearch?.length
+      //   ? 'linkedInSearch'
+      //   : linkedInProfile?.length
+      //     ? 'linkedInProfile'
+      //     : null,
     };
 
     // Check if currentStep is 1 before dispatching stepOne
@@ -156,7 +146,7 @@ const JobCreate = () => {
           stepOne(formData, (resp) => {
             setIsLoading(false); // Set loading to false when data is received
             if (resp?.status === 201) {
-              toast.success('Job details saved!');
+              toast.success("Job details saved!");
               setJobId(resp.data.id);
               handleNext(e);
             } else {
@@ -167,7 +157,7 @@ const JobCreate = () => {
         );
       } catch (error) {
         setIsLoading(false); // Set loading to false if an error occurs
-        toast.error('Error occurred while processing the request');
+        toast.error("Error occurred while processing the request");
       }
     } else {
       setIsLoading(false); // If not step 1, set loading to false
@@ -214,9 +204,8 @@ const JobCreate = () => {
                 <Progressbar
                   attrProgress={{
                     value: `${step == 1 ? "50" : "100"}`,
-                    color:
-                      true ? "stepActive" : "stepInActive",
-                      // step == 2 || step == 3 ? "stepActive" : "stepInActive",
+                    color: true ? "stepActive" : "stepInActive",
+                    // step == 2 || step == 3 ? "stepActive" : "stepInActive",
                     className: "sm-progress-bar  mb-0 rounded-0",
                   }}
                 />
@@ -228,8 +217,8 @@ const JobCreate = () => {
                       step == 2
                         ? StepActiveIcon
                         : step == 3
-                          ? StepCompletedIcon
-                          : StepInActiveIcon,
+                        ? StepCompletedIcon
+                        : StepInActiveIcon,
                   }}
                 />
               </div>
@@ -277,7 +266,8 @@ const JobCreate = () => {
                 getCandidateCount={getCandidateCount}
                 hasErrors={hasErrors}
                 isLoading={isLoading}
-                control={control} setValue={setValue}
+                control={control}
+                setValue={setValue}
                 linkedInSearchValue={linkedInSearchValue}
                 errors={errors}
                 register={register}
@@ -304,7 +294,7 @@ const JobCreate = () => {
               //   handlePrevious={handlePrevious}
               //   handleNext={handleNext}
               //   jobId={jobId}
-              // />              
+              // />
               <StepThree
                 handlePrevious={handlePrevious}
                 handleNext={handleNext}
