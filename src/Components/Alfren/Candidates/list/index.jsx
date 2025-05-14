@@ -4,7 +4,7 @@ import { H6 } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
 import { Form, InputGroup, InputGroupText } from "reactstrap";
-import { ChevronDown, FileText, Filter, Map, Sliders } from "react-feather";
+import { ChevronDown, FileText, Filter, Map, Sliders, X } from "react-feather";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchCandidates } from "../../../../redux/candidate/candidateActions";
@@ -18,6 +18,8 @@ import Jobs from "Components/Alfren/Job/list/modals/jobs";
 import Priority from "Components/Alfren/Job/list/modals/priority";
 import DateModal from "Components/Alfren/Job/list/modals/date";
 import { IoFilterOutline } from "react-icons/io5";
+import { fetchJobs } from "../../../../redux/Job/jobActions";
+import JobList from "Components/Alfren/Job/list";
 
 const DataTables = () => {
   const dispatch = useDispatch();
@@ -45,18 +47,30 @@ const DataTables = () => {
     totalResults: null,
   });
 
+  const [selectedJob, setSelectedJob] = useState([]);
+
+  const [name, setName] = useState("");
+  const [nameDropdown, setNameDropdown] = useState(false);
   // function handle dropdown states
-  const statuses = [
-    "Shortlisted",
-    "Rejected",
-    "Pending",
-  ];
-  const [status, setStatus] = useState("");
-  const [isStatusSelected, setIsStatusSelected] = useState(false);
+  const statuses = ["Shortlisted", "Rejected", "Pending"];
+  // const [status, setStatus] = useState("");
+  const [isStatusSelected, setIsStatusSelected] = useState("");
   const [statusDropdown, setStatusDropdown] = useState(false);
 
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
+    statusDropdown && setStatusDropdown(false);
+    nameDropdown && setNameDropdown(false);
+  };
+  const toggleNameDropdown = () => {
+    setNameDropdown(!nameDropdown);
+    statusDropdown && setStatusDropdown(false);
+    searchDropdown && setsSearchDropdown(false);
+  };
+  const toggleStatusDropdown = () => {
+    setStatusDropdown(!statusDropdown);
+    nameDropdown && setNameDropdown(false);
+    searchDropdown && setsSearchDropdown(false);
   };
   const closeSearchDropdown = () => {
     setsSearchDropdown(false);
@@ -100,6 +114,21 @@ const DataTables = () => {
     },
   ]);
 
+  const addSelectedJobs = () => {
+    console.log("Adding Jobs", selectedJob);
+    setSearchJobs(selectedJob);
+    setsSearchDropdown(false);
+    setIsJobSelected(true);
+  };
+
+  const updateName = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    setName(name);
+    setNameDropdown(false);
+  };
+
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -135,14 +164,27 @@ const DataTables = () => {
 
   useEffect(() => {
     fetchCandidatePaginated();
-  }, [paginatedUpdated]);
+  }, [paginatedUpdated, searchJobs, name, isStatusSelected, activeOnly]);
 
   const fetchCandidatePaginated = async (e) => {
     const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
-    const formPayload = {
+    let formPayload = {
       urlParams,
       body: {},
     };
+
+    if (searchJobs && searchJobs?.length > 0) {
+      formPayload.body.jobId = searchJobs;
+    }
+    if (name && name?.length > 0) {
+      formPayload.body.name = name;
+    }
+    if (isStatusSelected && isStatusSelected?.length > 0) {
+      formPayload.body.status = isStatusSelected;
+    }
+    if (activeOnly) {
+      formPayload.body.isBlackListed = activeOnly;
+    }
 
     dispatch(
       fetchCandidates(formPayload, (resp) => {
@@ -205,11 +247,34 @@ const DataTables = () => {
     );
   };
 
-  console.log("candidateList", candidateList);
+  const fetchJobPaginated = async (e) => {
+    const urlParams = "page=1&limit=100";
+    const formPayload = {
+      urlParams,
+      body: {},
+    };
+    dispatch(
+      fetchJobs(formPayload, (resp) => {
+        if (resp?.status == 200) {
+          const results = resp.data.results;
+          setJobsList(results);
+        } else {
+          const err = resp?.message;
+          toast.error(err);
+        }
+      })
+    );
+  };
+
+  useEffect(() => {
+    fetchJobPaginated();
+  }, []);
+
+  // console.log("candidateList", candidateList);
 
   const mapTableData = (results) => {
     let candidateMappedList = results.map((item, index) => {
-      console.log("item", item);
+      // console.log("item", item);
       return {
         id: index,
         name: (
@@ -354,29 +419,39 @@ const DataTables = () => {
             }}
           >
             {item.status == "Shortlisted" ? (
-              <div style={{
-                color: "green",
-                backgroundColor: "#E6F9E6",
-                padding: "5px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}>{item.status}</div>
+              <div
+                style={{
+                  color: "green",
+                  backgroundColor: "#E6F9E6",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                }}
+              >
+                {item.status}
+              </div>
             ) : item.status == "Rejected" ? (
-              <div style={{
-                color: "red",
-                backgroundColor: "#F9E6E6",
-                padding: "5px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}>{item.status}</div>
+              <div
+                style={{
+                  color: "red",
+                  backgroundColor: "#F9E6E6",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                }}
+              >
+                {item.status}
+              </div>
             ) : (
-              <div style={{
-                color: "grey",
-                backgroundColor: "#F0F0F0",
-                padding: "5px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}>
+              <div
+                style={{
+                  color: "grey",
+                  backgroundColor: "#F0F0F0",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                }}
+              >
                 {item.status}
               </div>
             )}
@@ -454,46 +529,182 @@ const DataTables = () => {
                       </span>
                     </button>
                     {searchDropdown && (
-                      <Jobs
-                        jobs={searchJobs}
-                        setJobs={setSearchJobs}
-                        closeSearchDropdown={closeSearchDropdown}
-                        setSelectedJobs={setSelectedJobs}
-                        setIsJobSelected={setIsJobSelected}
-                      />
+                      // <Jobs
+                      //   jobs={searchJobs}
+                      //   setJobs={setSearchJobs}
+                      //   closeSearchDropdown={closeSearchDropdown}
+                      //   setSelectedJobs={setSelectedJobs}
+                      //   setIsJobSelected={setIsJobSelected}
+                      // />
+
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "40px",
+                          padding: "10px",
+                          // position: "absolute",
+                          boxShadow: "0px 10px 26px 0px #0000001A",
+                          zIndex: 2,
+                          backgroundColor: "white",
+                          borderRadius: "8px",
+                          width: "300px",
+                          maxHeight: "400px",
+                          overflow: "auto",
+                        }}
+                      >
+                        <div
+                          style={{
+                            maxHeight: "200px",
+                            overflowY: "auto",
+                            padding: "5px 10px",
+                            margin: "5px 0",
+                          }}
+                        >
+                          {jobsList.map((job, index) => (
+                            <div key={job.id}>
+                              <input
+                                type="checkbox"
+                                checked={selectedJob.includes(job.id)}
+                                onChange={(e) => {
+                                  setSelectedJob((prev) => {
+                                    if (prev.includes(job.id)) {
+                                      console.log(
+                                        "Removing job",
+                                        job.name,
+                                        prev.filter((id) => id !== job.id)
+                                          .length
+                                      );
+                                      return prev.filter((id) => id !== job.id);
+                                    } else {
+                                      console.log(
+                                        "Adding job",
+                                        job.name,
+                                        [...prev, job.id].length
+                                      );
+                                      return [...prev, job.id];
+                                    }
+                                  });
+                                }}
+                                id={`job-${index}`}
+                                name={`job-${index}`}
+                              />
+                              <label
+                                htmlFor={`job-${index}`}
+                                style={{
+                                  marginLeft: "10px",
+                                  userSelect: "none",
+                                }}
+                              >
+                                {job.name || job.id}
+                              </label>
+                              <br />
+                            </div>
+                          ))}
+                        </div>
+                        <button
+                          style={{
+                            backgroundColor: "#337CC7",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "4px",
+                            padding: "5px 16px",
+                            marginLeft: "10px",
+                            height: "33px",
+                          }}
+                          onClick={addSelectedJobs}
+                        >
+                          Filter Candidates
+                        </button>
+                      </div>
                     )}
                     <button
                       style={{
                         display: "inline-flex",
                         border:
-                          priorityDropdown || isPrioritySelected
+                          nameDropdown || name
                             ? "1px solid #337CC7"
                             : "1px solid #F0F0F0",
-                        color:
-                          priorityDropdown || isPrioritySelected
-                            ? "#337CC7"
-                            : "#595959",
+                        color: nameDropdown || name ? "#337CC7" : "#595959",
                         backgroundColor:
-                          priorityDropdown || isPrioritySelected
-                            ? "#F5F9FF"
-                            : "white",
+                          nameDropdown || name ? "#F5F9FF" : "white",
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
                       }}
-                      onClick={togglePriorityDropdown}
+                      onClick={toggleNameDropdown}
                     >
-                      <User strokeWidth={1} size={16} />
-                      <span className="ms-2" style={{ fontSize: "12px" }}>
+                      <Search strokeWidth={1} size={16} />
+                      <span className="ms-2 me-4" style={{ fontSize: "12px" }}>
                         Name
                       </span>
                     </button>
-                    <div style={{
-                      display: "inline-flex",
-                      position: "relative",
-                      bottom: "3px",
-                      marginRight: "8px",
-                    }}>
+                    {nameDropdown && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "40px",
+                          padding: "10px",
+                          // position: "absolute",
+                          boxShadow: "0px 10px 26px 0px #0000001A",
+                          zIndex: 2,
+                          backgroundColor: "white",
+                          borderRadius: "8px",
+                          width: "50%",
+                          maxHeight: "400px",
+                          overflow: "auto",
+                        }}
+                      >
+                        <form
+                          action=""
+                          onSubmit={updateName}
+                          style={{ display: "flex", paddingTop: "5px" }}
+                        >
+                          <label htmlFor="name" style={{ width: "100%" }}>
+                            <input
+                              type="text"
+                              name="name"
+                              placeholder="Search Name"
+                              style={{
+                                width: "100%",
+                                padding: "5px 10px",
+                                border: "1px solid #F0F0F0",
+                                borderRadius: "4px",
+                              }}
+                            />
+                          </label>
+
+                          <button
+                            type="submit"
+                            style={{
+                              backgroundColor: "#337CC7",
+                              color: "white",
+                              border: "none",
+                              borderRadius: "4px",
+                              padding: "5px 16px",
+                              marginLeft: "10px",
+                              height: "33px",
+                            }}
+                          >
+                            Search
+                          </button>
+                        </form>
+                      </div>
+                      // <Jobs
+                      //   jobs={searchJobs}
+                      //   setJobs={setSearchJobs}
+                      //   closeSearchDropdown={closeSearchDropdown}
+                      //   setSelectedJobs={setSelectedJobs}
+                      //   setIsJobSelected={setIsJobSelected}
+                      // />
+                    )}
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        position: "relative",
+                        bottom: "3px",
+                        marginRight: "8px",
+                      }}
+                    >
                       <button
                         style={{
                           display: "inline-flex",
@@ -506,11 +717,13 @@ const DataTables = () => {
                               ? "#337CC7"
                               : "#595959",
                           backgroundColor:
-                            statusDropdown || isStatusSelected ? "#F5F9FF" : "white",
+                            statusDropdown || isStatusSelected
+                              ? "#F5F9FF"
+                              : "white",
                           borderRadius: "4px",
                           padding: "8px",
                         }}
-                        onClick={()=>setStatusDropdown(!statusDropdown)}
+                        onClick={toggleStatusDropdown}
                       >
                         <span
                           className="ms-2"
@@ -521,20 +734,22 @@ const DataTables = () => {
                         <ChevronDown strokeWidth={1} size={16} />
                       </button>
                       {statusDropdown && (
-                        <div style={{
-                          position: "absolute",
-                          top: "40px",
-                          backgroundColor: "white",
-                          border: "1px solid #F0F0F0",
-                          borderRadius: "4px",
-                          padding: "2px 4px",
-                          zIndex: 1,
-                        }}>
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "40px",
+                            backgroundColor: "white",
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "4px",
+                            padding: "2px 4px",
+                            zIndex: 1,
+                          }}
+                        >
                           {statuses.map((status) => (
                             <div
                               key={status}
                               onClick={() => {
-                                setStatus(status);
+                                // setStatus(status);
                                 setIsStatusSelected(status);
                                 setStatusDropdown(false);
                               }}
@@ -550,7 +765,6 @@ const DataTables = () => {
                         </div>
                       )}
                     </div>
-                    
                     <button
                       style={{
                         display: "inline-flex",
@@ -608,7 +822,7 @@ const DataTables = () => {
                       gap: "14px",
                     }}
                   >
-                    <span
+                    {/* <span
                       style={{
                         opacity: activeOnly ? "100%" : "40%",
                         fontSize: "12px",
@@ -641,8 +855,142 @@ const DataTables = () => {
                         Date Added
                       </span>
                       <ChevronDown strokeWidth={1} size={16} />
-                    </button>
+                    </button> */}
                   </Col>
+                </Row>
+                <Row>
+                  {isJobSelected && searchJobs.length > 0 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "10px",
+                        marginTop: "10px",
+                      }}
+                    >
+                      {searchJobs.map((jobId, index) => {
+                        const job = jobsList.find((job) => job.id === jobId);
+                        return (
+                          <div
+                            key={jobId}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              backgroundColor: "#F0F0F0",
+                              padding: "5px 10px",
+                              borderRadius: "20px",
+                              width: "fit-content",
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontSize: "12px",
+                                marginRight: "5px",
+                              }}
+                            >
+                              Job: <strong>{job?.name || jobId}</strong>
+                            </span>
+                            <button
+                              onClick={() => {
+                                setSearchJobs((prev) =>
+                                  prev.filter((id) => id !== jobId)
+                                );
+                                setSelectedJob((prev) =>
+                                  prev.filter((id) => id !== jobId)
+                                );
+                                if (searchJobs.length === 1) {
+                                  setIsJobSelected(false);
+                                }
+                              }}
+                              style={{
+                                backgroundColor: "transparent",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: "0 5px",
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <X size={16} />
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {name && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Name: <strong>{name}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setName("");
+                          setNameDropdown(false);
+                        }}
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
+                  {isStatusSelected && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Status: <strong>{isStatusSelected}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setIsStatusSelected(false);
+                          setStatusDropdown(false);
+                        }}
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
                 </Row>
               </CardHeader>
               <DataTableComponent
