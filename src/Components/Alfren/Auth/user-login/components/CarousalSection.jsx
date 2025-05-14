@@ -184,7 +184,24 @@ const CarouselSection = () => {
           alignItems: "center",
         }}
       >
-        {renderImage()}
+        {/* {renderImage()} */}
+        <div
+          style={{
+            // D:\projects\lia-connect-frontend\src\assets\alfren-hr.gif
+            // src\assets\alfren-hr.gif
+            backgroundImage: `url(${require("../../../../../assets/alfren-hr.gif")})`,
+            // backgroundImage: {Gif},
+            // backgroundImage: `url('/img/alfren-hr.gif')`,
+            // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            // backgroundColor: "#F2F4FF",
+            display: "block",
+            height: "100%",
+            width: "100%",
+          }}
+        ></div>
       </div>
       {renderParagraph()}
     </div>

@@ -43,10 +43,10 @@ import { UserRegistered } from "../../../../constant/index";
 const RegisterForm = ({ logoClassMain }) => {
   const [error, setError] = useState(true);
   const [togglePassword, setTogglePassword] = useState(false);
-  const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+  // const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
-  const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
+  // const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   const navigate = useNavigate();
@@ -114,11 +114,12 @@ const RegisterForm = ({ logoClassMain }) => {
       setError(hasUnfulfilledRequirement);
 
       setRequirements(updatedRequirements);
-    } else if (e.target.name == "confirmPassword") {
-      setConfirmPasswordMatched(
-        formData.password !== e.target.value ? false : true
-      );
-    }
+    } 
+    // else if (e.target.name == "confirmPassword") {
+    //   setConfirmPasswordMatched(
+    //     formData.password !== e.target.value ? false : true
+    //   );
+    // }
 
     setFormData({
       ...formData,
@@ -186,7 +187,8 @@ const RegisterForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Registeration 👋
+                Sign Up
+                {/* Registeration 👋 */}
               </H4>
               <P
                 attrPara={{
@@ -200,8 +202,9 @@ const RegisterForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Today is a new day. It's your day. You shape it. Sign up to
-                start managing your projects.
+                Sign up to Alfren HR and start headhunting the top talent on Linkedin.
+                {/* Today is a new day. It's your day. You shape it. Sign up to
+                start managing your projects. */}
               </P>
               <Row>
                 <Col xl="6">
@@ -339,7 +342,7 @@ const RegisterForm = ({ logoClassMain }) => {
                 </ToolTip>
               </FormGroup>
 
-              <FormGroup>
+              {/* <FormGroup>
                 <Label className="col-form-label m-0">
                   Confirm Password
                   <span className="text-danger ms-1">*</span>
@@ -366,9 +369,9 @@ const RegisterForm = ({ logoClassMain }) => {
                     />
                   </InputGroupText>
                 </InputGroup>
-              </FormGroup>
+              </FormGroup> */}
 
-              <FormGroup>
+              {/* <FormGroup>
                 <div
                   style={{
                     color: confirmPasswordMatched ? "white" : "#AA1313",
@@ -379,12 +382,12 @@ const RegisterForm = ({ logoClassMain }) => {
                     Confirm Password Not matched
                   </span>
                 </div>
-              </FormGroup>
+              </FormGroup> */}
 
               <FormGroup>
                 <Btn
                   attrBtn={{
-                    className: "d-block w-100 mt-2",
+                    className: "d-block w-100 mt-4",
                     color: "primary",
                     type: "submit",
                     disabled: isLoading

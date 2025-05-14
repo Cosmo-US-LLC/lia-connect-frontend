@@ -6,7 +6,7 @@ import LoginOtp from './components/login-otp/LoginOtp';
 
 
 // UI JSX
-const UserLogin = () => {
+const UserLogin = ({setConnectModel}) => {
   return (
       <div className="row justify-content-center">
         <div className="col-12">
@@ -25,7 +25,7 @@ const UserLogin = () => {
                         </div>
                       </div>
                     </div>
-                    <LoginSection />
+                    <LoginSection setConnectModel={setConnectModel} />
                   </div>
                 </div>
               </div>

@@ -54,7 +54,7 @@ const LoginForm = ({ logoClassMain }) => {
           localStorage.setItem("accessToken", resp.data.tokens.access.token);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
-          navigate("/home");
+          navigate("/v1/home");
         } else {
           const err = resp?.message;
           toast.error(err);
@@ -85,7 +85,8 @@ const LoginForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Welcome Back 👋{" "}
+                Sign In
+                {/* Welcome Back 👋{" "} */}
               </H4>
               <P
                 attrPara={{
@@ -99,8 +100,7 @@ const LoginForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Today is a new day. It's your day. You shape it. Sign in to
-                start managing your projects.
+                Log in to Alfren HR and start headhunting the top talent on Linkedin.
               </P>
               <FormGroup>
                 <Label className="col-form-label m-0">

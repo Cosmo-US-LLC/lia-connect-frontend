@@ -22,7 +22,7 @@ const schema = yup.object().shape({
   password: yup.string().required("LinkedIn Password is required"),
 });
 
-const LoginSection = () => {
+const LoginSection = ({ setConnectModel }) => {
   const [loading, setLoading] = useState(false);
 
   const {
@@ -119,6 +119,16 @@ const LoginSection = () => {
 
       <button type="submit" className="sign-btn" disabled={loading}>
         {loading ? "Signing in..." : "Sign in to LinkedIn"}
+      </button>
+      <button
+        type="reset"
+        className="sign-btn"
+        style={{
+          backgroundColor: "#fecf41"
+        }}
+        onClick={() => setConnectModel(false)}
+      >
+        Cancel
       </button>
     </Form>
   );
