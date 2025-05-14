@@ -22,35 +22,33 @@ const JobDetail = () => {
   const { id } = useParams();
   const [jobDetails, setJobDetails] = useState(null);
   const [jobStats, setJobStats] = useState(null);
-  console.log('jobStats', jobStats)
   const [error, setError] = useState(null);
-  
+
   const getJobDetails = () => {
     const url = `/jobs/${id}`;
-    
+
     const handleJobDetailsResponse = (resp) => {
       if (resp?.status === 200) {
         const result = resp.data;
         setJobDetails(result);
-        
+
         // Conditional logic based on result
         if (!result.isJobCompleted) {
           const step = result.isJobSequenceSet === true ? "3" : "2";
           navigate(`/jobs/create?jobId=${id}&step=${step}`);
         }
-        
+
         // Call another API (/jobs/${id}/stats)
         fetchJobStats();
-        
       } else {
         const err = resp?.message;
         toast.error(err);
       }
     };
-    
+
     const fetchJobStats = () => {
       const statsUrl = `/jobs/${id}/stats`;
-      
+
       const handleJobStatsResponse = (statsResp) => {
         if (statsResp?.status === 200) {
           const statsData = statsResp.data;
@@ -60,22 +58,23 @@ const JobDetail = () => {
           toast.error(statsErr);
         }
       };
-      
+
       dispatch(fetchJobDetails(statsUrl, handleJobStatsResponse));
     };
-    
+
     dispatch(fetchJobDetails(url, handleJobDetailsResponse));
   };
-  
+
   useEffect(() => {
     getJobDetails();
-  }, []);  
-  
-  
+  }, []);
 
   useEffect(() => {
     getJobDetails();
   }, [dispatch, id]);
+
+  console.log({ jobDetails });
+  console.log({ jobStats });
 
   return (
     <Fragment>
@@ -90,51 +89,55 @@ const JobDetail = () => {
             </p>
 
             <Row>
-              <Col xl="12" className="col-ed-5 box-col-5 p-0" >
-                <Row className="custom-row">
-                  <Col className="custom-col potential-candidates">
-                    <PotentialCandidates Message={jobStats?.message}/>
+              <Col xl="12" className="col-ed-5 box-col-5 p-0">
+                <Row className=" ">
+                  <Col className="   ">
+                    <PotentialCandidates Message={jobStats?.message} />
                   </Col>
-                  <Col className="custom-col blacklist">
+                  <Col className="   ">
                     <BlackList Connection={jobStats?.connection} />
                   </Col>
-                  <Col className="custom-col priority">
+                  {/* <Col className="  priority">
                     <Priority jobDetails={jobDetails} />
-                  </Col>
+                  </Col> */}
                 </Row>
               </Col>
-              <Col xl="12" className="col-ed-5 box-col-5" >
+              <Col xl="12" className="col-ed-5 box-col-5">
                 <Row>
-                  <Col xl="5" md="5" className="top-candidate-scroll" style={{
-                    background: "white",
-                    maxHeight: "480px",
-                    padding: "19px 27px",
-                    marginLeft:'13px',
-                    boxShadow:'0px 9px 20px rgba(46, 35, 94, 0.07)',
-                    borderRadius:'8px'
-                  }}>
-                    <TopCandidate id={id} />
-
+                  {/* <Col xl="4" md="4">
+                    <GenderGraph />
+                  </Col> */}
+                  <Col
+                    xl="6"
+                    md="6"
+                    style={{
+                      backgroundColor: "#fff",
+                      height: "95%",
+                      padding: "10px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <TopCandidate id={jobDetails.id} />
+                    {/* <CandidatesByCity CityStatsData={jobStats?.byState} /> */}
                   </Col>
-                  <Col xl="7" md="7">
-                    <Row>
-                      {/* <Col xl="4" md="4">
-                        <GenderGraph />
-                      </Col> */}
-                      <Col xl="6" md="6">
-                        <CandidatesByCity CityStatsData={jobStats?.byState}/>
-                      </Col>
-                      <Col xl="6" md="6">
-                        <AvgExp AvgExpStatsData={jobStats?.byExperience} avgExperience={jobStats?.avgExperience}/>
-                      </Col>
-                    </Row>
+                  <Col xl="6" md="6">
+                    <AvgExp
+                      AvgExpStatsData={jobStats?.byExperience}
+                      avgExperience={jobStats?.avgExperience}
+                    />
                   </Col>
                 </Row>
               </Col>
-              <Col xl="12" className="col-ed-5 box-col-5" style={{marginBottom:'30px'}}>
+              <Col
+                xl="12"
+                className="col-ed-5 box-col-5"
+                style={{ marginBottom: "30px" }}
+              >
                 <Row>
                   <Col xl="6" md="6">
-                    <CandidateFunnel CandidateFunnel={jobStats?.candidateFunnel}/>
+                    <CandidateFunnel
+                      CandidateFunnel={jobStats?.candidateFunnel}
+                    />
                   </Col>
                   <Col xl="6" md="6">
                     <RequiredSkills jobDetails={jobDetails} />

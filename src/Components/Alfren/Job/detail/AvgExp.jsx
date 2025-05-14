@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Card, CardBody, Progress, Col } from "reactstrap";
 import ReactApexChart from "react-apexcharts";
 
-const AvgExp = ({ AvgExpStatsData,avgExperience }) => {
+const AvgExp = ({ AvgExpStatsData, avgExperience }) => {
+  console.log({ AvgExpStatsData, avgExperience });
   const [chartData, setChartData] = useState({
     series: [
       {
@@ -92,7 +93,7 @@ const AvgExp = ({ AvgExpStatsData,avgExperience }) => {
           ...chartData.options,
           xaxis: {
             ...chartData.options.xaxis,
-            categories: category.map(year => year ? `${year} yr` : "N/A"),
+            categories: category.map((year) => (year ? `${year} yr` : "N/A")),
           },
         },
       });
@@ -154,7 +155,6 @@ const AvgExp = ({ AvgExpStatsData,avgExperience }) => {
                 height={250}
               />
             </div>
-
           </div>
         </CardBody>
       </Card>
