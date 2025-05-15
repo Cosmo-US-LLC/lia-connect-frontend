@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Image, P } from "../../../../AbstractElements";
 import ForgotPwdForm from "./ForgotPwdForm";
-import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
+import CarousalSection from "../user-login/components/CarousalSection";
 
 const Login = () => {
   return (
@@ -11,33 +11,17 @@ const Login = () => {
         <Container fluid={true} className="login-main-wrapper">
           <Row>
             <Col
-              xl="7"
-              className="b-center bg-size"
+              xl="6 p-0"
               style={{
-                backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                display: "block",
-                borderRadius: "20px",
+                backgroundColor: "#F2F4FF",
+                borderTopLeftRadius: "20px",
+                borderBottomLeftRadius: "20px",
               }}
             >
-              <Image
-                attrImage={{
-                  className: "bg-img-cover bg-center m-3",
-                  src: LogoIcon,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "bg-img-cover bg-center d-none",
-                  src: `${require("../../../../assets/used-files/images/auth/login.png")}`,
-                  alt: "looginpage",
-                }}
-              />
+              <CarousalSection textPosition="right" showLogo={true} />
             </Col>
             <Col
-              xl="5 p-0"
+              xl="6 p-0"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
               <ForgotPwdForm logoClassMain="text-center" />
