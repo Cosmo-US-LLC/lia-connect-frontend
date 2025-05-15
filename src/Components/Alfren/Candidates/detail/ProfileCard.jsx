@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const ProfileCard = ({ candidateDetails }) => {
   console.log("candidateDetails", candidateDetails);
-  const jobTitle = candidateDetails.candidate.currentJob.title.split(' @')[0];
+  const jobTitle = candidateDetails?.candidate?.currentJob?.title.split(' @')[0];
 
   return (
     <Fragment>
@@ -24,14 +24,14 @@ const ProfileCard = ({ candidateDetails }) => {
               attrImage={{
                 className: "step1",
                 alt: "",
-                src: candidateDetails.candidate.image
-                  ? candidateDetails.candidate.image
+                src: candidateDetails?.candidate?.image
+                  ? candidateDetails?.candidate?.image
                   : `${DefaultUserImage}`,
               }}
             />
           </div>
           <Link
-            to={candidateDetails.candidate.linkedIn}
+            to={candidateDetails?.candidate?.linkedIn}
             target="_blank"
             className="icon-wrapper step2"
             data-intro="Change Profile image here"
@@ -54,23 +54,23 @@ const ProfileCard = ({ candidateDetails }) => {
               <div className="user-designation">
                 <div className="title">
                   <a href="#" target="_blank">
-                    <strong>{candidateDetails.candidate.name}</strong>
+                    <strong>{candidateDetails?.candidate.name}</strong>
                   </a>
                 </div>
                 <div className="desc mt-2">
                   {jobTitle}
                 </div>
                 <div className="desc mt-2">
-                  {candidateDetails.candidate.description}
+                  {candidateDetails?.candidate?.description}
                 </div>
 
-                {candidateDetails.candidate.connections && (
+                {candidateDetails?.candidate?.connections && (
                   <div className="desc mt-2">
-                    {candidateDetails.candidate.connections} Connections
+                    {candidateDetails?.candidate?.connections} Connections
                   </div>
                 )}
 
-                {candidateDetails.candidate.profileScore && (
+                {candidateDetails?.candidate?.profileScore && (
                   <div className="desc mt-2">
                     <Image
                       attrImage={{
@@ -80,16 +80,16 @@ const ProfileCard = ({ candidateDetails }) => {
                       }}
                     />
                     <strong className="me-2"> Profile Score:</strong>
-                    {candidateDetails.candidate.profileScore}/100{" "}
+                    {candidateDetails?.candidate?.profileScore}/100{" "}
                     <span className="ms-2 badge badge-success">Excellent </span>
                   </div>
                 )}
               </div>
             </Col>
           </Row>
-          {candidateDetails.candidate.contact.phone ||
-            candidateDetails.candidate.contact.email ||
-            (candidateDetails.candidate.contact.website && (
+          {candidateDetails?.candidate?.contact?.phone ||
+            candidateDetails?.candidate?.contact?.email ||
+            (candidateDetails?.candidate?.contact?.website && (
               <div className="text-center mt-3 mb-3">
                 {" "}
                 <Image
@@ -102,7 +102,7 @@ const ProfileCard = ({ candidateDetails }) => {
             ))}
 
           <Row>
-            {candidateDetails.candidate.contact.phone && (
+            {candidateDetails?.candidate?.contact?.phone && (
               <Col xl="12" xs="6" className="text-left">
                 <div style={{ display: "flex", alignItems: "flex-start" }}>
                   <Image
@@ -115,8 +115,8 @@ const ProfileCard = ({ candidateDetails }) => {
                   <div>
                     <strong>Contact Number</strong>
                     <br></br>
-                    {candidateDetails.candidate.contact.phone ? (
-                      <p>{candidateDetails.candidate.contact.phone}</p>
+                    {candidateDetails?.candidate?.contact?.phone ? (
+                      <p>{candidateDetails?.candidate?.contact?.phone}</p>
                     ) : (
                       <p className=" text-primary">
                         <span
@@ -135,7 +135,7 @@ const ProfileCard = ({ candidateDetails }) => {
               </Col>
             )}
 
-            {candidateDetails.candidate.contact.email && (
+            {candidateDetails?.candidate?.contact?.email && (
               <Col xl="12" xs="6" className="text-left">
                 <div style={{ display: "flex", alignItems: "flex-start" }}>
                   <Image
@@ -148,8 +148,8 @@ const ProfileCard = ({ candidateDetails }) => {
                   <div>
                     <strong>Email</strong>
                     <br></br>
-                    {candidateDetails.candidate.contact.email ? (
-                      <p>{candidateDetails.candidate.contact.email}</p>
+                    {candidateDetails?.candidate?.contact?.email ? (
+                      <p>{candidateDetails?.candidate?.contact?.email}</p>
                     ) : (
                       <p className=" text-primary">
                         <span
@@ -168,7 +168,7 @@ const ProfileCard = ({ candidateDetails }) => {
               </Col>
             )}
 
-            {candidateDetails.candidate.contact.website && (
+            {candidateDetails?.candidate?.contact?.website && (
               <Col xl="12" xs="6" className="text-left">
                 <div style={{ display: "flex", alignItems: "flex-start" }}>
                   <Image
@@ -181,9 +181,9 @@ const ProfileCard = ({ candidateDetails }) => {
                   <div>
                     <strong>Website</strong>
                     <br></br>
-                    {candidateDetails.candidate.contact.website ? (
+                    {candidateDetails?.candidate?.contact?.website ? (
                       <p className=" text-primary">
-                        {candidateDetails.candidate.contact.website}
+                        {candidateDetails?.candidate?.contact?.website}
                       </p>
                     ) : (
                       <p className=" text-primary">

@@ -128,7 +128,8 @@ const SidebarMenuItems = ({
               )}
               {/* <h4 style={{ color: "black"}}>{menuItem.title.toLowerCase().includes("home") ? "Yes" : "No"}</h4> */}
               {menuItem.type === "link" ? (
-                isLinkedInLogin ? (
+                isLinkedInLogin &&
+                !menuItem.title.toLowerCase().includes("messages") ? (
                   <Link
                     to={menuItem.path}
                     className={`sidebar-link sidebar-title link-nav  ${
@@ -149,8 +150,9 @@ const SidebarMenuItems = ({
                       ""
                     )}
                   </Link>
-                ) : menuItem.title.toLowerCase().includes("home") ||
-                  menuItem.title.toLowerCase().includes("settings") ? (
+                ) : (menuItem.title.toLowerCase().includes("home") ||
+                    menuItem.title.toLowerCase().includes("settings")) &&
+                  !menuItem.title.toLowerCase().includes("messages") ? (
                   <Link
                     to={menuItem.path}
                     className={`sidebar-link sidebar-title link-nav  ${
@@ -179,7 +181,8 @@ const SidebarMenuItems = ({
                         ? "active"
                         : ""
                     }`}
-                    style={{ opacity: 0.5 }}
+                    style={{ opacity: 0.5, cursor: "not-allowed" }}
+                    title={menuItem.title.toLowerCase().includes("messages") ? "Coming Soon" : ""}
                   >
                     {menuItem.icon}
 

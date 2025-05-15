@@ -5,22 +5,17 @@ import { Image } from "../../../../AbstractElements";
 import lineBreaker from "../../../../assets/used-files/icons/lineBreaker.svg";
 
 const DetailsCard = ({ candidateDetails }) => {
-  const companyInfo = candidateDetails.candidate.currentJob.company.name;
-  const [companyName, employmentType] = companyInfo.split(" ·");
+  const companyInfo = candidateDetails?.candidate?.currentJob?.company?.name;
+  const [companyName, employmentType] = ( companyInfo || "N/A .N/A")?.split(" ·") || ["N/A", "N/A"];
+  // const [companyName, employmentType] = ["N/A", "N/A"];
   return (
     <Fragment>
       <Card className="hovercard ">
         <div className="info">
           <Row className="text-left">
             <Col sm="12" lg="12" className="order-sm-0 order-xl-1">
-              <div
-                className="d-flex flex-row justify-content-between  "
-               
-              >
-                <div
-                  className="d-flex flex-column"
-                  
-                >
+              <div className="d-flex flex-row justify-content-between  ">
+                <div className="d-flex flex-column">
                   <p
                     className="m-0"
                     style={{ fontSize: "18px", fontWeight: "bold" }}
@@ -31,14 +26,13 @@ const DetailsCard = ({ candidateDetails }) => {
                     className="m-0"
                     style={{ fontSize: "16px", color: "#6c757d" }}
                   >
-                    
                     {companyName}
                   </p>
                 </div>
 
                 <div style={{ width: "80px", height: "80px" }}>
                   <img
-                    src={candidateDetails.candidate.currentJob.company.logo}
+                    src={candidateDetails?.candidate?.currentJob?.company?.logo}
                     alt="Company Logo"
                     style={{
                       width: "100%",
@@ -84,16 +78,19 @@ const DetailsCard = ({ candidateDetails }) => {
                 <div>
                   <strong>City</strong>
                   <br></br>
-                  <p>{candidateDetails.candidate.contact.city}</p>
+                  <p>{candidateDetails?.candidate?.contact?.city}</p>
                 </div>
               </div>
             </Col>
             <Col col="12" className="text-left">
-              <div className="mx-4" style={{ display: "flex", alignItems: "flex-start" }}>
+              <div
+                className="mx-4"
+                style={{ display: "flex", alignItems: "flex-start" }}
+              >
                 <div>
                   <strong>Country</strong>
                   <br></br>
-                  <p>{candidateDetails.candidate.contact.country}</p>
+                  <p>{candidateDetails?.candidate?.contact?.country}</p>
                 </div>
               </div>
             </Col>
@@ -115,11 +112,12 @@ const DetailsCard = ({ candidateDetails }) => {
                     Skills <span style={{ color: "red" }}>*</span>
                   </strong>
                   <br></br>
-                  {candidateDetails.candidate.skills.map((skill, index) => (
-                    <span key={index} className="badge badge-light m-1">
-                      {skill}
-                    </span>
-                  ))}
+                  {candidateDetails?.candidate?.skills?.length > 0 &&
+                    candidateDetails?.candidate?.skills?.map((skill, index) => (
+                      <span key={index} className="badge badge-light m-1">
+                        {skill}
+                      </span>
+                    ))}
                 </div>
               </div>
             </Col>
@@ -127,7 +125,7 @@ const DetailsCard = ({ candidateDetails }) => {
               <div style={{ display: "flex", alignItems: "flex-start" }}>
                 <div>
                   <strong>Jobs</strong>
-                  {candidateDetails.candidate.jobs.map((job, index) => (
+                  {candidateDetails?.candidate?.jobs?.map((job, index) => (
                     <div>
                       <p className=" text-primary">
                         {job.name}

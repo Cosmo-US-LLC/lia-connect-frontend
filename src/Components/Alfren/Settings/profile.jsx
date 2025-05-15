@@ -11,7 +11,7 @@ import {
   Row,
 } from "reactstrap";
 import { Btn, H4, P, Image } from "../../../AbstractElements";
-import { Eye, Info, Key, Linkedin, Mail, User } from "react-feather";
+import { Eye, Info, Key, Linkedin, Lock, Mail, User } from "react-feather";
 import Select from "react-select";
 import linkedInIcon from "../../../assets/used-files/icons/settings/linkedIn.svg";
 import { Link } from "react-router-dom";
@@ -293,6 +293,76 @@ const Profile = () => {
                         name="lastName"
                         value={updatedProfileData?.lastName}
                         onChange={handleInputChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Form>
+
+                <br />
+                <h5>Change Password</h5>
+
+                <Form className="theme-form login-form needs-validation">
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      Password<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText
+                        style={{
+                          backgroundColor: "white",
+                          borderTop: "1px solid #EBF1FC",
+                          borderBottom: "1px solid #EBF1FC",
+                          borderRight: "none",
+                          borderLeft: "1px solid #EBF1FC",
+                        }}
+                      >
+                        <Lock strokeWidth={1} size={22} color="#819ACB" />
+                      </InputGroupText>
+                      <Input
+                        style={{
+                          borderTop: "1px solid #EBF1FC",
+                          borderBottom: "1px solid #EBF1FC",
+                          borderLeft: "none",
+                          borderRight: "1px solid #EBF1FC",
+                          color: "black",
+                        }}
+                        type="text"
+                        name="password"
+                        // value={updatedProfileData?.lastName}
+                        // onChange={handleInputChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label className="col-form-label m-0">
+                      Confirm Password<span className="text-danger ms-1">*</span>
+                    </Label>
+
+                    <InputGroup>
+                      <InputGroupText
+                        style={{
+                          backgroundColor: "white",
+                          borderTop: "1px solid #EBF1FC",
+                          borderBottom: "1px solid #EBF1FC",
+                          borderRight: "none",
+                          borderLeft: "1px solid #EBF1FC",
+                        }}
+                      >
+                        <Lock strokeWidth={1} size={22} color="#819ACB" />
+                      </InputGroupText>
+                      <Input
+                        style={{
+                          borderTop: "1px solid #EBF1FC",
+                          borderBottom: "1px solid #EBF1FC",
+                          borderLeft: "none",
+                          borderRight: "1px solid #EBF1FC",
+                          color: "black",
+                        }}
+                        type="password"
+                        name="confirmPassword"
+                        // value={updatedProfileData?.lastName}
+                        // onChange={handleInputChange}
                       />
                     </InputGroup>
                   </FormGroup>
