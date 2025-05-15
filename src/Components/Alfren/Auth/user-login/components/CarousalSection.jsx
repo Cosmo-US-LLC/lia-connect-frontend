@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { UncontrolledCarousel } from "reactstrap";
 import { CAROUSAL_ITEMS } from "../constants";
+import { Image } from "AbstractElements";
+import LogoIcon from "../../../../../assets/images/logo/logo-blue-bg.svg";
 
-const CarouselSection = () => {
+const CarouselSection = ({ textPosition = "left", showLogo = false }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -165,38 +166,46 @@ const CarouselSection = () => {
   };
   return (
     <div>
-      <div className="security-text-style">{renderText()}</div>
-      {/* This is the images carousel section */}
-      {/* <UncontrolledCarousel
-        fade={true}
-        activeIndex={activeIndex}
-        items={CAROUSAL_ITEMS}
-      /> */}
+      <div style={{ display: "flex", alignItems: "center" }}>
+        {showLogo && (
+          <Image
+            attrImage={{
+              className: "bg-img-cover bg-center m-3",
+              src: LogoIcon,
+              alt: "looginpage",
+              style: { width: "44px", height: "44px" },
+            }}
+          />
+        )}
+        <div
+          style={{
+            textAlign: textPosition,
+            flex: 1,
+            paddingRight: "20px",
+          }}
+        >
+          {renderText()}
+        </div>
+      </div>
       <div
-        // className='w-full max-h-[440px] flex justify-center items-center'
         style={{
-          height: "440px",
+          height: "380px",
           width: "100%",
-          // border: "1px solid #E5E5E5",
+
           margin: "0 auto",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        {/* {renderImage()} */}
         <div
           style={{
-            // D:\projects\lia-connect-frontend\src\assets\alfren-hr.gif
-            // src\assets\alfren-hr.gif
             backgroundImage: `url(${require("../../../../../assets/alfren-hr.gif")})`,
-            // backgroundImage: {Gif},
-            // backgroundImage: `url('/img/alfren-hr.gif')`,
-            // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
+
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            // backgroundColor: "#F2F4FF",
+
             display: "block",
             height: "100%",
             width: "100%",

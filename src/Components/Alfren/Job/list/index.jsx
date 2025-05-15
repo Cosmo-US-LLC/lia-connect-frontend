@@ -41,6 +41,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConfirmationModal from "CommonElements/ConfirmationBox";
 import usePagination from "Hooks/usePagination";
+import './style.css';
 
 const JobList = () => {
   const dispatch = useDispatch();

@@ -8,9 +8,9 @@ import LoginOtp from './components/login-otp/LoginOtp';
 // UI JSX
 const UserLogin = ({setConnectModel}) => {
   return (
-      <div className="row justify-content-center">
-        <div className="col-12">
-          <div className="card m-0">
+      <div className="row justify-content-center" >
+        <div className="col-12" >
+          <div className="card m-0" style={{paddingTop: "30px",}}>
             <div className="row g-4 inner-cont">
               <div className="col-12 col-md-6">
                 <CarouselSection />
