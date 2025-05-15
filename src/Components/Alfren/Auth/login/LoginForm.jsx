@@ -54,7 +54,7 @@ const LoginForm = ({ logoClassMain }) => {
           localStorage.setItem("accessToken", resp.data.tokens.access.token);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", JSON.stringify(resp.data.user));
-          navigate("/v1/home");
+          navigate("/home");
         } else {
           const err = resp?.message;
           toast.error(err);

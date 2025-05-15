@@ -6,8 +6,10 @@ import LinkedIn from "../../../assets/images/dashboard/linked-in.png";
 import Job from "../../../assets/images/dashboard/job.png";
 
 import CarToon from "../../../assets/images/dashboard/cartoon.svg";
+import { useNavigate } from "react-router";
 
 const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
+  const navigate = useNavigate();
   const authenticated = JSON.parse(localStorage.getItem("authenticated"));
   const user = JSON.parse(localStorage.getItem("user"));
   const [name, setName] = useState(user?.first_name);
@@ -35,11 +37,11 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                       : "Connect your LinkedIn account to get the most out of AlfrenHR."}
                   </P>
 
-                  {!isLinkedInLogin ? (
+                  {isLinkedInLogin ? (
                     <div
                       style={{
                         backgroundColor: "#FFFFFF",
-                        maxWidth: "70%",
+                        maxWidth: "75%",
                         padding: "20px",
                         borderRadius: "5px",
                         color: "#000000",
@@ -83,7 +85,9 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                               padding: "7px 14px",
                               borderRadius: "7px",
                               backgroundColor: "white",
+                              whiteSpace: "nowrap"
                             }}
+                            onClick={() => navigate("/jobs/create")}
                           >
                             + Create a Job
                           </button>
@@ -94,7 +98,7 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                     <div
                       style={{
                         backgroundColor: "#FFFFFF",
-                        maxWidth: "70%",
+                        maxWidth: "75%",
                         padding: "20px",
                         borderRadius: "5px",
                         color: "#000000",
@@ -140,6 +144,7 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                               padding: "7px 14px",
                               borderRadius: "7px",
                               backgroundColor: "white",
+                              whiteSpace: "nowrap"
                             }}
                             onClick={() => {
                               setConnectModel(true);

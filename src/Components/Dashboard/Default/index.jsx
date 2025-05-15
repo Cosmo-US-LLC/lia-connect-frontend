@@ -22,13 +22,13 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   // const api = `http://localhost:3001/v1`;
-  const [data, setData] = React.useState();
+  const [data, setData] = React.useState(null);
   const [connectModel, setConnectModel] = useState(false);
 
-  // useEffect(() => {
-  //   const url = `/jobs/stats`;
-  //   dispatch(fetchStats(url, handleFetchResponse));
-  // }, [dispatch]);
+  useEffect(() => {
+    const url = `/jobs/jobs-stats`;
+    dispatch(fetchStats(url, handleFetchResponse));
+  }, [dispatch]);
 
   const handleFetchResponse = (resp) => {
     if (resp?.status === 200) {
@@ -61,7 +61,7 @@ const Dashboard = () => {
     checkStatus();
   }, []);
 
-  if (loading) {
+  if (loading || data === null) {
     return (
       <Container className="text-center py-5">
         <Spinner color="primary" />
@@ -78,7 +78,7 @@ const Dashboard = () => {
       <Container fluid={true}>
         <Row className="widget-grid">
           <GreetingCard isLinkedInLogin={isLinkedInConnected} connectModel={connectModel} setConnectModel={setConnectModel} />
-          <WidgetsWrapper />
+          <WidgetsWrapper dataList={data} />
           {/* <OverallBalance /> */}
           {/* <ActivityCard />
           <RecentOrders /> */}

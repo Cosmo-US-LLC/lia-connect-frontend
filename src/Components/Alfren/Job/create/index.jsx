@@ -188,7 +188,7 @@ const JobCreate = () => {
             textAlign: "center",
           }}
         >
-          <div style={{ width: "40%" }}>
+          {/* <div style={{ width: "40%" }}>
             <Col style={{ display: "flex", paddingTop: "5px" }}>
               <div style={{ scale: "1.3" }}>
                 <Image
@@ -223,8 +223,8 @@ const JobCreate = () => {
                 />
               </div>
             </Col>
-          </div>
-          <div style={{ width: "45%" }}>
+          </div> */}
+          {/* <div style={{ width: "45%" }}>
             <Col style={{ display: "flex", justifyContent: "space-between" }}>
               <span
                 style={{
@@ -237,16 +237,6 @@ const JobCreate = () => {
                 Setup New Job
               </span>
 
-              {/* <span
-                className="me-4"
-                style={{
-                  color:
-                    step == 3 || step == 2 || step == 4 ? "#1264fd" : "#e0e0e7",
-                }}
-              >
-                Set Sequence
-              </span> */}
-
               <span
                 style={{
                   color: step == 2 || step == 3 ? "#1264fd" : "#e0e0e7",
@@ -255,7 +245,7 @@ const JobCreate = () => {
                 Complete
               </span>
             </Col>
-          </div>
+          </div> */}
           <form
             className="form theme-form"
             onSubmit={handleSubmit(onSubmit)}

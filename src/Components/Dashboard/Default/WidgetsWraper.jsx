@@ -4,12 +4,13 @@ import Widgets1 from "../../Common/CommonWidgets/Widgets1";
 import Widgets2 from "../../Common/CommonWidgets/Widgets2";
 import { BorderRadius } from "constant";
 
-const WidgetsWrapper = () => {
+const WidgetsWrapper = ({dataList}) => {
+  console.log(dataList);
   const data = [
     {
       title: "Total Jobs",
       gros: 50,
-      total: 10,
+      total: dataList?.jobs?.total || 0,
       color: "secondary",
       icon: "svg/case.svg",
       animation : true,
@@ -18,7 +19,7 @@ const WidgetsWrapper = () => {
     {
       title: "In Progress",
       gros: 20,
-      total: 700,
+      total: dataList?.jobs?.in_progress || 0,
       color: "warning",
       icon: "svg/glass.svg",
       animation : true,
@@ -27,7 +28,7 @@ const WidgetsWrapper = () => {
     {
       title: "Completed Jobs",
       gros: 70,
-      total: 400,
+      total: dataList?.jobs?.completed || 0,
       color: "primary",
       icon: "svg/flag.svg",
       animation : true,
@@ -36,7 +37,7 @@ const WidgetsWrapper = () => {
     {
       title: "Connection Requests Sent",
       gros: 70,
-      total: 400,
+      total: dataList?.connections?.requests || 0,
       color: "info",
       icon: "svg/user-add.svg",
       animation : true,
@@ -45,7 +46,7 @@ const WidgetsWrapper = () => {
     {
       title: "Messages Sent",
       gros: 70,
-      total: 400,
+      total: dataList?.connections?.message_sent || 0,
       color: "danger",
       icon: "svg/message.svg",
       animation : true,
@@ -54,7 +55,7 @@ const WidgetsWrapper = () => {
     {
       title: "Replies Received",
       gros: 70,
-      total: 400,
+      total: dataList?.connections?.replies || 0,
       color: "muted",
       icon: "svg/join.svg",
       animation : true,
@@ -63,7 +64,7 @@ const WidgetsWrapper = () => {
     {
       title: "Profiles In Processing",
       gros: 70,
-      total: 400,
+      total: dataList?.processing_profiles || 0,
       color: "muted",
       icon: "svg/process.svg",
       animation : true,
