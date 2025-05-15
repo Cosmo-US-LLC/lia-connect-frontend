@@ -6,10 +6,9 @@ import { Card, CardBody, Col, Progress } from "reactstrap";
 import PakistanCitiesJson from "@amcharts/amcharts4-geodata/pakistanLow";
 
 const CandidatesByCity = ({ CityStatsData }) => {
-
   const [data, setData] = useState([]);
   const chartDivRef = useRef(null);
-  console.log('PakistanCitiesJson', PakistanCitiesJson)
+  console.log("PakistanCitiesJson", PakistanCitiesJson);
   useLayoutEffect(() => {
     if (CityStatsData && CityStatsData.length > 0) {
       const transformedData = CityStatsData.map((item) => ({
@@ -23,14 +22,18 @@ const CandidatesByCity = ({ CityStatsData }) => {
   const minColor = "#CDD7F4";
   const maxColor = "#1264FD";
 
-  const sortedData = data && data.length > 0 ? [...data].sort((a, b) => b.value - a.value) : [];
+  const sortedData =
+    data && data.length > 0 ? [...data].sort((a, b) => b.value - a.value) : [];
 
   const top5 = sortedData && sortedData.slice(0, 5);
   const legendItems = top5?.map(({ id, value }) => {
     const stateCode = id.split("-")[1];
     const stateName = getStateName(stateCode);
 
-    const color = value === 0 ? "#F0F0F0" : interpolateColor(minColor, maxColor, value, 0, 100);
+    const color =
+      value === 0
+        ? "#F0F0F0"
+        : interpolateColor(minColor, maxColor, value, 0, 100);
 
     return {
       city: stateName,
@@ -118,7 +121,11 @@ const CandidatesByCity = ({ CityStatsData }) => {
   }, [data]);
 
   return (
-    <Card id="chartdiv" ref={chartDivRef} style={{ height: "90%", marginLeft: "12px" }}>
+    <Card
+      id="chartdiv"
+      ref={chartDivRef}
+      style={{ height: "90%", marginLeft: "12px" }}
+    >
       <CardBody style={{ padding: "20px" }}>
         <p
           style={{
@@ -141,58 +148,67 @@ const CandidatesByCity = ({ CityStatsData }) => {
           ></span>
         </p>
         <div className="mt-5">
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+            }}
+          >
             <div id="chartdiv" style={{ width: "100%", height: "200px" }}></div>
-            <div className="mt-5 w-100" style={{ height: '134px', overflow: 'auto', padding: '12px' }}>
-            {legendItems?.map((item, index) => (
-    <Col
-      key={index}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <span
-        style={{
-          flex: 1,
-          fontSize: '11px',
-          color: 'black',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          maxWidth: 'calc(100% - 162px)', // Adjusted for progress bar width
-          cursor: 'default',
-        }}
-        title={item.city} // Tooltip on hover
-      >
-        {item.city.length > 10 ? `${item.city.substring(0, 10)}...` : item.city}
-      </span>
-      <div style={{ width: '150px', textAlign: 'left' }}>
-        <Progress
-          value={item.count}
-          max={legendItems[0].count}
-          title={`Value: ${item.count}`}
-          style={{
-            backgroundColor: item.color,
-            width: `${100 - index * 10}%`, // Decreasing width from left to right
-            cursor: 'pointer',
-            transformOrigin: 'left', // Adjust origin as needed
-            transform: `scaleX(-1)`, // Flip horizontally if desired
-            position:"relative",
-            left:'150px'
-          }}
-          className="sm-progress-bar me-1 mb-0"
-        />
-      </div>
-    </Col>
-  ))}
+            <div
+              className="mt-5 w-100"
+              style={{ height: "134px", overflow: "auto", padding: "12px" }}
+            >
+              {legendItems?.map((item, index) => (
+                <Col
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span
+                    style={{
+                      flex: 1,
+                      fontSize: "11px",
+                      color: "black",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                      maxWidth: "calc(100% - 162px)", // Adjusted for progress bar width
+                      cursor: "default",
+                    }}
+                    title={item.city} // Tooltip on hover
+                  >
+                    {item.city.length > 10
+                      ? `${item.city.substring(0, 10)}...`
+                      : item.city}
+                  </span>
+                  <div style={{ width: "150px", textAlign: "left" }}>
+                    <Progress
+                      value={item.count}
+                      max={legendItems[0].count}
+                      title={`Value: ${item.count}`}
+                      style={{
+                        backgroundColor: item.color,
+                        width: `${100 - index * 10}%`, // Decreasing width from left to right
+                        cursor: "pointer",
+                        transformOrigin: "left", // Adjust origin as needed
+                        transform: `scaleX(-1)`, // Flip horizontally if desired
+                        position: "relative",
+                        left: "150px",
+                      }}
+                      className="sm-progress-bar me-1 mb-0"
+                    />
+                  </div>
+                </Col>
+              ))}
             </div>
           </div>
-
-
         </div>
-
       </CardBody>
     </Card>
   );
