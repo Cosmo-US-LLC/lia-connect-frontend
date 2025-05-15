@@ -4,6 +4,7 @@ import { Image, P } from "../../../../AbstractElements";
 import LoginForm from "./LoginForm";
 import LogoIcon from "../../../../assets/used-files/images/auth/logoIcon.svg";
 import Gif from "../../../../assets/alfren-hr.gif";
+import CarousalSection from "../user-login/components/CarousalSection";
 
 const Login = () => {
   return (
@@ -12,39 +13,17 @@ const Login = () => {
         <Container fluid={true} className="login-main-wrapper">
           <Row>
             <Col
-              xl="7"
-              className="b-center bg-size"
+              xl="6 p-0"
               style={{
-                backgroundImage: `url(${require("../../../../assets/alfren-hr.gif")})`,
-                // backgroundImage: {Gif},
-                // backgroundImage: `url('/img/alfren-hr.gif')`,
-                // backgroundImage: `url(${require("../../../../assets/used-files/images/auth/login.png")})`,
-                backgroundSize: "contain",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
                 backgroundColor: "#F2F4FF",
-                display: "block",
-                borderRadius: "20px",
+                borderTopLeftRadius: "20px",
+                borderBottomLeftRadius: "20px",
               }}
             >
-              <Image
-                attrImage={{
-                  className: "bg-img-cover bg-center m-3",
-                  src: LogoIcon,
-                  alt: "looginpage",
-                }}
-              />
-              <Image
-                attrImage={{
-                  className: "bg-img-cover bg-center d-none",
-                  src: `${require("../../../../assets/used-files/images/auth/login.png")}`,
-                  alt: "looginpage",
-                }}
-              />
-              {/* <img src="/img/alfren-hr.gif" alt="" style={{ border: "1px solid black" }} /> */}
+              <CarousalSection textPosition="right" showLogo={true} />
             </Col>
             <Col
-              xl="5 p-0"
+              xl="6 p-0"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
               <LoginForm logoClassMain="text-center" />
