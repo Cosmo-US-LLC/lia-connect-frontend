@@ -64,19 +64,19 @@ const Subscription = () => {
           /> */}
         </>
       ) : (
-        <CheckoutProvider
-          stripe={stripePromise}
-          options={{ fetchClientSecret }}
-        >
-          <PlanDetails
-            setMonthlyButtonActive={setMonthlyButtonActive}
-            monthlyButtonActive={monthlyButtonActive}
-            subscriptionDetails={subscriptionDetails}
-            setPlanAndBilling={setPlanAndBilling}
-            setActivatePlan={setActivatePlan}
-            activatePlan={activatePlan}
-          />
-        </CheckoutProvider>
+        // <CheckoutProvider
+        //   stripe={stripePromise}
+        //   options={{ fetchClientSecret }}
+        // >
+        <PlanDetails
+          setMonthlyButtonActive={setMonthlyButtonActive}
+          monthlyButtonActive={monthlyButtonActive}
+          subscriptionDetails={subscriptionDetails}
+          setPlanAndBilling={setPlanAndBilling}
+          setActivatePlan={setActivatePlan}
+          activatePlan={activatePlan}
+        />
+        // </CheckoutProvider>
       )}
     </Fragment>
   );
