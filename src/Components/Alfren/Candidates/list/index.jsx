@@ -557,7 +557,7 @@ const DataTables = () => {
                           type="text"
                           placeholder="Search Job"
                           style={{
-                            width: "100%",
+                            width: "90%",
                             padding: "5px 10px",
                             border: "1px solid #F0F0F0",
                             borderRadius: "4px",
