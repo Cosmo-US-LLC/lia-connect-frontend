@@ -391,7 +391,7 @@ const StepOne = ({
                         </>
                       )} */}
                       {skills.map((skill, index) => (
-                        <button
+                        <div
                           key={index}
                           style={{
                             display: "inline-flex",
@@ -411,11 +411,12 @@ const StepOne = ({
                             {skill}
                           </span>
                           <X
+                            style={{ cursor: "pointer" }}
                             strokeWidth={1.5}
                             size={16}
                             onClick={() => removeSkill(skill)}
                           />
-                        </button>
+                        </div>
                       ))}
                       <div className="invalid-feedback">
                         {errors.skillInputValue?.message}
