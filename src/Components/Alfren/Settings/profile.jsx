@@ -19,8 +19,11 @@ import { INSTANCE } from "Config/axiosInstance";
 import { toast } from "react-toastify";
 
 const Profile = () => {
-  const [togglePassword, setTogglePassword] = useState(false);
+  const [togglePassword1, setTogglePassword1] = useState(true);
+  const [togglePassword2, setTogglePassword2] = useState(true);
+  const [togglePassword3, setTogglePassword3] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [passLoading, setPassLoading] = useState(false);
   const [updatedProfileData, setUpdatedProfileData] = useState({
     firstName: "",
     lastName: "",
@@ -77,6 +80,32 @@ const Profile = () => {
     }
   };
 
+  const handleChangePass = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const password = formData.get("password");
+    const newPassword = formData.get("newPassword");
+    const confirmNewPassword = formData.get("confirmNewPassword");
+    console.log("Form Data:", { password, newPassword, confirmNewPassword });
+    setPassLoading(true);
+    try {
+      const response = await INSTANCE.post("/auth/update-password", {
+        password,
+        newPassword,
+        confirmNewPassword,
+      });
+      if (response.status === 201) {
+        toast.success("Password Updated Successfully");
+        e.target.reset();
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Error updating password");
+      console.error("Error updating Password:", error?.response);
+    } finally {
+      setPassLoading(false);
+    }
+  };
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -110,9 +139,11 @@ const Profile = () => {
               style={{
                 textAlign: "left",
                 paddingRight: "5%",
+                paddingTop: "7px",
               }}
             >
               {" "}
+              <h5>Profile</h5>
               <div className="login-main">
                 <Form className="theme-form login-form needs-validation">
                   <FormGroup>
@@ -296,77 +327,43 @@ const Profile = () => {
                       />
                     </InputGroup>
                   </FormGroup>
+
+                  <Col xl="12" style={{ textAlign: "right" }}>
+                    {/* <Link className="btn btn-primary  pe-4 ps-4 pt-2 pb-2">
+                      <span>Save</span>
+                    </Link> */}
+                    <button
+                      onClick={handleSubmit}
+                      className="btn btn-primary pe-4 ps-4 pt-2 pb-2"
+                      disabled={loading}
+                    >
+                      {loading ? "Saving..." : "Save"}
+                    </button>
+                  </Col>
                 </Form>
 
                 <br />
-                <h5>Change Password</h5>
+                <h5>LinkedIn</h5>
 
-                <Form className="theme-form login-form needs-validation">
-                  <FormGroup>
-                    <Label className="col-form-label m-0">
-                      Password<span className="text-danger ms-1">*</span>
-                    </Label>
-
-                    <InputGroup>
-                      <InputGroupText
-                        style={{
-                          backgroundColor: "white",
-                          borderTop: "1px solid #EBF1FC",
-                          borderBottom: "1px solid #EBF1FC",
-                          borderRight: "none",
-                          borderLeft: "1px solid #EBF1FC",
-                        }}
-                      >
-                        <Lock strokeWidth={1} size={22} color="#819ACB" />
-                      </InputGroupText>
-                      <Input
-                        style={{
-                          borderTop: "1px solid #EBF1FC",
-                          borderBottom: "1px solid #EBF1FC",
-                          borderLeft: "none",
-                          borderRight: "1px solid #EBF1FC",
-                          color: "black",
-                        }}
-                        type="text"
-                        name="password"
-                        // value={updatedProfileData?.lastName}
-                        // onChange={handleInputChange}
-                      />
-                    </InputGroup>
-                  </FormGroup>
-                  <FormGroup>
-                    <Label className="col-form-label m-0">
-                      Confirm Password<span className="text-danger ms-1">*</span>
-                    </Label>
-
-                    <InputGroup>
-                      <InputGroupText
-                        style={{
-                          backgroundColor: "white",
-                          borderTop: "1px solid #EBF1FC",
-                          borderBottom: "1px solid #EBF1FC",
-                          borderRight: "none",
-                          borderLeft: "1px solid #EBF1FC",
-                        }}
-                      >
-                        <Lock strokeWidth={1} size={22} color="#819ACB" />
-                      </InputGroupText>
-                      <Input
-                        style={{
-                          borderTop: "1px solid #EBF1FC",
-                          borderBottom: "1px solid #EBF1FC",
-                          borderLeft: "none",
-                          borderRight: "1px solid #EBF1FC",
-                          color: "black",
-                        }}
-                        type="password"
-                        name="confirmPassword"
-                        // value={updatedProfileData?.lastName}
-                        // onChange={handleInputChange}
-                      />
-                    </InputGroup>
-                  </FormGroup>
-                </Form>
+                <p className="pb-4">
+                  <span
+                    style={{ fontSize: "14px", fontWeight: 600 }}
+                    className="me-4"
+                  >
+                    Assosiated linkedIn Account
+                  </span>
+                  <span
+                    style={{ fontSize: "14px", fontWeight: 600 }}
+                    className="ms-5"
+                  >
+                    {updatedProfileData?.linkedInEmail}
+                  </span>
+                  <span>
+                    <Image
+                      attrImage={{ src: linkedInIcon, className: "ms-2" }}
+                    />
+                  </span>
+                </p>
               </div>
               <div className="gradientStyleHorizontal"></div>
             </Col>
@@ -378,31 +375,148 @@ const Profile = () => {
                 paddingLeft: "3%",
               }}
             >
-              <p style={{ fontSize: "18px", fontWeight: 600 }}>LinkedIn</p>
-              {/* <p style={{ fontSize: "12px", fontWeight: 400 }} className="pb-4">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form, by
-                injected humour, or randomized words which don't look even
-                slightly believable.
-              </p> */}
+              <h5>Change Password</h5>
 
-              <p className="pb-4">
-                <span
-                  style={{ fontSize: "14px", fontWeight: 600 }}
-                  className="me-4"
-                >
-                  Assosiated linkedIn Account
-                </span>
-                <span
-                  style={{ fontSize: "14px", fontWeight: 600 }}
-                  className="ms-5"
-                >
-                  {updatedProfileData?.linkedInEmail}
-                </span>
-                <span>
-                  <Image attrImage={{ src: linkedInIcon, className: "ms-2" }} />
-                </span>
-              </p>
+              <Form
+                className="theme-form login-form needs-validation"
+                onSubmit={handleChangePass}
+              >
+                <FormGroup>
+                  <Label className="col-form-label m-0">
+                    Password<span className="text-danger ms-1">*</span>
+                  </Label>
+
+                  <InputGroup>
+                    <InputGroupText
+                      style={{
+                        backgroundColor: "white",
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderRight: "none",
+                        borderLeft: "1px solid #EBF1FC",
+                      }}
+                    >
+                      <Lock strokeWidth={1} size={22} color="#819ACB" />
+                    </InputGroupText>
+                    <Input
+                      style={{
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderLeft: "none",
+                        borderRight: "1px solid #EBF1FC",
+                        color: "black",
+                      }}
+                      type={togglePassword1 ? "password" : "text"}
+                      name="password"
+                      defaultValue={""}
+                      placeholder="Enter current password"
+                      // value={updatedProfileData?.lastName}
+                      // onChange={handleInputChange}
+                    />
+                    <InputGroupText>
+                      <Eye
+                        strokeWidth={0.5}
+                        size={16}
+                        onClick={() => setTogglePassword1(!togglePassword1)}
+                      />
+                    </InputGroupText>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <Label className="col-form-label m-0">
+                    New Password
+                    <span className="text-danger ms-1">*</span>
+                  </Label>
+
+                  <InputGroup>
+                    <InputGroupText
+                      style={{
+                        backgroundColor: "white",
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderRight: "none",
+                        borderLeft: "1px solid #EBF1FC",
+                      }}
+                    >
+                      <Lock strokeWidth={1} size={22} color="#819ACB" />
+                    </InputGroupText>
+                    <Input
+                      style={{
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderLeft: "none",
+                        borderRight: "1px solid #EBF1FC",
+                        color: "black",
+                      }}
+                      type={togglePassword2 ? "password" : "text"}
+                      name="newPassword"
+                      defaultValue={""}
+                      placeholder="New password"
+                      // value={updatedProfileData?.lastName}
+                      // onChange={handleInputChange}
+                    />
+                    <InputGroupText>
+                      <Eye
+                        strokeWidth={0.5}
+                        size={16}
+                        onClick={() => setTogglePassword2(!togglePassword2)}
+                      />
+                    </InputGroupText>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <Label className="col-form-label m-0">
+                    Confirm New Password
+                    <span className="text-danger ms-1">*</span>
+                  </Label>
+
+                  <InputGroup>
+                    <InputGroupText
+                      style={{
+                        backgroundColor: "white",
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderRight: "none",
+                        borderLeft: "1px solid #EBF1FC",
+                      }}
+                    >
+                      <Lock strokeWidth={1} size={22} color="#819ACB" />
+                    </InputGroupText>
+                    <Input
+                      style={{
+                        borderTop: "1px solid #EBF1FC",
+                        borderBottom: "1px solid #EBF1FC",
+                        borderLeft: "none",
+                        borderRight: "1px solid #EBF1FC",
+                        color: "black",
+                      }}
+                      type={togglePassword3 ? "password" : "text"}
+                      name="confirmNewPassword"
+                      defaultValue={""}
+                      placeholder="Confirm New password"
+                      // value={updatedProfileData?.lastName}
+                      // onChange={handleInputChange}
+                    />
+                    <InputGroupText>
+                      <Eye
+                        strokeWidth={0.5}
+                        size={16}
+                        onClick={() => setTogglePassword3(!togglePassword3)}
+                      />
+                    </InputGroupText>
+                  </InputGroup>
+                </FormGroup>
+                <Col xl="12" style={{ textAlign: "right" }}>
+                  <button
+                    // onClick={handleSubmit}
+                    type="submit"
+                    className="btn btn-primary pe-4 ps-4 pt-2 pb-2"
+                    disabled={passLoading}
+                  >
+                    {passLoading ? "Loading..." : "Change"}
+                  </button>
+                </Col>
+              </Form>
               {/* <p style={{ fontSize: "14px", fontWeight: 600 }}>
                 Your Preferred LinkedIn Contract{" "}
                 <Info strokeWidth={1} size={14} color="#8FA8D7" />
@@ -415,19 +529,6 @@ const Profile = () => {
                 {" "}
                 <Select styles={customStyles} name="jobPriority" />
               </FormGroup> */}
-            </Col>
-
-            <Col xl="12" style={{ textAlign: "right" }}>
-              {/* <Link className="btn btn-primary  pe-4 ps-4 pt-2 pb-2">
-                <span>Save</span>
-              </Link> */}
-              <button
-                onClick={handleSubmit}
-                className="btn btn-primary pe-4 ps-4 pt-2 pb-2"
-                disabled={loading}
-              >
-                {loading ? "Saving..." : "Save"}
-              </button>
             </Col>
           </Row>
         </div>
