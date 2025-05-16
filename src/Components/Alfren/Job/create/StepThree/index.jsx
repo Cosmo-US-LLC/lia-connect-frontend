@@ -1,3 +1,183 @@
+// import React, { Fragment, useState } from "react";
+// import { Container, Row, Col, Card, CardBody, FormGroup, Label } from "reactstrap";
+// import { useDispatch } from "react-redux";
+// import { toast } from "react-toastify";
+// import { GiMagnifyingGlass, GiCrossedSwords, GiBullseye } from "react-icons/gi";
+// import { updateJob } from "../../../../../redux/Job/jobActions";
+// import "./JobProcessOverview.css";
+
+// const StepThree = ({ handlePrevious, handleNext, jobId }) => {
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [messageBody, setMessageBody] = useState(
+//     "Hi, I came across your profile on LinkedIn and found your experience quite impressive. I believe you could be a great fit for one of our open positions. Let's connect and discuss this opportunity further."
+//   );
+//   const [category, setCategory] = useState("Intermediate");
+
+//   const dispatch = useDispatch();
+
+//   const categories = [
+//     {
+//       title: "Broad",
+//       icon: <GiMagnifyingGlass size={30} color="#007bff" />,
+//       description: "Casts a wide net, accepting more candidates with diverse skills.",
+//       note: "Lower skill match threshold - Suitable for early-stage roles.",
+//     },
+//     {
+//       title: "Intermediate",
+//       icon: <GiCrossedSwords size={30} color="#ffc107" />,
+//       description: "A balanced approach with moderate skill match requirements.",
+//       note: "Moderate skill match threshold - Ideal for mid-level roles.",
+//     },
+//     {
+//       title: "Precise",
+//       icon: <GiBullseye size={30} color="#dc3545" />,
+//       description: "Targets only the most precisely matched candidates.",
+//       note: "High skill match threshold - Best for specialised roles.",
+//     },
+//   ];
+
+//   const handleMessageChange = (e) => {
+//     const value = e.target.value;
+//     if (value.length <= 500) {
+//       setMessageBody(value);
+//     }
+//   };
+
+//   const submitStepThree = (e) => {
+//     e.preventDefault();
+//     setIsLoading(true);
+//     const formData = {
+//       jobId,
+//       body: {
+//         isJobCompleted: true,
+//         messageBody,
+//         candidateSelectionType: category,
+//       },
+//     };
+//     dispatch(
+//       updateJob(formData, (resp) => {
+//         setIsLoading(false);
+//         if (resp.status === 200 || resp.status === 201) {
+//           toast.success("Job Added Successfully");
+//           handleNext(e);
+//         } else {
+//           toast.error(resp.message);
+//         }
+//       })
+//     );
+//   };
+
+//   return (
+//     <Fragment>
+//       <Container fluid>
+//         <Row className="justify-content-center">
+//           <Col xl="10" lg="12" className="my-3">
+//             <Card className="border-0 shadow-sm">
+//               <CardBody className="p-4">
+//                 <Row >
+//                   <Col xs="12" >
+//                     <h6 className="fw-bold mb-3">
+//                       Candidate Selection Criteria <span className="text-danger">*</span>
+//                     </h6>
+//                     <div className="d-flex gap-3 flex-wrap">
+//                       {categories.map((cat) => (
+//                         <div
+//                           key={cat.title}
+//                           role="button"
+//                           tabIndex={0}
+//                           onClick={() => setCategory(cat.title)}
+//                           onKeyDown={(e) => {
+//                             if (e.key === "Enter" || e.key === " ") {
+//                               setCategory(cat.title);
+//                             }
+//                           }}
+//                           className={`category-card ${category === cat.title ? "selected" : ""}`}
+//                         >
+//                           {cat.icon}
+//                           <h6 className={category === cat.title ? "text-primary" : ""}>
+//                             {cat.title}
+//                           </h6>
+//                           <p className={category === cat.title ? "text-primary" : ""}>
+//                             {cat.description}
+//                           </p>
+//                           <span className={category === cat.title ? "text-primary" : ""}>
+//                             {cat.note}
+//                           </span>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   </Col>
+//                 </Row>
+
+//                 <Row className="mt-4">
+//                   <Col xs="12">
+//                     <FormGroup>
+//                       <Label for="messageBody" className="fw-bold">
+//                         Message to Candidate (10 to 500 characters){" "}
+//                         <span className="text-danger">*</span>
+//                       </Label>
+//                       <textarea
+//                         id="messageBody"
+//                         name="messageBody"
+//                         value={messageBody}
+//                         onChange={handleMessageChange}
+//                         placeholder="Write a message to the candidate..."
+//                         rows="5"
+//                         className="form-control shadow-none"
+//                         aria-label="Message to candidate"
+//                         style={{
+//                           borderColor: messageBody.length < 10 ? "#f2abab" : "#efefef",
+//                         }}
+//                       />
+//                       <div className="text-end text-muted small mt-1">
+//                         {messageBody.length} / 500 characters
+//                       </div>
+//                       {messageBody.length < 10 && (
+//                         <div className="text-danger small mt-1" aria-live="polite">
+//                           Message must be at least 10 characters.
+//                         </div>
+//                       )}
+//                     </FormGroup>
+//                   </Col>
+//                 </Row>
+
+//                 <Row>
+//                   <Col xs="12" className="text-center mt-4">
+//                     <button
+//                       onClick={(e) => {
+//                         e.preventDefault();
+//                         handlePrevious(e);
+//                       }}
+//                       className="btn btn-outline-light px-5 py-2 me-3"
+//                     >
+//                       Back to Job Details
+//                     </button>
+//                     <button
+//                       onClick={submitStepThree}
+//                       className="btn btn-primary px-5 py-2"
+//                       disabled={messageBody.length < 10 || messageBody.length > 500 || isLoading}
+//                     >
+//                       {isLoading ? (
+//                         <>
+//                           <i className="fa fa-spinner fa-spin" /> Loading...
+//                         </>
+//                       ) : (
+//                         "Complete"
+//                       )}
+//                     </button>
+//                   </Col>
+//                 </Row>
+//               </CardBody>
+//             </Card>
+//           </Col>
+//         </Row>
+//       </Container>
+//     </Fragment>
+//   );
+// };
+
+// export default StepThree;
+
 import React, { Fragment, useState } from "react";
 import {
   Container,
@@ -90,22 +270,45 @@ const StepThree = ({
       icon: <GiMagnifyingGlass size={30} color="#007bff" />,
       description:
         "Casts a wide net, accepting more candidates with diverse skills.",
-      note: "Lower skill match threshold - Suitable for early-stage roles.",
+      note: ["Lower skill match threshold", "Suitable for early-stage roles"],
     },
     {
       title: "Intermediate",
       icon: <GiCrossedSwords size={30} color="#ffc107" />,
       description:
         "A balanced approach with moderate skill match requirements.",
-      note: "Moderate skill match threshold - Ideal for mid-level roles.",
+      note: ["Moderate skill match threshold", "Ideal for mid-level roles"],
     },
     {
       title: "Precise",
       icon: <GiBullseye size={30} color="#dc3545" />,
       description: "Targets only the most precisely matched candidates.",
-      note: "High skill match threshold - Best for specialised roles.",
+      note: ["High skill match threshold", "Best for specialised roles"],
     },
   ];
+
+  // const categories = [
+  //   {
+  //     title: "Broad",
+  //     icon: <GiMagnifyingGlass size={30} color="#007bff" />,
+  //     description:
+  //       "Casts a wide net, accepting more candidates with diverse skills.",
+  //     note: "Lower skill match threshold - Suitable for early-stage roles.",
+  //   },
+  //   {
+  //     title: "Intermediate",
+  //     icon: <GiCrossedSwords size={30} color="#ffc107" />,
+  //     description:
+  //       "A balanced approach with moderate skill match requirements.",
+  //     note: "Moderate skill match threshold - Ideal for mid-level roles.",
+  //   },
+  //   {
+  //     title: "Precise",
+  //     icon: <GiBullseye size={30} color="#dc3545" />,
+  //     description: "Targets only the most precisely matched candidates.",
+  //     note: "High skill match threshold - Best for specialised roles.",
+  //   },
+  // ];
 
   const toggleTooltip = (categoryTitle) => {
     setTooltipOpen((prev) => ({
@@ -116,19 +319,25 @@ const StepThree = ({
 
   return (
     <Fragment>
-      <Container fluid={true} style={{ width: "80%" }}>
+      <Container fluid>
         <Row style={{ justifyContent: "center" }}>
-          <Col xl="8" className="mt-5">
+          <Col xl="10" lg="12">
             <Card>
               <CardBody>
                 {/* Category Selection */}
                 <Row>
-                  <Col xl="12" className="mb-4">
-                    <h6 style={{ fontWeight: "600", marginBottom: "10px" }}>
+                  <Col xl="12">
+                    <h6
+                      style={{
+                        fontSize: "30px",
+                        fontWeight: "600",
+                        marginBottom: "26px",
+                      }}
+                    >
                       Candidate Selection Criteria{" "}
                       <span className="text-danger">*</span>
                     </h6>
-                    <div className="d-flex gap-3">
+                    <div className="d-flex gap-3 pb-4 ">
                       {categories.map((cat) => (
                         <div
                           key={cat.title}
@@ -171,16 +380,18 @@ const StepThree = ({
                           >
                             {cat.description}
                           </p>
-                          <span
-                            style={{
-                              fontSize: "12px",
-                              color:
-                                category === cat.title ? "#0056b3" : "#888",
-                              fontWeight: "500",
-                            }}
-                          >
-                            {cat.note}
-                          </span>
+                          <ul className="category-note">
+                            {cat.note.map((item, index) => (
+                              <li
+                                key={index}
+                                className={
+                                  category === cat.title ? "text-primary" : ""
+                                }
+                              >
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       ))}
                     </div>
@@ -222,7 +433,10 @@ const StepThree = ({
                     </FormGroup>
                   </Col>
 
-                  <Col xl="12" style={{ textAlign: "center" }}>
+                  <Col
+                    xl="12"
+                    style={{ textAlign: "center", marginBottom: "50px" }}
+                  >
                     <Link
                       onClick={handleBackStep}
                       className="btn btn-outline-light pe-5 ps-5 pt-2 pb-2 me-3"
