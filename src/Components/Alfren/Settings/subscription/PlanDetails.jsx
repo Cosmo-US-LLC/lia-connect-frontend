@@ -9,6 +9,8 @@ import { useState } from "react";
 import { Check, X } from "react-feather";
 import { Col, Row } from "reactstrap";
 import { H3, P, UL } from "../../../../AbstractElements";
+import confetti from "canvas-confetti";
+import { useEffect } from "react";
 
 const StripeElementsStyles = {
   iconStyle: "solid",
@@ -43,63 +45,112 @@ const PlanDetails = ({
   activatePlan,
 }) => {
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = "fixed";
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = 9999; // Ensure it appears above other content
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+    // const confettiSettings = {
+    //   target: canvas,
+    //   max: 100,
+    //   size: 1,
+    //   animate: true,
+    //   props: ["square", "triangle", "line"],
+    //   colors: ["#ff0000", "#00ff00", "#0000ff"],
+    //   clock: 25,
+    //   rotate: 0,
+    //   width: window.innerWidth,
+    //   height: window.innerHeight,
+    //   startVelocity: 30,
+    //   gravity: 0.5,
+    //   drift: 0,
+    //   spread: 360,
+    //   scalar: 1,
+    //   scalarStart: 1,
+    //   scalarEnd: 1,
+    //   origin: { x: 0.5, y: 0.5 },
+    //   resize: true,
+    //   disableForReducedMotion: true,
+    //   onAnimationEnd: () => {
+    //     // Remove the canvas after the animation ends
+    //     document.body.removeChild(canvas);
+    //   },
+    // };
+    const confettiInstance = confetti.create(canvas, {});
+    confettiInstance({
+      particleCount: 100,
+      startVelocity: 30,
+      spread: 360,
+      origin: { x: 0.55, y: 0.5 },
+      scalar: 1,
+    });
+    return () => {
+      // Cleanup the canvas when the component unmounts
+      // document.body.removeChild(canvas);
+    };
+  }, []);
 
-  const stripe = useStripe();
-  const elements = useElements();
+  // const stripe = useStripe();
+  // const elements = useElements();
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
+  // const handlePayment = async (e) => {
+  //   e.preventDefault();
 
-    if (!stripe || !elements) {
-      return;
-    }
+  //   if (!stripe || !elements) {
+  //     return;
+  //   }
 
-    setLoading(true);
-    const plan = subscriptionDetails[activatePlan];
+  //   setLoading(true);
+  //   const plan = subscriptionDetails[activatePlan];
 
-    try {
-      // Call your backend to create a payment intent
-      const response = await INSTANCE.post("/api/create-payment-intent", {
-        plan: plan,
-      });
+  //   try {
+  //     // Call your backend to create a payment intent
+  //     const response = await INSTANCE.post("/api/create-payment-intent", {
+  //       plan: plan,
+  //     });
 
-      const { clientSecret } = response.data;
+  //     const { clientSecret } = response.data;
 
-      // Confirm the payment with Stripe
-      const { error, paymentIntent } = await stripe.confirmCardPayment(
-        clientSecret,
-        {
-          payment_method: {
-            card: elements.getElement(CardElement), // CardElement to collect card details
-          },
-        }
-      );
+  //     // Confirm the payment with Stripe
+  //     const { error, paymentIntent } = await stripe.confirmCardPayment(
+  //       clientSecret,
+  //       {
+  //         payment_method: {
+  //           card: elements.getElement(CardElement), // CardElement to collect card details
+  //         },
+  //       }
+  //     );
 
-      if (error) {
-        console.error("Payment failed:", error);
-        alert("Payment failed. Please try again.");
-      } else if (paymentIntent.status === "succeeded") {
-        alert("Payment successful!");
+  //     if (error) {
+  //       console.error("Payment failed:", error);
+  //       alert("Payment failed. Please try again.");
+  //     } else if (paymentIntent.status === "succeeded") {
+  //       alert("Payment successful!");
 
-        // Update the subscription on the backend after payment is successful
-        await INSTANCE.post("/api/update-subscription", {
-          plan: plan, // Send the selected plan details
-          stripeSubscriptionId: paymentIntent.id, // The paymentIntent ID from Stripe
-          stripeCustomerId: paymentIntent.customer, // The customer ID from Stripe
-          stripeStatus: paymentIntent.status, // The subscription status from Stripe
-        });
-      }
-    } catch (error) {
-      console.error("Error during payment:", error);
-      alert("Something went wrong, please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  //       // Update the subscription on the backend after payment is successful
+  //       await INSTANCE.post("/api/update-subscription", {
+  //         plan: plan, // Send the selected plan details
+  //         stripeSubscriptionId: paymentIntent.id, // The paymentIntent ID from Stripe
+  //         stripeCustomerId: paymentIntent.customer, // The customer ID from Stripe
+  //         stripeStatus: paymentIntent.status, // The subscription status from Stripe
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during payment:", error);
+  //     alert("Something went wrong, please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <div style={{ textAlign: "center" }}>
         <p style={{ fontSize: "26px", fontWeight: 600 }} className="pt-5">
           Subscription Plan
@@ -201,7 +252,7 @@ const PlanDetails = ({
         }}
       >
         <div>
-          <div style={{ minWidth: "400px" }}>
+          <div style={{ minWidth: "500px" }}>
             {subscriptionDetails.map((item, index) => {
               return (
                 <div className="pricingtable">
@@ -252,7 +303,7 @@ const PlanDetails = ({
             })}
           </div>
         </div>
-        <div
+        {/* <div
           style={{
             width: "400px",
             height: "450px",
@@ -266,6 +317,53 @@ const PlanDetails = ({
           }}
         >
           <CardElement options={StripeElementsStyles} />
+        </div> */}
+      </div>
+      {/* Glass-like Overlay */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(255, 255, 255, 0.3)", // Semi-transparent white
+          backdropFilter: "blur(2px)", // Apply the blur effect
+          pointerEvents: "none", // Disable interaction with the underlying content
+          borderRadius: "10px", // Optional: Adds rounded corners
+          zIndex: 1, // Ensure it appears above other content
+        }}
+      >
+        {/* Centered Text */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)", // Centers the text
+            fontSize: "28px", // Adjust font size as needed
+            fontWeight: "900",
+            color: "#3D64FF94", // White text color
+            textAlign: "center",
+          }}
+        >
+          <h1
+            style={{
+              color: "white",
+              backgroundColor: "#1264FD",
+              boxShadow: " 0px 0px 32px 0px #3D64FF94",
+              border: "1px solid #1264FD",
+              fontSize: "20px",
+              borderRadius: "30px",
+              paddingTop: "8px",
+              paddingBottom: "8px",
+              paddingRight: "20px",
+              paddingLeft: "20px",
+              fontWeight: "400",
+            }}
+          >
+            Enjoy Your First 3 Months On Us!
+          </h1>
         </div>
       </div>
     </div>
