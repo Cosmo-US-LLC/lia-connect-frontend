@@ -14,10 +14,10 @@ const Completed = () => {
 
   return (
     <Fragment>
-      <Container fluid={true} style={{ textAlign: "center" }}>
+      <Container fluid={true} style={{ paddingBottom: "100px", textAlign: "center" }}>
         {/* Job Process Overview Section */}
         <Row>
-          <Col sm="12" className="mt-4">
+          <Col sm="12" className="">
             <JobProcessOverview />
           </Col>
         </Row>
@@ -28,7 +28,7 @@ const Completed = () => {
         </Row> */}
         {/* Go Back Button */}
         <Row>
-          <Col sm="12" className="mt-4">
+          <Col sm="12" className="" >
             <Button
               color="primary"
               onClick={handleGoBack}
@@ -41,7 +41,7 @@ const Completed = () => {
                 borderRadius: "5px",
               }}
             >
-              Take Me Back to Jobs
+              Start head Hunting
             </Button>
           </Col>
         </Row>
