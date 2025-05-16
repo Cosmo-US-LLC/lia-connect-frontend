@@ -49,7 +49,7 @@ const JobProcessOverview = () => {
   return (
     <Row className="mb-4 justify-content-center">
       <Col xl="12" style={{ textAlign: "center" }}>
-        <h5 style={{ fontWeight: "800", marginBottom: "24px", marginTop: "24px" }}>
+        <h5 style={{ fontWeight: "800", marginBottom: "24px" }}>
          Job Created - What Happens In The Background?
         </h5>
         <div className="job-process-container">
