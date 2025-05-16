@@ -21,18 +21,16 @@ const experienceData = {
   values: [10, 20, 35, 25, 15, 5],
 };
 
-const dummyAvgExperience = 4.7;
-
-  const cityData = [
-    { id: "PK-BA", value: 25 },
-    { id: "PK-PB", value: 50 },
-    { id: "PK-SD", value: 40 },
-    { id: "PK-KP", value: 30 },
-    { id: "PK-IS", value: 20 },
-    { id: "PK-TA", value: 10 },
-    { id: "PK-JK", value: 15 },
-    { id: "PK-GB", value: 5 }
-  ];
+const cityData = [
+  { id: "PK-BA", value: 25 },
+  { id: "PK-PB", value: 50 },
+  { id: "PK-SD", value: 40 },
+  { id: "PK-KP", value: 30 },
+  { id: "PK-IS", value: 20 },
+  { id: "PK-TA", value: 10 },
+  { id: "PK-JK", value: 15 },
+  { id: "PK-GB", value: 5 },
+];
 
 const JobDetail = () => {
   const dispatch = useDispatch();
@@ -42,6 +40,17 @@ const JobDetail = () => {
   const [jobStats, setJobStats] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [experienceData, setExperienceData] = useState({
+    category: [],
+    values: [],
+  });
+  useEffect(() => {
+    if (jobStats?.byExperience) {
+      const category = jobStats.byExperience.map((item) => item.years);
+      const values = jobStats.byExperience.map((item) => item.count);
+      setExperienceData({ category, values });
+    }
+  }, [jobStats]);
 
   const getJobDetails = async () => {
     setIsLoading(true);
@@ -134,7 +143,7 @@ const JobDetail = () => {
                   <Col xl="6" md="6">
                     <AvgExp
                       AvgExpStatsData={experienceData}
-                      avgExperience={4.7}
+                      avgExperience={jobStats?.avgExperience}
                     />
                   </Col>
                   {/* <Col xl="4" md="6">
@@ -144,14 +153,13 @@ const JobDetail = () => {
               </Col>
               <Col xl="12" className="col-ed-5 box-col-5 p-0">
                 <Row>
-                   <Col xl="6" md="6">
-                    <CandidatesByCity CityStatsData={cityData} />
+                  <Col xl="6" md="6">
+                    <CandidatesByCity CityStatsData={jobStats?.byState} />
                   </Col>
                   <Col xl="6" md="6">
-                    
                     <RequiredSkills jobDetails={jobDetails} />
                   </Col>
-                 
+
                   {/* <Col xl="4" md="6">
                     <CandidateFunnel
                       CandidateFunnel={jobStats?.candidateFunnel}
