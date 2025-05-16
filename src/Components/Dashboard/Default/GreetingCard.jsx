@@ -85,7 +85,7 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                               padding: "7px 14px",
                               borderRadius: "7px",
                               backgroundColor: "white",
-                              whiteSpace: "nowrap"
+                              whiteSpace: "nowrap",
                             }}
                             onClick={() => navigate("/jobs/create")}
                           >
@@ -144,7 +144,7 @@ const GreetingCard = ({ isLinkedInLogin, connectModel, setConnectModel }) => {
                               padding: "7px 14px",
                               borderRadius: "7px",
                               backgroundColor: "white",
-                              whiteSpace: "nowrap"
+                              whiteSpace: "nowrap",
                             }}
                             onClick={() => {
                               setConnectModel(true);

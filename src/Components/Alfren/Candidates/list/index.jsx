@@ -88,6 +88,7 @@ const DataTables = () => {
   const handleCheckboxChange = () => {
     setActiveOnly(!activeOnly);
   };
+  const [jobSearchText, setJobSearchText] = useState("");
   const handleClose = () => setShow(false);
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
   const [priorities, setPriorities] = useState([
@@ -551,7 +552,29 @@ const DataTables = () => {
                           maxHeight: "400px",
                           overflow: "auto",
                         }}
-                      >
+                        >
+                        <input
+                          type="text"
+                          placeholder="Search Job"
+                          style={{
+                            width: "100%",
+                            padding: "5px 10px",
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "4px",
+                            marginBottom: "10px",
+                            marginLeft: "10px",
+                          }}
+                          value={jobSearchText}
+                          onChange={(e) => {
+                            setJobSearchText(e.target.value);
+                            // const filteredJobs = jobsList.filter((job) =>
+                            //   job.name
+                            //     .toLowerCase()
+                            //     .includes(e.target.value.toLowerCase())
+                            // );
+                            // setJobsList(filteredJobs);
+                          }}
+                        />
                         <div
                           style={{
                             maxHeight: "200px",
@@ -560,46 +583,58 @@ const DataTables = () => {
                             margin: "5px 0",
                           }}
                         >
-                          {jobsList.map((job, index) => (
-                            <div key={job.id}>
-                              <input
-                                type="checkbox"
-                                checked={selectedJob.includes(job.id)}
-                                onChange={(e) => {
-                                  setSelectedJob((prev) => {
-                                    if (prev.includes(job.id)) {
-                                      console.log(
-                                        "Removing job",
-                                        job.name,
-                                        prev.filter((id) => id !== job.id)
-                                          .length
-                                      );
-                                      return prev.filter((id) => id !== job.id);
-                                    } else {
-                                      console.log(
-                                        "Adding job",
-                                        job.name,
-                                        [...prev, job.id].length
-                                      );
-                                      return [...prev, job.id];
-                                    }
-                                  });
-                                }}
-                                id={`job-${index}`}
-                                name={`job-${index}`}
-                              />
-                              <label
-                                htmlFor={`job-${index}`}
-                                style={{
-                                  marginLeft: "10px",
-                                  userSelect: "none",
-                                }}
-                              >
-                                {job.name || job.id}
-                              </label>
-                              <br />
-                            </div>
-                          ))}
+                          {jobsList.map((job, index) => {
+                            if (
+                              jobSearchText &&
+                              !job.name
+                                .toLowerCase()
+                                .includes(jobSearchText.toLowerCase())
+                            ) {
+                              return null;
+                            }
+                            return (
+                              <div key={job.id}>
+                                <input
+                                  type="checkbox"
+                                  checked={selectedJob.includes(job.id)}
+                                  onChange={(e) => {
+                                    setSelectedJob((prev) => {
+                                      if (prev.includes(job.id)) {
+                                        console.log(
+                                          "Removing job",
+                                          job.name,
+                                          prev.filter((id) => id !== job.id)
+                                            .length
+                                        );
+                                        return prev.filter(
+                                          (id) => id !== job.id
+                                        );
+                                      } else {
+                                        console.log(
+                                          "Adding job",
+                                          job.name,
+                                          [...prev, job.id].length
+                                        );
+                                        return [...prev, job.id];
+                                      }
+                                    });
+                                  }}
+                                  id={`job-${index}`}
+                                  name={`job-${index}`}
+                                />
+                                <label
+                                  htmlFor={`job-${index}`}
+                                  style={{
+                                    marginLeft: "10px",
+                                    userSelect: "none",
+                                  }}
+                                >
+                                  {job.name || job.id}
+                                </label>
+                                <br />
+                              </div>
+                            );
+                          })}
                         </div>
                         <button
                           style={{
