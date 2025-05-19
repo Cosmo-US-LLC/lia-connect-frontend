@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActions";
 import { toast } from "react-toastify";
+import JobSkills from "./JobSkills";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
@@ -38,6 +39,8 @@ const CandidatesList = () => {
       })
     );
   };
+
+  console.log(candidateDetails)
 
   return (
     <Fragment>
@@ -150,11 +153,14 @@ const CandidatesList = () => {
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
               <Row>
                 <Col xl="12" md="6">
-                  <ActivityCard />
+                  <JobSkills candidateDetails={candidateDetails} />
                 </Col>
                 <Col xl="12" md="6">
-                  <Notes />
+                  <ActivityCard />
                 </Col>
+                {/* <Col xl="12" md="6">
+                  <Notes />
+                </Col> */}
               </Row>
             </Col>
           </Row>

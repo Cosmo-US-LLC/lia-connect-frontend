@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Container, Row, Col, Card, CardHeader } from "reactstrap";
+// import { Container, Row, Col, Card, CardHeader } from "reactstrap";
 import { H6 } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
@@ -20,6 +20,20 @@ import DateModal from "Components/Alfren/Job/list/modals/date";
 import { IoFilterOutline } from "react-icons/io5";
 import { fetchJobs } from "../../../../redux/Job/jobActions";
 import JobList from "Components/Alfren/Job/list";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+import { CiCircleInfo } from "react-icons/ci";
 
 const DataTables = () => {
   const dispatch = useDispatch();
@@ -31,6 +45,8 @@ const DataTables = () => {
   const [jobAPIResult, setJobAPIResult] = useState([]);
   const [show, setShow] = useState(false);
   const [getJobId, setGetJobId] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(!modalOpen);
 
   const [jobsList, setJobsList] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
@@ -230,12 +246,12 @@ const DataTables = () => {
               sortable: true,
               center: true,
             },
-            {
-              name: "Blacklist",
-              selector: (row) => row["blacklist"],
-              sortable: true,
-              center: true,
-            },
+            // {
+            //   name: "Blacklist",
+            //   selector: (row) => row["blacklist"],
+            //   sortable: true,
+            //   center: true,
+            // },
           ]);
           const mappedRecords = mapTableData(results);
           console.log("mappedRecords", mappedRecords);
@@ -296,7 +312,7 @@ const DataTables = () => {
         ),
         jobTitle: item.jobTitle ? (
           // item?.jobTitle.split(" @")[0]
-          <a href={`http://localhost:3000/v1/jobs/detail/${item?.jobId}`}>
+          <a href={`/jobs/detail/${item?.jobId}`}>
             {item?.jobTitle}
             {/* {item?.jobTitle.split(" @")[0]} */}
           </a>
@@ -324,6 +340,7 @@ const DataTables = () => {
                 height: "40px",
                 position: "relative",
                 overflow: "visible",
+                border: "0px",
               }}
             >
               <img
@@ -333,9 +350,11 @@ const DataTables = () => {
                   height: "100%",
                   cursor: "pointer",
                   objectFit: "cover",
+                  backgroundColor: "#F0F0F0",
+                  border: "0px",
                 }}
                 src={item.image || user1}
-                alt={item.name}
+                // alt={item.name}
               />
               <div
                 style={{
@@ -376,7 +395,27 @@ const DataTables = () => {
           >
             <div className="d-flex gap-2 align-items-center">
               <div className="font-secondary">{item.profileScore}%</div>
-              <div className="badge badge-light-warning">Average</div>
+              {/* <div className="badge badge-light-warning">Average</div> */}
+              <div
+                style={{
+                  color: "#819ACB",
+                  paddingBottom: "6px",
+                  cursor: "pointer",
+                }}
+              >
+                {/* Score */}
+                <CiCircleInfo
+                  style={{
+                    color: "black",
+                    fontSize: "large",
+                    position: "relative",
+                    top: "5px",
+                    cursor: "pointer",
+                    left: "1px",
+                  }}
+                  onClick={toggleModal}
+                />
+              </div>
             </div>
           </div>
         ) : (
@@ -413,7 +452,7 @@ const DataTables = () => {
         status: item.status ? (
           <div
             style={{
-              width: "100px",
+              width: "150px",
               display: "inline-flex",
               justifyContent: "center",
               alignItems: "center",
@@ -424,36 +463,99 @@ const DataTables = () => {
                 style={{
                   color: "green",
                   backgroundColor: "#E6F9E6",
-                  padding: "5px 10px",
+                  padding: "0px 10px",
                   borderRadius: "20px",
                   fontSize: "12px",
+                  display: "inline-flex",
                 }}
+                className="gap-2 align-items-center"
+                title="The candidate's profile matches job requirement."
               >
                 {item.status}
+                <div
+                  style={{
+                    color: "#819ACB",
+                    paddingBottom: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CiCircleInfo
+                    style={{
+                      color: "black",
+                      fontSize: "large",
+                      position: "relative",
+                      top: "5px",
+                      cursor: "pointer",
+                      left: "1px",
+                    }}
+                  />
+                </div>
               </div>
             ) : item.status == "Rejected" ? (
               <div
                 style={{
                   color: "red",
                   backgroundColor: "#F9E6E6",
-                  padding: "5px 10px",
+                  padding: "0px 10px",
                   borderRadius: "20px",
                   fontSize: "12px",
+                  display: "inline-flex",
                 }}
+                className="gap-2 align-items-center"
+                title="The candidate's profile does not match job requirement."
               >
                 {item.status}
+                <div
+                  style={{
+                    color: "#819ACB",
+                    paddingBottom: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CiCircleInfo
+                    style={{
+                      color: "black",
+                      fontSize: "large",
+                      position: "relative",
+                      top: "5px",
+                      cursor: "pointer",
+                      left: "1px",
+                    }}
+                  />
+                </div>
               </div>
             ) : (
               <div
                 style={{
                   color: "grey",
                   backgroundColor: "#F0F0F0",
-                  padding: "5px 10px",
+                  padding: "0px 10px",
                   borderRadius: "20px",
                   fontSize: "12px",
+                  display: "inline-flex",
                 }}
+                className="gap-2 align-items-center"
+                title="The candidate's profile has not been ranked yet."
               >
                 {item.status}
+                <div
+                  style={{
+                    color: "#819ACB",
+                    paddingBottom: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  <CiCircleInfo
+                    style={{
+                      color: "black",
+                      fontSize: "large",
+                      position: "relative",
+                      top: "5px",
+                      cursor: "pointer",
+                      left: "1px",
+                    }}
+                  />
+                </div>
               </div>
             )}
           </div>
@@ -461,28 +563,28 @@ const DataTables = () => {
           "N/A"
         ),
 
-        blacklist: (
-          <Media key="1">
-            <Media
-              body
-              className="  switch-sm  "
-              style={{
-                width: "110px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Label className="switch">
-                <Input
-                  type="checkbox"
-                  checked={item.blacklisted ? true : false}
-                />
-                <span className="switch-state"></span>
-              </Label>
-            </Media>
-          </Media>
-        ),
+        // blacklist: (
+        //   <Media key="1">
+        //     <Media
+        //       body
+        //       className="  switch-sm  "
+        //       style={{
+        //         width: "110px",
+        //         display: "flex",
+        //         justifyContent: "center",
+        //         alignItems: "center",
+        //       }}
+        //     >
+        //       <Label className="switch">
+        //         <Input
+        //           type="checkbox"
+        //           checked={item.blacklisted ? true : false}
+        //         />
+        //         <span className="switch-state"></span>
+        //       </Label>
+        //     </Media>
+        //   </Media>
+        // ),
       };
     });
 
@@ -521,6 +623,7 @@ const DataTables = () => {
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
+                        minWidth: "200px",
                       }}
                       onClick={toggleSearchDropdown}
                     >
@@ -552,7 +655,7 @@ const DataTables = () => {
                           maxHeight: "400px",
                           overflow: "auto",
                         }}
-                        >
+                      >
                         <input
                           type="text"
                           placeholder="Search Job"
@@ -665,6 +768,7 @@ const DataTables = () => {
                         borderRadius: "4px",
                         padding: "8px",
                         marginRight: "8px",
+                        minWidth: "200px",
                       }}
                       onClick={toggleNameDropdown}
                     >
@@ -685,6 +789,7 @@ const DataTables = () => {
                           backgroundColor: "white",
                           borderRadius: "8px",
                           width: "50%",
+                          maxWidth: "410px",
                           maxHeight: "400px",
                           overflow: "auto",
                         }}
@@ -742,7 +847,9 @@ const DataTables = () => {
                     >
                       <button
                         style={{
-                          display: "inline-flex",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
                           border:
                             statusDropdown || isStatusSelected
                               ? "1px solid #337CC7"
@@ -757,6 +864,7 @@ const DataTables = () => {
                               : "white",
                           borderRadius: "4px",
                           padding: "8px",
+                          minWidth: "150px",
                         }}
                         onClick={toggleStatusDropdown}
                       >
@@ -778,6 +886,7 @@ const DataTables = () => {
                             borderRadius: "4px",
                             padding: "2px 4px",
                             zIndex: 1,
+                            minWidth: "150px",
                           }}
                         >
                           {statuses.map((status) => (
@@ -800,7 +909,79 @@ const DataTables = () => {
                         </div>
                       )}
                     </div>
-                    <button
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        position: "relative",
+                        bottom: "3px",
+                        marginRight: "8px",
+                      }}
+                    >
+                      <button
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          border:
+                            statusDropdown || isStatusSelected
+                              ? "1px solid #337CC7"
+                              : "1px solid #F0F0F0",
+                          color:
+                            statusDropdown || isStatusSelected
+                              ? "#337CC7"
+                              : "#595959",
+                          backgroundColor:
+                            statusDropdown || isStatusSelected
+                              ? "#F5F9FF"
+                              : "white",
+                          borderRadius: "4px",
+                          padding: "8px",
+                          minWidth: "150px",
+                        }}
+                        onClick={toggleStatusDropdown}
+                      >
+                        <span
+                          className="ms-2"
+                          style={{ fontSize: "12px", marginRight: "5px" }}
+                        >
+                          {isStatusSelected ? isStatusSelected : "Last Action"}
+                        </span>
+                        <ChevronDown strokeWidth={1} size={16} />
+                      </button>
+                      {statusDropdown && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "40px",
+                            backgroundColor: "white",
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "4px",
+                            padding: "2px 4px",
+                            zIndex: 1,
+                            minWidth: "150px",
+                          }}
+                        >
+                          {statuses.map((status) => (
+                            <div
+                              key={status}
+                              onClick={() => {
+                                // setStatus(status);
+                                setIsStatusSelected(status);
+                                setStatusDropdown(false);
+                              }}
+                              style={{
+                                padding: "4px",
+                                cursor: "pointer",
+                                color: "#595959",
+                              }}
+                            >
+                              {status}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* <button
                       style={{
                         display: "inline-flex",
                         border: "none",
@@ -847,7 +1028,7 @@ const DataTables = () => {
                       >
                         Blacklisted Only
                       </span>
-                    </button>
+                    </button> */}
                   </Col>
                   <Col
                     style={{
@@ -1039,6 +1220,100 @@ const DataTables = () => {
             </Card>
           </Col>
         </Row>
+        <Modal
+          isOpen={modalOpen}
+          toggle={toggleModal}
+          style={{
+            maxWidth: "1000px",
+            width: "80%",
+            margin: "auto",
+          }}
+          centered
+        >
+          <ModalHeader
+            style={{
+              position: "relative",
+              padding: "1rem",
+              borderBottom: "1px solid #dee2e6",
+            }}
+          >
+            How Scores Are Calculated
+            <button
+              type="button"
+              onClick={toggleModal}
+              style={{
+                position: "absolute",
+                right: "20px",
+                top: "15px",
+                background: "none",
+                border: "none",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+                color: "#6c757d",
+                padding: "0",
+                margin: "0",
+              }}
+            >
+              &times;
+            </button>
+          </ModalHeader>
+          <ModalBody style={{ padding: "2rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "20px",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  width: "100%",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <img
+                  src="../../score-tip1.png"
+                  alt="Skill Matching"
+                  style={{ width: "100%", maxWidth: "350px", height: "auto" }}
+                />
+                <span style={{ fontWeight: "bold", fontSize: "32px" }}>+</span>
+                <img
+                  src="../../score-tip2.png"
+                  alt="Experience Matching"
+                  style={{ width: "100%", maxWidth: "150px", height: "auto" }}
+                />
+                <span style={{ fontWeight: "bold", fontSize: "32px" }}>=</span>
+                <img
+                  src="../../score-tip3.png"
+                  alt="Total Score"
+                  style={{ width: "100%", maxWidth: "270px", height: "auto" }}
+                />
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter
+            style={{ padding: "1rem 2rem", borderTop: "1px solid #dee2e6" }}
+          >
+            <Button
+              color="primary"
+              onClick={toggleModal}
+              style={{
+                padding: "0.375rem 0.75rem",
+                fontSize: "1rem",
+                borderRadius: "0.25rem",
+              }}
+            >
+              Got It
+            </Button>
+          </ModalFooter>
+        </Modal>
       </Container>
     </Fragment>
   );
