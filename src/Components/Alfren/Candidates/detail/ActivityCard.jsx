@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { H5, H6, UL, LI, P, Image } from "../../../../AbstractElements";
 import { Activity } from "../../../../constant";
@@ -8,73 +8,116 @@ import ConnectionIcon from "../../../../assets/used-files/icons/activity/Connect
 import WithdrawIcon from "../../../../assets/used-files/icons/activity/withdrawl.svg";
 import messageIcon from "../../../../assets/used-files/icons/activity/message.svg";
 import arrowDownIcon from "../../../../assets/used-files/icons/activity/arrowDown.svg";
+import { INSTANCE } from "Config/axiosInstance";
+
 const ActivityCard = () => {
-  const ActivityData = {
-    "Nov 2, 2023": [
-      {
-        title: "Viewed Profile of the candidate in",
-        title2: "Campaign",
-        subTitle: "Nov 2, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: ViewIcon,
-      },
-    ],
-    "Dec 12, 2023": [
-      {
-        title: "Sent connection request in",
-        title2: "Campaign",
-        subTitle: "Dec 12, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: ConnectionIcon,
-      },
-      {
-        title: "Withdraw connection request in",
-        title2: "Campaign",
-        subTitle: "Dec 12, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: WithdrawIcon,
-      },
-    ],
-    "Dec 15, 2023": [
-      {
-        title: "Send a message to the candidate in",
-        title2: "Campaign",
-        subTitle: "Dec 15, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: messageIcon,
-      },
-    ],
-    "Dec 24, 2023": [
-      {
-        title: "Send a follow up message in",
-        title2: "Campaign",
-        subTitle: "Dec 24, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: messageIcon,
-      },
-    ],
-    "Dec 30, 2023": [
-      {
-        title: "Send a follow up message in",
-        title2: "Campaign",
-        subTitle: "Dec 24, 2023",
-        aLink: "/",
-        aContent: "Senior UI/UX Designers",
-        color: "primary",
-        icon: messageIcon,
-      },
-    ],
+  const [activityData, setActivityData] = React.useState([]);
+
+  useEffect(() => {
+    const fetchCandidateActivity = async () => {
+      try {
+        const response = await INSTANCE.post("/candidate/activity", {
+          candidateId: "681b5bc2f96aa5264b689fdf",
+          jobId: "681b052a690864f94109b57d",
+        });
+        const data = response.data;
+        setActivityData(data);
+      } catch (error) {
+        console.error("Error fetching candidate activity:", error);
+      }
+    };
+    fetchCandidateActivity();
+  }, []);
+
+  console.log("Activity Data:", activityData);
+
+  // Function to format DateTime and group activities by the date
+  const formatActivityData = (data) => {
+    const formattedData = {};
+    const activityKeys = [
+      "profileFetched",
+      "connectionRequestSent",
+      "checkedConnectionRequestStatus",
+      "connectionRequestAccepted",
+      "messageSent",
+      "checkedReplyStatus",
+      "candidateReplied",
+    ];
+
+    // Loop through the activity keys and group the results by date
+    activityKeys.forEach((key) => {
+      if (data[key]) {
+        const activityDate = data[`${key}At`]; // Get the corresponding date for the activity
+        const activityLabel = key
+          .replace(/([A-Z])/g, " $1")
+          .replace(/^./, (str) => str.toUpperCase()); // Format key as title (e.g., 'Profile Fetched')
+
+        // Only process the date if it's valid
+        if (activityDate) {
+          const formattedDate = new Date(activityDate);
+
+          if (formattedDate.toString() === "Invalid Date") {
+            console.error("Invalid Date for activity: ", key, activityDate);
+            return; // Skip processing if the date is invalid
+          }
+
+          const readableDate = formattedDate.toLocaleDateString(); // Convert to readable date format
+
+          // Initialize the date array if not already present
+          if (!formattedData[readableDate]) {
+            formattedData[readableDate] = [];
+          }
+
+          // Push activity item into the correct date array
+          formattedData[readableDate].push({
+            title: activityLabel,
+            subTitle: "Campaign", // Modify based on the context
+            icon: getIconForActivity(key), // Dynamically select icon based on activity
+            aContent: "Senior UI/UX Designers", // Modify dynamically based on context
+            color: "primary",
+            time: readableDate, // Store actual DateTime for the activity
+          });
+
+          // Explicitly log the connectionRequestSent field and its timestamp for debugging
+          if (key === "connectionRequestSent") {
+            console.log(
+              "Connection Request Sent:",
+              data[key],
+              "DateTime:",
+              activityDate
+            );
+          }
+        }
+      }
+    });
+
+    return formattedData;
   };
+
+  // Get the appropriate icon for the activity
+  const getIconForActivity = (key) => {
+    switch (key) {
+      case "profileFetched":
+        return ViewIcon;
+      case "connectionRequestSent":
+        return ConnectionIcon;
+      case "connectionRequestAccepted":
+        return ConnectionIcon; // Modify if different icon needed
+      case "messageSent":
+        return messageIcon;
+      case "candidateReplied":
+        return WithdrawIcon; // Modify if different icon needed
+      case "checkedConnectionRequestStatus":
+        return messageIcon;
+      case "checkedReplyStatus":
+        return messageIcon;
+      default:
+        return LineIcon; // Fallback icon
+    }
+  };
+
+  // Transform the API data to match the structure expected by the UI
+  const ActivityDemoData = formatActivityData(activityData);
 
   return (
     <Col xxl="12" xl="12" md="12" sm="12" className="notification box-col-6">
@@ -91,7 +134,7 @@ const ActivityCard = () => {
           style={{ maxHeight: "550px", overflowY: "auto" }}
         >
           <UL>
-            {Object.entries(ActivityData).map(([date, activities]) => (
+            {Object.entries(ActivityDemoData).map(([date, activities]) => (
               <li key={date}>
                 <div className="d-flex justify-content-center mb-2">
                   <span className="date-content text-center">
@@ -105,7 +148,7 @@ const ActivityCard = () => {
                         borderRadius: "20px",
                       }}
                     >
-                      {date}
+                      {date} {/* This is the formatted date */}
                     </div>
                     <Image
                       attrImage={{
@@ -154,14 +197,6 @@ const ActivityCard = () => {
               </li>
             ))}
           </UL>
-          <div className="blurred-container">
-            <Image
-              attrImage={{
-                src: arrowDownIcon,
-                alt: "Line Icon", // Add an alt description
-              }}
-            />
-          </div>
         </CardBody>
       </Card>
     </Col>
