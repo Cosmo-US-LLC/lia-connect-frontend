@@ -33,6 +33,11 @@ const JobCreate = () => {
     // setStep(step - 1);
     setStep(1);
   };
+  const handlePrevious2 = (e) => {
+    e.preventDefault();
+    // setStep(step - 1);
+    setStep(2);
+  };
 
   const handleSubmitss = (e) => {
     e.preventDefault();
@@ -59,6 +64,11 @@ const JobCreate = () => {
   //stepTwo Data starts
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [getCandidateCount, setGetTotalCount] = useState(null);
+
+  const [messageBody, setMessageBody] = useState(
+    "Hi, I came across your profile on LinkedIn and found your experience quite impressive. I believe you could be a great fit for one of our open positions. Let's connect and discuss this opportunity further."
+  );
+  const [category, setCategory] = useState("Intermediate");
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -295,6 +305,10 @@ const JobCreate = () => {
                 candidateInOtherJob={candidateInOtherJob}
                 setCandidateInOtherJob={setCandidateInOtherJob}
                 jobId={jobId}
+                category={category}
+                setCategory={setCategory}
+                messageBody={messageBody}
+                setMessageBody={setMessageBody}
               />
             )}
             {/* {step === 3 && (
@@ -310,7 +324,12 @@ const JobCreate = () => {
                 jobId={jobId}
               />
             )} */}
-            {step === 3 && <Completed />}
+            {step === 3 && <Completed
+                handlePrevious={handlePrevious2}
+                jobId={jobId}
+                category={category}
+                messageBody={messageBody}
+            />}
             {/* {step === 4 && <Completed />} */}
           </form>
         </div>
