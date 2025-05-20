@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import SidebarBottomMenuItems from "./SidebarBottomMenuItems";
 import { MarginTop } from "constant";
 import TrialAlertItem from "layout/TrialAlertItem";
+import HowItWorks from "../../assets/images/howItWorks.png"
+
 const SidebarMenu = ({
   setMainMenu,
   setBottomMenu,
@@ -99,6 +101,26 @@ const SidebarMenu = ({
           />
 
           {/* <TrialAlertItem/> */}
+          <div style={{ height: "45%", position: "relative" }}>
+            <a
+              href="#"
+              style={{
+                color: "black",
+                position: "absolute",
+                bottom: "0",
+                left: "35px",
+                background: "#f0f0f0",
+                borderRadius: "12px",
+                padding: "10px",
+                width: "70%",
+              }}
+              className="shadow-sm d-flex flex-column align-items-center gap-2"
+            >
+              <img src={HowItWorks} alt="How it works icon" style={{ width: "60px", height: "auto" }} />
+              {/* <br /> */}
+              <strong>How It Works</strong>
+            </a>
+          </div>
 
           <li style={{ position: "absolute", bottom: "3%" }}>
             <SidebarBottomMenuItems

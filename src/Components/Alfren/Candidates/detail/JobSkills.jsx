@@ -2,6 +2,18 @@ import React, { Fragment } from "react";
 import { Card, Col, Row } from "reactstrap";
 
 function JobSkills({ candidateDetails }) {
+  function removeDuplicateHalf(str) {
+    const halfLength = Math.floor(str.length / 2);
+    const firstHalf = str.substring(0, halfLength).trim();
+    const secondHalf = str.substring(halfLength).trim();
+
+    if (firstHalf === secondHalf) {
+      return firstHalf;
+    } else {
+      return str; // Return the original string if halves are different
+    }
+  }
+
   return (
     <Fragment>
       <Card className="hovercard ">
@@ -14,7 +26,18 @@ function JobSkills({ candidateDetails }) {
 
               <div>
                 {candidateDetails?.candidate?.jobs?.map((job, index) => (
-                  <a href={`/jobs/detail/${job?.id}`} key={index} style={{ fontSize: "16px", padding: "0px 10px", backgroundColor: "#f0f0f0", borderRadius: "10px", margin: "5px", display: "inline-block" }}>
+                  <a
+                    href={`/jobs/detail/${job?.id}`}
+                    key={index}
+                    style={{
+                      fontSize: "16px",
+                      padding: "0px 10px",
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "10px",
+                      margin: "5px",
+                      display: "inline-block",
+                    }}
+                  >
                     {job?.name}
                   </a>
                 ))}
@@ -34,7 +57,8 @@ function JobSkills({ candidateDetails }) {
                       className="badge badge-primary m-1"
                       style={{ fontSize: "12px" }}
                     >
-                      {skill}
+                      {removeDuplicateHalf(skill)}
+                      {/* {console.log(skill)} */}
                     </span>
                   )
                 )}
