@@ -10,15 +10,15 @@ import messageIcon from "../../../../assets/used-files/icons/activity/message.sv
 import arrowDownIcon from "../../../../assets/used-files/icons/activity/arrowDown.svg";
 import { INSTANCE } from "Config/axiosInstance";
 
-const ActivityCard = () => {
+const ActivityCard = ({ jobId, candidateId }) => {
   const [activityData, setActivityData] = React.useState([]);
 
   useEffect(() => {
     const fetchCandidateActivity = async () => {
       try {
         const response = await INSTANCE.post("/candidate/activity", {
-          candidateId: "681b5bc2f96aa5264b689fdf",
-          jobId: "681b052a690864f94109b57d",
+          candidateId: candidateId,
+          jobId: jobId,
         });
         const data = response.data;
         setActivityData(data);
@@ -26,10 +26,10 @@ const ActivityCard = () => {
         console.error("Error fetching candidate activity:", error);
       }
     };
-    fetchCandidateActivity();
-  }, []);
-
-  console.log("Activity Data:", activityData);
+    if (candidateId && jobId) {
+      fetchCandidateActivity();
+    }
+  }, [jobId, candidateId]);
 
   // Function to format DateTime and group activities by the date
   const formatActivityData = (data) => {
@@ -71,22 +71,11 @@ const ActivityCard = () => {
           // Push activity item into the correct date array
           formattedData[readableDate].push({
             title: activityLabel,
-            subTitle: "Campaign", // Modify based on the context
             icon: getIconForActivity(key), // Dynamically select icon based on activity
             aContent: "Senior UI/UX Designers", // Modify dynamically based on context
             color: "primary",
             time: readableDate, // Store actual DateTime for the activity
           });
-
-          // Explicitly log the connectionRequestSent field and its timestamp for debugging
-          if (key === "connectionRequestSent") {
-            console.log(
-              "Connection Request Sent:",
-              data[key],
-              "DateTime:",
-              activityDate
-            );
-          }
         }
       }
     });
