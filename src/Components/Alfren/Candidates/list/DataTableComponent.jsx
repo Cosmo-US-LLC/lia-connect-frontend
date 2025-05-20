@@ -126,7 +126,7 @@ const DataTableComponent = ({
           className={`d-flex align-items-center justify-content-between bg-light-info p-2`}
         >
           <H4 attrH4={{ className: "text-muted m-0" }}>
-            Delet Selected Data..!
+            Delete Selected Data..!
           </H4>
         </div>
       )}
@@ -140,9 +140,10 @@ const DataTableComponent = ({
         clearSelectedRows={toggleDelet}
         customStyles={customStyles}
         style={{ tableLayout: "fixed", width: "100%" }}
+        persistTableHead
       />
       <div style={{ position: "fixed", bottom: "40px", width: "100%" }}>
-        <span
+        {/* <span
           style={{
             fontSize: "10px",
             fontWeight: "400",
@@ -155,7 +156,7 @@ const DataTableComponent = ({
         >
           * To ensure that the system performs at the optimal efficiency, you
           can have up to 5 active jobs at a time.
-        </span>
+        </span> */}
         <br></br>
         <nav
           aria-label="Page navigation example"

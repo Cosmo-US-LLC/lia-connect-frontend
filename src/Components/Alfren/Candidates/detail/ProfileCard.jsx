@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 
 const ProfileCard = ({ candidateDetails }) => {
   console.log("candidateDetails", candidateDetails);
-  const jobTitle = candidateDetails?.candidate?.currentJob?.title.split(' @')[0];
+  const jobTitle =
+    candidateDetails?.candidate?.currentJob?.title.split(" @")[0];
 
   return (
     <Fragment>
@@ -57,18 +58,25 @@ const ProfileCard = ({ candidateDetails }) => {
                     <strong>{candidateDetails?.candidate.name}</strong>
                   </a>
                 </div>
-                <div className="desc mt-2">
-                  {jobTitle}
-                </div>
+                <div className="desc mt-2">{jobTitle}</div>
                 <div className="desc mt-2">
                   {candidateDetails?.candidate?.description}
                 </div>
 
-                {candidateDetails?.candidate?.connections && (
+                <div className="d-flex justify-content-between align-items-center mt-2">
+                  {candidateDetails?.candidate?.connections && (
+                    <div className="desc mt-2">
+                      <strong>
+                        {candidateDetails?.candidate?.connections}
+                      </strong>{" "}
+                      Connections
+                    </div>
+                  )}
+
                   <div className="desc mt-2">
-                    {candidateDetails?.candidate?.connections} Connections
+                    <strong>{candidateDetails?.candidate?.experienceInYear || "0"}</strong> Years
                   </div>
-                )}
+                </div>
 
                 {candidateDetails?.candidate?.profileScore && (
                   <div className="desc mt-2">
