@@ -28,6 +28,7 @@ import {
 } from "react-feather";
 import { Modal, Button } from "react-bootstrap";
 import { FaTimes, FaTrash } from "react-icons/fa";
+import { MessageSquare, CheckSquare, Activity } from "react-feather";
 import Jobs from "./modals/jobs";
 import Priority from "./modals/priority";
 import DateModal from "./modals/date";
@@ -41,13 +42,15 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConfirmationModal from "CommonElements/ConfirmationBox";
 import usePagination from "Hooks/usePagination";
-import './style.css';
+import "./style.css";
+import { IoBriefcaseOutline } from "react-icons/io5";
+import { LiaHandshakeSolid } from "react-icons/lia";
+import { AiOutlineInteraction } from "react-icons/ai";
 
 const JobList = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
-  //states
   const [jobsList, setJobsList] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
   const [paginatedUpdated, setPaginatedUpdated] = useState(false);
@@ -68,6 +71,9 @@ const JobList = () => {
   const [getJobId, setGetJobId] = useState(null);
   const handleClose = () => setShow(false);
 
+  console.log({ jobsList });
+  console.log({ tableColumns });
+
   // function handle dropdown states
 
   const toggleSearchDropdown = () => {
@@ -84,6 +90,35 @@ const JobList = () => {
   };
   const closeDateDropdown = () => {
     setDateDropdown(false);
+  };
+  // const [selectedJobs, setSelectedJobs] = useState([]);
+
+  const handleSelectJob = (jobId) => {
+    if (selectedJobs.includes(jobId)) {
+      setSelectedJobs(selectedJobs.filter((id) => id !== jobId));
+    } else {
+      setSelectedJobs([...selectedJobs, jobId]);
+    }
+  };
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      setSelectedJobs(jobsList.map((job) => job.id));
+    } else {
+      setSelectedJobs([]);
+    }
+  };
+
+  const getStatusClass = (status) => {
+    if (!status) return "status-default"; // fallback style
+
+    const s = status.toLowerCase();
+
+    if (s.includes("in progress")) return "status-inprogress";
+    if (s === "completed") return "status-completed";
+    if (s === "paused") return "status-paused";
+
+    return "status-inprogress";
   };
 
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
@@ -183,18 +218,28 @@ const JobList = () => {
           setTableColumns([
             {
               name: (
-                <>
-                  {resp.data.pagination.totalResults}{" "}
-                  {resp.data.pagination.totalResults === 1 ? "Job" : "Jobs"}
-                </>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px",   }}
+                >
+                  <IoBriefcaseOutline size={16}  />
+                  {resp.data.pagination.totalResults === 1 ? "Job" : "Jobs"} (
+                  {resp.data.pagination.totalResults})
+                </div>
               ),
               selector: (row) => row["name"],
               sortable: false,
               center: false,
-              width: "25%",
+              width: "20%",
             },
             {
-              name: <>Candidates</>,
+              name: (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Users size={16} />
+                  Candidates
+                </div>
+              ),
               selector: (row) => (
                 <div
                   style={{
@@ -217,7 +262,7 @@ const JobList = () => {
                     <span
                       style={{
                         fontWeight: 500,
-                        color: "#007BFF",
+                        color: "#666666",
                         fontSize: "14px",
                       }}
                     >
@@ -246,10 +291,17 @@ const JobList = () => {
               ),
               sortable: false,
               center: false,
-              width: "18%",
+              width: "15%",
             },
             {
-              name: <>Connection Requests</>,
+              name: (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <LiaHandshakeSolid size={18} />
+                  Requests
+                </div>
+              ),
               selector: (row) => (
                 <div
                   style={{
@@ -272,7 +324,7 @@ const JobList = () => {
                     <span
                       style={{
                         fontWeight: 500,
-                        color: "#007BFF",
+                        color: "#666666",
                         fontSize: "14px",
                       }}
                     >
@@ -301,10 +353,17 @@ const JobList = () => {
               ),
               sortable: false,
               center: false,
-              width: "20%",
+              width: "15%",
             },
             {
-              name: <>Messages</>,
+              name: (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <MessageSquare size={16} />
+                  Messages
+                </div>
+              ),
               selector: (row) => (
                 <div
                   style={{
@@ -327,7 +386,7 @@ const JobList = () => {
                     <span
                       style={{
                         fontWeight: 500,
-                        color: "#007BFF",
+                        color: "#666666",
                         fontSize: "14px",
                       }}
                     >
@@ -356,14 +415,53 @@ const JobList = () => {
               ),
               sortable: false,
               center: false,
-              width: "20%",
+              width: "15%",
             },
             {
-              name: <>Actions</>,
+              name: (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  <Activity size={16} />
+                  Status
+                </div>
+              ),
+              selector: (row) => (
+                <td>
+                  <span
+                    className={`status-badge ${getStatusClass(
+                      "In Progress: sending messages"
+                    )}`}
+                  >
+                    In-Progress
+                  </span>
+                  {/* <span
+                    className={`status-badge status-completed`}
+                  >
+                    In Progress
+                  </span> */}
+                </td>
+
+                // <span className={`status-badge ${getStatusClass(row.status)}`}>
+                //   {row.status || "No Status"}
+                // </span>
+              ),
+              width: "20%",
+            },
+
+            {
+              name: (
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "6px", backgroundColor: "" }}
+                >
+                  <AiOutlineInteraction size={16} />
+                  Actions
+                </div>
+              ),
               selector: (row) => row["actions"],
               sortable: false,
               center: true,
-              width: "12%",
+              width: "10%",
             },
           ]);
           setJobAPIResult(results);
@@ -527,82 +625,82 @@ const JobList = () => {
             </Link>
           </>
         ),
-        priority: (
-          <div
-            className="custom-dropdown"
-            onClick={() => toggleDropdown(index)}
-          >
-            <div className="selected-option">
-              <Flag
-                fill={
-                  item.jobPriority == "HIGH"
-                    ? "#DE3E3E"
-                    : item.jobPriority == "LOW"
-                    ? "#CECECE"
-                    : "#FECF41"
-                }
-                color={
-                  item.jobPriority == "HIGH"
-                    ? "#AA1313"
-                    : item.jobPriority == "LOW"
-                    ? "#ABABAB"
-                    : "#E2B323"
-                }
-                size={14}
-                strokeWidth={1.5}
-              />
-              <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
-                {item.jobPriority}
-              </span>
-              <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
-            </div>
-            {priorityDropdownRow[index] && (
-              <ul
-                className="options"
-                style={{
-                  padding: "10px",
-                  position: "absolute",
-                  boxShadow: "0px 10px 26px 0px #0000001A",
-                  zIndex: 2,
-                  backgroundColor: "white",
-                  borderRadius: "8px",
-                  width: "100%",
-                  paddingBottom: "3px",
-                  cursor: "pointer",
-                }}
-              >
-                {priorities.map((option, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      borderBottom: "1px solid #0000001f",
-                      padding: "8px",
-                    }}
-                    onClick={() => changeJobPriority(item.id, option.title)}
-                  >
-                    <Flag
-                      style={{ cursor: "pointer" }}
-                      fill={option.fill}
-                      color={option.color}
-                      size={14}
-                      strokeWidth={1.5}
-                    />
-                    {option.title}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ),
-        dateCreated: (
-          <div>
-            <span>{date}</span>
-            <span style={{ color: "#299A16" }}>
-              {" "}
-              ( {differenceInDays ? differenceInDays + " Days" : "Today"})
-            </span>
-          </div>
-        ),
+        // priority: (
+        //   <div
+        //     className="custom-dropdown"
+        //     onClick={() => toggleDropdown(index)}
+        //   >
+        //     <div className="selected-option">
+        //       <Flag
+        //         fill={
+        //           item.jobPriority == "HIGH"
+        //             ? "#DE3E3E"
+        //             : item.jobPriority == "LOW"
+        //             ? "#CECECE"
+        //             : "#FECF41"
+        //         }
+        //         color={
+        //           item.jobPriority == "HIGH"
+        //             ? "#AA1313"
+        //             : item.jobPriority == "LOW"
+        //             ? "#ABABAB"
+        //             : "#E2B323"
+        //         }
+        //         size={14}
+        //         strokeWidth={1.5}
+        //       />
+        //       <span className="ms-1 me-2" style={{ fontSize: "12px" }}>
+        //         {item.jobPriority}
+        //       </span>
+        //       <ChevronDown color="#8FA8D7" size={14} strokeWidth={1.5} />
+        //     </div>
+        //     {priorityDropdownRow[index] && (
+        //       <ul
+        //         className="options"
+        //         style={{
+        //           padding: "10px",
+        //           position: "absolute",
+        //           boxShadow: "0px 10px 26px 0px #0000001A",
+        //           zIndex: 2,
+        //           backgroundColor: "white",
+        //           borderRadius: "8px",
+        //           width: "100%",
+        //           paddingBottom: "3px",
+        //           cursor: "pointer",
+        //         }}
+        //       >
+        //         {priorities.map((option, index) => (
+        //           <li
+        //             key={index}
+        //             style={{
+        //               borderBottom: "1px solid #0000001f",
+        //               padding: "8px",
+        //             }}
+        //             onClick={() => changeJobPriority(item.id, option.title)}
+        //           >
+        //             <Flag
+        //               style={{ cursor: "pointer" }}
+        //               fill={option.fill}
+        //               color={option.color}
+        //               size={14}
+        //               strokeWidth={1.5}
+        //             />
+        //             {option.title}
+        //           </li>
+        //         ))}
+        //       </ul>
+        //     )}
+        //   </div>
+        // ),
+        // dateCreated: (
+        //   <div>
+        //     <span>{date}</span>
+        //     <span style={{ color: "#299A16" }}>
+        //       {" "}
+        //       ( {differenceInDays ? differenceInDays + " Days" : "Today"})
+        //     </span>
+        //   </div>
+        // ),
         actions: (
           <div className="d-flex align-items-center">
             {item.isJobCompleted ? (
@@ -621,7 +719,6 @@ const JobList = () => {
                           changeJobStatus(item.id, item.isJobActive)
                         }
                       />
-                      {/* askjn few ojk few qwe iupi jjfh akjasfdnjfdf sdfm, */}
                       <span
                         className="switch-state"
                         style={{
@@ -678,7 +775,7 @@ const JobList = () => {
     setJobsList(mappedRecords);
   }, [priorityDropdownRow]);
 
-  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 300);
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 225);
 
   return (
     <Fragment>
@@ -947,9 +1044,10 @@ const JobList = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <CardBody style={{ padding: 0 }}>
+              {/* <CardBody style={{ padding: 0 }}>
                 <div
                   style={{
+                    // maxHeight: "500px",
                     boxShadow: "none",
                     maxHeight: `${maxHeight}px`,
                     overflowY: "auto",
@@ -1000,6 +1098,82 @@ const JobList = () => {
                       },
                     }}
                   />
+                </div>
+              </CardBody> */}
+              <CardBody style={{ padding: 0 }}>
+                <div
+                  style={{
+                    maxHeight: `${maxHeight}px`,
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <table
+                    style={{
+                      width: "100%",
+                      tableLayout: "auto",
+                      borderSpacing: 0,
+                    }}
+                  >
+                    <thead>
+                      <tr
+                        style={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "white",
+                          zIndex: 10,
+                          borderBottom: "2px solid #E0E0E0",
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                        }}
+                      >
+              
+                        {tableColumns.map((column, index) => (
+                          <th
+                            key={index}
+                            style={{
+                              padding: "16px 18px",
+                              fontWeight: "bold",
+                              textAlign: "left",
+                              fontSize: "14px",
+                              color: "#333333",
+                            }}
+                          >
+                            {column.name}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {jobsList.map((job, index) => (
+                        <tr
+                          key={index}
+                          style={{
+                            backgroundColor:
+                              index % 2 === 0 ? "#F5F9FF" : "white",
+                            borderBottom: "1px solid #E0E0E0",
+                          }}
+                        >
+                     
+                          {tableColumns.map((column, colIndex) => (
+                            <td
+                              key={colIndex}
+                              style={{
+                                padding: "26px 20px",
+                                wordBreak: "break-word",
+                                fontSize: "14px",
+                                color: "#333333",
+                                textAlign: colIndex === 0 ? "left" : "center",
+                              }}
+                            >
+                              {column.selector(job)}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </CardBody>
             </Card>

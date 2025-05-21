@@ -56,7 +56,7 @@ const Priority = ({ priorities, setPriorities, setIsPrioritySelected }) => {
                 key={index}
                 className=" border-bottom mb-2 d-flex align-items-center"
                 style={{ borderRadius: 0 }}
-                onClick={() => toggleLICheck(item.id)} // Call toggleLICheck when clicked
+                onClick={() => toggleLICheck(item.id)}  
               >
                 <Flag
                   fill={item.fill}

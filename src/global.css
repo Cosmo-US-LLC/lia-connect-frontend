@@ -205,6 +205,18 @@ input::placeholder {
   border-radius: 10px;
 }
 .potential-candidate-style {
+  clip-path: polygon(66.5% 0%, 100% 0%, 100% 100%, 56.55% 100%) !important;
+  background: linear-gradient(270deg, #e5ffad 0%, #f7ffe6 83.25%) !important;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.blacklist-style {
+  clip-path: polygon(66.5% 0%, 100% 0%, 100% 100%, 56.55% 100%) !important;
+  background: linear-gradient(270deg, #ebf1fc 0%, #ebf1fc 90.06%);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+/* .potential-candidate-style {
   clip-path: polygon(62.5% 0%, 100% 0%, 100% 100%, 51.55% 100%) !important;
   background: linear-gradient(270deg, #e5ffad 0%, #f7ffe6 83.25%) !important;
   border-top-right-radius: 8px;
@@ -215,7 +227,7 @@ input::placeholder {
   background: linear-gradient(270deg, #ebf1fc 0%, #ebf1fc 90.06%);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-}
+} */
 .shadow-container {
   text-align: end;
   box-shadow: 0px 30px 40px 10px #fff; /* Adjust the values to increase height and blur */
