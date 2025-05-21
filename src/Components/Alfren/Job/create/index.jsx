@@ -128,8 +128,47 @@ const JobCreate = () => {
     setHasErrors(currentError);
   }, [errors.linkedInSearch]);
 
+
+
+    const initialFieldErrors = {
+      jobTitle : { 
+        isEmpty : false
+      },
+      skills : {
+        isEmpty : false,
+      },
+      linkedinUrl : {
+        isEmpty : false,
+      },
+      maxCandidates : {
+        isEmpty : false
+      }
+    }
+  
+    const [fieldErrors, setFieldErrors] = useState(initialFieldErrors)
+    
+
   const onSubmit = async (data, e) => {
     setIsLoading(true); // Set loading to true before dispatching the action
+
+    const updatedErrors = {
+    jobTitle: {
+      isEmpty: data?.jobName?.length === 0
+    },
+    skills: {
+      isEmpty: skills?.length < 1 ? true : false
+    },
+    linkedinUrl: {
+      isEmpty:data.linkedInSearch?.length === 0
+    },
+    maxCandidates: {
+      isEmpty: data.maxCandidates?.length === 0
+    }
+  };
+
+  console.log(data,"checkdata")
+
+  setFieldErrors(updatedErrors)
 
     const formData = {
       name: data.jobName,
@@ -287,6 +326,7 @@ const JobCreate = () => {
                 setLinkedInProfile={setLinkedInProfile}
                 handleNext={handleNext}
                 setJobId={setJobId}
+                fieldErrors={fieldErrors}
               />
             )}
             {step === 2 && (
