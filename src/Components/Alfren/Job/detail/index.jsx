@@ -125,11 +125,12 @@ const JobDetail = () => {
               <Col xl="12" className="col-ed-5 box-col-5 p-0">
                 <Row>
                   <Col xl="6" md="6">
-                    <PotentialCandidates Message={jobStats?.message} />
-                  </Col>
-                  <Col xl="6" md="6">
                     <BlackList Connection={jobStats?.connection} />
                   </Col>
+                  <Col xl="6" md="6">
+                    <PotentialCandidates Message={jobStats?.message} />
+                  </Col>
+
                   {/* <Col xl="4" md="6">
                     <Priority jobDetails={jobDetails} />
                   </Col> */}
