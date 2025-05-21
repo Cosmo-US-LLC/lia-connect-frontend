@@ -412,7 +412,8 @@ const TopCandidate = ({ id }) => {
             marginBottom: "20px",
           }}
         >
-          Top Candidates
+          {`Shortlisted Candidates (${topCandidateDetail?.length})`}
+
           <span
             style={{
               position: "absolute",
@@ -422,10 +423,10 @@ const TopCandidate = ({ id }) => {
               borderBottom: "1px solid #1264FD",
             }}
           ></span>
-          <span
+          {/* <span
             style={{ color: "#819ACB", paddingTop: "4px", cursor: "pointer" }}
           >
-            Score
+            Ranking Method
             <CiCircleInfo
               style={{
                 color: "black",
@@ -437,7 +438,37 @@ const TopCandidate = ({ id }) => {
               }}
               onClick={toggleModal}
             />
-          </span>
+          </span> */}
+
+          {topCandidateDetail && topCandidateDetail.length > 0 && (
+            <div className="relative">
+              <p
+                style={{
+                  color: "#1264FD",
+                  fontFamily: 500,
+                  fontSize: "14px",
+                  textDecoration: "underline",
+                  // position: "absolute",
+                  // bottom: "2px",
+                  // right: "30px",
+                  cursor: "pointer",
+                }}
+              >
+                {" "}
+                <span
+                  onClick={handleAllCandidateClick}
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    position: "relative",
+                    // bottom: "3px",
+                  }}
+                >
+                  View More
+                </span>
+              </p>
+            </div>
+          )}
         </p>
 
         <Modal
@@ -575,8 +606,8 @@ const TopCandidate = ({ id }) => {
               >
                 <CardBody style={{ padding: "6px" }}>
                   <div className="media">
-                    <div className="avatar me-3 ms-1">
-                      {topCand.image ? (
+                    <div className="avatar me-3 ms-1" style={{ width: "50px" }}>
+                      {topCand?.image ? (
                         <img
                           src={topCand.image}
                           alt=""
@@ -596,6 +627,8 @@ const TopCandidate = ({ id }) => {
                           flexDirection: "column",
                           justifyContent: "space-between",
                           alignItems: "flex-start",
+                          width: "75%",
+                          // backgroundColor: "goldenrod",
                         }}
                       >
                         <div>
@@ -611,27 +644,76 @@ const TopCandidate = ({ id }) => {
                               fontSize: "12px",
                               fontWeight: 400,
                             }}
-                            className="mt-0 mb-3"
+                            className="mt-0 mb-2"
                           >
                             {topCand.currentJob.title}
+                          </p>
+                          <p
+                            style={{
+                              color: "#819ACB",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                            }}
+                          >
+                            {topCand?.state}
+                          </p>
+                        </div>
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            height: "25px",
+                            fontWeight: 400,
+                            display: "flex",
+                            gap: "6px",
+                            paddingBottom: "0px",
+
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <p
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              zIndex: 999,
+                              paddingTop: "8px",
+                            }}
+                          >
+                            Score{" "}
+                            <CiCircleInfo
+                              style={{
+                                color: "black",
+                                fontSize: "large",
+                                position: "relative",
+                                zIndex: 999,
+                                // position: "relative",
+                                // top: "5px",
+                                // cursor: "pointer",
+                                // left: "1px",
+                              }}
+                              onClick={toggleModal}
+                            />
+                          </p>
+                          <p
+                            style={{
+                              color: "#299A16",
+                              fontSize: "16px",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {topCand.profileScore}%
                           </p>
                         </div>
                         <p
                           style={{
-                            fontSize: "10px",
+                            color: "#595959",
+                            fontSize: "12px",
                             fontWeight: 400,
                           }}
                         >
-                          Score{" "}
-                          <span
-                            style={{
-                              color: "#299A16",
-                              fontSize: "18px",
-                              fontWeight: 400,
-                            }}
-                          >
-                            {topCand.profileScore}%
-                          </span>
+                          {/* {topCand?.experienceInYear} */}
+                          connection request sent
                         </p>
                       </div>
                       <div
@@ -640,6 +722,7 @@ const TopCandidate = ({ id }) => {
                           flexDirection: "column",
                           justifyContent: "space-between",
                           alignItems: "flex-end",
+                          paddingRight: "4px",
                         }}
                       >
                         <div>
@@ -652,7 +735,7 @@ const TopCandidate = ({ id }) => {
                           >
                             {topCand?.experienceInYear}
                           </p>
-                          <p
+                          {/* <p
                             style={{
                               color: "#819ACB",
                               fontSize: "12px",
@@ -660,7 +743,7 @@ const TopCandidate = ({ id }) => {
                             }}
                           >
                             {topCand?.state}
-                          </p>
+                          </p> */}
                         </div>
                         <div style={{ display: "flex", gap: "12px" }}>
                           <a
@@ -673,9 +756,11 @@ const TopCandidate = ({ id }) => {
                               style={{ color: "#337cc7", fontSize: "large" }}
                             />
                           </a>
-                          <FiMessageSquare
-                            style={{ color: "#595959", fontSize: "large" }}
-                          />
+                          {topCand?.message && (
+                            <FiMessageSquare
+                              style={{ color: "#595959", fontSize: "large" }}
+                            />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -687,7 +772,7 @@ const TopCandidate = ({ id }) => {
         )}
 
         {/* View More - Keeping your original design */}
-        {topCandidateDetail && topCandidateDetail.length > 0 && (
+        {/* {topCandidateDetail && topCandidateDetail.length > 0 && (
           <div className="relative">
             <p
               style={{
@@ -715,7 +800,7 @@ const TopCandidate = ({ id }) => {
               </span>
             </p>
           </div>
-        )}
+        )} */}
       </CardBody>
     </Card>
   );

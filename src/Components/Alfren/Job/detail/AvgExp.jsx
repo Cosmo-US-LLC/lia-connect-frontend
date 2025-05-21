@@ -189,10 +189,10 @@ const AvgExp = ({ AvgExpStatsData, avgExperience = 0, isLoading = false }) => {
       },
       dataLabels: {
         enabled: true,
-        offsetY: -20,
+        // offsetY: -20,
         style: {
-          fontSize: '12px',
-          colors: ['#304758']
+          fontSize: '18px',
+          colors: ['#FFFFFF'],  
         }
       },
       xaxis: {
