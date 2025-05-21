@@ -22,6 +22,7 @@ const CandidatesList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
+  console.log("candidateDetails", candidateDetails);
 
   useEffect(() => {
     getCandidateDetails();
@@ -162,6 +163,10 @@ const CandidatesList = () => {
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
               <Row>
                 <Col xl="12" md="6">
+                  <ActivityCard
+                    jobId={candidateDetails?.candidate?.jobs[0]?.id}
+                    candidateId={candidateDetails?.candidate?.id}
+                  />
                   {candidateDetails && (
                     <JobSkills candidateDetails={candidateDetails} />
                   )}

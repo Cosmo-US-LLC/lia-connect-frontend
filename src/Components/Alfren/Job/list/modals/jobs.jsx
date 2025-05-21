@@ -14,18 +14,16 @@ const Jobs = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedJobsName, setSelectedJobsName] = useState("");
-  const [filteredJobs, setFilteredJobs] = useState(jobs);
+const handleSearchDebounced = useDebouncedCallback((value) => {
+  setSearchQuery(value); // Keep case consistent here, do .toLowerCase() in filter only
+}, 200);
 
-  // Debounce the handleSearch function
-  const handleSearchDebounced = useDebouncedCallback((value) => {
-    const query = value.toLowerCase();
-    setSearchQuery(query);
-
-    const filtered = jobs.filter((job) =>
-      job.title.toLowerCase().includes(query)
-    );
-    setFilteredJobs(filtered);
-  }, 200); // Adjust the delay as needed (in milliseconds)
+// Render filtered jobs dynamically:
+const filteredJobs = React.useMemo(() => {
+  return jobs.filter((job) =>
+    job.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+}, [jobs, searchQuery]);
 
   const toggleLICheck = (jobId) => {
     const updatedJobs = jobs.map((job) =>
@@ -66,10 +64,11 @@ const Jobs = ({
     setIsJobSelected(selectedJobs.length > 0);
   };
 
-  const handleInputChange = (e) => {
-    const { value } = e.target;
-    handleSearchDebounced(value);
-  };
+const handleInputChange = (e) => {
+  const { value } = e.target;
+  handleSearchDebounced(value);
+  setSearchQuery("");
+};
 
   return (
     <Fragment>
@@ -78,26 +77,24 @@ const Jobs = ({
           padding: "10px",
           position: "absolute",
           boxShadow: "0px 10px 26px 0px #0000001A",
-          zIndex: 2,
+          zIndex: 20,
           backgroundColor: "white",
           borderRadius: "8px",
           width: "50%",
-          maxHeight:'400px',
-          overflow:'auto'
+          maxHeight: "400px",
+          overflow: "auto",
         }}
       >
         <InputGroup>
-          <InputGroupText
-            style={{
-              borderRight: "none",
-              backgroundColor: "white",
-              color: "#585DDB",
-            }}
-          >
-            <Search strokeWidth={0.5} />
-          </InputGroupText>
           <Input
-          style={{width:'27.3%',position:'fixed',boxShadow:'rgba(0, 0, 0, 0.08) 0px 2px 12px 0px'}}
+            style={{
+              width: "100%",
+              border: "1px solid #E0E0E0",
+              boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+              padding: "6px 12px",
+              borderRadius: "6px",
+              marginTop: "10px",
+            }}
             placeholder="Search Jobs"
             className="js-example-basic-single col-sm-3"
             value={searchQuery}
@@ -114,50 +111,87 @@ const Jobs = ({
               paddingLeft: 0,
             }}
           >
-            {filteredJobs.map((job, index) => (
-              <li
-                key={index}
-                className="ms-4 me-4 border-bottom mb-2 d-flex align-items-center"
-                style={{ borderRadius: 0, cursor: "pointer" }}
-                onClick={() => toggleLICheck(job.id)}
-              >
-                <span className="ps-3 flex-grow-1">{job.title}</span>
-                <span className="ms-auto pe-3">
-                  <Check
-                    strokeWidth={1}
-                    color={job.isChecked ? "#299A16" : "white"}
+            {
+              filteredJobs.map((job) => (
+                <li
+                  key={job.id}
+                  className=" border-bottom  d-flex align-items-center"
+                  style={{
+                    borderRadius: 0,
+                    cursor: "pointer",
+                    userSelect: "none",
+                    transition: "transform 0.1s ease",
+                    backgroundColor: job.isChecked ? "#EAF6FF" : "white",
+                    paddingBottom: "10px",
+                    paddingTop: "10px",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!job.isChecked)
+                      e.currentTarget.style.backgroundColor = "#f5f5f5";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = job.isChecked
+                      ? "#EAF6FF"
+                      : "white";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                  onClick={() => toggleLICheck(job.id)}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = "scale(0.97)";
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={job.isChecked}
+                    onChange={() => toggleLICheck(job.id)}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      width: "16px",
+                      height: "16px",
+                      accentColor: "#299A16",
+                      marginRight: "12px",
+                      cursor: "pointer",
+                    }}
                   />
-                </span>
-              </li>
-            ))}
+
+                  <span className="flex-grow-1">{job.title}</span>
+                </li>
+              ))}
           </UL>
           {selectedJobsName && (
-            <div className="ms-4">
-              <span
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                background: "#F5F9FF",
+
+                padding: "8px 12px",
+                fontSize: "12px",
+                marginTop: "10px",
+              }}
+            >
+              <span>{selectedJobsName}</span>
+              <X
+                onClick={resetJobs}
                 style={{
-                  fontSize: "10px",
-                  fontWeight: "400",
-                  lineHeight: "20px",
-                  textAlign: "left",
-                  backgroundColor: "#F1F1F1",
-                  border: "0.54px solid #ADADAD",
-                  color: "black",
-                  borderRadius: "10px",
+                  marginLeft: "8px",
+                  cursor: "pointer",
                 }}
-              >
-                <span className="m-2">{selectedJobsName}</span>
-                <span>
-                  <X
-                    strokeWidth={1}
-                    size={10}
-                    style={{ paddingTop: "2px", marginRight: "2px" }}
-                  />
-                </span>
-              </span>
+                size={12}
+              />
             </div>
           )}
 
-          <div style={{ textAlign: "right" }}>
+          <div
+            style={{
+              textAlign: "right",
+              paddingTop: "20px",
+              paddingBottom: "10px",
+            }}
+          >
             <button
               className="btn  pe-4 ps-4 me-1 border-dark"
               onClick={resetJobs}
