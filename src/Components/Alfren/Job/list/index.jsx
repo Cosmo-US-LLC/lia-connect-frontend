@@ -71,9 +71,6 @@ const JobList = () => {
   const [getJobId, setGetJobId] = useState(null);
   const handleClose = () => setShow(false);
 
-  console.log({ jobsList });
-  console.log({ tableColumns });
-
   // function handle dropdown states
 
   const toggleSearchDropdown = () => {
@@ -219,9 +216,9 @@ const JobList = () => {
             {
               name: (
                 <div
-                  style={{ display: "flex", alignItems: "center", gap: "6px",   }}
+                  style={{ display: "flex", alignItems: "center", gap: "6px" }}
                 >
-                  <IoBriefcaseOutline size={16}  />
+                  <IoBriefcaseOutline size={16} />
                   {resp.data.pagination.totalResults === 1 ? "Job" : "Jobs"} (
                   {resp.data.pagination.totalResults})
                 </div>
@@ -251,6 +248,7 @@ const JobList = () => {
                     lineHeight: "1.5",
                   }}
                 >
+                  {console.log("row", row)}
                   <div
                     style={{
                       fontWeight: 400,
@@ -284,7 +282,7 @@ const JobList = () => {
                         fontSize: "14px",
                       }}
                     >
-                      {row.shortlistedCandidates || 0}
+                      {row.shortListedCandidates || 0}
                     </span>
                   </div>
                 </div>
@@ -328,7 +326,7 @@ const JobList = () => {
                         fontSize: "14px",
                       }}
                     >
-                      {row.sentConnectionCount || 0}
+                      {row.connectionRequestsSent || 0}
                     </span>
                   </div>
                   <div
@@ -346,7 +344,7 @@ const JobList = () => {
                         fontSize: "14px",
                       }}
                     >
-                      {row.acceptedConnectionCount || 0}
+                      {row.totalConnectedCandidates || 0}
                     </span>
                   </div>
                 </div>
@@ -390,7 +388,7 @@ const JobList = () => {
                         fontSize: "14px",
                       }}
                     >
-                      {row.sentMessageCount || 0}
+                      {row.totalMessagesSent || 0}
                     </span>
                   </div>
                   <div
@@ -408,7 +406,7 @@ const JobList = () => {
                         fontSize: "14px",
                       }}
                     >
-                      {row.checkedMessageReplyCount || 0}
+                      {row.totalReplies || 0}
                     </span>
                   </div>
                 </div>
@@ -452,7 +450,12 @@ const JobList = () => {
             {
               name: (
                 <div
-                  style={{ display: "flex", alignItems: "center", gap: "6px", backgroundColor: "" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    backgroundColor: "",
+                  }}
                 >
                   <AiOutlineInteraction size={16} />
                   Actions
@@ -564,8 +567,6 @@ const JobList = () => {
     updatedDropdownStates[index] = !updatedDropdownStates[index];
     setPriorityDropdownRow(updatedDropdownStates);
   };
-
-  console.log({ jobsList });
 
   const calculateWidth = (item, bar) => {
     const total =
@@ -744,6 +745,13 @@ const JobList = () => {
             />
           </div>
         ),
+        totalCandidates: <span>{item.totalCandidates || 0}</span>,
+        shortListedCandidates: <span>{item.shortListedCandidates || 0}</span>,
+        connectionRequestsSent: <span>{item.connectionRequestsSent || 0}</span>,
+        totalConnectedCandidates: <span>{item.totalConnectedCandidates || 0}</span>,
+        totalMessagesSent: <span>{item.totalMessagesSent || 0}</span>,
+        totalReplies: <span>{item.totalReplies || 0}</span>,
+
       };
     });
 
@@ -1128,7 +1136,6 @@ const JobList = () => {
                           boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
                         }}
                       >
-              
                         {tableColumns.map((column, index) => (
                           <th
                             key={index}
@@ -1155,7 +1162,6 @@ const JobList = () => {
                             borderBottom: "1px solid #E0E0E0",
                           }}
                         >
-                     
                           {tableColumns.map((column, colIndex) => (
                             <td
                               key={colIndex}
