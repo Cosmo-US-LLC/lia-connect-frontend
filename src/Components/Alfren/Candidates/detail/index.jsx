@@ -172,8 +172,8 @@ const CandidatesList = () => {
                   )}
                 </Col>
                 <Col xl="12" md="6">
-                  {candidateDetails && <ActivityList candidateDetails={candidateDetails} />}
-                  {/* {candidateDetails && <ActivityCard />} */}
+                  {/* {candidateDetails && <ActivityList candidateDetails={candidateDetails} />} */}
+                  {candidateDetails && <ActivityCard />}
                 </Col>
                 {/* <Col xl="12" md="6">
                   <Notes />
