@@ -12,11 +12,16 @@ import JobDetail from "../Components/Alfren/Job/detail/index";
 
 import ChatApp from "../Components/Alfren/ChatApp/index";
 import Settings from "../Components/Alfren/Settings/index";
+import HowItWorks from "Components/HowItWorks";
 
 export const routes = [
   {
     path: `${process.env.PUBLIC_URL}/home`,
     Component: <Default />,
+  },
+  {
+    path: `${process.env.PUBLIC_URL}/how-it-works`,
+    Component: <HowItWorks />,
   },
   {
     path: `${process.env.PUBLIC_URL}/jobs`,

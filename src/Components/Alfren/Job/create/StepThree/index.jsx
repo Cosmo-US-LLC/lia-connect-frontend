@@ -206,12 +206,12 @@ const StepThree = ({
   candidateInOtherJob,
   setCandidateInOtherJob,
   jobId,
+  messageBody, 
+  setMessageBody,
+  category,
+  setCategory
 }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [messageBody, setMessageBody] = useState(
-    "Hi, I came across your profile on LinkedIn and found your experience quite impressive. I believe you could be a great fit for one of our open positions. Let's connect and discuss this opportunity further."
-  );
-  const [category, setCategory] = useState("Intermediate");
   const [tooltipOpen, setTooltipOpen] = useState({
     Broad: false,
     Intermediate: false,
@@ -227,7 +227,8 @@ const StepThree = ({
 
   const handleNextStep = (e) => {
     e.preventDefault(e);
-    submitStepThree(e);
+    handleNext(e);
+    // submitStepThree(e);
   };
 
   const handleMessageChange = (e) => {
@@ -266,24 +267,27 @@ const StepThree = ({
 
   const categories = [
     {
-      title: "Broad",
+      title: "Comprehensive Search",
       icon: <GiMagnifyingGlass size={30} color="#007bff" />,
       description:
-        "Casts a wide net, accepting more candidates with diverse skills.",
-      note: ["Lower skill match threshold", "Suitable for early-stage roles"],
+        "Captures a broad spectrum of candidates with diverse skill sets.",
+        // "Casts a wide net, accepting more candidates with diverse skills.",
+      note: ["Lower skill match threshold", "Targets a wider range of candidates"],
     },
     {
-      title: "Intermediate",
+      title: "Targeted Evaluation",
       icon: <GiCrossedSwords size={30} color="#ffc107" />,
       description:
-        "A balanced approach with moderate skill match requirements.",
-      note: ["Moderate skill match threshold", "Ideal for mid-level roles"],
+        // "A balanced approach with moderate skill match requirements.",
+        "Balances selectivity with flexibility, focusing on candidates who meet moderate skill requirements and experience.",
+      note: ["Moderate skill match threshold", "Targets a moderate range of candidates"],
     },
     {
-      title: "Precise",
+      title: "Precision Screening",
       icon: <GiBullseye size={30} color="#dc3545" />,
-      description: "Targets only the most precisely matched candidates.",
-      note: ["High skill match threshold", "Best for specialised roles"],
+      // description: "Targets only the most precisely matched candidates.",
+      description: "Focuses exclusively on candidates who meet the highest skill match criteria according to your requirements.",
+      note: ["High skill match threshold", "Targets top candidates only"],
     },
   ];
 
@@ -346,7 +350,7 @@ const StepThree = ({
                           className={`p-4 rounded-3 text-center ${
                             category === cat.title
                               ? "border-primary bg-light"
-                              : "border-muted bg-white"
+                              : "bg-white"
                           }`}
                           style={{
                             flex: 1,
@@ -354,6 +358,8 @@ const StepThree = ({
                             borderWidth: "2px",
                             borderStyle: "solid",
                             transition: "all 0.2s ease",
+                            border:
+                              category === cat.title ? "1px solid #1264fd" : "1px solid lightgray",
                             boxShadow:
                               category === cat.title
                                 ? "0 4px 20px rgba(0, 123, 255, 0.2)"
@@ -457,7 +463,8 @@ const StepThree = ({
                           <i className="fa fa-spinner fa-spin" /> Loading...
                         </>
                       ) : (
-                        "Complete"
+                        "Continue"
+                        // "Complete"
                       )}
                     </Link>
                   </Col>

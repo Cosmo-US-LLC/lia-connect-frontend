@@ -514,7 +514,7 @@ const StepOne = ({
                       <div className="mt-2">
                         <H6
                           attrH6={{
-                            className: "d-flex justify-content-between",
+                            className: "d-flex justify-content-between align-items-center",
                           }}
                         >
                           {!linkedInSearchButton ? (
@@ -556,7 +556,7 @@ const StepOne = ({
                                 display: "inline-block",
                                 fontWeight: "500",
                                 fontSize: "12px",
-                                marginBottom: "10px",
+                                // marginBottom: "10px",
                               }}
                             >
                               How to Get URL
