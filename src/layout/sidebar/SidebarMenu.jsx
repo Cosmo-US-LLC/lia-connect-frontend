@@ -101,7 +101,7 @@ const SidebarMenu = ({
           />
 
           {/* <TrialAlertItem/> */}
-          <div style={{ height: "45%", position: "relative" }}>
+          <div style={{ height: "35%", position: "relative" }}>
             <Link
               to="/how-it-works"
               style={{

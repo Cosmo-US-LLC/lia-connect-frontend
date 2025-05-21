@@ -14,6 +14,7 @@ import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActi
 import { toast } from "react-toastify";
 import JobSkills from "./JobSkills";
 import ExpeirenceCard from "./ExperienceCard";
+import ActivityList from "./ActivityList";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
@@ -166,6 +167,7 @@ const CandidatesList = () => {
                   )}
                 </Col>
                 <Col xl="12" md="6">
+                  {candidateDetails && <ActivityList candidateDetails={candidateDetails} />}
                   {candidateDetails && <ActivityCard />}
                 </Col>
                 {/* <Col xl="12" md="6">
