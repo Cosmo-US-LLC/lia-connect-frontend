@@ -650,7 +650,7 @@ const TopCandidate = ({ id }) => {
                               fontWeight: 400,
                             }}
                           >
-                            {topCand?.experienceInYear} Years
+                            {topCand?.experienceInYear}
                           </p>
                           <p
                             style={{
@@ -659,7 +659,7 @@ const TopCandidate = ({ id }) => {
                               fontWeight: 400,
                             }}
                           >
-                            {topCand?.state || "Location not specified"}
+                            {topCand?.state}
                           </p>
                         </div>
                         <div style={{ display: "flex", gap: "12px" }}>

@@ -95,7 +95,7 @@ const DetailsCard = ({ candidateDetails }) => {
               </div>
             </Col>
           </Row>
-          <div className="text-center mt-1 mb-3">
+          {/* <div className="text-center mt-1 mb-3">
             {" "}
             <Image
               attrImage={{
@@ -103,8 +103,8 @@ const DetailsCard = ({ candidateDetails }) => {
                 src: lineBreaker,
               }}
             />
-          </div>
-          <Row>
+          </div> */}
+          {/* <Row>
             <Col xl="12" xs="6" className="text-left">
               <div style={{ display: "flex", alignItems: "flex-start" }}>
                 <div>
@@ -146,7 +146,7 @@ const DetailsCard = ({ candidateDetails }) => {
                 </div>
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </Card>
     </Fragment>

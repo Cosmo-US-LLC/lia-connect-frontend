@@ -52,6 +52,7 @@ const StepOne = ({
   hasErrors,
   getCandidateCount,
   setValue,
+  fieldErrors
 }) => {
   console.log("hasErrors i also want this", !hasErrors);
   const options = [
@@ -238,7 +239,7 @@ const StepOne = ({
                       <JobTitleAutocomplete
                         value={jobName}
                         onChange={setJobName}
-                        error={!jobName}
+                        error={fieldErrors?.['jobTitle']?.isEmpty}
                         register={register}
                         clearErrors={clearErrors}
                       />
@@ -341,7 +342,7 @@ const StepOne = ({
                         skillInputValue={skillInputValue}
                         setSkillInputValue={setSkillInputValue}
                         register={register}
-                        error={errors.skillInputValue}
+                        error={fieldErrors?.['skills']?.isEmpty}
                         jobTitle={jobName}
                         clearErrors={clearErrors}
                       />
@@ -513,7 +514,7 @@ const StepOne = ({
                       <div className="mt-2">
                         <H6
                           attrH6={{
-                            className: "d-flex justify-content-between",
+                            className: "d-flex justify-content-between align-items-center",
                           }}
                         >
                           {!linkedInSearchButton ? (
@@ -555,7 +556,7 @@ const StepOne = ({
                                 display: "inline-block",
                                 fontWeight: "500",
                                 fontSize: "12px",
-                                marginBottom: "10px",
+                                // marginBottom: "10px",
                               }}
                             >
                               How to Get URL
@@ -573,7 +574,7 @@ const StepOne = ({
                             <div style={{ position: "relative" }}>
                               <input
                                 style={{
-                                  border: errors.linkedInSearch
+                                  border: fieldErrors?.['linkedinUrl']?.isEmpty
                                     ? ".1px solid #f2abab"
                                     : linkedInSearch
                                     ? "1px solid #efefef"
@@ -616,9 +617,9 @@ const StepOne = ({
                                     />
                                   </span>
                                 )}
-                              {errors.linkedInSearch && (
-                                <div className="invalid-feedback text-start">
-                                  {errors.linkedInSearch.message}
+                              {fieldErrors?.['linkedinUrl']?.isEmpty && (
+                                <div className="invalid-feedback text-start ">
+                                  {/* {errors.linkedInSearch.message} */} required
                                 </div>
                               )}
                             </div>
@@ -687,7 +688,7 @@ const StepOne = ({
                               <div>
                                 <input
                                   style={{
-                                    border: errors.maxCandidates
+                                    border: fieldErrors?.['maxCandidates']?.isEmpty
                                       ? ".1px solid #f2abab"
                                       : maxCandidates
                                       ? "1px solid #efefef"

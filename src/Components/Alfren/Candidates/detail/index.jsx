@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActions";
 import { toast } from "react-toastify";
+import JobSkills from "./JobSkills";
+import ExpeirenceCard from "./ExperienceCard";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
@@ -19,6 +21,7 @@ const CandidatesList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
+  console.log("candidateDetails", candidateDetails);
 
   useEffect(() => {
     getCandidateDetails();
@@ -39,10 +42,15 @@ const CandidatesList = () => {
     );
   };
 
+  console.log(candidateDetails);
+
   return (
     <Fragment>
-      <Container fluid={true}>
-        <div style={{ textAlign: "right" }} >
+      <Container
+        className="pt-5"
+        style={{ maxHeight: "80vh", overflowY: "scroll" }}
+      >
+        <div style={{ textAlign: "right" }}>
           <button className="btn btn-primary me-2 py-1 px-2 mt-2">
             <Image
               attrImage={{
@@ -52,7 +60,7 @@ const CandidatesList = () => {
             />{" "}
             Messages
           </button>
-          <button
+          {/* <button
             className="btn btn-outline-dark py-1 px-2 mt-2"
             id="TooltipBlacklist"
           >
@@ -63,8 +71,8 @@ const CandidatesList = () => {
               }}
             />{" "}
             Add to Blacklist{" "}
-          </button>
-          <ToolTip
+          </button> */}
+          {/* <ToolTip
             attrToolTip={{
               placement: "bottom",
               isOpen: basictooltip,
@@ -128,9 +136,9 @@ const CandidatesList = () => {
                 </Col>
               </Row>
             </div>
-          </ToolTip>
+          </ToolTip> */}
         </div>
-        <div className="user-profile mt-4  ">
+        <div className="user-profile mt-4">
           <Row>
             <Col xxl="5" xl="5" className="col-ed-5 box-col-5">
               <Row>
@@ -140,21 +148,31 @@ const CandidatesList = () => {
                   )}
                 </Col>
                 <Col xl="12" md="6">
+                  {candidateDetails && (
+                    <ExpeirenceCard candidateDetails={candidateDetails} />
+                  )}
+                </Col>
+                {/* <Col xl="12" md="6">
                 {candidateDetails && (
                   <DetailsCard candidateDetails={candidateDetails} />
                 )}
-                </Col>
-               
+                </Col> */}
               </Row>
             </Col>
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
               <Row>
                 <Col xl="12" md="6">
-                  <ActivityCard />
+                  <ActivityCard
+                    jobId={candidateDetails?.candidate?.jobs[0]?.id}
+                    candidateId={candidateDetails?.candidate?.id}
+                  />
+                  {candidateDetails && (
+                    <JobSkills candidateDetails={candidateDetails} />
+                  )}
                 </Col>
-                <Col xl="12" md="6">
+                {/* <Col xl="12" md="6">
                   <Notes />
-                </Col>
+                </Col> */}
               </Row>
             </Col>
           </Row>
