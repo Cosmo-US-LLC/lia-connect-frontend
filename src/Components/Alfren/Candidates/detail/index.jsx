@@ -166,13 +166,9 @@ const CandidatesList = () => {
                     jobId={candidateDetails?.candidate?.jobs[0]?.id}
                     candidateId={candidateDetails?.candidate?.id}
                   />
-                  <JobSkills candidateDetails={candidateDetails} />
                   {candidateDetails && (
                     <JobSkills candidateDetails={candidateDetails} />
                   )}
-                </Col>
-                <Col xl="12" md="6">
-                  {candidateDetails && <ActivityCard />}
                 </Col>
                 {/* <Col xl="12" md="6">
                   <Notes />

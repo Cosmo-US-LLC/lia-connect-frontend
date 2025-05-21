@@ -12,10 +12,10 @@ import { INSTANCE } from "Config/axiosInstance";
 
 const ActivityCard = ({ jobId, candidateId }) => {
   const [activityData, setActivityData] = React.useState([]);
-  console.log({ jobId, candidateId });
 
   useEffect(() => {
     const fetchCandidateActivity = async () => {
+      console.log({ jobId, candidateId });
       try {
         const response = await INSTANCE.post("/candidate/activity", {
           candidateId: candidateId,
