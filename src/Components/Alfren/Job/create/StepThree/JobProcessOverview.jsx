@@ -33,9 +33,10 @@ const JobProcessOverview = () => {
   ];
   const steps2 = [
     {
-      title: "Connection Requests",
-      icon: <FaHandshake size={30} color="#28A745" />,
-      description: "Sends connection requests to the most relevant candidates.",
+      title: "Candidate Replies",
+      icon: <FaComments size={30} color="#6C757D" />,
+      description:
+      "Monitors candidate responses to complete the hiring process.",
     },
     {
       title: "Message to Candidates",
@@ -43,10 +44,9 @@ const JobProcessOverview = () => {
       description: "Sends a personalised message to connected candidates.",
     },
     {
-      title: "Candidate Replies",
-      icon: <FaComments size={30} color="#6C757D" />,
-      description:
-        "Monitors candidate responses to complete the hiring process.",
+      title: "Connection Requests",
+      icon: <FaHandshake size={30} color="#28A745" />,
+      description: "Sends connection requests to the most relevant candidates.",
     },
   ];
 
@@ -95,7 +95,7 @@ const JobProcessOverview = () => {
                 </CardBody>
               </Card>
               {index < steps2.length - 1 && (index + 1) % 3 !== 0 && (
-                <div className="arrow">
+                <div className="arrow" style={{ transform: "rotate(180deg)" }}>
                   <span>&#10132;</span>
                 </div>
               )}
