@@ -74,7 +74,12 @@ const ProfileCard = ({ candidateDetails }) => {
                   )}
 
                   <div className="desc mt-2">
-                    <strong>{candidateDetails?.candidate?.experienceInYear || "0"}</strong> Years
+                    <strong>
+                      {parseFloat(
+                        candidateDetails?.candidate?.experienceInYear
+                      ).toFixed(1) || "0"}
+                    </strong>{" "}
+                    Years
                   </div>
                 </div>
 

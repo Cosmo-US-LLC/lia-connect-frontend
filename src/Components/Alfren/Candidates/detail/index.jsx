@@ -9,17 +9,19 @@ import ChatIcon from "../../../../assets/used-files/icons/Chat.svg";
 import BlacklistIcon from "../../../../assets/used-files/icons/Blacklisted.svg";
 import CommentInfoIcon from "../../../../assets/used-files/icons/commentInfo.svg";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActions";
 import { toast } from "react-toastify";
 import JobSkills from "./JobSkills";
 import ExpeirenceCard from "./ExperienceCard";
 import ActivityList from "./ActivityList";
+import { Link } from "react-router-dom";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
   console.log("candidateDetails", candidateDetails);
@@ -43,7 +45,8 @@ const CandidatesList = () => {
     );
   };
 
-  console.log(candidateDetails);
+  // console.log("candidateDetails", candidateDetails?.candidate?.activities?.find((activity) => activity?.messageSent == true)?.messageSent);
+  const canMessage = candidateDetails?.candidate?.activities?.find((activity) => activity?.messageSent == true)?.messageSent || false;  
 
   return (
     <Fragment>
@@ -52,7 +55,7 @@ const CandidatesList = () => {
         style={{ maxHeight: "80vh", overflowY: "scroll" }}
       >
         <div style={{ textAlign: "right" }}>
-          <button className="btn btn-primary me-2 py-1 px-2 mt-2">
+          <Link to={candidateDetails?.candidate?.linkedIn} target="_blank" className="btn btn-primary me-2 py-1 px-2 mt-2" disabled={!canMessage} title={canMessage ? "" : "Please wait for Alfren HR to send the message."}>
             <Image
               attrImage={{
                 src: ChatIcon,
@@ -60,7 +63,7 @@ const CandidatesList = () => {
               }}
             />{" "}
             Messages
-          </button>
+          </Link>
           {/* <button
             className="btn btn-outline-dark py-1 px-2 mt-2"
             id="TooltipBlacklist"
@@ -163,18 +166,19 @@ const CandidatesList = () => {
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
               <Row>
                 <Col xl="12" md="6">
-                  <ActivityCard
-                    jobId={candidateDetails?.candidate?.jobs[0]?.id}
-                    candidateId={candidateDetails?.candidate?.id}
-                  />
                   {candidateDetails && (
                     <JobSkills candidateDetails={candidateDetails} />
                   )}
+                  {candidateDetails && (
+                    <ActivityCard
+                      jobId={candidateDetails?.candidate?.jobs[0]?.id}
+                      candidateId={candidateDetails?.candidate?.id}
+                    />
+                  )}
                 </Col>
-                <Col xl="12" md="6">
-                  {/* {candidateDetails && <ActivityList candidateDetails={candidateDetails} />} */}
+                {/* <Col xl="12" md="6">
                   {candidateDetails && <ActivityCard />}
-                </Col>
+                </Col> */}
                 {/* <Col xl="12" md="6">
                   <Notes />
                 </Col> */}
