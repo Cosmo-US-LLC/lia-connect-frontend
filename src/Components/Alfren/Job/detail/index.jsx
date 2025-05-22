@@ -114,7 +114,7 @@ const JobDetail = () => {
 
   console.log({ jobDetails });
 
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const toggleSwitch = () => {
@@ -191,9 +191,7 @@ const JobDetail = () => {
                     alignItems: "center",
                   }}
                 >
-                  <span>Active</span>
-
-                  {/* Tooltip to show the active/inactive state */}
+                  <span>{isActive ? "Active" : "Inactive"}</span>
                   <Label
                     className="switch"
                     id="switchTooltip"
@@ -204,14 +202,14 @@ const JobDetail = () => {
                       checked={isActive}
                       onChange={toggleSwitch}
                       style={{
-                        background: isActive ? "darkred" : "#E0E0E0",
+                        background: isActive ? "#299A16" : "#E0E0E0",
                         cursor: "pointer",
                       }}
                     />
                     <span
                       className="switch-state"
                       style={{
-                        backgroundColor: isActive ? "darkred" : "#E0E0E0",
+                        backgroundColor: isActive ? "#299A16" : "#E0E0E0",
                       }}
                     ></span>
                   </Label>
@@ -221,6 +219,14 @@ const JobDetail = () => {
                     isOpen={tooltipOpen}
                     target="switchTooltip"
                     toggle={toggleTooltip}
+                    style={{
+                      backgroundColor: "black",
+                      color: "white",
+                      borderRadius: "5px",
+                      padding: "5px",
+                      marginBottom: "5px",
+                    }}
+                    className="no-notch-tooltip"
                   >
                     {isActive
                       ? "Headhunting is in progress."
@@ -260,55 +266,28 @@ const JobDetail = () => {
                   <Col xl="6" md="6">
                     <PotentialCandidates Message={jobStats?.message} />
                   </Col>
+                </Row>
+              </Col>
+              <Row>
+                <Col xl="6" className="col-ed-5 box-col-5 p-0">
+                  <TopCandidate id={jobDetails.id} />
+                </Col>
 
-                  {/* <Col xl="4" md="6">
-                    <Priority jobDetails={jobDetails} />
-                  </Col> */}
-                </Row>
-              </Col>
-              <Col xl="12" className="col-ed-5 box-col-5 p-0">
-                <Row>
-                  <Col xl="6" md="6">
-                    <TopCandidate id={jobDetails.id} />
-                  </Col>
-                  <Col xl="6" md="6">
-                    <AvgExp
-                      AvgExpStatsData={experienceData}
-                      avgExperience={jobStats?.avgExperience}
-                    />
-                  </Col>
-                  {/* <Col xl="4" md="6">
-                    <ResponseRate stats={jobStats} />
-                  </Col> */}
-                </Row>
-              </Col>
-              <Col xl="12" className="col-ed-5 box-col-5 p-0">
-                <Row>
-                  <Col xl="6" md="6">
-                    <CandidatesByCity CityStatsData={jobStats?.byState} />
-                  </Col>
-                  <Col xl="6" md="6">
-                    <RequiredSkills jobDetails={jobDetails} />
-                  </Col>
+                <Col xl="6" >
+                  <Row>
+                    <Col xl="12" className="mb-4" style={{marginLeft:"16px"}}>
+                      <AvgExp
+                        AvgExpStatsData={experienceData}
+                        avgExperience={jobStats?.avgExperience}
+                      />
+                    </Col>
 
-                  {/* <Col xl="4" md="6">
-                    <CandidateFunnel
-                      CandidateFunnel={jobStats?.candidateFunnel}
-                    />
-                  </Col> */}
-                </Row>
-              </Col>
-              {/* <Col
-                xl="12"
-                className="col-ed-5 box-col-5"
-                style={{ marginBottom: "30px" }}
-              >
-                <Row>
-                  <Col xl="12" md="12">
-                   <GenderGraph stats={jobStats?.byGender} />
-                  </Col>
-                </Row>
-              </Col> */}
+                    <Col xl="12" className="mb-4" style={{marginLeft:"16px"}}>
+                      <RequiredSkills jobDetails={jobDetails} />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
             </Row>
           </div>
         </Container>
