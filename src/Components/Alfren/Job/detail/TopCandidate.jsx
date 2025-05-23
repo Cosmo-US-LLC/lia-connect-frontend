@@ -18,6 +18,7 @@ import { BsLinkedin } from "react-icons/bs";
 import { RxDoubleArrowRight } from "react-icons/rx";
 import { TbMessageFilled } from "react-icons/tb";
 import { MdMessage } from "react-icons/md";
+import { BiLinkExternal } from "react-icons/bi";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
@@ -51,7 +52,7 @@ const TopCandidate = ({ id }) => {
   };
 
   const handleAllCandidateClick = () => {
-    navigate(`/candidates`);
+    navigate(`/candidates/${id}`);
   };
 
   console.log({ topCandidateDetail });
@@ -252,14 +253,13 @@ const TopCandidate = ({ id }) => {
           >
             {topCandidateDetail.map((topCand, index) => (
               <Card
-                onClick={() => handleCandidateClick(topCand.id)}
+                // onClick={() => handleCandidateClick(topCand.id)}
                 key={index}
                 style={{
                   border: "1px solid #EBF1FC",
                   boxShadow: "3px 3px 3px 0px #BA9FC914",
                   marginBottom: "10px",
                   cursor: "pointer",
-                  pointerEvents: "none",
                 }}
               >
                 <CardBody style={{ padding: "6px" }}>
@@ -303,10 +303,12 @@ const TopCandidate = ({ id }) => {
                       >
                         <div>
                           <p
-                            style={{ fontSize: "14px", fontWeight: 400 }}
+                            style={{ fontSize: "14px", fontWeight: 400, color: "#1264FD", cursor: "pointer", display: "flex", alignItems: "center", gap: "3px" }}
                             className="mb-0"
+                            onClick={() => handleCandidateClick(topCand.id)}
                           >
                             {topCand.name}
+                            <BiLinkExternal style={{ fontSize: "14px", fontWeight: 400 }}/>
                           </p>
                           <p
                             style={{
@@ -395,8 +397,9 @@ const TopCandidate = ({ id }) => {
                             <p
                               style={{
                                 color: "#299A16",
-                                fontSize: "16px",
+                                fontSize: "18px",
                                 fontWeight: 600,
+                                paddingTop: "2px",
                               }}
                             >
                               {topCand.profileScore}%
