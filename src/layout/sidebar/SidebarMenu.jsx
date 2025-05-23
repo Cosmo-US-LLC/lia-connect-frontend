@@ -101,24 +101,24 @@ const SidebarMenu = ({
           />
 
           {/* <TrialAlertItem/> */}
-          <div style={{ height: "35%", position: "relative" }}>
+          <div style={{ height: "25%", position: "relative" }}>
             <Link
               to="/how-it-works"
               style={{
-                color: "black",
+                color: "white",
                 position: "absolute",
                 bottom: "0",
                 left: "35px",
-                background: "#f0f0f0",
+                background: "#000",
                 borderRadius: "12px",
-                padding: "10px",
+                padding: "6px",
                 width: "70%",
               }}
-              className="shadow-sm d-flex flex-column align-items-center gap-2"
+              className="d-flex flex-column align-items-center gap-2"
             >
-              <img src={HowItWorks} alt="How it works icon" style={{ width: "60px", height: "auto" }} />
+              {/* <img src={HowItWorks} alt="How it works icon" style={{ width: "60px", height: "auto" }} /> */}
               {/* <br /> */}
-              <strong>How It Works</strong>
+              How It Works?
             </Link>
           </div>
 
