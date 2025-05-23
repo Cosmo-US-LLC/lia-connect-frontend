@@ -22,17 +22,17 @@
   height: 200px;
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
   border: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
+  /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+  /* cursor: pointer; */
   padding: 10px;
 }
 
-.job-process-card:hover {
+/* .job-process-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
+} */
 
 .step-icon {
   font-size: 26px;
@@ -123,7 +123,7 @@
 
 .category-note {
   list-style-type: disc;
-  padding-left: 1.5rem;
+  padding-left: 0.9rem;
   margin: 0;
   text-align: left;
 }
@@ -142,4 +142,13 @@
   .category-card {
     min-width: 100%;
   }
+}
+
+
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

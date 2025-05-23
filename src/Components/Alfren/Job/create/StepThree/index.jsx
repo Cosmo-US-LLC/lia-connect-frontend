@@ -339,7 +339,7 @@ const StepThree = ({
                       }}
                     >
                       Candidate Selection Criteria{" "}
-                      <span className="text-danger">*</span>
+                      {/* <span className="text-danger">*</span> */}
                     </h6>
                     <div className="d-flex gap-3 pb-4 ">
                       {categories.map((cat) => (
@@ -371,6 +371,7 @@ const StepThree = ({
                             style={{
                               fontWeight: "600",
                               marginTop: "10px",
+                              textAlign: "left",
                               color:
                                 category === cat.title ? "#007bff" : "#333",
                             }}
@@ -380,6 +381,7 @@ const StepThree = ({
                           <p
                             style={{
                               fontSize: "13px",
+                              textAlign: "left",
                               color:
                                 category === cat.title ? "#007bff" : "#666",
                             }}
@@ -408,8 +410,8 @@ const StepThree = ({
                 <Row>
                   <Col xl="12" className="mb-4 mt-4">
                     <FormGroup>
-                      <Label for="messageBody" style={{ fontWeight: "600" }}>
-                        Message to Candidate (10 to 500 characters){" "}
+                      <Label for="messageBody" style={{ fontWeight: "600", textAlign: "left", width: "100%", }}>
+                        Message to Candidate (10 to 500 characters)
                         <span className="text-danger">*</span>
                       </Label>
                       <textarea
