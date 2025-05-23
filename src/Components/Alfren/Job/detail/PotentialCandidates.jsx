@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Card, CardBody } from "reactstrap";
-import { BsThreeDots } from "react-icons/bs";
 import { BiSolidCheckbox } from "react-icons/bi";
 
 const PotentialCandidates = ({ Message }) => {
@@ -51,174 +50,100 @@ const PotentialCandidates = ({ Message }) => {
                 Messages
               </span>
             </p>
-            {/* <div
-              style={{
-                position: "relative",
-                width: "15%",
-                borderBottom: "1px solid #1264FD",
-                left: "12px",
-                bottom: "4px ",
-              }}
-            ></div> */}
             <div
               style={{
-                marginLeft: "17px",
+                minWidth: "370px",
                 display: "flex",
+                justifyContent: "start",
+                alignItems: "start",
+                textAlign: "start",
                 flexDirection: "column",
-                justifyContent: "center",
-                alignContent: "center",
+                paddingTop: "20px",
+                paddingLeft: "30px",
               }}
             >
-              <h1
-                style={{
-                  fontWeight: "bolder",
-                  fontSize: "50px",
-                  color: "#299A16",
-                  marginTop: "22px",
-                  marginLeft: "87px",
-                }}
-              >
-                {Message?.accepted}/{" "}
-                <strong
-                  style={{
-                    fontSize: "36px",
-                    color: "#E4AC00",
-                    position: "relative",
-                    right: "14px",
-                  }}
-                >
-                  {Message?.sent}{" "}
-                </strong>
-              </h1>
-
-              <div style={{ display: "flex", gap: "10px" }}>
-                <p
-                  style={{
-                    width: "290px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <BiSolidCheckbox
-                    style={{ color: "#299A16", marginRight: "4px" }}
-                  />
-                  Reply Received
-                </p>
-                <p
-                  style={{
-                    width: "100px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <BiSolidCheckbox
-                    style={{ color: "#FECF41", marginRight: "4px" }}
-                  />
-                  Send
-                </p>
-              </div>
-            </div>
-
-            {/* <div>
-              <h1
-                style={{
-                  fontWeight: "bolder",
-                  fontSize: "50px",
-                  color: "#299A16",
-                  marginTop: "22px",
-                  marginLeft: "17px",
-                }}
-              >
-                {Message?.accepted}/{" "}
-                <strong
-                  style={{
-                    fontSize: "26px",
-                    color: "#E4AC00",
-                    position: "relative",
-                    right: "14px",
-                  }}
-                >
-                  {Message?.sent}{" "}
-                </strong>
-              </h1>
               <p>
                 <span>
                   <BiSolidCheckbox
-                    style={{ color: "#299A16", marginBottom: "-2px" }}
-                  />
-                </span>{" "}
-                Reply Received
-              </p>
-              <span
-                style={{
-                  position: "relative",
-                  bottom: "81px",
-                  left: "116px",
-                  fontSize: "15px",
-                }}
-              >
-                <span>
-                  <BiSolidCheckbox
-                    style={{ color: "#FECF41", marginBottom: "-2px" }}
+                    style={{
+                      color: "#E4AC00",
+                      marginBottom: "-2px",
+                      marginRight: "3px",
+                    }}
                   />
                 </span>
-                send
-              </span>
-            </div> */}
+                Send
+                <strong
+                  style={{
+                    fontSize: "22px",
+                    color: "#E4AC00",
+                    marginLeft: "12px",
+                  }}
+                >
+                  {Message?.sent}
+                </strong>
+              </p>
+              <p style={{ marginTop: "-10px" }}>
+                <span>
+                  <BiSolidCheckbox
+                    style={{
+                      color: "#299A16",
+                      marginBottom: "-3px",
+                      marginRight: "3px",
+                    }}
+                  />
+                </span>
+                Reply Received
+                <strong
+                  style={{
+                    fontSize: "22px",
+                    color: "#299A16",
+                    marginLeft: "12px",
+                  }}
+                >
+                  {Message?.accepted}
+                </strong>
+              </p>
+            </div>
           </div>
-
           <CardBody
             style={{
               padding: "20px",
               minHeight: "177px",
               display: "flex",
-              flexDirection: "column",
               alignItems: "end",
-              backgroundColor: "white",
               justifyContent: "end",
             }}
             className="potential-candidate-style"
           >
-            {/* <p
+            <div
               style={{
-                marginBottom: '0px',
-                fontSize: "12px",
-                fontWeight: 400,
-                position: "relative",
-                width: "100%",
-                color: "#595959",
-                textAlign: 'end'
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                width: "30%",
               }}
             >
-
-              <img style={{ marginRight: '50px' }} src="../../face.png" alt="no-img" />  
-              <p style={{ marginRight: '80px' }} className="mb-0">Super!</p>
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  width: "25%",
-                  borderBottom: "1px solid #1264FD",
-                }}
-
-              ></span>
-            </p> */}
-            <div className="text-end">
               <h4
                 style={{
                   fontWeight: 900,
                   fontSize: "67px",
                   color: "#299A16",
-                  textAlign: "end",
                   marginBottom: "0",
+                  textAlign: "center",
                 }}
               >
                 {Message?.acceptancePercentage}%{" "}
               </h4>
               <div
-                style={{ fontSize: "14px", color: "#299A16" }}
-                className="text-end"
+                style={{
+                  fontSize: "15px",
+                  color: "#299A16",
+                  textAlign: "end",
+                  width: "130px",
+                }}
               >
                 Reply Rate
               </div>

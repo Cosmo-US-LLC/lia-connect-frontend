@@ -69,39 +69,44 @@ const BlackList = ({ Connection }) => {
             <div
               style={{
                 minWidth: "370px",
-                marginBottom: "35px",
-                marginTop: "26px",
+                 display: "flex",
+                justifyContent: "start",
+                alignItems: "start",
+                textAlign: "start",
+                flexDirection: "column",
+                paddingTop: "20px",
+                paddingLeft: "26px",
               }}
             >
-              <p style={{ position: "relative", right: "50px" }}>
+              <p  >
                 <span>
                   <BiSolidCheckbox
-                    style={{ color: "#FECF41", marginBottom: "-2px" }}
+                    style={{ color: "#E4AC00", marginBottom: "-2px", marginRight: "3px", }}
                   />
                 </span>
                 Connection Request Sent
                 <strong
                   style={{
-                    fontSize: "18px",
-                    color: "#FECF41",
-                    marginLeft: "10px",
+                    fontSize: "22px",
+                    color: "#E4AC00",
+                    marginLeft: "12px",
                   }}
                 >
                   {Connection?.sent}
                 </strong>
               </p>
-              <p style={{ position: "relative", right: "31px" }}>
+              <p style={{ marginTop: "-10px" }} >
                 <span>
                   <BiSolidCheckbox
-                    style={{ color: "#299A16", marginBottom: "-2px" }}
+                    style={{ color: "#299A16", marginBottom: "-3px", marginRight: "3px", }}
                   />
                 </span>
                 Connection Request Accepted
                 <strong
                   style={{
-                    fontSize: "18px",
+                    fontSize: "22px",
                     color: "#299A16",
-                    marginLeft: "7px",
+                    marginLeft: "12px",
                   }}
                 >
                   {Connection?.accepted}
@@ -112,61 +117,44 @@ const BlackList = ({ Connection }) => {
 
           <CardBody
             style={{
-              padding: "20px",
+              width: "100%",
               height: "100%",
+              minHeight: "170px",
               display: "flex",
-              flexDirection: "column",
               alignItems: "end",
-              backgroundColor: "white",
               justifyContent: "end",
             }}
             className="blacklist-style"
           >
-            {/* <p
-              style={{
-                marginBottom: '0px',
-                fontSize: "12px",
-                fontWeight: 400,
-                position: "relative",
-                width: "100%",
-                color: "#595959",
-                textAlign: 'end'
-              }}
-            >
-              <span
-                style={{
-                  position: "absolute",
-                  bottom: "0",
-                  left: "0",
-                  width: "25%",
-                  borderBottom: "1px solid #1264FD",
-                }}
-
-              ></span>
-            </p> */}
             <div
-              className="text-end"
-              // style={
-              //   {
-              //     marginTop: "40px",
-              //     marginRight: "6px"
-              //   }
-              // }
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                width: "30%",
+              }}
             >
               <h4
                 style={{
                   fontWeight: 900,
                   fontSize: "67px",
                   color: "#1264FD",
-                  textAlign: "end",
                   marginBottom: "0",
+                  textAlign: "center",
                 }}
               >
                 {Connection?.acceptancePercentage}%{" "}
               </h4>
               <div
-                style={{ fontSize: "14px", color: "#1264FD" }}
-                className="text-end"
+                style={{
+                  fontSize: "15px",
+                  color: "#1264FD",
+                  textAlign: "end",
+                  width: "130px",
+                  paddingRight: "10px",
+                }}
               >
                 Acceptance
               </div>
