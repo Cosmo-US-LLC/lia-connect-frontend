@@ -36,6 +36,10 @@ export const routes = [
     Component: <JobDetail />,
   },
   {
+    path: `${process.env.PUBLIC_URL}/candidates`,
+    Component: <CandidateLists />,
+  },
+  {
     path: `${process.env.PUBLIC_URL}/candidates/:id`,
     Component: <CandidateLists />,
   },
