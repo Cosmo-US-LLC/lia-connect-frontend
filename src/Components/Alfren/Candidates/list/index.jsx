@@ -12,7 +12,7 @@ import { Input, Label, Media } from "reactstrap";
 import { Image } from "../../../../AbstractElements";
 import user1 from "../../../../assets/images/user/user.png";
 import { Mail } from "react-feather";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Check, Search, User, MapPin } from "react-feather";
 import Jobs from "Components/Alfren/Job/list/modals/jobs";
 import Priority from "Components/Alfren/Job/list/modals/priority";
@@ -56,6 +56,10 @@ const valueList = [
 
 const DataTables = () => {
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const jobListId = searchParams?.get("jobId");
+  console.log(jobListId)
+
   const [candidateList, setCandidateList] = useState([]);
   const [searchDropdown, setsSearchDropdown] = useState(false);
   const [priorityDropdown, setPriorityDropdown] = useState(false);
@@ -70,8 +74,8 @@ const DataTables = () => {
   const [jobsList, setJobsList] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
   const [paginatedUpdated, setPaginatedUpdated] = useState(false);
-  const [searchJobs, setSearchJobs] = useState([]);
-  const [isJobSelected, setIsJobSelected] = useState(false);
+  const [searchJobs, setSearchJobs] = useState(jobListId ? [jobListId] : []);
+  const [isJobSelected, setIsJobSelected] = useState(jobListId ? true : false);
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [activeOnly, setActiveOnly] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -212,7 +216,14 @@ const DataTables = () => {
 
   useEffect(() => {
     fetchCandidatePaginated();
-  }, [paginatedUpdated, searchJobs, name, isStatusSelected, isLastActionSelected, activeOnly]);
+  }, [
+    paginatedUpdated,
+    searchJobs,
+    name,
+    isStatusSelected,
+    isLastActionSelected,
+    activeOnly,
+  ]);
 
   const fetchCandidatePaginated = async (e) => {
     const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
@@ -388,6 +399,10 @@ const DataTables = () => {
                   border: "0px",
                 }}
                 src={item.image || user1}
+                onError={(e) => {
+                  e.target.onerror = null; // Prevents infinite loop if placeholder also fails
+                  e.target.src = user1;
+                }}
                 // alt={item.name}
               />
               <div
@@ -455,35 +470,39 @@ const DataTables = () => {
         ) : (
           "N/A"
         ),
-        lastAction: item.lastAction
-          ? (() => {
-              // const [actionName, actionDate] = item.lastAction.split(" on ");
-              return (
-                <div style={{}}>
-                  <span
-                    // className="f-w-700"
-                    style={{
-                      // color: "#299A16",
-                      color: "#000",
-                      fontWeight: "400",
-                      display: "inline-flex",
-                      fontSize: "11px",
-                    }}
-                  >
-                    {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
-                    <span style={{}}>{optionList[valueList?.indexOf(item.lastAction)]}</span>
-                    {/* <Check strokeWidth={0.5} size={15} /> */}
+        lastAction: item.lastAction ? (
+          (() => {
+            // const [actionName, actionDate] = item.lastAction.split(" on ");
+            return (
+              <div style={{}}>
+                <span
+                  // className="f-w-700"
+                  style={{
+                    // color: "#299A16",
+                    color: "#000",
+                    fontWeight: "400",
+                    display: "inline-flex",
+                    fontSize: "11px",
+                  }}
+                >
+                  {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
+                  <span style={{}}>
+                    {optionList[valueList?.indexOf(item.lastAction)]}
                   </span>
-                  {/* <div
+                  {/* <Check strokeWidth={0.5} size={15} /> */}
+                </span>
+                {/* <div
                     className=""
                     style={{ color: "#C6C9F0", fontSize: "11px" }}
                   >
                     {actionDate}
                   </div> */}
-                </div>
-              );
-            })()
-          : <span style={{color: "lightgray"}}>N/A</span>,
+              </div>
+            );
+          })()
+        ) : (
+          <span style={{ color: "lightgray" }}>N/A</span>
+        ),
 
         status: item.status ? (
           <div
@@ -980,7 +999,11 @@ const DataTables = () => {
                           className="ms-2"
                           style={{ fontSize: "12px", marginRight: "5px" }}
                         >
-                          {isLastActionSelected ? optionList[valueList?.indexOf(isLastActionSelected)] : "Last Action"}
+                          {isLastActionSelected
+                            ? optionList[
+                                valueList?.indexOf(isLastActionSelected)
+                              ]
+                            : "Last Action"}
                         </span>
                         <ChevronDown strokeWidth={1} size={16} />
                       </button>
@@ -1260,7 +1283,10 @@ const DataTables = () => {
                           marginRight: "5px",
                         }}
                       >
-                        Last Action: <strong>{optionList[valueList?.indexOf(isLastActionSelected)]}</strong>
+                        Last Action:{" "}
+                        <strong>
+                          {optionList[valueList?.indexOf(isLastActionSelected)]}
+                        </strong>
                       </span>
                       <button
                         onClick={() => {

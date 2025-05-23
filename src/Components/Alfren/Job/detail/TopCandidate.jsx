@@ -52,7 +52,7 @@ const TopCandidate = ({ id }) => {
   };
 
   const handleAllCandidateClick = () => {
-    navigate(`/candidates/${id}`);
+    navigate(`/candidates?jobId=${id}`);
   };
 
   console.log({ topCandidateDetail });
