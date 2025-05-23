@@ -703,8 +703,71 @@ const JobList = () => {
         //   </div>
         // ),
         actions: (
-          <div className="d-flex align-items-center">
-            {item.isJobCompleted ? (
+          <div className=" " style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "block", width: "60px", textAlign: "left" }}>
+              <span
+                style={{
+                  fontSize: "14px",
+                  marginBottom: "4px",
+                  display: "block",
+                }}
+              >
+                {item.isJobCompleted ? "Active" : "Inactive"}
+              </span>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    position: "relative",
+                    display: "inline-block",
+                    height: "16px",
+                    width: "32px",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={item.isJobCompleted}
+                    onChange={() => changeJobStatus(item.id, item.isJobActive)}
+                    style={{
+                      position: "absolute",
+                      opacity: 0,
+                      width: 0,
+                      height: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: item.isJobCompleted
+                        ? "#299A16"
+                        : "#E0E0E0",
+                      borderRadius: "16px",
+                      transition: "background-color 0.2s ease",
+                    }}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "2px",
+                      left: "2px",
+                      height: "12px",
+                      width: "12px",
+                      backgroundColor: "white",
+                      borderRadius: "50%",
+                      transform: item.isJobCompleted
+                        ? "translateX(16px)"
+                        : "translateX(0)",
+                      transition: "transform 0.2s ease",
+                      boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* {item.isJobCompleted ? (
               <div className="d-block">
                 <span>Active</span>
                 <Media key="1">
@@ -724,7 +787,7 @@ const JobList = () => {
                         className="switch-state"
                         style={{
                           backgroundColor: `${
-                            item.isJobActive ? "darkgreen" : "#299A16"
+                            item.isJobActive ? "#299A16" : "#E0E0E0"
                           }`,
                         }}
                       ></span>
@@ -734,14 +797,14 @@ const JobList = () => {
               </div>
             ) : (
               "Draft"
-            )}
+            )} */}
             <Trash2
               strokeWidth={1}
               color="#9B9999"
-              size={20}
-              className="ms-2"
+              size={24}
+              // className="ms-2"
               onClick={() => handleOpenConfirmation(item.id)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", paddingTop: "4px" }}
             />
           </div>
         ),
@@ -914,7 +977,6 @@ const JobList = () => {
                         outline: "none",
                         // border: "1px solid red",
                       }}
-               
                     >
                       <span
                         style={{
