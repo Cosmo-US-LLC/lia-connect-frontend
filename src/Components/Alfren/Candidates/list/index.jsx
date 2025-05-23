@@ -35,6 +35,25 @@ import {
 } from "reactstrap";
 import { CiCircleInfo } from "react-icons/ci";
 
+const optionList = [
+  "Profile Fetched",
+  "Connection Request Sent",
+  "Checked Request Status",
+  "Connection Request Accepted",
+  "Message Sent",
+  "Checked Reply Status",
+  "Candidate Replied",
+];
+const valueList = [
+  "profileFetched",
+  "connectionRequestSent",
+  "checkedConnectionRequestStatus",
+  "connectionRequestAccepted",
+  "messageSent",
+  "checkedReplyStatus",
+  "candidateReplied",
+];
+
 const DataTables = () => {
   const dispatch = useDispatch();
   const [candidateList, setCandidateList] = useState([]);
@@ -73,20 +92,32 @@ const DataTables = () => {
   const [isStatusSelected, setIsStatusSelected] = useState("");
   const [statusDropdown, setStatusDropdown] = useState(false);
 
+  const [isLastActionSelected, setIsLastActionSelected] = useState("");
+  const [lastActionDropdown, setLastActionDropdown] = useState(false);
+
   const toggleSearchDropdown = () => {
     setsSearchDropdown(!searchDropdown);
     statusDropdown && setStatusDropdown(false);
     nameDropdown && setNameDropdown(false);
+    lastActionDropdown && setLastActionDropdown(false);
   };
   const toggleNameDropdown = () => {
     setNameDropdown(!nameDropdown);
     statusDropdown && setStatusDropdown(false);
     searchDropdown && setsSearchDropdown(false);
+    lastActionDropdown && setLastActionDropdown(false);
   };
   const toggleStatusDropdown = () => {
     setStatusDropdown(!statusDropdown);
     nameDropdown && setNameDropdown(false);
     searchDropdown && setsSearchDropdown(false);
+    lastActionDropdown && setLastActionDropdown(false);
+  };
+  const toggleLastActionDropdown = () => {
+    setLastActionDropdown(!lastActionDropdown);
+    nameDropdown && setNameDropdown(false);
+    searchDropdown && setsSearchDropdown(false);
+    statusDropdown && setStatusDropdown(false);
   };
   const closeSearchDropdown = () => {
     setsSearchDropdown(false);
@@ -181,7 +212,7 @@ const DataTables = () => {
 
   useEffect(() => {
     fetchCandidatePaginated();
-  }, [paginatedUpdated, searchJobs, name, isStatusSelected, activeOnly]);
+  }, [paginatedUpdated, searchJobs, name, isStatusSelected, isLastActionSelected, activeOnly]);
 
   const fetchCandidatePaginated = async (e) => {
     const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
@@ -198,6 +229,9 @@ const DataTables = () => {
     }
     if (isStatusSelected && isStatusSelected?.length > 0) {
       formPayload.body.status = isStatusSelected;
+    }
+    if (isLastActionSelected && isLastActionSelected?.length > 0) {
+      formPayload.body.lastAction = isLastActionSelected;
     }
     if (activeOnly) {
       formPayload.body.isBlackListed = activeOnly;
@@ -423,31 +457,33 @@ const DataTables = () => {
         ),
         lastAction: item.lastAction
           ? (() => {
-              const [actionName, actionDate] = item.lastAction.split(" on ");
+              // const [actionName, actionDate] = item.lastAction.split(" on ");
               return (
                 <div style={{}}>
                   <span
-                    className="f-w-700"
+                    // className="f-w-700"
                     style={{
-                      color: "#299A16",
+                      // color: "#299A16",
+                      color: "#000",
+                      fontWeight: "400",
                       display: "inline-flex",
                       fontSize: "11px",
                     }}
                   >
                     {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
-                    <span style={{}}>{actionName}</span>
+                    <span style={{}}>{optionList[valueList?.indexOf(item.lastAction)]}</span>
                     {/* <Check strokeWidth={0.5} size={15} /> */}
                   </span>
-                  <div
+                  {/* <div
                     className=""
                     style={{ color: "#C6C9F0", fontSize: "11px" }}
                   >
                     {actionDate}
-                  </div>
+                  </div> */}
                 </div>
               );
             })()
-          : "N/A",
+          : <span style={{color: "lightgray"}}>N/A</span>,
 
         status: item.status ? (
           <div
@@ -923,32 +959,32 @@ const DataTables = () => {
                           alignItems: "center",
                           justifyContent: "space-between",
                           border:
-                            statusDropdown || isStatusSelected
+                            lastActionDropdown || isLastActionSelected
                               ? "1px solid #337CC7"
                               : "1px solid #F0F0F0",
                           color:
-                            statusDropdown || isStatusSelected
+                            lastActionDropdown || isLastActionSelected
                               ? "#337CC7"
                               : "#595959",
                           backgroundColor:
-                            statusDropdown || isStatusSelected
+                            lastActionDropdown || isLastActionSelected
                               ? "#F5F9FF"
                               : "white",
                           borderRadius: "4px",
                           padding: "8px",
                           minWidth: "150px",
                         }}
-                        onClick={toggleStatusDropdown}
+                        onClick={toggleLastActionDropdown}
                       >
                         <span
                           className="ms-2"
                           style={{ fontSize: "12px", marginRight: "5px" }}
                         >
-                          {isStatusSelected ? isStatusSelected : "Last Action"}
+                          {isLastActionSelected ? optionList[valueList?.indexOf(isLastActionSelected)] : "Last Action"}
                         </span>
                         <ChevronDown strokeWidth={1} size={16} />
                       </button>
-                      {statusDropdown && (
+                      {lastActionDropdown && (
                         <div
                           style={{
                             position: "absolute",
@@ -958,16 +994,15 @@ const DataTables = () => {
                             borderRadius: "4px",
                             padding: "2px 4px",
                             zIndex: 1,
-                            minWidth: "150px",
+                            minWidth: "250px",
                           }}
                         >
-                          {statuses.map((status) => (
+                          {optionList.map((action, index) => (
                             <div
-                              key={status}
+                              key={action}
                               onClick={() => {
-                                // setStatus(status);
-                                setIsStatusSelected(status);
-                                setStatusDropdown(false);
+                                setIsLastActionSelected(valueList[index]);
+                                setLastActionDropdown(false);
                               }}
                               style={{
                                 padding: "4px",
@@ -975,7 +1010,7 @@ const DataTables = () => {
                                 color: "#595959",
                               }}
                             >
-                              {status}
+                              {action}
                             </div>
                           ))}
                         </div>
@@ -1195,6 +1230,42 @@ const DataTables = () => {
                         onClick={() => {
                           setIsStatusSelected(false);
                           setStatusDropdown(false);
+                        }}
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
+                  {isLastActionSelected && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Last Action: <strong>{optionList[valueList?.indexOf(isLastActionSelected)]}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setIsLastActionSelected(false);
+                          setLastActionDropdown(false);
                         }}
                         style={{
                           backgroundColor: "transparent",
