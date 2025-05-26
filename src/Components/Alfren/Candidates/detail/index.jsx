@@ -22,7 +22,6 @@ const CandidatesList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
-  console.log("candidateDetails", candidateDetails);
 
   useEffect(() => {
     getCandidateDetails();
@@ -43,7 +42,26 @@ const CandidatesList = () => {
     );
   };
 
-  console.log(candidateDetails);
+  const openLinkedInAndClickMessage = (candidateLinkedInUrl) => {
+    const newTab = window.open(candidateLinkedInUrl, "_blank");
+    newTab.onload = () => {
+      alert("New tab loaded");
+      try {
+        console.log("New tab loaded:", newTab.location.href);
+        const messageButton = newTab.document.querySelector(
+          'button[aria-label="Message"], button.message-anywhere-button'
+        );
+        if (messageButton) {
+          messageButton.click();
+          console.log("Message button clicked!");
+        } else {
+          console.error("Message button not found.");
+        }
+      } catch (error) {
+        console.error("Error clicking the message button:", error);
+      }
+    };
+  };
 
   return (
     <Fragment>
@@ -52,7 +70,18 @@ const CandidatesList = () => {
         style={{ maxHeight: "80vh", overflowY: "scroll" }}
       >
         <div style={{ textAlign: "right" }}>
-          <button className="btn btn-primary me-2 py-1 px-2 mt-2">
+          <button
+            onClick={() => {
+              const threadId = candidateDetails?.candidate?.threadId;
+              if (threadId) {
+                window.open(
+                  `https://www.linkedin.com/messaging/thread/${threadId}`,
+                  "_blank"
+                );
+              }
+            }}
+            className="btn btn-primary me-2 py-1 px-2 mt-2"
+          >
             <Image
               attrImage={{
                 src: ChatIcon,
