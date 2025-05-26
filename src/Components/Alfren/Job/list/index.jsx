@@ -847,7 +847,7 @@ const JobList = () => {
     setJobsList(mappedRecords);
   }, [priorityDropdownRow]);
 
-  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 225);
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 210);
 
   return (
     <Fragment>
@@ -859,11 +859,11 @@ const JobList = () => {
           isLoading={isLoading}
         />
         <Row>
-          <Col sm="12">
+          <Col sm="12" style={{overflow: "hidden", height: "84vh"}}>
             <Card style={{ boxShadow: "none" }}>
               <CardHeader className="pb-3">
                 <Row>
-                  <Col xl="9">
+                  <Col xl="9" >
                     {" "}
                     <button
                       style={{
@@ -1259,6 +1259,87 @@ const JobList = () => {
                   />
                 </div>
               </CardBody> */}
+              {/* <CardBody style={{ padding: 0, paddingTop: "10px" }}>
+      <div
+        style={{
+          maxHeight: `${maxHeight}px`,
+          overflowY: "auto",
+          overflowX: "hidden",
+          width: "100%",
+          position: "relative",
+          paddingBottom: "20px",
+        }}
+      >
+        <table
+          style={{
+            width: "100%",
+            tableLayout: "auto",
+            borderCollapse: "separate", // IMPORTANT: Must be separate for spacing to work
+            borderSpacing: "0 12px", // 0 horizontal, 12px vertical gap between rows
+          }}
+        >
+          <thead>
+            <tr
+              style={{
+                position: "sticky",
+                top: 0,
+                backgroundColor: "white",
+                zIndex: 10,
+              }}
+            >
+              {tableColumns.map((column, index) => (
+                <th
+                  key={index}
+                  style={{
+                    padding: "2px 18px 12px 18px",
+                    fontWeight: "bold",
+                    textAlign: "left",
+                    fontSize: "14px",
+                    color: "#333333",
+                    backgroundColor: "white",
+                    borderBottom: "2px solid #E0E0E0",
+                    // Remove border from individual cells since we're using spacing
+                  }}
+                >
+                  {column.name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {jobsList.map((job, index) => (
+              <tr
+                key={index}
+                style={{
+                  backgroundColor: index % 2 === 0 ? "#F5F9FF" : "#F5F9FF",
+                  // Remove borderBottom since we have gaps now
+                  // borderRadius: "8px", // Optional: rounded corners for each row
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.1)", // Optional: subtle shadow
+                }}
+              >
+                {tableColumns.map((column, colIndex) => (
+                  <td
+                    key={colIndex}
+                    style={{
+                      padding: "24px 20px",
+                      wordBreak: "break-word",
+                      fontSize: "14px",
+                      color: "#333333",
+                      textAlign: colIndex === 0 ? "left" : "center",
+                      // Add border radius to first and last cells for rounded row effect
+                      borderRadius:
+                        colIndex === 0 ? "8px 0 0 8px" : colIndex === tableColumns.length - 1 ? "0 8px 8px 0" : "0",
+                    }}
+                  >
+                    {column.selector(job)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </CardBody> */}
               <CardBody style={{ padding: 0 }}>
                 <div
                   style={{
@@ -1267,13 +1348,15 @@ const JobList = () => {
                     overflowX: "hidden",
                     width: "100%",
                     position: "relative",
+                    paddingBottom: "65px",
                   }}
                 >
                   <table
                     style={{
                       width: "100%",
                       tableLayout: "auto",
-                      borderSpacing: 0,
+                       borderCollapse: "separate",
+                      borderSpacing: "0 10px",
                     }}
                   >
                     <thead>
@@ -1307,17 +1390,18 @@ const JobList = () => {
                       {jobsList.map((job, index) => (
                         <tr
                           key={index}
-                          style={{
+                          style={{                           
                             backgroundColor:
-                              index % 2 === 0 ? "#F5F9FF" : "white",
+                              index % 2 === 0 ? "#F5F9FF" : "#F5F9FF",
                             borderBottom: "1px solid #E0E0E0",
+                            
                           }}
                         >
                           {tableColumns.map((column, colIndex) => (
                             <td
                               key={colIndex}
                               style={{
-                                padding: "26px 20px",
+                                padding: "16px 20px",
                                 wordBreak: "break-word",
                                 fontSize: "14px",
                                 color: "#333333",
@@ -1332,6 +1416,12 @@ const JobList = () => {
                     </tbody>
                   </table>
                 </div>
+                <DataTableComponent
+                  paginatedUpdated={paginatedUpdated}
+                  paginationDetails={pagination}
+                  setPagination={setPagination}
+                  setPaginatedUpdated={setPaginatedUpdated}
+                />
               </CardBody>
             </Card>
           </Col>
