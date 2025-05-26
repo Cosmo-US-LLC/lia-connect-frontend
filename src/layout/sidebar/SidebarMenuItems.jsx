@@ -182,7 +182,11 @@ const SidebarMenuItems = ({
                         : ""
                     }`}
                     style={{ opacity: 0.5, cursor: "not-allowed" }}
-                    title={menuItem.title.toLowerCase().includes("messages") ? "Coming Soon" : ""}
+                    title={
+                      menuItem.title.toLowerCase().includes("messages")
+                        ? "Coming Soon"
+                        : ""
+                    }
                   >
                     {menuItem.icon}
 
@@ -253,7 +257,13 @@ const SidebarMenuItems = ({
                             className={`${
                               CurrentPath.includes(
                                 childrenItem?.title?.toLowerCase()
-                              )
+                              ) ||
+                              (CurrentPath?.toLowerCase() == "/jobs" &&
+                                childrenItem?.title?.toLowerCase() ==
+                                  "all jobs")
+                              || (CurrentPath?.toLowerCase() == "/jobs/create" &&
+                                childrenItem?.title?.toLowerCase() ===
+                                  "create new job")
                                 ? "active"
                                 : ""
                             }`}
@@ -261,6 +271,7 @@ const SidebarMenuItems = ({
                             onClick={() => toggletNavActive(childrenItem)}
                           >
                             {t(childrenItem.title)}
+                            {/* {console.log(CurrentPath?.toLowerCase(), childrenItem?.title?.toLowerCase())} */}
                           </Link>
                         ) : (
                           ""

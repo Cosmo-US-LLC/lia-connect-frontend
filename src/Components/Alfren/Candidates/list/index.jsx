@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { H6 } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
-import { Form, InputGroup, InputGroupText } from "reactstrap";
+import { Form, InputGroup, InputGroupText, Spinner } from "reactstrap";
 import {
   ChevronDown,
   ChevronLeft,
@@ -118,13 +118,20 @@ const DataTables = () => {
   // Handler for going to the next page
   const goToNextPage = () => {
     setPagination((prevPagination) => {
-      console.log("Next Page Clicked", Math.min(prevPagination.totalPages, prevPagination.page + 1));
-      return ({
-      ...prevPagination,
-      page: Math.min(prevPagination.totalPages, prevPagination.page + 1), // Ensure page doesn't exceed totalPages
-    })});
+      console.log(
+        "Next Page Clicked",
+        Math.min(prevPagination.totalPages, prevPagination.page + 1)
+      );
+      return {
+        ...prevPagination,
+        page: Math.min(prevPagination.totalPages, prevPagination.page + 1), // Ensure page doesn't exceed totalPages
+      };
+    });
     // setLoading(true);
-    fetchCandidatePaginated(Math.min(pagination.totalPages, pagination.page + 1), pagination?.limit);
+    fetchCandidatePaginated(
+      Math.min(pagination.totalPages, pagination.page + 1),
+      pagination?.limit
+    );
   };
 
   const [selectedJob, setSelectedJob] = useState([]);
@@ -268,7 +275,7 @@ const DataTables = () => {
     activeOnly,
   ]);
 
-  const fetchCandidatePaginated = async (page=1, limit=10) => {
+  const fetchCandidatePaginated = async (page = 1, limit = 10) => {
     setLoading(true);
     const urlParams = "page=" + page + "&limit=" + limit;
     let formPayload = {
@@ -295,8 +302,8 @@ const DataTables = () => {
     dispatch(
       fetchCandidates(formPayload, (resp) => {
         if (resp?.status == 200) {
-          console.warn("PAGINATION")
-          console.warn(pagination)
+          console.warn("PAGINATION");
+          console.warn(pagination);
           // toast.success("JobsFetched successfully");
           setPagination(resp.data.pagination);
           const results = resp.data.results;
@@ -1437,32 +1444,46 @@ const DataTables = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {console.log(loading)}
-                      {loading ? "Loading..." : candidateList.map((candidate, index) => (
-                        <tr
-                          key={index}
-                          style={{
-                            backgroundColor: "white",
-                            // index % 2 === 0 ? "#F5F9FF" : "white",
-                            borderBottom: "1px solid #E0E0E0",
-                          }}
-                        >
-                          {tableColumns.map((column, colIndex) => (
-                            <td
-                              key={colIndex}
-                              style={{
-                                padding: "26px 20px",
-                                wordBreak: "break-word",
-                                fontSize: "14px",
-                                color: "#333333",
-                                textAlign: colIndex === 0 ? "left" : "center",
-                              }}
-                            > 
-                              {column.selector(candidate)}
-                            </td>
-                          ))}
+                      {/* {console.log(loading)} */}
+                      {loading ? (
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <div
+                            className="flex justify-content-center align-items-center"
+                            style={{ height: "50svh", width: "100%", paddingTop: "20svh" }}
+                          >
+                            <Spinner color="primary" />
+                          </div>
                         </tr>
-                      ))}
+                      ) : (
+                        candidateList.map((candidate, index) => (
+                          <tr
+                            key={index}
+                            style={{
+                              backgroundColor: "white",
+                              // index % 2 === 0 ? "#F5F9FF" : "white",
+                              borderBottom: "1px solid #E0E0E0",
+                            }}
+                          >
+                            {tableColumns.map((column, colIndex) => (
+                              <td
+                                key={colIndex}
+                                style={{
+                                  padding: "26px 20px",
+                                  wordBreak: "break-word",
+                                  fontSize: "14px",
+                                  color: "#333333",
+                                  textAlign: colIndex === 0 ? "left" : "center",
+                                }}
+                              >
+                                {column.selector(candidate)}
+                              </td>
+                            ))}
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -1511,8 +1532,8 @@ const DataTables = () => {
                   backgroundColor: "white",
                   cursor:
                     pagination.page === pagination.totalPages
-                      // ? "not-allowed"
-                      ? "pointer"
+                      ? // ? "not-allowed"
+                        "pointer"
                       : "pointer", // Change cursor
                   opacity: pagination.page === pagination.totalPages ? 0.6 : 1, // Visual cue
                 }}
