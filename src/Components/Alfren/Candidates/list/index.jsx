@@ -44,6 +44,15 @@ const optionList = [
   "Checked Reply Status",
   "Candidate Replied",
 ];
+const optionListShort = [
+  "Profile Fetched",
+  "Connection Request Sent",
+  "Connection Request Sent",
+  "Connection Request Accepted",
+  "Message Sent",
+  "Message Sent",
+  "Candidate Replied",
+];
 const valueList = [
   "profileFetched",
   "connectionRequestSent",
@@ -489,7 +498,7 @@ const DataTables = () => {
                 >
                   {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
                   <span style={{}}>
-                    {optionList[valueList?.indexOf(item.lastAction)]}
+                    {optionListShort[valueList?.indexOf(item.lastAction)]}
                   </span>
                   {/* <Check strokeWidth={0.5} size={15} /> */}
                 </span>
@@ -655,14 +664,15 @@ const DataTables = () => {
           <Col sm="12">
             <Card style={{ boxShadow: "none" }}>
               <CardHeader>
-                {jobListId ? (
+                {/* {jobListId ? (
                   <h5>
                     <a href={`/jobs/detail/${jobListId}`}>
                       {jobsList?.find((job) => job?.id == jobListId)?.name}
                     </a>{" "}
                     Shortlisted Candidates
-                  </h5>
-                ) : (
+                  </h5> */}
+                {/* // ) : (
+                // )} */}
                   <Row
                     style={{
                       display: "flex",
@@ -1150,10 +1160,10 @@ const DataTables = () => {
                     </button> */}
                     </Col>
                   </Row>
-                )}
-                {jobListId ? (
+                {/* {jobListId ? (
                   ""
                 ) : (
+                )} */}
                   <Row>
                     {isJobSelected && searchJobs.length > 0 && (
                       <div
@@ -1331,7 +1341,6 @@ const DataTables = () => {
                       </div>
                     )}
                   </Row>
-                )}
               </CardHeader>
               <DataTableComponent
                 paginatedUpdated={paginatedUpdated}
