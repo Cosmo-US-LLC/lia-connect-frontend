@@ -258,7 +258,7 @@ const JobDetail = () => {
               </div>
             </div>
             <Row>
-              <Col xl="12" className="col-ed-5 box-col-5 p-0">
+              <Col xl="12" className="  ">
                 <Row>
                   <Col xl="6" md="6">
                     <BlackList Connection={jobStats?.connection} />
@@ -269,20 +269,28 @@ const JobDetail = () => {
                 </Row>
               </Col>
               <Row>
-                <Col xl="6" className="col-ed-5 box-col-5 p-0">
+                <Col xl="6" className=" " style={{ paddingRight: "0px" }}>
                   <TopCandidate id={jobDetails.id} />
                 </Col>
 
-                <Col xl="6" >
+                <Col xl="6">
                   <Row>
-                    <Col xl="12" className="mb-4" style={{marginLeft:"16px"}}>
+                    <Col
+                      xl="12"
+                      className="mb-4"
+                      style={{ paddingRight: "0px", marginLeft: "12px" }}
+                    >
                       <AvgExp
                         AvgExpStatsData={experienceData}
                         avgExperience={jobStats?.avgExperience}
                       />
                     </Col>
 
-                    <Col xl="12" className="mb-4" style={{marginLeft:"16px"}}>
+                    <Col
+                      xl="12"
+                      className="mb-4"
+                      style={{ paddingRight: "0px", marginLeft: "12px" }}
+                    >
                       <RequiredSkills jobDetails={jobDetails} />
                     </Col>
                   </Row>

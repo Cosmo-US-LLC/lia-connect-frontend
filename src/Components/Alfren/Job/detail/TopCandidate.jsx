@@ -58,7 +58,12 @@ const TopCandidate = ({ id }) => {
   console.log({ topCandidateDetail });
 
   return (
-    <Card style={{ borderRadius: "10px", marginBottom: "120px" }}>
+    <Card
+      style={{
+        borderRadius: "10px",
+        marginBottom: "120px",
+      }}
+    >
       <CardBody>
         <p
           style={{
@@ -303,12 +308,22 @@ const TopCandidate = ({ id }) => {
                       >
                         <div>
                           <p
-                            style={{ fontSize: "14px", fontWeight: 400, color: "#1264FD", cursor: "pointer", display: "flex", alignItems: "center", gap: "3px" }}
+                            style={{
+                              fontSize: "14px",
+                              fontWeight: 400,
+                              color: "#1264FD",
+                              cursor: "pointer",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "3px",
+                            }}
                             className="mb-0"
                             onClick={() => handleCandidateClick(topCand.id)}
                           >
                             {topCand.name}
-                            <BiLinkExternal style={{ fontSize: "14px", fontWeight: 400 }}/>
+                            <BiLinkExternal
+                              style={{ fontSize: "14px", fontWeight: 400 }}
+                            />
                           </p>
                           <p
                             style={{
@@ -377,8 +392,6 @@ const TopCandidate = ({ id }) => {
                                 alignItems: "center",
                                 paddingTop: "18px",
                                 // pointer-events: auto;
-                                 
-                          
                               }}
                             >
                               Score{" "}
@@ -387,7 +400,7 @@ const TopCandidate = ({ id }) => {
                                   color: "black",
                                   fontSize: "large",
                                   position: "relative",
-                                  zIndex: 999,
+                                  // zIndex: 999,
                                   cursor: "pointer",
                                   pointerEvents: "auto",
                                 }}
