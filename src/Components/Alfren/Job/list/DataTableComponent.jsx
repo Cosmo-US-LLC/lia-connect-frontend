@@ -177,30 +177,17 @@ const DataTableComponent = ({
         />
       )}
 
-      <div style={{ position: "fixed", bottom: "34px", width: "100%" }}>
-        <span
-          style={{
-            fontSize: "10px",
-            fontWeight: "400",
-            lineHeight: "15px",
-            background: "#f5f9ff",
-            position:'relative',
-            top:"10px"
-          }}
-        >
-          * To ensure that the system performs at the optimal efficiency, you can
-          have up to 5 active jobs at a time.
-        </span>
-
-        <br />
+      <div style={{ position: "fixed", bottom: "51px", width: "100%", paddingRight: "20px" }}>
+        
         <nav
           aria-label="Page navigation example"
-          className="py-3"
+          className="py-2"
           style={{
             backgroundColor: "#f5f9ff",
             display: "inline-flex",
             justifyContent: "space-between",
             width: "80%",
+            // backgroundColor: "#f5f9",
           }}
         >
           <div className="justify-content-start">
