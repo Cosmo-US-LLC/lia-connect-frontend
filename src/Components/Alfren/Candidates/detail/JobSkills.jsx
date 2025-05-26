@@ -31,14 +31,22 @@ function JobSkills({ candidateDetails }) {
                     key={index}
                     style={{
                       fontSize: "16px",
-                      padding: "0px 10px",
+                      padding: "5px 10px",
                       backgroundColor: "#f0f0f0",
                       borderRadius: "10px",
                       margin: "5px",
-                      display: "inline-block",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      color: "black",
                     }}
                   >
-                    {job?.name}
+                    <strong className="text-primary">{job?.name}</strong>
+                    <div>
+                      <span style={{ fontSize: "12px" }}>Profile Score:</span>{" "}
+                      {job?.profileScore}%
+                    </div>
                   </a>
                 ))}
               </div>

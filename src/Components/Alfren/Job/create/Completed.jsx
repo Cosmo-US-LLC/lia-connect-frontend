@@ -82,7 +82,8 @@ const Completed = ({ handlePrevious, jobId, messageBody, category }) => {
             </Button> */}
             <Link
               onClick={handlePrevious}
-              className="btn btn-outline-light pe-5 ps-5 pt-2 pb-2 me-3 bg-white"
+              className="btn btn-outline-light me-3 bg-white"
+               style={{ padding: "12px 12px", fontSize: "16px" }}
             >
               <span>Back to selection Criteria</span>
             </Link>

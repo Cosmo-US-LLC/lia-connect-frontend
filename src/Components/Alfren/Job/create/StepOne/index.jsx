@@ -52,7 +52,7 @@ const StepOne = ({
   hasErrors,
   getCandidateCount,
   setValue,
-  fieldErrors
+  fieldErrors,
 }) => {
   console.log("hasErrors i also want this", !hasErrors);
   const options = [
@@ -215,7 +215,7 @@ const StepOne = ({
                         }}
                       >
                         <span style={{ fontWeight: "600", fontSize: "14px" }}>
-                          Job Title <span className="ms-2 text-danger">*</span>
+                          Job Title <span className=" text-danger">*</span>
                         </span>
                       </H6>
                       {/* <input
@@ -239,7 +239,7 @@ const StepOne = ({
                       <JobTitleAutocomplete
                         value={jobName}
                         onChange={setJobName}
-                        error={fieldErrors?.['jobTitle']?.isEmpty}
+                        error={fieldErrors?.["jobTitle"]?.isEmpty}
                         register={register}
                         clearErrors={clearErrors}
                       />
@@ -332,8 +332,14 @@ const StepOne = ({
                         <div className="invalid-feedback">
                           {errors.jobPriority?.message}
                         </div>
-                        <span style={{ fontWeight: "600", fontSize: "14px" }}>
-                          Skills <span className="ms-2 text-danger">*</span>
+                        <span
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "14px",
+                            marginTop: "4px",
+                          }}
+                        >
+                          Skills <span className=" text-danger">*</span>
                         </span>
                       </H6>
                       <SkillsAutocomplete
@@ -342,7 +348,7 @@ const StepOne = ({
                         skillInputValue={skillInputValue}
                         setSkillInputValue={setSkillInputValue}
                         register={register}
-                        error={fieldErrors?.['skills']?.isEmpty}
+                        error={fieldErrors?.["skills"]?.isEmpty}
                         jobTitle={jobName}
                         clearErrors={clearErrors}
                       />
@@ -514,13 +520,18 @@ const StepOne = ({
                       <div className="mt-2">
                         <H6
                           attrH6={{
-                            className: "d-flex justify-content-between align-items-center",
+                            className:
+                              "d-flex justify-content-between align-items-center",
                           }}
                         >
                           {!linkedInSearchButton ? (
                             <>
                               <span
-                                style={{ fontWeight: "600", fontSize: "14px" }}
+                                style={{
+                                  fontWeight: "600",
+                                  fontSize: "14px",
+                                  marginBottom: "0px",
+                                }}
                               >
                                 Filter profiles in the{" "}
                                 <span style={{ color: "#1264FD" }}>
@@ -533,14 +544,18 @@ const StepOne = ({
                           ) : (
                             <>
                               <span
-                                style={{ fontWeight: "600", fontSize: "14px" }}
+                                style={{
+                                  fontWeight: "600",
+                                  fontSize: "14px",
+                                  marginBottom: "0px",
+                                }}
                               >
                                 Copy the{" "}
                                 <span style={{ color: "#1264FD" }}>
-                                  LinkedIn URL {/* LinkedIn Profile URL{" "} */}
+                                  LinkedIn URL
                                 </span>
                                 and paste it below{" "}
-                                <span className="ms-2 text-danger">*</span>
+                                <span className="text-danger">*</span>
                               </span>
                             </>
                           )}
@@ -549,7 +564,7 @@ const StepOne = ({
                               onClick={openModal}
                               style={{
                                 cursor: "pointer",
-                                padding: "8px 15px",
+                                // padding: "8px 15px",
                                 // backgroundColor: "#1264FD",
                                 color: "#1264FD",
                                 borderRadius: "5px",
@@ -574,7 +589,7 @@ const StepOne = ({
                             <div style={{ position: "relative" }}>
                               <input
                                 style={{
-                                  border: fieldErrors?.['linkedinUrl']?.isEmpty
+                                  border: fieldErrors?.["linkedinUrl"]?.isEmpty
                                     ? ".1px solid #f2abab"
                                     : linkedInSearch
                                     ? "1px solid #efefef"
@@ -617,9 +632,10 @@ const StepOne = ({
                                     />
                                   </span>
                                 )}
-                              {fieldErrors?.['linkedinUrl']?.isEmpty && (
+                              {fieldErrors?.["linkedinUrl"]?.isEmpty && (
                                 <div className="invalid-feedback text-start ">
-                                  {/* {errors.linkedInSearch.message} */} required
+                                  {/* {errors.linkedInSearch.message} */}{" "}
+                                  required
                                 </div>
                               )}
                             </div>
@@ -673,9 +689,15 @@ const StepOne = ({
                         {/* <p style={{ fontSize: "12px" }}>
                           LinkedIn profile found: <strong>{"1000+"}</strong>
                         </p> */}
-                        <p style={{ fontSize: "12px" }}>
+                        <p
+                          style={{
+                            fontSize: "12px",
+                            marginBottom: "4px",
+                            paddingTop: "4px",
+                          }}
+                        >
                           How many users you would like to add to this list?{" "}
-                          <span className="ms-2 text-danger">
+                          <span className=" text-danger">
                             *{" "}
                             <strong style={{ color: "#9F9B9B" }}>
                               (max 100)
@@ -688,7 +710,8 @@ const StepOne = ({
                               <div>
                                 <input
                                   style={{
-                                    border: fieldErrors?.['maxCandidates']?.isEmpty
+                                    border: fieldErrors?.["maxCandidates"]
+                                      ?.isEmpty
                                       ? ".1px solid #f2abab"
                                       : maxCandidates
                                       ? "1px solid #efefef"
@@ -698,10 +721,14 @@ const StepOne = ({
                                     width: "60px",
                                     height: "14px",
                                     display: "inline-block",
+                                    appearance: "none",
+                                    MozAppearance: "textfield",
+                                    WebkitAppearance: "none",
                                   }}
                                   min={1}
                                   max={100}
-                                  type="text"
+                                  readOnly={isMaxChecked}
+                                  type="number"
                                   name="maxCandidates"
                                   value={maxCandidates}
                                   onChange={handleChange}

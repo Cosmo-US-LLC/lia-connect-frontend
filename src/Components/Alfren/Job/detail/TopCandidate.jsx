@@ -1,348 +1,3 @@
-// import React, { Fragment, useContext, useEffect, useState } from "react";
-// import { toast } from "react-toastify";
-// import { Card, CardBody, CardHeader, Col, Media, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
-// import { CiCircleInfo } from "react-icons/ci";
-// import { fetchJobDetails } from "../../../../redux/Job/jobActions";
-// import { useDispatch } from "react-redux";
-// import { FiMessageSquare, FiUser } from "react-icons/fi";
-// import { FiLinkedin } from "react-icons/fi";
-// import { useNavigate } from "react-router";
-
-// const TopCandidate = ({ id }) => {
-//   const [topCandidateDetail, setJobDetails] = useState(null);
-//   const [hideScroll, setHideScroll] = useState(true);
-//   const [modalOpen, setModalOpen] = useState(false);
-//   const [topCandidateId, setGetTopCandidateId] = useState(null);
-
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const toggleModal = () => setModalOpen(!modalOpen);
-
-//   useEffect(() => {
-//     if (id) {
-//       const url = `/jobs/${id}/top-candidates`;
-//       dispatch(fetchJobDetails(url, handleFetchResponse));
-//     }
-//   }, [dispatch, id]);
-
-//   useEffect(() => {
-//     if (topCandidateId) {
-//       const url = `/candidate/${topCandidateId}`;
-//       dispatch(fetchJobDetails(url, handleFetchResponse));
-//     }
-//   }, [dispatch, topCandidateId]);
-
-//   const handleFetchResponse = (resp) => {
-//     if (resp?.status === 200) {
-//       setJobDetails(resp.data);
-//       if (topCandidateId) {
-//         navigate(`/candidates/detail/${topCandidateId}`);
-//       }
-//     } else {
-//       toast.error(resp?.message);
-//     }
-//   };
-
-//   const handleGetId = (id) => {
-//     setGetTopCandidateId(id);
-//   };
-
-//   return (
-//     <Fragment>
-//       <Card>
-//         <CardBody>
-//       <p
-//         style={{
-//           fontSize: "12px",
-//           fontWeight: 400,
-//           position: "relative",
-//           width: "100%",
-//           color: "#595959",
-//           display: "flex",
-//           justifyContent: "space-between",
-//           alignItems: "center",
-//         }}
-//       >
-//         Top Candidates
-//         <span
-//           style={{
-//             position: "absolute",
-//             bottom: "11px",
-//             left: "0",
-//             width: "12%",
-//             borderBottom: "1px solid #1264FD",
-//           }}
-//         ></span>
-//         <p style={{ color: "#819ACB", paddingTop: "4px", cursor: "pointer" }}>
-//           Score
-//           <CiCircleInfo
-//             style={{
-//               color: "black",
-//               fontSize: "large",
-//               position: "relative",
-//               top: "5px",
-//               cursor: "pointer",
-//               left: "1px",
-//             }}
-//             onClick={toggleModal}
-//           />
-//         </p>
-//       </p>
-
-//       <Modal
-//         isOpen={modalOpen}
-//         toggle={toggleModal}
-//         style={{
-//           maxWidth: "1000px",
-//           width: "80%",
-//           margin: "auto"
-//         }}
-//         centered
-//       >
-//         <ModalHeader
-//           style={{
-//             position: "relative",
-//             padding: "1rem",
-//             borderBottom: "1px solid #dee2e6"
-//           }}
-//         >
-//           How Scores Are Calculated
-//           <button
-//             type="button"
-//             onClick={toggleModal}
-//             style={{
-//               position: "absolute",
-//               right: "20px",
-//               top: "15px",
-//               background: "none",
-//               border: "none",
-//               fontSize: "1.5rem",
-//               cursor: "pointer",
-//               color: "#6c757d",
-//               padding: "0",
-//               margin: "0"
-//             }}
-//           >
-//             &times;
-//           </button>
-//         </ModalHeader>
-//         <ModalBody style={{ padding: "2rem" }}>
-//           <div style={{
-//             display: "flex",
-//             justifyContent: "center",
-//             alignItems: "center",
-//             flexDirection: "column",
-//             gap: "20px",
-//             width: "100%"
-//           }}>
-//             <div style={{
-//               display: "flex",
-//               alignItems: "center",
-//               gap: "20px",
-//               width: "100%",
-//               justifyContent: "center",
-//               flexWrap: "wrap"
-//             }}>
-//               <img
-//                 src="../../score-tip1.png"
-//                 alt="Skill Matching"
-//                 style={{ width: "100%", maxWidth: "350px", height: "auto" }}
-//               />
-//               <span style={{ fontWeight: "bold", fontSize: "32px" }}>+</span>
-//               <img
-//                 src="../../score-tip2.png"
-//                 alt="Experience Matching"
-//                 style={{ width: "100%", maxWidth: "150px", height: "auto" }}
-//               />
-//               <span style={{ fontWeight: "bold", fontSize: "32px" }}>=</span>
-//               <img
-//                 src="../../score-tip3.png"
-//                 alt="Total Score"
-//                 style={{ width: "100%", maxWidth: "270px", height: "auto" }}
-//               />
-//             </div>
-//           </div>
-//         </ModalBody>
-//         <ModalFooter style={{ padding: "1rem 2rem", borderTop: "1px solid #dee2e6" }}>
-//           <Button
-//             color="primary"
-//             onClick={toggleModal}
-//             style={{
-//               padding: "0.375rem 0.75rem",
-//               fontSize: "1rem",
-//               borderRadius: "0.25rem"
-//             }}
-//           >
-//             Got It
-//           </Button>
-//         </ModalFooter>
-//       </Modal>
-
-//       {/* Rest of your component remains the same */}
-//       <div
-//         className={`candidate-container ${hideScroll ? "hide-scrollbar" : ""}`}
-//         style={{ maxHeight: "400px", overflowY: "auto",  }}
-//         // style={{ backgroundColor: "#fff", padding: "10px", borderRadius: "10px" }}
-//       >
-//         {topCandidateDetail?.map((topCand, index) => {
-//           return (
-//             <Card
-//               onClick={() => handleGetId(topCand.id)}
-//               key={index}
-//               style={{
-//                 border: "1px solid #EBF1FC",
-//                 boxShadow: "3px 3px 3px 0px #BA9FC914",
-//                 marginBottom: "10px",
-//                 cursor: "pointer",
-//               }}
-//             >
-//               <CardBody style={{ padding: "10px" }}>
-//                 <div className="media">
-//                   <div className="avatar me-3 ms-1">
-//                     {topCand.image ? (
-//                       <img
-//                         src={topCand.image}
-//                         alt=""
-//                         className="img-50 rounded-circle"
-//                       />
-//                     ) : (
-//                       <FiUser
-//                         className="img-50 rounded-circle"
-//                         style={{ fontSize: "50px", color: "#ccc" }}
-//                       />
-//                     )}
-//                   </div>
-//                   <Media body className="d-flex justify-content-between">
-//                     <div
-//                       style={{
-//                         display: "flex",
-//                         flexDirection: "column",
-//                         justifyContent: "space-between",
-//                         alignItems: "flex-start",
-//                       }}
-//                     >
-//                       <div>
-//                         <p
-//                           style={{ fontSize: "14px", fontWeight: 400 }}
-//                           className="mb-0"
-//                         >
-//                           {topCand.name}
-//                         </p>
-//                         <p
-//                           style={{
-//                             color: "#819ACB",
-//                             fontSize: "12px",
-//                             fontWeight: 400,
-//                           }}
-//                           className="mt-0 mb-3"
-//                         >
-//                           {topCand.currentJob.title}
-//                         </p>
-//                       </div>
-//                       <p
-//                         style={{
-//                           fontSize: "10px",
-//                           fontWeight: 400,
-//                         }}
-//                       >
-//                         Score{" "}
-//                         <span
-//                           style={{
-//                             color: "#299A16",
-//                             fontSize: "18px",
-//                             fontWeight: 400,
-//                           }}
-//                         >
-//                           {topCand.profileScore}%
-//                         </span>
-//                       </p>
-//                     </div>
-//                     <div
-//                       style={{
-//                         display: "flex",
-//                         flexDirection: "column",
-//                         justifyContent: "space-between",
-//                         alignItems: "flex-end",
-//                       }}
-//                     >
-//                       <div>
-//                         <p
-//                           style={{
-//                             color: "#595959",
-//                             fontSize: "12px",
-//                             fontWeight: 400,
-//                           }}
-//                         >
-//                           {topCand?.experienceInYear} Years
-//                         </p>
-//                         <p
-//                           style={{
-//                             color: "#819ACB",
-//                             fontSize: "12px",
-//                             fontWeight: 400,
-//                           }}
-//                         >
-//                           {topCand?.state || "Location not specified"}
-//                         </p>
-//                       </div>
-//                       <div className="display-flex-style gap-3">
-//                         <a
-//                           href={topCand.linkedIn}
-//                           target="_blank"
-//                           rel="noopener noreferrer"
-//                         >
-//                           <FiLinkedin
-//                             style={{ color: "#337cc7", fontSize: "large" }}
-//                           />
-//                         </a>
-//                         <FiMessageSquare
-//                           style={{ color: "#595959", fontSize: "large" }}
-//                         />
-//                       </div>
-//                     </div>
-//                   </Media>
-//                 </div>
-//               </CardBody>
-//             </Card>
-//           );
-//         })}
-//       </div>
-//       {topCandidateDetail && (
-//         <div className="relative">
-//           <p
-//             style={{
-//               color: "#1264FD",
-//               fontFamily: 500,
-//               fontSize: "14px",
-//               textDecoration: "underline",
-//               position: "absolute",
-//               bottom: "-15px",
-//               right: "25px",
-//             }}
-//           >
-//             {" "}
-//             <span
-//               style={{
-//                 fontWeight: 500,
-//                 fontSize: "14px",
-//                 position: "relative",
-//                 bottom: "3px",
-//               }}
-//             >
-//               View More
-//             </span>
-//           </p>
-//         </div>
-//       )}
-//       </CardBody>
-//       </Card>
-//     </Fragment>
-//   );
-// };
-
-// export default TopCandidate;
-
 import React, { Fragment, useEffect, useState } from "react";
 import {
   Card,
@@ -359,6 +14,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { fetchJobDetails } from "../../../../redux/Job/jobActions";
+import { BsLinkedin } from "react-icons/bs";
+import { RxDoubleArrowRight } from "react-icons/rx";
+import { TbMessageFilled } from "react-icons/tb";
+import { MdMessage } from "react-icons/md";
+import { BiLinkExternal } from "react-icons/bi";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
@@ -392,13 +52,14 @@ const TopCandidate = ({ id }) => {
   };
 
   const handleAllCandidateClick = () => {
-    navigate(`/candidates`);
+    navigate(`/candidates?jobId=${id}`);
   };
 
+  console.log({ topCandidateDetail });
+
   return (
-    <Card style={{ borderRadius: "10px" }}>
+    <Card style={{ borderRadius: "10px", marginBottom: "120px" }}>
       <CardBody>
-        {/* Header - Keeping your original design */}
         <p
           style={{
             fontSize: "12px",
@@ -464,7 +125,7 @@ const TopCandidate = ({ id }) => {
                     // bottom: "3px",
                   }}
                 >
-                  View More
+                  View Shortlisted Candidates
                 </span>
               </p>
             </div>
@@ -566,7 +227,6 @@ const TopCandidate = ({ id }) => {
           </ModalFooter>
         </Modal>
 
-        {/* Loading State */}
         {loading && (
           <div className="text-center py-4">
             <div className="spinner-border text-primary" role="status">
@@ -575,7 +235,6 @@ const TopCandidate = ({ id }) => {
           </div>
         )}
 
-        {/* Empty State */}
         {!loading &&
           (!topCandidateDetail || topCandidateDetail.length === 0) && (
             <div className="text-center py-4 text-muted">
@@ -583,11 +242,10 @@ const TopCandidate = ({ id }) => {
             </div>
           )}
 
-        {/* Candidate List - Keeping your original card design */}
         {!loading && topCandidateDetail && (
           <div
             style={{
-              maxHeight: "440px",
+              maxHeight: "800px",
               overflowY: "auto",
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -595,7 +253,7 @@ const TopCandidate = ({ id }) => {
           >
             {topCandidateDetail.map((topCand, index) => (
               <Card
-                onClick={() => handleCandidateClick(topCand.id)}
+                // onClick={() => handleCandidateClick(topCand.id)}
                 key={index}
                 style={{
                   border: "1px solid #EBF1FC",
@@ -609,15 +267,28 @@ const TopCandidate = ({ id }) => {
                     <div className="avatar me-3 ms-1" style={{ width: "50px" }}>
                       {topCand?.image ? (
                         <img
-                          src={topCand.image}
+                          src={topCand?.image}
                           alt=""
                           className="img-50 rounded-circle"
                         />
                       ) : (
-                        <FiUser
-                          className="img-50 rounded-circle"
-                          style={{ fontSize: "50px", color: "#ccc" }}
-                        />
+                        <div
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            borderRadius: "50%",
+                            backgroundColor: "red",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            zIndex: 100,
+                          }}
+                        >
+                          <FiUser
+                            className="img-50 rounded-circle"
+                            style={{ fontSize: "50px", color: "#ccc" }}
+                          />
+                        </div>
                       )}
                     </div>
                     <div className="media-body d-flex justify-content-between">
@@ -628,15 +299,16 @@ const TopCandidate = ({ id }) => {
                           justifyContent: "space-between",
                           alignItems: "flex-start",
                           width: "75%",
-                          // backgroundColor: "goldenrod",
                         }}
                       >
                         <div>
                           <p
-                            style={{ fontSize: "14px", fontWeight: 400 }}
+                            style={{ fontSize: "14px", fontWeight: 400, color: "#1264FD", cursor: "pointer", display: "flex", alignItems: "center", gap: "3px" }}
                             className="mb-0"
+                            onClick={() => handleCandidateClick(topCand.id)}
                           >
                             {topCand.name}
+                            <BiLinkExternal style={{ fontSize: "14px", fontWeight: 400 }}/>
                           </p>
                           <p
                             style={{
@@ -658,53 +330,6 @@ const TopCandidate = ({ id }) => {
                             {topCand?.state}
                           </p>
                         </div>
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            height: "25px",
-                            fontWeight: 400,
-                            display: "flex",
-                            gap: "6px",
-                            paddingBottom: "0px",
-
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <p
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              zIndex: 999,
-                              paddingTop: "8px",
-                            }}
-                          >
-                            Score{" "}
-                            <CiCircleInfo
-                              style={{
-                                color: "black",
-                                fontSize: "large",
-                                position: "relative",
-                                zIndex: 999,
-                                // position: "relative",
-                                // top: "5px",
-                                // cursor: "pointer",
-                                // left: "1px",
-                              }}
-                              onClick={toggleModal}
-                            />
-                          </p>
-                          <p
-                            style={{
-                              color: "#299A16",
-                              fontSize: "16px",
-                              fontWeight: 600,
-                            }}
-                          >
-                            {topCand.profileScore}%
-                          </p>
-                        </div>
                         <p
                           style={{
                             color: "#595959",
@@ -712,8 +337,14 @@ const TopCandidate = ({ id }) => {
                             fontWeight: 400,
                           }}
                         >
-                          {/* {topCand?.experienceInYear} */}
                           connection request sent
+                          <RxDoubleArrowRight
+                            style={{
+                              fontSize: "large",
+                              marginBottom: "-5px",
+                              paddingLeft: "4px",
+                            }}
+                          />
                         </p>
                       </div>
                       <div
@@ -726,11 +357,61 @@ const TopCandidate = ({ id }) => {
                         }}
                       >
                         <div>
+                          <div
+                            style={{
+                              fontSize: "10px",
+                              height: "20px",
+                              width: "150px",
+                              fontWeight: 400,
+                              display: "flex",
+                              gap: "6px",
+                              paddingBottom: "0px",
+                              justifyContent: "end",
+                              alignItems: "center",
+                            }}
+                          >
+                            <p
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                paddingTop: "18px",
+                                // pointer-events: auto;
+                                 
+                          
+                              }}
+                            >
+                              Score{" "}
+                              <CiCircleInfo
+                                style={{
+                                  color: "black",
+                                  fontSize: "large",
+                                  position: "relative",
+                                  zIndex: 999,
+                                  cursor: "pointer",
+                                  pointerEvents: "auto",
+                                }}
+                                onClick={toggleModal}
+                              />
+                            </p>
+                            <p
+                              style={{
+                                color: "#299A16",
+                                fontSize: "18px",
+                                fontWeight: 600,
+                                paddingTop: "2px",
+                              }}
+                            >
+                              {topCand.profileScore}%
+                            </p>
+                          </div>
+
                           <p
                             style={{
                               color: "#595959",
                               fontSize: "12px",
                               fontWeight: 400,
+                              textAlign: "right",
                             }}
                           >
                             {topCand?.experienceInYear}
@@ -745,21 +426,52 @@ const TopCandidate = ({ id }) => {
                             {topCand?.state}
                           </p> */}
                         </div>
-                        <div style={{ display: "flex", gap: "12px" }}>
+                        <div style={{ display: "flex", gap: "8px" }}>
                           <a
                             href={topCand.linkedIn}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
                           >
-                            <FiLinkedin
-                              style={{ color: "#337cc7", fontSize: "large" }}
+                            <BsLinkedin
+                              style={{
+                                fontSize: "large",
+                                marginBottom: "-4px",
+                              }}
                             />
                           </a>
-                          {topCand?.message && (
-                            <FiMessageSquare
-                              style={{ color: "#595959", fontSize: "large" }}
-                            />
+                          {!topCand?.message && (
+                            <div
+                              style={{
+                                position: "relative",
+                                display: "inline-block",
+                              }}
+                            >
+                              <MdMessage
+                                style={{ color: "#1264FD", fontSize: "22px" }}
+                              />
+
+                              {!topCand.messageCount > 0 && (
+                                <span
+                                  style={{
+                                    position: "absolute",
+                                    top: "-6px",
+                                    right: "-5px",
+                                    backgroundColor: "red",
+                                    color: "white",
+                                    fontSize: "10px",
+                                    width: "14px",
+                                    height: "14px",
+                                    borderRadius: "50%",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  {/* {topCand.messageCount} */}3
+                                </span>
+                              )}
+                            </div>
                           )}
                         </div>
                       </div>
@@ -770,37 +482,6 @@ const TopCandidate = ({ id }) => {
             ))}
           </div>
         )}
-
-        {/* View More - Keeping your original design */}
-        {/* {topCandidateDetail && topCandidateDetail.length > 0 && (
-          <div className="relative">
-            <p
-              style={{
-                color: "#1264FD",
-                fontFamily: 500,
-                fontSize: "14px",
-                textDecoration: "underline",
-                position: "absolute",
-                bottom: "2px",
-                right: "30px",
-                cursor: "pointer",
-              }}
-            >
-              {" "}
-              <span
-                onClick={handleAllCandidateClick}
-                style={{
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  position: "relative",
-                  bottom: "3px",
-                }}
-              >
-                View More
-              </span>
-            </p>
-          </div>
-        )} */}
       </CardBody>
     </Card>
   );

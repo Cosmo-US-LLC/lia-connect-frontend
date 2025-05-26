@@ -62,6 +62,7 @@ const ActivityCard = ({ jobId, candidateId }) => {
             return; // Skip processing if the date is invalid
           }
 
+          // const readableDate = formattedDate.toLocaleTimeString(); // Convert to readable date format
           const readableDate = formattedDate.toLocaleDateString(); // Convert to readable date format
 
           // Initialize the date array if not already present
@@ -124,7 +125,8 @@ const ActivityCard = ({ jobId, candidateId }) => {
           style={{ maxHeight: "550px", overflowY: "auto" }}
         >
           <UL>
-            {Object.entries(ActivityDemoData).map(([date, activities]) => (
+            {console.log("ActivityDemoData", ActivityDemoData)}
+            {Object.entries(ActivityDemoData)?.length ? Object.entries(ActivityDemoData).map(([date, activities]) => (
               <li key={date}>
                 <div className="d-flex justify-content-center mb-2">
                   <span className="date-content text-center">
@@ -185,7 +187,9 @@ const ActivityCard = ({ jobId, candidateId }) => {
                   </LI>
                 ))}
               </li>
-            ))}
+            )) : (
+              <p className="text-center">No activities on profile yet!</p>
+            )}
           </UL>
         </CardBody>
       </Card>

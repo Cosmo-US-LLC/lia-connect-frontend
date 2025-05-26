@@ -9,17 +9,19 @@ import ChatIcon from "../../../../assets/used-files/icons/Chat.svg";
 import BlacklistIcon from "../../../../assets/used-files/icons/Blacklisted.svg";
 import CommentInfoIcon from "../../../../assets/used-files/icons/commentInfo.svg";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchCandidateDetails } from "../../../../redux/candidate/candidateActions";
 import { toast } from "react-toastify";
 import JobSkills from "./JobSkills";
 import ExpeirenceCard from "./ExperienceCard";
 import ActivityList from "./ActivityList";
+import { Link } from "react-router-dom";
 
 const CandidatesList = () => {
   const [basictooltip, setbasictooltip] = useState(false);
   const toggle = () => setbasictooltip(!basictooltip);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
 
@@ -40,27 +42,6 @@ const CandidatesList = () => {
         }
       })
     );
-  };
-
-  const openLinkedInAndClickMessage = (candidateLinkedInUrl) => {
-    const newTab = window.open(candidateLinkedInUrl, "_blank");
-    newTab.onload = () => {
-      alert("New tab loaded");
-      try {
-        console.log("New tab loaded:", newTab.location.href);
-        const messageButton = newTab.document.querySelector(
-          'button[aria-label="Message"], button.message-anywhere-button'
-        );
-        if (messageButton) {
-          messageButton.click();
-          console.log("Message button clicked!");
-        } else {
-          console.error("Message button not found.");
-        }
-      } catch (error) {
-        console.error("Error clicking the message button:", error);
-      }
-    };
   };
 
   return (
@@ -192,18 +173,19 @@ const CandidatesList = () => {
             <Col xxl="7" xl="7" className="col-ed-7 box-col-7">
               <Row>
                 <Col xl="12" md="6">
-                  <ActivityCard
-                    jobId={candidateDetails?.candidate?.jobs[0]?.id}
-                    candidateId={candidateDetails?.candidate?.id}
-                  />
                   {candidateDetails && (
                     <JobSkills candidateDetails={candidateDetails} />
                   )}
+                  {candidateDetails && (
+                    <ActivityCard
+                      jobId={candidateDetails?.candidate?.jobs[0]?.id}
+                      candidateId={candidateDetails?.candidate?.id}
+                    />
+                  )}
                 </Col>
-                <Col xl="12" md="6">
-                  {/* {candidateDetails && <ActivityList candidateDetails={candidateDetails} />} */}
+                {/* <Col xl="12" md="6">
                   {candidateDetails && <ActivityCard />}
-                </Col>
+                </Col> */}
                 {/* <Col xl="12" md="6">
                   <Notes />
                 </Col> */}
