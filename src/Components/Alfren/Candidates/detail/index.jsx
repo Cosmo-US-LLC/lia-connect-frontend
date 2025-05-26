@@ -24,7 +24,6 @@ const CandidatesList = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [candidateDetails, setCandidateDetails] = useState(null);
-  console.log("candidateDetails", candidateDetails);
 
   useEffect(() => {
     getCandidateDetails();
@@ -45,9 +44,6 @@ const CandidatesList = () => {
     );
   };
 
-  // console.log("candidateDetails", candidateDetails?.candidate?.activities?.find((activity) => activity?.messageSent == true)?.messageSent);
-  const canMessage = candidateDetails?.candidate?.activities?.find((activity) => activity?.messageSent == true)?.messageSent || false;  
-
   return (
     <Fragment>
       <Container
@@ -55,7 +51,18 @@ const CandidatesList = () => {
         style={{ maxHeight: "80vh", overflowY: "scroll" }}
       >
         <div style={{ textAlign: "right" }}>
-          <Link to={candidateDetails?.candidate?.linkedIn} target="_blank" className="btn btn-primary me-2 py-1 px-2 mt-2" disabled={!canMessage} title={canMessage ? "" : "Please wait for Alfren HR to send the message."}>
+          <button
+            onClick={() => {
+              const threadId = candidateDetails?.candidate?.threadId;
+              if (threadId) {
+                window.open(
+                  `https://www.linkedin.com/messaging/thread/${threadId}`,
+                  "_blank"
+                );
+              }
+            }}
+            className="btn btn-primary me-2 py-1 px-2 mt-2"
+          >
             <Image
               attrImage={{
                 src: ChatIcon,
@@ -63,7 +70,7 @@ const CandidatesList = () => {
               }}
             />{" "}
             Messages
-          </Link>
+          </button>
           {/* <button
             className="btn btn-outline-dark py-1 px-2 mt-2"
             id="TooltipBlacklist"
