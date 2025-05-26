@@ -4,7 +4,16 @@ import { H6 } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
 import Select from "react-select";
 import { Form, InputGroup, InputGroupText } from "reactstrap";
-import { ChevronDown, FileText, Filter, Map, Sliders, X } from "react-feather";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  Filter,
+  Map,
+  Sliders,
+  X,
+} from "react-feather";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchCandidates } from "../../../../redux/candidate/candidateActions";
@@ -88,12 +97,35 @@ const DataTables = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [activeOnly, setActiveOnly] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
+
+  const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     limit: 10,
     page: 1,
     totalPages: null,
     totalResults: null,
   });
+  // Handler for going to the previous page
+  const goToPreviousPage = () => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      page: Math.max(1, prevPagination.page - 1), // Ensure page doesn't go below 1
+    }));
+    // setLoading(true);
+    fetchCandidatePaginated(Math.max(1, pagination.page - 1));
+  };
+
+  // Handler for going to the next page
+  const goToNextPage = () => {
+    setPagination((prevPagination) => {
+      console.log("Next Page Clicked", Math.min(prevPagination.totalPages, prevPagination.page + 1));
+      return ({
+      ...prevPagination,
+      page: Math.min(prevPagination.totalPages, prevPagination.page + 1), // Ensure page doesn't exceed totalPages
+    })});
+    // setLoading(true);
+    fetchCandidatePaginated(Math.min(pagination.totalPages, pagination.page + 1), pagination?.limit);
+  };
 
   const [selectedJob, setSelectedJob] = useState([]);
 
@@ -236,8 +268,9 @@ const DataTables = () => {
     activeOnly,
   ]);
 
-  const fetchCandidatePaginated = async (e) => {
-    const urlParams = "page=" + pagination.page + "&limit=" + pagination.limit;
+  const fetchCandidatePaginated = async (page=1, limit=10) => {
+    setLoading(true);
+    const urlParams = "page=" + page + "&limit=" + limit;
     let formPayload = {
       urlParams,
       body: {},
@@ -262,6 +295,8 @@ const DataTables = () => {
     dispatch(
       fetchCandidates(formPayload, (resp) => {
         if (resp?.status == 200) {
+          console.warn("PAGINATION")
+          console.warn(pagination)
           // toast.success("JobsFetched successfully");
           setPagination(resp.data.pagination);
           const results = resp.data.results;
@@ -316,6 +351,7 @@ const DataTables = () => {
           const err = resp?.message;
           toast.error(err);
         }
+        setLoading(false);
       })
     );
   };
@@ -657,6 +693,16 @@ const DataTables = () => {
     return candidateMappedList;
   };
 
+  const [maxHeight, setMaxHeight] = useState(window.innerHeight - 300);
+
+  useEffect(() => {
+    if (isJobSelected || name || isStatusSelected || isLastActionSelected) {
+      setMaxHeight(window.innerHeight - 350);
+    } else {
+      setMaxHeight(window.innerHeight - 300);
+    }
+  }, [isJobSelected, name, isStatusSelected, isLastActionSelected]);
+
   return (
     <Fragment>
       <Container fluid={true}>
@@ -673,153 +719,225 @@ const DataTables = () => {
                   </h5> */}
                 {/* // ) : (
                 // )} */}
-                  <Row
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Col xl="9">
-                      {" "}
-                      <button
-                        style={{
-                          display: "inline-flex",
-                          border:
-                            searchDropdown || isJobSelected
-                              ? "1px solid #337CC7"
-                              : "1px solid #F0F0F0",
-                          color:
-                            searchDropdown || isJobSelected
-                              ? "#337CC7"
-                              : "#595959",
-                          backgroundColor:
-                            searchDropdown || isJobSelected
-                              ? "#F5F9FF"
-                              : "white",
-                          borderRadius: "4px",
-                          padding: "8px",
-                          marginRight: "8px",
-                          minWidth: "200px",
-                        }}
-                        onClick={toggleSearchDropdown}
-                      >
-                        <Search strokeWidth={1} size={16} />
-                        <span
-                          className="ms-2 me-4"
-                          style={{ fontSize: "12px" }}
-                        >
-                          Job Title
-                        </span>
-                      </button>
-                      {searchDropdown && (
-                        // <Jobs
-                        //   jobs={searchJobs}
-                        //   setJobs={setSearchJobs}
-                        //   closeSearchDropdown={closeSearchDropdown}
-                        //   setSelectedJobs={setSelectedJobs}
-                        //   setIsJobSelected={setIsJobSelected}
-                        // />
+                <Row
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    position: "relative",
+                    zIndex: 100,
+                  }}
+                >
+                  <Col xl="9">
+                    {" "}
+                    <button
+                      style={{
+                        display: "inline-flex",
+                        border:
+                          searchDropdown || isJobSelected
+                            ? "1px solid #337CC7"
+                            : "1px solid #F0F0F0",
+                        color:
+                          searchDropdown || isJobSelected
+                            ? "#337CC7"
+                            : "#595959",
+                        backgroundColor:
+                          searchDropdown || isJobSelected ? "#F5F9FF" : "white",
+                        borderRadius: "4px",
+                        padding: "8px",
+                        marginRight: "8px",
+                        minWidth: "200px",
+                      }}
+                      onClick={toggleSearchDropdown}
+                    >
+                      <Search strokeWidth={1} size={16} />
+                      <span className="ms-2 me-4" style={{ fontSize: "12px" }}>
+                        Job Title
+                      </span>
+                    </button>
+                    {searchDropdown && (
+                      // <Jobs
+                      //   jobs={searchJobs}
+                      //   setJobs={setSearchJobs}
+                      //   closeSearchDropdown={closeSearchDropdown}
+                      //   setSelectedJobs={setSelectedJobs}
+                      //   setIsJobSelected={setIsJobSelected}
+                      // />
 
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "40px",
+                          padding: "10px",
+                          // position: "absolute",
+                          boxShadow: "0px 10px 26px 0px #0000001A",
+                          zIndex: 2,
+                          backgroundColor: "white",
+                          borderRadius: "8px",
+                          width: "300px",
+                          maxHeight: "400px",
+                          overflow: "auto",
+                        }}
+                      >
+                        <input
+                          type="text"
+                          placeholder="Search Job"
+                          style={{
+                            width: "90%",
+                            padding: "5px 10px",
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "4px",
+                            marginBottom: "10px",
+                            marginLeft: "10px",
+                          }}
+                          value={jobSearchText}
+                          onChange={(e) => {
+                            setJobSearchText(e.target.value);
+                            // const filteredJobs = jobsList.filter((job) =>
+                            //   job.name
+                            //     .toLowerCase()
+                            //     .includes(e.target.value.toLowerCase())
+                            // );
+                            // setJobsList(filteredJobs);
+                          }}
+                        />
                         <div
                           style={{
-                            position: "absolute",
-                            top: "40px",
-                            padding: "10px",
-                            // position: "absolute",
-                            boxShadow: "0px 10px 26px 0px #0000001A",
-                            zIndex: 2,
-                            backgroundColor: "white",
-                            borderRadius: "8px",
-                            width: "300px",
-                            maxHeight: "400px",
-                            overflow: "auto",
+                            maxHeight: "200px",
+                            overflowY: "auto",
+                            padding: "5px 10px",
+                            margin: "5px 0",
                           }}
                         >
-                          <input
-                            type="text"
-                            placeholder="Search Job"
-                            style={{
-                              width: "90%",
-                              padding: "5px 10px",
-                              border: "1px solid #F0F0F0",
-                              borderRadius: "4px",
-                              marginBottom: "10px",
-                              marginLeft: "10px",
-                            }}
-                            value={jobSearchText}
-                            onChange={(e) => {
-                              setJobSearchText(e.target.value);
-                              // const filteredJobs = jobsList.filter((job) =>
-                              //   job.name
-                              //     .toLowerCase()
-                              //     .includes(e.target.value.toLowerCase())
-                              // );
-                              // setJobsList(filteredJobs);
-                            }}
-                          />
-                          <div
-                            style={{
-                              maxHeight: "200px",
-                              overflowY: "auto",
-                              padding: "5px 10px",
-                              margin: "5px 0",
-                            }}
-                          >
-                            {jobsList.map((job, index) => {
-                              if (
-                                jobSearchText &&
-                                !job.name
-                                  .toLowerCase()
-                                  .includes(jobSearchText.toLowerCase())
-                              ) {
-                                return null;
-                              }
-                              return (
-                                <div key={job.id}>
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedJob.includes(job.id)}
-                                    onChange={(e) => {
-                                      setSelectedJob((prev) => {
-                                        if (prev.includes(job.id)) {
-                                          console.log(
-                                            "Removing job",
-                                            job.name,
-                                            prev.filter((id) => id !== job.id)
-                                              .length
-                                          );
-                                          return prev.filter(
-                                            (id) => id !== job.id
-                                          );
-                                        } else {
-                                          console.log(
-                                            "Adding job",
-                                            job.name,
-                                            [...prev, job.id].length
-                                          );
-                                          return [...prev, job.id];
-                                        }
-                                      });
-                                    }}
-                                    id={`job-${index}`}
-                                    name={`job-${index}`}
-                                  />
-                                  <label
-                                    htmlFor={`job-${index}`}
-                                    style={{
-                                      marginLeft: "10px",
-                                      userSelect: "none",
-                                    }}
-                                  >
-                                    {job.name || job.id}
-                                  </label>
-                                  <br />
-                                </div>
-                              );
-                            })}
-                          </div>
+                          {jobsList.map((job, index) => {
+                            if (
+                              jobSearchText &&
+                              !job.name
+                                .toLowerCase()
+                                .includes(jobSearchText.toLowerCase())
+                            ) {
+                              return null;
+                            }
+                            return (
+                              <div key={job.id}>
+                                <input
+                                  type="checkbox"
+                                  checked={selectedJob.includes(job.id)}
+                                  onChange={(e) => {
+                                    setSelectedJob((prev) => {
+                                      if (prev.includes(job.id)) {
+                                        console.log(
+                                          "Removing job",
+                                          job.name,
+                                          prev.filter((id) => id !== job.id)
+                                            .length
+                                        );
+                                        return prev.filter(
+                                          (id) => id !== job.id
+                                        );
+                                      } else {
+                                        console.log(
+                                          "Adding job",
+                                          job.name,
+                                          [...prev, job.id].length
+                                        );
+                                        return [...prev, job.id];
+                                      }
+                                    });
+                                  }}
+                                  id={`job-${index}`}
+                                  name={`job-${index}`}
+                                />
+                                <label
+                                  htmlFor={`job-${index}`}
+                                  style={{
+                                    marginLeft: "10px",
+                                    userSelect: "none",
+                                  }}
+                                >
+                                  {job.name || job.id}
+                                </label>
+                                <br />
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <button
+                          style={{
+                            backgroundColor: "#337CC7",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "4px",
+                            padding: "5px 16px",
+                            marginLeft: "10px",
+                            height: "33px",
+                          }}
+                          onClick={addSelectedJobs}
+                        >
+                          Filter Candidates
+                        </button>
+                      </div>
+                    )}
+                    <button
+                      style={{
+                        display: "inline-flex",
+                        border:
+                          nameDropdown || name
+                            ? "1px solid #337CC7"
+                            : "1px solid #F0F0F0",
+                        color: nameDropdown || name ? "#337CC7" : "#595959",
+                        backgroundColor:
+                          nameDropdown || name ? "#F5F9FF" : "white",
+                        borderRadius: "4px",
+                        padding: "8px",
+                        marginRight: "8px",
+                        minWidth: "200px",
+                      }}
+                      onClick={toggleNameDropdown}
+                    >
+                      <Search strokeWidth={1} size={16} />
+                      <span className="ms-2 me-4" style={{ fontSize: "12px" }}>
+                        Name
+                      </span>
+                    </button>
+                    {nameDropdown && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "40px",
+                          padding: "10px",
+                          // position: "absolute",
+                          boxShadow: "0px 10px 26px 0px #0000001A",
+                          zIndex: 2,
+                          backgroundColor: "white",
+                          borderRadius: "8px",
+                          width: "50%",
+                          maxWidth: "410px",
+                          maxHeight: "400px",
+                          overflow: "auto",
+                        }}
+                      >
+                        <form
+                          action=""
+                          onSubmit={updateName}
+                          style={{ display: "flex", paddingTop: "5px" }}
+                        >
+                          <label htmlFor="name" style={{ width: "100%" }}>
+                            <input
+                              type="text"
+                              name="name"
+                              placeholder="Search Name"
+                              style={{
+                                width: "100%",
+                                padding: "5px 10px",
+                                border: "1px solid #F0F0F0",
+                                borderRadius: "4px",
+                              }}
+                            />
+                          </label>
+
                           <button
+                            type="submit"
                             style={{
                               backgroundColor: "#337CC7",
                               color: "white",
@@ -829,245 +947,167 @@ const DataTables = () => {
                               marginLeft: "10px",
                               height: "33px",
                             }}
-                            onClick={addSelectedJobs}
                           >
-                            Filter Candidates
+                            Search
                           </button>
-                        </div>
-                      )}
+                        </form>
+                      </div>
+                      // <Jobs
+                      //   jobs={searchJobs}
+                      //   setJobs={setSearchJobs}
+                      //   closeSearchDropdown={closeSearchDropdown}
+                      //   setSelectedJobs={setSelectedJobs}
+                      //   setIsJobSelected={setIsJobSelected}
+                      // />
+                    )}
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        position: "relative",
+                        bottom: "3px",
+                        marginRight: "8px",
+                      }}
+                    >
                       <button
                         style={{
-                          display: "inline-flex",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
                           border:
-                            nameDropdown || name
+                            statusDropdown || isStatusSelected
                               ? "1px solid #337CC7"
                               : "1px solid #F0F0F0",
-                          color: nameDropdown || name ? "#337CC7" : "#595959",
+                          color:
+                            statusDropdown || isStatusSelected
+                              ? "#337CC7"
+                              : "#595959",
                           backgroundColor:
-                            nameDropdown || name ? "#F5F9FF" : "white",
+                            statusDropdown || isStatusSelected
+                              ? "#F5F9FF"
+                              : "white",
                           borderRadius: "4px",
                           padding: "8px",
-                          marginRight: "8px",
-                          minWidth: "200px",
+                          minWidth: "150px",
                         }}
-                        onClick={toggleNameDropdown}
+                        onClick={toggleStatusDropdown}
                       >
-                        <Search strokeWidth={1} size={16} />
                         <span
-                          className="ms-2 me-4"
-                          style={{ fontSize: "12px" }}
+                          className="ms-2"
+                          style={{ fontSize: "12px", marginRight: "5px" }}
                         >
-                          Name
+                          {isStatusSelected ? isStatusSelected : "Status"}
                         </span>
+                        <ChevronDown strokeWidth={1} size={16} />
                       </button>
-                      {nameDropdown && (
+                      {statusDropdown && (
                         <div
                           style={{
                             position: "absolute",
                             top: "40px",
-                            padding: "10px",
-                            // position: "absolute",
-                            boxShadow: "0px 10px 26px 0px #0000001A",
-                            zIndex: 2,
                             backgroundColor: "white",
-                            borderRadius: "8px",
-                            width: "50%",
-                            maxWidth: "410px",
-                            maxHeight: "400px",
-                            overflow: "auto",
+                            border: "1px solid #F0F0F0",
+                            borderRadius: "4px",
+                            padding: "2px 4px",
+                            zIndex: 1,
+                            minWidth: "150px",
                           }}
                         >
-                          <form
-                            action=""
-                            onSubmit={updateName}
-                            style={{ display: "flex", paddingTop: "5px" }}
-                          >
-                            <label htmlFor="name" style={{ width: "100%" }}>
-                              <input
-                                type="text"
-                                name="name"
-                                placeholder="Search Name"
-                                style={{
-                                  width: "100%",
-                                  padding: "5px 10px",
-                                  border: "1px solid #F0F0F0",
-                                  borderRadius: "4px",
-                                }}
-                              />
-                            </label>
-
-                            <button
-                              type="submit"
+                          {statuses.map((status) => (
+                            <div
+                              key={status}
+                              onClick={() => {
+                                // setStatus(status);
+                                setIsStatusSelected(status);
+                                setStatusDropdown(false);
+                              }}
                               style={{
-                                backgroundColor: "#337CC7",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "4px",
-                                padding: "5px 16px",
-                                marginLeft: "10px",
-                                height: "33px",
+                                padding: "4px",
+                                cursor: "pointer",
+                                color: "#595959",
                               }}
                             >
-                              Search
-                            </button>
-                          </form>
+                              {status}
+                            </div>
+                          ))}
                         </div>
-                        // <Jobs
-                        //   jobs={searchJobs}
-                        //   setJobs={setSearchJobs}
-                        //   closeSearchDropdown={closeSearchDropdown}
-                        //   setSelectedJobs={setSelectedJobs}
-                        //   setIsJobSelected={setIsJobSelected}
-                        // />
                       )}
-                      <div
+                    </div>
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        position: "relative",
+                        bottom: "3px",
+                        marginRight: "8px",
+                      }}
+                    >
+                      <button
                         style={{
-                          display: "inline-flex",
-                          position: "relative",
-                          bottom: "3px",
-                          marginRight: "8px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          border:
+                            lastActionDropdown || isLastActionSelected
+                              ? "1px solid #337CC7"
+                              : "1px solid #F0F0F0",
+                          color:
+                            lastActionDropdown || isLastActionSelected
+                              ? "#337CC7"
+                              : "#595959",
+                          backgroundColor:
+                            lastActionDropdown || isLastActionSelected
+                              ? "#F5F9FF"
+                              : "white",
+                          borderRadius: "4px",
+                          padding: "8px",
+                          minWidth: "150px",
                         }}
+                        onClick={toggleLastActionDropdown}
                       >
-                        <button
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            border:
-                              statusDropdown || isStatusSelected
-                                ? "1px solid #337CC7"
-                                : "1px solid #F0F0F0",
-                            color:
-                              statusDropdown || isStatusSelected
-                                ? "#337CC7"
-                                : "#595959",
-                            backgroundColor:
-                              statusDropdown || isStatusSelected
-                                ? "#F5F9FF"
-                                : "white",
-                            borderRadius: "4px",
-                            padding: "8px",
-                            minWidth: "150px",
-                          }}
-                          onClick={toggleStatusDropdown}
+                        <span
+                          className="ms-2"
+                          style={{ fontSize: "12px", marginRight: "5px" }}
                         >
-                          <span
-                            className="ms-2"
-                            style={{ fontSize: "12px", marginRight: "5px" }}
-                          >
-                            {isStatusSelected ? isStatusSelected : "Status"}
-                          </span>
-                          <ChevronDown strokeWidth={1} size={16} />
-                        </button>
-                        {statusDropdown && (
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: "40px",
-                              backgroundColor: "white",
-                              border: "1px solid #F0F0F0",
-                              borderRadius: "4px",
-                              padding: "2px 4px",
-                              zIndex: 1,
-                              minWidth: "150px",
-                            }}
-                          >
-                            {statuses.map((status) => (
-                              <div
-                                key={status}
-                                onClick={() => {
-                                  // setStatus(status);
-                                  setIsStatusSelected(status);
-                                  setStatusDropdown(false);
-                                }}
-                                style={{
-                                  padding: "4px",
-                                  cursor: "pointer",
-                                  color: "#595959",
-                                }}
-                              >
-                                {status}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                      <div
-                        style={{
-                          display: "inline-flex",
-                          position: "relative",
-                          bottom: "3px",
-                          marginRight: "8px",
-                        }}
-                      >
-                        <button
+                          {isLastActionSelected
+                            ? optionList[
+                                valueList?.indexOf(isLastActionSelected)
+                              ]
+                            : "Last Action"}
+                        </span>
+                        <ChevronDown strokeWidth={1} size={16} />
+                      </button>
+                      {lastActionDropdown && (
+                        <div
                           style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            border:
-                              lastActionDropdown || isLastActionSelected
-                                ? "1px solid #337CC7"
-                                : "1px solid #F0F0F0",
-                            color:
-                              lastActionDropdown || isLastActionSelected
-                                ? "#337CC7"
-                                : "#595959",
-                            backgroundColor:
-                              lastActionDropdown || isLastActionSelected
-                                ? "#F5F9FF"
-                                : "white",
+                            position: "absolute",
+                            top: "40px",
+                            backgroundColor: "white",
+                            border: "1px solid #F0F0F0",
                             borderRadius: "4px",
-                            padding: "8px",
-                            minWidth: "150px",
+                            padding: "2px 4px",
+                            zIndex: 1,
+                            minWidth: "250px",
                           }}
-                          onClick={toggleLastActionDropdown}
                         >
-                          <span
-                            className="ms-2"
-                            style={{ fontSize: "12px", marginRight: "5px" }}
-                          >
-                            {isLastActionSelected
-                              ? optionList[
-                                  valueList?.indexOf(isLastActionSelected)
-                                ]
-                              : "Last Action"}
-                          </span>
-                          <ChevronDown strokeWidth={1} size={16} />
-                        </button>
-                        {lastActionDropdown && (
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: "40px",
-                              backgroundColor: "white",
-                              border: "1px solid #F0F0F0",
-                              borderRadius: "4px",
-                              padding: "2px 4px",
-                              zIndex: 1,
-                              minWidth: "250px",
-                            }}
-                          >
-                            {optionList.map((action, index) => (
-                              <div
-                                key={action}
-                                onClick={() => {
-                                  setIsLastActionSelected(valueList[index]);
-                                  setLastActionDropdown(false);
-                                }}
-                                style={{
-                                  padding: "4px",
-                                  cursor: "pointer",
-                                  color: "#595959",
-                                }}
-                              >
-                                {action}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                      {/* <button
+                          {optionList.map((action, index) => (
+                            <div
+                              key={action}
+                              onClick={() => {
+                                setIsLastActionSelected(valueList[index]);
+                                setLastActionDropdown(false);
+                              }}
+                              style={{
+                                padding: "4px",
+                                cursor: "pointer",
+                                color: "#595959",
+                              }}
+                            >
+                              {action}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* <button
                       style={{
                         display: "inline-flex",
                         border: "none",
@@ -1115,16 +1155,16 @@ const DataTables = () => {
                         Blacklisted Only
                       </span>
                     </button> */}
-                    </Col>
-                    <Col
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "14px",
-                      }}
-                    >
-                      {/* <span
+                  </Col>
+                  <Col
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "14px",
+                    }}
+                  >
+                    {/* <span
                       style={{
                         opacity: activeOnly ? "100%" : "40%",
                         fontSize: "12px",
@@ -1158,199 +1198,328 @@ const DataTables = () => {
                       </span>
                       <ChevronDown strokeWidth={1} size={16} />
                     </button> */}
-                    </Col>
-                  </Row>
+                  </Col>
+                </Row>
                 {/* {jobListId ? (
                   ""
                 ) : (
                 )} */}
-                  <Row>
-                    {isJobSelected && searchJobs.length > 0 && (
-                      <div
-                        style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: "10px",
-                          marginTop: "10px",
-                        }}
-                      >
-                        {searchJobs.map((jobId, index) => {
-                          const job = jobsList.find((job) => job.id === jobId);
-                          return (
-                            <div
-                              key={jobId}
+                <Row className="gap-3">
+                  {isJobSelected && searchJobs.length > 0 && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        marginTop: "10px",
+                        // gap: "10px",
+                        width: "fit-content",
+                        // border: "1px solid black",
+                        padding: "0px",
+                      }}
+                    >
+                      {searchJobs.map((jobId, index) => {
+                        const job = jobsList.find((job) => job.id === jobId);
+                        return (
+                          <div
+                            key={jobId}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              backgroundColor: "#F0F0F0",
+                              padding: "5px 10px",
+                              borderRadius: "20px",
+                              width: "fit-content",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <span
                               style={{
-                                display: "flex",
-                                alignItems: "center",
-                                backgroundColor: "#F0F0F0",
-                                padding: "5px 10px",
-                                borderRadius: "20px",
-                                width: "fit-content",
+                                fontSize: "12px",
+                                marginRight: "5px",
                               }}
                             >
-                              <span
-                                style={{
-                                  fontSize: "12px",
-                                  marginRight: "5px",
-                                }}
-                              >
-                                Job: <strong>{job?.name || jobId}</strong>
-                              </span>
-                              <button
-                                onClick={() => {
-                                  setSearchJobs((prev) =>
-                                    prev.filter((id) => id !== jobId)
-                                  );
-                                  setSelectedJob((prev) =>
-                                    prev.filter((id) => id !== jobId)
-                                  );
-                                  if (searchJobs.length === 1) {
-                                    setIsJobSelected(false);
-                                  }
-                                }}
-                                style={{
-                                  backgroundColor: "transparent",
-                                  border: "none",
-                                  cursor: "pointer",
-                                  padding: "0 5px",
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <X size={16} />
-                              </button>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                              Job: <strong>{job?.name || jobId}</strong>
+                            </span>
+                            <button
+                              onClick={() => {
+                                setSearchJobs((prev) =>
+                                  prev.filter((id) => id !== jobId)
+                                );
+                                setSelectedJob((prev) =>
+                                  prev.filter((id) => id !== jobId)
+                                );
+                                if (searchJobs.length === 1) {
+                                  setIsJobSelected(false);
+                                }
+                              }}
+                              style={{
+                                backgroundColor: "transparent",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: "0 5px",
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <X size={16} />
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
 
-                    {name && (
-                      <div
+                  {name && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginTop: "10px",
-                          backgroundColor: "#F0F0F0",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          width: "fit-content",
+                          fontSize: "12px",
+                          marginRight: "5px",
                         }}
                       >
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            marginRight: "5px",
-                          }}
-                        >
-                          Name: <strong>{name}</strong>
-                        </span>
-                        <button
-                          onClick={() => {
-                            setName("");
-                            setNameDropdown(false);
-                          }}
-                          style={{
-                            backgroundColor: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                            paddingTop: "5px",
-                          }}
-                        >
-                          <X size={16} />
-                        </button>
-                      </div>
-                    )}
-                    {isStatusSelected && (
-                      <div
+                        Name: <strong>{name}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setName("");
+                          setNameDropdown(false);
+                        }}
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginTop: "10px",
-                          backgroundColor: "#F0F0F0",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          width: "fit-content",
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
                         }}
                       >
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            marginRight: "5px",
-                          }}
-                        >
-                          Status: <strong>{isStatusSelected}</strong>
-                        </span>
-                        <button
-                          onClick={() => {
-                            setIsStatusSelected(false);
-                            setStatusDropdown(false);
-                          }}
-                          style={{
-                            backgroundColor: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                            paddingTop: "5px",
-                          }}
-                        >
-                          <X size={16} />
-                        </button>
-                      </div>
-                    )}
-                    {isLastActionSelected && (
-                      <div
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
+                  {isStatusSelected && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginTop: "10px",
-                          backgroundColor: "#F0F0F0",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          width: "fit-content",
+                          fontSize: "12px",
+                          marginRight: "5px",
                         }}
                       >
-                        <span
-                          style={{
-                            fontSize: "12px",
-                            marginRight: "5px",
-                          }}
-                        >
-                          Last Action:{" "}
-                          <strong>
-                            {
-                              optionList[
-                                valueList?.indexOf(isLastActionSelected)
-                              ]
-                            }
-                          </strong>
-                        </span>
-                        <button
-                          onClick={() => {
-                            setIsLastActionSelected(false);
-                            setLastActionDropdown(false);
-                          }}
-                          style={{
-                            backgroundColor: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                            paddingTop: "5px",
-                          }}
-                        >
-                          <X size={16} />
-                        </button>
-                      </div>
-                    )}
-                  </Row>
+                        Status: <strong>{isStatusSelected}</strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setIsStatusSelected(false);
+                          setStatusDropdown(false);
+                        }}
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
+                  {isLastActionSelected && (
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        backgroundColor: "#F0F0F0",
+                        padding: "5px 10px",
+                        borderRadius: "20px",
+                        width: "fit-content",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        Last Action:{" "}
+                        <strong>
+                          {optionList[valueList?.indexOf(isLastActionSelected)]}
+                        </strong>
+                      </span>
+                      <button
+                        onClick={() => {
+                          setIsLastActionSelected(false);
+                          setLastActionDropdown(false);
+                        }}
+                        style={{
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </div>
+                  )}
+                </Row>
               </CardHeader>
-              <DataTableComponent
+              {/* <DataTableComponent
                 paginatedUpdated={paginatedUpdated}
                 data={candidateList}
                 paginationDetails={pagination}
                 tableColumns={tableColumns}
                 setPagination={setPagination}
                 setPaginatedUpdated={setPaginatedUpdated}
-              />
+              /> */}
+              <CardBody style={{ padding: 0 }}>
+                <div
+                  style={{
+                    // flexGrow: `1`,
+                    maxHeight: `${maxHeight}px`,
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <table
+                    style={{
+                      width: "100%",
+                      tableLayout: "auto",
+                      borderSpacing: 0,
+                    }}
+                  >
+                    <thead>
+                      <tr
+                        style={{
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "white",
+                          zIndex: 10,
+                          borderBottom: "2px solid #E0E0E0",
+                          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                        }}
+                      >
+                        {tableColumns.map((column, index) => (
+                          <th
+                            key={index}
+                            style={{
+                              padding: "16px 18px",
+                              fontWeight: "bold",
+                              // textAlign: "left",
+                              fontSize: "14px",
+                              color: "#333333",
+                              textAlign: index === 0 ? "left" : "center",
+                            }}
+                          >
+                            {column.name}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {console.log(loading)}
+                      {loading ? "Loading..." : candidateList.map((candidate, index) => (
+                        <tr
+                          key={index}
+                          style={{
+                            backgroundColor: "white",
+                            // index % 2 === 0 ? "#F5F9FF" : "white",
+                            borderBottom: "1px solid #E0E0E0",
+                          }}
+                        >
+                          {tableColumns.map((column, colIndex) => (
+                            <td
+                              key={colIndex}
+                              style={{
+                                padding: "26px 20px",
+                                wordBreak: "break-word",
+                                fontSize: "14px",
+                                color: "#333333",
+                                textAlign: colIndex === 0 ? "left" : "center",
+                              }}
+                            > 
+                              {column.selector(candidate)}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardBody>
             </Card>
+            {/* <div
+              className="d-flex justify-content-end align-items-center px-2 gap-3"
+              style={{ height: "30px", backgroundColor: "transparent" }}
+            >
+              <button className="d-flex align-items-center justify-center" style={{ border: "1px solid #F0F0F0", borderRadius: "7px", backgroundColor: "white" }}><ChevronLeft /></button>
+              <span>{pagination?.page}</span>
+              <button className="d-flex align-items-center justify-center" style={{ border: "1px solid #F0F0F0", borderRadius: "7px", backgroundColor: "white" }}><ChevronRight /></button>
+            </div> */}
+            <div
+              className="d-flex justify-content-end align-items-center px-2 gap-3"
+              style={{ height: "30px", backgroundColor: "transparent" }}
+            >
+              <button
+                onClick={goToPreviousPage}
+                disabled={pagination.page === 1 || loading} // Disable if on the first page
+                className="d-flex align-items-center justify-center"
+                style={{
+                  border: "1px solid #F0F0F0",
+                  borderRadius: "7px",
+                  backgroundColor: "white",
+                  // cursor: pagination.page === 1 ? "not-allowed" : "pointer", // Change cursor for disabled state
+                  cursor: pagination.page === 1 ? "pointer" : "pointer", // Change cursor for disabled state
+                  opacity: pagination.page === 1 ? 0.6 : 1, // Visual cue for disabled state
+                }}
+              >
+                <ChevronLeft size={18} /> {/* Adjust icon size if needed */}
+              </button>
+
+              {/* Display current page and total pages for better context */}
+              <span>
+                Page {pagination.page} of {pagination.totalPages}
+              </span>
+
+              <button
+                onClick={goToNextPage}
+                disabled={pagination.page === pagination.totalPages || loading} // Disable if on the last page
+                className="d-flex align-items-center justify-center"
+                style={{
+                  border: "1px solid #F0F0F0",
+                  borderRadius: "7px",
+                  backgroundColor: "white",
+                  cursor:
+                    pagination.page === pagination.totalPages
+                      // ? "not-allowed"
+                      ? "pointer"
+                      : "pointer", // Change cursor
+                  opacity: pagination.page === pagination.totalPages ? 0.6 : 1, // Visual cue
+                }}
+              >
+                <ChevronRight size={18} /> {/* Adjust icon size if needed */}
+              </button>
+            </div>
           </Col>
         </Row>
         <Modal

@@ -134,13 +134,13 @@ const DataTableComponent = ({
         data={data}
         columns={tableColumns}
         center={true}
-        selectableRows
+        // selectableRows
         borderBottom={false}
         onSelectedRowsChange={handleRowSelected}
         clearSelectedRows={toggleDelet}
         customStyles={customStyles}
-        style={{ tableLayout: "fixed", width: "100%" }}
-        persistTableHead
+        // style={{ tableLayout: "fixed", width: "100%" }}
+        // persistTableHead
       />
       <div style={{ position: "fixed", bottom: "40px", width: "100%" }}>
         {/* <span
