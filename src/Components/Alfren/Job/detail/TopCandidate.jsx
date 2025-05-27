@@ -19,6 +19,7 @@ import { RxDoubleArrowRight } from "react-icons/rx";
 import { TbMessageFilled } from "react-icons/tb";
 import { MdMessage } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
+import user1 from "../../../../assets/images/user/user.png";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
@@ -272,7 +273,11 @@ const TopCandidate = ({ id }) => {
                     <div className="avatar me-3 ms-1" style={{ width: "50px" }}>
                       {topCand?.image ? (
                         <img
-                          src={topCand?.image}
+                          src={topCand?.image || user1}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = user1;
+                          }}
                           alt=""
                           className="img-50 rounded-circle"
                         />

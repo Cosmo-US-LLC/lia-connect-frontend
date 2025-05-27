@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CAROUSAL_ITEMS } from "../constants";
 import { Image } from "AbstractElements";
-import LogoIcon from "../../../../../assets/images/logo/logo-blue-bg.svg";
+import LogoIcon from "../../../../../assets/images/logo/logo-blue-1x.svg";
 
 const CarouselSection = ({ textPosition = "left", showLogo = false }) => {
   const [activeIndex, setActiveIndex] = useState(0);
