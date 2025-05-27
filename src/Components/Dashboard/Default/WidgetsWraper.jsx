@@ -91,7 +91,7 @@ const WidgetsWrapper = ({dataList}) => {
       <Col xl="4">
         <Widgets1 data={data[5]} />
       </Col>
-      <Col xl="4">
+      <Col xl="4" style={{paddingBottom: "50px"}}>
         <Widgets1 data={data[6]} />
       </Col>
       {/* <Col xl="3">

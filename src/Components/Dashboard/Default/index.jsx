@@ -44,7 +44,7 @@ const Dashboard = () => {
 
   const [isLinkedInConnected, setIsLinkedInConnected] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const checkStatus = async () => {
       try {
@@ -63,7 +63,14 @@ const Dashboard = () => {
 
   if (loading || data === null) {
     return (
-      <Container className="text-center py-5">
+      <Container
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}
+      >
         <Spinner color="primary" />
       </Container>
     );
@@ -77,7 +84,11 @@ const Dashboard = () => {
     <Fragment>
       <Container fluid={true}>
         <Row className="widget-grid">
-          <GreetingCard isLinkedInLogin={isLinkedInConnected} connectModel={connectModel} setConnectModel={setConnectModel} />
+          <GreetingCard
+            isLinkedInLogin={isLinkedInConnected}
+            connectModel={connectModel}
+            setConnectModel={setConnectModel}
+          />
           <WidgetsWrapper dataList={data} />
           {/* <OverallBalance /> */}
           {/* <ActivityCard />
@@ -90,7 +101,7 @@ const Dashboard = () => {
               <PaperNote /> */}
         </Row>
       </Container>
-      
+
       <div
         style={{
           position: "fixed",
