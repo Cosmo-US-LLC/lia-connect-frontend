@@ -20,6 +20,7 @@ import { TbMessageFilled } from "react-icons/tb";
 import { MdMessage } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
 import user1 from "../../../../assets/images/user/user.png";
+import { PiHandshakeLight } from "react-icons/pi";
 
 const TopCandidate = ({ id }) => {
   const [topCandidateDetail, setJobDetails] = useState(null);
@@ -265,7 +266,7 @@ const TopCandidate = ({ id }) => {
                   border: "1px solid #EBF1FC",
                   boxShadow: "3px 3px 3px 0px #BA9FC914",
                   marginBottom: "10px",
-                  cursor: "pointer",
+                  // cursor: "pointer",
                 }}
               >
                 <CardBody style={{ padding: "6px" }}>
@@ -358,11 +359,13 @@ const TopCandidate = ({ id }) => {
                           }}
                         >
                           connection request sent
-                          <RxDoubleArrowRight
+                          <PiHandshakeLight 
                             style={{
                               fontSize: "large",
                               marginBottom: "-5px",
                               paddingLeft: "4px",
+                              // color: "#1264FD",
+                              // color: "#299A16",
                             }}
                           />
                         </p>
@@ -395,15 +398,15 @@ const TopCandidate = ({ id }) => {
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                paddingTop: "18px",
+                                paddingTop: "16px",
                                 // pointer-events: auto;
                               }}
                             >
                               Score{" "}
                               <CiCircleInfo
                                 style={{
-                                  color: "black",
-                                  fontSize: "large",
+                                  color: "#000",
+                                  fontSize: "16px",
                                   position: "relative",
                                   // zIndex: 999,
                                   cursor: "pointer",
@@ -415,7 +418,7 @@ const TopCandidate = ({ id }) => {
                             <p
                               style={{
                                 color: "#299A16",
-                                fontSize: "18px",
+                                fontSize: "16px",
                                 fontWeight: 600,
                                 paddingTop: "2px",
                               }}
