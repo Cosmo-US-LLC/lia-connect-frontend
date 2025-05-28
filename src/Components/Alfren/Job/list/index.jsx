@@ -10,6 +10,7 @@ import {
   Label,
   UncontrolledTooltip,
   CardBody,
+  Spinner,
 } from "reactstrap";
 import { Progressbar, UL } from "../../../../AbstractElements";
 import DataTableComponent from "./DataTableComponent";
@@ -26,7 +27,7 @@ import {
   Users,
   X,
 } from "react-feather";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Tab } from "react-bootstrap";
 import { FaTimes, FaTrash } from "react-icons/fa";
 import { MessageSquare, CheckSquare, Activity } from "react-feather";
 import Jobs from "./modals/jobs";
@@ -46,6 +47,8 @@ import "./style.css";
 import { IoBriefcaseOutline } from "react-icons/io5";
 import { LiaHandshakeSolid } from "react-icons/lia";
 import { AiOutlineInteraction } from "react-icons/ai";
+import SkeletonCard from "layout/CardSkeleton";
+import { Status } from "constant";
 
 const JobList = () => {
   const dispatch = useDispatch();
@@ -145,6 +148,8 @@ const JobList = () => {
 
   const [isDateSelected, setIsDateSelected] = useState(false);
 
+  console.log("jobsList", jobsList);
+
   const handleCheckboxChange = () => {
     setActiveOnly(!activeOnly);
   };
@@ -178,6 +183,40 @@ const JobList = () => {
       setIsPrioritySelected(false);
     }
   };
+
+  // const getStatusStyles = (status) => {
+  //   switch (status) {
+  //     case "In Progress":
+  //       return {
+  //         backgroundColor: "#fff3cd",
+  //         color: "#856404",
+  //         border: "1px solid #ffeaa7",
+  //       };
+  //     case "Paused":
+  //       return {
+  //         backgroundColor: "#e2e3e5",
+  //         color: "#383d41",
+  //         border: "1px solid #d6d8db",
+  //       };
+  //     case "Completed":
+  //       return {
+  //         backgroundColor: "#d4edda",
+  //         color: "#155724",
+  //         border: "1px solid #c3e6cb",
+  //       };
+  //     default:
+  //       return {
+  //         backgroundColor: "#e2e3e5",
+  //         color: "#383d41",
+  //         border: "1px solid #d6d8db",
+  //       };
+  //   }
+  // };
+  const shouldApplyShimmer = (status) => {
+    return status === "In Progress";
+  };
+
+  console.log({ selectedJobs });
 
   const fetchJobPaginated = async (e) => {
     const urlParams =
@@ -415,6 +454,29 @@ const JobList = () => {
               center: false,
               width: "15%",
             },
+            // {
+            //   name: (
+            //     <div
+            //       style={{ display: "flex", alignItems: "center", gap: "6px" }}
+            //     >
+            //       <Activity size={16} />
+            //       Status
+            //     </div>
+            //   ),
+            //   selector: (row) => (
+            //     <td>
+            //       <span
+            //         className={`status-badge ${
+            //           shouldApplyShimmer(row.Status) ? "shimmer-effect" : ""
+            //         }`}
+            //         style={getStatusStyles(row.Status)}
+            //       >
+            //         {row.Status || "No Status"} {/* ✨ Note: Capital S */}
+            //       </span>
+            //     </td>
+            //   ),
+            //   width: "20%",
+            // },
             {
               name: (
                 <div
@@ -427,22 +489,20 @@ const JobList = () => {
               selector: (row) => (
                 <td>
                   <span
-                    className={`status-badge ${getStatusClass(
-                      "In Progress: sending messages"
-                    )}`}
+                  className="status-badge shimmer-effect"
+                  style={{
+                    backgroundColor: "#007BFF",
+                    color: "white"
+                  }}
+                    // className={`status-badge ${
+                    //   row.status === "In Progress" ? "shimmer-effect" : ""
+                    // }`}
+                    // style={getStatusStyles(row.status)}
                   >
-                    In-Progress
-                  </span>
-                  {/* <span
-                    className={`status-badge status-completed`}
-                  >
+                    {/* {row.status} */}
                     In Progress
-                  </span> */}
+                  </span>
                 </td>
-
-                // <span className={`status-badge ${getStatusClass(row.status)}`}>
-                //   {row.status || "No Status"}
-                // </span>
               ),
               width: "20%",
             },
@@ -502,10 +562,11 @@ const JobList = () => {
   };
 
   const changeJobStatus = (jobId, status) => {
+    console.log({ jobId, status });
     const formData = {
       jobId,
       body: {
-        isJobActive: !status,
+        isJobActive: status,
       },
     };
     dispatch(
@@ -597,6 +658,7 @@ const JobList = () => {
 
   const mapTableData = (results) => {
     let currentDate = new Date();
+    console.log({ results });
     let jobMappedList = results.map((item, index) => {
       let date = new Date(item.createdAt);
 
@@ -702,33 +764,36 @@ const JobList = () => {
         //     </span>
         //   </div>
         // ),
-        actions: (
-          <div className=" " style={{ display: "flex", gap: "10px" }}>
-            <div style={{ display: "block", width: "60px", textAlign: "left" }}>
-              <span
-                style={{
-                  fontSize: "14px",
-                  marginBottom: "4px",
-                  display: "block",
-                }}
-              >
-                {item.isJobCompleted ? "Active" : "Inactive"}
-              </span>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <div
+        actions:
+          (console.log({ item }),
+          (
+            <div style={{ display: "flex", gap: "2px", textAlign: "left" }}>
+              <div style={{ width: "80px" }}>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    // marginBottom: "6px",
+                    display: "block",
+                    fontWeight: "500",
+                  }}
+                >
+                  {item.isJobActive ? "Active" : "Inactive"}
+                </span>
+
+                <label
                   style={{
                     position: "relative",
                     display: "inline-block",
-                    height: "16px",
-                    width: "32px",
+                    width: "36px",
+                    height: "18px",
+                    cursor: "pointer",
                   }}
                 >
                   <input
                     type="checkbox"
-                    checked={item.isJobCompleted}
-                    onChange={() => changeJobStatus(item.id, item.isJobActive)}
+                    checked={item.isJobActive}
+                    onChange={() => changeJobStatus(item.id, !item.isJobActive)}
                     style={{
-                      position: "absolute",
                       opacity: 0,
                       width: 0,
                       height: 0,
@@ -741,73 +806,143 @@ const JobList = () => {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      backgroundColor: item.isJobCompleted
-                        ? "#299A16"
-                        : "#E0E0E0",
-                      borderRadius: "16px",
-                      transition: "background-color 0.2s ease",
+                      backgroundColor: item.isJobActive ? "#299A16" : "#E0E0E0",
+                      borderRadius: "34px",
+                      transition: "0.2s",
                     }}
                   />
                   <span
                     style={{
                       position: "absolute",
-                      top: "2px",
-                      left: "2px",
-                      height: "12px",
-                      width: "12px",
+                      height: "14px",
+                      width: "14px",
+                      left: item.isJobActive ? "20px" : "2px",
+                      bottom: "2px",
                       backgroundColor: "white",
                       borderRadius: "50%",
-                      transform: item.isJobCompleted
-                        ? "translateX(16px)"
-                        : "translateX(0)",
-                      transition: "transform 0.2s ease",
-                      boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                      transition: "0.2s",
+                      boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
                     }}
                   />
-                </div>
+                </label>
               </div>
+
+              <Trash2
+                strokeWidth={1}
+                color="#9B9999"
+                size={20}
+                onClick={() => handleOpenConfirmation(item.id)}
+                style={{ cursor: "pointer", marginTop: "4px" }}
+              />
             </div>
-            {/* {item.isJobCompleted ? (
-              <div className="d-block">
-                <span>Active</span>
-                <Media key="1">
-                  <Media body className="text-start switch-sm ">
-                    <Label className="switch">
-                      <Input
-                        type="checkbox"
-                        style={{
-                          background: `${item.isJobActive ? "black" : "red"}`,
-                        }}
-                        checked={item.isJobActive ? true : false}
-                        onClick={() =>
-                          changeJobStatus(item.id, item.isJobActive)
-                        }
-                      />
-                      <span
-                        className="switch-state"
-                        style={{
-                          backgroundColor: `${
-                            item.isJobActive ? "#299A16" : "#E0E0E0"
-                          }`,
-                        }}
-                      ></span>
-                    </Label>
-                  </Media>
-                </Media>
-              </div>
-            ) : (
-              "Draft"
-            )} */}
-            <Trash2
-              strokeWidth={1}
-              color="#9B9999"
-              size={24}
-              // className="ms-2"
-              onClick={() => handleOpenConfirmation(item.id)}
-              style={{ cursor: "pointer", paddingTop: "4px" }}
-            />
-          </div>
-        ),
+          )),
+
+        // actions: (
+        //   <div className=" " style={{ display: "flex", gap: "10px" }}>
+        //     <div style={{ display: "block", width: "60px", textAlign: "left" }}>
+        //       <span
+        //         style={{
+        //           fontSize: "14px",
+        //           marginBottom: "4px",
+        //           display: "block",
+        //         }}
+        //       >
+        //         {item.isJobCompleted ? "Active" : "Inactive"}
+        //       </span>
+        //       <div style={{ display: "flex", alignItems: "center" }}>
+        //         <div
+        //           style={{
+        //             position: "relative",
+        //             display: "inline-block",
+        //             height: "16px",
+        //             width: "32px",
+        //           }}
+        //         >
+        //           <input
+        //             type="checkbox"
+        //             checked={item.isJobCompleted}
+        //             onChange={() => changeJobStatus(item.id, item.isJobActive)}
+        //             style={{
+        //               position: "absolute",
+        //               opacity: 0,
+        //               width: 0,
+        //               height: 0,
+        //             }}
+        //           />
+        //           <span
+        //             style={{
+        //               position: "absolute",
+        //               top: 0,
+        //               left: 0,
+        //               right: 0,
+        //               bottom: 0,
+        //               backgroundColor: item.isJobCompleted
+        //                 ? "#299A16"
+        //                 : "#E0E0E0",
+        //               borderRadius: "16px",
+        //               transition: "background-color 0.2s ease",
+        //             }}
+        //           />
+        //           <span
+        //             style={{
+        //               position: "absolute",
+        //               top: "2px",
+        //               left: "2px",
+        //               height: "12px",
+        //               width: "12px",
+        //               backgroundColor: "white",
+        //               borderRadius: "50%",
+        //               transform: item.isJobCompleted
+        //                 ? "translateX(16px)"
+        //                 : "translateX(0)",
+        //               transition: "transform 0.2s ease",
+        //               boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+        //             }}
+        //           />
+        //         </div>
+        //       </div>
+        //     </div>
+        //     {/* {item.isJobCompleted ? (
+        //       <div className="d-block">
+        //         <span>Active</span>
+        //         <Media key="1">
+        //           <Media body className="text-start switch-sm ">
+        //             <Label className="switch">
+        //               <Input
+        //                 type="checkbox"
+        //                 style={{
+        //                   background: `${item.isJobActive ? "black" : "red"}`,
+        //                 }}
+        //                 checked={item.isJobActive ? true : false}
+        //                 onClick={() =>
+        //                   changeJobStatus(item.id, item.isJobActive)
+        //                 }
+        //               />
+        //               <span
+        //                 className="switch-state"
+        //                 style={{
+        //                   backgroundColor: `${
+        //                     item.isJobActive ? "#299A16" : "#E0E0E0"
+        //                   }`,
+        //                 }}
+        //               ></span>
+        //             </Label>
+        //           </Media>
+        //         </Media>
+        //       </div>
+        //     ) : (
+        //       "Draft"
+        //     )} */}
+        //     <Trash2
+        //       strokeWidth={1}
+        //       color="#9B9999"
+        //       size={24}
+        //       // className="ms-2"
+        //       onClick={() => handleOpenConfirmation(item.id)}
+        //       style={{ cursor: "pointer", paddingTop: "4px" }}
+        //     />
+        //   </div>
+        // ),
         totalCandidates: <span>{item.totalCandidates || 0}</span>,
         shortListedCandidates: <span>{item.shortListedCandidates || 0}</span>,
         connectionRequestsSent: <span>{item.connectionRequestsSent || 0}</span>,
@@ -816,6 +951,7 @@ const JobList = () => {
         ),
         totalMessagesSent: <span>{item.totalMessagesSent || 0}</span>,
         totalReplies: <span>{item.totalReplies || 0}</span>,
+        Status: item.status,
       };
     });
 
@@ -859,11 +995,11 @@ const JobList = () => {
           isLoading={isLoading}
         />
         <Row>
-          <Col sm="12" style={{overflow: "hidden", height: "84vh"}}>
+          <Col sm="12" style={{ overflow: "hidden", height: "84vh" }}>
             <Card style={{ boxShadow: "none" }}>
               <CardHeader className="pb-3">
                 <Row>
-                  <Col xl="9" >
+                  <Col xl="9">
                     {" "}
                     <button
                       style={{
@@ -1341,6 +1477,19 @@ const JobList = () => {
       </div>
     </CardBody> */}
               <CardBody style={{ padding: 0 }}>
+                {isLoading && (
+                  <div
+                    style={{
+                      height: "70vh",
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Spinner />
+                  </div>
+                )}
                 <div
                   style={{
                     maxHeight: `${maxHeight}px`,
@@ -1355,7 +1504,7 @@ const JobList = () => {
                     style={{
                       width: "100%",
                       tableLayout: "auto",
-                       borderCollapse: "separate",
+                      borderCollapse: "separate",
                       borderSpacing: "0 10px",
                     }}
                   >
@@ -1390,11 +1539,10 @@ const JobList = () => {
                       {jobsList.map((job, index) => (
                         <tr
                           key={index}
-                          style={{                           
+                          style={{
                             backgroundColor:
                               index % 2 === 0 ? "#F5F9FF" : "#F5F9FF",
                             borderBottom: "1px solid #E0E0E0",
-                            
                           }}
                         >
                           {tableColumns.map((column, colIndex) => (
