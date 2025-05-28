@@ -29,6 +29,8 @@ import DateModal from "Components/Alfren/Job/list/modals/date";
 import { IoFilterOutline } from "react-icons/io5";
 import { fetchJobs } from "../../../../redux/Job/jobActions";
 import JobList from "Components/Alfren/Job/list";
+import { MdMessage } from "react-icons/md";
+import { BiMessageSquareDetail } from "react-icons/bi";
 import {
   Container,
   Row,
@@ -386,11 +388,11 @@ const DataTables = () => {
     fetchJobPaginated();
   }, []);
 
-  // console.log("candidateList", candidateList);
+  // console.log("results", results);
 
   const mapTableData = (results) => {
     let candidateMappedList = results.map((item, index) => {
-      // console.log("item", item);
+      console.log("item", item);
       return {
         id: index,
         name: (
@@ -535,19 +537,44 @@ const DataTables = () => {
                     // color: "#299A16",
                     color: "#000",
                     fontWeight: "400",
-                    display: "inline-flex",
+                    // display: "inline-flex",
                     fontSize: "11px",
+                    // backgroundColor: "#F0F",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    // width: "100px",
+                    height: "40px",
                   }}
                 >
                   {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
                   <span style={{}}>
                     {optionListShort[valueList?.indexOf(item.lastAction)]}
                   </span>
-                  {/* <Check strokeWidth={0.5} size={15} /> */}
+
+                  {item.threadLink && item.lastAction == "candidateReplied" && (
+                    <Link to={item.threadLink} target="_blank">
+                      <BiMessageSquareDetail
+                        size={24}
+                        color="#1264FD"
+                        style={{ paddingBottom: "3px", paddingLeft: "5px" }}
+                      />
+                    </Link>
+                  )}
+
+                  {item.lastAction == "checkedReplyStatus" && (
+                    <Link to={item.threadLink} target="_blank">
+                      <Check
+                        size={24}
+                        color="#1264FD"
+                        style={{ marginBottom: "-6px", paddingLeft: "3px" }}
+                      />
+                    </Link>
+                  )}
                 </span>
                 {/* <div
                     className=""
-                    style={{ color: "#C6C9F0", fontSize: "11px" }}
+                    style={{ color: "#C6C9F0", color: "#1264FD", fontSize: "11px" }}
                   >
                     {actionDate}
                   </div> */}
@@ -1444,18 +1471,20 @@ const DataTables = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* {console.log(loading)} */}
                       {loading ? (
                         <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <div
-                            className="flex justify-content-center align-items-center"
-                            style={{ height: "50svh", width: "100%", paddingTop: "20svh" }}
+                          <td
+                            colSpan={tableColumns.length}
+                            style={{
+                              height: "50vh",
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
                           >
                             <Spinner color="primary" />
-                          </div>
+                          </td>
                         </tr>
                       ) : (
                         candidateList.map((candidate, index) => (
@@ -1463,7 +1492,6 @@ const DataTables = () => {
                             key={index}
                             style={{
                               backgroundColor: "white",
-                              // index % 2 === 0 ? "#F5F9FF" : "white",
                               borderBottom: "1px solid #E0E0E0",
                             }}
                           >
