@@ -184,34 +184,34 @@ const JobList = () => {
     }
   };
 
-  // const getStatusStyles = (status) => {
-  //   switch (status) {
-  //     case "In Progress":
-  //       return {
-  //         backgroundColor: "#fff3cd",
-  //         color: "#856404",
-  //         border: "1px solid #ffeaa7",
-  //       };
-  //     case "Paused":
-  //       return {
-  //         backgroundColor: "#e2e3e5",
-  //         color: "#383d41",
-  //         border: "1px solid #d6d8db",
-  //       };
-  //     case "Completed":
-  //       return {
-  //         backgroundColor: "#d4edda",
-  //         color: "#155724",
-  //         border: "1px solid #c3e6cb",
-  //       };
-  //     default:
-  //       return {
-  //         backgroundColor: "#e2e3e5",
-  //         color: "#383d41",
-  //         border: "1px solid #d6d8db",
-  //       };
-  //   }
-  // };
+  const getStatusStyles = (status) => {
+    switch (status) {
+      case "In Progress":
+        return {
+          backgroundColor: "#007BFF",
+          color: "#fff",
+          // border: "2px solid #007BFF",
+        };
+      case "Paused":
+        return {
+          backgroundColor: "#F0F0F0",
+          color: "#383d41",
+          // border: "2px solid #D3D3D3",
+        };
+      case "Completed":
+        return {
+          backgroundColor: "#28a745",
+          color: "#fff",
+          // border: "1px solid #c3e6cb",
+        };
+      default:
+        return {
+          backgroundColor: "#e2e3e5",
+          color: "#383d41",
+          border: "1px solid #d6d8db",
+        };
+    }
+  };
   const shouldApplyShimmer = (status) => {
     return status === "In Progress";
   };
@@ -454,29 +454,6 @@ const JobList = () => {
               center: false,
               width: "15%",
             },
-            // {
-            //   name: (
-            //     <div
-            //       style={{ display: "flex", alignItems: "center", gap: "6px" }}
-            //     >
-            //       <Activity size={16} />
-            //       Status
-            //     </div>
-            //   ),
-            //   selector: (row) => (
-            //     <td>
-            //       <span
-            //         className={`status-badge ${
-            //           shouldApplyShimmer(row.Status) ? "shimmer-effect" : ""
-            //         }`}
-            //         style={getStatusStyles(row.Status)}
-            //       >
-            //         {row.Status || "No Status"} {/* ✨ Note: Capital S */}
-            //       </span>
-            //     </td>
-            //   ),
-            //   width: "20%",
-            // },
             {
               name: (
                 <div
@@ -489,23 +466,46 @@ const JobList = () => {
               selector: (row) => (
                 <td>
                   <span
-                  className="status-badge shimmer-effect"
-                  style={{
-                    backgroundColor: "#007BFF",
-                    color: "white"
-                  }}
-                    // className={`status-badge ${
-                    //   row.status === "In Progress" ? "shimmer-effect" : ""
-                    // }`}
-                    // style={getStatusStyles(row.status)}
+                    className={`status-effect ${
+                      shouldApplyShimmer(row.Status) ? "shimmer-effect" : ""
+                    }`}
+                    style={getStatusStyles(row.Status)}
                   >
-                    {/* {row.status} */}
-                    In Progress
+                    {row.Status || "No Status"}  
                   </span>
                 </td>
               ),
               width: "20%",
             },
+            // {
+            //   name: (
+            //     <div
+            //       style={{ display: "flex", alignItems: "center", gap: "6px" }}
+            //     >
+            //       <Activity size={16} />
+            //       Status
+            //     </div>
+            //   ),
+            //   selector: (row) => (
+            //     <td>
+            //       <span
+            //       className="status-badge shimmer-effect"
+            //       style={{
+            //         backgroundColor: "#007BFF",
+            //         color: "white"
+            //       }}
+            //         // className={`status-badge ${
+            //         //   row.status === "In Progress" ? "shimmer-effect" : ""
+            //         // }`}
+            //         // style={getStatusStyles(row.status)}
+            //       >
+            //         {/* {row.status} */}
+            //         In Progress
+            //       </span>
+            //     </td>
+            //   ),
+            //   width: "20%",
+            // },
 
             {
               name: (

@@ -16,25 +16,8 @@ import CandidateFunnel from "./CandidateFunnel";
 import RequiredSkills from "./RequiredSkills";
 import AvgExp from "./AvgExp";
 import { Input, Media, Label, Tooltip } from "reactstrap";
-import { BiSolidCheckbox } from "react-icons/bi";
 
 import { TfiBackLeft } from "react-icons/tfi";
-
-const experienceData = {
-  category: [0, 1, 2, 3, 4, 5],
-  values: [10, 20, 35, 25, 15, 5],
-};
-
-const cityData = [
-  { id: "PK-BA", value: 25 },
-  { id: "PK-PB", value: 50 },
-  { id: "PK-SD", value: 40 },
-  { id: "PK-KP", value: 30 },
-  { id: "PK-IS", value: 20 },
-  { id: "PK-TA", value: 10 },
-  { id: "PK-JK", value: 15 },
-  { id: "PK-GB", value: 5 },
-];
 
 const JobDetail = () => {
   const dispatch = useDispatch();
