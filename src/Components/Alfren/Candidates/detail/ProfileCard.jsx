@@ -10,6 +10,7 @@ import phoneIcon from "../../../../assets/used-files/icons/phone.svg";
 import envelopIcon from "../../../../assets/used-files/icons/envelope.svg";
 import websiteIcon from "../../../../assets/used-files/icons/website.svg";
 import { Link } from "react-router-dom";
+import user1 from "../../../../assets/images/user/user.png";
 
 const ProfileCard = ({ candidateDetails }) => {
   console.log("candidateDetails", candidateDetails);
@@ -21,14 +22,25 @@ const ProfileCard = ({ candidateDetails }) => {
       <Card className="hovercard ">
         <div className="user-image">
           <div className="avatar">
-            <Image
+            {/* <Image
               attrImage={{
                 className: "step1",
                 alt: "",
                 src: candidateDetails?.candidate?.image
                   ? candidateDetails?.candidate?.image
                   : `${DefaultUserImage}`,
+                  
               }}
+            /> */}
+            <img
+              src={candidateDetails?.candidate?.image || user1}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = user1;
+              }}
+              alt=""
+              className= "step1"
+              // className="img-50 rounded-circle"
             />
           </div>
           <Link
