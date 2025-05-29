@@ -109,17 +109,6 @@ const JobList = () => {
     }
   };
 
-  const getStatusClass = (status) => {
-    if (!status) return "status-default"; // fallback style
-
-    const s = status.toLowerCase();
-
-    if (s.includes("in progress")) return "status-inprogress";
-    if (s === "completed") return "status-completed";
-    if (s === "paused") return "status-paused";
-
-    return "status-inprogress";
-  };
 
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
   const [priorities, setPriorities] = useState([
