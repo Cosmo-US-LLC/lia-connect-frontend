@@ -188,7 +188,7 @@ input:checked + .slider:before {
 
 
 /* shimmer effect */
-.shimmer-effect {
+.status-effect {
   position: relative;
   overflow: hidden;
   height: 30px;
@@ -197,6 +197,16 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   border-radius: 16px;
+}
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+  height: 30px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
 }
 
 .shimmer-effect::before {
