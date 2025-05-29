@@ -4,7 +4,7 @@ import { Link } from "react-feather";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { fetchJobDetails } from "../../../../redux/Job/jobActions";
+import { fetchJobDetails, updateJob } from "../../../../redux/Job/jobActions";
 import PotentialCandidates from "./PotentialCandidates";
 import ResponseRate from "./ResponseRate";
 import BlackList from "./BlackList";
@@ -97,16 +97,55 @@ const JobDetail = () => {
 
   console.log({ jobDetails });
 
+   useEffect(() => {
+    if (jobDetails?.isJobActive !== undefined) {
+      setIsActive(jobDetails.isJobActive)
+    }
+  }, [jobDetails])
+
+
+
   const [isActive, setIsActive] = useState(true);
+  const [paginatedUpdated, setPaginatedUpdated] = useState(false)
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
+  // const toggleSwitch = () => {
+  //   setIsActive(!isActive);
+  // };
+
   const toggleSwitch = () => {
-    setIsActive(!isActive);
-  };
+    const newStatus = !isActive
+    changeJobStatus(jobDetails.id, newStatus)
+  }
 
   const toggleTooltip = () => {
     setTooltipOpen(!tooltipOpen);
   };
+
+    const changeJobStatus = (jobId, status) => {
+    console.log({ jobId, status })
+    const formData = {
+      jobId,
+      body: {
+        isJobActive: status,
+      },
+    }
+    dispatch(
+      updateJob(formData, (resp) => {
+        if (resp.status == 201) {
+          toast.success("Job Updated Successfully")
+          setPaginatedUpdated(!paginatedUpdated)
+          // Update local state to reflect the change
+          setIsActive(status)
+          // Optionally refresh job details
+          getJobDetails()
+        } else {
+          const err = resp.message
+          toast.error(err)
+        }
+      }),
+    )
+  }
 
   return (
     <Fragment>
