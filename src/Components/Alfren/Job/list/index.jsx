@@ -1476,7 +1476,7 @@ const JobList = () => {
                       alignItems: "center",
                     }}
                   >
-                    <Spinner />
+                    <Spinner color="primary"/>
                   </div>
                 )}
                 <div
