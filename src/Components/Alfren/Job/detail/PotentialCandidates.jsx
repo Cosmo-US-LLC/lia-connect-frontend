@@ -135,7 +135,7 @@ const PotentialCandidates = ({ Message }) => {
                   textAlign: "center",
                 }}
               >
-                {Message?.acceptancePercentage}%{" "}
+                {Message?.acceptancePercentage || 0}%{" "}
               </h4>
               <div
                 style={{

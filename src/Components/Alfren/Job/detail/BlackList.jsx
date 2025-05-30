@@ -145,7 +145,7 @@ const BlackList = ({ Connection }) => {
                   textAlign: "center",
                 }}
               >
-                {Connection?.acceptancePercentage}%{" "}
+                {Connection?.acceptancePercentage || 0}%{" "}
               </h4>
               <div
                 style={{

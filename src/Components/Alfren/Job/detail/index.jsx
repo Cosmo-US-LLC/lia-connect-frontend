@@ -299,7 +299,7 @@ const JobDetail = () => {
                   <Row>
                     <Col
                       xl="12"
-                      className="mb-4"
+                      // className="mb-4"
                       style={{ paddingRight: "0px", marginLeft: "12px" }}
                     >
                       <AvgExp
@@ -310,8 +310,8 @@ const JobDetail = () => {
 
                     <Col
                       xl="12"
-                      className="mb-4"
-                      style={{ paddingRight: "0px", marginLeft: "12px" }}
+                      // className="mb-8"
+                      style={{ paddingRight: "0px", marginLeft: "12px", marginBottom: "52px" }}
                     >
                       <RequiredSkills jobDetails={jobDetails} />
                     </Col>
