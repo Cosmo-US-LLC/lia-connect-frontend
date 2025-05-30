@@ -109,7 +109,6 @@ const JobList = () => {
     }
   };
 
-
   const [isPrioritySelected, setIsPrioritySelected] = useState(false);
   const [priorities, setPriorities] = useState([
     {
@@ -460,7 +459,7 @@ const JobList = () => {
                     }`}
                     style={getStatusStyles(row.Status)}
                   >
-                    {row.Status || "No Status"}  
+                    {row.Status || "No Status"}
                   </span>
                 </td>
               ),
@@ -757,7 +756,13 @@ const JobList = () => {
           (console.log({ item }),
           (
             <div style={{ display: "flex", gap: "2px", textAlign: "left" }}>
-              <div style={{ width: "80px" }}>
+              <div
+                style={{
+                  width: "80px",
+                  // color: item.status === "Completed" ? "#9B9999" : "#000",
+                  opacity: item.status === "Completed" ? 0.6 : 1,
+                }}
+              >
                 <span
                   style={{
                     fontSize: "14px",
@@ -782,6 +787,7 @@ const JobList = () => {
                     type="checkbox"
                     checked={item.isJobActive}
                     onChange={() => changeJobStatus(item.id, !item.isJobActive)}
+                    disabled={item.status === "Completed"}
                     style={{
                       opacity: 0,
                       width: 0,
@@ -1476,7 +1482,7 @@ const JobList = () => {
                       alignItems: "center",
                     }}
                   >
-                    <Spinner color="primary"/>
+                    <Spinner color="primary" />
                   </div>
                 )}
                 <div
