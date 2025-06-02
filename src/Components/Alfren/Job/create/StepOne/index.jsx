@@ -55,6 +55,7 @@ const StepOne = ({
   fieldErrors,
 }) => {
   console.log("hasErrors i also want this", !hasErrors);
+
   const options = [
     {
       value: 1,
@@ -131,7 +132,12 @@ const StepOne = ({
     } else if (name == "linkedInProfile") {
       setLinkedInProfile(value);
     } else if (name == "maxCandidates") {
-      setMaxCandidates(parseInt(value));
+      const numericValue = parseInt(value, 10);
+      if (!isNaN(numericValue)) {
+        setMaxCandidates(numericValue);
+      } else {
+        setMaxCandidates(null); // if input is cleared or invalid
+      }
     }
   };
 
@@ -175,13 +181,24 @@ const StepOne = ({
     setIsMaxChecked(isChecked);
 
     if (isChecked) {
+      setMaxCandidates(100); // ✅ Add this
       setValue("maxCandidates", 100);
     } else {
-      setValue("maxCandidates", maxCandidates || "");
+      setMaxCandidates(null); // ✅ Add this or keep previous input
+      setValue("maxCandidates", "");
     }
 
     clearErrors("maxCandidates");
   };
+  console.log({
+    jobName,
+    jobPriority,
+    skills,
+    linkedInSearch,
+    linkedInProfile,
+    linkedInSearchButton,
+    maxCandidates,
+  });
 
   return (
     <Fragment>
@@ -684,11 +701,9 @@ const StepOne = ({
                         )}
                       </div>
                     </FormGroup>
-                    {linkedInSearchValue && !hasErrors && (
+                    {/* {linkedInSearchValue && !hasErrors && (
                       <div className="text-start" style={{ color: "#595959" }}>
-                        {/* <p style={{ fontSize: "12px" }}>
-                          LinkedIn profile found: <strong>{"1000+"}</strong>
-                        </p> */}
+                       
                         <p
                           style={{
                             fontSize: "12px",
@@ -764,10 +779,187 @@ const StepOne = ({
                         </div>
                         <div></div>
                       </div>
+                    )} */}
+                    {linkedInSearchValue && !hasErrors && (
+                      <div className="text-start" style={{ color: "#595959" }}>
+                        <p
+                          style={{
+                            fontSize: "12px",
+                            marginBottom: "4px",
+                            paddingTop: "4px",
+                          }}
+                        >
+                          How many users you would like to add to this list?{" "}
+                          <span className="text-danger">
+                            *{" "}
+                            <strong style={{ color: "#9F9B9B" }}>
+                              (max 100)
+                            </strong>
+                          </span>
+                        </p>
+
+                        <div className="d-flex gap-3">
+                          {/* Manual input */}
+                          <input
+                            style={{
+                              background: "#EBF1FC",
+                              marginRight: "3px",
+                              width: "60px",
+                              height: "32px",
+                              appearance: "none",
+                            }}
+                            type="number"
+                            min={1}
+                            max={100}
+                            name="maxCandidates"
+                            value={maxCandidates ?? ""}
+                            readOnly={isMaxChecked}
+                            onChange={(e) => {
+                              const val = parseInt(e.target.value, 10);
+                              if (!isNaN(val)) {
+                                setMaxCandidates(val);
+                              } else {
+                                setMaxCandidates(null); // fallback if user clears input
+                              }
+                              clearErrors("maxCandidates");
+                            }}
+                            className={`form-control shadow-none ${
+                              errors.maxCandidates ? "is-invalid" : ""
+                            }`}
+                          />
+                          {errors.maxCandidates && (
+                            <span className="invalid-feedback d-block text-start">
+                              {errors.maxCandidates.message}
+                            </span>
+                          )}
+
+                          {/* Max checkbox */}
+                          {/* <div className="d-flex align-items-center gap-1">
+        <input
+          className="form-check-input"
+          style={{ width: "12px", height: "12px", borderRadius: "4px", border:"1px solid black" }}
+          id="maxCheck"
+          type="checkbox"
+          checked={isMaxChecked}
+          onChange={(e) => {
+            const checked = e.target.checked;
+            setIsMaxChecked(checked);
+            if (checked) {
+              setMaxCandidates(100);
+              setValue("maxCandidates", 100);
+            } else {
+              setMaxCandidates(null);
+              setValue("maxCandidates", "");
+            }
+            clearErrors("maxCandidates");
+          }}
+        />
+        <label htmlFor="maxCheck" style={{ fontSize: "12px" }}>
+          max
+        </label>
+      </div> */}
+                          <div
+                            className="d-flex align-items-center gap-2"
+                            style={{
+                              maxWidth: "fit-content",
+                              display: "inline-block",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              // padding: "4px 4px",
+                              // borderRadius: "6px",
+                              cursor: "pointer",
+                              // backgroundColor: "#000",
+                            }}
+                          >
+                            <input
+                              className="form-check-input"
+                              id="maxCheck"
+                              type="checkbox"
+                              checked={isMaxChecked}
+                              onChange={(e) => {
+                                const checked = e.target.checked;
+                                setIsMaxChecked(checked);
+                                if (checked) {
+                                  setMaxCandidates(100);
+                                  setValue("maxCandidates", 100);
+                                } else {
+                                  setMaxCandidates(null);
+                                  setValue("maxCandidates", "");
+                                }
+                                clearErrors("maxCandidates");
+                              }}
+                              style={{
+                                width: "14px",
+                                height: "14px",
+                                borderRadius: "3px",
+                                border: "1px solid black",
+                                backgroundColor: isMaxChecked
+                                  ? "#1264FD"
+                                  : "#ffffff",
+                                appearance: "none",
+                                WebkitAppearance: "none",
+                                MozAppearance: "none",
+                                outline: "none",
+                                display: "inline-block",
+                                position: "relative",
+                              }}
+                            />
+                            {/* custom checkmark */}
+                            {isMaxChecked && (
+                              <span
+                                style={{
+                                  position: "absolute",
+                                  left: "3px",
+                                  top: "1px",
+                                  fontSize: "11px",
+                                  color: "#ffffff",
+                                  pointerEvents: "none",
+                                }}
+                              >
+                                ✔
+                              </span>
+                            )}
+
+                            <label
+                              htmlFor="maxCheck"
+                              style={{
+                                fontSize: "12px",
+                                color: "#333333",
+                                margin: "2px 0 0 0",
+                                userSelect: "none",
+                                cursor: "pointer",
+                              }}
+                            >
+                              max
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </Col>
                   <Col xl="12" style={{ textAlign: "end" }}>
                     <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={
+                        isLoading ||
+                        !jobName ||
+                        skills.length === 0 ||
+                        !maxCandidates
+                      }
+                    >
+                      <span>
+                        {isLoading ? (
+                          <>
+                            <i className="fa fa-spinner fa-spin" /> Loading...
+                          </>
+                        ) : (
+                          "Next"
+                        )}
+                      </span>
+                    </button>
+
+                    {/* <button
                       type="submit"
                       className="btn btn-primary"
                       disabled={isLoading}
@@ -781,7 +973,7 @@ const StepOne = ({
                           "Next"
                         )}
                       </span>
-                    </button>
+                    </button> */}
                   </Col>
                 </Row>
               </CardBody>
