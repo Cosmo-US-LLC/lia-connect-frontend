@@ -45,6 +45,11 @@ import {
   ModalFooter,
 } from "reactstrap";
 import { CiCircleInfo } from "react-icons/ci";
+import {
+  SkeletonTable,
+  rowCount,
+} from "Components/UiKits/TableSkeletonLoader/skeleton-components";
+import { is } from "date-fns/locale";
 
 const optionList = [
   "Profile Fetched",
@@ -526,64 +531,129 @@ const DataTables = () => {
         ) : (
           "N/A"
         ),
-        lastAction: item.lastAction ? (
-          (() => {
-            // const [actionName, actionDate] = item.lastAction.split(" on ");
+        lastAction: (() => {
+          const activity = item.lastActionPerformed?.activity || "";
+          const activityTime = item.lastActionPerformed?.activityTime || null;
+
+          if (!activity) {
             return (
-              <div style={{}}>
-                <span
-                  // className="f-w-700"
+              <span style={{ color: "lightgray" }}>No Recent Activity</span>
+            );
+          }
+
+          return (
+            <div>
+              <span
+                style={{
+                  color: "#000",
+                  fontWeight: "400",
+                  fontSize: "11px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "40px",
+                }}
+              >
+                {activity}
+
+                {activity === "Replied" && item.threadLink && (
+                  <Link to={item.threadLink} target="_blank">
+                    <BiMessageSquareDetail
+                      size={24}
+                      color="#1264FD"
+                      style={{ paddingBottom: "3px", paddingLeft: "5px" }}
+                    />
+                  </Link>
+                )}
+
+                {activity === "Reply Checked" && item.threadLink && (
+                  <Link to={item.threadLink} target="_blank">
+                    <Check
+                      size={24}
+                      color="#1264FD"
+                      style={{ marginBottom: "-6px", paddingLeft: "3px" }}
+                    />
+                  </Link>
+                )}
+              </span>
+
+              {activityTime && (
+                <div
                   style={{
-                    // color: "#299A16",
-                    color: "#000",
-                    fontWeight: "400",
-                    // display: "inline-flex",
-                    fontSize: "11px",
-                    // backgroundColor: "#F0F",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    // width: "100px",
-                    height: "40px",
+                    fontSize: "10px",
+                    textAlign: "center",
+                    color: "#888",
+                    marginTop: "-4px",
                   }}
                 >
-                  {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
-                  <span style={{}}>
-                    {optionListShort[valueList?.indexOf(item.lastAction)]}
-                  </span>
+                  {new Date(activityTime).toLocaleString("en-GB", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })(),
 
-                  {item.threadLink && item.lastAction == "candidateReplied" && (
-                    <Link to={item.threadLink} target="_blank">
-                      <BiMessageSquareDetail
-                        size={24}
-                        color="#1264FD"
-                        style={{ paddingBottom: "3px", paddingLeft: "5px" }}
-                      />
-                    </Link>
-                  )}
+        // lastAction: item.lastAction ? (
+        //   (() => {
+        //     // const [actionName, actionDate] = item.lastAction.split(" on ");
+        //     return (
+        //       <div style={{}}>
+        //         <span
+        //           // className="f-w-700"
+        //           style={{
+        //             // color: "#299A16",
+        //             color: "#000",
+        //             fontWeight: "400",
+        //             // display: "inline-flex",
+        //             fontSize: "11px",
+        //             // backgroundColor: "#F0F",
+        //             display: "flex",
+        //             justifyContent: "center",
+        //             alignItems: "center",
+        //             // width: "100px",
+        //             height: "40px",
+        //           }}
+        //         >
+        //           {/* <Mail strokeWidth={0.5} size={15} />{" "} */}
+        //           <span style={{}}>
+        //             {optionListShort[valueList?.indexOf(item.lastAction)]}
+        //           </span>
 
-                  {item.lastAction == "checkedReplyStatus" && (
-                    <Link to={item.threadLink} target="_blank">
-                      <Check
-                        size={24}
-                        color="#1264FD"
-                        style={{ marginBottom: "-6px", paddingLeft: "3px" }}
-                      />
-                    </Link>
-                  )}
-                </span>
-                {/* <div
-                    className=""
-                    style={{ color: "#C6C9F0", color: "#1264FD", fontSize: "11px" }}
-                  >
-                    {actionDate}
-                  </div> */}
-              </div>
-            );
-          })()
-        ) : (
-          <span style={{ color: "lightgray" }}>N/A</span>
-        ),
+        //           {item.threadLink && item.lastAction == "candidateReplied" && (
+        //             <Link to={item.threadLink} target="_blank">
+        //               <BiMessageSquareDetail
+        //                 size={24}
+        //                 color="#1264FD"
+        //                 style={{ paddingBottom: "3px", paddingLeft: "5px" }}
+        //               />
+        //             </Link>
+        //           )}
+
+        //           {item.lastAction == "checkedReplyStatus" && (
+        //             <Link to={item.threadLink} target="_blank">
+        //               <Check
+        //                 size={24}
+        //                 color="#1264FD"
+        //                 style={{ marginBottom: "-6px", paddingLeft: "3px" }}
+        //               />
+        //             </Link>
+        //           )}
+        //         </span>
+        //         {/* <div
+        //             className=""
+        //             style={{ color: "#C6C9F0", color: "#1264FD", fontSize: "11px" }}
+        //           >
+        //             {actionDate}
+        //           </div> */}
+        //       </div>
+        //     );
+        //   })()
+        // ) : (
+        //   <span style={{ color: "lightgray" }}>N/A</span>
+        // ),
 
         status: item.status ? (
           <div
@@ -1424,70 +1494,96 @@ const DataTables = () => {
                 setPagination={setPagination}
                 setPaginatedUpdated={setPaginatedUpdated}
               /> */}
-              <CardBody style={{ padding: 0 }}>
+              {loading ? (
                 <div
                   style={{
-                    // flexGrow: `1`,
-                    maxHeight: `${maxHeight}px`,
-                    overflowY: "auto",
-                    overflowX: "hidden",
-                    width: "100%",
-                    position: "relative",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    minHeight: "300px",
                   }}
                 >
-                  <table
+                  <Spinner animation="border" color="primary" />
+                </div>
+              ) : (
+                <CardBody style={{ padding: 0 }}>
+                  <div
                     style={{
+                      // flexGrow: `1`,
+                      maxHeight: `${maxHeight}px`,
+                      minHeight: "350px",
+                      overflowY: "auto",
+                      overflowX: "hidden",
                       width: "100%",
-                      tableLayout: "auto",
-                      borderSpacing: 0,
+                      position: "relative",
                     }}
                   >
-                    <thead>
-                      <tr
-                        style={{
-                          position: "sticky",
-                          top: 0,
-                          backgroundColor: "white",
-                          zIndex: 10,
-                          borderBottom: "2px solid #E0E0E0",
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-                        }}
-                      >
-                        {tableColumns.map((column, index) => (
-                          <th
-                            key={index}
-                            style={{
-                              padding: "16px 18px",
-                              fontWeight: "bold",
-                              // textAlign: "left",
-                              fontSize: "14px",
-                              color: "#333333",
-                              textAlign: index === 0 ? "left" : "center",
-                            }}
-                          >
-                            {column.name}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {loading ? (
-                        <tr>
-                          <td
-                            colSpan={tableColumns.length}
-                            style={{
-                              height: "50vh",
-                              width: "100%",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <Spinner color="primary" />
-                          </td>
+                    <table
+                      style={{
+                        width: "100%",
+                        tableLayout: "auto",
+                        borderSpacing: 0,
+                        // height: "400px",
+                      }}
+                    >
+                      <thead>
+                        <tr
+                          style={{
+                            position: "sticky",
+                            top: 0,
+                            backgroundColor: "white",
+                            zIndex: 10,
+                            borderBottom: "2px solid #E0E0E0",
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                          }}
+                        >
+                          {tableColumns.map((column, index) => (
+                            <th
+                              key={index}
+                              style={{
+                                padding: "16px 18px",
+                                fontWeight: "bold",
+                                // textAlign: "left",
+                                fontSize: "14px",
+                                color: "#333333",
+                                textAlign: index === 0 ? "left" : "center",
+                              }}
+                            >
+                              {column.name}
+                            </th>
+                          ))}
                         </tr>
+                      </thead>
+                      <tbody>
+                        {/* {loading ? (
+                        <>
+                          {[...Array(10)].map((_, rowIndex) => (
+                            <tr key={`skeleton-row-${rowIndex}`}>
+                              {tableColumns.map((_, colIndex) => (
+                                <td
+                                  key={`skeleton-col-${colIndex}`}
+                                  style={{ padding: "26px 20px" }}
+                                >
+                                  <div
+                                    style={{
+                                      height: "20px",
+                                      backgroundColor: "#f0f0f0",
+                                      borderRadius: "4px",
+                                      width: "100%",
+                                      animation:
+                                        "skeleton-loading 1.5s infinite ease-in-out",
+                                    }}
+                                  />
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </>
                       ) : (
-                        candidateList.map((candidate, index) => (
+                        // <>
+                        //   <SkeletonTable columns={tableColumns} rowCount={10} />
+                        // </> */}
+                        {candidateList.map((candidate, index) => (
                           <tr
                             key={index}
                             style={{
@@ -1510,12 +1606,13 @@ const DataTables = () => {
                               </td>
                             ))}
                           </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </CardBody>
+                        ))}
+                        {/* )} */}
+                      </tbody>
+                    </table>
+                  </div>
+                </CardBody>
+              )}
             </Card>
             {/* <div
               className="d-flex justify-content-end align-items-center px-2 gap-3"

@@ -1471,101 +1471,103 @@ const JobList = () => {
         </table>
       </div>
     </CardBody> */}
-              <CardBody style={{ padding: 0 }}>
-                {isLoading && (
-                  <div
-                    style={{
-                      height: "70vh",
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Spinner color="primary" />
-                  </div>
-                )}
+              {isLoading ? (
                 <div
                   style={{
-                    maxHeight: `${maxHeight}px`,
-                    overflowY: "auto",
-                    overflowX: "hidden",
+                    height: "300px",
                     width: "100%",
-                    position: "relative",
-                    paddingBottom: "65px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <table
+                  <Spinner color="primary" />
+                  {/* <Dotedloader duration={4000} visible={true} /> */}
+                </div>
+              ) : (
+                <CardBody style={{ padding: 0 }}>
+                  <div
                     style={{
+                      maxHeight: `${maxHeight}px`,
+                      overflowY: "auto",
+                      overflowX: "hidden",
                       width: "100%",
-                      tableLayout: "auto",
-                      borderCollapse: "separate",
-                      borderSpacing: "0 10px",
+                      position: "relative",
+                      paddingBottom: "65px",
                     }}
                   >
-                    <thead>
-                      <tr
-                        style={{
-                          position: "sticky",
-                          top: 0,
-                          backgroundColor: "white",
-                          zIndex: 10,
-                          borderBottom: "2px solid #E0E0E0",
-                          boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
-                        }}
-                      >
-                        {tableColumns.map((column, index) => (
-                          <th
-                            key={index}
-                            style={{
-                              padding: "16px 18px",
-                              fontWeight: "bold",
-                              textAlign: "left",
-                              fontSize: "14px",
-                              color: "#333333",
-                            }}
-                          >
-                            {column.name}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {jobsList.map((job, index) => (
+                    <table
+                      style={{
+                        width: "100%",
+                        tableLayout: "auto",
+                        borderCollapse: "separate",
+                        borderSpacing: "0 10px",
+                      }}
+                    >
+                      <thead>
                         <tr
-                          key={index}
                           style={{
-                            backgroundColor:
-                              index % 2 === 0 ? "#F5F9FF" : "#F5F9FF",
-                            borderBottom: "1px solid #E0E0E0",
+                            position: "sticky",
+                            top: 0,
+                            backgroundColor: "white",
+                            zIndex: 10,
+                            borderBottom: "2px solid #E0E0E0",
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
                           }}
                         >
-                          {tableColumns.map((column, colIndex) => (
-                            <td
-                              key={colIndex}
+                          {tableColumns.map((column, index) => (
+                            <th
+                              key={index}
                               style={{
-                                padding: "16px 20px",
-                                wordBreak: "break-word",
+                                padding: "16px 18px",
+                                fontWeight: "bold",
+                                textAlign: "left",
                                 fontSize: "14px",
                                 color: "#333333",
-                                textAlign: colIndex === 0 ? "left" : "center",
                               }}
                             >
-                              {column.selector(job)}
-                            </td>
+                              {column.name}
+                            </th>
                           ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <DataTableComponent
-                  paginatedUpdated={paginatedUpdated}
-                  paginationDetails={pagination}
-                  setPagination={setPagination}
-                  setPaginatedUpdated={setPaginatedUpdated}
-                />
-              </CardBody>
+                      </thead>
+                      <tbody>
+                        {jobsList.map((job, index) => (
+                          <tr
+                            key={index}
+                            style={{
+                              backgroundColor:
+                                index % 2 === 0 ? "#F5F9FF" : "#F5F9FF",
+                              borderBottom: "1px solid #E0E0E0",
+                            }}
+                          >
+                            {tableColumns.map((column, colIndex) => (
+                              <td
+                                key={colIndex}
+                                style={{
+                                  padding: "16px 20px",
+                                  wordBreak: "break-word",
+                                  fontSize: "14px",
+                                  color: "#333333",
+                                  textAlign: colIndex === 0 ? "left" : "center",
+                                }}
+                              >
+                                {column.selector(job)}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <DataTableComponent
+                    paginatedUpdated={paginatedUpdated}
+                    paginationDetails={pagination}
+                    setPagination={setPagination}
+                    setPaginatedUpdated={setPaginatedUpdated}
+                  />
+                </CardBody>
+              )}
             </Card>
           </Col>
         </Row>
