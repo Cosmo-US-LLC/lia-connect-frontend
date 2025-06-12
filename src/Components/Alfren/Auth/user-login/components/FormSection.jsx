@@ -42,6 +42,10 @@ const LoginSection = ({
 
   const onSubmit = async (data) => {
     setLoading(true);
+     // ⬅️ Set email and password in parent state
+    setLinkedInEmail(data.username);
+    setLinkedInPassword(data.password);
+    
     try {
       const response = await INSTANCE.post(`/auth/linkWithLinkedIn`, {
         email: data.username,
@@ -89,9 +93,6 @@ const LoginSection = ({
                 className="border-left"
                 type="text"
                 placeholder="Enter your LinkedIn Username"
-                onKeyDown={(e) => {
-                  setLinkedInEmail(e.target.value);
-                }}
               />
             )}
           />
@@ -118,9 +119,6 @@ const LoginSection = ({
                 className="border-left"
                 type="password"
                 placeholder="Enter your LinkedIn Password"
-                onKeyDown={(e) => {
-                  setLinkedInPassword(e.target.value);
-                }}
               />
             )}
           />
