@@ -16,13 +16,20 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { baseURL, baseURLFlask } from "Config/endpoint";
 import { INSTANCE } from "Config/axiosInstance";
+import { fi } from "date-fns/locale";
 
 const schema = yup.object().shape({
   username: yup.string().required("LinkedIn Username is required"),
   password: yup.string().required("LinkedIn Password is required"),
 });
 
-const LoginSection = ({ setConnectModel }) => {
+const LoginSection = ({
+  setConnectModel,
+  setIsLoginCodeRequired,
+  setLinkedInEmail,
+  setLinkedInPassword,
+  setCodeUrl
+}) => {
   const [loading, setLoading] = useState(false);
 
   const {
@@ -35,11 +42,22 @@ const LoginSection = ({ setConnectModel }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
+     // ⬅️ Set email and password in parent state
+    setLinkedInEmail(data.username);
+    setLinkedInPassword(data.password);
+    
     try {
       const response = await INSTANCE.post(`/auth/linkWithLinkedIn`, {
         email: data.username,
         password: data.password,
       });
+
+      if (response.data.require_authenticator_app_code === true) {
+        setCodeUrl(response.data.codeUrl)
+        setIsLoginCodeRequired(true);
+        toast.info("Please enter the code sent to your authenticator app.");
+        return;
+      }
 
       if (response.status === 200 && response.data.token) {
         localStorage.setItem("isLinkedInLogin", true);
@@ -124,7 +142,7 @@ const LoginSection = ({ setConnectModel }) => {
         type="reset"
         className="sign-btn"
         style={{
-          backgroundColor: "#fecf41"
+          backgroundColor: "#fecf41",
         }}
         onClick={() => setConnectModel(false)}
       >
