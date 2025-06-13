@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { Btn, H4, H6, Image, P, ToolTip } from "../../../../AbstractElements";
 import {
@@ -48,6 +48,29 @@ const RegisterForm = ({ logoClassMain }) => {
   const toggle = () => setbasictooltip(!basictooltip);
   // const [confirmPasswordMatched, setConfirmPasswordMatched] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
+  const [location, setLocation] = useState(null);
+
+  useEffect(async () => {
+    const getUserLocation = async () => {
+      try {
+        const res = await fetch("https://ipinfo.io/json?token=e6e342ae7cc2d6");
+        const data = await res.json();
+
+        return {
+          country: data.country, // e.g. "PK"
+          city: data.city.toLowerCase().replace(/\s+/g, ""),
+        };
+      } catch (err) {
+        console.error("Failed to fetch location", err);
+        return {
+          country: "PK",
+          city: "lahore",
+        };
+      }
+    };
+    const location = await getUserLocation();
+    setLocation(location);
+  }, []);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -114,7 +137,7 @@ const RegisterForm = ({ logoClassMain }) => {
       setError(hasUnfulfilledRequirement);
 
       setRequirements(updatedRequirements);
-    } 
+    }
     // else if (e.target.name == "confirmPassword") {
     //   setConfirmPasswordMatched(
     //     formData.password !== e.target.value ? false : true
@@ -133,15 +156,19 @@ const RegisterForm = ({ logoClassMain }) => {
   } = useForm();
 
   const onSubmit1 = (e) => {
-    setIsLoading(true)
+    setIsLoading(true);
     if (error || isFormEmpty()) {
       toast.error("Please fill out all fields!");
       setIsLoading(false); // Set isLoading to false here
     } else {
+      const finalFormData = {
+        ...formData,
+        location,
+      };
       dispatch(
-        registerUser(formData, (resp) => {
+        registerUser(finalFormData, (resp) => {
           if (resp.status == 201) {
-            setIsLoading(false)
+            setIsLoading(false);
             toast.success(UserRegistered);
             setFormData(initialState);
             navigate("/auth/login");
@@ -154,7 +181,7 @@ const RegisterForm = ({ logoClassMain }) => {
             } else {
               toast.error(err);
             }
-            setIsLoading(false) // Set isLoading to false here
+            setIsLoading(false); // Set isLoading to false here
           }
         })
       );
@@ -202,7 +229,8 @@ const RegisterForm = ({ logoClassMain }) => {
                   },
                 }}
               >
-                Sign up to Alfren HR and start headhunting the top talent on Linkedin.
+                Sign up to Alfren HR and start headhunting the top talent on
+                Linkedin.
                 {/* Today is a new day. It's your day. You shape it. Sign up to
                 start managing your projects. */}
               </P>
@@ -321,8 +349,8 @@ const RegisterForm = ({ logoClassMain }) => {
                             element.status === 0
                               ? "#595959"
                               : element.status === -1
-                                ? "#AA1313"
-                                : "#299A16",
+                              ? "#AA1313"
+                              : "#299A16",
                         }}
                       >
                         {element.status === 0 ? (
@@ -390,7 +418,7 @@ const RegisterForm = ({ logoClassMain }) => {
                     className: "d-block w-100 mt-4",
                     color: "primary",
                     type: "submit",
-                    disabled: isLoading
+                    disabled: isLoading,
                   }}
                 >
                   <span>
