@@ -161,8 +161,6 @@ const JobCreate = () => {
       },
     };
 
-    console.log(data, "checkdata");
-
     setFieldErrors(updatedErrors);
 
     const formData = {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, Col, Media } from "reactstrap";
 import { H4, P, Btn, Image } from "../../../AbstractElements";
 import { WelcomeMessage, WelcomeToCuba, WhatsNew } from "../../../constant";

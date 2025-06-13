@@ -190,15 +190,6 @@ const StepOne = ({
 
     clearErrors("maxCandidates");
   };
-  console.log({
-    jobName,
-    jobPriority,
-    skills,
-    linkedInSearch,
-    linkedInProfile,
-    linkedInSearchButton,
-    maxCandidates,
-  });
 
   return (
     <Fragment>
