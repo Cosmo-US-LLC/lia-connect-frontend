@@ -59,6 +59,20 @@ const LoginSection = ({
         return;
       }
 
+      if (response.data.require_email_verification_code === true) {
+        setCodeUrl(response.data.codeUrl)
+        setIsLoginCodeRequired(true);
+        toast.info("Please enter the code sent to your email.");
+        return;
+      }
+
+       if (response.data.require_sms_code === true) {
+        setCodeUrl(response.data.codeUrl)
+        setIsLoginCodeRequired(true);
+        toast.info("Please enter the code sent to your mobile.");
+        return;
+      }
+
       if (response.status === 200 && response.data.token) {
         localStorage.setItem("isLinkedInLogin", true);
         toast.success("LinkedIn Login Successful");
