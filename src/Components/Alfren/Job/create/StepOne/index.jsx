@@ -809,8 +809,10 @@ const StepOne = ({
                               const val = parseInt(e.target.value, 10);
                               if (!isNaN(val)) {
                                 setMaxCandidates(val);
+                                setValue("maxCandidates", val);
                               } else {
-                                setMaxCandidates(null); // fallback if user clears input
+                                setMaxCandidates(null);
+                                setValue("maxCandidates", "");
                               }
                               clearErrors("maxCandidates");
                             }}
